@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_BASE_NAME: ghcr.io/slashnephy/divination-server-companion
+  DOCKER_BASE_NAME: ghcr.io/horoscope-dev/divination-server-companion
 
 jobs:
   build:
