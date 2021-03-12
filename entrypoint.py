@@ -62,22 +62,21 @@ class UserBotClient(discord.Client):
             return
 
         if message.channel.id in self.ANNOUNCE_CHANNELS and DISCORD_ANNOUNCEMENT_WEBHOOK_URL:
-            await cls.on_announce_message(message)
+            await self.on_announce_message(message)
             self.logger.info(f"Handled announce message: {message}")
 
         if message.channel.id in self.BETA_TESTING_CHANNELS and DISCORD_ANNOUNCEMENT_WEBHOOK_URL:
-            await cls.on_beta_testing_message(message)
+            await self.on_beta_testing_message(message)
             self.logger.info(f"Handled beta-testing message: {message}")
 
         if message.channel.id in self.MOB_POP_CHANNELS:
-            await cls.on_mob_pop_message(message)
+            await self.on_mob_pop_message(message)
             self.logger.info(f"Handled mob pop message: {message}")
 
     async def on_message_edit(self, before, after):
         await self.on_message(after)
 
-    @classmethod
-    async def on_announce_message(cls, message):
+    async def on_announce_message(self, message):
         content = message.clean_content
         # Append mark if edited
         if message.edited_at:
@@ -91,8 +90,7 @@ class UserBotClient(discord.Client):
                 avatar_url=message.author.avatar_url
             )
 
-    @classmethod
-    async def on_beta_testing_message(cls, message):
+    async def on_beta_testing_message(self, message):
         # Ignore if edited
         if message.edited_at:
             return
@@ -124,8 +122,7 @@ class UserBotClient(discord.Client):
                 avatar_url=message.author.avatar_url
             )
 
-    @classmethod
-    async def on_mob_pop_message(cls, message):
+    async def on_mob_pop_message(self, message):
         # Ignore Faloop Bot
         if message.author.id == 386003163221721088:
             return
