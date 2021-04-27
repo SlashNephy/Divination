@@ -1,0 +1,29 @@
+name: Check
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - README.md
+
+  workflow_dispatch:
+
+jobs:
+  check-push:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: MSBuild
+        run: msbuild Dalamud.Divination.Common.sln -property:Configuration="Release" -property:Platform="Any CPU" -restore -m
