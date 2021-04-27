@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-push:
+  check:
     runs-on: windows-latest
 
     steps:
