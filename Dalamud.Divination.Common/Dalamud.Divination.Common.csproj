@@ -33,6 +33,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="CheapLoc, Version=1.1.3.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\Thirdparty\Dalamud\CheapLoc.dll</HintPath>
+        </Reference>
         <Reference Include="Dalamud">
           <HintPath>..\Thirdparty\Dalamud\Dalamud.dll</HintPath>
           <Private>False</Private>
@@ -53,22 +56,32 @@
           <HintPath>..\Thirdparty\Dalamud\Serilog.dll</HintPath>
           <Private>False</Private>
         </Reference>
+        <Reference Include="Serilog.Sinks.File">
+          <HintPath>..\Thirdparty\Dalamud\Serilog.Sinks.File.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Api\DivinationEnvironment.cs" />
+        <Compile Include="Api\GitVersion.cs" />
+        <Compile Include="Api\IDivinationPluginApi.cs" />
+        <Compile Include="Api\Logger\ConsoleWindow.cs" />
+        <Compile Include="Api\Logger\DivinationLogger.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Config.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Abstract.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Dalamud.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.cs" />
-        <Compile Include="DivinationEnvironment.cs" />
-        <Compile Include="GitVersion.cs" />
-        <Compile Include="Logger\ConsoleLogger.cs" />
-        <Compile Include="Logger\DivinationLoggerEx.cs" />
-        <Compile Include="Logger\DivinationLoggerFactory.cs" />
-        <Compile Include="Logger\FileLogger.cs" />
-        <Compile Include="Logger\IDivinationLogger.cs" />
-        <Compile Include="Logger\LogLevel.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Logger.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Version.cs" />
+        <Compile Include="Boilerplate\IDivinationPlugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

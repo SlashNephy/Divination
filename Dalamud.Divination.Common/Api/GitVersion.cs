@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
 
-namespace Dalamud.Divination.Common
+namespace Dalamud.Divination.Common.Api
 {
+    /// <summary>
+    /// Git コミット履歴からバージョン情報を提供します。
+    /// </summary>
     public class GitVersion
     {
         private readonly Type? gitVersionInfo;
 
-        public GitVersion()
+        /// <summary>
+        /// 与えられたアセンブリ内に含まれる Git コミット履歴からバージョン情報を組み立てます。
+        /// </summary>
+        /// <param name="assembly">アセンブリ。</param>
+        public GitVersion(Assembly assembly)
         {
             try
             {
-                gitVersionInfo = Assembly.GetExecutingAssembly().GetType("GitVersionInformation");
+                gitVersionInfo = assembly.GetType("GitVersionInformation");
             }
             catch
             {
@@ -76,17 +84,23 @@ namespace Dalamud.Divination.Common
             }
         }
 
-        public void Dump()
+        /// <summary>
+        /// リフレクションを用いて, すべてのバージョン情報の文字列を返します。
+        /// </summary>
+        public override string ToString()
         {
             if (gitVersionInfo == null)
             {
-                return;
+                return string.Empty;
             }
 
+            var builder = new StringBuilder();
             foreach (var field in gitVersionInfo.GetFields())
             {
-                Console.WriteLine($"{field.Name}: {field.GetValue(null)}");
+                builder.AppendLine($"{field.Name} = {field.GetValue(null)}");
             }
+
+            return builder.ToString();
         }
     }
 }
