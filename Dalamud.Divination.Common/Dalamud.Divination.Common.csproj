@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{845AC207-815B-49CB-A413-F720A453B34E}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Dalamud.Divination.Common</RootNamespace>
+        <AssemblyName>Dalamud.Divination.Common</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>preview</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>x64</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>x64</PlatformTarget>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Dalamud">
+          <HintPath>..\Thirdparty\Dalamud\Dalamud.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGui.NET">
+          <HintPath>..\Thirdparty\Dalamud\ImGui.NET.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGuiScene">
+          <HintPath>..\Thirdparty\Dalamud\ImGuiScene.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Lumina">
+          <HintPath>..\Thirdparty\Dalamud\Lumina.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Serilog">
+          <HintPath>..\Thirdparty\Dalamud\Serilog.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Boilerplate\DivinationPlugin.cs" />
+        <Compile Include="DivinationEnvironment.cs" />
+        <Compile Include="GitVersion.cs" />
+        <Compile Include="Logger\ConsoleLogger.cs" />
+        <Compile Include="Logger\DivinationLoggerEx.cs" />
+        <Compile Include="Logger\DivinationLoggerFactory.cs" />
+        <Compile Include="Logger\FileLogger.cs" />
+        <Compile Include="Logger\IDivinationLogger.cs" />
+        <Compile Include="Logger\LogLevel.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
