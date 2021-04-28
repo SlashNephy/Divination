@@ -26,4 +26,4 @@ jobs:
         uses: microsoft/setup-msbuild@v1
 
       - name: MSBuild
-        run: msbuild Dalamud.Divination.Common.sln -property:Configuration="Release" -property:Platform="Any CPU" -restore -m
+        run: msbuild Dalamud.Divination.Common.sln -property:Configuration="Release" -property:Platform="Any CPU" -restore
