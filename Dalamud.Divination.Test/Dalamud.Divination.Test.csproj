@@ -45,6 +45,7 @@
         <Reference Include="System" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="AnotherPlugin.cs" />
         <Compile Include="TestConfig.cs" />
         <Compile Include="TestPlugin.cs" />
         <Compile Include="Tests.cs" />

@@ -3,8 +3,10 @@ using Dalamud.Divination.Common.Boilerplate;
 
 namespace Dalamud.Divination.Test
 {
-    public class TestPlugin : DivinationPlugin<TestConfig>
+    public class TestPlugin : DivinationPlugin<TestPlugin, TestConfig>
     {
+        public readonly string SomeField = "Hello, World!";
+
         public override string Name => "Divination.TestPlugin";
         public override Assembly Assembly => Assembly.GetExecutingAssembly();
 

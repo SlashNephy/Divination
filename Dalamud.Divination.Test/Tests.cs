@@ -20,5 +20,14 @@ namespace Dalamud.Divination.Test
 
             Assert.AreEqual(1, config.Version);
         }
+
+        [Test]
+        public void TestReadField()
+        {
+            var plugin1 = new TestPlugin();
+            var plugin2 = new AnotherPlugin();
+
+            Assert.AreEqual("Hello, World!", plugin2.ReadField());
+        }
     }
 }
