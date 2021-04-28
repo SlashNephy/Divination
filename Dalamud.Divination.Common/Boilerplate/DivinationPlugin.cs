@@ -42,6 +42,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         public void Dispose()
         {
             Unload();
+            this.SaveConfig();
         }
     }
 }
