@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Dalamud.Divination.Common.Api
@@ -32,5 +33,12 @@ namespace Dalamud.Divination.Common.Api
         /// Divination のキャッシュディレクトリへのパス。
         /// </summary>
         public static string CacheDirectory => Path.Combine(DivinationDirectory, "Cache");
+
+        /// <summary>
+        /// FFXIV ゲームディレクトリへのパス。
+        /// 通常、"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game" になります。
+        /// このプロパティは Dalamud 上でのみ機能します。
+        /// </summary>
+        public static string GameDirectory => Path.GetDirectoryName(Process.GetCurrentProcess().MainModule!.FileName)!;
     }
 }
