@@ -27,7 +27,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         protected DivinationPlugin()
 #pragma warning restore 8618
         {
-            Instance = (this as TPlugin)!;
+            Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
         }
 
         /// <summary>
@@ -43,7 +43,6 @@ namespace Dalamud.Divination.Common.Boilerplate
 
             Interface = pluginInterface;
             Config = LoadConfig();
-            Version = new GitVersion(Assembly);
 
             Load();
 
