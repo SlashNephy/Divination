@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Dalamud.Configuration;
 
 namespace Dalamud.Divination.Common.Boilerplate
 {
@@ -8,8 +7,7 @@ namespace Dalamud.Divination.Common.Boilerplate
     /// 各プラグインが実装を行う必要があります。
     /// Dalamud.Plugin.IDalamudPlugin のインターフェイスに対応します。
     /// </summary>
-    /// <typeparam name="TC">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
-    public interface IDivinationPlugin<out TC> where TC : class, IPluginConfiguration
+    public interface IDivinationPlugin
     {
         /// <summary>
         /// プラグインの名前を設定します。この名前は Dalamud に通知されます。
@@ -31,11 +29,5 @@ namespace Dalamud.Divination.Common.Boilerplate
         /// プラグインアンロード時の処理を記述します。
         /// </summary>
         public void Unload();
-
-        /// <summary>
-        /// プラグインの設定を読み込みます。
-        /// </summary>
-        /// <returns>Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラスのインスタンス。</returns>
-        public TC LoadConfig();
     }
 }

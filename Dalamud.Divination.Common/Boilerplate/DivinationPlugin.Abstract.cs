@@ -11,6 +11,5 @@ namespace Dalamud.Divination.Common.Boilerplate
         public abstract Assembly Assembly { get; }
         public abstract void Load();
         public abstract void Unload();
-        public abstract TConfiguration LoadConfig();
     }
 }

@@ -19,10 +19,5 @@ namespace Dalamud.Divination.Test
         {
             Logger.Information("Unloaded!");
         }
-
-        public override TestConfig LoadConfig()
-        {
-            return Interface.GetPluginConfig() as TestConfig ?? new TestConfig();
-        }
     }
 }

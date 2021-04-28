@@ -13,9 +13,9 @@ namespace Dalamud.Divination.Common.Boilerplate
     /// </summary>
     /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
     /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
-    public abstract partial class DivinationPlugin<TPlugin, TConfiguration> : IDivinationPlugin<TConfiguration>, IDivinationPluginApi<TConfiguration>, IDisposable
+    public abstract partial class DivinationPlugin<TPlugin, TConfiguration> : IDivinationPlugin, IDivinationPluginApi<TConfiguration>, IDisposable
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
-        where TConfiguration : class, IPluginConfiguration
+        where TConfiguration : class, IPluginConfiguration, new()
     {
         private static TPlugin? _instance;
 

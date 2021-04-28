@@ -6,7 +6,7 @@ namespace Dalamud.Divination.Common.Api
     /// <summary>
     /// 各 Divination プラグインが実装している各種 API のインターフェイスです。
     /// </summary>
-    public interface IDivinationPluginApi<out TC> where TC : class, IPluginConfiguration
+    public interface IDivinationPluginApi<out TConfiguration> where TConfiguration : class, IPluginConfiguration
     {
         /// <summary>
         /// プラグインのロガー。
@@ -21,7 +21,7 @@ namespace Dalamud.Divination.Common.Api
         /// <summary>
         /// Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラスのインスタンス。
         /// </summary>
-        public TC Config { get; }
+        public TConfiguration Config { get; }
 
         /// <summary>
         /// プラグインのバージョン情報。

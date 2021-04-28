@@ -16,7 +16,7 @@ namespace Dalamud.Divination.Common.Api
         /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
         public static void SaveConfig<TPlugin, TConfiguration>(this DivinationPlugin<TPlugin, TConfiguration> plugin)
             where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
-            where TConfiguration : class, IPluginConfiguration
+            where TConfiguration : class, IPluginConfiguration, new()
         {
             plugin.Interface.SavePluginConfig(plugin.Config);
         }

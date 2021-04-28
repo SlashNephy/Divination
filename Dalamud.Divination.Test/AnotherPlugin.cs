@@ -23,10 +23,5 @@ namespace Dalamud.Divination.Test
         {
             throw new System.NotImplementedException();
         }
-
-        public override TestConfig LoadConfig()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
