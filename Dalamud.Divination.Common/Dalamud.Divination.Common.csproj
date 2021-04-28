@@ -33,9 +33,6 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="CheapLoc, Version=1.1.3.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\Thirdparty\Dalamud\CheapLoc.dll</HintPath>
-        </Reference>
         <Reference Include="Dalamud">
           <HintPath>..\Thirdparty\Dalamud\Dalamud.dll</HintPath>
           <Private>False</Private>
@@ -52,6 +49,10 @@
           <HintPath>..\Thirdparty\Dalamud\Lumina.dll</HintPath>
           <Private>False</Private>
         </Reference>
+        <Reference Include="Newtonsoft.Json">
+          <HintPath>..\Thirdparty\Dalamud\Newtonsoft.Json.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
         <Reference Include="Serilog">
           <HintPath>..\Thirdparty\Dalamud\Serilog.dll</HintPath>
           <Private>False</Private>
@@ -61,17 +62,28 @@
           <Private>False</Private>
         </Reference>
         <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Api\Command\CommandProcessor.cs" />
+        <Compile Include="Api\Command\DivinationCommand.cs" />
+        <Compile Include="Api\Command\CommandAttribute.cs" />
+        <Compile Include="Api\Command\CommandContext.cs" />
+        <Compile Include="Api\Command\ConfigUpdateProhibitedAttribute.cs" />
+        <Compile Include="Api\Definition\DefinitionContainer.cs" />
+        <Compile Include="Api\Definition\DefinitionProvider.cs" />
+        <Compile Include="Api\Definition\DefinitionProviderFactory.cs" />
+        <Compile Include="Api\Definition\HexStringJsonConverter.cs" />
+        <Compile Include="Api\Definition\IDefinitionProvider.cs" />
+        <Compile Include="Api\Definition\LocalDefinitionProvider.cs" />
+        <Compile Include="Api\Definition\RemoteDefinitionProvider.cs" />
         <Compile Include="Api\DivinationEnvironment.cs" />
         <Compile Include="Api\DivinationPluginEx.cs" />
         <Compile Include="Api\GitVersion.cs" />
         <Compile Include="Api\IDivinationPluginApi.cs" />
         <Compile Include="Api\Logger\ConsoleWindow.cs" />
         <Compile Include="Api\Logger\DivinationLogger.cs" />
+        <Compile Include="Api\String\SeStringEx.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Command.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Config.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Abstract.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Dalamud.cs" />
