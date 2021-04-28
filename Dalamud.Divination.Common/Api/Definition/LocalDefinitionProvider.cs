@@ -6,15 +6,20 @@ namespace Dalamud.Divination.Common.Api.Definition
 {
     public class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
     {
-        private readonly FileSystemWatcher watcher = new(DivinationEnvironment.DivinationDirectory, Filename);
+        private readonly FileSystemWatcher watcher;
 
-        public override bool AllowOutDatedDefinitions => true;
-
-        public LocalDefinitionProvider()
+        public LocalDefinitionProvider(string filename = DefaultFilename)
         {
+            Filename = filename;
+            watcher = new FileSystemWatcher(DivinationEnvironment.DivinationDirectory, filename);
+
             watcher.Changed += OnDefinitionFileChanged;
             watcher.EnableRaisingEvents = true;
         }
+
+        public override string Filename { get; }
+
+        public override bool AllowObsoleteDefinitions => true;
 
         private void OnDefinitionFileChanged(object sender, FileSystemEventArgs e)
         {

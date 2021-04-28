@@ -9,11 +9,15 @@ namespace Dalamud.Divination.Common.Api.Definition
 {
     public class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
     {
-        private const string Url = "https://shard.horoscope.dev/" + Filename;
+        private const string DefaultBaseUrl = "https://shard.horoscope.dev/";
+        private readonly string url;
         private readonly Timer timer = new(60 * 60 * 1000);
 
-        public RemoteDefinitionProvider()
+        public RemoteDefinitionProvider(string baseUrl = DefaultBaseUrl, string filename = DefaultFilename)
         {
+            Filename = filename;
+            url = $"{baseUrl}{filename}";
+
             timer.Elapsed += OnTimerElapsed;
             timer.Start();
         }
@@ -23,9 +27,11 @@ namespace Dalamud.Divination.Common.Api.Definition
             Update();
         }
 
+        public override string Filename { get; }
+
         protected override JObject Fetch()
         {
-            var request = WebRequest.CreateHttp(Url);
+            var request = WebRequest.CreateHttp(url);
             request.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
             request.Method = "GET";
 

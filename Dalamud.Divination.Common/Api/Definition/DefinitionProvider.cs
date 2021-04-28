@@ -9,7 +9,19 @@ namespace Dalamud.Divination.Common.Api.Definition
 {
     public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
     {
-        protected const string Filename = "Ephemera.json";
+        protected const string DefaultFilename = "Ephemera.json";
+
+        private TContainer? container;
+        private readonly object containerLock = new();
+        private readonly Serilog.Core.Logger logger = DivinationLogger.Of("Divination.DefinitionProvider");
+        private readonly Task initializationTask;
+
+        protected DefinitionProvider()
+        {
+            initializationTask = Task.Run(Update);
+        }
+
+        public abstract string Filename { get; }
 
         public TContainer Container
         {
@@ -23,18 +35,10 @@ namespace Dalamud.Divination.Common.Api.Definition
                 }
             }
         }
-        public bool IsOutDated { get; private set; }
-        public virtual bool AllowOutDatedDefinitions => false;
 
-        private TContainer? container;
-        private readonly object containerLock = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Of("Divination.DefinitionProvider");
-        private readonly Task initializationTask;
+        public virtual bool AllowObsoleteDefinitions => false;
 
-        protected DefinitionProvider()
-        {
-            initializationTask = Task.Run(Update);
-        }
+        protected abstract JObject? Fetch();
 
         public void Update()
         {
@@ -54,18 +58,14 @@ namespace Dalamud.Divination.Common.Api.Definition
                     }
                 });
 
-                // "C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\ffxivgame.ver"
-                var gameVersionPath = Path.Combine(DivinationEnvironment.GameDirectory, "ffxivgame.ver");
-                var localGameVersion = File.ReadAllText(gameVersionPath).Trim();
-                IsOutDated = localGameVersion != container?.Version;
-
-                if (IsOutDated)
+                var localGameVersion = ReadLocalGameVersion();
+                if (localGameVersion != container?.Version)
                 {
                     logger.Warning(
                         "ゲームバージョン \"{DefinitionGameVersion}\" はサポートされていません。現在のゲームバージョンは \"{LocalGameVersion}\" です。",
                         container?.Version, localGameVersion);
 
-                    if (!AllowOutDatedDefinitions)
+                    if (!AllowObsoleteDefinitions)
                     {
                         container = new TContainer
                         {
@@ -76,6 +76,8 @@ namespace Dalamud.Divination.Common.Api.Definition
                 }
                 else
                 {
+                    container.IsObsolete = false;
+
                     logger.Information(
                         "パッチ {GamePatch} 向けの定義ファイル \"{DefinitionFilename}\" を読み込みました。現在のゲームバージョンは \"{LocalGameVersion}\" です。",
                         container?.Patch, Filename, localGameVersion);
@@ -85,7 +87,13 @@ namespace Dalamud.Divination.Common.Api.Definition
             logger.Verbose("{DefinitionFilename}\n{DefinitionJson}", Filename, JsonConvert.SerializeObject(json, Formatting.Indented));
         }
 
-        protected abstract JObject? Fetch();
+        private static string ReadLocalGameVersion()
+        {
+            // "C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\ffxivgame.ver"
+            var gameVersionPath = Path.Combine(DivinationEnvironment.GameDirectory, "ffxivgame.ver");
+
+            return File.ReadAllText(gameVersionPath).Trim();
+        }
 
         public virtual void Dispose()
         {
