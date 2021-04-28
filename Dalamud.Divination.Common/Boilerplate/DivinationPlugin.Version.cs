@@ -2,7 +2,7 @@
 
 namespace Dalamud.Divination.Common.Boilerplate
 {
-    public abstract partial class DivinationPlugin<TC>
+    public abstract partial class DivinationPlugin<TPlugin, TConfiguration>
     {
 #pragma warning disable 8618
         public GitVersion Version { get; private set; }

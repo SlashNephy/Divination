@@ -12,8 +12,11 @@ namespace Dalamud.Divination.Common.Api
         /// 現在のプラグインの設定インスタンスをファイルに保存します。
         /// プラグインの終了時に自動的に呼ばれます。
         /// </summary>
-        /// <typeparam name="TC">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
-        public static void SaveConfig<TC>(this DivinationPlugin<TC> plugin) where TC : class, IPluginConfiguration
+        /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
+        /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
+        public static void SaveConfig<TPlugin, TConfiguration>(this DivinationPlugin<TPlugin, TConfiguration> plugin)
+            where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
+            where TConfiguration : class, IPluginConfiguration
         {
             plugin.Interface.SavePluginConfig(plugin.Config);
         }

@@ -3,7 +3,7 @@
     /*
      * プラグインのロガーに関する実装を行います。
      */
-    public abstract partial class DivinationPlugin<TC>
+    public abstract partial class DivinationPlugin<TPlugin, TConfiguration>
     {
 #pragma warning disable 8618
         public Serilog.Core.Logger Logger { get; private set; }

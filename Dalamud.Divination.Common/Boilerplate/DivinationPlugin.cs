@@ -11,9 +11,25 @@ namespace Dalamud.Divination.Common.Boilerplate
     /// Divination プラグインのボイラープレートを提供します。
     /// このクラスを継承することで Dalamud 互換のプラグインを作成できます。
     /// </summary>
-    /// <typeparam name="TC">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
-    public abstract partial class DivinationPlugin<TC> : IDivinationPlugin<TC>, IDivinationPluginApi<TC>, IDisposable where TC : class, IPluginConfiguration
+    /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
+    /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
+    public abstract partial class DivinationPlugin<TPlugin, TConfiguration> : IDivinationPlugin<TConfiguration>, IDivinationPluginApi<TConfiguration>, IDisposable
+        where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
+        where TConfiguration : class, IPluginConfiguration
     {
+#pragma warning disable 8618
+        /// <summary>
+        /// プラグインのインスタンスの静的プロパティ。
+        /// </summary>
+        protected static TPlugin Instance { get; private set; }
+
+        [SuppressMessage("ReSharper", "NotNullMemberIsNotInitialized")]
+        protected DivinationPlugin()
+#pragma warning restore 8618
+        {
+            Instance = (this as TPlugin)!;
+        }
+
         /// <summary>
         /// Dalamud プラグインを初期化します。
         /// Divination プラグインから呼び出されることは想定されていません。
