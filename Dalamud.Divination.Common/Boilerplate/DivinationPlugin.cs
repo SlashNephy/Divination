@@ -17,17 +17,17 @@ namespace Dalamud.Divination.Common.Boilerplate
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
         where TConfiguration : class, IPluginConfiguration
     {
-#pragma warning disable 8618
+        private static TPlugin? _instance;
+
         /// <summary>
         /// プラグインのインスタンスの静的プロパティ。
         /// </summary>
-        protected static TPlugin Instance { get; private set; }
+        protected static TPlugin Instance => _instance ?? throw new InvalidOperationException("Instance はまだ初期化されていません。");
 
         [SuppressMessage("ReSharper", "NotNullMemberIsNotInitialized")]
         protected DivinationPlugin()
-#pragma warning restore 8618
         {
-            Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
+            _instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
         }
 
         /// <summary>
@@ -39,10 +39,10 @@ namespace Dalamud.Divination.Common.Boilerplate
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void Initialize(DalamudPluginInterface pluginInterface)
         {
-            Logger = DivinationLogger.Of(Name);
+            logger = DivinationLogger.Of(Name);
 
-            Interface = pluginInterface;
-            Config = LoadConfig();
+            @interface = pluginInterface;
+            config = LoadConfig();
 
             Load();
 

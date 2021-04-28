@@ -1,12 +1,15 @@
-﻿namespace Dalamud.Divination.Common.Boilerplate
+﻿using System;
+using Serilog.Core;
+
+namespace Dalamud.Divination.Common.Boilerplate
 {
     /*
      * プラグインのロガーに関する実装を行います。
      */
     public abstract partial class DivinationPlugin<TPlugin, TConfiguration>
     {
-#pragma warning disable 8618
-        public Serilog.Core.Logger Logger { get; private set; }
-#pragma warning restore 8618
+        private Logger? logger;
+
+        public Logger Logger => logger ?? throw new InvalidOperationException("Logger はまだ初期化されていません。");
     }
 }
