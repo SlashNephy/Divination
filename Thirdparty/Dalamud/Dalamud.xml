@@ -129,7 +129,7 @@
             Gets or sets a value indicating whether or not docking should be globally enabled in ImGui.
             </summary>
         </member>
-        <member name="P:Dalamud.Configuration.DalamudConfiguration.IsNeverViewport">
+        <member name="P:Dalamud.Configuration.DalamudConfiguration.IsDisableViewport">
             <summary>
             Gets or sets a value indicating whether viewports should always be disabled.
             </summary>
@@ -339,6 +339,11 @@
             Gets Dalamud network-based features.
             </summary>
         </member>
+        <member name="P:Dalamud.Dalamud.SystemMenu">
+            <summary>
+            Gets subsystem responsible for adding the Dalamud menu items to the game's system menu.
+            </summary>
+        </member>
         <member name="P:Dalamud.Dalamud.TargetModule">
             <summary>
             Gets Injected process module.
@@ -354,9 +359,19 @@
             Gets location of stored assets.
             </summary>
         </member>
-        <member name="M:Dalamud.Dalamud.Start">
+        <member name="M:Dalamud.Dalamud.LoadTier1">
             <summary>
-            Start and initialize Dalamud subsystems.
+            Runs tier 1 of the Dalamud initialization process.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Dalamud.LoadTier2">
+            <summary>
+            Runs tier 2 of the Dalamud initialization process.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Dalamud.LoadTier3">
+            <summary>
+            Runs tier 3 of the Dalamud initialization process.
             </summary>
         </member>
         <member name="M:Dalamud.Dalamud.Unload">
@@ -372,6 +387,11 @@
         <member name="M:Dalamud.Dalamud.WaitForUnloadFinish">
             <summary>
                 Wait for a queued unload to be finalized.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Dalamud.DisposePlugins">
+            <summary>
+            Dispose subsystems related to plugin handling.
             </summary>
         </member>
         <member name="M:Dalamud.Dalamud.Dispose">
@@ -455,7 +475,7 @@
             A <see cref="N:Lumina"/> object which gives access to any excel/game data.
             </summary>
         </member>
-        <member name="M:Dalamud.Data.DataManager.#ctor(Dalamud.ClientLanguage)">
+        <member name="M:Dalamud.Data.DataManager.#ctor(Dalamud.ClientLanguage,Dalamud.Interface.InterfaceManager)">
             <summary>
             Initializes a new instance of the <see cref="T:Dalamud.Data.DataManager"/> class.
             </summary>
@@ -552,6 +572,36 @@
             <param name="iconId">The icon ID.</param>
             <returns>The <see cref="T:Lumina.Data.Files.TexFile"/> containing the icon.</returns>
         </member>
+        <member name="M:Dalamud.Data.DataManager.GetImGuiTexture(Lumina.Data.Files.TexFile)">
+            <summary>
+            Get the passed <see cref="T:Lumina.Data.Files.TexFile"/> as a drawable ImGui TextureWrap.
+            </summary>
+            <param name="tex">The Lumina <see cref="T:Lumina.Data.Files.TexFile"/>.</param>
+            <returns>A <see cref="T:ImGuiScene.TextureWrap"/> that can be used to draw the texture.</returns>
+        </member>
+        <member name="M:Dalamud.Data.DataManager.GetImGuiTexture(System.String)">
+            <summary>
+            Get the passed texture path as a drawable ImGui TextureWrap.
+            </summary>
+            <param name="path">The internal path to the texture.</param>
+            <returns>A <see cref="T:ImGuiScene.TextureWrap"/> that can be used to draw the texture.</returns>
+        </member>
+        <member name="M:Dalamud.Data.DataManager.GetImGuiTextureIcon(Dalamud.ClientLanguage,System.Int32)">
+            <summary>
+            Get a <see cref="T:ImGuiScene.TextureWrap"/> containing the icon with the given ID, of the given language.
+            </summary>
+            <param name="iconLanguage">The requested language.</param>
+            <param name="iconId">The icon ID.</param>
+            <returns>The <see cref="T:ImGuiScene.TextureWrap"/> containing the icon.</returns>
+        </member>
+        <member name="M:Dalamud.Data.DataManager.GetImGuiTextureIcon(System.String,System.Int32)">
+            <summary>
+            Get a <see cref="T:ImGuiScene.TextureWrap"/> containing the icon with the given ID, of the given type.
+            </summary>
+            <param name="type">The type of the icon (e.g. 'hq' to get the HQ variant of an item icon).</param>
+            <param name="iconId">The icon ID.</param>
+            <returns>The <see cref="T:ImGuiScene.TextureWrap"/> containing the icon.</returns>
+        </member>
         <member name="M:Dalamud.Data.DataManager.Dispose">
             <summary>
             Dispose this DataManager.
@@ -587,6 +637,12 @@
             </summary>
             <param name="ctx">The <see cref="T:EasyHook.RemoteHooking.IContext"/> used to load the DLL.</param>
             <param name="info">The <see cref="T:Dalamud.DalamudStartInfo"/> containing information needed to initialize Dalamud.</param>
+        </member>
+        <member name="M:Dalamud.Game.Addon.DalamudSystemMenu.#ctor(Dalamud.Dalamud)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Dalamud.Game.Addon.DalamudSystemMenu"/> class.
+            </summary>
+            <param name="dalamud">The dalamud instance to act on.</param>
         </member>
         <member name="T:Dalamud.Game.ClientState.Actors.ActorTable">
             <summary>
@@ -1958,6 +2014,11 @@
         <member name="P:Dalamud.Game.Internal.Gui.Structs.PartyFinderListing.Id">
             <summary>
             The ID assigned to this listing by the game's server.
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.Internal.Gui.Structs.PartyFinderListing.ContentIdLower">
+            <summary>
+            The lower bits of the player's content ID.
             </summary>
         </member>
         <member name="P:Dalamud.Game.Internal.Gui.Structs.PartyFinderListing.Name">
@@ -3626,6 +3687,11 @@
             Get data needed for each new frame.
             </summary>
         </member>
+        <member name="P:Dalamud.Interface.InterfaceManager.OverrideGameCursor">
+            <summary>
+            Gets or sets a value indicating whether or not the game's cursor should be overridden with the ImGui cursor.
+            </summary>
+        </member>
         <member name="E:Dalamud.Interface.InterfaceManager.OnDraw">
             <summary>
             This event gets called by a plugin UiBuilder when read
@@ -3694,6 +3760,11 @@
         <member name="P:Dalamud.Interface.UiBuilder.DisableGposeUiHide">
             <summary>
             Gets or sets a value indicating whether this plugin should hide its UI automatically while gpose is active.
+            </summary>
+        </member>
+        <member name="P:Dalamud.Interface.UiBuilder.OverrideGameCursor">
+            <summary>
+            Gets or sets a value indicating whether or not the game's cursor should be overridden with the ImGui cursor.
             </summary>
         </member>
         <member name="P:Dalamud.Interface.UiBuilder.OnBuildFonts">
@@ -4603,9 +4674,9 @@
             Unload all plugins.
             </summary>
         </member>
-        <member name="M:Dalamud.Plugin.PluginManager.LoadPlugins">
+        <member name="M:Dalamud.Plugin.PluginManager.LoadSynchronousPlugins">
             <summary>
-            Load all regular and dev plugins.
+            Load plugins that need to be loaded synchronously and prepare plugins that can be loaded asynchronously.
             </summary>
         </member>
         <member name="M:Dalamud.Plugin.PluginManager.DisablePlugin(Dalamud.Plugin.PluginDefinition)">
@@ -4614,15 +4685,14 @@
             </summary>
             <param name="definition">The plugin definition of the plugin to be disabled/unloaded.</param>
         </member>
-        <member name="M:Dalamud.Plugin.PluginManager.LoadPluginFromAssembly(System.IO.FileInfo,System.Boolean,Dalamud.Plugin.PluginLoadReason,System.Boolean,Dalamud.Plugin.PluginDefinition)">
+        <member name="M:Dalamud.Plugin.PluginManager.LoadPluginFromAssembly(System.IO.FileInfo,System.Boolean,Dalamud.Plugin.PluginLoadReason,Dalamud.Plugin.PluginDefinition)">
             <summary>
             Load a plugin from an assembly.
             </summary>
             <param name="dllFile">The <see cref="T:System.IO.FileInfo"/> associated with the main assembly of this plugin.</param>
             <param name="isRaw">Whether or not the plugin is a dev plugin.</param>
             <param name="reason">The reason this plugin was loaded.</param>
-            <param name="preloaded">Whether or not to skip loading a definition from a file path.</param>
-            <param name="preloadedDef">The already loaded definition, when <paramref name="preloaded"/> is set to true.</param>
+            <param name="pluginDef">The already loaded definition, if available</param>
             <returns>Whether or not the plugin was loaded successfully.</returns>
         </member>
         <member name="M:Dalamud.Plugin.PluginManager.ReloadPlugins">
