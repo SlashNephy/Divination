@@ -114,6 +114,11 @@
             Gets or sets a value indicating whether or not plugins should be auto-updated.
             </summary>
         </member>
+        <member name="P:Dalamud.Configuration.DalamudConfiguration.DoButtonsSystemMenu">
+            <summary>
+            Gets or sets a value indicating whether or not Dalamud should add buttons to the system menu.
+            </summary>
+        </member>
         <member name="P:Dalamud.Configuration.DalamudConfiguration.LogAutoScroll">
             <summary>
             Gets or sets a value indicating whether or not the debug log should scroll automatically.
