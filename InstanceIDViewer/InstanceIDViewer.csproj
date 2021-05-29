@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <LangVersion>9</LangVersion>
+        <Nullable>disable</Nullable>
+        <OutputType>Library</OutputType>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants />
+      <OutputPath>bin\Debug\</OutputPath>
+      <DebugSymbols>false</DebugSymbols>
+        <OutputType>Library</OutputType>
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants />
+      <OutputPath>bin\Release\</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Dalamud, Version=5.2.6.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\SDK\Dalamud.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ILMerge" Version="3.0.41" />
+      <PackageReference Include="ILMerge.MSBuild.Tasks" Version="1.0.0.3" />
+    </ItemGroup>
+
+</Project>
+:wq

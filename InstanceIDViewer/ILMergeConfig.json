@@ -1,0 +1,11 @@
+﻿{
+  "General": {
+    "AlternativeILMergePath": "$(SolutionDir)SDK\\ILMerge.exe",
+    "InputAssemblies": [
+      "$(TargetDir)Dalamud"
+    ]
+  },
+  "Advanced": {
+    "DebugInfo": false
+  }
+}
