@@ -13,7 +13,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         private TContainer? container;
         private readonly object containerLock = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Of("Divination.DefinitionProvider");
+        private readonly Serilog.Core.Logger logger = DivinationLogger.File("Divination.DefinitionProvider");
         private readonly Task initializationTask;
 
         protected DefinitionProvider()

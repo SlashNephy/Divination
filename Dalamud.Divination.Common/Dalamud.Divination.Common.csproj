@@ -62,13 +62,19 @@
           <Private>False</Private>
         </Reference>
         <Reference Include="System" />
+        <Reference Include="System.Net.Http" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Api\Chat\ChatClient.cs" />
+        <Compile Include="Api\Chat\ChatClientEx.cs" />
+        <Compile Include="Api\Chat\IChatClient.cs" />
+        <Compile Include="Api\Command\CommandContextEx.cs" />
         <Compile Include="Api\Command\CommandProcessor.cs" />
         <Compile Include="Api\Command\DivinationCommand.cs" />
         <Compile Include="Api\Command\CommandAttribute.cs" />
         <Compile Include="Api\Command\CommandContext.cs" />
         <Compile Include="Api\Command\ConfigUpdateProhibitedAttribute.cs" />
+        <Compile Include="Api\Dalamud\DalamudPluginInterfaceEx.cs" />
         <Compile Include="Api\Definition\DefinitionContainer.cs" />
         <Compile Include="Api\Definition\DefinitionProvider.cs" />
         <Compile Include="Api\Definition\DefinitionProviderFactory.cs" />
@@ -76,18 +82,37 @@
         <Compile Include="Api\Definition\IDefinitionProvider.cs" />
         <Compile Include="Api\Definition\LocalDefinitionProvider.cs" />
         <Compile Include="Api\Definition\RemoteDefinitionProvider.cs" />
+        <Compile Include="Api\Discord\DiscordWebhookClient.cs" />
+        <Compile Include="Api\Discord\DiscordWebhookClientEx.cs" />
+        <Compile Include="Api\Discord\IDiscordWebhookClient.cs" />
         <Compile Include="Api\DivinationEnvironment.cs" />
         <Compile Include="Api\DivinationPluginEx.cs" />
         <Compile Include="Api\GitVersion.cs" />
         <Compile Include="Api\IDivinationPluginApi.cs" />
+        <Compile Include="Api\Ipc\DalamudIpcClient.cs" />
+        <Compile Include="Api\Ipc\IDalamudIpcClient.cs" />
+        <Compile Include="Api\Ipc\IpcMessage.cs" />
         <Compile Include="Api\Logger\ConsoleWindow.cs" />
+        <Compile Include="Api\Logger\DalamudLogger.cs" />
         <Compile Include="Api\Logger\DivinationLogger.cs" />
         <Compile Include="Api\String\SeStringEx.cs" />
+        <Compile Include="Api\Ui\ImGuiEx.cs" />
+        <Compile Include="Api\Ui\ITextureManager.cs" />
+        <Compile Include="Api\Ui\TextureManager.cs" />
+        <Compile Include="Api\Ui\TextureManagerEx.cs" />
+        <Compile Include="Api\Voiceroid2Proxy\IVoiceroid2ProxyClient.cs" />
+        <Compile Include="Api\Voiceroid2Proxy\Voiceroid2ProxyClient.cs" />
+        <Compile Include="Api\Voiceroid2Proxy\Voiceroid2ProxyClientEx.cs" />
+        <Compile Include="Api\XivApi\IXivApiClient.cs" />
+        <Compile Include="Api\XivApi\XivApiClient.cs" />
+        <Compile Include="Api\XivApi\XivApiClientEx.cs" />
+        <Compile Include="Api\XivApi\XivApiResponse.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Command.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Config.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Abstract.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Dalamud.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.LivePluginLoad.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Logger.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Version.cs" />
         <Compile Include="Boilerplate\IDivinationPlugin.cs" />

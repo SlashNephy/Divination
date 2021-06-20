@@ -31,6 +31,6 @@ namespace Dalamud.Divination.Common.Api
         /// <summary>
         /// Dalamud.Divination.Common のバージョン情報。
         /// </summary>
-        public GitVersion CommonVersion { get; }
+        public GitVersion LibraryVersion { get; }
     }
 }

@@ -15,7 +15,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         /// ファイルからプラグインの設定を読み込みます。ファイルが存在しなかった場合、新たなインスタンスを作成します。
         /// </summary>
         /// <returns>Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラスのインスタンス。</returns>
-        public TConfiguration LoadConfig()
+        private TConfiguration LoadConfig()
         {
             return Interface.GetPluginConfig() as TConfiguration ?? new TConfiguration();
         }

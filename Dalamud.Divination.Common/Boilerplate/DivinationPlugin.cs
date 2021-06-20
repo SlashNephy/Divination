@@ -39,7 +39,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void Initialize(DalamudPluginInterface pluginInterface)
         {
-            logger = DivinationLogger.Of(Name);
+            logger = DivinationLogger.File(Name);
 
             @interface = pluginInterface;
             config = LoadConfig();

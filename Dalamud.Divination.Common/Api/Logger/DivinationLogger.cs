@@ -16,24 +16,37 @@ namespace Dalamud.Divination.Common.Api.Logger
         /// </summary>
         /// <param name="name">ロガーの名前。ログファイルの名前になります。</param>
         /// <returns>Serilog.Core.Logger</returns>
-        public static Serilog.Core.Logger Of(string name)
+        public static Serilog.Core.Logger File(string name)
         {
+#if DEBUG
+            ConsoleWindow.Show();
+#endif
+
             return new LoggerConfiguration()
 #if DEBUG
                 .Enrich.With(new ThreadNameEnricher())
                 .WriteTo.Console(
-                    outputTemplate: "[{Timestamp:yyyy/MM/dd HH:mm:ss.fff}] [{Level}] [{Thread}] {Message}{NewLine}{Exception}")
+                    outputTemplate: $"[{{Timestamp:yyyy/MM/dd HH:mm:ss.fff}}] [{{Level}}] [{{Thread}}] [{name}] {{Message}}{{NewLine}}{{Exception}}")
 #endif
                 .WriteTo.File(
                     Path.Combine(DivinationEnvironment.LogDirectory, $"{name}.log"),
                     LogEventLevel.Information,
                     rollingInterval: RollingInterval.Day)
                 .CreateLogger();
+        }
 
+        public static Serilog.Core.Logger Debug(string name)
+        {
 #if DEBUG
-#pragma warning disable 162
             ConsoleWindow.Show();
-#pragma warning restore 162
+
+            return new LoggerConfiguration()
+                .Enrich.With(new ThreadNameEnricher())
+                .WriteTo.Console(
+                    outputTemplate: $"[{{Timestamp:yyyy/MM/dd HH:mm:ss.fff}}] [{{Level}}] [{{Thread}}] [{name}] {{Message}}{{NewLine}}{{Exception}}")
+                .CreateLogger();
+#else
+            return new LoggerConfiguration().CreateLogger();
 #endif
         }
 

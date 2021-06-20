@@ -4,7 +4,6 @@ namespace Dalamud.Divination.Common.Boilerplate
 {
     /// <summary>
     /// Divination プラグインの基本インターフェイスです。
-    /// 各プラグインが実装を行う必要があります。
     /// Dalamud.Plugin.IDalamudPlugin のインターフェイスに対応します。
     /// </summary>
     public interface IDivinationPlugin

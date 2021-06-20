@@ -8,6 +8,6 @@ namespace Dalamud.Divination.Common.Boilerplate
         public GitVersion Version => new(Assembly);
 #pragma warning restore 8618
 
-        public GitVersion CommonVersion => new(System.Reflection.Assembly.GetExecutingAssembly());
+        public GitVersion LibraryVersion => new(System.Reflection.Assembly.GetExecutingAssembly());
     }
 }

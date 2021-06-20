@@ -47,20 +47,6 @@ namespace Dalamud.Divination.Common.Api.Command
         public bool ShowInHelp { get; set; } = true;
 
         /// <summary>
-        /// 関数のパラメータの種類の配列。
-        /// </summary>
-        internal ParameterKind[] Types { get; set; } = new ParameterKind[0];
-
-        /// <summary>
-        /// パラメータの種類。
-        /// </summary>
-        internal enum ParameterKind
-        {
-            Context,
-            Argument
-        }
-
-        /// <summary>
         /// このコマンドが受け取る引数の最小の数。
         /// </summary>
         internal int MinimalArgumentLength => Arguments.Count(x => !x.EndsWith("?"));

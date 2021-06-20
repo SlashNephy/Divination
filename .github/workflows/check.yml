@@ -3,14 +3,14 @@ name: Check
 on:
   push:
     paths-ignore:
-      - README.md
+      - '*.md'
 
   pull_request:
     types:
       - opened
       - synchronize
     paths-ignore:
-      - README.md
+      - '*.md'
 
   workflow_dispatch:
 
