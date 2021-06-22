@@ -49,7 +49,9 @@ namespace Dalamud.Divination.Common.Api.Command
         /// <summary>
         /// このコマンドが受け取る引数の最小の数。
         /// </summary>
-        internal int MinimalArgumentLength => Arguments.Count(x => !x.EndsWith("?"));
+        public int MinimalArgumentLength => Arguments.Count(x => !x.EndsWith("?"));
+
+        public bool ReceiveContext { get; internal set; }
 
         /// <summary>
         /// このコマンドの使用例。

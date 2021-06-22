@@ -1,4 +1,9 @@
 ﻿using Dalamud.Configuration;
+using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Config;
+using Dalamud.Divination.Common.Api.Reporter;
+using Dalamud.Divination.Common.Api.Version;
 using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api
@@ -8,6 +13,8 @@ namespace Dalamud.Divination.Common.Api
     /// </summary>
     public interface IDivinationPluginApi<out TConfiguration> where TConfiguration : class, IPluginConfiguration
     {
+        public bool IsDisposed { get; }
+
         /// <summary>
         /// プラグインのロガー。
         /// </summary>
@@ -23,14 +30,24 @@ namespace Dalamud.Divination.Common.Api
         /// </summary>
         public TConfiguration Config { get; }
 
+        public IConfigManager<TConfiguration> ConfigManager { get; }
+
         /// <summary>
         /// プラグインのバージョン情報。
         /// </summary>
-        public GitVersion Version { get; }
+        public IGitVersion Version { get; }
 
         /// <summary>
         /// Dalamud.Divination.Common のバージョン情報。
         /// </summary>
-        public GitVersion LibraryVersion { get; }
+        public IGitVersion LibraryVersion { get; }
+
+        public IVersionManager VersionManager { get; }
+
+        public IChatClient ChatClient { get; }
+
+        public ICommandProcessor CommandProcessor { get; }
+
+        public IBugReporter BugReporter { get; }
     }
 }

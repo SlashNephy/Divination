@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
 {
-    public class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
+    internal sealed class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
     {
         private readonly string url;
 

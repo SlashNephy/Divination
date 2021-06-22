@@ -7,7 +7,7 @@ using Serilog.Events;
 
 namespace Dalamud.Divination.Common.Api.Logger
 {
-    public class DalamudLogger : IDisposable
+    internal sealed class DalamudLogger : IDisposable
     {
         private readonly global::Dalamud.Dalamud dalamud;
 
@@ -89,9 +89,14 @@ namespace Dalamud.Divination.Common.Api.Logger
             }
         }
 
-        public void Dispose()
+        private void Unsubscribe()
         {
             onLogLineEventInfo?.RemoveEventHandler(DalamudLogEventSink, onLogLineDelegate);
+        }
+
+        public void Dispose()
+        {
+            Unsubscribe();
 
             logger.Dispose();
         }

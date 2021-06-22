@@ -12,7 +12,7 @@ using ImGuiScene;
 
 namespace Dalamud.Divination.Common.Api.Ui
 {
-    public class TextureManager : ITextureManager
+    internal sealed class TextureManager : ITextureManager
     {
         private readonly DataManager dataManager;
         private readonly UiBuilder uiBuilder;
@@ -111,8 +111,15 @@ namespace Dalamud.Divination.Common.Api.Ui
 
         public void Dispose()
         {
+            foreach (var texture in cache.Values)
+            {
+                texture?.Dispose();
+            }
+            cache.Clear();
+
             xivApi?.Dispose();
             client.Dispose();
+            logger.Dispose();
         }
     }
 }

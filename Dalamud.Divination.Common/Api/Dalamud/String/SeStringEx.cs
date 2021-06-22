@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using Dalamud.Game.Text.SeStringHandling;
 
-namespace Dalamud.Divination.Common.Api.String
+namespace Dalamud.Divination.Common.Api.Dalamud.String
 {
     /// <summary>
     /// Dalamud が提供する SeString を補助する拡張メソッドが定義された静的クラスです。
@@ -25,7 +25,7 @@ namespace Dalamud.Divination.Common.Api.String
         /// </summary>
         /// <param name="payload">Payload インスタンス。</param>
         /// <returns>UTF-8 文字列。</returns>
-        public static string ToUtf8String(this Payload payload)
+        public static string ToUtf8String(this Game.Text.SeStringHandling.Payload payload)
         {
             return Encoding.UTF8.GetString(payload.Encode());
         }
@@ -35,7 +35,7 @@ namespace Dalamud.Divination.Common.Api.String
         /// </summary>
         /// <param name="payloads">Payload インスタンスのイテレータ。</param>
         /// <returns>UTF-8 文字列。</returns>
-        public static string ToUtf8String(this IEnumerable<Payload> payloads)
+        public static string ToUtf8String(this IEnumerable<Game.Text.SeStringHandling.Payload> payloads)
         {
             return string.Join(string.Empty, payloads.Select(x => x.ToUtf8String()));
         }
@@ -45,7 +45,7 @@ namespace Dalamud.Divination.Common.Api.String
         /// </summary>
         /// <param name="payloads">Payload インスタンスの配列。</param>
         /// <returns>UTF-8 文字列。</returns>
-        public static string ToUtf8String(this Payload[] payloads)
+        public static string ToUtf8String(this Game.Text.SeStringHandling.Payload[] payloads)
         {
             return string.Join(string.Empty, payloads.Select(x => x.ToUtf8String()));
         }

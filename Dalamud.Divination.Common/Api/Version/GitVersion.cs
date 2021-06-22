@@ -2,12 +2,12 @@
 using System.Reflection;
 using System.Text;
 
-namespace Dalamud.Divination.Common.Api
+namespace Dalamud.Divination.Common.Api.Version
 {
     /// <summary>
     /// Git コミット履歴からバージョン情報を提供します。
     /// </summary>
-    public class GitVersion
+    internal sealed class GitVersion : IGitVersion
     {
         private readonly Type? gitVersionInfo;
 
@@ -84,9 +84,6 @@ namespace Dalamud.Divination.Common.Api
             }
         }
 
-        /// <summary>
-        /// リフレクションを用いて, すべてのバージョン情報の文字列を返します。
-        /// </summary>
         public override string ToString()
         {
             if (gitVersionInfo == null)

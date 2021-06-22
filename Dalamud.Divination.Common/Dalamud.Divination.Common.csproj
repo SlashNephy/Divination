@@ -69,12 +69,28 @@
         <Compile Include="Api\Chat\ChatClientEx.cs" />
         <Compile Include="Api\Chat\IChatClient.cs" />
         <Compile Include="Api\Command\CommandContextEx.cs" />
+        <Compile Include="Api\Command\CommandProcessor.Commands.cs" />
         <Compile Include="Api\Command\CommandProcessor.cs" />
+        <Compile Include="Api\Command\DirectoryCommands.cs" />
         <Compile Include="Api\Command\DivinationCommand.cs" />
         <Compile Include="Api\Command\CommandAttribute.cs" />
         <Compile Include="Api\Command\CommandContext.cs" />
-        <Compile Include="Api\Command\ConfigUpdateProhibitedAttribute.cs" />
+        <Compile Include="Api\Command\ICommandProcessor.cs" />
+        <Compile Include="Api\Command\ICommandProvider.cs" />
+        <Compile Include="Api\Config\ConfigManager.Commands.cs" />
+        <Compile Include="Api\Config\ConfigManager.cs" />
+        <Compile Include="Api\Config\ConfigUpdateProhibitedAttribute.cs" />
+        <Compile Include="Api\Config\IConfigManager.cs" />
+        <Compile Include="Api\Dalamud\String\SeStringEx.cs" />
+        <Compile Include="Api\Definition\DefinitionManager.Commands.cs" />
+        <Compile Include="Api\Definition\DefinitionManager.cs" />
+        <Compile Include="Api\Definition\IDefinitionManager.cs" />
+        <Compile Include="Api\Reporter\BugReporter.Commands.cs" />
+        <Compile Include="Api\Reporter\BugReporter.cs" />
+        <Compile Include="Api\Reporter\IBugReporter.cs" />
         <Compile Include="Api\Dalamud\DalamudPluginInterfaceEx.cs" />
+        <Compile Include="Api\Dalamud\Payload\PayloadUtilities.cs" />
+        <Compile Include="Api\Dalamud\SeIconCharEx.cs" />
         <Compile Include="Api\Definition\DefinitionContainer.cs" />
         <Compile Include="Api\Definition\DefinitionProvider.cs" />
         <Compile Include="Api\Definition\DefinitionProviderFactory.cs" />
@@ -86,8 +102,6 @@
         <Compile Include="Api\Discord\DiscordWebhookClientEx.cs" />
         <Compile Include="Api\Discord\IDiscordWebhookClient.cs" />
         <Compile Include="Api\DivinationEnvironment.cs" />
-        <Compile Include="Api\DivinationPluginEx.cs" />
-        <Compile Include="Api\GitVersion.cs" />
         <Compile Include="Api\IDivinationPluginApi.cs" />
         <Compile Include="Api\Ipc\DalamudIpcClient.cs" />
         <Compile Include="Api\Ipc\IDalamudIpcClient.cs" />
@@ -95,11 +109,20 @@
         <Compile Include="Api\Logger\ConsoleWindow.cs" />
         <Compile Include="Api\Logger\DalamudLogger.cs" />
         <Compile Include="Api\Logger\DivinationLogger.cs" />
-        <Compile Include="Api\String\SeStringEx.cs" />
         <Compile Include="Api\Ui\ImGuiEx.cs" />
         <Compile Include="Api\Ui\ITextureManager.cs" />
         <Compile Include="Api\Ui\TextureManager.cs" />
         <Compile Include="Api\Ui\TextureManagerEx.cs" />
+        <Compile Include="Api\Ui\Window\ConfigWindow.cs" />
+        <Compile Include="Api\Ui\Window\IWindow.cs" />
+        <Compile Include="Api\Ui\Window\WindowEx.cs" />
+        <Compile Include="Api\Utilities\FieldUpdater.cs" />
+        <Compile Include="Api\Utilities\IFieldUpdater.cs" />
+        <Compile Include="Api\Version\GitVersion.cs" />
+        <Compile Include="Api\Version\IGitVersion.cs" />
+        <Compile Include="Api\Version\IVersionManager.cs" />
+        <Compile Include="Api\Version\VersionManager.Commands.cs" />
+        <Compile Include="Api\Version\VersionManager.cs" />
         <Compile Include="Api\Voiceroid2Proxy\IVoiceroid2ProxyClient.cs" />
         <Compile Include="Api\Voiceroid2Proxy\Voiceroid2ProxyClient.cs" />
         <Compile Include="Api\Voiceroid2Proxy\Voiceroid2ProxyClientEx.cs" />
@@ -107,19 +130,18 @@
         <Compile Include="Api\XivApi\XivApiClient.cs" />
         <Compile Include="Api\XivApi\XivApiClientEx.cs" />
         <Compile Include="Api\XivApi\XivApiResponse.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Command.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Config.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Abstract.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Dalamud.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.LivePluginLoad.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Logger.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Version.cs" />
+        <Compile Include="Boilerplate\DivinationPlugin.Api.cs" />
         <Compile Include="Boilerplate\IDivinationPlugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Api\Dalamud\Actor" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,10 +7,10 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Chat
 {
-    public class ChatClient : IChatClient
+    internal sealed class ChatClient : IChatClient
     {
         public static bool ShowHeader = true;
-        public static SeString? Header;
+        public static SeString? Header = null;
         public static ushort HeaderColor = 52;
         public static ushort NormalMessageColor = 0;
         public static ushort ErrorMessageColor = 14;

@@ -8,8 +8,13 @@ namespace Dalamud.Divination.Common.Boilerplate
     public abstract partial class DivinationPlugin<TPlugin, TConfiguration>
     {
         public abstract string Name { get; }
+        public virtual string? CommandPrefix => null;
         public abstract Assembly Assembly { get; }
+
         public abstract void Load();
-        public abstract void Unload();
+
+        public virtual void Unload()
+        {
+        }
     }
 }

@@ -7,16 +7,15 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
+    internal sealed class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
     {
-        private const string DefaultBaseUrl = "https://shard.horoscope.dev/";
         private readonly string url;
         private readonly Timer timer = new(60 * 60 * 1000);
 
-        public RemoteDefinitionProvider(string baseUrl = DefaultBaseUrl, string filename = DefaultFilename)
+        public RemoteDefinitionProvider(string url, string filename)
         {
+            this.url = url;
             Filename = filename;
-            url = $"{baseUrl}{filename}";
 
             timer.Elapsed += OnTimerElapsed;
             timer.Start();

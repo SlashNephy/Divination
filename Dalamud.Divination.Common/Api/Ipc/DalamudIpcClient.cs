@@ -8,7 +8,7 @@ using Dalamud.Plugin;
 namespace Dalamud.Divination.Common.Api.Ipc
 {
     [Obsolete("Will be removed after Dalamud API version 3.")]
-    public class DalamudIpcClient : IDalamudIpcClient
+    internal sealed class DalamudIpcClient : IDalamudIpcClient
     {
         private readonly string name;
         private readonly DalamudPluginInterface @interface;
@@ -17,7 +17,7 @@ namespace Dalamud.Divination.Common.Api.Ipc
         private readonly object subscriptionsLock = new();
         private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(DalamudIpcClient));
 
-        protected DalamudIpcClient(string name, DalamudPluginInterface @interface)
+        public DalamudIpcClient(string name, DalamudPluginInterface @interface)
         {
             this.name = name;
             this.@interface = @interface;

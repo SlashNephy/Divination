@@ -1,13 +1,17 @@
-﻿namespace Dalamud.Divination.Common.Api.Definition
+﻿using System.IO;
+
+namespace Dalamud.Divination.Common.Api.Definition
 {
     public static class DefinitionProviderFactory<TContainer> where TContainer : DefinitionContainer, new()
     {
-        public static IDefinitionProvider<TContainer> Create()
+        public static IDefinitionProvider<TContainer> Create(string url)
         {
+            var filename = Path.GetFileName(url);
+
 #if DEBUG
-            return new LocalDefinitionProvider<TContainer>();
+            return new LocalDefinitionProvider<TContainer>(filename);
 #else
-            return new RemoteDefinitionProvider<TContainer>();
+            return new RemoteDefinitionProvider<TContainer>(url, filename);
 #endif
         }
     }

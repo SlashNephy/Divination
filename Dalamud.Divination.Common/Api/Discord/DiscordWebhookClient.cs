@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Dalamud.Divination.Common.Api.Discord
 {
-    public class DiscordWebhookClient : IDiscordWebhookClient
+    internal sealed class DiscordWebhookClient : IDiscordWebhookClient
     {
         private readonly string url;
 

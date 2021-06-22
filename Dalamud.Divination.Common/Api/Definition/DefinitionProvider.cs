@@ -9,8 +9,6 @@ namespace Dalamud.Divination.Common.Api.Definition
 {
     public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
     {
-        protected const string DefaultFilename = "Ephemera.json";
-
         private TContainer? container;
         private readonly object containerLock = new();
         private readonly Serilog.Core.Logger logger = DivinationLogger.File("Divination.DefinitionProvider");
@@ -98,6 +96,7 @@ namespace Dalamud.Divination.Common.Api.Definition
         public virtual void Dispose()
         {
             initializationTask.Dispose();
+            logger.Dispose();
         }
     }
 }

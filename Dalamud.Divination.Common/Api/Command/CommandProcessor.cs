@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Divination.Common.Api.Dalamud.Payload;
 using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Game.Internal.Gui;
 using Dalamud.Game.Text;
@@ -12,26 +14,41 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
-    public class CommandProcessor : IDisposable
+    internal sealed partial class CommandProcessor : ICommandProcessor
     {
-        private static readonly Regex CommandRegex = new(@"^そのコマンドはありません。： (?<command>.+)$", RegexOptions.Compiled);
-
-        private readonly string prefix;
-        private readonly object plugin;
+        private readonly string pluginName;
         private readonly ChatGui chatGui;
         private readonly IChatClient chatClient;
 
+        private readonly Regex commandRegex = new(@"^そのコマンドはありません。： (?<command>.+)$", RegexOptions.Compiled);
         private readonly List<DivinationCommand> commands = new();
+        private readonly object commandsLock = new();
         private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(CommandProcessor));
 
-        public CommandProcessor(string prefix, object plugin, ChatGui chatGui, IChatClient chatClient)
+        public string Prefix { get; }
+
+        public CommandProcessor(string pluginName, string prefix, ChatGui chatGui, IChatClient chatClient)
         {
-            this.prefix = (prefix.StartsWith("/") ? prefix : $"/{prefix}").Trim();
-            this.plugin = plugin;
+            this.pluginName = pluginName;
+            Prefix = (prefix.StartsWith("/") ? prefix : $"/{prefix}").Trim();
             this.chatGui = chatGui;
             this.chatClient = chatClient;
 
+            RegisterCommandsByAttribute(this);
+            RegisterCommandsByAttribute(new DirectoryCommands());
+
             chatGui.OnChatMessage += OnChatMessage;
+        }
+
+        public IReadOnlyList<DivinationCommand> Commands
+        {
+            get
+            {
+                lock (commandsLock)
+                {
+                    return commands.AsReadOnly();
+                }
+            }
         }
 
         private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
@@ -41,14 +58,14 @@ namespace Dalamud.Divination.Common.Api.Command
                 return;
             }
 
-            var match = CommandRegex.Match(message.TextValue).Groups["command"];
+            var match = commandRegex.Match(message.TextValue).Groups["command"];
             if (match.Success && ProcessCommand(match.Value.Trim()))
             {
                 isHandled = true;
             }
         }
 
-        private bool ProcessCommand(string text)
+        public bool ProcessCommand(string text)
         {
             foreach (var command in commands)
             {
@@ -70,7 +87,7 @@ namespace Dalamud.Divination.Common.Api.Command
             return false;
         }
 
-        private void DispatchCommand(DivinationCommand command, string[] arguments)
+        public void DispatchCommand(DivinationCommand command, string[] arguments)
         {
             try
             {
@@ -81,7 +98,9 @@ namespace Dalamud.Divination.Common.Api.Command
 
                 var context = new CommandContext(command.Attribute, arguments);
 
-                command.Method.Invoke(command.Method.IsStatic ? null : plugin, new object[] {context});
+                command.Method.Invoke(
+                    command.Method.IsStatic ? null : command.Instance,
+                    command.Attribute.ReceiveContext ? new object[] {context} : new object[] {});
             }
             catch (Exception exception)
             {
@@ -101,16 +120,21 @@ namespace Dalamud.Divination.Common.Api.Command
             }
         }
 
-        private void RegisterCommandsByAttribute()
+        public void RegisterCommandsByAttribute(object instance)
         {
+            if (instance is ICommandProvider provider)
+            {
+                instance = provider.GetCommandInstance();
+            }
+
             const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
             // public/internal/protected/private/static メソッドを検索し 宣言順にソートする
-            foreach (var method in plugin.GetType().BaseType!
+            foreach (var method in instance.GetType().BaseType!
                 .GetMethods(flags)
                 .OrderBy(x => x.MetadataToken)
                 .Concat(
-                    plugin.GetType()
+                    instance.GetType()
                         .GetMethods(flags | BindingFlags.DeclaredOnly)
                         .OrderBy(x => x.MetadataToken)
                 )
@@ -121,9 +145,9 @@ namespace Dalamud.Divination.Common.Api.Command
                     try
                     {
                         CheckCommandHandler(method, attribute);
-                        RegisterCommand(method, attribute);
+                        RegisterCommand(method, attribute, instance);
                     }
-                    catch (Exception exception)
+                    catch (ArgumentException exception)
                     {
                         logger.Error(exception, "Error occurred while RegisterCommandsByAttribute");
                     }
@@ -134,22 +158,29 @@ namespace Dalamud.Divination.Common.Api.Command
         private void CheckCommandHandler(MethodInfo method, CommandAttribute attribute)
         {
             var parameters = method.GetParameters();
-            if (parameters.Length != 1 || parameters.First().ParameterType != typeof(CommandContext))
+            switch (parameters.Length)
             {
-                throw new ArgumentException("パラメータが不正です。CommandContext 以外の型が引数となっているため, コマンドハンドラとして登録できません。");
+                case 0:
+                    attribute.ReceiveContext = false;
+                    break;
+                case 1 when parameters.First().ParameterType == typeof(CommandContext):
+                    attribute.ReceiveContext = true;
+                    break;
+                default:
+                    throw new ArgumentException("引数が不正です。CommandContext 以外の型が引数となっているため, コマンドハンドラとして登録できません。");
             }
 
             if (!attribute.Syntax.StartsWith("/"))
             {
-                attribute.Syntax = $"{prefix} {attribute.Syntax}";
+                attribute.Syntax = $"{Prefix} {attribute.Syntax}";
             }
 
             attribute.Syntax = attribute.Syntax.Trim().ToLower();
         }
 
-        private void RegisterCommand(MethodInfo method, CommandAttribute attribute)
+        private void RegisterCommand(MethodInfo method, CommandAttribute attribute, object instance)
         {
-            commands.Add(new DivinationCommand(attribute, method));
+            commands.Add(new DivinationCommand(attribute, method, instance));
             logger.Information("コマンド: {Usage} が登録されました。", attribute.Usage);
 
             if (!attribute.ShowInHelp)
@@ -164,7 +195,7 @@ namespace Dalamud.Divination.Common.Api.Command
                     new TextPayload("コマンド: "),
                     new UIForegroundPayload(null, 28)
                 });
-                payloads.AddRange(HighlightAngleBrackets(attribute.Usage));
+                payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(attribute.Usage));
                 payloads.AddRange(new List<Payload> {
                     UIForegroundPayload.UIForegroundOff,
                     new TextPayload(" が追加されました。")
@@ -172,44 +203,16 @@ namespace Dalamud.Divination.Common.Api.Command
 
                 if (!string.IsNullOrEmpty(attribute.Help))
                 {
-                    payloads.Add(new TextPayload($"\n  {(char) SeIconChar.ArrowRight} "));
-                    payloads.AddRange(HighlightAngleBrackets(attribute.Help));
+                    payloads.Add(new TextPayload($"\n  {SeIconChar.ArrowRight.AsString()} "));
+                    payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(attribute.Help));
                 }
             });
-        }
-
-        private static IEnumerable<Payload> HighlightAngleBrackets(string? text)
-        {
-            if (text == null)
-            {
-                yield break;
-            }
-
-            var bracketRegex = new Regex(@"(<.+?>)", RegexOptions.Compiled);
-            var matches = bracketRegex.Matches(text);
-            if (matches.Count > 0)
-            {
-                var original = text;
-                var lastIndex = 0;
-
-                foreach (Match match in matches)
-                {
-                    yield return new TextPayload(text.Substring(0, match.Index - lastIndex));
-                    yield return new UIForegroundPayload(null, 500);
-                    yield return new TextPayload(match.Value);
-                    yield return UIForegroundPayload.UIForegroundOff;
-
-                    lastIndex = match.Index + match.Length;
-                    text = original.Substring(lastIndex);
-                }
-            }
-
-            yield return new TextPayload(text);
         }
 
         public void Dispose()
         {
             chatGui.OnChatMessage -= OnChatMessage;
+            commands.Clear();
 
             logger.Dispose();
         }

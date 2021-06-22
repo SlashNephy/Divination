@@ -4,11 +4,11 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
+    internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
     {
         private readonly FileSystemWatcher watcher;
 
-        public LocalDefinitionProvider(string filename = DefaultFilename)
+        public LocalDefinitionProvider(string filename)
         {
             Filename = filename;
             watcher = new FileSystemWatcher(DivinationEnvironment.DivinationDirectory, filename);

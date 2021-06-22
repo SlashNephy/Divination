@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.XivApi
 {
-    public class XivApiClient : IXivApiClient
+    internal sealed class XivApiClient : IXivApiClient
     {
         private readonly string apiKey;
         private readonly string cacheName;

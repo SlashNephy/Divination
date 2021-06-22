@@ -14,6 +14,8 @@ namespace Dalamud.Divination.Common.Boilerplate
         /// </summary>
         public string Name { get; }
 
+        public string? CommandPrefix { get; }
+
         /// <summary>
         /// プラグインのコードが格納されているアセンブリを設定します。
         /// </summary>

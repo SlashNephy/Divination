@@ -2,15 +2,17 @@
 
 namespace Dalamud.Divination.Common.Api.Command
 {
-    internal class DivinationCommand
+    public sealed class DivinationCommand
     {
         public CommandAttribute Attribute { get; }
         public MethodInfo Method { get; }
+        internal readonly object Instance;
 
-        public DivinationCommand(CommandAttribute attribute, MethodInfo method)
+        public DivinationCommand(CommandAttribute attribute, MethodInfo method, object instance)
         {
             Attribute = attribute;
             Method = method;
+            this.Instance = instance;
         }
     }
 }

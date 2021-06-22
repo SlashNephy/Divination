@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.XivApi
 {
-    public class XivApiResponse : IReadOnlyDictionary<string, JToken>
+    public sealed class XivApiResponse : IReadOnlyDictionary<string, JToken>
     {
         private readonly JObject json;
 

@@ -10,8 +10,7 @@ namespace Dalamud.Divination.Common.Api.Chat
          * ゲームクライアントに <code>XivChatEntry</code> で記述された, チャットメッセージを書き込みます。
          * 通常は, <code>Print</code> または <code>PrintError</code> 関数を使用してください。
          * <br></br>
-         * ログイン前は <code>ChatQueue</code> に格納され, ログイン時に表示されるよう自動でキューされます。
-         * これにより, ログイン前に書き込まれたメッセージが見えなくなることを防止できます。
+         * ログイン前はキューに格納され, ログイン前に書き込まれたメッセージが見えなくなることを防止できます。
          */
         public void EnqueueChat(XivChatEntry entry);
 
