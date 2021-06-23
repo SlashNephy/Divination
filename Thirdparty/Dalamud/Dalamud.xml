@@ -34,6 +34,17 @@
             Class containing Dalamud settings.
             </summary>
         </member>
+        <member name="T:Dalamud.Configuration.DalamudConfiguration.DalamudConfigurationSavedDelegate">
+            <summary>
+            Delegate for the <see cref="E:Dalamud.Configuration.DalamudConfiguration.OnDalamudConfigurationSaved"/> event that occurs when the dalamud configuration is saved.
+            </summary>
+            <param name="dalamudConfiguration">The current dalamud configuration.</param>
+        </member>
+        <member name="E:Dalamud.Configuration.DalamudConfiguration.OnDalamudConfigurationSaved">
+            <summary>
+            Event that occurs when dalamud configuration is saved.
+            </summary>
+        </member>
         <member name="P:Dalamud.Configuration.DalamudConfiguration.BadWords">
             <summary>
             Gets or sets a list of muted works.
@@ -137,6 +148,11 @@
         <member name="P:Dalamud.Configuration.DalamudConfiguration.IsDisableViewport">
             <summary>
             Gets or sets a value indicating whether viewports should always be disabled.
+            </summary>
+        </member>
+        <member name="P:Dalamud.Configuration.DalamudConfiguration.IsGamepadNavigationEnabled">
+            <summary>
+            Gets or sets a value indicating whether or not navigation via a gamepad should be globally enabled in ImGui.
             </summary>
         </member>
         <member name="M:Dalamud.Configuration.DalamudConfiguration.Load(System.String)">
@@ -1256,6 +1272,11 @@
             Provides access to the keypress state of keyboard keys in game.
             </summary>
         </member>
+        <member name="F:Dalamud.Game.ClientState.ClientState.GamepadState">
+            <summary>
+            Provides access to the button state of gamepad buttons in game.
+            </summary>
+        </member>
         <member name="F:Dalamud.Game.ClientState.ClientState.Condition">
             <summary>
             Provides access to client conditions/player state. Allows you to check if a player is in a duty, mounted, etc.
@@ -1288,6 +1309,13 @@
             <summary>
             Gets a value indicating whether a character is logged in.
             </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.ClientStateAddressResolver.GamepadPoll">
+             <summary>
+             Game function which polls the gamepads for data.
+            
+             Called every frame, even when `Enable Gamepad` is off in the settings.
+             </summary>
         </member>
         <member name="T:Dalamud.Game.ClientState.Condition">
             <summary>
@@ -1741,6 +1769,232 @@
             Unable to execute command while bound by duty.
             </summary>
         </member>
+        <member name="T:Dalamud.Game.ClientState.GamepadButtons">
+            <summary>
+            Bitmask of the Button ushort used by the game.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.None">
+            <summary>
+            No buttons pressed.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.DpadUp">
+            <summary>
+            Digipad up.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.DpadDown">
+            <summary>
+            Digipad down.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.DpadLeft">
+            <summary>
+            Digipad left.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.DpadRight">
+            <summary>
+            Digipad right.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.North">
+            <summary>
+            North action button. Triangle on PS, Y on Xbox.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.South">
+            <summary>
+            South action button. Cross on PS, A on Xbox.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.West">
+            <summary>
+            West action button. Square on PS, X on Xbos.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.East">
+            <summary>
+            East action button. Circle on PS, B on Xbox.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.L1">
+            <summary>
+            First button on left shoulder side.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.L2">
+            <summary>
+            Second button on left shoulder side. Analog input lost in this bitmask.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.L3">
+            <summary>
+            Press on left analogue stick.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.R1">
+            <summary>
+            First button on right shoulder.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.R2">
+            <summary>
+            Second button on right shoulder. Analog input lost in this bitmask.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.R3">
+            <summary>
+            Press on right analogue stick.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.Start">
+            <summary>
+            Button on the right inner side of the controller. Options on PS, Start on Xbox.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.GamepadButtons.Select">
+            <summary>
+            Button on the left inner side of the controller. ??? on PS, Back on Xbox.
+            </summary>
+        </member>
+        <member name="T:Dalamud.Game.ClientState.GamepadState">
+             <summary>
+             Exposes the game gamepad state to dalamud.
+            
+             Will block game's gamepad input if <see cref="F:ImGuiNET.ImGuiConfigFlags.NavEnableGamepad"/> is set.
+             </summary>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.#ctor(Dalamud.Game.ClientState.ClientStateAddressResolver)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Dalamud.Game.ClientState.GamepadState" /> class.
+            </summary>
+            <param name="resolver">Resolver knowing the pointer to the GamepadPoll function.</param>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Finalize">
+            <summary>
+                Finalizes an instance of the <see cref="T:Dalamud.Game.ClientState.GamepadState" /> class.
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.LeftStickLeft">
+            <summary>
+                Gets the state of the left analogue stick in the left direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.LeftStickRight">
+            <summary>
+                Gets the state of the left analogue stick in the right direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.LeftStickUp">
+            <summary>
+                Gets the state of the left analogue stick in the up direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.LeftStickDown">
+            <summary>
+                Gets the state of the left analogue stick in the down direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.RightStickLeft">
+            <summary>
+                Gets the state of the right analogue stick in the left direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.RightStickRight">
+            <summary>
+                Gets the state of the right analogue stick in the right direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.RightStickUp">
+            <summary>
+                Gets the state of the right analogue stick in the up direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.RightStickDown">
+            <summary>
+                Gets the state of the right analogue stick in the down direction between 0 (not tilted) and 1 (max tilt).
+            </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.ButtonsPressed">
+             <summary>
+             Gets buttons pressed bitmask, set once when the button is pressed. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            
+             Exposed internally for Debug Data window.
+             </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.ButtonsRaw">
+             <summary>
+             Gets raw button bitmask, set the whole time while a button is held. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            
+             Exposed internally for Debug Data window.
+             </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.ButtonsReleased">
+             <summary>
+             Gets button released bitmask, set once right after the button is not hold anymore. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            
+             Exposed internally for Debug Data window.
+             </summary>
+        </member>
+        <member name="P:Dalamud.Game.ClientState.GamepadState.ButtonsRepeat">
+             <summary>
+             Gets button repeat bitmask, emits the held button input in fixed intervals. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            
+             Exposed internally for Debug Data window.
+             </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Dalamud.Game.ClientState.GamepadState.NavEnableGamepad" -->
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Pressed(Dalamud.Game.ClientState.GamepadButtons)">
+             <summary>
+             Gets whether <paramref name="button"/> has been pressed.
+            
+             Only true on first frame of the press.
+             If ImGuiConfigFlags.NavEnableGamepad is set, this is unreliable.
+             </summary>
+             <param name="button">The button to check for.</param>
+             <returns>1 if pressed, 0 otherwise.</returns>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Repeat(Dalamud.Game.ClientState.GamepadButtons)">
+             <summary>
+             Gets whether <paramref name="button"/> is being pressed.
+            
+             True in intervals if button is held down.
+             If ImGuiConfigFlags.NavEnableGamepad is set, this is unreliable.
+             </summary>
+             <param name="button">The button to check for.</param>
+             <returns>1 if still pressed during interval, 0 otherwise or in between intervals.</returns>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Released(Dalamud.Game.ClientState.GamepadButtons)">
+             <summary>
+             Gets whether <paramref name="button"/> has been released.
+            
+             Only true the frame after release.
+             If ImGuiConfigFlags.NavEnableGamepad is set, this is unreliable.
+             </summary>
+             <param name="button">The button to check for.</param>
+             <returns>1 if released, 0 otherwise.</returns>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Raw(Dalamud.Game.ClientState.GamepadButtons)">
+             <summary>
+             Gets the raw state of <paramref name="button"/>.
+            
+             Is set the entire time a button is pressed down.
+             </summary>
+             <param name="button">The button to check for.</param>
+             <returns>1 the whole time button is pressed, 0 otherwise.</returns>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Enable">
+            <summary>
+            Enables the hook of the GamepadPoll function.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Game.ClientState.GamepadState.Dispose">
+            <summary>
+            Disposes this instance, alongside its hooks.
+            </summary>
+        </member>
         <member name="T:Dalamud.Game.ClientState.KeyState">
             <summary>
             Wrapper around the game keystate buffer, which contains the pressed state for
@@ -1762,6 +2016,56 @@
         <member name="T:Dalamud.Game.ClientState.Structs.Actor">
             <summary>
             Native memory representation of a FFXIV actor.
+            </summary>
+        </member>
+        <member name="T:Dalamud.Game.ClientState.Structs.GamepadInput">
+             <summary>
+             Struct which gets populated by polling the gamepads.
+            
+             Has an array of gamepads, among many other things (here not mapped).
+             All we really care about is the final data which the game uses to determine input.
+            
+             The size is definitely bigger than only the following fields but I do not know how big.
+             </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.LeftStickX">
+            <summary>
+            Left analogue stick's horizontal value, -99 for left, 99 for right.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.LeftStickY">
+            <summary>
+            Left analogue stick's vertical value, -99 for down, 99 for up.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.RightStickX">
+            <summary>
+            Right analogue stick's horizontal value, -99 for left, 99 for right.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.RightStickY">
+            <summary>
+            Right analogue stick's vertical value, -99 for down, 99 for up.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.ButtonsRaw">
+            <summary>
+            Raw input, set the whole time while a button is held. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.ButtonsPressed">
+            <summary>
+            Button pressed, set once when the button is pressed. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.ButtonsReleased">
+            <summary>
+            Button released input, set once right after the button is not hold anymore. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
+            </summary>
+        </member>
+        <member name="F:Dalamud.Game.ClientState.Structs.GamepadInput.ButtonsRepeat">
+            <summary>
+            Repeatedly emits the held button input in fixed intervals. See <see cref="T:Dalamud.Game.ClientState.GamepadButtons"/> for the mapping.
             </summary>
         </member>
         <member name="T:Dalamud.Game.ClientState.Structs.StatusEffect">
@@ -3580,6 +3884,11 @@
             Open the colors test window.
             </summary>
         </member>
+        <member name="M:Dalamud.Interface.DalamudInterface.OpenScratchpadWindow">
+            <summary>
+            Open the colors test window.
+            </summary>
+        </member>
         <member name="M:Dalamud.Interface.DalamudInterface.TogglePluginInstaller">
             <summary>
             Toggle the Plugin Installer window.
@@ -3623,6 +3932,31 @@
         <member name="M:Dalamud.Interface.DalamudInterface.ToggleComponentDemo">
             <summary>
             Toggle the component test window.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Interface.DalamudInterface.ToggleScratchpadWindow">
+            <summary>
+            Toggle the scratchpad window.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Interface.DalamudInterface.ToggleGamePadNotifierWindow">
+            <summary>
+            Toggle the gamepad notifier window window.
+            </summary>
+        </member>
+        <member name="T:Dalamud.Interface.GamepadModeNotifierWindow">
+            <summary>
+            Class responsible for drawing a notifier on screen that gamepad mode is active.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Interface.GamepadModeNotifierWindow.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Dalamud.Interface.GamepadModeNotifierWindow"/> class.
+            </summary>
+        </member>
+        <member name="M:Dalamud.Interface.GamepadModeNotifierWindow.Draw">
+            <summary>
+            Draws a light grey-ish, main-viewport-big filled rect in the background draw list alongside a text indicating gamepad mode.
             </summary>
         </member>
         <member name="T:Dalamud.Interface.ImGuiHelpers">
@@ -3930,6 +4264,11 @@
             Gets or sets a value indicating whether or not this window will stay open.
             </summary>
         </member>
+        <member name="M:Dalamud.Interface.Windowing.Window.Toggle">
+            <summary>
+            Toggle window is open state.
+            </summary>
+        </member>
         <member name="M:Dalamud.Interface.Windowing.Window.Draw">
             <summary>
             In this method, implement your drawing code.
@@ -4178,6 +4517,11 @@
         <member name="P:Dalamud.Plugin.DalamudPluginInterface.Sanitizer">
             <summary>
             Gets serializer class with functions to remove special characters from strings.
+            </summary>
+        </member>
+        <member name="P:Dalamud.Plugin.DalamudPluginInterface.GeneralChatType">
+            <summary>
+            Gets the chat type used by default for plugin messages.
             </summary>
         </member>
         <member name="P:Dalamud.Plugin.DalamudPluginInterface.AnyPluginIpcAction">
