@@ -38,5 +38,10 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 
             return (Lumina.GameData) field!.GetValue(@interface.Data);
         }
+
+        public static bool IsLoggedIn(this DalamudPluginInterface @interface)
+        {
+            return @interface.Data.IsDataReady && @interface.ClientState.TerritoryType > 0 && @interface.ClientState.Condition.Any() && @interface.ClientState.IsLoggedIn;
+        }
     }
 }

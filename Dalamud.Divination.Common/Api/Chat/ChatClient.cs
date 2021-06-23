@@ -98,7 +98,7 @@ namespace Dalamud.Divination.Common.Api.Chat
             new TextPayload(" ")
         });
 
-        private void CompleteChatQueue()
+        public void CompleteChatQueue()
         {
             queue.CompleteAdding();
 

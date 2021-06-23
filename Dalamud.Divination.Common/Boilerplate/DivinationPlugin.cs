@@ -58,6 +58,11 @@ namespace Dalamud.Divination.Common.Boilerplate
             IsDisposed = false;
             Load();
 
+            if (pluginInterface.IsLoggedIn())
+            {
+                chatClient?.CompleteChatQueue();
+            }
+
             chatClient?.Print("プラグインを読み込みました！");
         }
 

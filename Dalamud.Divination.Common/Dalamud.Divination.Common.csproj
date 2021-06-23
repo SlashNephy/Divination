@@ -80,6 +80,7 @@
         <Compile Include="Api\Config\ConfigManager.Commands.cs" />
         <Compile Include="Api\Config\ConfigManager.cs" />
         <Compile Include="Api\Config\IConfigManager.cs" />
+        <Compile Include="Api\Dalamud\Actor\ActorEx.cs" />
         <Compile Include="Api\Dalamud\String\SeStringEx.cs" />
         <Compile Include="Api\Definition\DefinitionManager.Commands.cs" />
         <Compile Include="Api\Definition\DefinitionManager.cs" />
@@ -140,9 +141,6 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Api\Dalamud\Actor" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

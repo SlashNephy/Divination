@@ -23,5 +23,7 @@ namespace Dalamud.Divination.Common.Api.Chat
          * ゲームクライアントにエラーメッセージとして, チャットメッセージを書き込みます。
          */
         public void PrintError(SeString seString, string? sender = null, XivChatType? type = null);
+
+        public void CompleteChatQueue();
     }
 }
