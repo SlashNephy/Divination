@@ -5,14 +5,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Chat;
-using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Divination.Common.Api.Version;
 using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Reporter
 {
-    internal sealed partial class BugReporter : IBugReporter, ICommandProvider
+    internal sealed partial class BugReporter : IBugReporter
     {
         private const string DefaultUrl = "https://divination.starry.blue/collect/bug_report";
 

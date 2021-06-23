@@ -8,12 +8,7 @@ namespace Dalamud.Divination.Common.Api.Command
 {
     internal sealed partial class CommandProcessor
     {
-        public object GetCommandInstance()
-        {
-            return new DefaultCommands(this);
-        }
-
-        private class DefaultCommands
+        public class DefaultCommands : ICommandProvider
         {
             private readonly CommandProcessor processor;
 

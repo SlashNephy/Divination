@@ -27,7 +27,7 @@ namespace Dalamud.Divination.Test
             var plugin1 = new TestPlugin();
             var plugin2 = new AnotherPlugin();
 
-            Assert.AreEqual("Hello, World!", plugin2.ReadField());
+            Assert.AreEqual("Hello, World!", AnotherPlugin.ReadField());
         }
     }
 }

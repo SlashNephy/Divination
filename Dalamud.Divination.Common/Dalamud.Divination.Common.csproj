@@ -79,7 +79,6 @@
         <Compile Include="Api\Command\ICommandProvider.cs" />
         <Compile Include="Api\Config\ConfigManager.Commands.cs" />
         <Compile Include="Api\Config\ConfigManager.cs" />
-        <Compile Include="Api\Config\ConfigUpdateProhibitedAttribute.cs" />
         <Compile Include="Api\Config\IConfigManager.cs" />
         <Compile Include="Api\Dalamud\String\SeStringEx.cs" />
         <Compile Include="Api\Definition\DefinitionManager.Commands.cs" />
@@ -118,6 +117,7 @@
         <Compile Include="Api\Ui\Window\WindowEx.cs" />
         <Compile Include="Api\Utilities\FieldUpdater.cs" />
         <Compile Include="Api\Utilities\IFieldUpdater.cs" />
+        <Compile Include="Api\Utilities\UpdateProhibitedAttribute.cs" />
         <Compile Include="Api\Version\GitVersion.cs" />
         <Compile Include="Api\Version\IGitVersion.cs" />
         <Compile Include="Api\Version\IVersionManager.cs" />
@@ -134,6 +134,7 @@
         <Compile Include="Boilerplate\DivinationPlugin.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.LivePluginLoad.cs" />
         <Compile Include="Boilerplate\DivinationPlugin.Api.cs" />
+        <Compile Include="Boilerplate\ICommandSupport.cs" />
         <Compile Include="Boilerplate\IDivinationPlugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

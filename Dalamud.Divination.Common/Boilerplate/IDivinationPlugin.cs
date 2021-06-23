@@ -14,8 +14,6 @@ namespace Dalamud.Divination.Common.Boilerplate
         /// </summary>
         public string Name { get; }
 
-        public string? CommandPrefix { get; }
-
         /// <summary>
         /// プラグインのコードが格納されているアセンブリを設定します。
         /// </summary>
@@ -26,9 +24,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         /// </summary>
         public void Load();
 
-        /// <summary>
-        /// プラグインアンロード時の処理を記述します。
-        /// </summary>
-        public void Unload();
+        public void DisposeManaged();
+        public void DisposeUnmanaged();
     }
 }

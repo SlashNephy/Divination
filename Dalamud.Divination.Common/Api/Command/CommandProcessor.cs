@@ -34,8 +34,7 @@ namespace Dalamud.Divination.Common.Api.Command
             this.chatGui = chatGui;
             this.chatClient = chatClient;
 
-            RegisterCommandsByAttribute(this);
-            RegisterCommandsByAttribute(new DirectoryCommands());
+            RegisterCommandsByAttribute(new DefaultCommands(this));
 
             chatGui.OnChatMessage += OnChatMessage;
         }
@@ -120,13 +119,8 @@ namespace Dalamud.Divination.Common.Api.Command
             }
         }
 
-        public void RegisterCommandsByAttribute(object instance)
+        public void RegisterCommandsByAttribute(ICommandProvider instance)
         {
-            if (instance is ICommandProvider provider)
-            {
-                instance = provider.GetCommandInstance();
-            }
-
             const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
             // public/internal/protected/private/static メソッドを検索し 宣言順にソートする

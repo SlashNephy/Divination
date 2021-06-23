@@ -69,7 +69,7 @@ namespace Dalamud.Divination.Common.Api.Logger
                     logger.Error("{Line}", line);
                     return;
                 case LogEventLevel.Fatal:
-                    logger.Error("{Line}", line);
+                    logger.Fatal("{Line}", line);
                     return;
             }
         }

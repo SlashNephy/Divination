@@ -12,7 +12,7 @@ namespace Dalamud.Divination.Common.Api.Command
         {
             Attribute = attribute;
             Method = method;
-            this.Instance = instance;
+            Instance = instance;
         }
     }
 }

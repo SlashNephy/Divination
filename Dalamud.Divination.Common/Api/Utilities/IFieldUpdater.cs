@@ -1,17 +1,18 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 
 namespace Dalamud.Divination.Common.Api.Utilities
 {
     public interface IFieldUpdater
     {
         public object Object { get; }
-        public FieldInfo Field { get; }
 
-        public bool UpdateBoolField(string? value, bool previousValue);
-        public bool UpdateFloatField(string? value);
-        public bool UpdateIntField(string? value);
-        public bool UpdateUInt16Field(string? value);
-        public bool UpdateByteField(string? value);
-        public bool UpdateStringField(string? value);
+        public bool TryUpdate(string key, string? value, IEnumerable<FieldInfo> fields);
+        public bool UpdateBoolField(FieldInfo fieldInfo, string? value, bool previousValue);
+        public bool UpdateFloatField(FieldInfo fieldInfo, string? value);
+        public bool UpdateIntField(FieldInfo fieldInfo, string? value);
+        public bool UpdateUInt16Field(FieldInfo fieldInfo, string? value);
+        public bool UpdateByteField(FieldInfo fieldInfo, string? value);
+        public bool UpdateStringField(FieldInfo fieldInfo, string? value);
     }
 }

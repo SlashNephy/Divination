@@ -46,7 +46,7 @@ namespace Dalamud.Divination.Common.Api
 
         public IChatClient ChatClient { get; }
 
-        public ICommandProcessor CommandProcessor { get; }
+        public ICommandProcessor? CommandProcessor { get; }
 
         public IBugReporter BugReporter { get; }
     }

@@ -2,6 +2,5 @@
 {
     public interface ICommandProvider
     {
-        public object GetCommandInstance();
     }
 }

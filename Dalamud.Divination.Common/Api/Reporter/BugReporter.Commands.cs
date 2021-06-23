@@ -5,16 +5,11 @@ namespace Dalamud.Divination.Common.Api.Reporter
 {
     internal sealed partial class BugReporter
     {
-        public object GetCommandInstance()
+        public class Commands : ICommandProvider
         {
-            return new Commands(this);
-        }
+            private readonly IBugReporter reporter;
 
-        private class Commands
-        {
-            private readonly BugReporter reporter;
-
-            public Commands(BugReporter reporter)
+            public Commands(IBugReporter reporter)
             {
                 this.reporter = reporter;
             }

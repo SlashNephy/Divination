@@ -53,36 +53,52 @@ namespace Dalamud.Divination.Common.Boilerplate
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public void Initialize(DalamudPluginInterface pluginInterface)
         {
+            PreInitialize(pluginInterface);
+
+            IsDisposed = false;
+            Load();
+
+            chatClient?.Print("プラグインを読み込みました！");
+        }
+
+        private void PreInitialize(DalamudPluginInterface pluginInterface)
+        {
             logger = DivinationLogger.File(Name);
             @interface = pluginInterface;
             chatClient = new ChatClient(Name, pluginInterface.Framework.Gui.Chat);
 
-            commandProcessor = new CommandProcessor(Name, CommandPrefix ?? Name, pluginInterface.Framework.Gui.Chat, chatClient);
+            if (this is ICommandSupport support)
+            {
+                commandProcessor = new CommandProcessor(Name, support.CommandPrefix, pluginInterface.Framework.Gui.Chat, chatClient);
+                commandProcessor.RegisterCommandsByAttribute(new DirectoryCommands());
+            }
+            else
+            {
+                commandProcessor = null;
+            }
 
-            configManager = new ConfigManager<TConfiguration>(pluginInterface, chatClient, commandProcessor);
-            commandProcessor.RegisterCommandsByAttribute(configManager);
+            configManager = new ConfigManager<TConfiguration>(pluginInterface, chatClient);
+            commandProcessor?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(configManager, CommandProcessor, chatClient));
 
             versionManager = new VersionManager(
                 new GitVersion(Assembly),
-                new GitVersion(System.Reflection.Assembly.GetExecutingAssembly()),
-                chatClient);
-            commandProcessor.RegisterCommandsByAttribute(versionManager);
+                new GitVersion(System.Reflection.Assembly.GetExecutingAssembly()));
+            commandProcessor?.RegisterCommandsByAttribute(new VersionManager.Commands(versionManager, chatClient));
 
             bugReporter = new BugReporter(Name, versionManager, chatClient);
-            commandProcessor.RegisterCommandsByAttribute(bugReporter);
+            commandProcessor?.RegisterCommandsByAttribute(new BugReporter.Commands(bugReporter));
 
 #if DEBUG
             dalamudLogger = new DalamudLogger(@interface.GetDalamud());
             dalamudLogger.Subscribe();
 #endif
 
-            IsDisposed = false;
+            if (this is ICommandProvider provider)
+            {
+                commandProcessor?.RegisterCommandsByAttribute(provider);
+            }
 
-            commandProcessor.RegisterCommandsByAttribute(this);
-            Load();
-
-            logger?.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, versionManager.PluginVersion.InformationalVersion);
-            chatClient?.Print("プラグインを読み込みました！");
+            logger.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, versionManager.PluginVersion.InformationalVersion);
         }
 
         #region Dispose Pattern
@@ -102,9 +118,18 @@ namespace Dalamud.Divination.Common.Boilerplate
             if (disposing)
             {
                 IsDisposed = true;
+                DisposeManaged();
+            }
 
-                Unload();
+            DisposeUnmanaged();
 
+            PostDispose(disposing);
+        }
+
+        private void PostDispose(bool disposing)
+        {
+            if (disposing)
+            {
                 configManager?.Dispose();
                 versionManager?.Dispose();
                 commandProcessor?.Dispose();

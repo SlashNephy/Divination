@@ -1,110 +1,171 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Utilities
 {
-    public class FieldUpdater : IFieldUpdater
+    internal class FieldUpdater : IFieldUpdater
     {
         public object Object { get; }
-        public FieldInfo Field { get; }
 
         private readonly IChatClient chatClient;
 
-        public FieldUpdater(object obj, FieldInfo fieldInfo, IChatClient chatClient)
+        public FieldUpdater(object obj, IChatClient chatClient)
         {
             Object = obj;
-            Field = fieldInfo;
             this.chatClient = chatClient;
         }
 
-        public bool UpdateBoolField(string? value, bool previousValue)
+        public bool TryUpdate(string key, string? value, IEnumerable<FieldInfo> fields)
+        {
+            var fieldInfo = fields.FirstOrDefault(x => x.Name.Equals(key, StringComparison.CurrentCultureIgnoreCase));
+            if (fieldInfo == null)
+            {
+                chatClient.PrintError(new List<Payload>
+                {
+                    new TextPayload("指定されたフィールド名 "),
+                    EmphasisItalicPayload.ItalicsOn,
+                    new TextPayload(key),
+                    EmphasisItalicPayload.ItalicsOff,
+                    new TextPayload(" は存在しません。")
+                });
+
+                return false;
+            }
+
+            if (fieldInfo.GetCustomAttribute<UpdateProhibitedAttribute>() != null)
+            {
+                chatClient.PrintError(new List<Payload>
+                {
+                    new TextPayload("指定されたフィールド名 "),
+                    EmphasisItalicPayload.ItalicsOn,
+                    new TextPayload(key),
+                    EmphasisItalicPayload.ItalicsOff,
+                    new TextPayload(" の変更は許可されていません。")
+                });
+
+                return false;
+            }
+
+            var fieldValue = fieldInfo.GetValue(Object);
+            switch (fieldValue)
+            {
+                case bool b:
+                    return UpdateBoolField(fieldInfo, value, b);
+                case byte:
+                    return UpdateByteField(fieldInfo, value);
+                case int:
+                    return UpdateIntField(fieldInfo, value);
+                case float:
+                    return UpdateFloatField(fieldInfo, value);
+                case ushort:
+                    return UpdateUInt16Field(fieldInfo, value);
+                case string:
+                    return UpdateStringField(fieldInfo, value);
+                default:
+                    chatClient.PrintError(new List<Payload>
+                    {
+                        new TextPayload("指定されたフィールド名 "),
+                        EmphasisItalicPayload.ItalicsOn,
+                        new TextPayload(key),
+                        EmphasisItalicPayload.ItalicsOff,
+                        new TextPayload(" の変更はサポートされていません。")
+                    });
+
+                    return false;
+            }
+        }
+
+        public bool UpdateBoolField(FieldInfo fieldInfo, string? value, bool previousValue)
         {
             if (value == null)
             {
-                Field.SetValue(Object, !previousValue);
-                PrintConfigValueSuccessLog(!previousValue);
+                fieldInfo.SetValue(Object, !previousValue);
+                PrintConfigValueSuccessLog(fieldInfo, !previousValue);
                 return true;
             }
 
             if (bool.TryParse(value, out var tmp))
             {
-                Field.SetValue(Object, tmp);
-                PrintConfigValueSuccessLog(tmp);
+                fieldInfo.SetValue(Object, tmp);
+                PrintConfigValueSuccessLog(fieldInfo, tmp);
                 return true;
             }
 
-            PrintConfigValueTypeError(value);
+            PrintConfigValueTypeError(fieldInfo, value);
             return false;
         }
 
-        public bool UpdateFloatField(string? value)
+        public bool UpdateFloatField(FieldInfo fieldInfo, string? value)
         {
             if (float.TryParse(value, out var tmp))
             {
-                Field.SetValue(Object, tmp);
-                PrintConfigValueSuccessLog(tmp);
+                fieldInfo.SetValue(Object, tmp);
+                PrintConfigValueSuccessLog(fieldInfo, tmp);
                 return true;
             }
 
-            PrintConfigValueTypeError(value);
+            PrintConfigValueTypeError(fieldInfo, value);
             return false;
         }
 
-        public bool UpdateIntField(string? value)
+        public bool UpdateIntField(FieldInfo fieldInfo, string? value)
         {
             if (int.TryParse(value, out var tmp))
             {
-                Field.SetValue(Object, tmp);
-                PrintConfigValueSuccessLog(tmp);
+                fieldInfo.SetValue(Object, tmp);
+                PrintConfigValueSuccessLog(fieldInfo, tmp);
                 return true;
             }
 
-            PrintConfigValueTypeError(value);
+            PrintConfigValueTypeError(fieldInfo, value);
             return false;
         }
 
-        public bool UpdateUInt16Field(string? value)
+        public bool UpdateUInt16Field(FieldInfo fieldInfo, string? value)
         {
             if (ushort.TryParse(value, out var tmp))
             {
-                Field.SetValue(Object, tmp);
-                PrintConfigValueSuccessLog(tmp);
+                fieldInfo.SetValue(Object, tmp);
+                PrintConfigValueSuccessLog(fieldInfo, tmp);
                 return true;
             }
 
-            PrintConfigValueTypeError(value);
+            PrintConfigValueTypeError(fieldInfo, value);
             return false;
         }
 
-        public bool UpdateByteField(string? value)
+        public bool UpdateByteField(FieldInfo fieldInfo, string? value)
         {
             if (byte.TryParse(value, out var tmp))
             {
-                Field.SetValue(Object, tmp);
-                PrintConfigValueSuccessLog(tmp);
+                fieldInfo.SetValue(Object, tmp);
+                PrintConfigValueSuccessLog(fieldInfo, tmp);
                 return true;
             }
 
-            PrintConfigValueTypeError(value);
+            PrintConfigValueTypeError(fieldInfo, value);
             return false;
         }
 
-        public bool UpdateStringField(string? value)
+        public bool UpdateStringField(FieldInfo fieldInfo, string? value)
         {
-            Field.SetValue(Object, value ?? string.Empty);
-            PrintConfigValueSuccessLog(value ?? string.Empty);
+            fieldInfo.SetValue(Object, value ?? string.Empty);
+            PrintConfigValueSuccessLog(fieldInfo, value ?? string.Empty);
             return true;
         }
 
-        private void PrintConfigValueSuccessLog(object? value)
+        private void PrintConfigValueSuccessLog(FieldInfo fieldInfo, object? value)
         {
-            chatClient.Print(new List<Game.Text.SeStringHandling.Payload>
+            chatClient.Print(new List<Payload>
             {
                 new TextPayload("フィールド "),
                 EmphasisItalicPayload.ItalicsOn,
-                new TextPayload(Field.Name),
+                new TextPayload(fieldInfo.Name),
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(" の値を "),
                 EmphasisItalicPayload.ItalicsOn,
@@ -114,9 +175,9 @@ namespace Dalamud.Divination.Common.Api.Utilities
             });
         }
 
-        private void PrintConfigValueTypeError(object? value)
+        private void PrintConfigValueTypeError(FieldInfo fieldInfo, object? value)
         {
-            chatClient.PrintError(new List<Game.Text.SeStringHandling.Payload>
+            chatClient.PrintError(new List<Payload>
             {
                 new TextPayload("指定された値 "),
                 EmphasisItalicPayload.ItalicsOn,
@@ -124,11 +185,11 @@ namespace Dalamud.Divination.Common.Api.Utilities
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(" はフィールド "),
                 EmphasisItalicPayload.ItalicsOn,
-                new TextPayload(Field.Name),
+                new TextPayload(fieldInfo.Name),
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(" の型 ("),
                 EmphasisItalicPayload.ItalicsOn,
-                new TextPayload(Field.FieldType.Name),
+                new TextPayload(fieldInfo.FieldType.Name),
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(") に変換できませんでした。")
             });

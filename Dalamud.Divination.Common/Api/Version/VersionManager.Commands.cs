@@ -1,37 +1,38 @@
-﻿using Dalamud.Divination.Common.Api.Command;
+﻿using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Logger;
 
 namespace Dalamud.Divination.Common.Api.Version
 {
     internal partial class VersionManager
     {
-        public object GetCommandInstance()
+        public class Commands : ICommandProvider
         {
-            return new Commands(this);
-        }
+            private readonly IVersionManager versionManager;
+            private readonly IChatClient chatClient;
 
-        private class Commands
-        {
-            private readonly VersionManager versionManager;
-
-            public Commands(VersionManager versionManager)
+            public Commands(IVersionManager versionManager, IChatClient chatClient)
             {
                 this.versionManager = versionManager;
+                this.chatClient = chatClient;
             }
 
             [Command("Version", Help = "プラグインのバージョンを表示します。")]
             private void OnVersionCommand()
             {
-                versionManager.chatClient.Print(versionManager.PluginVersion.InformationalVersion);
+                chatClient.Print(versionManager.PluginVersion.InformationalVersion);
 
-                versionManager.logger.Debug("{Version}", versionManager.PluginVersion.ToString());
+                using var logger = DivinationLogger.Debug("VersionManager");
+                logger.Debug("{Version}", versionManager.PluginVersion.ToString());
             }
 
             [Command("Version Library", Help = "プラグインが使用している Divination.Common のバージョンを表示します。")]
             private void OnVersionLibraryCommand()
             {
-                versionManager.chatClient.Print(versionManager.LibraryVersion.InformationalVersion);
+                chatClient.Print(versionManager.LibraryVersion.InformationalVersion);
 
-                versionManager.logger.Debug("{Version}", versionManager.LibraryVersion.ToString());
+                using var logger = DivinationLogger.Debug("VersionManager");
+                logger.Debug("{Version}", versionManager.LibraryVersion.ToString());
             }
         }
     }

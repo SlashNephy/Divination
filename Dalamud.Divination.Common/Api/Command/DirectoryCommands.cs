@@ -4,13 +4,8 @@ using System.IO;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
-    public class DirectoryCommands
+    public class DirectoryCommands : ICommandProvider
     {
-        public object GetCommandInstance()
-        {
-            return this;
-        }
-
         [Command("AppData", Help = "Divination の AppData ディレクトリを開きます。")]
         private static void OnAppDataCommand()
         {

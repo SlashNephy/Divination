@@ -10,6 +10,6 @@ namespace Dalamud.Divination.Common.Api.Command
 
         public bool ProcessCommand(string text);
         public void DispatchCommand(DivinationCommand command, string[] arguments);
-        public void RegisterCommandsByAttribute(object instance);
+        public void RegisterCommandsByAttribute(ICommandProvider instance);
     }
 }

@@ -15,7 +15,7 @@ namespace Dalamud.Divination.Test
             Logger.Information("Loaded!");
         }
 
-        public override void Unload()
+        public override void DisposeManaged()
         {
             Logger.Information("Unloaded!");
         }

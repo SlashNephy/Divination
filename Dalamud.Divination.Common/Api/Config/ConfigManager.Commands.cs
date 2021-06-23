@@ -9,24 +9,23 @@ namespace Dalamud.Divination.Common.Api.Config
 {
     internal partial class ConfigManager<TConfiguration>
     {
-        public object GetCommandInstance()
+        public class Commands : ICommandProvider
         {
-            return new Commands(this);
-        }
+            private readonly IConfigManager<TConfiguration> manager;
+            private readonly ICommandProcessor processor;
+            private readonly IChatClient chatClient;
 
-        private class Commands
-        {
-            private readonly ConfigManager<TConfiguration> manager;
-
-            public Commands(ConfigManager<TConfiguration> manager)
+            public Commands(IConfigManager<TConfiguration> manager, ICommandProcessor processor, IChatClient chatClient)
             {
                 this.manager = manager;
+                this.processor = processor;
+                this.chatClient = chatClient;
             }
 
             [Command("Config Show", Help = "プラグインの設定を出力します。")]
             private void OnConfigShowCommand()
             {
-                manager.chatClient.Print(payloads =>
+                chatClient.Print(payloads =>
                 {
                     payloads.Add(new TextPayload("設定一覧:\n"));
 
@@ -35,7 +34,7 @@ namespace Dalamud.Divination.Common.Api.Config
                         var name = fieldInfo.Name;
                         var value = fieldInfo.GetValue(manager.Config);
 
-                        payloads.Add(new TextPayload($"{manager.commandProcessor.Prefix} config {name} {value}\n"));
+                        payloads.Add(new TextPayload($"{processor.Prefix} config {name} {value}\n"));
                     }
                 });
             }
@@ -47,7 +46,7 @@ namespace Dalamud.Divination.Common.Api.Config
                 {
                     var configKeys = EnumerateConfigFields().Select(x => x.Name);
 
-                    manager.chatClient.PrintError(new List<Payload>
+                    chatClient.PrintError(new List<Payload>
                     {
                         new TextPayload("コマンドの構文が間違っています。"),
                         new TextPayload($"Usage: {context.Command.Usage}"),
@@ -56,6 +55,7 @@ namespace Dalamud.Divination.Common.Api.Config
                         new TextPayload("利用可能な設定名の一覧:"),
                         new TextPayload(string.Join("\n", configKeys))
                     });
+
                     return;
                 }
 
