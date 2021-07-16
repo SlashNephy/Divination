@@ -111,7 +111,7 @@ namespace Dalamud.Divination.Common.Api.Command
                     new TextPayload($"Usage: {command.Attribute.Usage}")
                 });
 
-                logger.Error(e, "Error occurred while DispatchCommand");
+                logger.Error(e, "Error occurred while DispatchCommand for {Command}", command.Method.Name);
             }
             finally
             {
@@ -138,7 +138,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 {
                     try
                     {
-                        CheckCommandHandler(method, attribute);
+                        CheckCommandHandler(instance, method, attribute);
                         RegisterCommand(method, attribute, instance);
                     }
                     catch (ArgumentException exception)
@@ -149,7 +149,7 @@ namespace Dalamud.Divination.Common.Api.Command
             }
         }
 
-        private void CheckCommandHandler(MethodInfo method, CommandAttribute attribute)
+        private void CheckCommandHandler(ICommandProvider instance, MethodInfo method, CommandAttribute attribute)
         {
             var parameters = method.GetParameters();
             switch (parameters.Length)
@@ -161,7 +161,7 @@ namespace Dalamud.Divination.Common.Api.Command
                     attribute.ReceiveContext = true;
                     break;
                 default:
-                    throw new ArgumentException("引数が不正です。CommandContext 以外の型が引数となっているため, コマンドハンドラとして登録できません。");
+                    throw new ArgumentException($"引数が不正です。CommandContext 以外の型が引数となっているため, コマンドハンドラとして登録できません。\nMethod = {instance.GetType().FullName}#{method.Name}, Attribute = {attribute}");
             }
 
             if (!attribute.Syntax.StartsWith("/"))

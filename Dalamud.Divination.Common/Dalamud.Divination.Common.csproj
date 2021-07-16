@@ -68,7 +68,6 @@
         <Compile Include="Api\Chat\ChatClient.cs" />
         <Compile Include="Api\Chat\ChatClientEx.cs" />
         <Compile Include="Api\Chat\IChatClient.cs" />
-        <Compile Include="Api\Command\CommandContextEx.cs" />
         <Compile Include="Api\Command\CommandProcessor.Commands.cs" />
         <Compile Include="Api\Command\CommandProcessor.cs" />
         <Compile Include="Api\Command\DirectoryCommands.cs" />

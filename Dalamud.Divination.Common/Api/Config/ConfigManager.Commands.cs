@@ -40,8 +40,10 @@ namespace Dalamud.Divination.Common.Api.Config
             }
 
             [Command("Config", "key?", "value?", Help = "プラグインの設定 <key> を <value?> に変更できます。<key> が null の場合, 利用可能な設定名の一覧を出力します。")]
-            private void OnConfigCommand(CommandContext context, string? key, string? value)
+            private void OnConfigCommand(CommandContext context)
             {
+                var key = context.Arguments.ElementAtOrDefault(0);
+                var value = context.Arguments.ElementAtOrDefault(0);
                 if (key == null)
                 {
                     var configKeys = EnumerateConfigFields().Select(x => x.Name);

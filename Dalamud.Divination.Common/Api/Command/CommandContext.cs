@@ -30,5 +30,25 @@
         /// コマンドに与えられた引数を結合した文字列。
         /// </summary>
         public string ArgumentText => string.Join(" ", Arguments);
+
+        public string this[int index] => Arguments[index];
+
+        public void Deconstruct(out string first)
+        {
+            first = Arguments[0];
+        }
+
+        public void Deconstruct(out string first, out string second)
+        {
+            first = Arguments[0];
+            second = Arguments[1];
+        }
+
+        public void Deconstruct(out string first, out string second, out string third)
+        {
+            first = Arguments[0];
+            second = Arguments[1];
+            third = Arguments[2];
+        }
     }
 }

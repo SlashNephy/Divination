@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Dalamud.Game.ClientState;
 using Dalamud.Game.ClientState.Actors.Types;
@@ -7,9 +8,9 @@ namespace Dalamud.Divination.Common.Api.Dalamud.Actor
 {
     public static class ActorEx
     {
-        public static async Task<PlayerCharacter> GetPlayerAsync(this ClientState state, CancellationToken token)
+        public static async Task<PlayerCharacter> GetLocalPlayerAsync(this ClientState state, TimeSpan? delay = null, CancellationToken token = default)
         {
-            while (true)
+            while (!token.IsCancellationRequested)
             {
                 var player = state.LocalPlayer;
                 if (player != null)
@@ -17,8 +18,11 @@ namespace Dalamud.Divination.Common.Api.Dalamud.Actor
                     return player;
                 }
 
-                await Task.Delay(200, token);
+                await Task.Delay(delay ?? TimeSpan.FromMilliseconds(200), token);
             }
+
+            token.ThrowIfCancellationRequested();
+            throw new OperationCanceledException();
         }
     }
 }

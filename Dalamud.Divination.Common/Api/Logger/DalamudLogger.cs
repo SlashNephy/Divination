@@ -26,7 +26,7 @@ namespace Dalamud.Divination.Common.Api.Logger
             {
                 var field = AppDomain.CurrentDomain.GetAssemblies()
                     .SelectMany(x => x.GetTypes())
-                    .First(x => x.FullName == "Dalamud.Interface.SerilogEventSink")
+                    .First(x => x.FullName == "Dalamud.Interface.Internal.SerilogEventSink")
                     .GetRuntimeFields()
                     .First(x => x.Name == "Instance");
 

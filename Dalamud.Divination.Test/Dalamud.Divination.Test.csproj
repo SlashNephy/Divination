@@ -37,6 +37,7 @@
     <ItemGroup>
         <Reference Include="Dalamud">
           <HintPath>..\Thirdparty\Dalamud\Dalamud.dll</HintPath>
+          <Private>False</Private>
         </Reference>
         <Reference Include="Serilog">
           <HintPath>..\Thirdparty\Dalamud\Serilog.dll</HintPath>
