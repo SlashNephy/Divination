@@ -1,14 +1,20 @@
 ﻿using System.Reflection;
 using Dalamud.Divination.Common.Boilerplate;
+using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Template
 {
-    public class SamplePlugin : DivinationPlugin<SampleConfig>
+    public class SamplePlugin : DivinationPlugin<SamplePlugin, SampleConfig>, IDalamudPlugin, ICommandSupport
     {
         /// <summary>
         /// プラグインの名前を設定します。
         /// </summary>
         public override string Name => "SamplePlugin";
+
+        /// <summary>
+        /// プラグインのコマンドのプレフィックスを設定します。
+        /// </summary>
+        public string CommandPrefix => "/another";
 
         /// <summary>
         /// プラグインが格納されているアセンブリを設定します。
@@ -21,22 +27,6 @@ namespace Dalamud.Divination.Template
         public override void Load()
         {
             Logger.Information("Hello!");
-        }
-
-        /// <summary>
-        /// プラグインがアンロードされる際に実行される処理を記述します。
-        /// </summary>
-        public override void Unload()
-        {
-            Logger.Information("Bye!");
-        }
-
-        /// <summary>
-        /// プラグインの設定の読み込む処理と, (設定が保存されていなければ) 新たにインスタンスを作成する処理を記述します。
-        /// </summary>
-        public override SampleConfig LoadConfig()
-        {
-            return Interface.GetPluginConfig() as SampleConfig ?? new SampleConfig();
         }
     }
 }
