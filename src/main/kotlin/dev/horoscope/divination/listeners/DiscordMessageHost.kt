@@ -10,6 +10,8 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
@@ -43,8 +45,18 @@ object DiscordMessageHost: ListenerAdapter() {
         GlobalScope.launch {
             httpClient.post<Unit>("$sseAddress/collect/discord_message") {
                 contentType(ContentType.Application.Json)
-                body = SsePayload(sender, message)
+                body = Json.encodeToString(SsePayload(sender, message)).toUnicodeLiteral()
             }
         }
+    }
+
+    private fun String.toUnicodeLiteral(): String {
+        return map {
+            if (it.code in 0 until 128) {
+                it.toString()
+            } else {
+                String.format("\\u%04X", it.code)
+            }
+        }.joinToString("")
     }
 }
