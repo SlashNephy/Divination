@@ -32,7 +32,6 @@ object FaloopSocketIOClient {
             extraHeaders = mapOf(
                 HttpHeaders.Accept to listOf("*/*"),
                 HttpHeaders.AcceptLanguage to listOf("ja"),
-                "DNT" to listOf("1"),
                 HttpHeaders.Referrer to listOf("https://faloop.app/"),
                 HttpHeaders.UserAgent to listOf("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.0.0 Safari/537.36")
             )

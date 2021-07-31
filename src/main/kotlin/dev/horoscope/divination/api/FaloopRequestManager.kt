@@ -54,7 +54,6 @@ object FaloopRequestManager {
             header(HttpHeaders.Accept, "application/json, text/plain, */*")
             header(HttpHeaders.AcceptEncoding, "gzip, deflate, br")
             header(HttpHeaders.AcceptLanguage, "ja")
-            header("DNT", "1")
             header(HttpHeaders.Origin, "https://faloop.app")
             header(HttpHeaders.Referrer, "https://faloop.app/")
             userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.0.0 Safari/537.36")
