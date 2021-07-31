@@ -23,7 +23,7 @@ RUN gradle -version > /dev/null \
 # Final Stage
 FROM --platform=$TARGETPLATFORM adoptopenjdk:11-jre-hotspot
 
-COPY --from=build /app/build/libs/Divination.DiscordBot-all.jar /app/Divination.DiscordBot.jar
+COPY --from=build /app/build/libs/Divination.SseServer.Faloop.jar /app/Divination.SseServer.Faloop.jar
 
 LABEL org.opencontainers.image.source="https://github.com/SlashNephy/Divination.SseServer.Faloop"
 WORKDIR /app
