@@ -37,6 +37,7 @@ fun Route.getStream() {
 @Suppress("BlockingMethodInNonBlockingContext")
 private suspend fun Writer.appendEvent(event: SseEvent) {
     appendLine(event.serialize())
+    appendLine()
 
     withContext(Dispatchers.IO) {
         flush()
