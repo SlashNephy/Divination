@@ -4,6 +4,8 @@ import dev.horoscope.divination.Env
 import dev.horoscope.divination.create
 import dev.horoscope.divination.sse.SsePayload
 import io.ktor.client.HttpClient
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.post
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
@@ -18,7 +20,11 @@ import org.json.JSONObject
 
 object FaloopSocketIOClient {
     private val logger = KotlinLogging.create("Divination.FaloopHandler")
-    private val httpClient = HttpClient()
+    private val httpClient = HttpClient {
+        install(JsonFeature) {
+            serializer = KotlinxSerializer()
+        }
+    }
 
     suspend fun connect() {
         FaloopRequestManager.Auth.login(Env.FALOOP_USERNAME, Env.FALOOP_PASSWORD)
