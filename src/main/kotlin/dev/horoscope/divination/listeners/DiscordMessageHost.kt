@@ -8,6 +8,7 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.post
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
+import io.ktor.http.withCharset
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
@@ -44,19 +45,9 @@ object DiscordMessageHost: ListenerAdapter() {
 
         GlobalScope.launch {
             httpClient.post<Unit>("$sseAddress/collect/discord_message") {
-                contentType(ContentType.Application.Json)
-                body = Json.encodeToString(SsePayload(sender, message)).toUnicodeLiteral()
+                contentType(ContentType.Application.Json.withCharset(Charsets.UTF_8))
+                body = Json.encodeToString(SsePayload(sender, message))
             }
         }
-    }
-
-    private fun String.toUnicodeLiteral(): String {
-        return map {
-            if (it.code in 0 until 128) {
-                it.toString()
-            } else {
-                String.format("\\u%04X", it.code)
-            }
-        }.joinToString("")
     }
 }
