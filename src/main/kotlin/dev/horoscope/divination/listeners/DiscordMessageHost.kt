@@ -46,7 +46,7 @@ object DiscordMessageHost: ListenerAdapter() {
         GlobalScope.launch {
             httpClient.post<Unit>("$sseAddress/collect/discord_message") {
                 contentType(ContentType.Application.Json.withCharset(Charsets.UTF_8))
-                body = Json.encodeToString(SsePayload(sender, message))
+                body = SsePayload(sender, message)
             }
         }
     }
