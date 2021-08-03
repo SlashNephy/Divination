@@ -32,6 +32,12 @@ fun SseEvent.serialize(): String = buildString {
                 message = "SseServer に接続しました！"
             ).serialize()
         }
+        is SseEvent.Unauthorized -> {
+            return SseEvent.JsonData(
+                event = "welcome",
+                message = "SseServer の資格情報が間違っています。データを送受信することはできません。"
+            ).serialize()
+        }
         is SseEvent.Maintenance -> {
             return SseEvent.JsonData(
                 event = "maintenance",
