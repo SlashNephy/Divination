@@ -19,5 +19,6 @@ sealed class SseEvent {
 
     object Ping: SseEvent()
     object Welcome: SseEvent()
+    object Unauthorized: SseEvent()
     object Maintenance: SseEvent()
 }
