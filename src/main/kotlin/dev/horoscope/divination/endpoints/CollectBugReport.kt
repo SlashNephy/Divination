@@ -21,6 +21,10 @@ data class BugReport(
 
 fun Route.postCollectBugReport() {
     post("/collect/bug_report") {
+        if (!call.isAuthorized()) {
+            return@post call.respond(HttpStatusCode.Unauthorized)
+        }
+
         val webhookUrl = Env.DISCORD_BUG_REPORT_WEBHOOK_URL ?: return@post call.respond(HttpStatusCode.Accepted)
 
         val payload = call.receive<BugReport>()

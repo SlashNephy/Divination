@@ -12,6 +12,10 @@ import kotlinx.serialization.Serializable
 
 fun Route.postCollectFcChat() {
     post("/collect/fc_chat") {
+        if (!call.isAuthorized()) {
+            return@post call.respond(HttpStatusCode.Unauthorized)
+        }
+
         val webhookUrl = Env.DISCORD_FC_CHAT_WEBHOOK_URL ?: return@post call.respond(HttpStatusCode.Accepted)
 
         val payload = call.receive<FcChat>()
