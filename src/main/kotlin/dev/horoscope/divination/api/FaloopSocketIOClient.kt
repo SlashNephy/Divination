@@ -10,6 +10,7 @@ import io.ktor.client.request.post
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import io.ktor.http.withCharset
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.engineio.client.transports.WebSocket
@@ -114,7 +115,7 @@ object FaloopSocketIOClient {
     private fun broadcast(event: String, message: String) {
         GlobalScope.launch {
             httpClient.post<Unit>("${Env.SSE_SERVER_ADDRESS ?: return@launch}/collect/$event") {
-                contentType(ContentType.Application.Json)
+                contentType(ContentType.Application.Json.withCharset(Charsets.UTF_8))
                 body = SsePayload(null, message)
             }
 
