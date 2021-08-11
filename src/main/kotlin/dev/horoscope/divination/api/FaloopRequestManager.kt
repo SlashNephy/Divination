@@ -17,10 +17,7 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.header
 import io.ktor.client.request.post
-import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
-import io.ktor.http.contentType
-import io.ktor.http.userAgent
+import io.ktor.http.*
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 
@@ -79,7 +76,7 @@ object FaloopRequestManager {
 
         private suspend fun login(username: String, password: String, sessionId: String): LoginResponse {
             return httpClient.post(LoginEndpointUrl) {
-                contentType(ContentType.Application.Json)
+                contentType(ContentType.Application.Json.withCharset(Charsets.UTF_8))
                 body = LoginForm(username, password, true, sessionId)
                 setToken(token)
             }
@@ -87,7 +84,7 @@ object FaloopRequestManager {
 
         private suspend fun identify(): LoginResponse {
             return httpClient.post(IdentifyEndpointUrl) {
-                contentType(ContentType.Application.Json)
+                contentType(ContentType.Application.Json.withCharset(Charsets.UTF_8))
                 body = IdentifyForm("")
                 setToken(token)
             }
