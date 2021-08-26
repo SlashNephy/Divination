@@ -49,7 +49,7 @@ def update_last_updated(manifests):
             manifest["LastUpdated"] = str(modified)
 
 def dump_master(manifests):
-    with open("pluginmaster.json", "w") as f:
+    with open(f"dist/{DALAMUD_ENV}/pluginmaster.json", "w") as f:
         json.dump(manifests, f, indent=4)
 
 if __name__ == "__main__":

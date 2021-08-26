@@ -23,8 +23,15 @@ jobs:
         with:
             python-version: '3.8'
 
-      - name: Update PluginMaster
+      - name: Update PluginMaster (stable)
         run: python update.py
+        env:
+          DALAMUD_ENV: stable
+
+      - name: Update PluginMaster (dev)
+        run: python update.py
+        env:
+          DALAMUD_ENV: dev
 
       - name: Push PluginMaster
         uses: EndBug/add-and-commit@v7
