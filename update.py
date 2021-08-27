@@ -1,8 +1,7 @@
 import json
 import os
 from os.path import getmtime
-from time import time
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZipFile
 
 
 DALAMUD_ENV = os.environ["DALAMUD_ENV"]
@@ -51,6 +50,7 @@ def update_last_updated(manifests):
 def dump_master(manifests):
     with open(f"dist/{DALAMUD_ENV}/pluginmaster.json", "w") as f:
         json.dump(manifests, f, indent=4)
+
 
 if __name__ == "__main__":
     manifests = extract_manifests()
