@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
       - '**.md'
-      - '**.json'
+      - pluginmaster.json
 
     branches:
       - master
@@ -21,7 +21,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-            python-version: '3.8'
+          python-version: '3.8'
 
       - name: Update PluginMaster (stable)
         run: python update.py
