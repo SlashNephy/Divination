@@ -8,7 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E1E20F20
 ProjectSection(SolutionItems) = preProject
 	Directory.Build.props = Directory.Build.props
 	.github\workflows\build.yml = .github\workflows\build.yml
-	.github\workflows\check.yml = .github\workflows\check.yml
 EndProjectSection
 EndProject
 Global
