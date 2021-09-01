@@ -58,6 +58,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           add: ${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.csproj
+          branch: master
           author_name: GitHub Action
           author_email: github-actions[bot]@users.noreply.github.com
           message: Bump version to ${{ env.PROJECT_VERSION }}
