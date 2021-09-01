@@ -6,8 +6,8 @@ Dalamud.Divination plugins third-party repository (experimental!)
 
 Drop the following url into your third-party repo URL list.
 
-- Stable Dalamud (for API 3)  
+- Stable 
   `https://repo.horoscope.dev/dist/stable/pluginmaster.json`
 
-- Testing Dalamud (for API 4)  
+- Testing
   `https://repo.horoscope.dev/dist/testing/pluginmaster.json`
