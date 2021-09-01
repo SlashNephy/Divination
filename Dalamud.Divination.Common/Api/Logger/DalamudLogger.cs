@@ -9,13 +9,13 @@ namespace Dalamud.Divination.Common.Api.Logger
 {
     internal sealed class DalamudLogger : IDisposable
     {
-        private readonly global::Dalamud.Dalamud dalamud;
+        private readonly object dalamud;
 
         private EventInfo? onLogLineEventInfo;
         private Delegate? onLogLineDelegate;
         private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(DalamudLogger));
 
-        public DalamudLogger(global::Dalamud.Dalamud dalamud)
+        public DalamudLogger(object dalamud)
         {
             this.dalamud = dalamud;
         }
@@ -26,11 +26,11 @@ namespace Dalamud.Divination.Common.Api.Logger
             {
                 var field = AppDomain.CurrentDomain.GetAssemblies()
                     .SelectMany(x => x.GetTypes())
-                    .First(x => x.FullName == "Dalamud.Interface.Internal.SerilogEventSink")
-                    .GetRuntimeFields()
-                    .First(x => x.Name == "Instance");
+                    .First(x => x.FullName == "Dalamud.Logging.Internal.SerilogEventSink")
+                    .GetRuntimeProperty("Instance");
 
-                return (ILogEventSink) field.GetValue(null);
+                // ReSharper disable once AssignNullToNotNullAttribute
+                return (ILogEventSink) field!.GetValue(null)!;
             }
         }
 
@@ -38,10 +38,11 @@ namespace Dalamud.Divination.Common.Api.Logger
         {
             get
             {
-                var field = typeof(global::Dalamud.Dalamud)
-                    .GetField("loggingLevelSwitch", BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance);
+                var property = dalamud.GetType()
+                    .GetProperty("LogLevelSwitch", BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance);
 
-                return (LoggingLevelSwitch) field!.GetValue(dalamud);
+                // ReSharper disable once AssignNullToNotNullAttribute
+                return (LoggingLevelSwitch) property!.GetValue(dalamud)!;
             }
         }
 
@@ -80,7 +81,7 @@ namespace Dalamud.Divination.Common.Api.Logger
             {
                 onLogLineEventInfo = DalamudLogEventSink.GetType().GetEvent("OnLogLine");
                 var method = GetType().BaseType!.GetMethod("OnDalamudLogEvent", BindingFlags.NonPublic | BindingFlags.Instance);
-                onLogLineDelegate = Delegate.CreateDelegate(onLogLineEventInfo!.EventHandlerType, this, method!);
+                onLogLineDelegate = Delegate.CreateDelegate(onLogLineEventInfo!.EventHandlerType!, this, method!);
                 onLogLineEventInfo.AddEventHandler(DalamudLogEventSink, onLogLineDelegate);
             }
             catch (Exception exception)

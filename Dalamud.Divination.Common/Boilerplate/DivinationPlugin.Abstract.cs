@@ -7,10 +7,8 @@ namespace Dalamud.Divination.Common.Boilerplate
      */
     public abstract partial class DivinationPlugin<TPlugin, TConfiguration>
     {
-        public abstract string Name { get; }
-        public abstract Assembly Assembly { get; }
-
-        public abstract void Load();
+        public virtual string Name => _instance!.GetType().Name;
+        public virtual Assembly Assembly => Assembly.GetExecutingAssembly();
 
         public virtual void DisposeManaged()
         {

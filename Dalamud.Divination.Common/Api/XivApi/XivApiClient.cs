@@ -47,7 +47,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
                 var result = await response.Content.ReadAsStringAsync();
                 dictionary[key] = JObject.Parse(result);
 
-                logger.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage.Method.Method, url);
+                logger.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
             }
 
             return new XivApiResponse(dictionary[key]);
@@ -66,7 +66,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
                 dynamic json = JObject.Parse(result);
                 dictionary[key] = (JObject) ((JArray) json.Results).First();
 
-                logger.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage.Method.Method, url);
+                logger.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
             }
 
             return new XivApiResponse(dictionary[key]);

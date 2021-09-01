@@ -23,7 +23,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud.Payload
                 foreach (Match match in matches)
                 {
                     yield return new TextPayload(text.Substring(0, match.Index - lastIndex));
-                    yield return new UIForegroundPayload(null, 500);
+                    yield return new UIForegroundPayload(500);
                     yield return new TextPayload(match.Value);
                     yield return UIForegroundPayload.UIForegroundOff;
 

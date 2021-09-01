@@ -28,7 +28,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
             }
         }
 
-        public IEnumerator<KeyValuePair<string, JToken>> GetEnumerator() => json.GetEnumerator();
+        public IEnumerator<KeyValuePair<string, JToken>> GetEnumerator() => json.GetEnumerator()!;
 
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) json).GetEnumerator();
 
@@ -36,7 +36,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
 
         public bool ContainsKey(string key) => json.ContainsKey(key);
 
-        public bool TryGetValue(string key, out JToken value) => json.TryGetValue(key, out value);
+        public bool TryGetValue(string key, out JToken value) => json.TryGetValue(key, out value!);
 
         public IEnumerable<string> Keys => ((IDictionary<string, JToken>) json).Keys;
 

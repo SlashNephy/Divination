@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Dalamud.Game.Internal.Gui;
+using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -26,16 +26,6 @@ namespace Dalamud.Divination.Common.Api.Chat
         {
             this.title = title;
             this.gui = gui;
-
-            gui.OnChatMessage += OnChatMessage;
-        }
-
-        private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
-        {
-            if (type == XivChatType.Notice)
-            {
-                CompleteChatQueue();
-            }
         }
 
         public void EnqueueChat(XivChatEntry entry)
@@ -52,25 +42,21 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         public void Print(SeString seString, string? sender = null, XivChatType? type = null)
         {
-            var message = FormatString(seString, false);
-
             EnqueueChat(new XivChatEntry
             {
                 Type = type ?? NormalMessageType,
                 Name = sender ?? string.Empty,
-                MessageBytes = message.Encode()
+                Message = FormatString(seString, false)
             });
         }
 
         public void PrintError(SeString seString, string? sender = null, XivChatType? type = null)
         {
-            var message = FormatString(seString, true);
-
             EnqueueChat(new XivChatEntry
             {
                 Type = type ?? ErrorMessageType,
                 Name = sender ?? string.Empty,
-                MessageBytes = message.Encode()
+                Message = FormatString(seString, true)
             });
         }
 
@@ -80,7 +66,7 @@ namespace Dalamud.Divination.Common.Api.Chat
             var color = error ? ErrorMessageColor : NormalMessageColor;
             if (color > 0)
             {
-                message = message.Append(new UIForegroundPayload(null, color));
+                message = message.Append(new UIForegroundPayload(color));
             }
 
             message = message.Append(seString);
@@ -92,29 +78,14 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         private SeString DefaultHeader => new(new Payload[]
         {
-            new UIForegroundPayload(null, HeaderColor),
+            new UIForegroundPayload(HeaderColor),
             new TextPayload($"[{title}]"),
             UIForegroundPayload.UIForegroundOff,
             new TextPayload(" ")
         });
 
-        public void CompleteChatQueue()
-        {
-            queue.CompleteAdding();
-
-            if (!queue.IsCompleted)
-            {
-                foreach (var entry in queue.GetConsumingEnumerable())
-                {
-                    EnqueueChat(entry);
-                }
-            }
-        }
-
         public void Dispose()
         {
-            gui.OnChatMessage -= OnChatMessage;
-
             queue.Dispose();
         }
     }

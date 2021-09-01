@@ -1,153 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{845AC207-815B-49CB-A413-F720A453B34E}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Dalamud.Divination.Common</RootNamespace>
-        <AssemblyName>Dalamud.Divination.Common</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <LangVersion>preview</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
+      <IsPackable>false</IsPackable>
+      <Title>Dalamud.Divination.Common</Title>
+      <Authors>Nep</Authors>
+      <Description>🧰 Common library for Dalamud.Divination plugins</Description>
+      <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
+      <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</PackageProjectUrl>
+      <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Common/blob/master/LICENSE</PackageLicenseUrl>
+      <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</RepositoryUrl>
+      <Company>Horoscope.dev</Company>
+      <NeutralLanguage>ja-JP</NeutralLanguage>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Dalamud">
-          <HintPath>..\Thirdparty\Dalamud\Dalamud.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="ImGui.NET">
-          <HintPath>..\Thirdparty\Dalamud\ImGui.NET.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="ImGuiScene">
-          <HintPath>..\Thirdparty\Dalamud\ImGuiScene.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)ImGuiScene.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="Lumina">
-          <HintPath>..\Thirdparty\Dalamud\Lumina.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="Newtonsoft.Json">
-          <HintPath>..\Thirdparty\Dalamud\Newtonsoft.Json.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="Serilog">
-          <HintPath>..\Thirdparty\Dalamud\Serilog.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Serilog.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="Serilog.Sinks.File">
-          <HintPath>..\Thirdparty\Dalamud\Serilog.Sinks.File.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Serilog.Sinks.File.dll</HintPath>
+            <Private>False</Private>
         </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Net.Http" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
     </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Api\Chat\ChatClient.cs" />
-        <Compile Include="Api\Chat\ChatClientEx.cs" />
-        <Compile Include="Api\Chat\IChatClient.cs" />
-        <Compile Include="Api\Command\CommandProcessor.Commands.cs" />
-        <Compile Include="Api\Command\CommandProcessor.cs" />
-        <Compile Include="Api\Command\DirectoryCommands.cs" />
-        <Compile Include="Api\Command\DivinationCommand.cs" />
-        <Compile Include="Api\Command\CommandAttribute.cs" />
-        <Compile Include="Api\Command\CommandContext.cs" />
-        <Compile Include="Api\Command\ICommandProcessor.cs" />
-        <Compile Include="Api\Command\ICommandProvider.cs" />
-        <Compile Include="Api\Config\ConfigManager.Commands.cs" />
-        <Compile Include="Api\Config\ConfigManager.cs" />
-        <Compile Include="Api\Config\IConfigManager.cs" />
-        <Compile Include="Api\Dalamud\Actor\ActorEx.cs" />
-        <Compile Include="Api\Dalamud\String\SeStringEx.cs" />
-        <Compile Include="Api\Definition\DefinitionManager.Commands.cs" />
-        <Compile Include="Api\Definition\DefinitionManager.cs" />
-        <Compile Include="Api\Definition\IDefinitionManager.cs" />
-        <Compile Include="Api\Reporter\BugReporter.Commands.cs" />
-        <Compile Include="Api\Reporter\BugReporter.cs" />
-        <Compile Include="Api\Reporter\IBugReporter.cs" />
-        <Compile Include="Api\Dalamud\DalamudPluginInterfaceEx.cs" />
-        <Compile Include="Api\Dalamud\Payload\PayloadUtilities.cs" />
-        <Compile Include="Api\Dalamud\SeIconCharEx.cs" />
-        <Compile Include="Api\Definition\DefinitionContainer.cs" />
-        <Compile Include="Api\Definition\DefinitionProvider.cs" />
-        <Compile Include="Api\Definition\DefinitionProviderFactory.cs" />
-        <Compile Include="Api\Definition\HexStringJsonConverter.cs" />
-        <Compile Include="Api\Definition\IDefinitionProvider.cs" />
-        <Compile Include="Api\Definition\LocalDefinitionProvider.cs" />
-        <Compile Include="Api\Definition\RemoteDefinitionProvider.cs" />
-        <Compile Include="Api\Discord\DiscordWebhookClient.cs" />
-        <Compile Include="Api\Discord\DiscordWebhookClientEx.cs" />
-        <Compile Include="Api\Discord\IDiscordWebhookClient.cs" />
-        <Compile Include="Api\DivinationEnvironment.cs" />
-        <Compile Include="Api\IDivinationPluginApi.cs" />
-        <Compile Include="Api\Ipc\DalamudIpcClient.cs" />
-        <Compile Include="Api\Ipc\IDalamudIpcClient.cs" />
-        <Compile Include="Api\Ipc\IpcMessage.cs" />
-        <Compile Include="Api\Logger\ConsoleWindow.cs" />
-        <Compile Include="Api\Logger\DalamudLogger.cs" />
-        <Compile Include="Api\Logger\DivinationLogger.cs" />
-        <Compile Include="Api\Ui\ImGuiEx.cs" />
-        <Compile Include="Api\Ui\ITextureManager.cs" />
-        <Compile Include="Api\Ui\TextureManager.cs" />
-        <Compile Include="Api\Ui\TextureManagerEx.cs" />
-        <Compile Include="Api\Ui\Window\ConfigWindow.cs" />
-        <Compile Include="Api\Ui\Window\IWindow.cs" />
-        <Compile Include="Api\Ui\Window\WindowEx.cs" />
-        <Compile Include="Api\Utilities\FieldUpdater.cs" />
-        <Compile Include="Api\Utilities\IFieldUpdater.cs" />
-        <Compile Include="Api\Utilities\UpdateProhibitedAttribute.cs" />
-        <Compile Include="Api\Version\GitVersion.cs" />
-        <Compile Include="Api\Version\IGitVersion.cs" />
-        <Compile Include="Api\Version\IVersionManager.cs" />
-        <Compile Include="Api\Version\VersionManager.Commands.cs" />
-        <Compile Include="Api\Version\VersionManager.cs" />
-        <Compile Include="Api\Voiceroid2Proxy\IVoiceroid2ProxyClient.cs" />
-        <Compile Include="Api\Voiceroid2Proxy\Voiceroid2ProxyClient.cs" />
-        <Compile Include="Api\Voiceroid2Proxy\Voiceroid2ProxyClientEx.cs" />
-        <Compile Include="Api\XivApi\IXivApiClient.cs" />
-        <Compile Include="Api\XivApi\XivApiClient.cs" />
-        <Compile Include="Api\XivApi\XivApiClientEx.cs" />
-        <Compile Include="Api\XivApi\XivApiResponse.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Abstract.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.LivePluginLoad.cs" />
-        <Compile Include="Boilerplate\DivinationPlugin.Api.cs" />
-        <Compile Include="Boilerplate\ICommandSupport.cs" />
-        <Compile Include="Boilerplate\IDivinationPlugin.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
-
 </Project>

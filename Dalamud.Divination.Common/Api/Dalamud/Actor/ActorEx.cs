@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Dalamud.Game.ClientState;
-using Dalamud.Game.ClientState.Actors.Types;
+using Dalamud.Game.ClientState.Objects.SubKinds;
 
 namespace Dalamud.Divination.Common.Api.Dalamud.Actor
 {

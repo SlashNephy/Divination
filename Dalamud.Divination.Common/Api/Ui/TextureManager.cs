@@ -4,10 +4,10 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Dalamud.Data;
-using Dalamud.Data.LuminaExtensions;
 using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Divination.Common.Api.XivApi;
 using Dalamud.Interface;
+using Dalamud.Utility;
 using ImGuiScene;
 
 namespace Dalamud.Divination.Common.Api.Ui
@@ -66,15 +66,17 @@ namespace Dalamud.Divination.Common.Api.Ui
         {
             try
             {
-                var iconTex = dataManager.GetIcon((int) iconId);
-
-                var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(), iconTex.Header.Width, iconTex.Header.Height, 4);
-                if (tex != null && tex.ImGuiHandle != IntPtr.Zero)
+                var iconTex = dataManager.GetIcon(iconId);
+                if (iconTex != null)
                 {
-                    return tex;
-                }
+                    var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(), iconTex.Header.Width, iconTex.Header.Height, 4);
+                    if (tex != null && tex.ImGuiHandle != IntPtr.Zero)
+                    {
+                        return tex;
+                    }
 
-                tex?.Dispose();
+                    tex?.Dispose();
+                }
             }
             catch (NotImplementedException)
             {

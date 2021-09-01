@@ -23,7 +23,7 @@ namespace Dalamud.Divination.Common.Api.Discord
                 {"username", username},
                 {"avatar_url", avatarUrl}
             };
-            var payload = new FormUrlEncodedContent(parameters);
+            var payload = new FormUrlEncodedContent(parameters!);
 
             await client.PostAsync(url, payload);
         }

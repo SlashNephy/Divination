@@ -1,73 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{14C3080B-3C97-4560-9079-73816CBF99F5}</ProjectGuid>
-        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Dalamud.Divination.Test</RootNamespace>
-        <AssemblyName>Dalamud.Divination.Test</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <LangVersion>preview</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
+        <IsPackable>false</IsPackable>
+        <Title>Dalamud.Divination.Test</Title>
+        <Authors>Nep</Authors>
+        <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
+        <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Common/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</RepositoryUrl>
+        <Company>Horoscope.dev</Company>
+        <NeutralLanguage>ja-JP</NeutralLanguage>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Dalamud">
-          <HintPath>..\Thirdparty\Dalamud\Dalamud.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="Serilog">
-          <HintPath>..\Thirdparty\Dalamud\Serilog.dll</HintPath>
-          <Private>False</Private>
+            <HintPath>$(DalamudLibPath)Serilog.dll</HintPath>
+            <Private>False</Private>
         </Reference>
-        <Reference Include="System" />
+        <ProjectReference Include="..\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj">
+            <Project>{845ac207-815b-49cb-a413-f720a453b34e}</Project>
+            <Name>Dalamud.Divination.Common</Name>
+        </ProjectReference>
     </ItemGroup>
-    <ItemGroup>
-        <Compile Include="AnotherPlugin.cs" />
-        <Compile Include="TestConfig.cs" />
-        <Compile Include="TestPlugin.cs" />
-        <Compile Include="Tests.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj">
-        <Project>{845ac207-815b-49cb-a413-f720a453b34e}</Project>
-        <Name>Dalamud.Divination.Common</Name>
-      </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="NUnit" Version="3.13.2" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
-
 </Project>

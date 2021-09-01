@@ -10,5 +10,9 @@
 Git Submodule でこのリポジトリを参照します。
 
 ```shell
+# Submodule の追加
 $ git submodule add https://github.com/SlashNephy/Dalamud.Divination.Common Common
+
+# Submodule の追従
+$ git submodule update --remote
 ```

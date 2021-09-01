@@ -1,8 +1,0 @@
-# デフォルトの無視ファイル
-/shelf/
-/workspace.xml
-# Rider ignored files
-/modules.xml
-/projectSettingsUpdater.xml
-/.idea.Dalamud.Divination.Common.iml
-/contentModel.xml

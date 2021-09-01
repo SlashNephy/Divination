@@ -1,5 +1,7 @@
-﻿using System.Reflection;
-using Dalamud.Divination.Common.Boilerplate;
+﻿using Dalamud.Divination.Common.Boilerplate;
+using Dalamud.Game.Gui;
+using Dalamud.IoC;
+using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Test
 {
@@ -8,11 +10,11 @@ namespace Dalamud.Divination.Test
         public readonly string SomeField = "Hello, World!";
 
         public override string Name => "Divination.TestPlugin";
-        public override Assembly Assembly => Assembly.GetExecutingAssembly();
 
-        public override void Load()
+        public TestPlugin(
+            [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
+            [RequiredVersion("1.0")] ChatGui chatGui) : base(pluginInterface, chatGui)
         {
-            Logger.Information("Loaded!");
         }
 
         public override void DisposeManaged()

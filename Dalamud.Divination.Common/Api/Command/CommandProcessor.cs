@@ -7,7 +7,7 @@ using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Dalamud.Payload;
 using Dalamud.Divination.Common.Api.Logger;
-using Dalamud.Game.Internal.Gui;
+using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -36,7 +36,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
             RegisterCommandsByAttribute(new DefaultCommands(this));
 
-            chatGui.OnChatMessage += OnChatMessage;
+            chatGui.ChatMessage += OnChatMessage;
         }
 
         public IReadOnlyList<DivinationCommand> Commands
@@ -187,7 +187,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 payloads.AddRange(new List<Payload>
                 {
                     new TextPayload("コマンド: "),
-                    new UIForegroundPayload(null, 28)
+                    new UIForegroundPayload(28)
                 });
                 payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(attribute.Usage));
                 payloads.AddRange(new List<Payload> {
@@ -205,7 +205,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
         public void Dispose()
         {
-            chatGui.OnChatMessage -= OnChatMessage;
+            chatGui.ChatMessage -= OnChatMessage;
             commands.Clear();
 
             logger.Dispose();

@@ -9,6 +9,8 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Divination.Common.Api.Reporter;
 using Dalamud.Divination.Common.Api.Version;
+using Dalamud.Game.Gui;
+using Dalamud.IoC;
 using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Boilerplate
@@ -23,63 +25,42 @@ namespace Dalamud.Divination.Common.Boilerplate
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
         where TConfiguration : class, IPluginConfiguration, new()
     {
-        #region Static Property
-
         private static TPlugin? _instance;
 
         /// <summary>
         /// プラグインのインスタンスの静的プロパティ。
         /// </summary>
-        protected static TPlugin Instance => _instance ?? throw new InvalidOperationException("Instance はまだ初期化されていません。");
+        [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
+        public static TPlugin Instance => _instance ?? throw new InvalidOperationException("Instance はまだ初期化されていません。");
 
         [SuppressMessage("ReSharper", "NotNullMemberIsNotInitialized")]
-        protected DivinationPlugin()
+        public DivinationPlugin(
+            [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
+            [RequiredVersion("1.0")] ChatGui chatGui)
         {
             _instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
-        }
 
-        #endregion
+            PreInitialize(pluginInterface, chatGui);
+
+            IsDisposed = false;
+
+            chatClient?.Print("プラグインを読み込みました！");
+        }
 
 #if DEBUG
         private DalamudLogger? dalamudLogger;
 #endif
 
-        /// <summary>
-        /// Dalamud プラグインを初期化します。
-        /// Divination プラグインから呼び出されることは想定されていません。
-        /// Dalamud.Plugin.IDalamudPlugin のために実装されています。
-        /// </summary>
-        /// <param name="pluginInterface">Dalamud.Plugin.DalamudPluginInterface</param>
-        [SuppressMessage("ReSharper", "UnusedMember.Global")]
-        public void Initialize(DalamudPluginInterface pluginInterface)
-        {
-            PreInitialize(pluginInterface);
-
-            IsDisposed = false;
-            Load();
-
-            if (pluginInterface.IsLoggedIn())
-            {
-                chatClient?.CompleteChatQueue();
-            }
-
-            chatClient?.Print("プラグインを読み込みました！");
-        }
-
-        private void PreInitialize(DalamudPluginInterface pluginInterface)
+        private void PreInitialize(DalamudPluginInterface pluginInterface, ChatGui chatGui)
         {
             logger = DivinationLogger.File(Name);
             @interface = pluginInterface;
-            chatClient = new ChatClient(Name, pluginInterface.Framework.Gui.Chat);
+            chatClient = new ChatClient(Name, chatGui);
 
             if (this is ICommandSupport support)
             {
-                commandProcessor = new CommandProcessor(Name, support.CommandPrefix, pluginInterface.Framework.Gui.Chat, chatClient);
+                commandProcessor = new CommandProcessor(Name, support.CommandPrefix, chatGui, chatClient);
                 commandProcessor.RegisterCommandsByAttribute(new DirectoryCommands());
-            }
-            else
-            {
-                commandProcessor = null;
             }
 
             configManager = new ConfigManager<TConfiguration>(pluginInterface, chatClient);

@@ -19,11 +19,6 @@ namespace Dalamud.Divination.Common.Boilerplate
         /// </summary>
         public Assembly Assembly { get; }
 
-        /// <summary>
-        /// プラグインロード時の処理を記述します。
-        /// </summary>
-        public void Load();
-
         public void DisposeManaged();
         public void DisposeUnmanaged();
     }

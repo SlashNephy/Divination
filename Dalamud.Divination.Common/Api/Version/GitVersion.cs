@@ -64,7 +64,7 @@ namespace Dalamud.Divination.Common.Api.Version
         {
             try
             {
-                return (int) gitVersionInfo!.GetField(key).GetValue(null);
+                return (int) gitVersionInfo!.GetField(key)!.GetValue(null)!;
             }
             catch
             {
@@ -76,7 +76,7 @@ namespace Dalamud.Divination.Common.Api.Version
         {
             try
             {
-                return (string) gitVersionInfo!.GetField(key).GetValue(null);
+                return gitVersionInfo!.GetField(key)!.GetValue(null) as string ?? string.Empty;
             }
             catch
             {
