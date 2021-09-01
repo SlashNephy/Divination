@@ -104,6 +104,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           add: --all
+          branch: master
           author_name: GitHub Action
           author_email: github-actions[bot]@users.noreply.github.com
           message: Update ${{ env.PLUGIN_PROJECT_NAME }} (${{ env.REPOSITORY_TYPE }})
