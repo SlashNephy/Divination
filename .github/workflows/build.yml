@@ -47,7 +47,7 @@ jobs:
       - name: Update Version on Release
         if: github.event_name == 'release'
         run: |
-          $ProjectVersion = $env:GITHUB_REF.replace("refs/tags/", "")
+          $ProjectVersion = $env:GITHUB_REF.replace("refs/tags/", "").replace("v", "")
           $ProjectFile = ".\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.csproj"
           $Content = Get-Content $ProjectFile | % { $_ -replace "<PackageVersion>.+</PackageVersion>","<PackageVersion>${ProjectVersion}</PackageVersion>" }
           $Content | Out-File $ProjectFile -Encoding UTF8
