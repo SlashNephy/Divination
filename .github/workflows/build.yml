@@ -45,10 +45,10 @@ jobs:
 
       - name: Copy into Plugin Repository (stable)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: Copy-Item ${{ secrets.PLUGIN_PROJECT_NAME }}\bin\Release\${{ secrets.PLUGIN_PROJECT_NAME }} repo\dist\stable -Recurse
+        run: Copy-Item ${{ secrets.PLUGIN_PROJECT_NAME }}\bin\Release\net5.0-windows\${{ secrets.PLUGIN_PROJECT_NAME }} repo\dist\stable -Recurse
       - name: Copy into Plugin Repository (testing)
         if: github.event_name == 'push' && github.ref != 'refs/heads/master'
-        run: Copy-Item ${{ secrets.PLUGIN_PROJECT_NAME }}\bin\Release\${{ secrets.PLUGIN_PROJECT_NAME }} repo\dist\testing -Recurse
+        run: Copy-Item ${{ secrets.PLUGIN_PROJECT_NAME }}\bin\Release\net5.0-windows\${{ secrets.PLUGIN_PROJECT_NAME }} repo\dist\testing -Recurse
 
       - name: Push to Plugin Repository
         uses: EndBug/add-and-commit@v7

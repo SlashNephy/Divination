@@ -47,5 +47,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Plugin
-          path: ${{ secrets.PLUGIN_PROJECT_NAME }}\bin\Release\${{ secrets.PLUGIN_PROJECT_NAME }}
+          path: ${{ secrets.PLUGIN_PROJECT_NAME }}\bin\Release\${{ secrets.PLUGIN_PROJECT_NAME }}\net5.0-windows
           if-no-files-found: error
