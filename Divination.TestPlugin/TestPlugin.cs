@@ -4,22 +4,18 @@ using Dalamud.Game.Gui;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 
-namespace Dalamud.Divination.Test
+namespace Divination.TestPlugin
 {
-    public class AnotherPlugin : DivinationPlugin<AnotherPlugin, TestConfig>, IDalamudPlugin, ICommandSupport
+    public class TestPlugin : DivinationPlugin<TestPlugin, TestConfig>, IDalamudPlugin, ICommandSupport
     {
-        public string CommandPrefix => "/another";
+        public string CommandPrefix => "/test";
         public override Assembly Assembly => Assembly.GetExecutingAssembly();
 
-        public AnotherPlugin(
+        public TestPlugin(
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
             [RequiredVersion("1.0")] ChatGui chatGui) : base(pluginInterface, chatGui)
         {
-        }
-
-        public static string ReadField()
-        {
-            return TestPlugin.Instance.SomeField;
+            Logger.Information("Plugin Loaded!");
         }
     }
 }

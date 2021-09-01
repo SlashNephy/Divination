@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <IsPackable>false</IsPackable>
-        <Title>Dalamud.Divination.Test</Title>
+        <Title>Divination.TestPlugin</Title>
         <Authors>Nep</Authors>
         <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
         <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</PackageProjectUrl>
@@ -9,6 +9,7 @@
         <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</RepositoryUrl>
         <Company>Horoscope.dev</Company>
         <NeutralLanguage>ja-JP</NeutralLanguage>
+        <RootNamespace>Divination.TestPlugin</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Dalamud">
@@ -23,5 +24,6 @@
             <Project>{845ac207-815b-49cb-a413-f720a453b34e}</Project>
             <Name>Dalamud.Divination.Common</Name>
         </ProjectReference>
+        <PackageReference Include="DalamudPackager" Version="2.1.2" />
     </ItemGroup>
 </Project>

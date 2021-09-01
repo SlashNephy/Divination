@@ -1,6 +1,6 @@
 ﻿using Dalamud.Configuration;
 
-namespace Dalamud.Divination.Test
+namespace Divination.TestPlugin
 {
     public class TestConfig : IPluginConfiguration
     {

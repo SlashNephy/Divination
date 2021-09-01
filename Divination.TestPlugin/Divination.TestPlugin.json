@@ -1,0 +1,14 @@
+{
+  "Author": "Nep",
+  "Name": "TestPlugin",
+  "Punchline": "Test",
+  "Description": "Test",
+  "IconUrl": "",
+  "ImageUrls": [],
+  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Common",
+  "InternalName": "Divination.TestPlugin",
+  "AssemblyVersion": "",
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0
+}
