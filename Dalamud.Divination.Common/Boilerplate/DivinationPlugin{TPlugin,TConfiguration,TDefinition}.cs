@@ -4,6 +4,7 @@ using System.Reflection;
 using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api;
 using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Divination.Common.Api.Definition;
 using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Plugin;
 using Serilog.Core;
@@ -16,9 +17,11 @@ namespace Dalamud.Divination.Common.Boilerplate
     /// </summary>
     /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
     /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
-    public abstract class DivinationPlugin<TPlugin, TConfiguration> : IDivinationPluginApi<TConfiguration>
-        where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
+    /// <typeparam name="TDefinition">プラグインの外部定義クラス。</typeparam>
+    public abstract class DivinationPlugin<TPlugin, TConfiguration, TDefinition> : IDivinationPluginApi<TConfiguration, TDefinition>
+        where TPlugin : DivinationPlugin<TPlugin, TConfiguration, TDefinition>
         where TConfiguration : class, IPluginConfiguration, new()
+        where TDefinition : DefinitionContainer, new()
     {
         /// <summary>
         /// プラグインのインスタンスの静的プロパティ。
@@ -30,9 +33,9 @@ namespace Dalamud.Divination.Common.Boilerplate
         public string Name => Instance.GetType().Name;
         public bool IsDisposed { get; private set; }
         public Logger Logger { get; }
-        public TConfiguration Config => Divination.ConfigManager.Config;
-        public DalamudApi Dalamud { get; }
-        public DivinationApi<TConfiguration> Divination { get; }
+        public TConfiguration Config => Divination.Config.Config;
+        public IDalamudApi Dalamud { get; }
+        public IDivinationApi<TConfiguration, TDefinition> Divination { get; }
         public Assembly Assembly => Instance.GetType().Assembly;
 
         protected DivinationPlugin(DalamudPluginInterface pluginInterface)
@@ -46,10 +49,10 @@ namespace Dalamud.Divination.Common.Boilerplate
             IsDisposed = false;
             Logger = DivinationLogger.File(Name);
             Dalamud = new DalamudApi(pluginInterface);
-            Divination = new DivinationApi<TConfiguration>(Dalamud, Assembly, this);
+            Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
 
-            Divination.ChatClient.Print("プラグインを読み込みました！");
-            Logger.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.VersionManager.PluginVersion.InformationalVersion);
+            Divination.Chat.Print("プラグインを読み込みました！");
+            Logger.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.Version.Plugin.InformationalVersion);
         }
 
         #region IDisposable
@@ -63,11 +66,11 @@ namespace Dalamud.Divination.Common.Boilerplate
             GC.SuppressFinalize(this);
         }
 
-        public virtual void ReleaseManaged()
+        protected virtual void ReleaseManaged()
         {
         }
 
-        public virtual void ReleaseUnmanaged()
+        protected virtual void ReleaseUnmanaged()
         {
         }
 
@@ -80,7 +83,7 @@ namespace Dalamud.Divination.Common.Boilerplate
             {
                 ReleaseManaged();
 
-                Divination.ChatClient.Print("プラグインを停止しました。");
+                Divination.Chat.Print("プラグインを停止しました。");
                 Logger.Dispose();
             }
 

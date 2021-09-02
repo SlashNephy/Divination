@@ -57,7 +57,7 @@ namespace Dalamud.Divination.Common.Api.Reporter
                 return;
             }
 
-            using var file = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            await using var file = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             using var reader = new StreamReader(file, Encoding.UTF8);
 
             var filename = Path.GetFileName(path);
@@ -67,8 +67,8 @@ namespace Dalamud.Divination.Common.Api.Reporter
                 {"message", message},
                 {"file", await reader.ReadToEndAsync()},
                 {"filename", filename},
-                {"version", versionManager.PluginVersion.InformationalVersion},
-                {"library_version", versionManager.LibraryVersion.InformationalVersion}
+                {"version", versionManager.Plugin.InformationalVersion},
+                {"library_version", versionManager.Divination.InformationalVersion}
             };
 
             var json = JsonConvert.SerializeObject(payload, Formatting.None);

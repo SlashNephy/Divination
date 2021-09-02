@@ -20,19 +20,19 @@ namespace Dalamud.Divination.Common.Api.Version
             [Command("Version", Help = "プラグインのバージョンを表示します。")]
             private void OnVersionCommand()
             {
-                chatClient.Print(versionManager.PluginVersion.InformationalVersion);
+                chatClient.Print(versionManager.Plugin.InformationalVersion);
 
                 using var logger = DivinationLogger.Debug("VersionManager");
-                logger.Debug("{Version}", versionManager.PluginVersion.ToString());
+                logger.Debug("{Version}", versionManager.Plugin.ToString());
             }
 
             [Command("Version Library", Help = "プラグインが使用している Divination.Common のバージョンを表示します。")]
             private void OnVersionLibraryCommand()
             {
-                chatClient.Print(versionManager.LibraryVersion.InformationalVersion);
+                chatClient.Print(versionManager.Divination.InformationalVersion);
 
                 using var logger = DivinationLogger.Debug("VersionManager");
-                logger.Debug("{Version}", versionManager.LibraryVersion.ToString());
+                logger.Debug("{Version}", versionManager.Divination.ToString());
             }
         }
     }

@@ -6,7 +6,7 @@ using Dalamud.Divination.Common.Api.Utilities;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public partial class DefinitionManager<TContainer> : IDefinitionManager<TContainer>, ICommandProvider where TContainer : DefinitionContainer, new()
+    internal partial class DefinitionManager<TContainer> : IDefinitionManager<TContainer>, ICommandProvider where TContainer : DefinitionContainer, new()
     {
         public IDefinitionProvider<TContainer> Provider { get; }
 

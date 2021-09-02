@@ -7,20 +7,15 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public partial class DefinitionManager<TContainer>
+    internal partial class DefinitionManager<TContainer>
     {
-        public object GetCommandInstance()
-        {
-            return new Commands(this);
-        }
-
-        private class Commands
+        public class Commands : ICommandProvider
         {
             private readonly DefinitionManager<TContainer> manager;
 
-            public Commands(DefinitionManager<TContainer> manager)
+            public Commands(IDefinitionManager<TContainer> manager)
             {
-                this.manager = manager;
+                this.manager = (DefinitionManager<TContainer>)manager;
             }
 
             [Command("Def Version", Help = "定義ファイルのバージョンを表示します。")]

@@ -36,6 +36,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
             using var response = request.GetResponse();
             using var stream = response.GetResponseStream();
+            // ReSharper disable once RedundantSuppressNullableWarningExpression
             using var reader = new StreamReader(stream!, Encoding.UTF8);
 
             var content = reader.ReadToEnd();

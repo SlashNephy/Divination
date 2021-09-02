@@ -1,9 +1,9 @@
 ﻿using Dalamud.Divination.Common.Api.Command;
 
-namespace Dalamud.Divination.Common.Boilerplate
+namespace Dalamud.Divination.Common.Boilerplate.Features
 {
     public interface ICommandSupport : ICommandProvider
     {
-        public string CommandPrefix { get; }
+        public string MainCommandPrefix { get; }
     }
 }

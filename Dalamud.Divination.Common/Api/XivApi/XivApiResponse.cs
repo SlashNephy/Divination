@@ -21,7 +21,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
             {
                 if (json.TryGetValue(key, out var value))
                 {
-                    return value!;
+                    return value;
                 }
 
                 throw new KeyNotFoundException($"{key} is not found in json.");

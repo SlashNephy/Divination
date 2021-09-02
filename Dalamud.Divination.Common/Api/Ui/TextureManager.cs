@@ -16,18 +16,16 @@ namespace Dalamud.Divination.Common.Api.Ui
     {
         private readonly DataManager dataManager;
         private readonly UiBuilder uiBuilder;
-        private readonly IXivApiClient? xivApi;
 
         private readonly HttpClient client = new();
         private readonly Dictionary<uint, TextureWrap?> cache = new();
         private readonly object cacheLock = new();
         private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(TextureManager));
 
-        public TextureManager(DataManager dataManager, UiBuilder uiBuilder, string? xivApiKey = null)
+        public TextureManager(DataManager dataManager, UiBuilder uiBuilder)
         {
             this.dataManager = dataManager;
             this.uiBuilder = uiBuilder;
-            xivApi = xivApiKey != null ? new XivApiClient(xivApiKey, null) : null;
         }
 
         public TextureWrap? GetIconTexture(uint iconId)
@@ -70,12 +68,12 @@ namespace Dalamud.Divination.Common.Api.Ui
                 if (iconTex != null)
                 {
                     var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(), iconTex.Header.Width, iconTex.Header.Height, 4);
-                    if (tex != null && tex.ImGuiHandle != IntPtr.Zero)
+                    if (tex.ImGuiHandle != IntPtr.Zero)
                     {
                         return tex;
                     }
 
-                    tex?.Dispose();
+                    tex.Dispose();
                 }
             }
             catch (NotImplementedException)
@@ -94,19 +92,19 @@ namespace Dalamud.Divination.Common.Api.Ui
             if (!File.Exists(path))
             {
                 var iconUrl = XivApiClient.GetIconUrl(iconId);
-                using var stream = await client.GetStreamAsync(iconUrl);
-                using var fileStream = new FileStream(path, FileMode.CreateNew, FileAccess.Write);
+                await using var stream = await client.GetStreamAsync(iconUrl);
+                await using var fileStream = new FileStream(path, FileMode.CreateNew, FileAccess.Write);
 
                 await stream.CopyToAsync(fileStream);
             }
 
             var tex = uiBuilder.LoadImage(path);
-            if (tex != null && tex.ImGuiHandle != IntPtr.Zero)
+            if (tex.ImGuiHandle != IntPtr.Zero)
             {
                 return tex;
             }
 
-            tex?.Dispose();
+            tex.Dispose();
 
             return null;
         }
@@ -119,7 +117,6 @@ namespace Dalamud.Divination.Common.Api.Ui
             }
             cache.Clear();
 
-            xivApi?.Dispose();
             client.Dispose();
             logger.Dispose();
         }

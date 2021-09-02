@@ -6,13 +6,13 @@ namespace Dalamud.Divination.Common.Api.Version
     {
         private readonly Serilog.Core.Logger logger = DivinationLogger.Debug("VersionManager");
 
-        public IGitVersion PluginVersion { get; }
-        public IGitVersion LibraryVersion { get; }
+        public IGitVersion Plugin { get; }
+        public IGitVersion Divination { get; }
 
         public VersionManager(IGitVersion pluginVersion, IGitVersion libraryVersion)
         {
-            PluginVersion = pluginVersion;
-            LibraryVersion = libraryVersion;
+            Plugin = pluginVersion;
+            Divination = libraryVersion;
         }
 
         public void Dispose()

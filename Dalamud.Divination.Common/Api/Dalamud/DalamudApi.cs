@@ -25,7 +25,7 @@ using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Dalamud
 {
-    public sealed class DalamudApi : IDalamudApi
+    internal sealed class DalamudApi : IDalamudApi
     {
         #region IoC
 
@@ -119,7 +119,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 
         #endregion
 
-        public DalamudPluginInterface PluginInterface { get; private set; }
+        public DalamudPluginInterface PluginInterface { get; }
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         public DalamudApi(DalamudPluginInterface pluginInterface)

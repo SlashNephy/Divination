@@ -76,13 +76,11 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         private static SeString EmptySeString => new(Array.Empty<Payload>());
 
-        private SeString DefaultHeader => new(new Payload[]
-        {
+        private SeString DefaultHeader => new(
             new UIForegroundPayload(HeaderColor),
             new TextPayload($"[{title}]"),
             UIForegroundPayload.UIForegroundOff,
-            new TextPayload(" ")
-        });
+            new TextPayload(" "));
 
         public void Dispose()
         {
