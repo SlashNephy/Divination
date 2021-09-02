@@ -11,6 +11,8 @@ namespace Dalamud.Divination.Common.Api.Logger
     /// </summary>
     public static class ConsoleWindow
     {
+        private static DalamudLogger? DalamudLogger { get; set; }
+
         /// <summary>
         /// コンソールウィンドウを表示する。
         /// </summary>
@@ -33,6 +35,11 @@ namespace Dalamud.Divination.Common.Api.Logger
 
                 var handle = Win32Api.GetConsoleWindow();
                 Win32Api.SetWindowPos(handle, new IntPtr(Win32Api.HwndTopmost), 0, 0, 0, 0, Win32Api.SwpNomove | Win32Api.SwpNosize);
+
+#if DEBUG
+                DalamudLogger = new DalamudLogger();
+                DalamudLogger.Subscribe();
+#endif
 
                 Console.WriteLine("Divination Debug Console initialized!");
                 return true;

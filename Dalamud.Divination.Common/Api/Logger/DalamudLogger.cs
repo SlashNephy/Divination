@@ -9,16 +9,9 @@ namespace Dalamud.Divination.Common.Api.Logger
 {
     internal sealed class DalamudLogger : IDisposable
     {
-        private readonly object dalamud;
-
         private EventInfo? onLogLineEventInfo;
         private Delegate? onLogLineDelegate;
         private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(DalamudLogger));
-
-        public DalamudLogger(object dalamud)
-        {
-            this.dalamud = dalamud;
-        }
 
         private static ILogEventSink DalamudLogEventSink
         {
@@ -34,25 +27,13 @@ namespace Dalamud.Divination.Common.Api.Logger
             }
         }
 
-        private LoggingLevelSwitch DalamudLoggingLevelSwitch
-        {
-            get
-            {
-                var property = dalamud.GetType()
-                    .GetProperty("LogLevelSwitch", BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance);
-
-                // ReSharper disable once AssignNullToNotNullAttribute
-                return (LoggingLevelSwitch) property!.GetValue(dalamud)!;
-            }
-        }
-
         [SuppressMessage("ReSharper", "UnusedMember.Local")]
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        private void OnDalamudLogEvent(object sender, (string line, LogEventLevel level) args)
+        private void OnDalamudLogEvent(object sender, (string Line, LogEventLevel Level, DateTimeOffset TimeStamp) args)
         {
-            var line = args.line.Remove(0, args.line.IndexOf("] ", StringComparison.InvariantCulture) + 2);
+            var line = args.Line.Remove(0, args.Line.IndexOf("] ", StringComparison.InvariantCulture) + 2);
 
-            switch (args.level)
+            switch (args.Level)
             {
                 case LogEventLevel.Verbose:
                     logger.Verbose("{Line}", line);
@@ -80,13 +61,13 @@ namespace Dalamud.Divination.Common.Api.Logger
             try
             {
                 onLogLineEventInfo = DalamudLogEventSink.GetType().GetEvent("OnLogLine");
-                var method = GetType().BaseType!.GetMethod("OnDalamudLogEvent", BindingFlags.NonPublic | BindingFlags.Instance);
+                var method = GetType().GetMethod("OnDalamudLogEvent", BindingFlags.NonPublic | BindingFlags.Instance);
                 onLogLineDelegate = Delegate.CreateDelegate(onLogLineEventInfo!.EventHandlerType!, this, method!);
                 onLogLineEventInfo.AddEventHandler(DalamudLogEventSink, onLogLineDelegate);
             }
             catch (Exception exception)
             {
-                logger.Error(exception, "Error occurred while SubscribeDalamudLog");
+                logger.Error(exception, "Error occurred while Subscribe");
             }
         }
 

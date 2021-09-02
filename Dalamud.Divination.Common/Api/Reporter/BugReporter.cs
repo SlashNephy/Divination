@@ -13,7 +13,7 @@ namespace Dalamud.Divination.Common.Api.Reporter
 {
     internal sealed partial class BugReporter : IBugReporter
     {
-        private const string DefaultUrl = "https://divination.starry.blue/collect/bug_report";
+        private const string DefaultUrl = "https://divination.horoscope.dev/collect/bug_report";
 
         private readonly string pluginName;
         private readonly IVersionManager versionManager;

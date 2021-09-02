@@ -17,7 +17,7 @@ namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
 
         public Voiceroid2ProxyClient(string host = "localhost", int port = 4532)
         {
-            url = $"http://{host}:{port}/talk";
+            url = $"http://{host}:{port.ToString()}/talk";
         }
 
         public async Task TalkAsync(string text)

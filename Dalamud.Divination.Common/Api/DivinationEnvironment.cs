@@ -15,16 +15,6 @@ namespace Dalamud.Divination.Common.Api
         public static string DivinationDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Horoscope", "Divination");
 
         /// <summary>
-        /// Divination の設定ディレクトリへのパス。
-        /// </summary>
-        public static string ConfigDirectory => Path.Combine(DivinationDirectory, "Config");
-
-        /// <summary>
-        /// Divination の設定のバックアップディレクトリへのパス。
-        /// </summary>
-        public static string ConfigBackupDirectory => Path.Combine(ConfigDirectory, "Backup");
-
-        /// <summary>
         /// Divination のログディレクトリへのパス。
         /// </summary>
         public static string LogDirectory => Path.Combine(DivinationDirectory, "Logs");

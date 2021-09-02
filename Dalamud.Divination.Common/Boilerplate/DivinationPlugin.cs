@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api;
-using Dalamud.Divination.Common.Api.Chat;
-using Dalamud.Divination.Common.Api.Command;
-using Dalamud.Divination.Common.Api.Config;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Logger;
-using Dalamud.Divination.Common.Api.Reporter;
-using Dalamud.Divination.Common.Api.Version;
-using Dalamud.Game.Gui;
-using Dalamud.IoC;
 using Dalamud.Plugin;
+using Serilog.Core;
 
 namespace Dalamud.Divination.Common.Boilerplate
 {
@@ -21,73 +16,43 @@ namespace Dalamud.Divination.Common.Boilerplate
     /// </summary>
     /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
     /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
-    public abstract partial class DivinationPlugin<TPlugin, TConfiguration> : IDivinationPlugin, IDivinationPluginApi<TConfiguration>, IDisposable
+    public abstract class DivinationPlugin<TPlugin, TConfiguration> : IDivinationPluginApi<TConfiguration>
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration>
         where TConfiguration : class, IPluginConfiguration, new()
     {
-        private static TPlugin? _instance;
-
         /// <summary>
         /// プラグインのインスタンスの静的プロパティ。
         /// </summary>
-        [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-        public static TPlugin Instance => _instance ?? throw new InvalidOperationException("Instance はまだ初期化されていません。");
+#pragma warning disable 8618
+        public static TPlugin Instance { get; private set; }
+#pragma warning restore 8618
 
-        [SuppressMessage("ReSharper", "NotNullMemberIsNotInitialized")]
-        public DivinationPlugin(
-            [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
-            [RequiredVersion("1.0")] ChatGui chatGui)
+        public string Name => Instance.GetType().Name;
+        public bool IsDisposed { get; private set; }
+        public Logger Logger { get; }
+        public TConfiguration Config => Divination.ConfigManager.Config;
+        public DalamudApi Dalamud { get; }
+        public DivinationApi<TConfiguration> Divination { get; }
+        public Assembly Assembly => Instance.GetType().Assembly;
+
+        protected DivinationPlugin(DalamudPluginInterface pluginInterface)
         {
-            _instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
+            if (this is not IDalamudPlugin)
+            {
+                throw new TypeAccessException("インタフェース: IDalamudPlugin を実装していません。");
+            }
 
-            PreInitialize(pluginInterface, chatGui);
-
+            Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
             IsDisposed = false;
+            Logger = DivinationLogger.File(Name);
+            Dalamud = new DalamudApi(pluginInterface);
+            Divination = new DivinationApi<TConfiguration>(Dalamud, Assembly, this);
 
-            chatClient?.Print("プラグインを読み込みました！");
+            Divination.ChatClient.Print("プラグインを読み込みました！");
+            Logger.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.VersionManager.PluginVersion.InformationalVersion);
         }
 
-#if DEBUG
-        private DalamudLogger? dalamudLogger;
-#endif
-
-        private void PreInitialize(DalamudPluginInterface pluginInterface, ChatGui chatGui)
-        {
-            logger = DivinationLogger.File(Name);
-            @interface = pluginInterface;
-            chatClient = new ChatClient(Name, chatGui);
-
-            if (this is ICommandSupport support)
-            {
-                commandProcessor = new CommandProcessor(Name, support.CommandPrefix, chatGui, chatClient);
-                commandProcessor.RegisterCommandsByAttribute(new DirectoryCommands());
-            }
-
-            configManager = new ConfigManager<TConfiguration>(pluginInterface, chatClient);
-            commandProcessor?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(configManager, CommandProcessor, chatClient));
-
-            versionManager = new VersionManager(
-                new GitVersion(Assembly),
-                new GitVersion(System.Reflection.Assembly.GetExecutingAssembly()));
-            commandProcessor?.RegisterCommandsByAttribute(new VersionManager.Commands(versionManager, chatClient));
-
-            bugReporter = new BugReporter(Name, versionManager, chatClient);
-            commandProcessor?.RegisterCommandsByAttribute(new BugReporter.Commands(bugReporter));
-
-#if DEBUG
-            dalamudLogger = new DalamudLogger(@interface.GetDalamud());
-            dalamudLogger.Subscribe();
-#endif
-
-            if (this is ICommandProvider provider)
-            {
-                commandProcessor?.RegisterCommandsByAttribute(provider);
-            }
-
-            logger.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, versionManager.PluginVersion.InformationalVersion);
-        }
-
-        #region Dispose Pattern
+        #region IDisposable
 
         /// <summary>
         /// Divination プラグイン内で確保されているすべてのリソースを解放します。
@@ -98,41 +63,28 @@ namespace Dalamud.Divination.Common.Boilerplate
             GC.SuppressFinalize(this);
         }
 
+        public virtual void ReleaseManaged()
+        {
+        }
+
+        public virtual void ReleaseUnmanaged()
+        {
+        }
+
         [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
         protected virtual void Dispose(bool disposing)
         {
+            IsDisposed = true;
+
             if (disposing)
             {
-                IsDisposed = true;
-                DisposeManaged();
+                ReleaseManaged();
+
+                Divination.ChatClient.Print("プラグインを停止しました。");
+                Logger.Dispose();
             }
 
-            DisposeUnmanaged();
-
-            PostDispose(disposing);
-        }
-
-        private void PostDispose(bool disposing)
-        {
-            if (disposing)
-            {
-                configManager?.Dispose();
-                versionManager?.Dispose();
-                commandProcessor?.Dispose();
-                bugReporter?.Dispose();
-
-                chatClient?.Print("プラグインを停止しました。");
-                chatClient?.Dispose();
-
-#if DEBUG
-                dalamudLogger?.Dispose();
-#endif
-
-                @interface?.Dispose();
-
-                logger?.Information("Plugin was disposed. Good-bye!");
-                logger?.Dispose();
-            }
+            ReleaseUnmanaged();
         }
 
         ~DivinationPlugin()
