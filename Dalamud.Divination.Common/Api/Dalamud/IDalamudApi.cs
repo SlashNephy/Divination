@@ -66,8 +66,6 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 
         public SigScanner SigScanner { get; }
 
-        public SeStringManager SeStringManager { get; }
-
         #endregion
 
         public DalamudPluginInterface PluginInterface { get; }

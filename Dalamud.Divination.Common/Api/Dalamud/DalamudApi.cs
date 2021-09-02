@@ -113,10 +113,6 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         [RequiredVersion("1.0")]
         public SigScanner SigScanner { get; private set; }
 
-        [PluginService]
-        [RequiredVersion("1.0")]
-        public SeStringManager SeStringManager { get; private set; }
-
         #endregion
 
         public DalamudPluginInterface PluginInterface { get; }
