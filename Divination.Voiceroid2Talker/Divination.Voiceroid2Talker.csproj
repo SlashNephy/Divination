@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <IsPackable>false</IsPackable>
-        <Title>Divination.Template</Title>
+        <Title>Divination.Voiceroid2Talker</Title>
         <Authors>Nep</Authors>
         <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
-        <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Template</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Template/blob/master/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Template</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Voiceroid2Talker</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Voiceroid2Talker/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Voiceroid2Talker</RepositoryUrl>
         <Company>Horoscope.dev</Company>
         <NeutralLanguage>ja-JP</NeutralLanguage>
-        <RootNamespace>Divination.Template</RootNamespace>
+        <RootNamespace>Divination.Voiceroid2Talker</RootNamespace>
         <PackageVersion>0.1.0.0</PackageVersion>
     </PropertyGroup>
     

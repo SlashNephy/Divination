@@ -1,0 +1,13 @@
+{
+  "Name": "Divination.Voiceroid2Talker",
+  "InternalName": "Divination.Voiceroid2Talker",
+  "Author": "Nep",
+  "Punchline": "Text-to-Speech for Voiceroid2",
+  "Description": "Dalamud Plugin to add /talkv2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
+  "Tags": [
+    "text-to-speech",
+    "voiceroid"
+  ],
+  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Voiceroid2Talker",
+  "DalamudApiLevel": 4
+}

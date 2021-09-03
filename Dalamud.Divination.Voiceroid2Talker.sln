@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Divination.Template", "Divination.Template\Divination.Template.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Divination.Voiceroid2Talker", "Divination.Voiceroid2Talker\Divination.Voiceroid2Talker.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.Divination.Common", "Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj", "{845AC207-815B-49CB-A413-F720A453B34E}"
 EndProject
