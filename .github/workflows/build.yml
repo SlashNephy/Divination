@@ -33,6 +33,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
           # Required by GitVersion
           fetch-depth: 0
 
