@@ -14,5 +14,6 @@ Git Submodule でこのリポジトリを参照します。
 $ git submodule add https://github.com/SlashNephy/Dalamud.Divination.Common Common
 
 # Submodule の追従
-$ git submodule update --remote
+$ git submodule foreach git pull origin master
+$ git submodule foreach git checkout master
 ```
