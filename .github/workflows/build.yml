@@ -2,7 +2,7 @@ name: Build
 
 env:
   # GH_PAT: You should set this in secrets setting. Require "repo:public_repo".
-  PLUGIN_PROJECT_NAME: Divination.Template
+  PLUGIN_PROJECT_NAME: Divination.PowerUtils
 
 on:
   push:

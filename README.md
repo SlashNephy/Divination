@@ -1,19 +1,6 @@
-# Dalamud.Divination.Template
+# Dalamud.Divination.PowerUtils
 
-📝 Template repository for Dalamud.Divination Plugins
-
-## How to use
-
-0. Click "Use this template" on GitHub.
-1. Open the solution, then rename "Divination.Template" project in JetBrains Rider.
-2. Replace all "Template" with the project name.
-3. Update the Common lib as desired.
-    ```shell
-    $ git submodule foreach git pull origin master
-    $ git submodule foreach git checkout master
-    ```
-4. Edit `.github/workflows/build.yml` and put `GH_PAT` (with "repo:public_repo" scope) in repository secrets setting.
-5. Start coding!
+💡 Dalamud Plugin to add some power saving commands
 
 ## Plugin Repository
 
