@@ -24,7 +24,7 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         public ChatClient(string title, ChatGui gui)
         {
-            this.title = title;
+            this.title = title.Replace("Plugin", string.Empty).Replace("Divination.", string.Empty);
             this.gui = gui;
         }
 
