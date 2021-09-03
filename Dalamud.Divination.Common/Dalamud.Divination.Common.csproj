@@ -1,5 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+      <TargetFramework>net5.0-windows</TargetFramework>
+      <LangVersion>preview</LangVersion>
+      <Nullable>enable</Nullable>
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+      <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+      
       <IsPackable>false</IsPackable>
       <Title>Dalamud.Divination.Common</Title>
       <Authors>Nep</Authors>
@@ -41,5 +47,9 @@
             <Private>False</Private>
         </Reference>
         <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
+        <PackageReference Include="GitVersion.MsBuild" Version="5.7.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>
