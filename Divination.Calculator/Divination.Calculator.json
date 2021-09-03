@@ -1,0 +1,11 @@
+{
+  "Name": "Divination.Calculator",
+  "InternalName": "Divination.Calculator",
+  "Author": "Nep",
+  "Punchline": "/calc 33 - 4",
+  "Description": "Dalamud Plugin to add /calc command",
+  "Tags": [
+  ],
+  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Calculator",
+  "DalamudApiLevel": 4
+}
