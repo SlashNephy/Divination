@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <Title>Divination.Template</Title>
+        <Authors>Nep</Authors>
+        <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
+        <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Template</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Template/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Template</RepositoryUrl>
+        <Company>Horoscope.dev</Company>
+        <NeutralLanguage>ja-JP</NeutralLanguage>
+        <RootNamespace>Divination.Template</RootNamespace>
+        <PackageVersion>0.1.0.0</PackageVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
+        
+        <Reference Include="Dalamud">
+            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGui.NET">
+            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Serilog">
+            <HintPath>$(DalamudLibPath)Serilog.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        
+        <PackageReference Include="DalamudPackager" Version="2.1.2" />
+    </ItemGroup>
+</Project>
