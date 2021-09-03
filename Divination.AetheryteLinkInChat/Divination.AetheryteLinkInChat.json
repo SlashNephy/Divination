@@ -1,0 +1,12 @@
+{
+  "Name": "Divination.AetheryteLinkInChat",
+  "InternalName": "Divination.AetheryteLinkInChat",
+  "Author": "Nep",
+  "Punchline": "Easy teleport for Mob Hunting",
+  "Description": "Dalamud Plugin to add a link to teleport to the nearest aetheryte. Teleporter plugin required!",
+  "Tags": [
+    "teleporter"
+  ],
+  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.AetheryteLinkInChat",
+  "DalamudApiLevel": 4
+}
