@@ -80,7 +80,7 @@ namespace Divination.AetheryteLinkInChat
                     new TextPayload($"{nearestAetheryte.aetheryte.PlaceName.Value!.Name.RawString}"),
                     RawPayload.LinkTerminator
                 };
-                extension.InsertRange(2, SeString.TextArrowPayloads());
+                extension.InsertRange(2, SeString.TextArrowPayloads);
                 message = message.Append(extension);
             }
             // 仮設エーテライト・都市内エーテライト
