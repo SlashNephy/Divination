@@ -1,0 +1,110 @@
+name: Build
+
+env:
+  # GH_PAT: You should set this in secrets setting. Require "repo:public_repo".
+  PLUGIN_PROJECT_NAME: Divination.Template
+
+on:
+  push:
+    branches-ignore:
+      - 'releases/**'
+    paths-ignore:
+      - '*.md'
+
+  release:
+    types:
+      - created
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - '*.md'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Required by GitVersion
+          fetch-depth: 0
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Download Dalamud
+        run: |
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/stg/latest.zip -OutFile latest.zip
+          Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
+
+      - name: Update Version on Release
+        if: github.event_name == 'release'
+        run: |
+          $ProjectVersion = $env:GITHUB_REF.replace("refs/tags/", "").replace("v", "")
+          $ProjectFile = ".\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.csproj"
+          $Content = Get-Content $ProjectFile | % { $_ -replace "<PackageVersion>.+</PackageVersion>","<PackageVersion>${ProjectVersion}</PackageVersion>" }
+          $Content | Out-File $ProjectFile -Encoding UTF8
+          echo "PROJECT_VERSION=${ProjectVersion}" >> $env:GITHUB_ENV
+
+      - name: Update Project File
+        if: github.event_name == 'release'
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: ${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.csproj
+          branch: master
+          author_name: GitHub Action
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: Bump version to ${{ env.PROJECT_VERSION }}
+
+      - name: Build Plugin
+        run: dotnet build --configuration Release
+        env:
+          DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.PLUGIN_PROJECT_NAME }}
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\Release\net5.0-windows\${{ env.PLUGIN_PROJECT_NAME }}
+          if-no-files-found: error
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master')
+
+    steps:
+      - name: Checkout Plugin Repository
+        uses: actions/checkout@v2
+        with:
+          repository: SlashNephy/Dalamud.DivinationPluginRepo
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Prepare Repository Type (on Release)
+        if: github.event_name == 'release'
+        run: echo "REPOSITORY_TYPE=stable" >> $GITHUB_ENV
+      - name: Prepare image tag (other branches)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: echo "REPOSITORY_TYPE=testing" >> $GITHUB_ENV
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.PLUGIN_PROJECT_NAME }}
+          path: dist/${{ env.REPOSITORY_TYPE }}/${{ env.PLUGIN_PROJECT_NAME }}
+
+      - name: Push to Plugin Repository
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: --all
+          branch: master
+          author_name: GitHub Action
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: Update ${{ env.PLUGIN_PROJECT_NAME }} (${{ env.REPOSITORY_TYPE }})
