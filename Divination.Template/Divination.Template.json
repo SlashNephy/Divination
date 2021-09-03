@@ -1,0 +1,14 @@
+{
+  "Name": "This is Name.",
+  "InternalName": "Divination.Template",
+  "Author": "This is Author.",
+  "Punchline": "This is Punchline.",
+  "Description": "This is Description.",
+  "Tags": [
+    "This",
+    "is",
+    "Tags"
+  ],
+  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Template",
+  "DalamudApiLevel": 4
+}
