@@ -10,6 +10,7 @@
 3. Update the Common lib as desired.
     ```shell
     $ git submodule foreach git pull origin master
+    $ git submodule foreach git checkout master
     ```
 4. Edit `.github/workflows/build.yml` and put `GH_PAT` (with "repo:public_repo" scope) in repository secrets setting.
 5. Start coding!
