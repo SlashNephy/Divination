@@ -39,7 +39,7 @@ namespace Divination.Voiceroid2Talker
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error occurred while OnChatReceived");
+                Logger.Error(ex, "Error occurred in OnChatReceived");
             }
         }
 
