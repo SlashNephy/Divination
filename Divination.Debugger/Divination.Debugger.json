@@ -1,0 +1,13 @@
+{
+  "Name": "Divination.Debugger",
+  "InternalName": "Divination.Debugger",
+  "Author": "Nep",
+  "Punchline": "You don't need this unless you are developer.",
+  "Description": "Dalamud Plugin to inspect game...",
+  "Tags": [
+    "development",
+    "debug"
+  ],
+  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Debugger",
+  "DalamudApiLevel": 4
+}
