@@ -22,13 +22,13 @@ namespace Dalamud.Divination.Common.Api.Dalamud.Payload
 
                 foreach (Match match in matches)
                 {
-                    yield return new TextPayload(text.Substring(0, match.Index - lastIndex));
+                    yield return new TextPayload(text[..(match.Index - lastIndex)]);
                     yield return new UIForegroundPayload(500);
                     yield return new TextPayload(match.Value);
                     yield return UIForegroundPayload.UIForegroundOff;
 
                     lastIndex = match.Index + match.Length;
-                    text = original.Substring(lastIndex);
+                    text = original[lastIndex..];
                 }
             }
 
