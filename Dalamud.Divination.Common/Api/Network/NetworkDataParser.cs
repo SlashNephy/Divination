@@ -15,7 +15,7 @@ namespace Dalamud.Divination.Common.Api.Network
         public NetworkDataParser(GameNetwork gameNetwork, int maxByteLength = 1024)
         {
             this.gameNetwork = gameNetwork;
-            this.gameNetwork.OnNetworkMessage += OnNetworkMessage;
+            this.gameNetwork.NetworkMessage += OnNetworkMessage;
             this.maxByteLength = maxByteLength;
         }
 
@@ -50,7 +50,7 @@ namespace Dalamud.Divination.Common.Api.Network
 
         public void Dispose()
         {
-            gameNetwork.OnNetworkMessage -= OnNetworkMessage;
+            gameNetwork.NetworkMessage -= OnNetworkMessage;
         }
     }
 }
