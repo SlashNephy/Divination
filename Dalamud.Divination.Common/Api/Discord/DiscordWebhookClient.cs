@@ -25,7 +25,9 @@ namespace Dalamud.Divination.Common.Api.Discord
                 ContractResolver = new DefaultContractResolver
                 {
                     NamingStrategy = new SnakeCaseNamingStrategy()
-                }
+                },
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.Local
             });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
