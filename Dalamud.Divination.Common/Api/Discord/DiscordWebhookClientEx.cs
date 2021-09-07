@@ -2,9 +2,9 @@
 {
     public static class DiscordWebhookClientEx
     {
-        public static void Send(this IDiscordWebhookClient client, string content, string? username = null, string? avatarUrl = null)
+        public static void Send(this IDiscordWebhookClient client, DiscordWebhookMessage message)
         {
-            client.SendAsync(content, username, avatarUrl).GetAwaiter().GetResult();
+            client.SendAsync(message).GetAwaiter().GetResult();
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Dalamud.Divination.Common.Api.Discord
 {
-    internal sealed class DiscordWebhookClient : IDiscordWebhookClient
+    public sealed class DiscordWebhookClient : IDiscordWebhookClient
     {
         private readonly string url;
 
@@ -15,17 +17,19 @@ namespace Dalamud.Divination.Common.Api.Discord
             this.url = url;
         }
 
-        public async Task SendAsync(string content, string? username = null, string? avatarUrl = null)
+        public async Task SendAsync(DiscordWebhookMessage message)
         {
-            var parameters = new Dictionary<string, string?>
+            var json = JsonConvert.SerializeObject(message, new JsonSerializerSettings
             {
-                {"content", content},
-                {"username", username},
-                {"avatar_url", avatarUrl}
-            };
-            var payload = new FormUrlEncodedContent(parameters!);
+                Formatting = Formatting.None,
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                }
+            });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            await client.PostAsync(url, payload);
+            await client.PostAsync(url, content);
         }
 
         public void Dispose()
