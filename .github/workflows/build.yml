@@ -49,11 +49,16 @@ jobs:
           # Required by GitVersion
           fetch-depth: 0
 
-      - name: Update Submodule & Push
+      - name: Update Submodule
         working-directory: template
         run: |
           git submodule foreach git pull origin master
           git submodule foreach git checkout master
-          git add .
-          git commit -m "Update Common"
-          git push origin master
+
+      - name: Push Template
+        uses: EndBug/add-and-commit@v7
+        with:
+          cwd: template
+          author_name: GitHub Action
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: Update Common
