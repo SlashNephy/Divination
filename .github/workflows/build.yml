@@ -44,7 +44,7 @@ jobs:
         with:
           repository: SlashNephy/Dalamud.Divination.Template
           path: template
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           submodules: recursive
           # Required by GitVersion
           fetch-depth: 0
