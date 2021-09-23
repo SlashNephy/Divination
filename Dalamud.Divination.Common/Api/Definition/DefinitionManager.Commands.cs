@@ -2,6 +2,7 @@
 using System.Linq;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
@@ -18,22 +19,27 @@ namespace Dalamud.Divination.Common.Api.Definition
                 this.manager = (DefinitionManager<TContainer>)manager;
             }
 
-            [Command("Def Version", Help = "定義ファイルのバージョンを表示します。")]
+            [Command("def", "version")]
+            [CommandHelp("定義ファイルのバージョンを表示します。")]
             private void OnDefVersionCommand()
             {
                 manager.chatClient.Print($"定義ファイル: ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 
-            [Command("Def Fetch", Help = "定義ファイルを更新します。")]
+            [Command("def", "fetch")]
+            [CommandHelp("定義ファイルを更新します。")]
             private void OnDefFetchCommand()
             {
                 manager.Provider.Update();
                 manager.chatClient.Print($"定義ファイルを更新しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 
-            [Command("Def Override", "key?", "value?", Help = "定義 <key> を <value?> に上書きします。<key> が null の場合, 利用可能な設定名の一覧を出力します。")]
-            private void OnDefOverride(CommandContext context, string? key, string? value)
+            [Command("def", "override", "<key?>", "<value?>")]
+            [CommandHelp("定義 <key?> を <value?> に上書きします。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            private void OnDefOverride(CommandContext context)
             {
+                var key = context["key"];
+                var value = context["value"];
                 if (key == null)
                 {
                     var defKeys = manager.EnumerateDefinitionsFields().Select(x => x.Name);

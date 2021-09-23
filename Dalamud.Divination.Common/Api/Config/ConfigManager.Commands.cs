@@ -2,6 +2,7 @@
 using System.Linq;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
@@ -22,7 +23,8 @@ namespace Dalamud.Divination.Common.Api.Config
                 this.chatClient = chatClient;
             }
 
-            [Command("Config Show", Help = "プラグインの設定を出力します。")]
+            [Command("config", "show")]
+            [CommandHelp("プラグインの設定を出力します。")]
             private void OnConfigShowCommand()
             {
                 chatClient.Print(payloads =>
@@ -39,11 +41,12 @@ namespace Dalamud.Divination.Common.Api.Config
                 });
             }
 
-            [Command("Config", "key?", "value?", Help = "プラグインの設定 <key> を <value?> に変更できます。<key> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            [Command("config", "<key?>", "<value?>")]
+            [CommandHelp("プラグインの設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
             private void OnConfigCommand(CommandContext context)
             {
-                var key = context.Arguments.ElementAtOrDefault(0);
-                var value = context.Arguments.ElementAtOrDefault(0);
+                var key = context["key"];
+                var value = context["value"];
                 if (key == null)
                 {
                     var configKeys = EnumerateConfigFields().Select(x => x.Name);

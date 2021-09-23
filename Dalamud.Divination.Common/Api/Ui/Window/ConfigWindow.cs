@@ -1,5 +1,6 @@
 ﻿using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Config;
 
 namespace Dalamud.Divination.Common.Api.Ui.Window
@@ -12,7 +13,8 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
 
         public TConfiguration Config => ConfigManager.Config;
 
-        [Command("", Help = "プラグインの設定ウィンドウを開きます。")]
+        [Command("")]
+        [CommandHelp("プラグインの設定ウィンドウを開きます。")]
         private void OnMainCommand()
         {
             this.Toggle();

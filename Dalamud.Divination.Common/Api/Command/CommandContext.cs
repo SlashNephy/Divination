@@ -1,4 +1,6 @@
-﻿namespace Dalamud.Divination.Common.Api.Command
+﻿using System.Text.RegularExpressions;
+
+namespace Dalamud.Divination.Common.Api.Command
 {
     /// <summary>
     /// 呼び出されたコマンドのコンテキストを持つクラスです。このクラスは継承できません。
@@ -6,49 +8,31 @@
     public sealed class CommandContext
     {
         /// <summary>
-        /// コマンドのコンテキストを初期化します。
+        /// 呼び出されたコマンド。
         /// </summary>
-        /// <param name="attribute">コマンドの属性。</param>
-        /// <param name="arguments">コマンドに与えられた引数の配列。</param>
-        internal CommandContext(CommandAttribute attribute, string[] arguments)
-        {
-            Command = attribute;
-            Arguments = arguments;
-        }
-
-        /// <summary>
-        /// 呼び出されたコマンドの属性。
-        /// </summary>
-        public CommandAttribute Command { get; }
+        public DivinationCommand Command { get; }
 
         /// <summary>
         /// コマンドに与えられた引数の配列。
         /// </summary>
-        public string[] Arguments { get; }
+        public Match Match { get; }
 
         /// <summary>
-        /// コマンドに与えられた引数を結合した文字列。
+        /// コマンドのコンテキストを初期化します。
         /// </summary>
-        public string ArgumentText => string.Join(" ", Arguments);
-
-        public string this[int index] => Arguments[index];
-
-        public void Deconstruct(out string first)
+        /// <param name="command">コマンド。</param>
+        /// <param name="match">正規表現のマッチ結果。</param>
+        internal CommandContext(DivinationCommand command, Match match)
         {
-            first = Arguments[0];
+            Command = command;
+            Match = match;
         }
 
-        public void Deconstruct(out string first, out string second)
-        {
-            first = Arguments[0];
-            second = Arguments[1];
-        }
+        public string? this[string name] => Match.Groups.TryGetValue(name, out var result) ? result.Value : null;
 
-        public void Deconstruct(out string first, out string second, out string third)
+        public string GetArgument(string name)
         {
-            first = Arguments[0];
-            second = Arguments[1];
-            third = Arguments[2];
+            return Match.Groups[name].Value;
         }
     }
 }

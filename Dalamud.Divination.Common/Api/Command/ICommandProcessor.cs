@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
@@ -9,7 +10,7 @@ namespace Dalamud.Divination.Common.Api.Command
         public IReadOnlyList<DivinationCommand> Commands { get; }
 
         public bool ProcessCommand(string text);
-        public void DispatchCommand(DivinationCommand command, string[] arguments);
+        public void DispatchCommand(DivinationCommand command, Match match);
         public void RegisterCommandsByAttribute(ICommandProvider instance);
     }
 }

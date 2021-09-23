@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
     public class DirectoryCommands : ICommandProvider
     {
-        [Command("AppData", Help = "Divination の AppData ディレクトリを開きます。")]
+        [Command("appdata")]
+        [CommandHelp("Divination の AppData ディレクトリを開きます。")]
+        [HiddenCommand]
         private static void OnAppDataCommand()
         {
             Process.Start(DivinationEnvironment.DivinationDirectory);
         }
 
-        [Command("XLAppData", Help = "XIVLauncher の AppData ディレクトリを開きます。")]
+        [Command("xlappdata")]
+        [CommandHelp("XIVLauncher の AppData ディレクトリを開きます。")]
+        [HiddenCommand]
         private static void OnXivLauncherAppDataCommand()
         {
             Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher"));

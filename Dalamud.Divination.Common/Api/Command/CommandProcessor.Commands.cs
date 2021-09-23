@@ -1,4 +1,5 @@
 ﻿using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Dalamud.Payload;
 using Dalamud.Game.Text;
@@ -17,7 +18,8 @@ namespace Dalamud.Divination.Common.Api.Command
                 this.processor = processor;
             }
 
-            [Command("Help", Help = "プラグインのヘルプを表示します。")]
+            [Command("help")]
+            [CommandHelp("プラグインのヘルプを表示します。")]
             private void OnHelpCommand()
             {
                 processor.chatClient.Print(payloads =>
@@ -26,12 +28,12 @@ namespace Dalamud.Divination.Common.Api.Command
 
                     foreach (var command in processor.Commands)
                     {
-                        payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(command.Attribute.Usage));
+                        payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(command.Usage));
 
-                        if (!string.IsNullOrEmpty(command.Attribute.Help))
+                        if (!string.IsNullOrEmpty(command.Help))
                         {
                             payloads.Add(new TextPayload($"\n {SeIconChar.ArrowRight.AsString()} "));
-                            payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(command.Attribute.Help));
+                            payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(command.Help));
                         }
 
                         payloads.Add(new TextPayload("\n"));

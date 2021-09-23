@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 
 namespace Dalamud.Divination.Common.Api.Reporter
 {
@@ -14,12 +15,14 @@ namespace Dalamud.Divination.Common.Api.Reporter
                 this.reporter = reporter;
             }
 
-            [Command("Report", "message", Help = "<message?> とともにログファイルや設定ファイルを開発者に送信します。", Strict = false)]
+            [Command("report", "<message...>")]
+            [CommandHelp("<message> とともにログファイルや設定ファイルを開発者に送信します。")]
             private void OnReportCommand(CommandContext context)
             {
                 Task.Run(async () =>
                 {
-                    await reporter.SendAsync(context.ArgumentText);
+                    var message = context.GetArgument("message");
+                    await reporter.SendAsync(message);
                 });
             }
         }

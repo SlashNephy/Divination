@@ -1,5 +1,6 @@
 ﻿using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Logger;
 
 namespace Dalamud.Divination.Common.Api.Version
@@ -17,7 +18,8 @@ namespace Dalamud.Divination.Common.Api.Version
                 this.chatClient = chatClient;
             }
 
-            [Command("Version", Help = "プラグインのバージョンを表示します。")]
+            [Command("version")]
+            [CommandHelp("プラグインのバージョンを表示します。")]
             private void OnVersionCommand()
             {
                 chatClient.Print(versionManager.Plugin.InformationalVersion);
@@ -26,8 +28,9 @@ namespace Dalamud.Divination.Common.Api.Version
                 logger.Debug("{Version}", versionManager.Plugin.ToString());
             }
 
-            [Command("Version Library", Help = "プラグインが使用している Divination.Common のバージョンを表示します。")]
-            private void OnVersionLibraryCommand()
+            [Command("version", "common")]
+            [CommandHelp("プラグインが使用している Divination.Common のバージョンを表示します。")]
+            private void OnVersionCommonCommand()
             {
                 chatClient.Print(versionManager.Divination.InformationalVersion);
 
