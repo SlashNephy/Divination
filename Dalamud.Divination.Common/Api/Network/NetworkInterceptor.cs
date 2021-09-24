@@ -24,6 +24,11 @@ namespace Dalamud.Divination.Common.Api.Network
             handlers.Add(handler);
         }
 
+        public void RemoveHandler(INetworkHandler handler)
+        {
+            handlers.Remove(handler);
+        }
+
         private void Consume(NetworkContext context)
         {
             foreach (var handler in handlers)
