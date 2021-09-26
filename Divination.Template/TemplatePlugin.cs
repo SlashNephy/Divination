@@ -1,4 +1,5 @@
 ﻿using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -18,10 +19,11 @@ namespace Divination.Template
         public string DefinitionUrl => "https://raw.githubusercontent.com/SlashNephy/Dalamud.Divination.Ephemera/master/dist/Template.json";
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
-        [Command("hoge")]
+        [Command("/hoge", "foo", "bar")]
+        [CommandHelp("This is sample command.")]
         private void OnHogeCommand(CommandContext context)
         {
-            Logger.Information("/template hoge called");
+            Logger.Information("/hoge foo bar called");
         }
     }
 }
