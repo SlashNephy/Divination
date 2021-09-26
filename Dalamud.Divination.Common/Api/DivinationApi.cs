@@ -30,6 +30,7 @@ namespace Dalamud.Divination.Common.Api
 
         public ICommandProcessor? Command => ServiceContainer.GetOrPutOptional(() =>
         {
+            // ReSharper disable once SuspiciousTypeConversion.Global
             if (Plugin is ICommandSupport commandSupport)
             {
                 var processor = new CommandProcessor(Plugin.Name, commandSupport.MainCommandPrefix, Dalamud.ChatGui, Chat);
@@ -50,6 +51,7 @@ namespace Dalamud.Divination.Common.Api
 
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
+            // ReSharper disable once SuspiciousTypeConversion.Global
             if (Plugin is IConfigWindowSupport<TConfiguration> configWindowSupport)
             {
                 var window = configWindowSupport.CreateConfigWindow();
@@ -65,6 +67,7 @@ namespace Dalamud.Divination.Common.Api
 
         public IDefinitionManager<TDefinition>? Definition => ServiceContainer.GetOrPutOptional(() =>
         {
+            // ReSharper disable once SuspiciousTypeConversion.Global
             if (Plugin is IDefinitionSupport definitionSupport)
             {
                 var manager = new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat);
@@ -103,52 +106,6 @@ namespace Dalamud.Divination.Common.Api
             Dalamud = api;
             Assembly = assembly;
             Plugin = plugin;
-
-            // Chat = new ChatClient(plugin.Name, api.ChatGui);
-            //
-            // if (plugin is ICommandSupport commandSupport)
-            // {
-            //     Command = new CommandProcessor(plugin.Name, commandSupport.MainCommandPrefix, api.ChatGui, Chat);
-            //     Command.RegisterCommandsByAttribute(new DirectoryCommands());
-            //
-            //     Command.RegisterCommandsByAttribute(commandSupport);
-            // }
-            //
-            // Config = new ConfigManager<TConfiguration>(api.PluginInterface, Chat);
-            // Command?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(Config, Command, Chat));
-            //
-            // if (plugin is IConfigWindowSupport<TConfiguration> configWindowSupport)
-            // {
-            //     ConfigWindow = configWindowSupport.CreateConfigWindow();
-            //     ConfigWindow.ConfigManager = Config;
-            //     Command?.RegisterCommandsByAttribute(ConfigWindow);
-            //
-            //     api.PluginInterface.UiBuilder.Draw += ConfigWindow.OnDraw;
-            // }
-            //
-            // if (plugin is IDefinitionSupport definitionSupport)
-            // {
-            //     Definition = new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat);
-            //     Command?.RegisterCommandsByAttribute(new DefinitionManager<TDefinition>.Commands(Definition));
-            // }
-            //
-            // Version = new VersionManager(
-            //     new GitVersion(assembly),
-            //     new GitVersion(Assembly.GetExecutingAssembly()));
-            // Command?.RegisterCommandsByAttribute(new VersionManager.Commands(Version, Chat));
-            //
-            // Texture = new TextureManager(api.DataManager, api.PluginInterface.UiBuilder);
-            //
-            // Voiceroid2Proxy = new Voiceroid2ProxyClient();
-            //
-            // XivApi = ;
-            //
-            // KeyStroke = ;
-            //
-            // Network = ;
-            //
-            // Reporter = new BugReporter(plugin.Name, Version, Chat);
-            // Command?.RegisterCommandsByAttribute(new BugReporter.Commands(Reporter));
         }
 
         #region IDisposable
