@@ -31,6 +31,8 @@ namespace Dalamud.Divination.Common.Api.Definition
             return updater.TryUpdate(key, value, fields);
         }
 
+        public TContainer Container => Provider.Container;
+
         public void Dispose()
         {
             Provider.Dispose();
