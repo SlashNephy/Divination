@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.XivApi
 {
-    internal sealed class XivApiClient : IXivApiClient
+    public sealed class XivApiClient : IXivApiClient
     {
         private readonly string? apiKey;
 
