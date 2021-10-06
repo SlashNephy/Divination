@@ -29,12 +29,7 @@ def add_extra_fields(manifests):
     }
 
     for manifest in manifests:
-        download_url = f"{DOWNLOAD_BASE_URI}/dist/{env}/{name}/latest.zip"
-
-        manifest["DownloadLinkInstall"] = manifest["DownloadLinkTesting"] = manifest["DownloadLinkUpdate"] = download_url.format(
-            env=DALAMUD_ENV,
-            name=manifest["InternalName"]
-        )
+        manifest["DownloadLinkInstall"] = manifest["DownloadLinkTesting"] = manifest["DownloadLinkUpdate"] = f"{DOWNLOAD_BASE_URI}/dist/{DALAMUD_ENV}/{manifest['InternalName']}/latest.zip"
 
         for k, v in DEFAULTS.items():
             if k not in manifest:
