@@ -4,6 +4,7 @@ from os.path import getmtime
 from zipfile import ZipFile
 
 
+DOWNLOAD_BASE_URI = os.environ["DOWNLOAD_BASE_URI"]
 DALAMUD_ENV = os.environ["DALAMUD_ENV"]
 
 def extract_manifests():
@@ -28,7 +29,7 @@ def add_extra_fields(manifests):
     }
 
     for manifest in manifests:
-        download_url = "https://raw.githubusercontent.com/SlashNephy/Dalamud.DivinationPluginRepo/master/dist/{env}/{name}/latest.zip"
+        download_url = f"{DOWNLOAD_BASE_URI}/dist/{env}/{name}/latest.zip"
 
         manifest["DownloadLinkInstall"] = manifest["DownloadLinkTesting"] = manifest["DownloadLinkUpdate"] = download_url.format(
             env=DALAMUD_ENV,
