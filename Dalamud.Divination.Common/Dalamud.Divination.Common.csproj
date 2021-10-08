@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-      <TargetFramework>net5.0-windows</TargetFramework>
+      <TargetFramework>net5.0-windows7.0</TargetFramework>
       <LangVersion>preview</LangVersion>
       <Nullable>enable</Nullable>
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -16,6 +16,7 @@
       <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</RepositoryUrl>
       <Company>Horoscope.dev</Company>
       <NeutralLanguage>ja-JP</NeutralLanguage>
+      <Platforms>x64</Platforms>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Dalamud">
