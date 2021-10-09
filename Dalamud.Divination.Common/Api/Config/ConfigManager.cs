@@ -22,6 +22,8 @@ namespace Dalamud.Divination.Common.Api.Config
         {
             this.@interface = @interface;
             this.chatClient = chatClient;
+
+            LoadConfig();
         }
 
         public void LoadConfig()
