@@ -6,6 +6,6 @@ namespace Divination.Template
     {
         public bool Enabled;
 
-        public int Version { get; set; } = 1;
+        public int Version { get; set; }
     }
 }

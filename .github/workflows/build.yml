@@ -64,16 +64,28 @@ jobs:
           author_email: github-actions[bot]@users.noreply.github.com
           message: Bump version to ${{ env.PROJECT_VERSION }}
 
-      - name: Build Plugin
+      - name: Build Plugin (Release)
         run: dotnet build --configuration Release
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
 
-      - name: Upload Artifact
+      - name: Build Plugin (Release)
+        run: dotnet build --configuration Debug
+        env:
+          DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+      - name: Upload Artifact (Release)
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.PLUGIN_PROJECT_NAME }}
-          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\Release\net5.0-windows\${{ env.PLUGIN_PROJECT_NAME }}
+          name: ${{ env.PLUGIN_PROJECT_NAME }}_Release
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\x64\Release\net5.0-windows7.0\${{ env.PLUGIN_PROJECT_NAME }}
+          if-no-files-found: error
+
+      - name: Upload Artifact (Debug)
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.PLUGIN_PROJECT_NAME }}_Debug
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\x64\Debug\net5.0-windows7.0\${{ env.PLUGIN_PROJECT_NAME }}
           if-no-files-found: error
 
   deploy:
@@ -95,10 +107,17 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: echo "REPOSITORY_TYPE=testing" >> $GITHUB_ENV
 
-      - name: Download Artifact
+      - name: Download Artifact (Release)
+        if: github.event_name == 'release'
         uses: actions/download-artifact@v2
         with:
-          name: ${{ env.PLUGIN_PROJECT_NAME }}
+          name: ${{ env.PLUGIN_PROJECT_NAME }}_Release
+          path: dist/${{ env.REPOSITORY_TYPE }}/${{ env.PLUGIN_PROJECT_NAME }}
+      - name: Download Artifact (Debug)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.PLUGIN_PROJECT_NAME }}_Debug
           path: dist/${{ env.REPOSITORY_TYPE }}/${{ env.PLUGIN_PROJECT_NAME }}
 
       - name: Push to Plugin Repository
