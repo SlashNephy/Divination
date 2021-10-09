@@ -2,7 +2,7 @@
   "Author": "Suzuka Asagiri",
   "Name": "InstanceIDViewer",
   "InternalName": "Divination.InstanceIDViewer",
-  "AssemblyVersion": "1.1.0.0",
+  "AssemblyVersion": "1.1.1.0",
   "Description": "show instance id in chat when instance changed",
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer",
   "DalamudApiLevel": 4,

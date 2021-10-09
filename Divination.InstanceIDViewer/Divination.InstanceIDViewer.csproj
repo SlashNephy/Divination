@@ -11,7 +11,7 @@
         <Company>Horoscope</Company>
         <NeutralLanguage>ja-JP</NeutralLanguage>
         <RootNamespace>Divination.InstanceIDViewer</RootNamespace>
-        <PackageVersion>1.1.0.0</PackageVersion>
+        <PackageVersion>1.1.1.0</PackageVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

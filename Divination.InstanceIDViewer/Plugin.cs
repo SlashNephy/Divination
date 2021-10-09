@@ -48,7 +48,7 @@ namespace Divination.InstanceIDViewer
 
                     var Message = new SeString(new Payload[]
                     {
-                        new TextPayload("[Divination.InstanceIDViewer] "),
+                        new TextPayload("[InstanceIDViewer] "),
                         new TextPayload($"instance id changed: {_lastServerId} {(char) SeIconChar.ArrowRight} {serverId}"),
                     });
                     ChatGui.PrintChat(new XivChatEntry
