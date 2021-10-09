@@ -2,7 +2,7 @@ name: Build
 
 env:
   # GH_PAT: You should set this in secrets setting. Require "repo:public_repo".
-  PLUGIN_PROJECT_NAME: Divination.InstanceIDViewer
+  PLUGIN_PROJECT_NAME: Dalamud.Divination.InstanceIDViewer
 
 on:
   push:
