@@ -44,7 +44,6 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/stg/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
-
       - name: Update Version on Release
         if: github.event_name == 'release'
         run: |
@@ -53,7 +52,6 @@ jobs:
           $Content = Get-Content $ProjectFile | % { $_ -replace "<PackageVersion>.+</PackageVersion>","<PackageVersion>${ProjectVersion}</PackageVersion>" }
           $Content | Out-File $ProjectFile -Encoding UTF8
           echo "PROJECT_VERSION=${ProjectVersion}" >> $env:GITHUB_ENV
-
       - name: Update Project File
         if: github.event_name == 'release'
         uses: EndBug/add-and-commit@v7
@@ -73,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
-          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\Release\net5.0-windows\${{ env.PLUGIN_PROJECT_NAME }}
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\x64\Release\net5.0-windows7.0\${{ env.PLUGIN_PROJECT_NAME }}
           if-no-files-found: error
 
   deploy:
