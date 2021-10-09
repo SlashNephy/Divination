@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.Debugger
@@ -30,7 +31,7 @@ namespace Divination.Debugger
                     IsOpen = false;
 
                     DebuggerPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    DebuggerPlugin.Instance.Logger.Information("Config saved");
+                    PluginLog.Information("Config saved");
                 }
 
                 ImGui.End();

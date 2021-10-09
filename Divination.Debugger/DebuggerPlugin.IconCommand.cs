@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Dalamud.Divination.Common.Api.Chat;
-using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
@@ -9,7 +9,8 @@ namespace Divination.Debugger
 {
     public partial class DebuggerPlugin
     {
-        [Command("/icon", Help = "FFXIV で使用可能なアイコンフォントの一覧を出力します。")]
+        [Command("/icon")]
+        [CommandHelp("FFXIV で使用可能なアイコンフォントの一覧を出力します。")]
         private void OnIconCommand()
         {
             Divination.Chat.Print(payloads =>

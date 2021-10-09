@@ -1,5 +1,5 @@
 using Dalamud.Divination.Common.Api.Chat;
-using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Lumina.Excel.GeneratedSheets;
@@ -8,7 +8,8 @@ namespace Divination.Debugger
 {
     public partial class DebuggerPlugin
     {
-        [Command("/color", Help = "FFXIV で使用可能なカラーコードの一覧を出力します。")]
+        [Command("/color")]
+        [CommandHelp("FFXIV で使用可能なカラーコードの一覧を出力します。")]
         private void OnColorCommand()
         {
             Divination.Chat.Print(payloads =>
