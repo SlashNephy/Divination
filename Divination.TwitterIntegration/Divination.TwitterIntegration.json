@@ -1,7 +1,7 @@
 {
   "Name": "Divination.TwitterIntegration",
   "InternalName": "Divination.TwitterIntegration",
-  "Author": "Nep",
+  "Author": "Asteria Nocturna",
   "Punchline": "Tweet in FFXIV chat.",
   "Description": "Dalamud Plugin to add tweet function and Twitter timeline in FFXIV chat",
   "Tags": [

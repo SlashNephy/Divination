@@ -3,6 +3,7 @@ using System.Linq;
 using CoreTweet;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
+using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.TwitterIntegration
@@ -37,7 +38,7 @@ namespace Divination.TwitterIntegration
                     IsOpen = false;
 
                     TwitterIntegrationPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    TwitterIntegrationPlugin.Instance.Logger.Information("Config saved");
+                    PluginLog.Information("Config saved");
                 }
 
                 ImGui.End();
@@ -119,7 +120,7 @@ namespace Divination.TwitterIntegration
                     else if (completed.Exception != null)
                     {
                         TwitterIntegrationPlugin.Instance.Divination.Chat.PrintError("リスト一覧の取得に失敗しました。");
-                        TwitterIntegrationPlugin.Instance.Logger.Error(completed.Exception, "Error occurred while OwnershipsAsync");
+                        PluginLog.Error(completed.Exception, "Error occurred while OwnershipsAsync");
                     }
                 });
             }

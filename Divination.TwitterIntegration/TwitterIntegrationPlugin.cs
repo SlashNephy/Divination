@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using System.Web;
 using CoreTweet;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Logging;
 using Dalamud.Plugin;
 
 namespace Divination.TwitterIntegration
@@ -53,7 +55,8 @@ namespace Divination.TwitterIntegration
 
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
-        [Command("/tw", "text", Help = "与えられた <text> をツイートします。", Strict = false)]
+        [Command("/tw", "<text...>")]
+        [CommandHelp("与えられた <text...> をツイートします。")]
         private void OnTweetCommand(CommandContext context)
         {
             if (twitter == null)
@@ -62,16 +65,16 @@ namespace Divination.TwitterIntegration
                 return;
             }
 
-            twitter.Statuses.UpdateAsync(context.ArgumentText).ContinueWith(completed =>
+            twitter.Statuses.UpdateAsync(context["text"]).ContinueWith(completed =>
             {
                 if (completed.IsCompleted)
                 {
-                    Divination.Chat.Print($"「{context.ArgumentText}」をツイートしました。");
+                    Divination.Chat.Print($"「{context["text"]}」をツイートしました。");
                 }
                 else if (completed.Exception != null)
                 {
                     Divination.Chat.PrintError("ツイートに失敗しました。");
-                    Logger.Error(completed.Exception, "Failed to tweet");
+                    PluginLog.Error(completed.Exception, "Failed to tweet");
                 }
             });
         }
@@ -98,18 +101,18 @@ namespace Divination.TwitterIntegration
                                     new TextPayload($"<@{status.User.ScreenName}> {HttpUtility.HtmlDecode(status.Text)}"))
                             });
 
-                            Logger.Verbose("Tweet = {Text} ({Id}) from {Name}", status.Text, status.Id, status.User.Name);
+                            PluginLog.Verbose("Tweet = {Text} ({Id}) from {Name}", status.Text, status.Id, status.User.Name);
                         }
 
                         if (result.Count > 0)
                         {
-                            Config.SinceId = result.First().Id + 1;
+                            Config.SinceId = result[0].Id + 1;
                         }
                     }
                     catch (Exception exception)
                     {
                         Divination.Chat.PrintError("タイムラインの取得に失敗しました。");
-                        Logger.Error(exception, "Failed to fetch timeline");
+                        PluginLog.Error(exception, "Failed to fetch timeline");
                     }
                 }
 
