@@ -26,6 +26,16 @@ namespace Dalamud.Divination.Common.Api.Chat
         {
             this.title = title.Replace("Plugin", string.Empty).Replace("Divination.", string.Empty);
             this.gui = gui;
+
+            gui.ChatMessage += OnChatMessage;
+        }
+
+        private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+        {
+            if (type == XivChatType.Notice)
+            {
+                CompleteChatQueue();
+            }
         }
 
         public void EnqueueChat(XivChatEntry entry)
@@ -82,8 +92,23 @@ namespace Dalamud.Divination.Common.Api.Chat
             UIForegroundPayload.UIForegroundOff,
             new TextPayload(" "));
 
+        private void CompleteChatQueue()
+        {
+            queue.CompleteAdding();
+
+            if (!queue.IsCompleted)
+            {
+                foreach (var entry in queue.GetConsumingEnumerable())
+                {
+                    EnqueueChat(entry);
+                }
+            }
+        }
+
         public void Dispose()
         {
+            gui.ChatMessage -= OnChatMessage;
+
             queue.Dispose();
         }
     }

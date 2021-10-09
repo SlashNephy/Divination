@@ -6,6 +6,8 @@ namespace Dalamud.Divination.Common.Api.Chat
 {
     public interface IChatClient : IDisposable
     {
+        public void EnqueueChat(XivChatEntry entry);
+
         /*
          * ゲームクライアントに通常メッセージとして, チャットメッセージを書き込みます。
          */
