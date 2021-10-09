@@ -1,16 +1,32 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Dalamud.Game.Internal.Network;
+using Dalamud.Data;
+using Dalamud.Game;
+using Dalamud.Game.ClientState;
+using Dalamud.Game.Command;
+using Dalamud.Game.Gui;
+using Dalamud.Game.Gui.Toast;
+using Dalamud.Game.Network;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.IoC;
 using Dalamud.Plugin;
 
 namespace InstanceIDViewer
 {
     public class InstanceIDViewer : IDalamudPlugin
     {
-        private DalamudPluginInterface _pi;
+
+        [PluginService]
+        public static DalamudPluginInterface Interface { get; private set; }
+
+        [PluginService]
+        public static ChatGui ChatGui { get; private set; }
+
+        [PluginService]
+        public static GameNetwork GameNetwork { get; private set; }
+        
         public string Name => "InstanceIDViewer";
         private static readonly object LastServerIdLock = new object();
         private ushort _lastServerId;
@@ -40,12 +56,11 @@ namespace InstanceIDViewer
                         new TextPayload("[InstanceIDViewer] "),
                         new TextPayload($"instance id changed: {_lastServerId} {(char) SeIconChar.ArrowRight} {serverId}"),
                     });
-
-                    _pi?.Framework.Gui.Chat.PrintChat(new XivChatEntry
+                    ChatGui.PrintChat(new XivChatEntry
                     {
                       Type =   (XivChatType) 72, // Party Recruiting
                       Name = string.Empty,
-                      MessageBytes = Message.Encode()
+                      Message = Message
                     });
                 }
 
@@ -54,18 +69,15 @@ namespace InstanceIDViewer
                     _lastServerId = serverId;
                 }
             }
-
         }
-        public void Initialize(DalamudPluginInterface pluginInterface)
+        public InstanceIDViewer()
         {
-            _pi = pluginInterface;
-            _pi.Framework.Network.OnNetworkMessage += OnNetworkMessage;
+            GameNetwork.NetworkMessage += OnNetworkMessage;
         }
 
         public void Dispose()
         {
-            _pi.Framework.Network.OnNetworkMessage -= OnNetworkMessage;
-            _pi.Dispose();
+            GameNetwork.NetworkMessage -= OnNetworkMessage;
         }
     }
 }

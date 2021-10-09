@@ -1,12 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
-        <LangVersion>9</LangVersion>
-        <Nullable>disable</Nullable>
-        <OutputType>Library</OutputType>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <FileVersion>1.0.0.0</FileVersion>
+        <IsPackable>false</IsPackable>
+        <Title>InstanceIDViewer</Title>
+        <Authors>Suzuka Asagiri</Authors>
+        <Copyright>Copyright © Horoscope since 2021</Copyright>
+        <PackageProjectUrl>https://github.com/suzutan/IntanceIDViewer</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/suzutan/IntanceIDViewer/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/suzutan/IntanceIDViewer</RepositoryUrl>
+        <Company>Horoscope</Company>
+        <NeutralLanguage>ja-JP</NeutralLanguage>
+        <RootNamespace>InstanceIDViewer</RootNamespace>
+        <PackageVersion>0.1.0.0</PackageVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -20,17 +25,19 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DefineConstants />
       <OutputPath>bin\Release\</OutputPath>
+      <DebugSymbols>false</DebugSymbols>
+        <OutputType>Library</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="Dalamud, Version=5.2.6.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\SDK\Dalamud.dll</HintPath>
+      <Reference Include="Dalamud">
+          <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+          <Private>False</Private>
       </Reference>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="ILMerge" Version="3.0.41" />
-      <PackageReference Include="ILMerge.MSBuild.Tasks" Version="1.0.0.3" />
+      <PackageReference Include="DalamudPackager" Version="2.1.2" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using Dalamud.Game.Internal.Network;
+using Dalamud.Game.Network;
 
 namespace InstanceIDViewer
 {
