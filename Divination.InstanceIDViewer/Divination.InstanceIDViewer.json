@@ -1,6 +1,6 @@
 {
   "Author": "Suzuka Asagiri",
-  "Name": "Dalamud.Divination.InstanceIDViewer",
+  "Name": "InstanceIDViewer",
   "InternalName": "Divination.InstanceIDViewer",
   "AssemblyVersion": "1.1.0.0",
   "Description": "show instance id in chat when instance changed",

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Dalamud.Data;
-using Dalamud.Game;
-using Dalamud.Game.ClientState;
-using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
-using Dalamud.Game.Gui.Toast;
 using Dalamud.Game.Network;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
@@ -13,7 +8,7 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 
-namespace Dalamud.Divination.InstanceIDViewer
+namespace Divination.InstanceIDViewer
 {
     public class InstanceIDViewer : IDalamudPlugin
     {
@@ -27,7 +22,7 @@ namespace Dalamud.Divination.InstanceIDViewer
         [PluginService]
         public static GameNetwork GameNetwork { get; private set; }
         
-        public string Name => "Dalamud.Divination.InstanceIDViewer";
+        public string Name => "Divination.InstanceIDViewer";
         private static readonly object LastServerIdLock = new object();
         private ushort _lastServerId;
 
@@ -53,7 +48,7 @@ namespace Dalamud.Divination.InstanceIDViewer
 
                     var Message = new SeString(new Payload[]
                     {
-                        new TextPayload("[Dalamud.Divination.InstanceIDViewer] "),
+                        new TextPayload("[Divination.InstanceIDViewer] "),
                         new TextPayload($"instance id changed: {_lastServerId} {(char) SeIconChar.ArrowRight} {serverId}"),
                     });
                     ChatGui.PrintChat(new XivChatEntry

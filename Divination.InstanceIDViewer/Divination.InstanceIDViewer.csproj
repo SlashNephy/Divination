@@ -2,15 +2,15 @@
 
     <PropertyGroup>
         <IsPackable>false</IsPackable>
-        <Title>Dalamud.Divination.InstanceIDViewer</Title>
+        <Title>Divination.InstanceIDViewer</Title>
         <Authors>Suzuka Asagiri</Authors>
         <Copyright>Copyright © Horoscope since 2021</Copyright>
-        <PackageProjectUrl>https://github.com/suzutan/IntanceIDViewer</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/suzutan/IntanceIDViewer/blob/master/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/suzutan/IntanceIDViewer</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer</RepositoryUrl>
         <Company>Horoscope</Company>
         <NeutralLanguage>ja-JP</NeutralLanguage>
-        <RootNamespace>Dalamud.Divination.InstanceIDViewer</RootNamespace>
+        <RootNamespace>Divination.InstanceIDViewer</RootNamespace>
         <PackageVersion>1.1.0.0</PackageVersion>
     </PropertyGroup>
 
