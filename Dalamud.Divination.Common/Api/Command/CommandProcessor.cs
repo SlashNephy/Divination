@@ -25,12 +25,12 @@ namespace Dalamud.Divination.Common.Api.Command
         private readonly List<DivinationCommand> commands = new();
         private readonly object commandsLock = new();
 
-        public string Prefix { get; }
+        public string? Prefix { get; }
 
-        public CommandProcessor(string pluginName, string prefix, ChatGui chatGui, IChatClient chatClient)
+        public CommandProcessor(string pluginName, string? prefix, ChatGui chatGui, IChatClient chatClient)
         {
             this.pluginName = pluginName;
-            Prefix = (prefix.StartsWith("/") ? prefix : $"/{prefix}").Trim();
+            Prefix = prefix == null ? null : (prefix.StartsWith("/") ? prefix : $"/{prefix}").Trim();
             this.chatGui = chatGui;
             this.chatClient = chatClient;
 
@@ -58,9 +58,10 @@ namespace Dalamud.Divination.Common.Api.Command
             }
 
             var match = commandRegex.Match(message.TextValue).Groups["command"];
-            if (match.Success && ProcessCommand(match.Value.Trim()))
+            if (match.Success)
             {
-                isHandled = true;
+                isHandled = ProcessCommand(match.Value.Trim());
+                PluginLog.Debug($"Command: {match.Value}");
             }
         }
 
@@ -95,7 +96,9 @@ namespace Dalamud.Divination.Common.Api.Command
                 chatClient.PrintError(new List<Payload>
                 {
                     new TextPayload(match.Value),
+                    new TextPayload("\n"),
                     new TextPayload(e.Message),
+                    new TextPayload("\n"),
                     new TextPayload($"Usage: {command.Usage}")
                 });
 
@@ -107,8 +110,13 @@ namespace Dalamud.Divination.Common.Api.Command
             }
         }
 
-        public void RegisterCommandsByAttribute(ICommandProvider instance)
+        public void RegisterCommandsByAttribute(ICommandProvider? instance)
         {
+            if (instance == null)
+            {
+                return;
+            }
+
             const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
             // public/internal/protected/private/static メソッドを検索し 宣言順にソートする
@@ -126,7 +134,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 {
                     try
                     {
-                        var command = new DivinationCommand(method, instance, attribute, Prefix);
+                        var command = new DivinationCommand(method, instance, attribute, Prefix ?? $"/{pluginName}".Replace("Plugin", string.Empty).ToLower());
                         RegisterCommand(command);
                     }
                     catch (ArgumentException exception)
