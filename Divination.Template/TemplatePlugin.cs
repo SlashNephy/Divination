@@ -24,7 +24,7 @@ namespace Divination.Template
         [CommandHelp("This is sample command.")]
         private void OnHogeCommand(CommandContext context)
         {
-            PluginLog.Information("/hoge called");
+            PluginLog.Information("/hoge called.");
         }
     }
 }
