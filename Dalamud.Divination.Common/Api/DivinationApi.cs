@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Chat;
@@ -28,24 +29,29 @@ namespace Dalamud.Divination.Common.Api
 
         public IChatClient Chat => ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui));
 
+        [SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
         public ICommandProcessor? Command => ServiceContainer.GetOrPutOptional(() =>
         {
-            // ReSharper disable once SuspiciousTypeConversion.Global
-            if (Plugin is ICommandSupport commandSupport)
+            var processor = Plugin switch
             {
-                var processor = new CommandProcessor(Plugin.Name, commandSupport.MainCommandPrefix, Dalamud.ChatGui, Chat);
-                processor.RegisterCommandsByAttribute(new DirectoryCommands());
-                processor.RegisterCommandsByAttribute(commandSupport);
-                return processor;
+                ICommandSupport commandSupport => new CommandProcessor(Plugin.Name, commandSupport.MainCommandPrefix, Dalamud.ChatGui, Chat),
+                ICommandProvider => new CommandProcessor(Plugin.Name, null, Dalamud.ChatGui, Chat),
+                _ => null
+            };
+
+            if (processor == null)
+            {
+                return null;
             }
 
-            return null;
+            processor.RegisterCommandsByAttribute(new DirectoryCommands());
+            processor.RegisterCommandsByAttribute((ICommandProvider) Plugin);
+            return processor;
         });
 
         public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() =>
         {
             var manager = new ConfigManager<TConfiguration>(Dalamud.PluginInterface, Chat);
-            Command?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(manager, Command, Chat));
             return manager;
         });
 
@@ -56,7 +62,7 @@ namespace Dalamud.Divination.Common.Api
             {
                 var window = configWindowSupport.CreateConfigWindow();
                 window.ConfigManager = Config;
-                Command?.RegisterCommandsByAttribute(window);
+
                 Dalamud.PluginInterface.UiBuilder.Draw += window.OnDraw;
 
                 return window;
@@ -71,8 +77,6 @@ namespace Dalamud.Divination.Common.Api
             if (Plugin is IDefinitionSupport definitionSupport)
             {
                 var manager = new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat);
-                Command?.RegisterCommandsByAttribute(new DefinitionManager<TDefinition>.Commands(manager));
-
                 return manager;
             }
 
@@ -82,7 +86,7 @@ namespace Dalamud.Divination.Common.Api
         public IBugReporter Reporter => ServiceContainer.GetOrPut(() =>
         {
             var reporter = new BugReporter(Plugin.Name, Version, Chat);
-            Command?.RegisterCommandsByAttribute(new BugReporter.Commands(reporter));
+
             return reporter;
         });
 
@@ -92,7 +96,6 @@ namespace Dalamud.Divination.Common.Api
             var manager = new VersionManager(
                 new GitVersion(Assembly),
                 new GitVersion(Assembly.GetExecutingAssembly()));
-            Command?.RegisterCommandsByAttribute(new VersionManager.Commands(Version, Chat));
             return manager;
         });
 
@@ -106,6 +109,15 @@ namespace Dalamud.Divination.Common.Api
             Dalamud = api;
             Assembly = assembly;
             Plugin = plugin;
+
+            Command?.RegisterCommandsByAttribute(new VersionManager.Commands(Version, Chat));
+            Command?.RegisterCommandsByAttribute(new BugReporter.Commands(Reporter));
+            if (Definition != null)
+            {
+                Command?.RegisterCommandsByAttribute(new DefinitionManager<TDefinition>.Commands(Definition));
+            }
+            Command?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(Config, Command, Chat));
+            Command?.RegisterCommandsByAttribute(ConfigWindow);
         }
 
         #region IDisposable
@@ -120,20 +132,11 @@ namespace Dalamud.Divination.Common.Api
         {
             if (disposing)
             {
-                Config.Dispose();
-
                 if (ConfigWindow != null)
                 {
                     Dalamud.PluginInterface.UiBuilder.Draw -= ConfigWindow.OnDraw;
+                    ServiceContainer.DestroyAll();
                 }
-
-                Command?.Dispose();
-                Texture.Dispose();
-                Definition?.Dispose();
-                Voiceroid2Proxy.Dispose();
-                XivApi.Dispose();
-                Reporter.Dispose();
-                Chat.Dispose();
             }
         }
 

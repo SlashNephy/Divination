@@ -1,44 +1,51 @@
-﻿using System;
+﻿using Dalamud.Logging;
+using System;
 using System.Collections.Generic;
-using Dalamud.Logging;
+using System.Linq;
 
 namespace Dalamud.Divination.Common.Api
 {
     internal static class ServiceContainer
     {
-        private static readonly Dictionary<Type, object?> Services = new();
+        private static readonly List<(Type type, object? instance)> Services = new();
 
         public static T GetOrPut<T>(Func<T> initializer) where T : class
         {
-            lock (Services)
-            {
-                if (Services.TryGetValue(typeof(T), out var service))
-                {
-                    PluginLog.Debug($"Get<{typeof(T)}>: {service?.GetType()}");
-                    return service as T ?? throw new InvalidCastException("Cast failed.");
-                }
-
-                var newService = initializer();
-                Services[typeof(T)] = newService;
-                PluginLog.Debug($"Put<{typeof(T)}>: {newService.GetType()}");
-                return newService;
-            }
+            return GetOrPutOptional(initializer) ?? throw new InvalidCastException("Cast failed.");
         }
 
         public static T? GetOrPutOptional<T>(Func<T?> initializer) where T : class?
         {
             lock (Services)
             {
-                if (Services.TryGetValue(typeof(T), out var service))
+                var entry = Services.FirstOrDefault(x => x.type == typeof(T));
+                PluginLog.Information($"Get<{typeof(T)}>: {entry.instance?.GetType()}");
+
+                if (entry == default)
                 {
-                    PluginLog.Debug($"Get<{typeof(T)}>: {service?.GetType()}");
-                    return service as T;
+                    entry = (typeof(T), initializer());
+                    Services.Add(entry);
+                    PluginLog.Information($"Put<{entry.type}>: {entry.instance?.GetType()}");
                 }
 
-                var newService = initializer();
-                Services[typeof(T)] = newService;
-                PluginLog.Debug($"Put<{typeof(T)}>: {newService?.GetType()}");
-                return newService;
+                return entry.instance as T;
+            }
+        }
+
+        public static void DestroyAll()
+        {
+            // 追加された順の逆順で破棄する
+            lock (Services)
+            {
+                foreach (var (_, instance) in Services)
+                {
+                    if (instance is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
+                }
+
+                Services.Clear();
             }
         }
     }
