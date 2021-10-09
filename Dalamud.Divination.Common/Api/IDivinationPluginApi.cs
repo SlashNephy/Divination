@@ -22,11 +22,6 @@ namespace Dalamud.Divination.Common.Api
         public bool IsDisposed { get; }
 
         /// <summary>
-        /// プラグインのロガー。
-        /// </summary>
-        public Serilog.Core.Logger Logger { get; }
-
-        /// <summary>
         /// Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラスのインスタンス。
         /// </summary>
         public TConfiguration Config { get; }

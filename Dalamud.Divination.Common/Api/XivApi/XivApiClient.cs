@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Dalamud.Divination.Common.Api.Logger;
+using Dalamud.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.XivApi
@@ -12,7 +12,6 @@ namespace Dalamud.Divination.Common.Api.XivApi
         private readonly string? apiKey;
 
         private readonly HttpClient client = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(XivApiClient));
 
         public XivApiClient(string? apiKey = null)
         {
@@ -32,7 +31,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
             var result = await response.Content.ReadAsStringAsync();
             var data = JObject.Parse(result);
 
-            logger.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
+            PluginLog.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
 
             return new XivApiResponse(data);
         }
@@ -50,7 +49,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
             dynamic json = JObject.Parse(result);
             var data = (JObject) ((JArray) json.Results).First();
 
-            logger.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
+            PluginLog.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
             return new XivApiResponse(data);
         }
 

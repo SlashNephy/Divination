@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Dalamud.Divination.Common.Api.Logger;
+using Dalamud.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,7 +11,6 @@ namespace Dalamud.Divination.Common.Api.Definition
     {
         private TContainer? container;
         private readonly object containerLock = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.File("Divination.DefinitionProvider");
         private readonly Task initializationTask;
 
         protected DefinitionProvider()
@@ -59,9 +58,9 @@ namespace Dalamud.Divination.Common.Api.Definition
                 var localGameVersion = ReadLocalGameVersion();
                 if (localGameVersion != container?.Version)
                 {
-                    logger.Warning(
+                    PluginLog.Warning(
                         "ゲームバージョン \"{DefinitionGameVersion}\" はサポートされていません。現在のゲームバージョンは \"{LocalGameVersion}\" です。",
-                        container?.Version, localGameVersion);
+                        container?.Version ?? string.Empty, localGameVersion);
 
                     if (!AllowObsoleteDefinitions)
                     {
@@ -76,13 +75,13 @@ namespace Dalamud.Divination.Common.Api.Definition
                 {
                     container.IsObsolete = false;
 
-                    logger.Information(
+                    PluginLog.Information(
                         "パッチ {GamePatch} 向けの定義ファイル \"{DefinitionFilename}\" を読み込みました。現在のゲームバージョンは \"{LocalGameVersion}\" です。",
-                        container?.Patch, Filename, localGameVersion);
+                        container?.Patch ?? string.Empty, Filename, localGameVersion);
                 }
             }
 
-            logger.Verbose("{DefinitionFilename}\n{DefinitionJson}", Filename, JsonConvert.SerializeObject(json, Formatting.Indented));
+            PluginLog.Verbose("{DefinitionFilename}\n{DefinitionJson}", Filename, JsonConvert.SerializeObject(json, Formatting.Indented));
         }
 
         private static string ReadLocalGameVersion()
@@ -96,7 +95,6 @@ namespace Dalamud.Divination.Common.Api.Definition
         public virtual void Dispose()
         {
             initializationTask.Dispose();
-            logger.Dispose();
         }
     }
 }

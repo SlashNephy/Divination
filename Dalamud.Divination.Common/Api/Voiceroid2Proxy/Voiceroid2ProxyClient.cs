@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Dalamud.Divination.Common.Api.Logger;
+using Dalamud.Logging;
 using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
@@ -13,7 +13,6 @@ namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
         private readonly string url;
 
         private readonly HttpClient client = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(Voiceroid2ProxyClient));
 
         public Voiceroid2ProxyClient(string host = "localhost", int port = 4532)
         {
@@ -31,11 +30,11 @@ namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
             try
             {
                 await client.PostAsync(url, content);
-                logger.Verbose("Talk: {Text}", text);
+                PluginLog.Verbose("Talk: {Text}", text);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error occurred while TalkAsync");
+                PluginLog.Error(ex, "Error occurred while TalkAsync");
             }
         }
 

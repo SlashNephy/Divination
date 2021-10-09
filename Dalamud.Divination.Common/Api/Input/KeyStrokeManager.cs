@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using Dalamud.Divination.Common.Api.Logger;
+using Dalamud.Logging;
 
 namespace Dalamud.Divination.Common.Api.Input
 {
     public sealed class KeyStrokeManager : IKeyStrokeManager
     {
         private readonly object inputLock = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug("KeyStrokeManager");
 
         public void Send(string rawKeys)
         {
@@ -42,7 +41,7 @@ namespace Dalamud.Divination.Common.Api.Input
                 }
             }
 
-            logger.Debug("SendMessage: {Keys}", keys.ToReadableString());
+            PluginLog.Debug("SendMessage: {Keys}", keys.ToReadableString());
         }
 
         private static IntPtr GetGameWindowHandle()
@@ -57,11 +56,6 @@ namespace Dalamud.Divination.Common.Api.Input
             }
 
             return IntPtr.Zero;
-        }
-
-        public void Dispose()
-        {
-            logger.Dispose();
         }
     }
 }

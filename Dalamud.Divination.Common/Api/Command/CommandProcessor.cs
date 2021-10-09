@@ -7,11 +7,11 @@ using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Dalamud.Payload;
-using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Logging;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
@@ -24,7 +24,6 @@ namespace Dalamud.Divination.Common.Api.Command
         private readonly Regex commandRegex = new(@"^そのコマンドはありません。： (?<command>.+)$", RegexOptions.Compiled);
         private readonly List<DivinationCommand> commands = new();
         private readonly object commandsLock = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(CommandProcessor));
 
         public string Prefix { get; }
 
@@ -100,11 +99,11 @@ namespace Dalamud.Divination.Common.Api.Command
                     new TextPayload($"Usage: {command.Usage}")
                 });
 
-                logger.Error(e, "Error occurred while DispatchCommand for {Command}", command.Method.Name);
+                PluginLog.Error(e, "Error occurred while DispatchCommand for {Command}", command.Method.Name);
             }
             finally
             {
-                logger.Verbose("=> {Syntax}", match.Value);
+                PluginLog.Verbose("=> {Syntax}", match.Value);
             }
         }
 
@@ -132,7 +131,7 @@ namespace Dalamud.Divination.Common.Api.Command
                     }
                     catch (ArgumentException exception)
                     {
-                        logger.Error(exception, "Error occurred while RegisterCommandsByAttribute");
+                        PluginLog.Error(exception, "Error occurred while RegisterCommandsByAttribute");
                     }
                 }
             }
@@ -141,7 +140,7 @@ namespace Dalamud.Divination.Common.Api.Command
         private void RegisterCommand(DivinationCommand command)
         {
             commands.Add(command);
-            logger.Information("コマンド: {Usage} が登録されました。", command.Usage);
+            PluginLog.Information("コマンド: {Usage} が登録されました。", command.Usage);
 
             if (command.IsHidden)
             {
@@ -173,8 +172,6 @@ namespace Dalamud.Divination.Common.Api.Command
         {
             chatGui.ChatMessage -= OnChatMessage;
             commands.Clear();
-
-            logger.Dispose();
         }
     }
 }

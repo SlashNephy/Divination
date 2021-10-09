@@ -39,15 +39,6 @@
             <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="Serilog">
-            <HintPath>$(DalamudLibPath)Serilog.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Serilog.Sinks.File">
-            <HintPath>$(DalamudLibPath)Serilog.Sinks.File.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
         <PackageReference Include="GitVersion.MsBuild" Version="5.7.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Game.Network;
+using Dalamud.Logging;
 
 namespace Dalamud.Divination.Common.Api.Network
 {
@@ -11,7 +11,6 @@ namespace Dalamud.Divination.Common.Api.Network
     {
         private readonly List<INetworkHandler> handlers = new();
         private readonly NetworkDataParser parser;
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(NetworkInterceptor));
 
         public NetworkInterceptor(GameNetwork gameNetwork)
         {
@@ -49,7 +48,7 @@ namespace Dalamud.Divination.Common.Api.Network
                     }
                     catch (Exception exception)
                     {
-                        logger.Error(exception, "Error occurred while Consume");
+                        PluginLog.Error(exception, "Error occurred while Consume");
                     }
                 });
             }
@@ -66,8 +65,6 @@ namespace Dalamud.Divination.Common.Api.Network
                 handler.Dispose();
             }
             handlers.Clear();
-
-            logger.Dispose();
         }
     }
 }

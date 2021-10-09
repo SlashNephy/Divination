@@ -1,11 +1,7 @@
-﻿using Dalamud.Divination.Common.Api.Logger;
-
-namespace Dalamud.Divination.Common.Api.Version
+﻿namespace Dalamud.Divination.Common.Api.Version
 {
     internal partial class VersionManager : IVersionManager
     {
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug("VersionManager");
-
         public IGitVersion Plugin { get; }
         public IGitVersion Divination { get; }
 
@@ -13,11 +9,6 @@ namespace Dalamud.Divination.Common.Api.Version
         {
             Plugin = pluginVersion;
             Divination = libraryVersion;
-        }
-
-        public void Dispose()
-        {
-            logger.Dispose();
         }
     }
 }

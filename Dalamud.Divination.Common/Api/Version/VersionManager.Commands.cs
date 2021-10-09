@@ -1,7 +1,6 @@
 ﻿using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Command.Attributes;
-using Dalamud.Divination.Common.Api.Logger;
 
 namespace Dalamud.Divination.Common.Api.Version
 {
@@ -23,9 +22,6 @@ namespace Dalamud.Divination.Common.Api.Version
             private void OnVersionCommand()
             {
                 chatClient.Print(versionManager.Plugin.InformationalVersion);
-
-                using var logger = DivinationLogger.Debug("VersionManager");
-                logger.Debug("{Version}", versionManager.Plugin.ToString());
             }
 
             [Command("version", "common")]
@@ -33,9 +29,6 @@ namespace Dalamud.Divination.Common.Api.Version
             private void OnVersionCommonCommand()
             {
                 chatClient.Print(versionManager.Divination.InformationalVersion);
-
-                using var logger = DivinationLogger.Debug("VersionManager");
-                logger.Debug("{Version}", versionManager.Divination.ToString());
             }
         }
     }

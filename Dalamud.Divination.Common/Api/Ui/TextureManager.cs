@@ -4,9 +4,9 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Dalamud.Data;
-using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Divination.Common.Api.XivApi;
 using Dalamud.Interface;
+using Dalamud.Logging;
 using Dalamud.Utility;
 using ImGuiScene;
 
@@ -20,7 +20,6 @@ namespace Dalamud.Divination.Common.Api.Ui
         private readonly HttpClient client = new();
         private readonly Dictionary<uint, TextureWrap?> cache = new();
         private readonly object cacheLock = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug(nameof(TextureManager));
 
         public TextureManager(DataManager dataManager, UiBuilder uiBuilder)
         {
@@ -55,7 +54,7 @@ namespace Dalamud.Divination.Common.Api.Ui
                 catch (Exception exception)
                 {
                     cache.Remove(iconId);
-                    logger.Error(exception, "Error occurred while LoadIconTexture");
+                    PluginLog.Error(exception, "Error occurred while LoadIconTexture");
                 }
             });
         }
@@ -118,7 +117,6 @@ namespace Dalamud.Divination.Common.Api.Ui
             cache.Clear();
 
             client.Dispose();
-            logger.Dispose();
         }
     }
 }

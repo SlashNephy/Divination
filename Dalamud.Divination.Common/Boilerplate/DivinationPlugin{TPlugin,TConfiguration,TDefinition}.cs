@@ -5,9 +5,8 @@ using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Definition;
-using Dalamud.Divination.Common.Api.Logger;
+using Dalamud.Logging;
 using Dalamud.Plugin;
-using Serilog.Core;
 
 namespace Dalamud.Divination.Common.Boilerplate
 {
@@ -32,7 +31,6 @@ namespace Dalamud.Divination.Common.Boilerplate
 
         public string Name => Instance.GetType().Name;
         public bool IsDisposed { get; private set; }
-        public Logger Logger { get; }
         public TConfiguration Config => Divination.Config.Config;
         public IDalamudApi Dalamud { get; }
         public IDivinationApi<TConfiguration, TDefinition> Divination { get; }
@@ -47,12 +45,11 @@ namespace Dalamud.Divination.Common.Boilerplate
 
             Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
             IsDisposed = false;
-            Logger = DivinationLogger.File(Name);
             Dalamud = new DalamudApi(pluginInterface);
             Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
 
             Divination.Chat.Print("プラグインを読み込みました！");
-            Logger.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.Version.Plugin.InformationalVersion);
+            PluginLog.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.Version.Plugin.InformationalVersion);
         }
 
         #region IDisposable
@@ -84,7 +81,6 @@ namespace Dalamud.Divination.Common.Boilerplate
                 ReleaseManaged();
 
                 Divination.Chat.Print("プラグインを停止しました。");
-                Logger.Dispose();
             }
 
             ReleaseUnmanaged();

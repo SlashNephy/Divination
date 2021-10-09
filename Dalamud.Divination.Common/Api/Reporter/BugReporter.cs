@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Chat;
-using Dalamud.Divination.Common.Api.Logger;
 using Dalamud.Divination.Common.Api.Version;
+using Dalamud.Logging;
 using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Reporter
@@ -20,7 +20,6 @@ namespace Dalamud.Divination.Common.Api.Reporter
         private readonly IChatClient chat;
         private readonly string url;
         private readonly HttpClient httpClient = new();
-        private readonly Serilog.Core.Logger logger = DivinationLogger.Debug("BugReporter");
 
         public BugReporter(string pluginName, IVersionManager versionManager, IChatClient chat, string url = DefaultUrl)
         {
@@ -82,7 +81,7 @@ namespace Dalamud.Divination.Common.Api.Reporter
             catch (Exception exception)
             {
                 chat.PrintError($"レポート ({filename}) の送信に失敗しました。");
-                logger.Error(exception, "Error occurred while SendReport");
+                PluginLog.Error(exception, "Error occurred while SendReport");
             }
         }
 

@@ -127,7 +127,6 @@ namespace Dalamud.Divination.Common.Api
                     Dalamud.PluginInterface.UiBuilder.Draw -= ConfigWindow.OnDraw;
                 }
 
-                Version.Dispose();
                 Command?.Dispose();
                 Texture.Dispose();
                 Definition?.Dispose();
