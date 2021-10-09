@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
 using Dalamud.Divination.Common.Api.Command;
+using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Logging;
 using Dalamud.Plugin;
 
 namespace Divination.Voiceroid2Talker
@@ -22,10 +24,11 @@ namespace Divination.Voiceroid2Talker
         public string MainCommandPrefix => "/v2t";
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
-        [Command("/talkv2", "text", Help = "与えられた <text> を読み上げます。", Strict = false)]
+        [Command("/talkv2", "<text...>")]
+        [CommandHelp("与えられた <text...> を読み上げます。")]
         private void OnTalkCommand(CommandContext context)
         {
-            Divination.Voiceroid2Proxy.TalkAsync(context.ArgumentText);
+            Divination.Voiceroid2Proxy.TalkAsync(context["text"]!);
         }
 
         private void OnChatReceived(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
@@ -39,7 +42,7 @@ namespace Divination.Voiceroid2Talker
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error occurred in OnChatReceived");
+                PluginLog.Error(ex, "Error occurred in OnChatReceived");
             }
         }
 
