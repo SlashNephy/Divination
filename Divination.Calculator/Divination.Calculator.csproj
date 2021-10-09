@@ -11,9 +11,12 @@
         <NeutralLanguage>ja-JP</NeutralLanguage>
         <RootNamespace>Divination.Calculator</RootNamespace>
         <PackageVersion>0.1.0.0</PackageVersion>
+        <TargetFramework>net5.0-windows7.0</TargetFramework>
+        <Platforms>x64</Platforms>
+        <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
     
-    <ItemGroup>
+  <ItemGroup>
         <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
         
         <Reference Include="Dalamud">
