@@ -11,6 +11,9 @@
         <NeutralLanguage>ja-JP</NeutralLanguage>
         <RootNamespace>Divination.Debugger</RootNamespace>
         <PackageVersion>0.1.0.0</PackageVersion>
+        <TargetFramework>net5.0-windows7.0</TargetFramework>
+        <Platforms>x64</Platforms>
+        <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
     
     <ItemGroup>
