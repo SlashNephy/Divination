@@ -79,7 +79,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.repository != 'SlashNephy/Dalamud.Divination.Template' && (github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master'))
+    if: github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master')
 
     steps:
       - name: Checkout Plugin Repository
@@ -96,7 +96,6 @@ jobs:
         run: echo "REPOSITORY_TYPE=testing" >> $GITHUB_ENV
 
       - name: Download Artifact
-        if: github.event_name == 'release'
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
