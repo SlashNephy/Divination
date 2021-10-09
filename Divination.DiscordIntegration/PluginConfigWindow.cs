@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
+using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.DiscordIntegration
@@ -27,7 +28,7 @@ namespace Divination.DiscordIntegration
                     IsOpen = false;
 
                     DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    DiscordIntegrationPlugin.Instance.Logger.Information("Config saved");
+                    PluginLog.Information("Config saved");
                 }
 
                 ImGui.End();

@@ -4,6 +4,7 @@ using System.Linq;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Logging;
 using DiscordRPC;
 using Divination.DiscordIntegration.Data;
 using Lumina.Excel.GeneratedSheets;
@@ -37,7 +38,7 @@ namespace Divination.DiscordIntegration
                         }
                         catch (Exception ex)
                         {
-                            DiscordIntegrationPlugin.Instance.Logger.Error(ex, "Error occurred while getting Instance");
+                            PluginLog.Error(ex, "Error occurred while getting Instance");
                         }
                     }
 
@@ -291,7 +292,7 @@ namespace Divination.DiscordIntegration
 
                 if (icon != 0)
                 {
-                    DiscordIntegrationPlugin.Instance.Logger.Warning("不明な Icon を検出しました。 Icon = {Icon}", icon);
+                    PluginLog.Warning("不明な Icon を検出しました。 Icon = {Icon}", icon);
                 }
             }
 

@@ -11,6 +11,9 @@
         <NeutralLanguage>ja-JP</NeutralLanguage>
         <RootNamespace>Divination.DiscordIntegration</RootNamespace>
         <PackageVersion>0.1.0.0</PackageVersion>
+        <TargetFramework>net5.0-windows7.0</TargetFramework>
+        <Platforms>x64</Platforms>
+        <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
     <ItemGroup>
@@ -36,12 +39,11 @@
             <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <Reference Include="Newtonsoft.Json">
-            <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
 
-        <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
-        <PackageReference Include="DalamudPackager" Version="2.1.2" />
+        <PackageReference Include="DiscordRichPresence" Version="1.0.175">
+          <ExcludeAssets></ExcludeAssets>
+          <PrivateAssets>All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="DalamudPackager" Version="2.1.4" />
     </ItemGroup>
 </Project>
