@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Dalamud.Game.Network;
 
-namespace InstanceIDViewer
+namespace Dalamud.Divination.InstanceIDViewer
 {
     public class NetworkContext
     {

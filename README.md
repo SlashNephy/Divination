@@ -1,1 +1,1 @@
-# InstanceIDViewer
+# Dalamud.Divination.InstanceIDViewer

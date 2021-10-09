@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceIDViewer", "InstanceIDViewer\InstanceIDViewer.csproj", "{3EE0EA2E-E221-4E7F-9A6F-D0E24212DD78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.Divination.InstanceIDViewer", "Dalamud.Divination.InstanceIDViewer\Dalamud.Divination.InstanceIDViewer.csproj", "{3EE0EA2E-E221-4E7F-9A6F-D0E24212DD78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
