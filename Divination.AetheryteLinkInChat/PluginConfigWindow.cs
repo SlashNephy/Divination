@@ -1,5 +1,6 @@
 ﻿using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
+using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.AetheryteLinkInChat
@@ -21,7 +22,7 @@ namespace Divination.AetheryteLinkInChat
                     IsOpen = false;
 
                     AetheryteLinkInChatPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    AetheryteLinkInChatPlugin.Instance.Logger.Information("Config saved");
+                    PluginLog.Information("Config saved");
                 }
 
                 ImGui.End();

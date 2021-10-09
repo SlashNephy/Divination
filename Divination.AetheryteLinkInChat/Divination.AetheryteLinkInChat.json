@@ -1,7 +1,7 @@
 {
   "Name": "Divination.AetheryteLinkInChat",
   "InternalName": "Divination.AetheryteLinkInChat",
-  "Author": "Nep",
+  "Author": "Asteria Nocturna",
   "Punchline": "Easy teleport for Mob Hunting",
   "Description": "Dalamud Plugin to add a link to teleport to the nearest aetheryte. Teleporter plugin required!",
   "Tags": [

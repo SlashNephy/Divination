@@ -7,13 +7,14 @@ using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Logging;
 using Dalamud.Plugin;
 using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat
 {
     public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlugin, PluginConfig>,
-        IConfigWindowSupport<PluginConfig>
+        IConfigWindowSupport<PluginConfig>, ICommandSupport
     {
         private const int LinkCommandId = 1;
         private readonly DalamudLinkPayload? linkPayload;
@@ -24,6 +25,7 @@ namespace Divination.AetheryteLinkInChat
             Dalamud.ChatGui.ChatMessage += OnChatReceived;
         }
 
+        public string MainCommandPrefix => "/alic";
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
         private void OnChatReceived(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
@@ -37,7 +39,7 @@ namespace Divination.AetheryteLinkInChat
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error occurred while OnChatReceived");
+                PluginLog.Error(ex, "Error occurred while OnChatReceived");
             }
         }
 
