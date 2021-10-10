@@ -29,7 +29,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         public static TPlugin Instance { get; private set; }
 #pragma warning restore 8618
 
-        public string Name => Instance.GetType().Name;
+        public string Name => $"Divination.{Instance.GetType().Name.Replace("Plugin", string.Empty)}";
         public bool IsDisposed { get; private set; }
         public TConfiguration Config => Divination.Config.Config;
         public IDalamudApi Dalamud { get; }
