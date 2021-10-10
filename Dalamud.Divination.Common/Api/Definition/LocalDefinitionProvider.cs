@@ -8,9 +8,15 @@ namespace Dalamud.Divination.Common.Api.Definition
     {
         private readonly FileSystemWatcher watcher;
 
-        public LocalDefinitionProvider(string filename)
+        public LocalDefinitionProvider(string filename, string fallbackUrl)
         {
             Filename = filename;
+            this.fallbackUrl = fallbackUrl;
+
+            if (!Directory.Exists(DivinationEnvironment.DivinationDirectory))
+            {
+                Directory.CreateDirectory(DivinationEnvironment.DivinationDirectory);
+            }
             watcher = new FileSystemWatcher(DivinationEnvironment.DivinationDirectory, filename);
 
             watcher.Changed += OnDefinitionFileChanged;
@@ -18,6 +24,7 @@ namespace Dalamud.Divination.Common.Api.Definition
         }
 
         public override string Filename { get; }
+        private readonly string fallbackUrl;
 
         public override bool AllowObsoleteDefinitions => true;
 
@@ -27,12 +34,13 @@ namespace Dalamud.Divination.Common.Api.Definition
             Update();
         }
 
-        protected override JObject? Fetch()
+        internal override JObject Fetch()
         {
             var localPath = Path.Combine(DivinationEnvironment.DivinationDirectory, Filename);
             if (!File.Exists(localPath))
             {
-                return null;
+                using var remote = new RemoteDefinitionProvider<TContainer>(fallbackUrl, Filename);
+                return remote.Fetch();
             }
 
             var content = File.ReadAllText(localPath);

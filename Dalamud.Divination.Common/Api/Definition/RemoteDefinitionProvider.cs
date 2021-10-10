@@ -28,7 +28,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         public override string Filename { get; }
 
-        protected override JObject Fetch()
+        internal override JObject Fetch()
         {
             var request = WebRequest.CreateHttp(url);
             request.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);

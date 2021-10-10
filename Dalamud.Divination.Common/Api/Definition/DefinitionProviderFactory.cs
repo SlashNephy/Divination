@@ -9,7 +9,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             var filename = Path.GetFileName(url);
 
 #if DEBUG
-            return new LocalDefinitionProvider<TContainer>(filename);
+            return new LocalDefinitionProvider<TContainer>(filename, url);
 #else
             return new RemoteDefinitionProvider<TContainer>(url, filename);
 #endif

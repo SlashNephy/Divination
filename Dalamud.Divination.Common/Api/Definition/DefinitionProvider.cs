@@ -35,7 +35,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         public virtual bool AllowObsoleteDefinitions => false;
 
-        protected abstract JObject? Fetch();
+        internal abstract JObject? Fetch();
 
         public void Update()
         {
