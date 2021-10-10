@@ -5,7 +5,6 @@ using Dalamud.Divination.Common.Api.Config;
 using Dalamud.Divination.Common.Api.Definition;
 using Dalamud.Divination.Common.Api.Input;
 using Dalamud.Divination.Common.Api.Network;
-using Dalamud.Divination.Common.Api.Reporter;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Api.Version;
@@ -21,8 +20,6 @@ namespace Dalamud.Divination.Common.Api
         public IChatClient Chat { get; }
 
         public ICommandProcessor? Command { get; }
-
-        public IBugReporter Reporter { get; }
 
         public ITextureManager Texture { get; }
 

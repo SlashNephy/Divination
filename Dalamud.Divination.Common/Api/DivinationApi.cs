@@ -9,7 +9,6 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Definition;
 using Dalamud.Divination.Common.Api.Input;
 using Dalamud.Divination.Common.Api.Network;
-using Dalamud.Divination.Common.Api.Reporter;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Api.Version;
@@ -83,13 +82,6 @@ namespace Dalamud.Divination.Common.Api
             return null;
         });
 
-        public IBugReporter Reporter => ServiceContainer.GetOrPut(() =>
-        {
-            var reporter = new BugReporter(Plugin.Name, Version, Chat);
-
-            return reporter;
-        });
-
         public ITextureManager Texture => ServiceContainer.GetOrPut(() => new TextureManager(Dalamud.DataManager, Dalamud.PluginInterface.UiBuilder));
         public IVersionManager Version => ServiceContainer.GetOrPut(() =>
         {
@@ -111,7 +103,6 @@ namespace Dalamud.Divination.Common.Api
             Plugin = plugin;
 
             Command?.RegisterCommandsByAttribute(new VersionManager.Commands(Version, Chat));
-            Command?.RegisterCommandsByAttribute(new BugReporter.Commands(Reporter));
             if (Definition != null)
             {
                 Command?.RegisterCommandsByAttribute(new DefinitionManager<TDefinition>.Commands(Definition));
