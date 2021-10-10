@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Dalamud.Divination.Common.Api.Command.Attributes;
+using Dalamud.Utility;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
@@ -49,6 +50,8 @@ namespace Dalamud.Divination.Common.Api.Command
             {
                 Syntaxes = attribute.Commands.Select(x => x.ToLower()).ToArray();
             }
+
+            Syntaxes = Syntaxes.Where(x => !x.IsNullOrWhitespace()).Select(x => x.Trim()).ToArray();
 
             var syntaxes = Syntaxes.Select(x =>
             {
