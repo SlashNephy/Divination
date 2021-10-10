@@ -19,13 +19,13 @@ namespace Dalamud.Divination.Common.Api
             lock (Services)
             {
                 var entry = Services.FirstOrDefault(x => x.type == typeof(T));
-                PluginLog.Information($"Get<{typeof(T)}>: {entry.instance?.GetType()}");
+                // PluginLog.Verbose($"Get<{typeof(T)}>: {entry.instance?.GetType()}");
 
                 if (entry == default)
                 {
                     entry = (typeof(T), initializer());
                     Services.Add(entry);
-                    PluginLog.Information($"Put<{entry.type}>: {entry.instance?.GetType()}");
+                    PluginLog.Verbose($"Put<{entry.type}>: {entry.instance?.GetType()}");
                 }
 
                 return entry.instance as T;
