@@ -30,5 +30,11 @@ namespace Dalamud.Divination.Common.Api
         /// このプロパティは Dalamud 上でのみ機能します。
         /// </summary>
         public static string GameDirectory => Path.GetDirectoryName(Process.GetCurrentProcess().MainModule!.FileName)!;
+
+        /// <summary>
+        /// XIVLauncher のホームディレクトリへのパス。
+        /// </summary>
+        public static string XivLauncherDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher");
+
     }
 }
