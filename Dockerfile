@@ -25,6 +25,6 @@ FROM --platform=$TARGETPLATFORM adoptopenjdk:11-jre-hotspot
 
 COPY --from=build /app/build/libs/Divination.DiscordBot-all.jar /app/Divination.DiscordBot.jar
 
-LABEL org.opencontainers.image.source="https://github.com/SlashNephy/Divination.DiscordBot"
+LABEL org.opencontainers.image.source="https://github.com/horoscope-dev/Divination.DiscordBot"
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "/app/Divination.DiscordBot.jar"]
