@@ -68,6 +68,7 @@ jobs:
           repository: ${{ matrix.repository }}
           path: repo/${{ matrix.repository }}
           token: ${{ secrets.GH_PAT }}
+          submodules: recursive
 
       - name: Update Submodule
         working-directory: repo/${{ matrix.repository }}/Common
