@@ -42,6 +42,8 @@ namespace Dalamud.Divination.Common.Api.Config
             }
 
             [Command("config", "<key?>", "<value?>")]
+            [Command("config", "<key?>")]
+            [Command("config")]
             [CommandHelp("プラグインの設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
             private void OnConfigCommand(CommandContext context)
             {
