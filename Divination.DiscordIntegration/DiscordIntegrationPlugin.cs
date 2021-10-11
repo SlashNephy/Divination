@@ -23,7 +23,7 @@ namespace Divination.DiscordIntegration
         }
 
         public string MainCommandPrefix => "/discord";
-        public string DefinitionUrl => "https://raw.githubusercontent.com/SlashNephy/Dalamud.Divination.Ephemera/master/dist/DiscordIntegration.json";
+        public string DefinitionUrl => "https://ephemera.horoscope.dev/dist/DiscordIntegration.json";
 
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
