@@ -25,6 +25,6 @@ FROM --platform=$TARGETPLATFORM adoptopenjdk:11-jre-hotspot
 
 COPY --from=build /app/build/libs/Divination.SseServer-all.jar /app/Divination.SseServer.jar
 
-LABEL org.opencontainers.image.source="https://github.com/SlashNephy/Divination.SseServer"
+LABEL org.opencontainers.image.source="https://github.com/horoscope-dev/Divination.SseServer"
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "/app/Divination.SseServer.jar"]
