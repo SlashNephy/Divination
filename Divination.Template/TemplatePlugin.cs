@@ -17,7 +17,7 @@ namespace Divination.Template
         }
 
         public string MainCommandPrefix => "/template";
-        public string DefinitionUrl => "https://raw.githubusercontent.com/SlashNephy/Dalamud.Divination.Ephemera/master/dist/Template.json";
+        public string DefinitionUrl => "https://ephemera.horoscope.dev/dist/Template.json";
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
         [Command("/hoge", "foo", "<arg>", "<optionalarg?>", "<vararg...>")]
