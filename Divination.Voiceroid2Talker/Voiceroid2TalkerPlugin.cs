@@ -24,7 +24,7 @@ namespace Divination.Voiceroid2Talker
         public string MainCommandPrefix => "/v2t";
         public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
-        [Command("/talkv2", "<text...>")]
+        [Command("/voiceroid2", "<text...>")]
         [CommandHelp("与えられた <text...> を読み上げます。")]
         private void OnTalkCommand(CommandContext context)
         {
@@ -59,7 +59,7 @@ namespace Divination.Voiceroid2Talker
                 {
                     case ITextProvider textProvider:
                         return textProvider.Text;
-                    case IconPayload _:
+                    case IconPayload:
                         return " ";
                     default:
                         return string.Empty;
