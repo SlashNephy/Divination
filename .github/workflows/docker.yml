@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_BASE_NAME: ghcr.io/slashnephy/divination-sse-server-faloop
+  DOCKER_BASE_NAME: ghcr.io/horoscope-dev/divination-sse-server-faloop
   PLATFORMS: linux/amd64,linux/arm/v7,linux/arm64/v8
 
 jobs:
