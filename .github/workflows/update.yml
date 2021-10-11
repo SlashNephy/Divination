@@ -11,6 +11,9 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+  this_is_concurrency_workflow
+
 env:
   DOWNLOAD_BASE_URI: https://repo.horoscope.dev
 
