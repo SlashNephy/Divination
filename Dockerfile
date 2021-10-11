@@ -25,6 +25,6 @@ FROM --platform=$TARGETPLATFORM adoptopenjdk:11-jre-hotspot
 
 COPY --from=build /app/build/libs/Divination.SseServer.Faloop-all.jar /app/Divination.SseServer.Faloop.jar
 
-LABEL org.opencontainers.image.source="https://github.com/SlashNephy/Divination.SseServer.Faloop"
+LABEL org.opencontainers.image.source="https://github.com/horoscope-dev/Divination.SseServer.Faloop"
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "/app/Divination.SseServer.Faloop.jar"]
