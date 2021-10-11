@@ -79,14 +79,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.repository != 'SlashNephy/Dalamud.Divination.Template' && (github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master'))
+    if: github.repository != 'horoscope-dev/Dalamud.Divination.Template' && (github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master'))
 
     steps:
       - name: Checkout Plugin Repository
         uses: actions/checkout@v2
         with:
-          repository: SlashNephy/Dalamud.DivinationPluginRepo
-          token: ${{ secrets.CICD_PAT }}
+          repository: horoscope-dev/Dalamud.DivinationPluginRepo
+          token: ${{ secrets.GH_PAT }}
 
       - name: Prepare Repository Type (on Release)
         if: github.event_name == 'release'
