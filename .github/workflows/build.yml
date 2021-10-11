@@ -73,7 +73,7 @@ jobs:
       - name: Update Submodule
         working-directory: repo/${{ matrix.repository }}/Common
         run: |
-          git pull
+          git pull origin master
           git checkout master
 
       - name: Push Template
