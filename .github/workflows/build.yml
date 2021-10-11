@@ -34,23 +34,41 @@ jobs:
           Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/stg/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
 
-      - name: Build Plugin
+      - name: Build
         run: dotnet build --configuration Release
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
 
-      - name: Checkout Repository (Dalamud.Divination.Template)
+  update-submodule:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        repository:
+          - horoscope-dev/Dalamud.Divination.Template
+          - horoscope-dev/Dalamud.Divination.TwitterIntegration
+          - horoscope-dev/Dalamud.Divination.AetheryteLinkInChat
+          - horoscope-dev/Dalamud.Divination.DiscordIntegration
+          - horoscope-dev/Dalamud.Divination.PowerUtils
+          - horoscope-dev/Dalamud.Divination.Calculator
+          - horoscope-dev/Dalamud.Divination.Voiceroid2Talker
+          - horoscope-dev/Dalamud.Divination.Debugger
+          - horoscope-dev/Dalamud.Divination.Craftsman
+          - horoscope-dev/Dalamud.Divination.Fisherman
+          # - horoscope-dev/Dalamud.Divination.InstanceIDViewer
+
+    steps:
+      - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          repository: SlashNephy/Dalamud.Divination.Template
-          path: template
+          repository: ${{ matrix.repository }}
+          path: repo/${{ matrix.repository }}
           token: ${{ secrets.GH_PAT }}
-          submodules: recursive
-          # Required by GitVersion
-          fetch-depth: 0
 
       - name: Update Submodule
-        working-directory: template
+        working-directory: repo/${{ matrix.repository }}
         run: |
           git submodule foreach git pull origin master
           git submodule foreach git checkout master
@@ -58,7 +76,7 @@ jobs:
       - name: Push Template
         uses: EndBug/add-and-commit@v7
         with:
-          cwd: template
+          cwd: repo/${{ matrix.repository }}
           author_name: GitHub Action
           author_email: github-actions[bot]@users.noreply.github.com
-          message: Update Common
+          message: Update Common to ${{ github.sha }}
