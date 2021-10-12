@@ -23,7 +23,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            Update();
+            Update(Cancellable.Token);
         }
 
         public override string Filename { get; }

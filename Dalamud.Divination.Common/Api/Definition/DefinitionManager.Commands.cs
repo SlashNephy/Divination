@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Command.Attributes;
@@ -30,7 +31,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             [CommandHelp("定義ファイルを更新します。")]
             private void OnDefFetchCommand()
             {
-                manager.Provider.Update();
+                manager.Provider.Update(CancellationToken.None);
                 manager.chatClient.Print($"定義ファイルを更新しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 

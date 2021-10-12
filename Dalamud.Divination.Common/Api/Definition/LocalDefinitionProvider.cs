@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition
@@ -30,8 +30,8 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         private void OnDefinitionFileChanged(object sender, FileSystemEventArgs e)
         {
-            Thread.Sleep(1000);
-            Update();
+            Task.Delay(1000, Cancellable.Token);
+            Update(Cancellable.Token);
         }
 
         internal override JObject Fetch()

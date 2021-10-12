@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
@@ -22,6 +23,6 @@ namespace Dalamud.Divination.Common.Api.Definition
         /// <summary>
         /// この IDefinitionProvider の保持している定義を更新します。
         /// </summary>
-        public void Update();
+        public void Update(CancellationToken token);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Dalamud.Logging;
 using Newtonsoft.Json;
@@ -12,10 +13,11 @@ namespace Dalamud.Divination.Common.Api.Definition
         private TContainer? container;
         private readonly object containerLock = new();
         private readonly Task initializationTask;
+        protected readonly CancellationTokenSource Cancellable = new();
 
         protected DefinitionProvider()
         {
-            initializationTask = Task.Run(Update);
+            initializationTask = Task.Run(() => Update(Cancellable.Token), Cancellable.Token);
         }
 
         public abstract string Filename { get; }
@@ -28,7 +30,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
                 lock (containerLock)
                 {
-                    return container ?? throw new AggregateException("定義ファイルの取得に失敗しました。");
+                    return container ?? throw new AggregateException($"Failed to fetch definition file. ({Filename})");
                 }
             }
         }
@@ -37,7 +39,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         internal abstract JObject? Fetch();
 
-        public void Update()
+        public void Update(CancellationToken token)
         {
             var json = Fetch();
             if (json == null)
@@ -59,7 +61,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                 if (localGameVersion != container?.Version)
                 {
                     PluginLog.Warning(
-                        "ゲームバージョン \"{DefinitionGameVersion}\" はサポートされていません。現在のゲームバージョンは \"{LocalGameVersion}\" です。",
+                        "The game version \"{DefinitionGameVersion}\" is not supported yet. The local one is \"{LocalGameVersion}\".",
                         container?.Version ?? string.Empty, localGameVersion);
 
                     if (!AllowObsoleteDefinitions)
@@ -76,7 +78,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                     container.IsObsolete = false;
 
                     PluginLog.Information(
-                        "パッチ {GamePatch} 向けの定義ファイル \"{DefinitionFilename}\" を読み込みました。現在のゲームバージョンは \"{LocalGameVersion}\" です。",
+                        "The definition file for patch {GamePatch} \"{DefinitionFilename}\" was loaded. Local game version is \"{LocalGameVersion}\".",
                         container?.Patch ?? string.Empty, Filename, localGameVersion);
                 }
             }
@@ -94,7 +96,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         public virtual void Dispose()
         {
-            initializationTask.Dispose();
+            Cancellable.Cancel();
         }
     }
 }
