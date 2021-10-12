@@ -83,7 +83,7 @@ jobs:
       - name: Checkout Plugin Repository
         uses: actions/checkout@v2
         with:
-          repository: SlashNephy/Dalamud.DivinationPluginRepo
+          repository: horoscope-dev/Dalamud.DivinationPluginRepo
           token: ${{ secrets.GH_PAT }}
 
       - name: Prepare Repository Type (on Release)
