@@ -1,14 +1,12 @@
 {
-  "Name": "This is Name.",
-  "InternalName": "Divination.Template",
-  "Author": "This is Author.",
-  "Punchline": "This is Punchline.",
-  "Description": "This is Description.",
+  "Name": "Divination.PowerUtils",
+  "InternalName": "Divination.PowerUtils",
+  "Author": "Asteria Nocturna",
+  "Punchline": "Save Energy!",
+  "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
   "Tags": [
-    "This",
-    "is",
-    "Tags"
+    "Command"
   ],
-  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Template",
+  "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.PowerUtils",
   "DalamudApiLevel": 4
 }
