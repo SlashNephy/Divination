@@ -3,11 +3,11 @@
   "InternalName": "Divination.Debugger",
   "Author": "Asteria Nocturna",
   "Punchline": "You don't need this unless you are developer.",
-  "Description": "Dalamud Plugin to inspect game...",
+  "Description": "Tiny tool to inspect game...",
   "Tags": [
-    "development",
-    "debug"
+    "Development",
+    "Debug"
   ],
-  "RepoUrl": "https://github.com/SlashNephy/Dalamud.Divination.Debugger",
+  "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Debugger",
   "DalamudApiLevel": 4
 }
