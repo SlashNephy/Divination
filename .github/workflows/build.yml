@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
-          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\CIRelease\net5.0-windows\${{ env.PLUGIN_PROJECT_NAME }}
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\CIRelease\${{ env.PLUGIN_PROJECT_NAME }}
           if-no-files-found: error
 
   deploy:
