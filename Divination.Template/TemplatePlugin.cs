@@ -8,23 +8,26 @@ using Dalamud.Plugin;
 
 namespace Divination.Template
 {
-    public class TemplatePlugin : DivinationPlugin<TemplatePlugin, PluginConfig, PluginDefinition>,
-        IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>, IDefinitionSupport
+    public sealed class TemplatePlugin : DivinationPlugin<TemplatePlugin, PluginConfig, PluginDefinition>,
+        IDalamudPlugin,
+        ICommandSupport,
+        IConfigWindowSupport<PluginConfig>,
+        IDefinitionSupport
     {
         public TemplatePlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
             PluginLog.Information("Plugin loaded!");
         }
 
-        public string MainCommandPrefix => "/template";
-        public string DefinitionUrl => "https://ephemera.horoscope.dev/dist/Template.json";
-        public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+        string ICommandSupport.MainCommandPrefix => "/template";
+        string IDefinitionSupport.DefinitionUrl => "https://ephemera.horoscope.dev/dist/Template.json";
+        ConfigWindow<PluginConfig> IConfigWindowSupport<PluginConfig>.CreateConfigWindow() => new PluginConfigWindow();
 
-        [Command("/hoge", "foo", "<arg>", "<optionalarg?>", "<vararg...>")]
+        [Command("/example", "foo", "<arg>", "<optionalarg?>", "<vararg...>")]
         [CommandHelp("This is sample command.")]
-        private void OnHogeCommand(CommandContext context)
+        private static void OnExampleCommand(CommandContext context)
         {
-            PluginLog.Information("/hoge called.");
+            PluginLog.Information("/example called.");
         }
     }
 }

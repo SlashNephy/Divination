@@ -1,14 +1,27 @@
 {
-  "Name": "This is Name.",
-  "InternalName": "Divination.Template",
-  "Author": "This is Author.",
-  "Punchline": "This is Punchline.",
-  "Description": "This is Description.",
+  "Name": "Divination.Template",
+  "Author": "[Author]",
+  "Description": "[Description]",
+  "Punchline": "[Punchline]",
+  "Changelog": "[Changelog]",
   "Tags": [
-    "This",
-    "is",
-    "Tags"
+    "[Tag]"
+  ],
+  "CategoryTags": [
+    "other",
+    "jobs",
+    "ui",
+    "minigames",
+    "inventory",
+    "sound",
+    "social",
+    "utility"
+  ],
+  "IconUrl": null,
+  "ImageUrls": [
   ],
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Template",
-  "DalamudApiLevel": 4
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0
 }
