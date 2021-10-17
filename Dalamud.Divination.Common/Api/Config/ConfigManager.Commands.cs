@@ -41,9 +41,9 @@ namespace Dalamud.Divination.Common.Api.Config
                 });
             }
 
-            [Command("config", "<key?>", "<value?>")]
-            [Command("config", "<key?>")]
             [Command("config")]
+            [Command("config", "<key?>")]
+            [Command("config", "<key?>", "<value?>")]
             [CommandHelp("プラグインの設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
             private void OnConfigCommand(CommandContext context)
             {
@@ -57,7 +57,7 @@ namespace Dalamud.Divination.Common.Api.Config
                     {
                         new TextPayload("コマンドの構文が間違っています。"),
                         new TextPayload($"Usage: {context.Command.Usage}"),
-                        new TextPayload("設定名は Config.cs で定義されているフィールド名です。大文字小文字を区別しません。"),
+                        new TextPayload($"設定名は {typeof(TConfiguration).FullName} で定義されているフィールド名です。大文字小文字を区別しません。"),
                         new TextPayload("設定値が bool/string の場合, 設定値を省略することができます。bool の場合はトグルされ, string の場合は空白値として設定します。"),
                         new TextPayload("利用可能な設定名の一覧:"),
                         new TextPayload(string.Join("\n", configKeys))

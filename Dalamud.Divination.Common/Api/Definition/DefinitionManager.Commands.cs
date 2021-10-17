@@ -35,6 +35,8 @@ namespace Dalamud.Divination.Common.Api.Definition
                 manager.chatClient.Print($"定義ファイルを更新しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 
+            [Command("def", "override")]
+            [Command("def", "override", "<key?>")]
             [Command("def", "override", "<key?>", "<value?>")]
             [CommandHelp("定義 <key?> を <value?> に上書きします。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
             private void OnDefOverride(CommandContext context)
@@ -49,7 +51,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                     {
                         new TextPayload("コマンドの構文が間違っています。"),
                         new TextPayload($"Usage: {context.Command.Usage}"),
-                        new TextPayload("設定名は Definitions.cs で定義されているフィールド名です。大文字小文字を区別しません。"),
+                        new TextPayload($"設定名は {typeof(TContainer).FullName} で定義されているフィールド名です。大文字小文字を区別しません。"),
                         new TextPayload("設定値が空白の場合, null として設定します。"),
                         new TextPayload("利用可能な定義名の一覧:"),
                         new TextPayload(string.Join("\n", defKeys))
