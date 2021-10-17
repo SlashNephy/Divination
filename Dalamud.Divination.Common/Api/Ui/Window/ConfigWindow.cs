@@ -15,7 +15,7 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
 
         [Command("")]
         [CommandHelp("プラグインの設定ウィンドウを開きます。")]
-        private void OnMainCommand()
+        internal void OnMainCommand()
         {
             this.Toggle();
         }

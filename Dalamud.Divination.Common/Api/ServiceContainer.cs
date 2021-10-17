@@ -32,6 +32,14 @@ namespace Dalamud.Divination.Common.Api
             }
         }
 
+        public static bool Contains<T>() where T : class
+        {
+            lock (Services)
+            {
+                return Services.Any(x => x.type == typeof(T));
+            }
+        }
+
         public static void DestroyAll()
         {
             // 追加された順の逆順で破棄する

@@ -48,12 +48,7 @@ namespace Dalamud.Divination.Common.Api
             return processor;
         });
 
-        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() =>
-        {
-            var manager = new ConfigManager<TConfiguration>(Dalamud.PluginInterface, Chat);
-            return manager;
-        });
-
+        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() => new ConfigManager<TConfiguration>(Dalamud.PluginInterface, Chat));
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
             // ReSharper disable once SuspiciousTypeConversion.Global
@@ -62,6 +57,7 @@ namespace Dalamud.Divination.Common.Api
                 var window = configWindowSupport.CreateConfigWindow();
                 window.ConfigManager = Config;
 
+                Dalamud.PluginInterface.UiBuilder.OpenConfigUi += window.OnMainCommand;
                 Dalamud.PluginInterface.UiBuilder.Draw += window.OnDraw;
 
                 return window;
@@ -75,22 +71,16 @@ namespace Dalamud.Divination.Common.Api
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (Plugin is IDefinitionSupport definitionSupport)
             {
-                var manager = new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat);
-                return manager;
+                return new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat);
             }
 
             return null;
         });
 
         public ITextureManager Texture => ServiceContainer.GetOrPut(() => new TextureManager(Dalamud.DataManager, Dalamud.PluginInterface.UiBuilder));
-        public IVersionManager Version => ServiceContainer.GetOrPut(() =>
-        {
-            var manager = new VersionManager(
-                new GitVersion(Assembly),
-                new GitVersion(Assembly.GetExecutingAssembly()));
-            return manager;
-        });
-
+        public IVersionManager Version => ServiceContainer.GetOrPut(() => new VersionManager(
+            new GitVersion(Assembly),
+            new GitVersion(Assembly.GetExecutingAssembly())));
         public IVoiceroid2ProxyClient Voiceroid2Proxy => ServiceContainer.GetOrPut(() => new Voiceroid2ProxyClient());
         public IXivApiClient XivApi => ServiceContainer.GetOrPut(() => new XivApiClient());
         public IKeyStrokeManager KeyStroke => ServiceContainer.GetOrPut(() => new KeyStrokeManager());
@@ -123,11 +113,13 @@ namespace Dalamud.Divination.Common.Api
         {
             if (disposing)
             {
-                if (ConfigWindow != null)
+                if (ServiceContainer.Contains<ConfigWindow<TConfiguration>>())
                 {
-                    Dalamud.PluginInterface.UiBuilder.Draw -= ConfigWindow.OnDraw;
-                    ServiceContainer.DestroyAll();
+                    Dalamud.PluginInterface.UiBuilder.OpenConfigUi -= ConfigWindow!.OnMainCommand;
+                    Dalamud.PluginInterface.UiBuilder.Draw -= ConfigWindow!.OnDraw;
                 }
+
+                ServiceContainer.DestroyAll();
             }
         }
 
