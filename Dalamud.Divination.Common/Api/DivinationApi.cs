@@ -26,7 +26,7 @@ namespace Dalamud.Divination.Common.Api
         private Assembly Assembly { get; }
         private IDivinationPluginApi<TConfiguration, TDefinition> Plugin { get; }
 
-        public IChatClient Chat => ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui));
+        public IChatClient Chat => ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui, Dalamud.ClientState));
 
         [SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
         public ICommandProcessor? Command => ServiceContainer.GetOrPutOptional(() =>

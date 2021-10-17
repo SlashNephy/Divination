@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using Dalamud.Game.ClientState;
 using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
@@ -19,13 +20,15 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         private readonly string title;
         private readonly ChatGui gui;
+        private readonly ClientState clientState;
 
         private readonly BlockingCollection<XivChatEntry> queue = new();
 
-        public ChatClient(string title, ChatGui gui)
+        public ChatClient(string title, ChatGui gui, ClientState clientState)
         {
             this.title = title.Replace("Plugin", string.Empty).Replace("Divination.", string.Empty);
             this.gui = gui;
+            this.clientState = clientState;
 
             gui.ChatMessage += OnChatMessage;
         }
@@ -40,7 +43,7 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         public void EnqueueChat(XivChatEntry entry)
         {
-            if (!queue.IsAddingCompleted)
+            if (!queue.IsAddingCompleted || !clientState.IsLoggedIn)
             {
                 queue.Add(entry);
             }
@@ -100,7 +103,7 @@ namespace Dalamud.Divination.Common.Api.Chat
             {
                 foreach (var entry in queue.GetConsumingEnumerable())
                 {
-                    EnqueueChat(entry);
+                    gui.PrintChat(entry);
                 }
             }
         }
