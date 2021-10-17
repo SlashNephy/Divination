@@ -59,6 +59,8 @@ jobs:
           - horoscope-dev/Dalamud.Divination.Debugger
           - horoscope-dev/Dalamud.Divination.Craftsman
           - horoscope-dev/Dalamud.Divination.Fisherman
+          - horoscope-dev/Dalamud.Divination.SseClient
+          - horoscope-dev/Dalamud.Divination.ChatFilter
           # - horoscope-dev/Dalamud.Divination.InstanceIDViewer
 
     steps:
