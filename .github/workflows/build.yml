@@ -8,8 +8,6 @@ name: Build
 
 on:
   push:
-    branches-ignore:
-      - 'releases/**'
     paths-ignore:
       - '*.md'
 
@@ -46,26 +44,22 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/stg/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
-      - name: Update Version on Release
-        if: github.event_name == 'release'
-        run: |
-          $ProjectVersion = $env:GITHUB_REF.replace("refs/tags/", "").replace("v", "")
-          $ProjectFile = ".\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.csproj"
-          $Content = Get-Content $ProjectFile | % { $_ -replace "<PackageVersion>.+</PackageVersion>","<PackageVersion>${ProjectVersion}</PackageVersion>" }
-          $Content | Out-File $ProjectFile -Encoding UTF8
-          echo "PROJECT_VERSION=${ProjectVersion}" >> $env:GITHUB_ENV
-      - name: Update Project File
-        if: github.event_name == 'release'
-        uses: EndBug/add-and-commit@v7
+
+      - name: Restore Nuget Cache
+        uses: actions/cache@v2
         with:
-          add: ${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.csproj
-          branch: master
-          author_name: GitHub Action
-          author_email: github-actions[bot]@users.noreply.github.com
-          message: Bump version to ${{ env.PROJECT_VERSION }}
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore Nuget Packages
+        run: dotnet restore
+        env:
+          DOTNET_CLI_TELEMETRY_OPTOUT: true
 
       - name: Build Plugin
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --no-restore /property:OutputPath=bin\CIRelease\
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
 
@@ -73,19 +67,19 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
-          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\Release\net5.0-windows7.0\${{ env.PLUGIN_PROJECT_NAME }}
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\CIRelease\${{ env.PLUGIN_PROJECT_NAME }}
           if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master')
+    if: github.repository != 'horoscope-dev/Dalamud.Divination.Template' && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout Plugin Repository
         uses: actions/checkout@v2
         with:
-          repository: SlashNephy/Dalamud.DivinationPluginRepo
+          repository: ${{ env.PLUGIN_REPOSITORY }}
           token: ${{ secrets.GH_PAT }}
 
       - name: Prepare Repository Type (on Release)
@@ -101,11 +95,14 @@ jobs:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
           path: dist/${{ env.REPOSITORY_TYPE }}/${{ env.PLUGIN_PROJECT_NAME }}
 
+      - name: Prepare Short SHA
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+
       - name: Push to Plugin Repository
         uses: EndBug/add-and-commit@v7
         with:
           add: --all
           branch: master
-          author_name: GitHub Action
-          author_email: github-actions[bot]@users.noreply.github.com
-          message: Update ${{ env.PLUGIN_PROJECT_NAME }} (${{ env.REPOSITORY_TYPE }})
+          default_author: github_actions
+          message: Update ${{ env.PLUGIN_PROJECT_NAME }} (${{ env.REPOSITORY_TYPE }}, ${{ steps.short-sha.outputs.sha }})
