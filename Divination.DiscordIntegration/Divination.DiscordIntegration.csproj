@@ -1,21 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-        <Title>Divination.DiscordIntegration</Title>
-        <Authors>Nep</Authors>
-        <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
-        <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.DiscordIntegration</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.DiscordIntegration/blob/master/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.DiscordIntegration</RepositoryUrl>
-        <Company>Horoscope.dev</Company>
-        <NeutralLanguage>ja-JP</NeutralLanguage>
-        <RootNamespace>Divination.DiscordIntegration</RootNamespace>
-        <PackageVersion>0.1.0.0</PackageVersion>
-        <TargetFramework>net5.0-windows7.0</TargetFramework>
-        <Platforms>x64</Platforms>
-        <PlatformTarget>x64</PlatformTarget>
-    </PropertyGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
 
@@ -40,10 +23,7 @@
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="DiscordRichPresence" Version="1.0.175">
-          <ExcludeAssets></ExcludeAssets>
-          <PrivateAssets>All</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="DalamudPackager" Version="2.1.4" />
+        <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+        <PackageReference Include="DalamudPackager" Version="2.*" />
     </ItemGroup>
 </Project>
