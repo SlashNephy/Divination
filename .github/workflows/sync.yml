@@ -10,7 +10,6 @@ on:
 jobs:
   sync:
     if: github.repository == 'horoscope-dev/Dalamud.Divination.Template' && github.ref == 'refs/heads/master'
-
     runs-on: ubuntu-latest
 
     env:
@@ -33,6 +32,9 @@ jobs:
           # - horoscope-dev/Dalamud.Divination.InstanceIDViewer
 
     steps:
+      - name: Checkout Template
+        uses: actions/checkout@v2
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
