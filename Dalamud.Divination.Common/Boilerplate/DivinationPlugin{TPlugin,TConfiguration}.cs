@@ -1,5 +1,4 @@
 ﻿using Dalamud.Configuration;
-using Dalamud.Divination.Common.Api.Definition;
 using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Boilerplate

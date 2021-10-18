@@ -62,10 +62,16 @@ namespace Dalamud.Divination.Common.Boilerplate
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// .NET 管理リソースを解放します。
+        /// </summary>
         protected virtual void ReleaseManaged()
         {
         }
 
+        /// <summary>
+        /// .NET 管理外のリソースの解放を試みます。
+        /// </summary>
         protected virtual void ReleaseUnmanaged()
         {
         }
