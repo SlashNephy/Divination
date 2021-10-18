@@ -1,29 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-        <Title>Divination.Calculator</Title>
-        <Authors>Nep</Authors>
-        <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
-        <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Calculator</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Calculator/blob/master/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Calculator</RepositoryUrl>
-        <Company>Horoscope.dev</Company>
-        <NeutralLanguage>ja-JP</NeutralLanguage>
-        <RootNamespace>Divination.Calculator</RootNamespace>
-        <PackageVersion>0.1.0.0</PackageVersion>
-        <TargetFramework>net5.0-windows7.0</TargetFramework>
-        <Platforms>x64</Platforms>
-        <PlatformTarget>x64</PlatformTarget>
-    </PropertyGroup>
-    
     <ItemGroup>
         <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
-        
+
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        
-        <PackageReference Include="DalamudPackager" Version="2.1.2" />
+
+        <PackageReference Include="DalamudPackager" Version="2.*" />
     </ItemGroup>
 </Project>
