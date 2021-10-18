@@ -22,7 +22,11 @@ namespace Dalamud.Divination.Common.Api.Config
             this.@interface = @interface;
             this.chatClient = chatClient;
 
-            Config = @interface.GetPluginConfig() as TConfiguration ?? new TConfiguration();
+            var config = @interface.GetPluginConfig();
+            PluginLog.Verbose("Config file = {File}", this.@interface.ConfigFile);
+            PluginLog.Verbose("Raw config loaded: {Config}", JsonConvert.SerializeObject(config));
+
+            Config = config as TConfiguration ?? new TConfiguration();
             PluginLog.Verbose("Config loaded: {Config}", JsonConvert.SerializeObject(Config));
         }
 
