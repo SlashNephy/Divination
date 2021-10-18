@@ -25,11 +25,7 @@ namespace Dalamud.Divination.Common.Api.Config
             this.chatClient = chatClient;
             this.pluginName = pluginName;
 
-            var config = @interface.GetPluginConfig();
-            PluginLog.Verbose("Config file = {File}", this.@interface.ConfigFile);
-            PluginLog.Verbose("Raw config loaded: {Config}", JsonConvert.SerializeObject(config));
-
-            Config = dalamud.Load(pluginName) as TConfiguration ?? new TConfiguration();
+            Config = dalamud.LoadForType<TConfiguration>(pluginName);
             PluginLog.Verbose("Config loaded: {Config}", JsonConvert.SerializeObject(Config));
         }
 
@@ -53,7 +49,6 @@ namespace Dalamud.Divination.Common.Api.Config
         public void Save()
         {
             dalamud.Save(Config, pluginName);
-            @interface.SavePluginConfig(Config);
             PluginLog.Verbose("Config saved: {Config}", JsonConvert.SerializeObject(Config));
         }
 
