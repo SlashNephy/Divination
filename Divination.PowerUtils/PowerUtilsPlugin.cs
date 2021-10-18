@@ -17,7 +17,8 @@ namespace Divination.Template
 
         public string MainCommandPrefix => "/power";
 
-        [Command("/MonitorOff", "<seconds?>")]
+        [Command("monitoroff")]
+        [Command("monitoroff", "<seconds?>")]
         [CommandHelp("<seconds?> 秒後にディスプレイの電源を切ります。引数が指定されない場合は 5 秒後に電源を切ります。")]
         private void OnMonitorOffCommand(CommandContext context)
         {
