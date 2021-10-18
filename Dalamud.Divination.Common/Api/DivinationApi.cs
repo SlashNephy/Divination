@@ -48,7 +48,7 @@ namespace Dalamud.Divination.Common.Api
             return processor;
         });
 
-        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() => new ConfigManager<TConfiguration>(Dalamud.PluginInterface, Chat, Plugin.Name));
+        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() => new ConfigManager<TConfiguration>(Dalamud.PluginInterface, Chat));
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
             // ReSharper disable once SuspiciousTypeConversion.Global

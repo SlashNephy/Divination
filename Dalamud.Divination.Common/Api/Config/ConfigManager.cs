@@ -14,22 +14,15 @@ namespace Dalamud.Divination.Common.Api.Config
     {
         private readonly DalamudPluginInterface @interface;
         private readonly IChatClient chatClient;
-        private readonly string pluginName;
-        private readonly PluginConfigurations dalamud = new(DivinationEnvironment.XivLauncherPluginConfigDirectory);
 
         public TConfiguration Config { get; }
 
-        public ConfigManager(DalamudPluginInterface @interface, IChatClient chatClient, string pluginName)
+        public ConfigManager(DalamudPluginInterface @interface, IChatClient chatClient)
         {
             this.@interface = @interface;
             this.chatClient = chatClient;
-            this.pluginName = pluginName;
 
-            var config = @interface.GetPluginConfig();
-            PluginLog.Verbose("Config file = {File}", this.@interface.ConfigFile);
-            PluginLog.Verbose("Raw config loaded: {Config}", JsonConvert.SerializeObject(config));
-
-            Config = dalamud.Load(pluginName) as TConfiguration ?? new TConfiguration();
+            Config = @interface.GetPluginConfig() as TConfiguration ?? new TConfiguration();
             PluginLog.Verbose("Config loaded: {Config}", JsonConvert.SerializeObject(Config));
         }
 
@@ -52,7 +45,6 @@ namespace Dalamud.Divination.Common.Api.Config
 
         public void Save()
         {
-            dalamud.Save(Config, pluginName);
             @interface.SavePluginConfig(Config);
             PluginLog.Verbose("Config saved: {Config}", JsonConvert.SerializeObject(Config));
         }
