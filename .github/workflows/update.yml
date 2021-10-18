@@ -1,31 +1,24 @@
 name: Update PluginMaster
 
+env:
+  DOWNLOAD_BASE_URI: https://repo.horoscope.dev
+
 on: 
   push:
     paths-ignore:
       - '**.md'
-      - pluginmaster.json
+      - '**/pluginmaster.json'
 
     branches:
       - master
 
   workflow_dispatch:
 
-concurrency:
-  this_is_concurrency_workflow
-
-env:
-  DOWNLOAD_BASE_URI: https://repo.horoscope.dev
-
 jobs:
   update:
     runs-on: ubuntu-latest
+    concurrency: staging
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -49,6 +42,5 @@ jobs:
       - name: Push PluginMaster
         uses: EndBug/add-and-commit@v7
         with:
-          author_name: GitHub Action
-          author_email: github-actions[bot]@users.noreply.github.com
-          message: Update PluginMaster
+          default_author: github_actions
+          message: Regenerate PluginMaster
