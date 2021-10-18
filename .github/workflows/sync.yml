@@ -40,7 +40,7 @@ jobs:
         with:
           repository: ${{ matrix.repository }}
           path: repo/${{ matrix.repository }}
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.TEMPLATE_GH_PAT }}
           submodules: recursive
           fetch-depth: 0
 
