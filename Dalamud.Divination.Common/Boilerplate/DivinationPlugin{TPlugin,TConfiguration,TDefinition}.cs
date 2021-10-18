@@ -48,7 +48,6 @@ namespace Dalamud.Divination.Common.Boilerplate
             Dalamud = new DalamudApi(pluginInterface);
             Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
 
-            Divination.Chat.Print("プラグインを読み込みました！");
             PluginLog.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.Version.Plugin.InformationalVersion);
         }
 
@@ -79,8 +78,6 @@ namespace Dalamud.Divination.Common.Boilerplate
             if (disposing)
             {
                 ReleaseManaged();
-
-                Divination.Chat.Print("プラグインを停止しました。");
             }
 
             ReleaseUnmanaged();
