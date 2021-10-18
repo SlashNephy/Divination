@@ -18,7 +18,7 @@ using Dalamud.Divination.Common.Boilerplate.Features;
 
 namespace Dalamud.Divination.Common.Api
 {
-    internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationApi<TConfiguration, TDefinition>, IDisposable
+    internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationApi<TConfiguration, TDefinition>
         where TConfiguration : class, IPluginConfiguration, new()
         where TDefinition : DefinitionContainer, new()
     {

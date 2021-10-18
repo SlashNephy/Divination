@@ -78,6 +78,7 @@ namespace Dalamud.Divination.Common.Boilerplate
             if (disposing)
             {
                 ReleaseManaged();
+                Divination.Dispose();
             }
 
             ReleaseUnmanaged();

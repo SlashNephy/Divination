@@ -1,4 +1,5 @@
-﻿using Dalamud.Configuration;
+﻿using System;
+using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Config;
@@ -13,7 +14,7 @@ using Dalamud.Divination.Common.Api.XivApi;
 
 namespace Dalamud.Divination.Common.Api
 {
-    public interface IDivinationApi<TConfiguration, out TDefinition>
+    public interface IDivinationApi<TConfiguration, out TDefinition> : IDisposable
         where TConfiguration : class, IPluginConfiguration, new()
         where TDefinition : DefinitionContainer, new()
     {
