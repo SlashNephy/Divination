@@ -36,7 +36,7 @@ namespace Divination.DiscordIntegration.Discord
             rpcClient.OnPresenceUpdate += (_, args) =>
             {
                 PluginLog.Verbose(
-                    "RichPresence:\nDetails        = {}\nState          = {}\nSmallImageText = {}\nLargeImageText = {}",
+                    "RichPresence:\nDetails        = {Details}\nState          = {State}\nSmallImageText = {SmallImageText}\nLargeImageText = {LargeImageText}",
                     args.Presence.Details, args.Presence.State, args.Presence.Assets.SmallImageText, args.Presence.Assets.LargeImageText);
             };
             rpcClient.OnConnectionFailed += (_, _) =>
@@ -114,7 +114,7 @@ namespace Divination.DiscordIntegration.Discord
             previousCustomStatusEmojiName = emojiName;
             previousCustomStatusText = text;
 
-            PluginLog.Verbose("CustomStatus: :{}: ({} / {})", emojiName ?? "null", emojiId ?? "null", text ?? "null");
+            PluginLog.Verbose("CustomStatus: :{EmojiName}: ({EmojiId} / {Text})", emojiName ?? "null", emojiId ?? "null", text ?? "null");
         }
 
         public void Dispose()
