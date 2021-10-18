@@ -1,0 +1,20 @@
+{
+  "Name": "Divination.SseClient",
+  "Author": "Asteria Nocturna",
+  "Description": "Receive SSE payloads such as Discord messages, mob hunt information and so on.",
+  "Punchline": "Enhance your chat to receive external messages",
+  "Tags": [
+    "Chat"
+  ],
+  "CategoryTags": [
+    "social",
+    "utility"
+  ],
+  "IconUrl": null,
+  "ImageUrls": [
+  ],
+  "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.SseChat",
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0
+}

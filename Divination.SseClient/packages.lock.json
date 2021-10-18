@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     ".NETCoreApp,Version=v5.0": {
+      "3v.EvtSource": {
+        "type": "Direct",
+        "requested": "[2.*, )",
+        "resolved": "2.0.0",
+        "contentHash": "+5mAL4BrKXC0bQd8SAv3WACGPEmHEwzDQliT+ao//BowPmX+W+zHMGVj+O3xM+tjkNPpwKY89dSQfbf7wpO4DQ=="
+      },
       "DalamudPackager": {
         "type": "Direct",
         "requested": "[2.*, )",
