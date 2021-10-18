@@ -2,13 +2,13 @@
 using Dalamud.Logging;
 using ImGuiNET;
 
-namespace Divination.Template
+namespace Divination.ChatFilter
 {
     public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         public override void Draw()
         {
-            if (ImGui.Begin($"{TemplatePlugin.Instance.Name} Config", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
+            if (ImGui.Begin($"{ChatFilterPlugin.Instance.Name} Config", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
             {
                 ImGui.Text("This is config window.");
 
@@ -18,7 +18,7 @@ namespace Divination.Template
                 {
                     IsOpen = false;
 
-                    TemplatePlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
+                    ChatFilterPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
                     PluginLog.Information("Config saved");
                 }
 
