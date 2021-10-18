@@ -2,3 +2,4 @@
 	path = Common
 	url = https://github.com/SlashNephy/Dalamud.Divination.Common
 	ignore = dirty
+	branch = master
