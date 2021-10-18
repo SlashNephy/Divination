@@ -45,15 +45,17 @@ namespace Dalamud.Divination.Common.Api
             // 追加された順の逆順で破棄する
             lock (Services)
             {
-                foreach (var (_, instance) in Services)
+                foreach (var (type, instance) in Services)
                 {
                     if (instance is IDisposable disposable)
                     {
                         disposable.Dispose();
+                        PluginLog.Verbose("Dispose: {Disposable}", type.FullName!);
                     }
                 }
 
                 Services.Clear();
+                PluginLog.Verbose("ServiceContainer is clear");
             }
         }
     }
