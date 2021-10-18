@@ -12,7 +12,7 @@ namespace Divination.DiscordIntegration
 
         public static short? GetTitle(this PlayerCharacter character)
         {
-            return character.ReadByte(DiscordIntegrationPlugin.Instance.Divination.Definition?.Provider.Container.TitleOffset);
+            return character.ReadInt16(DiscordIntegrationPlugin.Instance.Divination.Definition?.Provider.Container.TitleOffset);
         }
     }
 }

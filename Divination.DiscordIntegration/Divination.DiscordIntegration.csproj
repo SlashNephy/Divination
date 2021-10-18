@@ -10,10 +10,6 @@
             <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="Serilog">
-            <HintPath>$(DalamudLibPath)Serilog.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
         <Reference Include="Lumina">
             <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
             <Private>false</Private>
