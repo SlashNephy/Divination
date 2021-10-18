@@ -1,9 +1,10 @@
-name: Build
-
 env:
-  # GH_PAT: You should set this in secrets setting. Require "repo:public_repo".
   PLUGIN_PROJECT_NAME: Divination.Template
   PLUGIN_REPOSITORY: horoscope-dev/Dalamud.DivinationPluginRepo
+
+### BEGIN TEMPLATE ###
+
+name: Build
 
 on:
   push:
@@ -94,10 +95,14 @@ jobs:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
           path: dist/${{ env.REPOSITORY_TYPE }}/${{ env.PLUGIN_PROJECT_NAME }}
 
+      - name: Prepare Short SHA
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+
       - name: Push to Plugin Repository
         uses: EndBug/add-and-commit@v7
         with:
           add: --all
           branch: master
           default_author: github_actions
-          message: Update ${{ env.PLUGIN_PROJECT_NAME }} (${{ env.REPOSITORY_TYPE }})
+          message: Update ${{ env.PLUGIN_PROJECT_NAME }} (${{ env.REPOSITORY_TYPE }}, ${{ steps.short-sha.outputs.sha }})

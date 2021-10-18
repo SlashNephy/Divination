@@ -51,6 +51,17 @@ jobs:
             cp -rf $file repo/${{ matrix.repository }}/
           done
 
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Update Workflow
+        run: python .github/update_workflow.py
+        env:
+          WORKFLOW_FILE: repo/${{ matrix.repository }}/.github/workflows/build.yml
+          TEMPLATE_FILE: .github/workflows/build.yml
+
       - name: Update Submodule
         working-directory: repo/${{ matrix.repository }}
         run: |
