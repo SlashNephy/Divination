@@ -18,14 +18,16 @@ namespace Dalamud.Divination.Common.Api.Version
             }
 
             [Command("version")]
-            [CommandHelp("プラグインのバージョンを表示します。")]
+            [CommandHelp("{Name} のバージョンを表示します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnVersionCommand()
             {
                 chatClient.Print(versionManager.Plugin.InformationalVersion);
             }
 
             [Command("version", "common")]
-            [CommandHelp("プラグインが使用している Divination.Common のバージョンを表示します。")]
+            [CommandHelp("{Name} が使用している Dalamud.Divination.Common のバージョンを表示します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnVersionCommonCommand()
             {
                 chatClient.Print(versionManager.Divination.InformationalVersion);

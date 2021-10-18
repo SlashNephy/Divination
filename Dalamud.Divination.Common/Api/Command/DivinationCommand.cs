@@ -13,7 +13,8 @@ namespace Dalamud.Divination.Common.Api.Command
         internal readonly ICommandProvider Instance;
         public CommandAttribute Attribute { get; }
         public string? Help { get; }
-        public bool IsHidden { get; }
+        public bool HideInHelp { get; }
+        public bool HideInStartUp { get; }
 
         public bool CanReceiveContext { get; }
         public string[] Syntaxes { get; }
@@ -23,7 +24,7 @@ namespace Dalamud.Divination.Common.Api.Command
         private static readonly Regex OptionalArgRegex = new(@"<(\w+)\?>", RegexOptions.Compiled);
         private static readonly Regex VarargRegex = new(@"<(\w+)\.\.\.>", RegexOptions.Compiled);
 
-        public DivinationCommand(MethodInfo method, ICommandProvider instance, CommandAttribute attribute, string defaultPrefix)
+        public DivinationCommand(MethodInfo method, ICommandProvider instance, CommandAttribute attribute, string defaultPrefix, string pluginName)
         {
             Attribute = attribute;
             Method = method;
@@ -72,8 +73,11 @@ namespace Dalamud.Divination.Common.Api.Command
             });
             Regex = new Regex($"^{string.Join(" ", syntaxes)}$", RegexOptions.IgnoreCase);
 
-            Help = method.GetCustomAttribute<CommandHelpAttribute>()?.Help;
-            IsHidden = method.GetCustomAttribute<HiddenCommandAttribute>() != null;
+            Help = method.GetCustomAttribute<CommandHelpAttribute>()?.Help.Replace("{Name}", pluginName);
+
+            var hidden = method.GetCustomAttribute<HiddenCommandAttribute>();
+            HideInHelp = hidden?.HideInHelp ?? false;
+            HideInStartUp = hidden?.HideInStartUp ?? false;
         }
 
         /// <summary>

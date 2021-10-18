@@ -134,7 +134,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 {
                     try
                     {
-                        var command = new DivinationCommand(method, instance, attribute, Prefix ?? $"/{pluginName}".Replace("Plugin", string.Empty).ToLower());
+                        var command = new DivinationCommand(method, instance, attribute, Prefix ?? $"/{pluginName}".Replace("Divination.", string.Empty).ToLower(), pluginName);
                         RegisterCommand(command);
                     }
                     catch (ArgumentException exception)
@@ -150,7 +150,7 @@ namespace Dalamud.Divination.Common.Api.Command
             commands.Add(command);
             PluginLog.Information("コマンド: {Usage} が登録されました。", command.Usage);
 
-            if (command.IsHidden)
+            if (command.HideInStartUp)
             {
                 return;
             }

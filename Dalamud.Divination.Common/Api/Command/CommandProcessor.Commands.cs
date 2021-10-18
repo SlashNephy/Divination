@@ -1,4 +1,5 @@
-﻿using Dalamud.Divination.Common.Api.Chat;
+﻿using System.Linq;
+using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Dalamud.Payload;
@@ -19,14 +20,14 @@ namespace Dalamud.Divination.Common.Api.Command
             }
 
             [Command("help")]
-            [CommandHelp("プラグインのヘルプを表示します。")]
+            [CommandHelp("{Name} のコマンド一覧を表示します。")]
             private void OnHelpCommand()
             {
                 processor.chatClient.Print(payloads =>
                 {
                     payloads.Add(new TextPayload($"{processor.pluginName} のコマンド一覧:\n"));
 
-                    foreach (var command in processor.Commands)
+                    foreach (var command in processor.Commands.Where(x => !x.HideInHelp))
                     {
                         payloads.AddRange(PayloadUtilities.HighlightAngleBrackets(command.Usage));
 

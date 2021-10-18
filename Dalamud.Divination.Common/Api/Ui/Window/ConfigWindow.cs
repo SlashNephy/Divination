@@ -14,7 +14,7 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
         public TConfiguration Config => ConfigManager.Config;
 
         [Command("")]
-        [CommandHelp("プラグインの設定ウィンドウを開きます。")]
+        [CommandHelp("{Name} の設定ウィンドウを開きます。")]
         internal void OnMainCommand()
         {
             this.Toggle();

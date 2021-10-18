@@ -24,7 +24,8 @@ namespace Dalamud.Divination.Common.Api.Config
             }
 
             [Command("config", "show")]
-            [CommandHelp("プラグインの設定を出力します。")]
+            [CommandHelp("{Name} の設定を出力します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnConfigShowCommand()
             {
                 chatClient.Print(payloads =>
@@ -44,7 +45,8 @@ namespace Dalamud.Divination.Common.Api.Config
             [Command("config")]
             [Command("config", "<key?>")]
             [Command("config", "<key?>", "<value?>")]
-            [CommandHelp("プラグインの設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            [CommandHelp("{Name} の設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnConfigCommand(CommandContext context)
             {
                 var key = context["key"];

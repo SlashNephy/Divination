@@ -9,7 +9,7 @@ namespace Dalamud.Divination.Common.Api.Command
     {
         [Command("appdata")]
         [CommandHelp("Divination の AppData ディレクトリを開きます。")]
-        [HiddenCommand]
+        [HiddenCommand(HideInHelp = false)]
         private static void OnAppDataCommand()
         {
             Process.Start(DivinationEnvironment.DivinationDirectory);
@@ -17,7 +17,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
         [Command("xlappdata")]
         [CommandHelp("XIVLauncher の AppData ディレクトリを開きます。")]
-        [HiddenCommand]
+        [HiddenCommand(HideInHelp = false)]
         private static void OnXivLauncherAppDataCommand()
         {
             Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher"));

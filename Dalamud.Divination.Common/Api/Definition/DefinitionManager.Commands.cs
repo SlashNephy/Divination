@@ -22,6 +22,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
             [Command("def", "version")]
             [CommandHelp("定義ファイルのバージョンを表示します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnDefVersionCommand()
             {
                 manager.chatClient.Print($"定義ファイル: ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
@@ -29,6 +30,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
             [Command("def", "fetch")]
             [CommandHelp("定義ファイルを更新します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnDefFetchCommand()
             {
                 manager.Provider.Update(CancellationToken.None);
@@ -39,6 +41,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             [Command("def", "override", "<key?>")]
             [Command("def", "override", "<key?>", "<value?>")]
             [CommandHelp("定義 <key?> を <value?> に上書きします。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            [HiddenCommand(HideInHelp = false)]
             private void OnDefOverride(CommandContext context)
             {
                 var key = context["key"];
