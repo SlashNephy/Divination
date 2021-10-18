@@ -1,8 +1,10 @@
-name: Build
-
 env:
-  # GH_PAT: You should set this in secrets setting. Require "repo:public_repo".
   PLUGIN_PROJECT_NAME: Divination.PowerUtils
+  PLUGIN_REPOSITORY: horoscope-dev/Dalamud.DivinationPluginRepo
+
+### BEGIN TEMPLATE ###
+
+name: Build
 
 on:
   push:
