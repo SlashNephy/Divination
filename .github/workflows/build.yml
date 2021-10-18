@@ -73,7 +73,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    if: github.repository != 'horoscope-dev/Dalamud.Divination.Template' && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
 
     steps:
       - name: Checkout Plugin Repository
