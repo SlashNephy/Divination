@@ -14,7 +14,9 @@ using Lumina.Excel.GeneratedSheets;
 namespace Divination.AetheryteLinkInChat
 {
     public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlugin, PluginConfig>,
-        IConfigWindowSupport<PluginConfig>, ICommandSupport
+        IDalamudPlugin,
+        IConfigWindowSupport<PluginConfig>,
+        ICommandSupport
     {
         private const int LinkCommandId = 1;
         private readonly DalamudLinkPayload? linkPayload;
