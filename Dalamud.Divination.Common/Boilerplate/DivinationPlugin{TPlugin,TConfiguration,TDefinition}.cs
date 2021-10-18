@@ -38,11 +38,6 @@ namespace Dalamud.Divination.Common.Boilerplate
 
         protected DivinationPlugin(DalamudPluginInterface pluginInterface)
         {
-            if (this is not IDalamudPlugin)
-            {
-                throw new TypeAccessException("インタフェース: IDalamudPlugin を実装していません。");
-            }
-
             Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
             IsDisposed = false;
             Dalamud = new DalamudApi(pluginInterface);
