@@ -18,7 +18,7 @@ def main():
   with open(TEMPLATE_FILE) as f:
     template = PATTERN.search(f.read()).group(0)
 
-  new_workflow = PATTERN.sub(template, workflow)
+  new_workflow = PATTERN.sub("", workflow) + template
   with open(WORKFLOW_FILE, "w") as f:
     f.write(new_workflow)
 
