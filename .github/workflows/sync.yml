@@ -1,0 +1,67 @@
+name: Synchronize
+
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+
+  workflow_dispatch:
+
+jobs:
+  sync:
+    if: github.repository == 'horoscope-dev/Dalamud.Divination.Template' && github.ref == 'refs/heads/master'
+
+    runs-on: ubuntu-latest
+
+    env:
+      FILES: Directory.Build.props GitVersion.yml .config .gitmodules
+    strategy:
+      fail-fast: false
+      matrix:
+        repository:
+          - horoscope-dev/Dalamud.Divination.TwitterIntegration
+          - horoscope-dev/Dalamud.Divination.AetheryteLinkInChat
+          - horoscope-dev/Dalamud.Divination.DiscordIntegration
+          - horoscope-dev/Dalamud.Divination.PowerUtils
+          - horoscope-dev/Dalamud.Divination.Calculator
+          - horoscope-dev/Dalamud.Divination.Voiceroid2Talker
+          - horoscope-dev/Dalamud.Divination.Debugger
+          - horoscope-dev/Dalamud.Divination.Craftsman
+          - horoscope-dev/Dalamud.Divination.Fisherman
+          - horoscope-dev/Dalamud.Divination.SseClient
+          - horoscope-dev/Dalamud.Divination.ChatFilter
+          # - horoscope-dev/Dalamud.Divination.InstanceIDViewer
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ matrix.repository }}
+          path: repo/${{ matrix.repository }}
+          token: ${{ secrets.GH_PAT }}
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Update Files
+        run: |
+          for file in $FILES
+          do
+            cp -rf $file repo/${{ matrix.repository }}/
+          done
+
+      - name: Update Submodule
+        working-directory: repo/${{ matrix.repository }}
+        run: |
+          git submodule foreach git pull origin master
+          git submodule foreach git checkout master
+
+      - name: Prepare Short SHA
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+
+      - name: Push
+        uses: EndBug/add-and-commit@v7
+        with:
+          cwd: repo/${{ matrix.repository }}
+          default_author: github_actions
+          message: Update Template to ${{ steps.short-sha.outputs.sha }}
