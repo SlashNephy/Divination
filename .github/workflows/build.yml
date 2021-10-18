@@ -87,13 +87,13 @@ jobs:
         id: short-sha
 
       - name: Download Artifact (stable)
-        if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master')
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
           path: dist/stable/${{ env.PLUGIN_PROJECT_NAME }}
       - name: Push to Plugin Repository (stable)
-        if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master')
         uses: EndBug/add-and-commit@v7
         with:
           add: --all
