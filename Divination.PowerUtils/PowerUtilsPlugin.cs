@@ -7,7 +7,7 @@ using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Plugin;
 
-namespace Divination.Template
+namespace Divination.PowerUtils
 {
     public class PowerUtilsPlugin : DivinationPlugin<PowerUtilsPlugin>, IDalamudPlugin, ICommandSupport
     {
@@ -17,15 +17,13 @@ namespace Divination.Template
 
         public string MainCommandPrefix => "/power";
 
-        [Command("monitoroff")]
-        [Command("monitoroff", "<seconds?>")]
+        [Command("/monitoroff", "<seconds?>")]
         [CommandHelp("<seconds?> 秒後にディスプレイの電源を切ります。引数が指定されない場合は 5 秒後に電源を切ります。")]
         private void OnMonitorOffCommand(CommandContext context)
         {
             Task.Run(() =>
             {
-                var arg = context["seconds"];
-                var seconds = int.TryParse(arg, out var value) ? value : 5;
+                var seconds = int.TryParse(context["seconds"], out var value) ? value : 5;
 
                 Divination.Chat.Print($"{seconds.ToString()}秒後にディスプレイの電源がオフになります。");
 

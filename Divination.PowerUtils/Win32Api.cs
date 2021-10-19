@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
-namespace Divination.Template
+namespace Divination.PowerUtils
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     internal static class Win32Api
