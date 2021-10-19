@@ -1,23 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-      <TargetFramework>net5.0-windows7.0</TargetFramework>
-      <LangVersion>preview</LangVersion>
-      <Nullable>enable</Nullable>
-      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-      <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
-      
-      <IsPackable>false</IsPackable>
-      <Title>Dalamud.Divination.Common</Title>
-      <Authors>Nep</Authors>
-      <Description>🧰 Common library for Dalamud.Divination plugins</Description>
-      <Copyright>Copyright © Horoscope.dev since 2020</Copyright>
-      <PackageProjectUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</PackageProjectUrl>
-      <PackageLicenseUrl>https://github.com/SlashNephy/Dalamud.Divination.Common/blob/master/LICENSE</PackageLicenseUrl>
-      <RepositoryUrl>https://github.com/SlashNephy/Dalamud.Divination.Common</RepositoryUrl>
-      <Company>Horoscope.dev</Company>
-      <NeutralLanguage>ja-JP</NeutralLanguage>
-      <Platforms>x64</Platforms>
+        <AssemblyTitle>Common library for Dalamud.Divination plugins</AssemblyTitle>
+        <Company>Horoscope.dev</Company>
+        <Product>Divination</Product>
+        <Copyright>Copyright (c) Asteria Nocturna</Copyright>
     </PropertyGroup>
+
     <ItemGroup>
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
@@ -39,9 +27,5 @@
             <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <PackageReference Include="GitVersion.MsBuild" Version="5.7.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 </Project>
