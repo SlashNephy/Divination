@@ -1,5 +1,5 @@
 [submodule "Common"]
 	path = Common
-	url = https://github.com/SlashNephy/Dalamud.Divination.Common
+	url = https://github.com/horoscope-dev/Dalamud.Divination.Common
 	ignore = dirty
 	branch = master
