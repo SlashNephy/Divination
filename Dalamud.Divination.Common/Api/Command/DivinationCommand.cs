@@ -71,7 +71,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 var arg = ArgRegex.Match(x);
                 return arg.Success ? @$"(?<{arg.Groups[1].Value}>\S+)" : x;
             });
-            Regex = new Regex($"^{string.Join(" ", syntaxes)}$", RegexOptions.IgnoreCase);
+            Regex = new Regex($"^{string.Join(@"\s?", syntaxes)}$", RegexOptions.IgnoreCase);
 
             Help = method.GetCustomAttribute<CommandHelpAttribute>()?.Help.Replace("{Name}", pluginName);
 
