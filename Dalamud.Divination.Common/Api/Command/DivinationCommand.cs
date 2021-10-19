@@ -71,7 +71,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 if (vararg.Success)
                 {
                     priority += 2;
-                    return @$" ?(?<{vararg.Groups[1].Value}>.+)";
+                    return @$" (?<{vararg.Groups[1].Value}>.+)";
                 }
 
                 priority += 3;

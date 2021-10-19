@@ -59,14 +59,14 @@ namespace Dalamud.Divination.Common.Api.Config
                 });
             }
 
-            [Command("config", "<key>", "<value...>")]
-            [Command("configtts", "<key>", "<value...>")]
-            [CommandHelp("{Name} の設定 <key> を <value...> に変更できます。")]
+            [Command("config", "<key>", "<value?>")]
+            [Command("configtts", "<key>", "<value?>")]
+            [CommandHelp("{Name} の設定 <key> を <value?> に変更できます。")]
             [HiddenCommand(HideInHelp = false)]
             private void OnConfigUpdateCommand(CommandContext context)
             {
                 var key = context.GetArgument("key");
-                var value = context.GetArgument("value");
+                var value = context["value"];
 
                 manager.TryUpdate(key, value, context.Command.Syntaxes[1] == "configtts");
             }
