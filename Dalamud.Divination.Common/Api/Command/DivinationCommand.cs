@@ -61,7 +61,7 @@ namespace Dalamud.Divination.Common.Api.Command
                 var optionalArg = OptionalArgRegex.Match(x);
                 if (optionalArg.Success)
                 {
-                    return @$"( ?<{optionalArg.Groups[1].Value}>\S+)?";
+                    return @$" ?(?<{optionalArg.Groups[1].Value}>\S+)?";
                 }
 
                 var vararg = VarargRegex.Match(x);
