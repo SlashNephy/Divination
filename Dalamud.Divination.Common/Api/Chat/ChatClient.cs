@@ -31,6 +31,10 @@ namespace Dalamud.Divination.Common.Api.Chat
             this.clientState = clientState;
 
             gui.ChatMessage += OnChatMessage;
+            if (clientState.IsLoggedIn)
+            {
+                CompleteChatQueue();
+            }
         }
 
         private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
@@ -43,7 +47,7 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         public void EnqueueChat(XivChatEntry entry)
         {
-            if (!queue.IsAddingCompleted || !clientState.IsLoggedIn)
+            if (!queue.IsAddingCompleted)
             {
                 queue.Add(entry);
             }
