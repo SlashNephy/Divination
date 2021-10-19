@@ -33,12 +33,7 @@ namespace Divination.DiscordIntegration.Data
         public static string GetImageKey(this LoadingImage image)
         {
             var id = (byte) image;
-            if (id < 1 || id > 20)
-            {
-                return "logo";
-            }
-
-            return $"li_{id}";
+            return id is < 1 or > 20 ? "logo" : $"li_{id}";
         }
     }
 }
