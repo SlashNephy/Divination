@@ -36,7 +36,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
             RegisterCommandsByAttribute(new DefaultCommands(this));
 
-            chatGui.ChatMessage += OnChatMessage;
+            chatGui.CheckMessageHandled += OnChatMessage;
         }
 
         public IReadOnlyList<DivinationCommand> Commands
@@ -178,7 +178,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
         public void Dispose()
         {
-            chatGui.ChatMessage -= OnChatMessage;
+            chatGui.CheckMessageHandled -= OnChatMessage;
             commands.Clear();
         }
     }
