@@ -13,6 +13,7 @@ ProjectSection(SolutionItems) = preProject
 	Directory.Build.props = Directory.Build.props
 	GitVersion.yml = GitVersion.yml
 	README.md = README.md
+	.config\dotnet-tools.json = .config\dotnet-tools.json
 EndProjectSection
 EndProject
 Global
