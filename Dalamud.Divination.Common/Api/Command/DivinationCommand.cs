@@ -54,24 +54,31 @@ namespace Dalamud.Divination.Common.Api.Command
 
             Syntaxes = Syntaxes.Where(x => !x.IsNullOrWhitespace()).Select(x => x.Trim()).ToArray();
 
-            var syntaxes = Syntaxes.Select(x =>
+            var syntaxes = Syntaxes.Select((x, i) =>
             {
+                // i = 0 のときに引数を受け取るケースはないので決め打ちして良い
+
                 var optionalArg = OptionalArgRegex.Match(x);
                 if (optionalArg.Success)
                 {
-                    return @$"(?<{optionalArg.Groups[1].Value}>\S+)?";
+                    return @$"( ?<{optionalArg.Groups[1].Value}>\S+)?";
                 }
 
                 var vararg = VarargRegex.Match(x);
                 if (vararg.Success)
                 {
-                    return @$"(?<{vararg.Groups[1].Value}>.+)";
+                    return @$" (?<{vararg.Groups[1].Value}>.+)";
                 }
 
                 var arg = ArgRegex.Match(x);
-                return arg.Success ? @$"(?<{arg.Groups[1].Value}>\S+)" : x;
+                if (arg.Success)
+                {
+                    return @$" (?<{arg.Groups[1].Value}>\S+)";
+                }
+
+                return i == 0 ? x : $" {x}";
             });
-            Regex = new Regex($"^{string.Join(@"\s?", syntaxes)}$", RegexOptions.IgnoreCase);
+            Regex = new Regex($"^{string.Join(string.Empty, syntaxes)}$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
             Help = method.GetCustomAttribute<CommandHelpAttribute>()?.Help.Replace("{Name}", pluginName);
 
