@@ -60,7 +60,7 @@ jobs:
 
       - name: Prepare Plugin Meta
         run: |
-          $json_path = .\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.json
+          $json_path = ".\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.json"
           $json = Get-Content $json_path | ConvertFrom-Json -AsHashtable
           echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"])" >> $env:GITHUB_ENV
           echo "PLUGIN_PUNCHLINE=$($json["Punchline"])" >> $env:GITHUB_ENV
