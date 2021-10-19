@@ -19,6 +19,7 @@ namespace Dalamud.Divination.Common.Api.Command
         public bool CanReceiveContext { get; }
         public string[] Syntaxes { get; }
         public Regex Regex { get; }
+        public int Priority { get; }
 
         private static readonly Regex ArgRegex = new(@"<(\w+)>", RegexOptions.Compiled);
         private static readonly Regex OptionalArgRegex = new(@"<(\w+)\?>", RegexOptions.Compiled);
@@ -54,6 +55,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
             Syntaxes = Syntaxes.Where(x => !x.IsNullOrWhitespace()).Select(x => x.Trim()).ToArray();
 
+            var priority = 0;
             var syntaxes = Syntaxes.Select((x, i) =>
             {
                 // i = 0 のときに引数を受け取るケースはないので決め打ちして良い
@@ -61,14 +63,18 @@ namespace Dalamud.Divination.Common.Api.Command
                 var optionalArg = OptionalArgRegex.Match(x);
                 if (optionalArg.Success)
                 {
+                    priority++;
                     return @$" ?(?<{optionalArg.Groups[1].Value}>\S+)?";
                 }
 
                 var vararg = VarargRegex.Match(x);
                 if (vararg.Success)
                 {
+                    priority += 2;
                     return @$" (?<{vararg.Groups[1].Value}>.+)";
                 }
+
+                priority += 3;
 
                 var arg = ArgRegex.Match(x);
                 if (arg.Success)
@@ -78,7 +84,9 @@ namespace Dalamud.Divination.Common.Api.Command
 
                 return i == 0 ? x : $" {x}";
             });
+
             Regex = new Regex($"^{string.Join(string.Empty, syntaxes)}$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            Priority = priority;
 
             Help = method.GetCustomAttribute<CommandHelpAttribute>()?.Help.Replace("{Name}", pluginName);
 

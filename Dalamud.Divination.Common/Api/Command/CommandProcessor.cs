@@ -143,6 +143,8 @@ namespace Dalamud.Divination.Common.Api.Command
                     }
                 }
             }
+
+            commands.Sort((a, b) => b.Priority - a.Priority);
         }
 
         private void RegisterCommand(DivinationCommand command)
