@@ -21,10 +21,10 @@ namespace Dalamud.Divination.Common.Api.Command
         public Regex Regex { get; }
         public int Priority { get; }
 
-        private static readonly Regex ArgRegex = new(@"<(\w+)>", RegexOptions.Compiled);
-        private static readonly Regex OptionalArgRegex = new(@"<(\w+)\?>", RegexOptions.Compiled);
-        private static readonly Regex VarargRegex = new(@"<(\w+)\.\.\.>", RegexOptions.Compiled);
-        private static readonly Regex OptionalVarargRegex = new(@"<(\w+)\.\.\.\?>", RegexOptions.Compiled);
+        private static readonly Regex ArgRegex = new(@"^<(\w+)>$", RegexOptions.Compiled);
+        private static readonly Regex OptionalArgRegex = new(@"^<(\w+)\?>$", RegexOptions.Compiled);
+        private static readonly Regex VarargRegex = new(@"^<(\w+)\.\.\.>$", RegexOptions.Compiled);
+        private static readonly Regex OptionalVarargRegex = new(@"^<(\w+)\.\.\.\?>$", RegexOptions.Compiled);
 
         public DivinationCommand(MethodInfo method, ICommandProvider instance, CommandAttribute attribute, string defaultPrefix, string pluginName)
         {
