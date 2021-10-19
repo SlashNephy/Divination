@@ -33,6 +33,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         public string Name => $"Divination.{Instance.GetType().Name.Replace("Plugin", string.Empty)}";
         public bool IsDisposed { get; private set; }
         public TConfiguration Config => Divination.Config.Config;
+        public TDefinition? Definition => Divination.Definition?.Container;
         public IDalamudApi Dalamud { get; }
         public IDivinationApi<TConfiguration, TDefinition> Divination { get; }
         public Assembly Assembly => Instance.GetType().Assembly;

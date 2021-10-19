@@ -26,6 +26,8 @@ namespace Dalamud.Divination.Common.Api
         /// </summary>
         public TConfiguration Config { get; }
 
+        public TDefinition? Definition { get; }
+
         public IDalamudApi Dalamud { get; }
 
         public IDivinationApi<TConfiguration, TDefinition> Divination { get; }
