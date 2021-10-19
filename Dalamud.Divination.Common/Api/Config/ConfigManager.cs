@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Utilities;
+using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Logging;
 using Newtonsoft.Json;
 
@@ -12,14 +14,16 @@ namespace Dalamud.Divination.Common.Api.Config
     internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfiguration> where TConfiguration : class, IPluginConfiguration, new()
     {
         private readonly IChatClient chatClient;
+        private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
         private readonly string pluginName;
         private readonly PluginConfigurations dalamud = new(DivinationEnvironment.XivLauncherPluginConfigDirectory);
 
         public TConfiguration Config { get; }
 
-        public ConfigManager(IChatClient chatClient, string pluginName)
+        public ConfigManager(IChatClient chatClient, Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient, string pluginName)
         {
             this.chatClient = chatClient;
+            this.voiceroid2ProxyClient = voiceroid2ProxyClient;
             this.pluginName = pluginName;
 
             Config = dalamud.LoadForType<TConfiguration>(pluginName);
@@ -37,7 +41,7 @@ namespace Dalamud.Divination.Common.Api.Config
 
         public bool TryUpdate(string key, string? value, bool useTts)
         {
-            using var updater = new FieldUpdater(Config, chatClient, useTts);
+            var updater = new FieldUpdater(Config, chatClient, voiceroid2ProxyClient.Invoke(), useTts);
 
             var fields = EnumerateConfigFields(true);
             return updater.TryUpdate(key, value, fields);

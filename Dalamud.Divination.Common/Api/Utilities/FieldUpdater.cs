@@ -9,18 +9,19 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Utilities
 {
-    internal class FieldUpdater : IFieldUpdater, IDisposable
+    internal class FieldUpdater : IFieldUpdater
     {
         public object Object { get; }
 
         private readonly IChatClient chatClient;
-        private readonly Lazy<IVoiceroid2ProxyClient> v2PClient = new(() => new Voiceroid2ProxyClient());
+        private readonly IVoiceroid2ProxyClient voiceroid2ProxyClient;
         private readonly bool useTts;
 
-        public FieldUpdater(object obj, IChatClient chatClient, bool useTts)
+        public FieldUpdater(object obj, IChatClient chatClient, IVoiceroid2ProxyClient voiceroid2ProxyClient, bool useTts)
         {
             Object = obj;
             this.chatClient = chatClient;
+            this.voiceroid2ProxyClient = voiceroid2ProxyClient;
             this.useTts = useTts;
         }
 
@@ -29,7 +30,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
             if (useTts)
             {
                 var text = new SeString(payloads).TextValue;
-                v2PClient.Value.TalkAsync(text);
+                voiceroid2ProxyClient.TalkAsync(text);
             }
             else
             {
@@ -222,14 +223,6 @@ namespace Dalamud.Divination.Common.Api.Utilities
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(") に変換できませんでした。")
             });
-        }
-
-        public void Dispose()
-        {
-            if (v2PClient.IsValueCreated)
-            {
-                v2PClient.Value.Dispose();
-            }
         }
     }
 }

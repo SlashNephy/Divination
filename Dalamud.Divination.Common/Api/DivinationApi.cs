@@ -48,7 +48,7 @@ namespace Dalamud.Divination.Common.Api
             return processor;
         });
 
-        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() => new ConfigManager<TConfiguration>(Chat, Plugin.Name));
+        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() => new ConfigManager<TConfiguration>(Chat, () => Voiceroid2Proxy, Plugin.Name));
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
             // ReSharper disable once SuspiciousTypeConversion.Global
@@ -70,7 +70,7 @@ namespace Dalamud.Divination.Common.Api
             // ReSharper disable once SuspiciousTypeConversion.Global
             if (Plugin is IDefinitionSupport definitionSupport)
             {
-                return new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat);
+                return new DefinitionManager<TDefinition>(definitionSupport.DefinitionUrl, Chat, () => Voiceroid2Proxy);
             }
 
             return null;
