@@ -66,7 +66,7 @@ jobs:
           echo "PLUGIN_DESCRIPTION=$($json["Description"])" >> $env:GITHUB_ENV
 
       - name: Build Plugin
-        run: dotnet build --configuration Release --no-restore /property:OutputPath=bin\CIRelease\ /property:Product=Divination /property:Company=Horoscope.dev /property:Copyright="${{ env.PLUGIN_AUTHOR }}" /property:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"
+        run: dotnet build --configuration Release --no-restore /property:OutputPath=bin\CIRelease\ /property:Product=Divination /property:Company=Horoscope /property:Copyright="${{ env.PLUGIN_AUTHOR }}" /property:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
 
