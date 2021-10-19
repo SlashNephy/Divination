@@ -52,6 +52,11 @@ namespace Dalamud.Divination.Common.Api.Utilities
 
         public bool TryUpdate(string key, string? value, IEnumerable<FieldInfo> fields)
         {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                value = null;
+            }
+
             var fieldInfo = fields.FirstOrDefault(x => x.Name.Equals(key, StringComparison.CurrentCultureIgnoreCase));
             if (fieldInfo == null)
             {
