@@ -12,6 +12,7 @@ ProjectSection(SolutionItems) = preProject
 	.github\workflows\build.yml = .github\workflows\build.yml
 	Directory.Build.props = Directory.Build.props
 	GitVersion.yml = GitVersion.yml
+	README.md = README.md
 EndProjectSection
 EndProject
 Global
