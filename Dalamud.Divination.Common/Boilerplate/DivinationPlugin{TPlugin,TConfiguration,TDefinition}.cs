@@ -17,6 +17,7 @@ namespace Dalamud.Divination.Common.Boilerplate
     /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
     /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
     /// <typeparam name="TDefinition">プラグインの外部定義クラス。</typeparam>
+    [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
     public abstract class DivinationPlugin<TPlugin, TConfiguration, TDefinition> : IDivinationPluginApi<TConfiguration, TDefinition>
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration, TDefinition>
         where TConfiguration : class, IPluginConfiguration, new()
@@ -71,7 +72,6 @@ namespace Dalamud.Divination.Common.Boilerplate
         {
         }
 
-        [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
         protected virtual void Dispose(bool disposing)
         {
             IsDisposed = true;
