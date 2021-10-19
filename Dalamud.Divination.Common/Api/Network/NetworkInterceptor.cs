@@ -34,23 +34,28 @@ namespace Dalamud.Divination.Common.Api.Network
             {
                 Task.Run(() =>
                 {
-                    try
-                    {
-                        switch (context.Direction)
-                        {
-                            case NetworkMessageDirection.ZoneDown when handler.CanHandleReceivedMessage(context):
-                                handler.HandleReceivedMessage(context);
-                                return;
-                            case NetworkMessageDirection.ZoneUp when handler.CanHandleSentMessage(context):
-                                handler.HandleSentMessage(context);
-                                return;
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        PluginLog.Error(exception, "Error occurred while Consume");
-                    }
+                    ConsumeEach(handler, context);
                 });
+            }
+        }
+
+        private static void ConsumeEach(INetworkHandler handler, NetworkContext context)
+        {
+            try
+            {
+                switch (context.Direction)
+                {
+                    case NetworkMessageDirection.ZoneDown when handler.CanHandleReceivedMessage(context):
+                        handler.HandleReceivedMessage(context);
+                        return;
+                    case NetworkMessageDirection.ZoneUp when handler.CanHandleSentMessage(context):
+                        handler.HandleSentMessage(context);
+                        return;
+                }
+            }
+            catch (Exception exception)
+            {
+                PluginLog.Error(exception, "Error occurred while ConsumeEach");
             }
         }
 
