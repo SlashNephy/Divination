@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Dalamud.Game.ClientState.Conditions;
@@ -7,6 +8,7 @@ using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Logging;
 using DiscordRPC;
 using Divination.DiscordIntegration.Data;
+using Divination.DiscordIntegration.Ipc;
 using Lumina.Excel.GeneratedSheets;
 using ClassJob = Divination.DiscordIntegration.Data.ClassJob;
 using OnlineStatus = Divination.DiscordIntegration.Data.OnlineStatus;
@@ -18,7 +20,7 @@ namespace Divination.DiscordIntegration
         #region Singleton
 
         private static Formatter? _instance;
-        private static readonly object Lock = new object();
+        private static readonly object Lock = new();
 
         public static Formatter? Instance
         {
@@ -104,13 +106,8 @@ namespace Divination.DiscordIntegration
         public string? Status { get; private set; }
         public string? Title { get; private set; }
 
-#if IPC
-        public static readonly object IpcVariablesLock = new object();
-        public static readonly Dictionary<string, (string variable, IpcTarget target, int group)> IpcVariables = new Dictionary<string, (string, IpcTarget, int)>();
-
-        public static readonly object IpcTemplatesLock = new object();
-        public static readonly Dictionary<string, (string template, IpcTarget target, int group)> IpcTemplates = new Dictionary<string, (string, IpcTarget, int)>();
-#endif
+        public static readonly Dictionary<string, IpcValueRecord> IpcVariables = new();
+        public static readonly Dictionary<string, IpcValueRecord> IpcTemplates = new();
 
         #endregion
 
@@ -344,27 +341,21 @@ namespace Divination.DiscordIntegration
 
         private string Format(string templateKey)
         {
-#if IPC
             if (IpcTemplates.TryGetValue(templateKey, out var ipcTemplate))
             {
-                if (!string.IsNullOrEmpty(ipcTemplate.template))
+                if (!string.IsNullOrEmpty(ipcTemplate.Value))
                 {
-                    return Render(ipcTemplate.template);
+                    return Render(ipcTemplate.Value);
                 }
 
             }
-#endif
 
             return Render(GetTemplate(templateKey));
         }
 
         public string Render(string template)
         {
-#if IPC
-            return IpcVariables.Aggregate(template, (x, item) => x.Replace(item.Key, item.Value.variable))
-#else
-            return template
-#endif
+            return IpcVariables.Aggregate(template, (x, item) => x.Replace(item.Key, item.Value.Value))
                 .Replace("{fc}", Fc ??= string.Empty)
                 .Replace("{world}", World ??= string.Empty)
                 .Replace("{home_world}", HomeWorld ??= string.Empty)

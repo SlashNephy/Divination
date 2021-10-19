@@ -62,6 +62,9 @@
       },
       "dalamud.divination.common": {
         "type": "Project"
+      },
+      "divination.discordintegration.ipcmodel": {
+        "type": "Project"
       }
     }
   }

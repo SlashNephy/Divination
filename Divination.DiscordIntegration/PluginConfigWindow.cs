@@ -170,16 +170,15 @@ namespace Divination.DiscordIntegration
                 var instance = Formatter.Instance;
                 CreateNormalVariablesCollapsingHeader(instance);
                 CreateNormalTemplatesCollapsingHeader(instance);
-#if IPC
+
                 CreateIpcVariablesCollapsingHeader();
                 CreateIpcTemplatesCollapsingHeader(instance);
-#endif
 
                 ImGui.EndTabItem();
             }
         }
 
-        private void CreateNormalVariablesCollapsingHeader(Formatter? instance)
+        private static void CreateNormalVariablesCollapsingHeader(Formatter? instance)
         {
             if (ImGui.CollapsingHeader("変数"))
             {
@@ -310,7 +309,7 @@ namespace Divination.DiscordIntegration
             }
         }
 
-        private void CreateNormalTemplatesCollapsingHeader(Formatter? instance)
+        private static void CreateNormalTemplatesCollapsingHeader(Formatter? instance)
         {
             if (ImGui.CollapsingHeader("テンプレート"))
             {
@@ -345,8 +344,7 @@ namespace Divination.DiscordIntegration
             }
         }
 
-#if  IPC
-        private void CreateIpcVariablesCollapsingHeader()
+        private static void CreateIpcVariablesCollapsingHeader()
         {
             if (ImGui.CollapsingHeader("IPC 変数"))
             {
@@ -357,13 +355,13 @@ namespace Divination.DiscordIntegration
                 ImGui.Text("プラグイン"); ImGui.NextColumn();
                 ImGui.Separator();
 
-                lock (Formatter.IpcVariablesLock)
+                lock (Formatter.IpcVariables)
                 {
-                    foreach (var pair in Formatter.IpcVariables)
+                    foreach (var (name, (variable, target, _)) in Formatter.IpcVariables)
                     {
-                        ImGui.Text(pair.Key); ImGui.NextColumn();
-                        ImGui.Text(pair.Value.variable); ImGui.NextColumn();
-                        ImGui.Text(pair.Value.target.Target); ImGui.NextColumn();
+                        ImGui.Text(name); ImGui.NextColumn();
+                        ImGui.Text(variable); ImGui.NextColumn();
+                        ImGui.Text(target); ImGui.NextColumn();
                     }
                 }
 
@@ -382,19 +380,18 @@ namespace Divination.DiscordIntegration
                 ImGui.Text("評価された値"); ImGui.NextColumn();
                 ImGui.Separator();
 
-                lock (Formatter.IpcTemplatesLock)
+                lock (Formatter.IpcTemplates)
                 {
-                    foreach (var pair in Formatter.IpcTemplates)
+                    foreach (var (name, (template, target, _)) in Formatter.IpcTemplates)
                     {
-                        ImGui.Text($"{pair.Key} ({pair.Value.target})"); ImGui.NextColumn();
-                        ImGui.Text(pair.Value.template); ImGui.NextColumn();
-                        ImGui.Text(instance?.Render(pair.Value.template) ?? string.Empty); ImGui.NextColumn();
+                        ImGui.Text($"{name} ({target})"); ImGui.NextColumn();
+                        ImGui.Text(template); ImGui.NextColumn();
+                        ImGui.Text(instance?.Render(template) ?? string.Empty); ImGui.NextColumn();
                     }
                 }
 
                 ImGui.Columns(1);
             }
         }
-#endif
     }
 }
