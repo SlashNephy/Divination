@@ -150,7 +150,7 @@ namespace Dalamud.Divination.Common.Api.Command
         private void RegisterCommand(DivinationCommand command)
         {
             commands.Add(command);
-            PluginLog.Information("コマンド: {Usage} が登録されました。", command.Usage);
+            PluginLog.Information("コマンド: {Usage} が登録されました。Regex = {Regex}, Priority = {Priority}", command.Usage, command.Regex, command.Priority);
 
             if (command.HideInStartUp)
             {
