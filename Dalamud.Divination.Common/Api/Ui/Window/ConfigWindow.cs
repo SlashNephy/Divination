@@ -7,7 +7,7 @@ using Dalamud.Interface;
 
 namespace Dalamud.Divination.Common.Api.Ui.Window
 {
-    public abstract class ConfigWindow<TConfiguration> : Window, IDisposable, ICommandProvider where TConfiguration : class, IPluginConfiguration, new()
+    public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConfiguration>, IDisposable, ICommandProvider where TConfiguration : class, IPluginConfiguration, new()
     {
 #pragma warning disable 8618
         internal IConfigManager<TConfiguration> ConfigManager { get; set; }
@@ -16,14 +16,19 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
 
         public TConfiguration Config => ConfigManager.Config;
 
+        public void Save()
+        {
+            ConfigManager.Save();
+        }
+
         [Command("")]
         [CommandHelp("{Name} の設定ウィンドウを開きます。")]
-        internal void OnMainCommand()
+        private void OnMainCommand()
         {
             this.Toggle();
         }
 
-        internal void OnDraw()
+        private void OnDraw()
         {
             if (!IsDrawing)
             {
