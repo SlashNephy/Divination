@@ -25,7 +25,7 @@ namespace Dalamud.Divination.Common.Api.Config
             }
 
             [Command("config", "show")]
-            [CommandHelp("{Name} の設定を出力します。")]
+            [CommandHelp("{Name} の現在の設定値を出力します。")]
             [HiddenCommand(HideInHelp = false)]
             private void OnConfigShowCommand()
             {
@@ -44,33 +44,29 @@ namespace Dalamud.Divination.Common.Api.Config
             }
 
             [Command("config")]
-            [Command("config", "<key?>")]
-            [Command("config", "<key?>", "<value?>")]
-            [Command("configtts")]
-            [Command("configtts", "<key?>")]
-            [Command("configtts", "<key?>", "<value?>")]
-            [CommandHelp("{Name} の設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            [CommandHelp("{Name} で利用可能な設定名の一覧を出力します。")]
             [HiddenCommand(HideInHelp = false)]
-            private void OnConfigCommand(CommandContext context)
+            private void OnConfigListCommand(CommandContext context)
             {
-                var key = context["key"];
-                var value = context["value"];
-                if (key == null)
+                var configKeys = EnumerateConfigFields().Select(x => x.Name);
+
+                chatClient.Print(new List<Payload>
                 {
-                    var configKeys = EnumerateConfigFields().Select(x => x.Name);
+                    new TextPayload($"設定名は {typeof(TConfiguration).FullName} で定義されているフィールド名です。大文字小文字を区別しません。\n"),
+                    new TextPayload("設定値が bool/string の場合, 設定値を省略することができます。bool の場合はトグルされ, string の場合は空白値として設定します。\n"),
+                    new TextPayload("利用可能な設定名の一覧:\n"),
+                    new TextPayload(string.Join("\n", configKeys))
+                });
+            }
 
-                    chatClient.PrintError(new List<Payload>
-                    {
-                        new TextPayload("コマンドの構文が間違っています。"),
-                        new TextPayload($"Usage: {context.Command.Usage}"),
-                        new TextPayload($"設定名は {typeof(TConfiguration).FullName} で定義されているフィールド名です。大文字小文字を区別しません。"),
-                        new TextPayload("設定値が bool/string の場合, 設定値を省略することができます。bool の場合はトグルされ, string の場合は空白値として設定します。"),
-                        new TextPayload("利用可能な設定名の一覧:"),
-                        new TextPayload(string.Join("\n", configKeys))
-                    });
-
-                    return;
-                }
+            [Command("config", "<key>", "<value...>")]
+            [Command("configtts", "<key>", "<value...>")]
+            [CommandHelp("{Name} の設定 <key> を <value...> に変更できます。")]
+            [HiddenCommand(HideInHelp = false)]
+            private void OnConfigUpdateCommand(CommandContext context)
+            {
+                var key = context.GetArgument("key");
+                var value = context.GetArgument("value");
 
                 manager.TryUpdate(key, value, context.Command.Syntaxes[1] == "configtts");
             }

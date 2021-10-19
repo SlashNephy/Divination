@@ -21,7 +21,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             }
 
             [Command("def", "version")]
-            [CommandHelp("定義ファイルのバージョンを表示します。")]
+            [CommandHelp("{Name} が参照している、定義ファイルのバージョンを表示します。")]
             [HiddenCommand(HideInHelp = false)]
             private void OnDefVersionCommand()
             {
@@ -29,41 +29,57 @@ namespace Dalamud.Divination.Common.Api.Definition
             }
 
             [Command("def", "fetch")]
-            [CommandHelp("定義ファイルを更新します。")]
+            [CommandHelp("{Name} の定義ファイルを再取得します。")]
             [HiddenCommand(HideInHelp = false)]
             private void OnDefFetchCommand()
             {
                 manager.Provider.Update(CancellationToken.None);
-                manager.chatClient.Print($"定義ファイルを更新しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
+                manager.chatClient.Print($"定義ファイルを再取得しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
+            }
+
+            [Command("def", "show")]
+            [CommandHelp("{Name} の現在の定義を出力します。")]
+            [HiddenCommand(HideInHelp = false)]
+            private void OnDefShowCommand()
+            {
+                manager.chatClient.Print(payloads =>
+                {
+                    payloads.Add(new TextPayload("定義一覧:\n"));
+
+                    foreach (var fieldInfo in manager.EnumerateDefinitionsFields())
+                    {
+                        var name = fieldInfo.Name;
+                        var value = fieldInfo.GetValue(manager.Container);
+
+                        payloads.Add(new TextPayload($"{name} = {value}\n"));
+                    }
+                });
             }
 
             [Command("def")]
-            [Command("def", "<key?>")]
-            [Command("def", "<key?>", "<value?>")]
-            [Command("deftts")]
-            [Command("deftts", "<key?>")]
-            [Command("deftts", "<key?>", "<value?>")]
-            [CommandHelp("定義 <key?> を <value?> に上書きします。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
+            [CommandHelp("{Name} で利用可能な定義名の一覧を出力します。")]
             [HiddenCommand(HideInHelp = false)]
-            private void OnDefOverride(CommandContext context)
+            private void OnDefListCommand()
             {
-                var key = context["key"];
-                var value = context["value"];
-                if (key == null)
-                {
-                    var defKeys = manager.EnumerateDefinitionsFields().Select(x => x.Name);
+                var defKeys = manager.EnumerateDefinitionsFields().Select(x => x.Name);
 
-                    manager.chatClient.PrintError(new List<Payload>
-                    {
-                        new TextPayload("コマンドの構文が間違っています。"),
-                        new TextPayload($"Usage: {context.Command.Usage}"),
-                        new TextPayload($"設定名は {typeof(TContainer).FullName} で定義されているフィールド名です。大文字小文字を区別しません。"),
-                        new TextPayload("設定値が空白の場合, null として設定します。"),
-                        new TextPayload("利用可能な定義名の一覧:"),
-                        new TextPayload(string.Join("\n", defKeys))
-                    });
-                    return;
-                }
+                manager.chatClient.Print(new List<Payload>
+                {
+                    new TextPayload($"定義名は {typeof(TContainer).FullName} で定義されているフィールド名です。大文字小文字を区別しません。\n"),
+                    new TextPayload("定義値が空白の場合, null として設定します。\n"),
+                    new TextPayload("利用可能な定義名の一覧:\n"),
+                    new TextPayload(string.Join("\n", defKeys))
+                });
+            }
+
+            [Command("def", "<key>", "<value>")]
+            [Command("deftts", "<key>", "<value>")]
+            [CommandHelp("{Name} の定義 <key> を <value> に上書きします。")]
+            [HiddenCommand(HideInHelp = false)]
+            private void OnDefUpdateCommand(CommandContext context)
+            {
+                var key = context.GetArgument("key");
+                var value = context.GetArgument("value");
 
                 manager.TryUpdate(key, value, context.Command.Syntaxes[1] == "deftts");
             }
