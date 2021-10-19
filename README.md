@@ -11,3 +11,9 @@ Drop the following url into your third-party repo URL list.
 
 - Testing  
   `https://repo.horoscope.dev/dist/testing/pluginmaster.json`
+
+## DalamudRepoBrowser Support
+
+If you are using [UnknownX7/DalamudRepoBrowser](https://github.com/UnknownX7/DalamudRepoBrowser), put the following url into your repomaster list.
+
+`https://repo.horoscope.dev/dist/repomaster.json`
