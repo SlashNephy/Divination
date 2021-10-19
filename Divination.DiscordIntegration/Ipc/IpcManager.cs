@@ -5,11 +5,6 @@ namespace Divination.DiscordIntegration.Ipc
 {
     public static class IpcManager
     {
-        private const string UpdateVariables = "Divination.DiscordIntegration_UpdateVariables";
-        private const string ClearVariables = "Divination.DiscordIntegration_ClearVariables";
-        private const string UpdateTemplates = "Divination.DiscordIntegration_UpdateTemplates";
-        private const string ClearTemplates = "Divination.DiscordIntegration_ClearTemplates";
-
         public static void Register()
         {
             CreateUpdateVariablesSubscriber().Subscribe(OnUpdateVariables);
@@ -28,7 +23,7 @@ namespace Divination.DiscordIntegration.Ipc
 
         private static ICallGateSubscriber<UpdateVariablesPayload, object> CreateUpdateVariablesSubscriber()
         {
-            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateVariablesPayload, object>(UpdateVariables);
+            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateVariablesPayload, object>(DiscordIntegrationIpcs.UpdateVariables);
         }
 
         private static void OnUpdateVariables(UpdateVariablesPayload payload)
@@ -39,7 +34,7 @@ namespace Divination.DiscordIntegration.Ipc
 
         private static ICallGateSubscriber<ClearVariablesPayload, object> CreateClearVariablesSubscriber()
         {
-            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearVariablesPayload, object>(ClearVariables);
+            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearVariablesPayload, object>(DiscordIntegrationIpcs.ClearVariables);
         }
 
         private static void OnClearVariables(ClearVariablesPayload payload)
@@ -49,7 +44,7 @@ namespace Divination.DiscordIntegration.Ipc
 
         private static ICallGateSubscriber<UpdateTemplatesPayload, object> CreateUpdateTemplatesSubscriber()
         {
-            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateTemplatesPayload, object>(UpdateTemplates);
+            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateTemplatesPayload, object>(DiscordIntegrationIpcs.UpdateTemplates);
         }
 
         private static void OnUpdateTemplates(UpdateTemplatesPayload payload)
@@ -60,7 +55,7 @@ namespace Divination.DiscordIntegration.Ipc
 
         private static ICallGateSubscriber<ClearTemplatesPayload, object> CreateClearTemplatesSubscriber()
         {
-            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearTemplatesPayload, object>(ClearTemplates);
+            return DiscordIntegrationPlugin.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearTemplatesPayload, object>(DiscordIntegrationIpcs.ClearTemplates);
         }
 
         private static void OnClearTemplates(ClearTemplatesPayload payload)
