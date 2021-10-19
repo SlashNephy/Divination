@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
-using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.Debugger
@@ -29,16 +28,14 @@ namespace Divination.Debugger
                 if (ImGui.Button("Save & Close"))
                 {
                     IsOpen = false;
-
-                    DebuggerPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    PluginLog.Information("Config saved");
+                    Save();
                 }
 
                 ImGui.End();
             }
         }
 
-        private void CreateVariablesTab()
+        private static void CreateVariablesTab()
         {
             if (ImGui.BeginTabItem("Variables"))
             {
@@ -69,7 +66,7 @@ namespace Divination.Debugger
 
         private static int _filtered = -1;
 
-        private void DrawLocalPlayerTest()
+        private static void DrawLocalPlayerTest()
         {
             var player = DebuggerPlugin.Instance.Dalamud.ClientState.LocalPlayer;
             if (player == null)
@@ -137,7 +134,7 @@ namespace Divination.Debugger
             return (l1, l2);
         }
 
-        private void DrawTargetTest()
+        private static void DrawTargetTest()
         {
             var target = DebuggerPlugin.Instance.Dalamud.TargetManager.Target;
             if (target is Character character)
@@ -161,7 +158,7 @@ namespace Divination.Debugger
             }
         }
 
-        private void DrawThreadTest()
+        private static void DrawThreadTest()
         {
             foreach (ProcessThread thread in Process.GetCurrentProcess().Threads)
             {
@@ -176,6 +173,8 @@ namespace Divination.Debugger
         {
             if (ImGui.BeginTabItem("Config"))
             {
+                ImGuiEx.CheckboxConfig("起動時にウィンドウを開く", ref Config.OpenAtStart);
+
                 ImGuiEx.CheckboxConfig("冗長なチャットログを表示する", ref Config.EnableVerboseChatLog,
                     "SeString としてパースされた, 冗長なチャットメッセージの構造を Debug Console に表示します。");
 

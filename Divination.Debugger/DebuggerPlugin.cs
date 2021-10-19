@@ -12,24 +12,11 @@ namespace Divination.Debugger
     public partial class DebuggerPlugin : DivinationPlugin<DebuggerPlugin, PluginConfig>,
         IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
     {
-        /*
-        private static readonly Lazy<AntiDebug> AntiDebug = new Lazy<AntiDebug>(() => new AntiDebug(Interface.TargetModuleScanner));
-        private static LogEventLevel _logEventLevel;
-        */
-
         public DebuggerPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
-            Divination.ConfigWindow!.IsDrawing = true;
-            Dalamud.ChatGui.ChatMessage += OnChatMessage;
+            Divination.ConfigWindow!.IsDrawing = Config.OpenAtStart;
 
-            /*
-             AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(x => x.GetTypes())
-                .First(x => x.FullName == "Dalamud.Service" && x.GenericTypeArguments.First().FullName == "")
-            _logEventLevel = DalamudLoggingLevelSwitch.MinimumLevel;
-            DalamudLoggingLevelSwitch.MinimumLevel = LogEventLevel.Verbose;
-            AntiDebug.Value.Enable();
-            */
+            Dalamud.ChatGui.ChatMessage += OnChatMessage;
         }
 
         private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
