@@ -56,9 +56,8 @@ namespace Dalamud.Divination.Common.Api
             {
                 var window = configWindowSupport.CreateConfigWindow();
                 window.ConfigManager = Config;
-
-                Dalamud.PluginInterface.UiBuilder.OpenConfigUi += window.OnMainCommand;
-                Dalamud.PluginInterface.UiBuilder.Draw += window.OnDraw;
+                window.UiBuilder = Dalamud.PluginInterface.UiBuilder;
+                window.EnableHook();
 
                 return window;
             }
@@ -109,16 +108,10 @@ namespace Dalamud.Divination.Common.Api
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        private static void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (ServiceContainer.Contains<ConfigWindow<TConfiguration>>())
-                {
-                    Dalamud.PluginInterface.UiBuilder.OpenConfigUi -= ConfigWindow!.OnMainCommand;
-                    Dalamud.PluginInterface.UiBuilder.Draw -= ConfigWindow!.OnDraw;
-                }
-
                 ServiceContainer.DestroyAll();
             }
         }
