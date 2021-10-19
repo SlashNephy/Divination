@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
@@ -45,6 +46,9 @@ namespace Dalamud.Divination.Common.Api.Config
             [Command("config")]
             [Command("config", "<key?>")]
             [Command("config", "<key?>", "<value?>")]
+            [Command("configtts")]
+            [Command("configtts", "<key?>")]
+            [Command("configtts", "<key?>", "<value?>")]
             [CommandHelp("{Name} の設定 <key?> を <value?> に変更できます。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
             [HiddenCommand(HideInHelp = false)]
             private void OnConfigCommand(CommandContext context)
@@ -68,7 +72,7 @@ namespace Dalamud.Divination.Common.Api.Config
                     return;
                 }
 
-                manager.TryUpdate(key, value);
+                manager.TryUpdate(key, value, context.Command.Syntaxes[1] == "configtts");
             }
         }
     }

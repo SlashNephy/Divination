@@ -37,9 +37,12 @@ namespace Dalamud.Divination.Common.Api.Definition
                 manager.chatClient.Print($"定義ファイルを更新しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 
-            [Command("def", "override")]
-            [Command("def", "override", "<key?>")]
-            [Command("def", "override", "<key?>", "<value?>")]
+            [Command("def")]
+            [Command("def", "<key?>")]
+            [Command("def", "<key?>", "<value?>")]
+            [Command("deftts")]
+            [Command("deftts", "<key?>")]
+            [Command("deftts", "<key?>", "<value?>")]
             [CommandHelp("定義 <key?> を <value?> に上書きします。<key?> が null の場合, 利用可能な設定名の一覧を出力します。")]
             [HiddenCommand(HideInHelp = false)]
             private void OnDefOverride(CommandContext context)
@@ -62,7 +65,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                     return;
                 }
 
-                manager.TryUpdate(key, value);
+                manager.TryUpdate(key, value, context.Command.Syntaxes[1] == "deftts");
             }
         }
     }

@@ -7,7 +7,7 @@ namespace Dalamud.Divination.Common.Api.Config
     {
         public T Config { get; }
 
-        public bool TryUpdate(string key, string? value);
+        public bool TryUpdate(string key, string? value, bool useTts);
 
         /// <summary>
         /// 現在のプラグインの設定インスタンスをファイルに保存します。

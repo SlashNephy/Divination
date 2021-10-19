@@ -5,23 +5,20 @@ using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Utilities;
 using Dalamud.Logging;
-using Dalamud.Plugin;
 using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Config
 {
     internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfiguration> where TConfiguration : class, IPluginConfiguration, new()
     {
-        private readonly DalamudPluginInterface @interface;
         private readonly IChatClient chatClient;
         private readonly string pluginName;
         private readonly PluginConfigurations dalamud = new(DivinationEnvironment.XivLauncherPluginConfigDirectory);
 
         public TConfiguration Config { get; }
 
-        public ConfigManager(DalamudPluginInterface @interface, IChatClient chatClient, string pluginName)
+        public ConfigManager(IChatClient chatClient, string pluginName)
         {
-            this.@interface = @interface;
             this.chatClient = chatClient;
             this.pluginName = pluginName;
 
@@ -38,11 +35,11 @@ namespace Dalamud.Divination.Common.Api.Config
             return !includeUpdateIgnore ? result : result.Where(x => x.GetCustomAttribute<UpdateProhibitedAttribute>() == null);
         }
 
-        public bool TryUpdate(string key, string? value)
+        public bool TryUpdate(string key, string? value, bool useTts)
         {
-            var fields = EnumerateConfigFields(true);
-            var updater = new FieldUpdater(Config, chatClient);
+            using var updater = new FieldUpdater(Config, chatClient, useTts);
 
+            var fields = EnumerateConfigFields(true);
             return updater.TryUpdate(key, value, fields);
         }
 

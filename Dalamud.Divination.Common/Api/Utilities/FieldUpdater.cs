@@ -3,21 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Utilities
 {
-    internal class FieldUpdater : IFieldUpdater
+    internal class FieldUpdater : IFieldUpdater, IDisposable
     {
         public object Object { get; }
 
         private readonly IChatClient chatClient;
+        private readonly Lazy<IVoiceroid2ProxyClient> v2PClient = new(() => new Voiceroid2ProxyClient());
+        private readonly bool useTts;
 
-        public FieldUpdater(object obj, IChatClient chatClient)
+        public FieldUpdater(object obj, IChatClient chatClient, bool useTts)
         {
             Object = obj;
             this.chatClient = chatClient;
+            this.useTts = useTts;
+        }
+
+        private void Respond(List<Payload> payloads)
+        {
+            if (useTts)
+            {
+                var text = new SeString(payloads).TextValue;
+                v2PClient.Value.TalkAsync(text);
+            }
+            else
+            {
+                chatClient.Print(payloads);
+            }
+        }
+
+        private void RespondError(List<Payload> payloads)
+        {
+            if (useTts)
+            {
+                Respond(payloads);
+            }
+            else
+            {
+                chatClient.PrintError(payloads);
+            }
         }
 
         public bool TryUpdate(string key, string? value, IEnumerable<FieldInfo> fields)
@@ -25,7 +54,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
             var fieldInfo = fields.FirstOrDefault(x => x.Name.Equals(key, StringComparison.CurrentCultureIgnoreCase));
             if (fieldInfo == null)
             {
-                chatClient.PrintError(new List<Payload>
+                RespondError(new List<Payload>
                 {
                     new TextPayload("指定されたフィールド名 "),
                     EmphasisItalicPayload.ItalicsOn,
@@ -39,7 +68,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
 
             if (fieldInfo.GetCustomAttribute<UpdateProhibitedAttribute>() != null)
             {
-                chatClient.PrintError(new List<Payload>
+                RespondError(new List<Payload>
                 {
                     new TextPayload("指定されたフィールド名 "),
                     EmphasisItalicPayload.ItalicsOn,
@@ -67,7 +96,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
                 case string:
                     return UpdateStringField(fieldInfo, value);
                 default:
-                    chatClient.PrintError(new List<Payload>
+                    RespondError(new List<Payload>
                     {
                         new TextPayload("指定されたフィールド名 "),
                         EmphasisItalicPayload.ItalicsOn,
@@ -161,7 +190,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
 
         private void PrintConfigValueSuccessLog(FieldInfo fieldInfo, object? value)
         {
-            chatClient.Print(new List<Payload>
+            Respond(new List<Payload>
             {
                 new TextPayload("フィールド "),
                 EmphasisItalicPayload.ItalicsOn,
@@ -177,7 +206,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
 
         private void PrintConfigValueTypeError(FieldInfo fieldInfo, object? value)
         {
-            chatClient.PrintError(new List<Payload>
+            RespondError(new List<Payload>
             {
                 new TextPayload("指定された値 "),
                 EmphasisItalicPayload.ItalicsOn,
@@ -193,6 +222,14 @@ namespace Dalamud.Divination.Common.Api.Utilities
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(") に変換できませんでした。")
             });
+        }
+
+        public void Dispose()
+        {
+            if (v2PClient.IsValueCreated)
+            {
+                v2PClient.Value.Dispose();
+            }
         }
     }
 }

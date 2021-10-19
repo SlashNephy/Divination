@@ -23,11 +23,11 @@ namespace Dalamud.Divination.Common.Api.Definition
             return Provider.Container.GetType().GetFields();
         }
 
-        public bool TryUpdate(string key, string? value)
+        public bool TryUpdate(string key, string? value, bool useTts)
         {
-            var fields = EnumerateDefinitionsFields();
-            var updater = new FieldUpdater(Provider.Container, chatClient);
+            using var updater = new FieldUpdater(Provider.Container, chatClient, useTts);
 
+            var fields = EnumerateDefinitionsFields();
             return updater.TryUpdate(key, value, fields);
         }
 

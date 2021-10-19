@@ -6,7 +6,7 @@ namespace Dalamud.Divination.Common.Api.Definition
     {
         public IDefinitionProvider<TContainer> Provider { get; }
 
-        public bool TryUpdate(string key, string? value);
+        public bool TryUpdate(string key, string? value, bool useTts);
 
         public TContainer Container { get; }
     }
