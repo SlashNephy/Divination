@@ -20,7 +20,7 @@ namespace Dalamud.Divination.Common.Api.Command
         [HiddenCommand(HideInHelp = false)]
         private static void OnXivLauncherAppDataCommand()
         {
-            Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher"));
+            Process.Start(DivinationEnvironment.XivLauncherDirectory);
         }
     }
 }
