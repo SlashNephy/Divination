@@ -1,4 +1,5 @@
-﻿using Dalamud.Plugin.Ipc;
+﻿using Dalamud.Logging;
+using Dalamud.Plugin.Ipc;
 using Divination.DiscordIntegration.IpcModel;
 
 namespace Divination.DiscordIntegration.Ipc
@@ -30,6 +31,8 @@ namespace Divination.DiscordIntegration.Ipc
         {
             IpcPayloadManager.ClearVariables(payload.Source, payload.Group);
             IpcPayloadManager.UpdateVariables(payload.Source, payload.Group, payload.Variables);
+
+            PluginLog.Verbose($"UpdateVariablesPayload (from {payload.Source}, group = {payload.Group}): {payload.Variables}");
         }
 
         private static ICallGateSubscriber<ClearVariablesPayload, object> CreateClearVariablesSubscriber()
@@ -40,6 +43,8 @@ namespace Divination.DiscordIntegration.Ipc
         private static void OnClearVariables(ClearVariablesPayload payload)
         {
             IpcPayloadManager.ClearVariables(payload.Source, payload.Group);
+
+            PluginLog.Verbose($"ClearVariablesPayload (from {payload.Source}, group = {payload.Group})");
         }
 
         private static ICallGateSubscriber<UpdateTemplatesPayload, object> CreateUpdateTemplatesSubscriber()
@@ -51,6 +56,8 @@ namespace Divination.DiscordIntegration.Ipc
         {
             IpcPayloadManager.ClearTemplates(payload.Source, payload.Group);
             IpcPayloadManager.UpdateTemplates(payload.Source, payload.Group, payload.Templates);
+
+            PluginLog.Verbose($"UpdateTemplatesPayload (from {payload.Source}, group = {payload.Group}): {payload.Templates}");
         }
 
         private static ICallGateSubscriber<ClearTemplatesPayload, object> CreateClearTemplatesSubscriber()
@@ -61,6 +68,8 @@ namespace Divination.DiscordIntegration.Ipc
         private static void OnClearTemplates(ClearTemplatesPayload payload)
         {
             IpcPayloadManager.ClearTemplates(payload.Source, payload.Group);
+
+            PluginLog.Verbose($"ClearTemplatesPayload (from {payload.Source}, group = {payload.Group})");
         }
     }
 }
