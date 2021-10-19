@@ -24,6 +24,7 @@ namespace Dalamud.Divination.Common.Api.Command
         private static readonly Regex ArgRegex = new(@"<(\w+)>", RegexOptions.Compiled);
         private static readonly Regex OptionalArgRegex = new(@"<(\w+)\?>", RegexOptions.Compiled);
         private static readonly Regex VarargRegex = new(@"<(\w+)\.\.\.>", RegexOptions.Compiled);
+        private static readonly Regex OptionalVarargRegex = new(@"<(\w+)\.\.\.\?>", RegexOptions.Compiled);
 
         public DivinationCommand(MethodInfo method, ICommandProvider instance, CommandAttribute attribute, string defaultPrefix, string pluginName)
         {
@@ -60,21 +61,28 @@ namespace Dalamud.Divination.Common.Api.Command
             {
                 // i = 0 のときに引数を受け取るケースはないので決め打ちして良い
 
+                var optionalVararg = OptionalVarargRegex.Match(x);
+                if (optionalVararg.Success)
+                {
+                    priority += 1;
+                    return @$" ?(?<{optionalVararg.Groups[1].Value}>.+)?";
+                }
+
                 var optionalArg = OptionalArgRegex.Match(x);
                 if (optionalArg.Success)
                 {
-                    priority++;
+                    priority += 2;
                     return @$" ?(?<{optionalArg.Groups[1].Value}>\S+)?";
                 }
 
                 var vararg = VarargRegex.Match(x);
                 if (vararg.Success)
                 {
-                    priority += 2;
+                    priority += 3;
                     return @$" (?<{vararg.Groups[1].Value}>.+)";
                 }
 
-                priority += 3;
+                priority += 5;
 
                 var arg = ArgRegex.Match(x);
                 if (arg.Success)
