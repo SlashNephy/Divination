@@ -1,13 +1,27 @@
 {
-  "Name": "Divination.Debugger",
-  "InternalName": "Divination.Debugger",
   "Author": "Asteria Nocturna",
+  "Name": "Divination.Debugger",
   "Punchline": "You don't need this unless you are developer.",
   "Description": "Tiny tool to inspect game...",
   "Tags": [
     "Development",
     "Debug"
   ],
+  "CategoryTags": [
+    "other",
+    "jobs",
+    "ui",
+    "minigames",
+    "inventory",
+    "sound",
+    "social",
+    "utility"
+  ],
+  "IsHide": false,
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Debugger",
-  "DalamudApiLevel": 4
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0,
+  "ImageUrls": [],
+  "IconUrl": null
 }
