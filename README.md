@@ -2,10 +2,6 @@
 
 Dalamud.Divination plugins third-party repository (⚠️ experimental!)
 
-## Plugin List
-
-The available plugins are listed [here]().
-
 ## Repo URL
 
 ![image](https://user-images.githubusercontent.com/7302150/137894902-e0079b2d-29c6-4616-9794-c2c161c4aba5.png)
