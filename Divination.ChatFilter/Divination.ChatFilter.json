@@ -1,8 +1,8 @@
 {
-  "Name": "Divination.ChatFilter",
   "Author": "Asteria Nocturna",
-  "Description": "Remove unnecessary chat messages by complex built-in filters.",
+  "Name": "Divination.ChatFilter",
   "Punchline": "Filter annoying spams!",
+  "Description": "Remove unnecessary chat messages by complex built-in filters.",
   "Tags": [
     "Chat"
   ],
@@ -10,11 +10,11 @@
     "ui",
     "social"
   ],
-  "IconUrl": null,
-  "ImageUrls": [
-  ],
+  "IsHide": false,
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.ChatFilter",
   "ApplicableVersion": "any",
   "DalamudApiLevel": 4,
-  "LoadPriority": 0
+  "LoadPriority": 0,
+  "ImageUrls": [],
+  "IconUrl": null
 }
