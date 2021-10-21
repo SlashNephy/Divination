@@ -17,6 +17,7 @@
     "utility"
   ],
   "IsHide": false,
+  "IsTestingExclusive": false,
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Template",
   "ApplicableVersion": "any",
   "DalamudApiLevel": 4,
