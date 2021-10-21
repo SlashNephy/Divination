@@ -1,9 +1,8 @@
 {
-  "Name": "Divination.Template",
   "Author": "[Author]",
-  "Description": "[Description]",
+  "Name": "Divination.Template",
   "Punchline": "[Punchline]",
-  "Changelog": "[Changelog]",
+  "Description": "[Description]",
   "Tags": [
     "[Tag]"
   ],
@@ -17,11 +16,11 @@
     "social",
     "utility"
   ],
-  "IconUrl": null,
-  "ImageUrls": [
-  ],
-  "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Template",
+  "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 4,
-  "LoadPriority": 0
+  "LoadPriority": 0,
+  "ImageUrls": [
+  ],
+  "IconUrl": null
 }
