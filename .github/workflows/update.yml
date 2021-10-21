@@ -1,8 +1,5 @@
 name: Update PluginMaster
 
-env:
-  DOWNLOAD_BASE_URI: https://repo.horoscope.dev
-
 on: 
   push:
     paths-ignore:
@@ -11,6 +8,9 @@ on:
 
     branches:
       - master
+
+  schedule:
+    - cron:  '0 */3 * * *'
 
   workflow_dispatch:
 
@@ -31,13 +31,11 @@ jobs:
         run: python update.py
         env:
           DALAMUD_ENV: stable
-          DOWNLOAD_BASE_URI: ${{ env.DOWNLOAD_BASE_URI }}
 
       - name: Update PluginMaster (testing)
         run: python update.py
         env:
           DALAMUD_ENV: testing
-          DOWNLOAD_BASE_URI: ${{ env.DOWNLOAD_BASE_URI }}
 
       - name: Push PluginMaster
         uses: EndBug/add-and-commit@v7
