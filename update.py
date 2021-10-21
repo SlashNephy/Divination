@@ -49,6 +49,29 @@ def dump_master(manifests):
     with open(f"dist/{DALAMUD_ENV}/pluginmaster.json", "w") as f:
         json.dump(manifests, f, indent=2, sort_keys=True)
 
+def generate_markdown(manifests, downloads):
+    lines = [
+        "# Divination Plugins",
+        "",
+        "| Name | Version | Author | Description | Total Downloads |",
+        "|------|---------|--------|-------------|-----------------|"
+    ]
+
+    for manifest in manifests:
+        name = f"[{manifest['Name']}]({manifest['RepoUrl']}) [💾]({manifest['DownloadLinkInstall']})"
+        version = manifest["AssemblyVersion"]
+        author = manifest["Author"]
+
+        tags = [fr"\#{x}" for x in manifest.get("CategoryTags", []) + manifest.get("Tags", [])]
+        description = f"{manifest.get('Punchline', '')}<br>{manifest.get('Description', '')}<br>{' '.join(tags)}"
+
+        total_downloads = downloads.get(manifest["InternalName"], "n/a")
+
+        lines.append(f"| {name} | {version} | {author} | {description} | {total_downloads} |")
+
+    with open("plugins.md", "w") as f:
+        f.write("\n".join(lines))
+
 
 if __name__ == "__main__":
     manifests = extract_manifests()
@@ -56,3 +79,5 @@ if __name__ == "__main__":
 
     add_extra_fields(manifests, downloads)
     dump_master(manifests)
+
+    generate_markdown(manifests, downloads)
