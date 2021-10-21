@@ -4,7 +4,7 @@ Dalamud.Divination plugins third-party repository (⚠️ experimental!)
 
 ## Plugin List
 
-The available plugins are listed [here](https://repo.horoscope.dev/plugins).
+The available plugins are listed [here]().
 
 ## Repo URL
 
@@ -12,10 +12,10 @@ The available plugins are listed [here](https://repo.horoscope.dev/plugins).
 
 Drop the following url into your third-party repo URL list.
 
-- Stable  
+- [Stable](https://repo.horoscope.dev/plugins_stable)  
   `https://repo.horoscope.dev/dist/stable/pluginmaster.json`
 
-- Testing (If you are retrieving testing builds)  
+- [Testing](https://repo.horoscope.dev/plugins_testing) (If you are retrieving testing builds)  
   `https://repo.horoscope.dev/dist/testing/pluginmaster.json`
 
 ## DalamudRepoBrowser Support
