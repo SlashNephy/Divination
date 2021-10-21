@@ -1,12 +1,26 @@
 {
-  "Name": "Divination.Calculator",
-  "InternalName": "Divination.Calculator",
   "Author": "Asteria Nocturna",
+  "Name": "Divination.Calculator",
   "Punchline": "/calc 33 - 4",
   "Description": "Simple plugin to just add /calc command.",
   "Tags": [
     "utility"
   ],
+  "CategoryTags": [
+    "other",
+    "jobs",
+    "ui",
+    "minigames",
+    "inventory",
+    "sound",
+    "social",
+    "utility"
+  ],
+  "IsHide": false,
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Calculator",
-  "DalamudApiLevel": 4
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0,
+  "ImageUrls": [],
+  "IconUrl": null
 }

@@ -58,8 +58,15 @@ jobs:
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
 
+      - name: Prepare Plugin Meta
+        run: |
+          $json_path = ".\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.json"
+          $json = Get-Content $json_path | ConvertFrom-Json -AsHashtable
+          echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"])" >> $env:GITHUB_ENV
+          echo "PLUGIN_DESCRIPTION=$($json["Description"])" >> $env:GITHUB_ENV
+
       - name: Build Plugin
-        run: dotnet build --configuration Release --no-restore /property:OutputPath=bin\CIRelease\
+        run: dotnet build --configuration Release --no-restore /property:OutputPath=bin\CIRelease\ /property:Product=Divination /property:Company=Horoscope /property:Copyright="${{ env.PLUGIN_AUTHOR }}" /property:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
 
