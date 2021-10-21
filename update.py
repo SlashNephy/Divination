@@ -4,7 +4,7 @@ import urllib.error
 import urllib.request
 from zipfile import ZipFile
 
-PROVIDER = os.getenv("PROVIDER", "dl.starry.blue")
+PROVIDER = os.getenv("PROVIDER", "dl.horoscope.dev")
 USER_AGENT = os.getenv("USER_AGENT", "Dalamud.DivinationPluginRepo (+https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo)")
 SOURCE = os.getenv("SOURCE")
 DALAMUD_ENV = os.environ["DALAMUD_ENV"]
