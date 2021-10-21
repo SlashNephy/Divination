@@ -51,7 +51,7 @@ def merge_manifests(stable, testing, downloads):
         testing_latest_zip = f"dist/testing/{key}/latest.zip"
         testing_link = f"https://{PROVIDER}/testing/{key}{query}"
 
-        manifest = testing_manifest or stable_manifest
+        manifest = testing_manifest.copy() if testing_manifest else stable_manifest.copy()
 
         manifest["IsHide"] = testing_manifest.get("IsHide", stable_manifest.get("IsHide", False))
         manifest["AssemblyVersion"] = stable_manifest["AssemblyVersion"] if stable_manifest else testing_manifest["AssemblyVersion"]
