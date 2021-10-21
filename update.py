@@ -51,7 +51,7 @@ def dump_master(manifests):
 
 def generate_markdown(manifests, downloads):
     lines = [
-        "# Divination Plugins",
+        f"# Divination Plugins ({DALAMUD_ENV.title()})",
         "",
         "| Name | Version | Author | Description | Total Downloads |",
         "|------|---------|--------|-------------|-----------------|"
