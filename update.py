@@ -25,14 +25,14 @@ def add_extra_fields(manifests):
         manifest["IsTestingExclusive"] = DALAMUD_ENV == "testing"
         manifest["DownloadCount"] = 0
         manifest["LastUpdated"] = int(os.path.getmtime(latest_zip))
-        manifest["DownloadLinkInstall"] = manifest["DownloadLinkUpdate"] = f"{DOWNLOAD_BASE_URI}/dist/{DALAMUD_ENV}/{manifest['InternalName']}/latest.zip"
+        manifest["DownloadLinkInstall"] = manifest["DownloadLinkUpdate"] = f"{DOWNLOAD_BASE_URI}/{latest_zip}"
         manifest["DownloadLinkTesting"] = f"{DOWNLOAD_BASE_URI}/dist/testing/{manifest['InternalName']}/latest.zip"
 
 def dump_master(manifests):
-    manifests.sort(key=lambda x: x["Name"])
+    manifests.sort(key=lambda x: x["InternalName"])
 
     with open(f"dist/{DALAMUD_ENV}/pluginmaster.json", "w") as f:
-        json.dump(manifests, f, indent=2)
+        json.dump(manifests, f, indent=2, sort_keys=True)
 
 
 if __name__ == "__main__":
