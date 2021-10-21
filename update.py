@@ -61,6 +61,7 @@ def merge_manifests(stable, testing, downloads):
         manifest["LastUpdated"] = max(get_mtime_or_default(stable_latest_zip), get_mtime_or_default(testing_latest_zip))
         manifest["DownloadLinkInstall"] = stable_link if stable_manifest else testing_link
         manifest["DownloadLinkTesting"] = testing_link if testing_manifest else stable_link
+        manifest["IconUrl"] = testing_manifest.get("IconUrl", stable_manifest.get("IconUrl", "https://avatars.githubusercontent.com/u/7855451?v=4&s=64"))
 
         manifests.append(manifest)
 
@@ -78,7 +79,7 @@ def generate_markdown(manifests, downloads):
         "",
         "## Legend",
         "",
-        "⚠️ = Testing/very experimental plugin. May cause game crashes and other inconveniences.",
+        "⚠️ = Testing/very experimental plugin. May cause game crashes or other inconveniences.",
         "",
         "## Plugin List",
         "",
