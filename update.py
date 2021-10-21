@@ -1,8 +1,12 @@
 import json
 import os
+import urllib.error
+import urllib.request
 from zipfile import ZipFile
 
-DOWNLOAD_BASE_URI = os.environ["DOWNLOAD_BASE_URI"]
+PROVIDER = os.getenv("PROVIDER", "dl.starry.blue")
+USER_AGENT = os.getenv("USER_AGENT", "Dalamud.DivinationPluginRepo (+https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo)")
+SOURCE = os.getenv("SOURCE")
 DALAMUD_ENV = os.environ["DALAMUD_ENV"]
 
 def extract_manifests():
@@ -18,15 +22,26 @@ def extract_manifests():
 
     return manifests
 
-def add_extra_fields(manifests):
+def get_download_stats():
+    try:
+        request = urllib.request.Request(f"https://{PROVIDER}/statistics", headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(request) as response:
+            return json.load(response)
+    except urllib.error.HTTPError:
+        return {}
+    except urllib.error.URLError:
+        return {}
+
+def add_extra_fields(manifests, downloads):
     for manifest in manifests:
         latest_zip = f"dist/{DALAMUD_ENV}/{manifest['InternalName']}/latest.zip"
+        query = f"?source={SOURCE}" if SOURCE else ""
 
         manifest["IsTestingExclusive"] = DALAMUD_ENV == "testing"
-        manifest["DownloadCount"] = 0
+        manifest["DownloadCount"] = downloads.get(manifest["InternalName"], 0)
         manifest["LastUpdated"] = int(os.path.getmtime(latest_zip))
-        manifest["DownloadLinkInstall"] = manifest["DownloadLinkUpdate"] = f"{DOWNLOAD_BASE_URI}/{latest_zip}"
-        manifest["DownloadLinkTesting"] = f"{DOWNLOAD_BASE_URI}/dist/testing/{manifest['InternalName']}/latest.zip"
+        manifest["DownloadLinkInstall"] = manifest["DownloadLinkUpdate"] = f"https://{PROVIDER}/{DALAMUD_ENV}/{manifest['InternalName']}{query}"
+        manifest["DownloadLinkTesting"] = f"https://{PROVIDER}/testing/{manifest['InternalName']}{query}"
 
 def dump_master(manifests):
     manifests.sort(key=lambda x: x["InternalName"])
@@ -37,5 +52,7 @@ def dump_master(manifests):
 
 if __name__ == "__main__":
     manifests = extract_manifests()
-    add_extra_fields(manifests)
+    downloads = get_download_stats()
+
+    add_extra_fields(manifests, downloads)
     dump_master(manifests)
