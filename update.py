@@ -69,7 +69,7 @@ def generate_markdown(manifests, downloads):
 
         lines.append(f"| {name} | {version} | {author} | {description} | {total_downloads} |")
 
-    with open("plugins.md", "w") as f:
+    with open(f"plugins_{DALAMUD_ENV}.md", "w") as f:
         f.write("\n".join(lines))
 
 
