@@ -37,6 +37,7 @@ def add_extra_fields(manifests, downloads):
         latest_zip = f"dist/{DALAMUD_ENV}/{manifest['InternalName']}/latest.zip"
         query = f"?source={SOURCE}" if SOURCE else ""
 
+        manifest["IsHide"] = manifest.get("IsHide", False)
         manifest["IsTestingExclusive"] = DALAMUD_ENV == "testing"
         manifest["DownloadCount"] = downloads.get(manifest["InternalName"], 0)
         manifest["LastUpdated"] = int(os.path.getmtime(latest_zip))
