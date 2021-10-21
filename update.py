@@ -40,7 +40,7 @@ def add_extra_fields(manifests, downloads):
         manifest["IsHide"] = manifest.get("IsHide", False)
         manifest["IsTestingExclusive"] = DALAMUD_ENV == "testing"
         manifest["DownloadCount"] = downloads.get(manifest["InternalName"], 0)
-        manifest["LastUpdated"] = int(os.path.getmtime(latest_zip))
+        manifest["LastUpdated"] = str(int(os.path.getmtime(latest_zip)))
         manifest["DownloadLinkInstall"] = manifest["DownloadLinkUpdate"] = f"https://{PROVIDER}/{DALAMUD_ENV}/{manifest['InternalName']}{query}"
         manifest["DownloadLinkTesting"] = f"https://{PROVIDER}/testing/{manifest['InternalName']}{query}"
 
