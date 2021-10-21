@@ -1,13 +1,27 @@
 {
-  "Name": "Divination.Voiceroid2Talker",
-  "InternalName": "Divination.Voiceroid2Talker",
   "Author": "Asteria Nocturna",
+  "Name": "Divination.Voiceroid2Talker",
   "Punchline": "Text-to-Speech for Voiceroid2",
   "Description": "Add /voiceroid2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
   "Tags": [
     "Text-to-speech",
     "Voiceroid"
   ],
+  "CategoryTags": [
+    "other",
+    "jobs",
+    "ui",
+    "minigames",
+    "inventory",
+    "sound",
+    "social",
+    "utility"
+  ],
+  "IsHide": false,
   "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Voiceroid2Talker",
-  "DalamudApiLevel": 4
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0,
+  "ImageUrls": [],
+  "IconUrl": null
 }
