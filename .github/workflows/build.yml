@@ -1,7 +1,7 @@
 name: Build
 
 env:
-  DOCKER_BASE_NAME: ghcr.io/horoscope-dev/download-counter
+  DOCKER_BASE_NAME: ghcr.io/horoscope-dev/dalamud-download-counter
 
 on:
   push:
