@@ -2,23 +2,23 @@ import json
 import os
 import urllib.error
 import urllib.request
+from datetime import datetime, timedelta, timezone
 from zipfile import ZipFile
 
 PROVIDER = os.getenv("PROVIDER", "dl.horoscope.dev")
 USER_AGENT = os.getenv("USER_AGENT", "Dalamud.DivinationPluginRepo (+https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo)")
 SOURCE = os.getenv("SOURCE")
-DALAMUD_ENV = os.environ["DALAMUD_ENV"]
 
-def extract_manifests():
-    manifests = []
-    for dirpath, _, filenames in os.walk(f"dist/{DALAMUD_ENV}"):
+def extract_manifests(env):
+    manifests = {}
+    for dirpath, _, filenames in os.walk(f"dist/{env}"):
         if "latest.zip" not in filenames:
             continue
 
         with ZipFile(f"{dirpath}/latest.zip") as z:
             plugin_name = dirpath.split("/")[-1]
             manifest = json.loads(z.read(f"{plugin_name}.json").decode())
-            manifests.append(manifest)
+            manifests[manifest["InternalName"]] = manifest
 
     return manifests
 
@@ -32,53 +32,92 @@ def get_download_stats():
     except urllib.error.URLError:
         return {}
 
-def add_extra_fields(manifests, downloads):
-    for manifest in manifests:
-        latest_zip = f"dist/{DALAMUD_ENV}/{manifest['InternalName']}/latest.zip"
-        query = f"?source={SOURCE}" if SOURCE else ""
+def get_mtime_or_default(path):
+    if not os.path.exists(path):
+        return 0
 
-        manifest["IsHide"] = manifest.get("IsHide", False)
-        manifest["IsTestingExclusive"] = DALAMUD_ENV == "testing"
-        manifest["DownloadCount"] = downloads.get(manifest["InternalName"], 0)
-        manifest["LastUpdated"] = str(int(os.path.getmtime(latest_zip)))
-        manifest["DownloadLinkInstall"] = manifest["DownloadLinkUpdate"] = f"https://{PROVIDER}/{DALAMUD_ENV}/{manifest['InternalName']}{query}"
-        manifest["DownloadLinkTesting"] = f"https://{PROVIDER}/testing/{manifest['InternalName']}{query}"
+    return int(os.path.getmtime(path))
+
+def merge_manifests(stable, testing, downloads):
+    manifest_keys = set(list(stable.keys()) + list(testing.keys()))
+    query = f"?source={SOURCE}" if SOURCE else ""
+
+    manifests = []
+    for key in manifest_keys:
+        stable_manifest = stable.get(key, {})
+        stable_latest_zip = f"dist/stable/{key}/latest.zip"
+        stable_link = f"https://{PROVIDER}/stable/{key}{query}"
+        testing_manifest = testing.get(key, {})
+        testing_latest_zip = f"dist/testing/{key}/latest.zip"
+        testing_link = f"https://{PROVIDER}/testing/{key}{query}"
+
+        manifest = testing_manifest or stable_manifest
+
+        manifest["IsHide"] = testing_manifest.get("IsHide", stable_manifest.get("IsHide", False))
+        manifest["AssemblyVersion"] = stable_manifest["AssemblyVersion"] if stable_manifest else testing_manifest["AssemblyVersion"]
+        manifest["TestingAssemblyVersion"] = testing_manifest["AssemblyVersion"] if testing_manifest else None
+        manifest["IsTestingExclusive"] = not bool(stable_manifest) and bool(testing_manifest)
+        manifest["DownloadCount"] = downloads.get(key, 0)
+        manifest["LastUpdated"] = max(get_mtime_or_default(stable_latest_zip), get_mtime_or_default(testing_latest_zip))
+        manifest["DownloadLinkInstall"] = stable_link if stable_manifest else testing_link
+        manifest["DownloadLinkTesting"] = testing_link if testing_manifest else stable_link
+
+        manifests.append(manifest)
+
+    return manifests
 
 def dump_master(manifests):
     manifests.sort(key=lambda x: x["InternalName"])
 
-    with open(f"dist/{DALAMUD_ENV}/pluginmaster.json", "w") as f:
+    with open("dist/pluginmaster.json", "w") as f:
         json.dump(manifests, f, indent=2, sort_keys=True)
 
 def generate_markdown(manifests, downloads):
     lines = [
-        f"# Divination Plugins ({DALAMUD_ENV.title()})",
+        "# Dalamud.Divination Plugins",
         "",
-        "| Name | Version | Author | Description | Total Downloads |",
-        "|------|---------|--------|-------------|-----------------|"
+        "## Legend",
+        "",
+        "⚠️ = Testing/very experimental plugin. May cause game crashes and other inconveniences.",
+        "",
+        "## Plugin List",
+        "",
+        "| Name | Version | Author | Description | Downloads |",
+        "|:-----|:-------:|:------:|:------------|----------:|"
     ]
 
+    jst = timezone(timedelta(hours=9))
+
     for manifest in manifests:
-        name = f"[{manifest['Name']}]({manifest['RepoUrl']}) [💾]({manifest['DownloadLinkInstall']})"
-        version = manifest["AssemblyVersion"]
+        if manifest["IsHide"]:
+            continue
+
+        name = f"[{manifest['Name']}]({manifest['RepoUrl']})"
+
+        stable_version = f"**[{manifest['AssemblyVersion']}]({manifest['DownloadLinkInstall']})**" if manifest["DownloadLinkInstall"] != manifest["DownloadLinkTesting"] else "-"
+        testing_version = f"⚠️ [{manifest['TestingAssemblyVersion']}]({manifest['DownloadLinkTesting']})" if manifest["TestingAssemblyVersion"] else "-"
+        last_updated = datetime.fromtimestamp(manifest["LastUpdated"], tz=jst).strftime("%Y-%m-%d")
+        version = f"{stable_version} / {testing_version} ({last_updated})"
+
         author = manifest["Author"]
 
-        tags = [fr"\#{x}" for x in manifest.get("CategoryTags", []) + manifest.get("Tags", [])]
-        description = f"{manifest.get('Punchline', '')}<br>{manifest.get('Description', '')}<br>{' '.join(tags)}"
+        tags = [fr"**\#{x}**" for x in manifest.get("CategoryTags", []) + manifest.get("Tags", [])]
+        description = f"{manifest.get('Punchline', '-')}<br>{manifest.get('Description', '-')}<br>{' '.join(tags)}"
 
         total_downloads = downloads.get(manifest["InternalName"], "n/a")
 
         lines.append(f"| {name} | {version} | {author} | {description} | {total_downloads} |")
 
-    with open(f"dist/{DALAMUD_ENV}/README.md", "w") as f:
+    with open("dist/README.md", "w") as f:
         f.write("\n".join(lines))
 
 
 if __name__ == "__main__":
-    manifests = extract_manifests()
+    stable = extract_manifests("stable")
+    testing = extract_manifests("testing")
     downloads = get_download_stats()
 
-    add_extra_fields(manifests, downloads)
+    manifests = merge_manifests(stable, testing, downloads)
     dump_master(manifests)
 
     generate_markdown(manifests, downloads)

@@ -1,6 +1,16 @@
-# Dalamud.DivinationPluginRepo
+# repo.horoscope.dev
 
-Dalamud.Divination plugins third-party repository (⚠️ experimental!)
+This is a custom third-party plugin repository that can be used with Dalamud / XivLauncher.
+
+## ⚠️ Disclaimer
+
+Installation of plugins contained in this repository is at your own risk.
+
+We are not responsible for any inconvenience caused by installing or using the plugins.
+
+## Plugin List
+
+The available Dalamud.Divination plugins are listed [here](https://repo.horoscope.dev/dist).
 
 ## Repo URL
 
@@ -8,16 +18,4 @@ Dalamud.Divination plugins third-party repository (⚠️ experimental!)
 
 Drop the following url into your third-party repo URL list.
 
-- [Stable](https://repo.horoscope.dev/dist/stable)  
-  `https://repo.horoscope.dev/dist/stable/pluginmaster.json`
-
-- [Testing](https://repo.horoscope.dev/dist/testing) (If you are retrieving testing builds)  
-  `https://repo.horoscope.dev/dist/testing/pluginmaster.json`
-
-## DalamudRepoBrowser Support
-
-![image](https://user-images.githubusercontent.com/7302150/137894727-2386c322-79ed-46b0-abc3-441a0695bf22.png)
-
-If you are using [UnknownX7/DalamudRepoBrowser](https://github.com/UnknownX7/DalamudRepoBrowser), put the following url into your repomaster list.
-
-`https://repo.horoscope.dev/dist/repomaster.json`
+`https://repo.horoscope.dev/dist/pluginmaster.json`

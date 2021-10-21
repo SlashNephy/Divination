@@ -10,7 +10,7 @@ on:
       - master
 
   schedule:
-    - cron:  '0 */3 * * *'
+    - cron:  '0 * * * *'
 
   workflow_dispatch:
 
@@ -22,20 +22,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Restore mtime
+        uses: chetan/git-restore-mtime-action@v1
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
 
-      - name: Update PluginMaster (stable)
+      - name: Update PluginMaster
         run: python update.py
-        env:
-          DALAMUD_ENV: stable
-
-      - name: Update PluginMaster (testing)
-        run: python update.py
-        env:
-          DALAMUD_ENV: testing
 
       - name: Push PluginMaster
         uses: EndBug/add-and-commit@v7
