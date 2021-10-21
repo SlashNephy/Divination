@@ -4,7 +4,7 @@ import threading
 import urllib.request
 from collections import defaultdict
 
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, abort, jsonify, redirect, request
 
 CACHE_PATH = os.getenv("CACHE_PATH", "cache.json")
 DEFAULT_SOURCE = os.getenv("DEFAULT_SOURCE", "repo.horoscope.dev")
@@ -18,7 +18,7 @@ def check_if_exists(url):
     try:
         req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(req):
-            pass
+            return True
     except urllib.error.HTTPError:
         return False
 
@@ -28,7 +28,7 @@ def download(channel, plugin):
     url = f"https://{source}/dist/{channel}/{plugin}/latest.zip"
 
     if not check_if_exists(url):
-        return
+        return abort(404)
 
     with cache_lock:
         cache[plugin] += 1
