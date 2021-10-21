@@ -29,5 +29,13 @@ namespace Divination.Template
         {
             PluginLog.Information("/example called.");
         }
+
+        protected override void ReleaseManaged()
+        {
+        }
+
+        protected override void ReleaseUnmanaged()
+        {
+        }
     }
 }

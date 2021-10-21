@@ -1,5 +1,4 @@
 ﻿using Dalamud.Divination.Common.Api.Ui.Window;
-using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.Template
@@ -17,9 +16,7 @@ namespace Divination.Template
                 if (ImGui.Button("Save & Close"))
                 {
                     IsOpen = false;
-
-                    TemplatePlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    PluginLog.Information("Config saved");
+                    Save();
                 }
 
                 ImGui.End();
