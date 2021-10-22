@@ -66,7 +66,7 @@ jobs:
           echo "PLUGIN_DESCRIPTION=$($json["Description"])" >> $env:GITHUB_ENV
 
       - name: Build Plugin
-        run: dotnet build --configuration Release --no-restore /property:OutputPath=bin\CIRelease\ /property:Product=Divination /property:Company=Horoscope /property:Copyright="${{ env.PLUGIN_AUTHOR }}" /property:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"
+        run: dotnet build --configuration Release --no-restore /p:OutputPath=bin\CIRelease\ /p:Product=Divination /p:Company=Horoscope '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
@@ -113,7 +113,8 @@ jobs:
 
       - name: Push to Plugin Repository
         uses: EndBug/add-and-commit@v7
+        continue-on-error: true
         with:
           default_author: github_actions
-          pull_strategy: NO-PULL
+          pull: NO-PULL
           message: Deploy ${{ env.PLUGIN_PROJECT_NAME }} @ ${{ steps.short-sha.outputs.sha }}
