@@ -32,11 +32,59 @@ def get_download_stats():
     except urllib.error.URLError:
         return {}
 
-def get_mtime_or_default(path):
-    if not os.path.exists(path):
-        return 0
+def get_changelog(path):
+    commits_path = f"{path}/commits.json"
+    if not os.path.exists(commits_path):
+        return None
 
-    return int(os.path.getmtime(path))
+    with open(commits_path) as f:
+        commits = json.load(f)
+
+    return "\n".join([
+        f"{x['sha'][:7]}: {x['commit']['message']}"
+        for x in commits
+        if x["commit"]["author"]["name"] != "github-actions"
+    ]) or None
+
+def get_repo_url(path):
+    event_path = f"{path}/event.json"
+    if not os.path.exists(event_path):
+        return None
+
+    with open(event_path) as f:
+        event = json.load(f)
+
+    if "repository" in event:
+        return event["repository"]["html_url"]
+
+    return None
+
+def get_last_updated(path):
+    event_path = f"{path}/event.json"
+    if not os.path.exists(event_path):
+        zip_path = f"{path}/latest.zip"
+        if not os.path.exists(zip_path):
+            return 0
+
+        return int(os.path.getmtime(zip_path))
+
+    with open(event_path) as f:
+        event = json.load(f)
+
+    # on: push
+    if "head_commit" in event:
+        timestamp = event["head_commit"]["timestamp"]
+    # on: release
+    elif "created_at" in event:
+        timestamp = event["created_at"]
+    # on: workflow_dispatch
+    else:
+        commits_path = f"{path}/commits.json"
+        with open(commits_path) as f:
+            commits = json.load(f)
+        timestamp = commits[0]["commit"]["author"]["date"]
+
+    return int(datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ").timestamp())
 
 def merge_manifests(stable, testing, downloads):
     manifest_keys = set(list(stable.keys()) + list(testing.keys()))
@@ -44,21 +92,23 @@ def merge_manifests(stable, testing, downloads):
 
     manifests = []
     for key in manifest_keys:
+        stable_path = f"dist/stable/{key}"
         stable_manifest = stable.get(key, {})
-        stable_latest_zip = f"dist/stable/{key}/latest.zip"
         stable_link = f"https://{PROVIDER}/stable/{key}{query}"
+        testing_path = f"dist/testing/{key}"
         testing_manifest = testing.get(key, {})
-        testing_latest_zip = f"dist/testing/{key}/latest.zip"
         testing_link = f"https://{PROVIDER}/testing/{key}{query}"
 
         manifest = testing_manifest.copy() if testing_manifest else stable_manifest.copy()
 
+        manifest["Changelog"] = get_changelog(testing_path) or get_changelog(stable_path)
         manifest["IsHide"] = testing_manifest.get("IsHide", stable_manifest.get("IsHide", False))
+        manifest["RepoUrl"] = get_repo_url(testing_path) or get_repo_url(stable_path) or testing_manifest.get("RepoUrl", stable_manifest.get("RepoUrl"))
         manifest["AssemblyVersion"] = stable_manifest["AssemblyVersion"] if stable_manifest else testing_manifest["AssemblyVersion"]
         manifest["TestingAssemblyVersion"] = testing_manifest["AssemblyVersion"] if testing_manifest else None
         manifest["IsTestingExclusive"] = not bool(stable_manifest) and bool(testing_manifest)
         manifest["DownloadCount"] = downloads.get(key, 0)
-        manifest["LastUpdated"] = max(get_mtime_or_default(stable_latest_zip), get_mtime_or_default(testing_latest_zip))
+        manifest["LastUpdated"] = max(get_last_updated(stable_path), get_last_updated(testing_path))
         manifest["DownloadLinkInstall"] = stable_link if stable_manifest else testing_link
         manifest["DownloadLinkTesting"] = testing_link if testing_manifest else stable_link
         manifest["IconUrl"] = testing_manifest.get("IconUrl", stable_manifest.get("IconUrl", "https://avatars.githubusercontent.com/u/7855451?v=4&s=64"))
