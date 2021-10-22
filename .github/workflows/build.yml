@@ -62,8 +62,8 @@ jobs:
         run: |
           $json_path = ".\${{ env.PLUGIN_PROJECT_NAME }}\${{ env.PLUGIN_PROJECT_NAME }}.json"
           $json = Get-Content $json_path | ConvertFrom-Json -AsHashtable
-          echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"])" >> $env:GITHUB_ENV
-          echo "PLUGIN_DESCRIPTION=$($json["Description"])" >> $env:GITHUB_ENV
+          echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
+          echo "PLUGIN_DESCRIPTION=$($json["Description"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
 
       - name: Build Plugin
         run: dotnet build --configuration Release --no-restore /p:OutputPath=bin\CIRelease\ /p:Product=Divination /p:Company=Horoscope '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
