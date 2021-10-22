@@ -67,7 +67,7 @@ jobs:
 
       - name: Build Plugin
         shell: cmd
-        run: dotnet build --configuration Release --no-restore /p:OutputPath=bin\CIRelease\ /p:Product=Divination /p:Company=Horoscope '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
+        run: dotnet build --configuration Release --no-restore /p:OutputPath=bin\\CIRelease\\ /p:Product=Divination /p:Company=Horoscope /p:Copyright="${{ env.PLUGIN_AUTHOR }}" /p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
