@@ -18,7 +18,6 @@
     "utility"
   ],
   "IsHide": false,
-  "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.Voiceroid2Talker",
   "ApplicableVersion": "any",
   "DalamudApiLevel": 4,
   "LoadPriority": 0,
