@@ -84,7 +84,11 @@ def get_last_updated(path):
             commits = json.load(f)
         timestamp = commits[0]["commit"]["author"]["date"]
 
-    return int(datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ").timestamp())
+    try:
+        epoch = datetime.fromisoformat(timestamp)
+    except ValueError:
+        epoch = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
+    return int(epoch.timestamp())
 
 def merge_manifests(stable, testing, downloads):
     manifest_keys = set(list(stable.keys()) + list(testing.keys()))
