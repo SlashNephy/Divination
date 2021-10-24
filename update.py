@@ -40,6 +40,9 @@ def get_changelog(path):
     with open(commits_path) as f:
         commits = json.load(f)
 
+    if not isinstance(commits, list):
+        return None
+
     return "\n".join([
         f"{x['sha'][:7]}: {x['commit']['message']}"
         for x in commits
