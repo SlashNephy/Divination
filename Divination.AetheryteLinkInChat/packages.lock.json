@@ -5,14 +5,14 @@
       "DalamudPackager": {
         "type": "Direct",
         "requested": "[2.*, )",
-        "resolved": "2.1.4",
-        "contentHash": "+pMkfHq34+s75MxN4I1uIVCJJsC2JLx8cdH+nN2RugRkWkU0SmqknRjQVivSDX1apTjkEwZfoIhExSHDICNXVg=="
+        "resolved": "2.1.5",
+        "contentHash": "0RMHom/TbYxWzJPTdMOPjuelZY2aacWipp0INPkQrLa31Wy1KAWZ/R/+2sdi02vhk15PthZcpUQqVIwcxprG8A=="
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
         "requested": "[5.*, )",
-        "resolved": "5.7.0",
-        "contentHash": "GkU83uopX2vjuNkVpfWdoZSPwxVJ2V6JGLbu4lfh9ucD9xKLuekYx11Ksy1lhbv4hWlrq1xZ0cH0PaPf4UOyqA=="
+        "resolved": "5.8.1",
+        "contentHash": "WR+50tZK/ZO51RhcNObEZyIN+b7jt6YQOnUdrnkDhi+kPWm00TLXIUci2hGIgE617iaWdkbmkleBbIFwPhH0oQ=="
       },
       "dalamud.divination.common": {
         "type": "Project"
