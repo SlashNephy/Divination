@@ -14,9 +14,6 @@ namespace Divination.InstanceIDViewer
     {
 
         [PluginService]
-        public static DalamudPluginInterface Interface { get; private set; }
-
-        [PluginService]
         public static ChatGui ChatGui { get; private set; }
 
         [PluginService]
@@ -53,7 +50,7 @@ namespace Divination.InstanceIDViewer
                     });
                     ChatGui.PrintChat(new XivChatEntry
                     {
-                      Type =   (XivChatType) 72, // Party Recruiting
+                      Type =   XivChatType.Echo,
                       Name = string.Empty,
                       Message = Message
                     });
