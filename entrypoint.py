@@ -10,7 +10,20 @@ CACHE_PATH = os.getenv("CACHE_PATH", "cache.json")
 DEFAULT_SOURCE = os.getenv("DEFAULT_SOURCE", "repo.horoscope.dev")
 USER_AGENT = os.getenv("USER_AGENT", "Dalamud.DivinationPluginRepo.DownloadCounter/1.0 (+https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo.DownloadCounter)")
 
-cache = defaultdict(lambda: 0)
+def load_cache():
+    c = defaultdict(int)
+    if os.path.exists(CACHE_PATH):
+        with open(CACHE_PATH) as f:
+            c.update(json.load(f))
+
+    return c
+
+def save_cache(cache):
+    with open(CACHE_PATH, "w") as f:
+        json.dump(cache, f, indent=2, sort_keys=True)
+
+
+cache = load_cache()
 cache_lock = threading.Lock()
 app = Flask(__name__)
 
@@ -32,7 +45,7 @@ def download(channel, plugin):
 
     with cache_lock:
         cache[plugin] += 1
-        save_cache()
+        save_cache(cache)
 
     return redirect(url)
 
@@ -44,20 +57,3 @@ def statistics():
 @app.route("/")
 def index():
     return redirect(f"https://{DEFAULT_SOURCE}")
-
-def load_cache():
-    if not os.path.exists(CACHE_PATH):
-        return
-
-    with open(CACHE_PATH) as f:
-        cache.update(json.load(f))
-
-def save_cache():
-    with open(CACHE_PATH, "w") as f:
-        json.dump(cache, f, indent=2, sort_keys=True)
-
-
-if __name__ == "__main__":
-    load_cache()
-
-    app.run()
