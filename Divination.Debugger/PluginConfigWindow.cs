@@ -76,7 +76,8 @@ namespace Divination.Debugger
 
             ImGui.InputInt("Filter", ref _filtered);
 
-            var raw = new byte[0x19B0];
+            // https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/Character/Character.cs
+            var raw = new byte[0x19F0];
             Marshal.Copy(player.Address, raw, 0, raw.Length);
             var (l1, l2) = Transform(raw);
 
