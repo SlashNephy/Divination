@@ -38,7 +38,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
 
         public async Task<XivApiResponse> GetCharacterAsync(string name, string world, bool ignoreCache = false)
         {
-            var url = $"https://xivapi.com/character/search?name={Uri.EscapeUriString(name)}&server={world}";
+            var url = $"https://xivapi.com/character/search?name={Uri.EscapeDataString(name)}&server={world}";
             if (apiKey != null)
             {
                 url += $"&private_key={apiKey}";
