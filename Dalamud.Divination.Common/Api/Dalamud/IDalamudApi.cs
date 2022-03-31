@@ -1,24 +1,31 @@
-﻿using Dalamud.Data;
+﻿using System.Diagnostics.CodeAnalysis;
+using Dalamud.Data;
 using Dalamud.Game;
 using Dalamud.Game.ClientState;
+using Dalamud.Game.ClientState.Aetherytes;
 using Dalamud.Game.ClientState.Buddy;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Fates;
+using Dalamud.Game.ClientState.GamePad;
 using Dalamud.Game.ClientState.JobGauge;
 using Dalamud.Game.ClientState.Keys;
 using Dalamud.Game.ClientState.Objects;
 using Dalamud.Game.ClientState.Party;
 using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
+using Dalamud.Game.Gui.ContextMenus;
+using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Gui.FlyText;
 using Dalamud.Game.Gui.PartyFinder;
 using Dalamud.Game.Gui.Toast;
 using Dalamud.Game.Libc;
 using Dalamud.Game.Network;
+using Dalamud.Interface;
 using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Dalamud
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public interface IDalamudApi
     {
         #region IoC
@@ -64,6 +71,16 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         public GameNetwork GameNetwork { get; }
 
         public SigScanner SigScanner { get; }
+
+        public AetheryteList AetheryteList { get; }
+
+        public GamepadState GamepadState { get; }
+
+        public ContextMenu ContextMenu { get; }
+
+        public DtrBar DtrBar { get; }
+
+        public TitleScreenMenu TitleScreenMenu { get; }
 
         #endregion
 

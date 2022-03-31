@@ -2,20 +2,25 @@
 using Dalamud.Data;
 using Dalamud.Game;
 using Dalamud.Game.ClientState;
+using Dalamud.Game.ClientState.Aetherytes;
 using Dalamud.Game.ClientState.Buddy;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Fates;
+using Dalamud.Game.ClientState.GamePad;
 using Dalamud.Game.ClientState.JobGauge;
 using Dalamud.Game.ClientState.Keys;
 using Dalamud.Game.ClientState.Objects;
 using Dalamud.Game.ClientState.Party;
 using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
+using Dalamud.Game.Gui.ContextMenus;
+using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Gui.FlyText;
 using Dalamud.Game.Gui.PartyFinder;
 using Dalamud.Game.Gui.Toast;
 using Dalamud.Game.Libc;
 using Dalamud.Game.Network;
+using Dalamud.Interface;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 
@@ -38,11 +43,23 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 
         [PluginService]
         [RequiredVersion("1.0")]
-        public BuddyList BuddyList { get; private set; }
+        public Framework Framework { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        public SigScanner SigScanner { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
         public ClientState ClientState { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        public AetheryteList AetheryteList { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        public BuddyList BuddyList { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
@@ -51,6 +68,10 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         [PluginService]
         [RequiredVersion("1.0")]
         public FateTable FateTable { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        public GamepadState GamepadState { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
@@ -78,19 +99,23 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 
         [PluginService]
         [RequiredVersion("1.0")]
-        public Framework Framework { get; private set; }
-
-        [PluginService]
-        [RequiredVersion("1.0")]
         public ChatGui ChatGui { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
-        public FlyTextGui FlyTextGui { get; private set; }
+        public GameGui GameGui { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
-        public GameGui GameGui { get; private set; }
+        public ContextMenu ContextMenu { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        public DtrBar DtrBar { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        public FlyTextGui FlyTextGui { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
@@ -110,7 +135,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 
         [PluginService]
         [RequiredVersion("1.0")]
-        public SigScanner SigScanner { get; private set; }
+        public TitleScreenMenu TitleScreenMenu { get; private set; }
 
         #endregion
 
