@@ -1,6 +1,5 @@
 ﻿using System.IO;
-using System.Net;
-using System.Net.Cache;
+using System.Net.Http;
 using System.Text;
 using System.Timers;
 using Newtonsoft.Json.Linq;
@@ -11,6 +10,7 @@ namespace Dalamud.Divination.Common.Api.Definition
     {
         private readonly string url;
         private readonly Timer timer = new(60 * 60 * 1000);
+        private readonly HttpClient client = new();
 
         public RemoteDefinitionProvider(string url, string filename)
         {
@@ -21,7 +21,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             timer.Start();
         }
 
-        private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        private void OnTimerElapsed(object? _, ElapsedEventArgs __)
         {
             Update(Cancellable.Token);
         }
@@ -30,16 +30,11 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         internal override JObject Fetch()
         {
-            var request = WebRequest.CreateHttp(url);
-            request.CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
-            request.Method = "GET";
+            using var stream = client.GetStreamAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
 
-            using var response = request.GetResponse();
-            using var stream = response.GetResponseStream();
-            // ReSharper disable once RedundantSuppressNullableWarningExpression
-            using var reader = new StreamReader(stream!, Encoding.UTF8);
-
+            using var reader = new StreamReader(stream, Encoding.UTF8);
             var content = reader.ReadToEnd();
+
             return JObject.Parse(content);
         }
 
@@ -47,6 +42,7 @@ namespace Dalamud.Divination.Common.Api.Definition
         {
             base.Dispose();
             timer.Dispose();
+            client.Dispose();
         }
     }
 }

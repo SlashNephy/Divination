@@ -20,7 +20,6 @@ namespace Dalamud.Divination.Common.Api.Chat
 
         private readonly string title;
         private readonly ChatGui gui;
-        private readonly ClientState clientState;
 
         private readonly BlockingCollection<XivChatEntry> queue = new();
 
@@ -28,7 +27,6 @@ namespace Dalamud.Divination.Common.Api.Chat
         {
             this.title = title.Replace("Divination.", string.Empty);
             this.gui = gui;
-            this.clientState = clientState;
 
             gui.ChatMessage += OnChatMessage;
             if (clientState.IsLoggedIn)

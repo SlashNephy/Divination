@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command;
@@ -46,7 +45,7 @@ namespace Dalamud.Divination.Common.Api.Config
             [Command("config")]
             [CommandHelp("{Name} で利用可能な設定名の一覧を出力します。")]
             [HiddenCommand(HideInHelp = false)]
-            private void OnConfigListCommand(CommandContext context)
+            private void OnConfigListCommand()
             {
                 var configKeys = EnumerateConfigFields().Select(x => x.Name);
 

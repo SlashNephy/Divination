@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using Dalamud.Divination.Common.Api.Command.Attributes;
 
 namespace Dalamud.Divination.Common.Api.Command
