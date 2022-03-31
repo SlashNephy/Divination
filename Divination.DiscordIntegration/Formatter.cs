@@ -134,8 +134,8 @@ namespace Divination.DiscordIntegration
         private void UpdatePlayerVariables()
         {
             Fc = player.CompanyTag.TextValue;
-            World = player.CurrentWorld.GameData.Name;
-            HomeWorld = player.HomeWorld.GameData.Name;
+            World = player.CurrentWorld.GameData?.Name.RawString;
+            HomeWorld = player.HomeWorld.GameData?.Name.RawString;
             Level = player.Level.ToString();
             if (Level == "0")
             {
@@ -143,13 +143,13 @@ namespace Divination.DiscordIntegration
             }
 
             Name = player.Name.TextValue;
-            Job = player.ClassJob.GameData.Abbreviation;
+            Job = player.ClassJob.GameData?.Abbreviation.RawString;
             if (Job == "ADV")
             {
                 throw new InvalidDalamudDataProvidedException();
             }
 
-            JobName = player.ClassJob.GameData.Name;
+            JobName = player.ClassJob.GameData?.Name.RawString;
             X = $"{player.Position.X:F1}";
             Y = $"{player.Position.Y:F1}";
             Z = $"{player.Position.Z:F1}";
@@ -343,6 +343,7 @@ namespace Divination.DiscordIntegration
         {
             if (IpcTemplates.TryGetValue(templateKey, out var ipcTemplate))
             {
+                // ReSharper disable once PossibleNullReferenceException
                 if (!string.IsNullOrEmpty(ipcTemplate.Value))
                 {
                     return Render(ipcTemplate.Value);
