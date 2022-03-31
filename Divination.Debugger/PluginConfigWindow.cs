@@ -84,8 +84,8 @@ namespace Divination.Debugger
             ImGui.Columns(2);
             ImGui.Separator();
 
-            ImGui.Text("i"); ImGui.NextColumn();
-            ImGui.Text("Value"); ImGui.NextColumn();
+            ImGui.Text("Index"); ImGui.NextColumn();
+            ImGui.Text("Value (byte)"); ImGui.NextColumn();
             ImGui.Separator();
 
             foreach (var (i, value) in raw.Select((x, i) => (i, x)))
@@ -97,6 +97,10 @@ namespace Divination.Debugger
                 }
             }
 
+            ImGui.Text("Index"); ImGui.NextColumn();
+            ImGui.Text("Value (ushort)"); ImGui.NextColumn();
+            ImGui.Separator();
+
             foreach (var (i, value) in l1.Select((x, i) => (i, x)))
             {
                 if (_filtered < 0 || _filtered == value)
@@ -105,6 +109,10 @@ namespace Divination.Debugger
                     ImGui.Text($"{value}"); ImGui.NextColumn();
                 }
             }
+
+            ImGui.Text("Index"); ImGui.NextColumn();
+            ImGui.Text("Value (uint)"); ImGui.NextColumn();
+            ImGui.Separator();
 
             foreach (var (i, value) in l2.Select((x, i) => (i, x)))
             {
