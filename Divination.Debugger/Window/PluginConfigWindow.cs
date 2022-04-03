@@ -92,6 +92,12 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.SameLine();
             ImGui.Checkbox("Upload", ref Config.NetworkListenUpload);
 
+            if (ImGui.Button("Clear"))
+            {
+                lastNetworkContext = null;
+                lastNetworkViewer = null;
+            }
+
             ImGui.Separator();
 
             ImGui.Combo("Data Type", ref Config.NetworkDataTypeIndex, dataTypes, dataTypes.Length);
