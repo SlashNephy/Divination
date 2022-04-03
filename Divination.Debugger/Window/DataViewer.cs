@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ImGuiNET;
 
@@ -6,55 +7,32 @@ namespace Divination.Debugger.Window;
 
 public class DataViewer
 {
-    private readonly DataType dataType;
-    private readonly byte[] data;
     private readonly bool isEnableFilter;
     private readonly long filter;
+    private readonly List<DataRow>? rows;
 
     public DataViewer(DataType dataType, byte[] data, bool isEnableFilter, long filter)
     {
-        this.dataType = dataType;
-        this.data = data;
         this.isEnableFilter = isEnableFilter;
         this.filter = filter;
+
+        rows = dataType switch
+        {
+            DataType.UInt8 => PrepareData(data, 1),
+            DataType.Int8 => PrepareData(data.TransformIntoInt8(), 1),
+            DataType.UInt16 => PrepareData(data.TransformIntoUInt16(), 2),
+            DataType.Int16 => PrepareData(data.TransformIntoInt16(), 2),
+            DataType.UInt32 => PrepareData(data.TransformIntoUInt32(), 4),
+            DataType.Int32 => PrepareData(data.TransformIntoInt32(), 4),
+            DataType.UInt64 => PrepareData(data.TransformIntoUInt64(), 8),
+            DataType.Int64 => PrepareData(data.TransformIntoInt64(), 8),
+            _ => throw new NotImplementedException(),
+        };
     }
 
     public void Draw()
     {
-        switch (dataType)
-        {
-            case DataType.UInt8:
-                Draw(data, 1);
-                break;
-            case DataType.Int8:
-                Draw(data.TransformIntoInt8(), 1);
-                break;
-            case DataType.UInt16:
-                Draw(data.TransformIntoUInt16(), 2);
-                break;
-            case DataType.Int16:
-                Draw(data.TransformIntoInt16(), 2);
-                break;
-            case DataType.UInt32:
-                Draw(data.TransformIntoUInt32(), 4);
-                break;
-            case DataType.Int32:
-                Draw(data.TransformIntoInt32(), 4);
-                break;
-            case DataType.UInt64:
-                Draw(data.TransformIntoUInt64(), 8);
-                break;
-            case DataType.Int64:
-                Draw(data.TransformIntoInt64(), 8);
-                break;
-            default:
-                throw new NotImplementedException();
-        }
-    }
-
-    private void Draw<T>(T[] source, int byteCount) where T : struct
-    {
-        if (!IsMatchedPre(source))
+        if (rows == null)
         {
             return;
         }
@@ -62,16 +40,30 @@ public class DataViewer
         ImGui.Columns(2);
 
         ImGui.Text("Index"); ImGui.NextColumn();
-        ImGui.Text($"Value ({Enum.GetName(typeof(DataType), dataType)})"); ImGui.NextColumn();
+        ImGui.Text("Value"); ImGui.NextColumn();
         ImGui.Separator();
 
-        foreach (var (index, value) in source.Where(IsMatchedPost).Select((x, i) => (i, x)))
+        foreach (var (index, value) in rows)
         {
-            ImGui.Text($"0x{index * byteCount:X4}  ({index * byteCount})"); ImGui.NextColumn();
-            ImGui.Text($"{value}"); ImGui.NextColumn();
+            ImGui.Text($"0x{index:X4}  ({index})"); ImGui.NextColumn();
+            ImGui.Text(value); ImGui.NextColumn();
         }
 
         ImGui.Columns(1);
+    }
+
+    public bool Any() => rows is { Count: > 0 };
+
+    private List<DataRow>? PrepareData<T>(T[] source, int byteCount) where T : struct
+    {
+        if (!IsMatchedPre(source))
+        {
+            return null;
+        }
+
+        return source.Where(IsMatchedPost)
+            .Select((x, i) => new DataRow(i * byteCount, x.ToString()!))
+            .ToList();
     }
 
     private bool IsMatchedPre<T>(T[] source) where T : struct
