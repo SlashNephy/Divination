@@ -48,6 +48,7 @@ public partial class DebuggerPlugin : DivinationPlugin<DebuggerPlugin, PluginCon
     {
         Dalamud.ChatGui.ChatMessage -= OnChatMessage;
         Divination.Network.RemoveHandler(listener);
+        listener.Dispose();
     }
 
     public string MainCommandPrefix => "/debug";

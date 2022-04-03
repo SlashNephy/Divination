@@ -6,6 +6,7 @@ using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.Network;
+using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.Debugger.Window;
@@ -37,6 +38,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         }
     }
 
+    // https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/Character/Character.cs
+    private const int PlayerStructSize = 0x19F0;
+
     private readonly string[] dataTypes = Enum.GetNames(typeof(DataType)).ToArray();
 
     private void CreatePlayerAnalyzerTab()
@@ -51,25 +55,24 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 return;
             }
 
-            ImGui.Text($"Source: {target.Name} ({(DebuggerPlugin.Instance.Dalamud.TargetManager.Target == null ? "LocalPlayer" : "Target")})");
+            ImGui.Text($"Source = {target.Name} ({(DebuggerPlugin.Instance.Dalamud.TargetManager.Target == null ? "LocalPlayer" : "Target")})");
 
             ImGui.Separator();
 
             ImGui.Combo("Data Type", ref Config.PlayerDataTypeIndex, dataTypes, dataTypes.Length);
-            ImGui.Checkbox("Enable Filter", ref Config.PlayerEnableValueFilter);
 
+            ImGui.Checkbox("Enable Value Filter", ref Config.PlayerEnableValueFilter);
             unsafe
             {
                 fixed (long* ptr = &Config.PlayerFilterValue)
                 {
-                    ImGui.InputScalar("Filter Value", ImGuiDataType.S64, new IntPtr(ptr));
+                    ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
                 }
             }
 
             ImGui.Separator();
 
-            // https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/Character/Character.cs
-            var data = new byte[0x19F0];
+            var data = new byte[PlayerStructSize];
             Marshal.Copy(target.Address, data, 0, data.Length);
 
             var viewer = new DataViewer(Config.PlayerDataType, data, Config.PlayerEnableValueFilter, Config.PlayerFilterValue);
@@ -87,10 +90,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         if (ImGui.BeginTabItem("Network"))
         {
             ImGui.Checkbox("Enable Network Listener", ref Config.NetworkEnableListener);
-
-            ImGui.Checkbox("Download", ref Config.NetworkListenDownload);
-            ImGui.SameLine();
-            ImGui.Checkbox("Upload", ref Config.NetworkListenUpload);
+            ImGui.Checkbox("Log matched packets", ref Config.NetworkLogMatchedPackets);
 
             if (ImGui.Button("Clear"))
             {
@@ -99,6 +99,10 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             }
 
             ImGui.Separator();
+
+            ImGui.Checkbox("Download", ref Config.NetworkListenDownload);
+            ImGui.SameLine();
+            ImGui.Checkbox("Upload", ref Config.NetworkListenUpload);
 
             ImGui.Combo("Data Type", ref Config.NetworkDataTypeIndex, dataTypes, dataTypes.Length);
             ImGui.Checkbox("Enable Value Filter", ref Config.NetworkEnableValueFilter);
@@ -116,9 +120,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             ImGui.Separator();
 
-            var context = NetworkListener.LastContext;
-            if (context != null)
+            if (NetworkListener.Contexts.TryTake(out var context))
             {
+                // ReSharper disable once PossibleNullReferenceException
                 var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.NetworkFilterValue);
                 if (viewer.Any())
                 {
@@ -137,6 +141,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                     ImGui.Text($"Opcode = 0x{context.Opcode:X4}");
 
                     viewer.Draw();
+
+                    if (Config.NetworkLogMatchedPackets)
+                    {
+                        PluginLog.Debug("{Context}", context);
+                    }
                 }
             }
 
