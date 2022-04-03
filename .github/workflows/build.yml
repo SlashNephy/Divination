@@ -48,14 +48,14 @@ jobs:
         repository:
           - horoscope-dev/Dalamud.Divination.Template
           - horoscope-dev/Dalamud.Divination.TwitterIntegration
-          - horoscope-dev/Dalamud.Divination.AetheryteLinkInChat
+          # - horoscope-dev/Dalamud.Divination.AetheryteLinkInChat
           - horoscope-dev/Dalamud.Divination.DiscordIntegration
           - horoscope-dev/Dalamud.Divination.PowerUtils
           - horoscope-dev/Dalamud.Divination.Calculator
           - horoscope-dev/Dalamud.Divination.Voiceroid2Talker
           - horoscope-dev/Dalamud.Divination.Debugger
-          - horoscope-dev/Dalamud.Divination.Craftsman
-          - horoscope-dev/Dalamud.Divination.Fisherman
+          # - horoscope-dev/Dalamud.Divination.Craftsman
+          # - horoscope-dev/Dalamud.Divination.Fisherman
           - horoscope-dev/Dalamud.Divination.SseClient
           - horoscope-dev/Dalamud.Divination.ChatFilter
           # - horoscope-dev/Dalamud.Divination.InstanceIDViewer
@@ -73,6 +73,9 @@ jobs:
       - name: Update Submodules
         working-directory: repo/${{ matrix.repository }}
         run: |
+          git submodule foreach git reset --hard
+          git submodule foreach git pull origin master
+          git submodule foreach git checkout master
           git submodule foreach git pull origin master
           git submodule foreach git checkout master
 
