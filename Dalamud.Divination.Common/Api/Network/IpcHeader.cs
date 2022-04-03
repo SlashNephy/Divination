@@ -21,5 +21,10 @@ namespace Dalamud.Divination.Common.Api.Network
         [FieldOffset(0x16)] public readonly ushort ServerId;
         [FieldOffset(0x18)] public readonly uint TimeStamp;
         [FieldOffset(0x1A)] public readonly uint Padding2;
+
+        public override string ToString()
+        {
+            return $"IpcHeader({nameof(Opcode)} = 0x{Opcode:X4}, {nameof(ServerId)} = {ServerId}, {nameof(TimeStamp)} = {TimeStamp})";
+        }
     }
 }
