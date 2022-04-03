@@ -61,8 +61,9 @@ public class DataViewer
             return null;
         }
 
-        return source.Where(IsMatchedPost)
-            .Select((x, i) => new DataRow(i * byteCount, x.ToString()!))
+        return source.Select((value, index) => (index, value))
+            .Where(row => IsMatchedPost(row.value))
+            .Select(row => new DataRow(row.index * byteCount, row.value.ToString()!))
             .ToList();
     }
 
