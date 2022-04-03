@@ -62,7 +62,7 @@ public class DataViewer
         ImGui.Columns(2);
 
         ImGui.Text("Index"); ImGui.NextColumn();
-        ImGui.Text($"Value ({Enum.GetName(typeof(DataRow), dataType)})"); ImGui.NextColumn();
+        ImGui.Text($"Value ({Enum.GetName(typeof(DataType), dataType)})"); ImGui.NextColumn();
         ImGui.Separator();
 
         foreach (var (index, value) in source.Where(IsMatchedPost).Select((x, i) => (i, x)))
