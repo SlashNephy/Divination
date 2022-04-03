@@ -41,7 +41,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.BeginTabItem("Player"))
         {
-            var target = DebuggerPlugin.Instance.Dalamud.ClientState.LocalPlayer ?? DebuggerPlugin.Instance.Dalamud.TargetManager.Target as Character;
+            var target = DebuggerPlugin.Instance.Dalamud.TargetManager.Target as Character ?? DebuggerPlugin.Instance.Dalamud.ClientState.LocalPlayer;
             if (target == null)
             {
                 ImGui.Text("Neither LocalPlayer nor Target is detected.");
