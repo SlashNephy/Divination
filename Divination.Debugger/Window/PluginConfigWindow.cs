@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Dalamud.Divination.Common.Api.Network;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
@@ -78,6 +79,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         }
     }
 
+    private NetworkContext? lastNetworkContext;
+    private DataViewer? lastNetworkViewer;
+
     private void CreateNetworkAnalyzerTab()
     {
         if (ImGui.BeginTabItem("Network"))
@@ -106,14 +110,28 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             ImGui.Separator();
 
-            var data = NetworkListener.LastContext;
-            if (data != null)
+            var context = NetworkListener.LastContext;
+            if (context != null)
             {
-                ImGui.Text($"Direction = {Enum.GetName(typeof(NetworkMessageDirection), data.Direction)}");
-                ImGui.Text($"Opcode = 0x{data.Opcode:X4}");
+                var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.PlayerFilterValue);
+                if (viewer.Any())
+                {
+                    lastNetworkContext = context;
+                    lastNetworkViewer = viewer;
+                }
+                else
+                {
+                    context = lastNetworkContext;
+                    viewer = lastNetworkViewer;
+                }
 
-                var viewer = new DataViewer(Config.NetworkDataType, data.Data, Config.NetworkEnableValueFilter, Config.PlayerFilterValue);
-                viewer.Draw();
+                if (context != null && viewer != null)
+                {
+                    ImGui.Text($"Direction = {Enum.GetName(typeof(NetworkMessageDirection), context.Direction)}");
+                    ImGui.Text($"Opcode = 0x{context.Opcode:X4}");
+
+                    viewer.Draw();
+                }
             }
 
             ImGui.EndTabItem();
