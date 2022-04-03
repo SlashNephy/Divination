@@ -7,8 +7,8 @@ namespace Divination.Debugger;
 
 public class PluginConfig : IPluginConfiguration
 {
-    public bool OpenAtStart = true;
-    public bool EnableVerboseChatLog = false;
+    public bool OpenAtStart;
+    public bool EnableVerboseChatLog;
 
     public int PlayerDataTypeIndex;
     public bool PlayerEnableValueFilter;
@@ -22,6 +22,7 @@ public class PluginConfig : IPluginConfiguration
     public long NetworkFilterValue;
     public bool NetworkEnableOpcodeFilter;
     public int NetworkFilterOpcode;
+    public bool NetworkLogMatchedPackets = true;
 
     [JsonIgnore]
     private readonly Array dataTypes = Enum.GetValues(typeof(DataType));

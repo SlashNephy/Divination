@@ -7,14 +7,14 @@ namespace Divination.Debugger.Window;
 
 public class DataViewer
 {
-    private readonly bool isEnableFilter;
-    private readonly long filter;
+    private readonly bool isEnableValueFilter;
+    private readonly long filterValue;
     private readonly List<DataRow>? rows;
 
-    public DataViewer(DataType dataType, byte[] data, bool isEnableFilter, long filter)
+    public DataViewer(DataType dataType, byte[] data, bool isEnableValueFilter, long filterValue)
     {
-        this.isEnableFilter = isEnableFilter;
-        this.filter = filter;
+        this.isEnableValueFilter = isEnableValueFilter;
+        this.filterValue = filterValue;
 
         rows = dataType switch
         {
@@ -61,15 +61,15 @@ public class DataViewer
             return null;
         }
 
-        return source.Select((value, index) => (index, value))
+        return source.Select((value, index) => (index: index * byteCount, value))
             .Where(row => IsMatchedPost(row.value))
-            .Select(row => new DataRow(row.index * byteCount, row.value.ToString()!))
+            .Select(row => new DataRow(row.index, row.value.ToString()!))
             .ToList();
     }
 
     private bool IsMatchedPre<T>(T[] source) where T : struct
     {
-        if (!isEnableFilter)
+        if (!isEnableValueFilter)
         {
             return true;
         }
@@ -77,19 +77,19 @@ public class DataViewer
         switch (source)
         {
             case byte[]:
-                return filter is >= byte.MinValue and <= byte.MaxValue;
+                return filterValue is >= byte.MinValue and <= byte.MaxValue;
             case sbyte[]:
-                return filter is >= sbyte.MinValue and <= sbyte.MaxValue;
+                return filterValue is >= sbyte.MinValue and <= sbyte.MaxValue;
             case ushort[]:
-                return filter is >= ushort.MinValue and <= ushort.MaxValue;
+                return filterValue is >= ushort.MinValue and <= ushort.MaxValue;
             case short[]:
-                return filter is >= short.MinValue and <= short.MaxValue;
+                return filterValue is >= short.MinValue and <= short.MaxValue;
             case uint[]:
-                return filter is >= uint.MinValue and <= uint.MaxValue;
+                return filterValue is >= uint.MinValue and <= uint.MaxValue;
             case int[]:
-                return filter is >= int.MinValue and <= int.MaxValue;
+                return filterValue is >= int.MinValue and <= int.MaxValue;
             case ulong[]:
-                return filter >= 0;
+                return filterValue >= 0;
             case long[]:
                 return true;
             default:
@@ -99,7 +99,7 @@ public class DataViewer
 
     private bool IsMatchedPost<T>(T value) where T : struct
     {
-        if (!isEnableFilter)
+        if (!isEnableValueFilter)
         {
             return true;
         }
@@ -107,21 +107,21 @@ public class DataViewer
         switch (value)
         {
             case byte u8:
-                return u8 == filter;
+                return u8 == filterValue;
             case sbyte i8:
-                return i8 == filter;
+                return i8 == filterValue;
             case ushort u16:
-                return u16 == filter;
+                return u16 == filterValue;
             case short i16:
-                return i16 == filter;
+                return i16 == filterValue;
             case uint u32:
-                return u32 == filter;
+                return u32 == filterValue;
             case int i32:
-                return i32 == filter;
+                return i32 == filterValue;
             case ulong u64:
-                return u64 == (ulong) filter;
+                return u64 == (ulong) filterValue;
             case long i64:
-                return i64 == filter;
+                return i64 == filterValue;
             default:
                 throw new NotImplementedException();
         }

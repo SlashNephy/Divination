@@ -1,22 +1,12 @@
-﻿using Dalamud.Divination.Common.Api.Network;
+﻿using System;
+using System.Collections.Concurrent;
+using Dalamud.Divination.Common.Api.Network;
 
 namespace Divination.Debugger;
 
-public class NetworkListener : INetworkHandler
+public class NetworkListener : INetworkHandler, IDisposable
 {
-    private static readonly object LastContextLock = new();
-    private static NetworkContext? _lastContext;
-
-    public static NetworkContext? LastContext
-    {
-        get
-        {
-            lock (LastContextLock)
-            {
-                return _lastContext;
-            }
-        }
-    }
+    public static readonly BlockingCollection<NetworkContext> Contexts = new();
 
     public bool CanHandleReceivedMessage(NetworkContext context) => DebuggerPlugin.Instance.Config.NetworkEnableListener && DebuggerPlugin.Instance.Config.NetworkListenDownload;
 
@@ -33,9 +23,11 @@ public class NetworkListener : INetworkHandler
             return;
         }
 
-        lock (LastContextLock)
-        {
-            _lastContext = context;
-        }
+        Contexts.Add(context);
+    }
+
+    public void Dispose()
+    {
+        Contexts.Dispose();
     }
 }
