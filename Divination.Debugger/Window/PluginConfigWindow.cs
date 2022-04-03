@@ -119,7 +119,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             var context = NetworkListener.LastContext;
             if (context != null)
             {
-                var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.PlayerFilterValue);
+                var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.NetworkFilterValue);
                 if (viewer.Any())
                 {
                     lastNetworkContext = context;
