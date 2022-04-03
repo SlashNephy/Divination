@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Game.Network;
 using ImGuiNET;
 
 namespace Divination.Debugger.Window;
@@ -100,8 +101,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 }
             }
 
-            ImGui.Separator();
-
             ImGui.Checkbox("Enable Opcode Filter", ref Config.NetworkEnableOpcodeFilter);
             ImGui.InputInt("Opcode", ref Config.NetworkFilterOpcode);
 
@@ -110,7 +109,10 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             var data = NetworkListener.LastContext;
             if (data != null)
             {
-                var viewer = new DataViewer(Config.NetworkDataType, data.Data, Config.PlayerEnableValueFilter, Config.PlayerFilterValue);
+                ImGui.Text($"Direction = {Enum.GetName(typeof(NetworkMessageDirection), data.Direction)}");
+                ImGui.Text($"Opcode = 0x{data.Opcode:X4}");
+
+                var viewer = new DataViewer(Config.NetworkDataType, data.Data, Config.NetworkEnableValueFilter, Config.PlayerFilterValue);
                 viewer.Draw();
             }
 
