@@ -120,9 +120,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             ImGui.Separator();
 
-            if (NetworkListener.Contexts.TryTake(out var context))
+            var context = NetworkListener.Contexts.TryTake(out var ctx) ? ctx : lastNetworkContext;
+            if (context != null)
             {
-                // ReSharper disable once PossibleNullReferenceException
                 var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.NetworkFilterValue);
                 if (viewer.Any())
                 {
