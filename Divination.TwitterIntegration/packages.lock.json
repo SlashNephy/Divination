@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net5.0-windows7.0": {
+    "net6.0-windows7.0": {
       "CoreTweet": {
         "type": "Direct",
         "requested": "[1.0.0.483, )",
@@ -14,14 +14,14 @@
       "DalamudPackager": {
         "type": "Direct",
         "requested": "[2.*, )",
-        "resolved": "2.1.5",
-        "contentHash": "0RMHom/TbYxWzJPTdMOPjuelZY2aacWipp0INPkQrLa31Wy1KAWZ/R/+2sdi02vhk15PthZcpUQqVIwcxprG8A=="
+        "resolved": "2.1.7",
+        "contentHash": "jnZ/sdInyn07ycuWI+pPOtP/xE3v+c4+jYJfDt36FWnBF9NKqkpzfviJtPl/jGLgbaCmFIXu+Yid0N8GvdKefg=="
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
         "requested": "[5.*, )",
-        "resolved": "5.9.0",
-        "contentHash": "UjxbmklhY62RJmfaFbFmYWYwrKS9CTrRmULjdTBCDZfx/Mn5MGO2YK3FpV/P9ab30dHyPneUtuF0U3TW79P8nw=="
+        "resolved": "5.10.1",
+        "contentHash": "H30ThorrFCs4jLeTH4fX+LsuFu6jM70Bc7GOvC6Nya3E1dIeIFrvs0Lwtt//V5CQWhvHRXu53ov1rmJYcMY5kQ=="
       },
       "Microsoft.CSharp": {
         "type": "Transitive",
