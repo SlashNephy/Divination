@@ -7,6 +7,6 @@
             <Private>False</Private>
         </Reference>
 
-        <PackageReference Include="DalamudPackager" Version="2.*" />
+        <PackageReference Include="DalamudPackager" Version="2.1.7" />
     </ItemGroup>
 </Project>
