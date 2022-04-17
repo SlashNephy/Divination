@@ -8,18 +8,11 @@
     "Voiceroid"
   ],
   "CategoryTags": [
-    "other",
-    "jobs",
-    "ui",
-    "minigames",
-    "inventory",
-    "sound",
-    "social",
     "utility"
   ],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 5,
+  "DalamudApiLevel": 6,
   "LoadPriority": 0,
   "ImageUrls": [],
   "IconUrl": null
