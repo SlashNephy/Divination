@@ -17,14 +17,14 @@ namespace Divination.DiscordIntegration
                     LargeImageKey = "li_1",
                     LargeImageText = "",
                     SmallImageKey = "class_0",
-                    SmallImageText = ""
-                }
+                    SmallImageText = "",
+                },
             };
 
             discord.UpdatePresence(defaultPresence);
         }
 
-        private void OnElapsed(object sender, ElapsedEventArgs args)
+        private void OnElapsed(object? sender, ElapsedEventArgs args)
         {
             Update();
         }
