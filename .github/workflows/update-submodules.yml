@@ -13,7 +13,7 @@ jobs:
         repository:
           - horoscope-dev/Dalamud.Divination.Template
           - horoscope-dev/Dalamud.Divination.TwitterIntegration
-          # - horoscope-dev/Dalamud.Divination.AetheryteLinkInChat
+          - horoscope-dev/Dalamud.Divination.AetheryteLinkInChat
           - horoscope-dev/Dalamud.Divination.DiscordIntegration
           - horoscope-dev/Dalamud.Divination.PowerUtils
           - horoscope-dev/Dalamud.Divination.Calculator
