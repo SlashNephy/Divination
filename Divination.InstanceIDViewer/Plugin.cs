@@ -20,8 +20,8 @@ namespace Divination.InstanceIDViewer
         public static GameNetwork GameNetwork { get; private set; }
         
         public string Name => "Divination.InstanceIDViewer";
-        private static readonly object LastServerIdLock = new object();
-        private ushort _lastServerId;
+        private static readonly object LastServerIdLock = new();
+        private ushort lastServerId;
 
         private void OnNetworkMessage(IntPtr dataPtr, ushort opcode, uint sourceActorId, uint targetActorId, NetworkMessageDirection direction)
         {
@@ -40,25 +40,25 @@ namespace Divination.InstanceIDViewer
 
             lock (LastServerIdLock)
             {
-                if (serverId != default && serverId != _lastServerId)
+                if (serverId != default && serverId != lastServerId)
                 {
 
-                    var Message = new SeString(new Payload[]
+                    var message = new SeString(new Payload[]
                     {
                         new TextPayload("[InstanceIDViewer] "),
-                        new TextPayload($"instance id changed: {_lastServerId} {(char) SeIconChar.ArrowRight} {serverId}"),
+                        new TextPayload($"instance id changed: {lastServerId} {(char) SeIconChar.ArrowRight} {serverId}"),
                     });
                     ChatGui.PrintChat(new XivChatEntry
                     {
                       Type =   XivChatType.Echo,
                       Name = string.Empty,
-                      Message = Message
+                      Message = message,
                     });
                 }
 
                 if (serverId != 0)
                 {
-                    _lastServerId = serverId;
+                    lastServerId = serverId;
                 }
             }
         }
