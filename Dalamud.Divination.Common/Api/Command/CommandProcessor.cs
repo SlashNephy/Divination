@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,6 +12,7 @@ using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Logging;
+using Dalamud.Game.Command;
 
 namespace Dalamud.Divination.Common.Api.Command
 {
@@ -21,13 +22,14 @@ namespace Dalamud.Divination.Common.Api.Command
         private readonly ChatGui chatGui;
         private readonly IChatClient chatClient;
 
-        private readonly Regex commandRegex = new(@"^そのコマンドはありません。： (?<command>.+)$", RegexOptions.Compiled);
-        private readonly List<DivinationCommand> commands = new();
+		private readonly Regex commandRegex;
+		private readonly Regex commandRegexCn;
+		private readonly List<DivinationCommand> commands = new();
         private readonly object commandsLock = new();
 
         public string? Prefix { get; }
 
-        public CommandProcessor(string pluginName, string? prefix, ChatGui chatGui, IChatClient chatClient)
+        public CommandProcessor(string pluginName, string? prefix, ChatGui chatGui, IChatClient chatClient, CommandManager commandManager)
         {
             this.pluginName = pluginName;
             Prefix = prefix == null ? null : (prefix.StartsWith("/") ? prefix : $"/{prefix}").Trim();
@@ -36,8 +38,13 @@ namespace Dalamud.Divination.Common.Api.Command
 
             RegisterCommandsByAttribute(new DefaultCommands(this));
 
-            chatGui.CheckMessageHandled += OnChatMessage;
-        }
+            chatGui.CheckMessageHandled += OnCheckMessageHandled;
+
+			var dalamudCommandManager = commandManager.GetType();
+
+			commandRegex = dalamudCommandManager.GetField("currentLangCommandRegex", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager) as Regex ?? throw new NotSupportedException();
+			commandRegexCn = dalamudCommandManager.GetField("commandRegexCn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager) as Regex ?? throw new NotSupportedException();
+		}
 
         public IReadOnlyList<DivinationCommand> Commands
         {
@@ -50,20 +57,29 @@ namespace Dalamud.Divination.Common.Api.Command
             }
         }
 
-        private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+        private void OnCheckMessageHandled(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
         {
-            if (type != XivChatType.ErrorMessage || senderId != 0)
-            {
-                return;
-            }
-
-            var match = commandRegex.Match(message.TextValue).Groups["command"];
-            if (match.Success)
-            {
-                isHandled = ProcessCommand(match.Value.Trim());
-                PluginLog.Debug($"Command: {match.Value}");
-            }
-        }
+			if (type == XivChatType.ErrorMessage && senderId == 0)
+			{
+				var cmdMatch = commandRegex.Match(message.TextValue).Groups["command"];
+				if (cmdMatch.Success)
+				{
+					var command = cmdMatch.Value;
+					if (ProcessCommand(command)) isHandled = true;
+					PluginLog.Debug($"Command: {command}");
+				}
+				else
+				{
+					cmdMatch = commandRegexCn.Match(message.TextValue).Groups["command"];
+					if (cmdMatch.Success)
+					{
+						var command = cmdMatch.Value;
+						if (ProcessCommand(command)) isHandled = true;
+						PluginLog.Debug($"Command: {command}");
+					}
+				}
+			}
+		}
 
         public bool ProcessCommand(string text)
         {
@@ -180,7 +196,7 @@ namespace Dalamud.Divination.Common.Api.Command
 
         public void Dispose()
         {
-            chatGui.CheckMessageHandled -= OnChatMessage;
+            chatGui.CheckMessageHandled -= OnCheckMessageHandled;
             commands.Clear();
         }
     }
