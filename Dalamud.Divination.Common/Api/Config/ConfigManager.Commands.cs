@@ -12,9 +12,9 @@ namespace Dalamud.Divination.Common.Api.Config
     {
         public class Commands : ICommandProvider
         {
+            private readonly IChatClient chatClient;
             private readonly IConfigManager<TConfiguration> manager;
             private readonly ICommandProcessor processor;
-            private readonly IChatClient chatClient;
 
             public Commands(IConfigManager<TConfiguration> manager, ICommandProcessor processor, IChatClient chatClient)
             {
@@ -54,7 +54,7 @@ namespace Dalamud.Divination.Common.Api.Config
                     new TextPayload($"設定名は {typeof(TConfiguration).FullName} で定義されているフィールド名です。大文字小文字を区別しません。\n"),
                     new TextPayload("設定値が bool/string の場合, 設定値を省略することができます。bool の場合はトグルされ, string の場合は空白値として設定します。\n"),
                     new TextPayload("利用可能な設定名の一覧:\n"),
-                    new TextPayload(string.Join("\n", configKeys))
+                    new TextPayload(string.Join("\n", configKeys)),
                 });
             }
 

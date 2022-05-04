@@ -17,11 +17,11 @@ namespace Dalamud.Divination.Common.Api.Chat
         public static ushort ErrorMessageColor = 14;
         public static XivChatType NormalMessageType = XivChatType.Echo;
         public static XivChatType ErrorMessageType = XivChatType.ErrorMessage;
-
-        private readonly string title;
         private readonly ChatGui gui;
 
         private readonly BlockingCollection<XivChatEntry> queue = new();
+
+        private readonly string title;
 
         public ChatClient(string title, ChatGui gui, ClientState clientState)
         {
@@ -35,13 +35,12 @@ namespace Dalamud.Divination.Common.Api.Chat
             }
         }
 
-        private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
-        {
-            if (type == XivChatType.Notice)
-            {
-                CompleteChatQueue();
-            }
-        }
+        private static SeString EmptySeString => new(Array.Empty<Payload>());
+
+        private SeString DefaultHeader => new(new UIForegroundPayload(HeaderColor),
+            new TextPayload($"[{title}]"),
+            UIForegroundPayload.UIForegroundOff,
+            new TextPayload(" "));
 
         public void EnqueueChat(XivChatEntry entry)
         {
@@ -61,7 +60,7 @@ namespace Dalamud.Divination.Common.Api.Chat
             {
                 Type = type ?? NormalMessageType,
                 Name = sender ?? string.Empty,
-                Message = FormatString(seString, false)
+                Message = FormatString(seString, false),
             });
         }
 
@@ -71,13 +70,32 @@ namespace Dalamud.Divination.Common.Api.Chat
             {
                 Type = type ?? ErrorMessageType,
                 Name = sender ?? string.Empty,
-                Message = FormatString(seString, true)
+                Message = FormatString(seString, true),
             });
+        }
+
+        public void Dispose()
+        {
+            gui.ChatMessage -= OnChatMessage;
+
+            queue.Dispose();
+        }
+
+        private void OnChatMessage(XivChatType type,
+            uint senderId,
+            ref SeString sender,
+            ref SeString message,
+            ref bool isHandled)
+        {
+            if (type == XivChatType.Notice)
+            {
+                CompleteChatQueue();
+            }
         }
 
         private SeString FormatString(SeString seString, bool error)
         {
-            var message = ShowHeader ? (Header ?? DefaultHeader) : EmptySeString;
+            var message = ShowHeader ? Header ?? DefaultHeader : EmptySeString;
             var color = error ? ErrorMessageColor : NormalMessageColor;
             if (color > 0)
             {
@@ -88,14 +106,6 @@ namespace Dalamud.Divination.Common.Api.Chat
 
             return color > 0 ? message.Append(UIForegroundPayload.UIForegroundOff) : message;
         }
-
-        private static SeString EmptySeString => new(Array.Empty<Payload>());
-
-        private SeString DefaultHeader => new(
-            new UIForegroundPayload(HeaderColor),
-            new TextPayload($"[{title}]"),
-            UIForegroundPayload.UIForegroundOff,
-            new TextPayload(" "));
 
         private void CompleteChatQueue()
         {
@@ -108,13 +118,6 @@ namespace Dalamud.Divination.Common.Api.Chat
                     gui.PrintChat(entry);
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            gui.ChatMessage -= OnChatMessage;
-
-            queue.Dispose();
         }
     }
 }

@@ -11,7 +11,10 @@ namespace Dalamud.Divination.Common.Api.Definition
             return objectType == typeof(byte) || objectType == typeof(ushort) || objectType == typeof(int);
         }
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader,
+            Type objectType,
+            object? existingValue,
+            JsonSerializer serializer)
         {
             switch (reader.TokenType)
             {
@@ -23,7 +26,8 @@ namespace Dalamud.Divination.Common.Api.Definition
                 case JsonToken.Null:
                     return null;
                 default:
-                    throw new NotSupportedException($"Deserialization of \"{reader.Value}\" ({reader.TokenType}) is not supported. (expected {objectType}, {existingValue})");
+                    throw new NotSupportedException(
+                        $"Deserialization of \"{reader.Value}\" ({reader.TokenType}) is not supported. (expected {objectType}, {existingValue})");
             }
         }
 

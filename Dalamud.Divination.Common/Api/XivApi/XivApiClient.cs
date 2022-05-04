@@ -31,7 +31,10 @@ namespace Dalamud.Divination.Common.Api.XivApi
             var result = await response.Content.ReadAsStringAsync();
             var data = JObject.Parse(result);
 
-            PluginLog.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
+            PluginLog.Verbose("{Code}: {Method} {Url}",
+                (int) response.StatusCode,
+                response.RequestMessage!.Method.Method,
+                url);
 
             return new XivApiResponse(data);
         }
@@ -49,8 +52,16 @@ namespace Dalamud.Divination.Common.Api.XivApi
             dynamic json = JObject.Parse(result);
             var data = (JObject) ((JArray) json.Results).First();
 
-            PluginLog.Verbose("{Code}: {Method} {Url}", (int) response.StatusCode, response.RequestMessage!.Method.Method, url);
+            PluginLog.Verbose("{Code}: {Method} {Url}",
+                (int) response.StatusCode,
+                response.RequestMessage!.Method.Method,
+                url);
             return new XivApiResponse(data);
+        }
+
+        public void Dispose()
+        {
+            client.Dispose();
         }
 
         public static string GetIconUrl(uint icon)
@@ -70,11 +81,6 @@ namespace Dalamud.Divination.Common.Api.XivApi
             }
 
             return $"https://xivapi.com/i/{folderId}/{iconId}.png";
-        }
-
-        public void Dispose()
-        {
-            client.Dispose();
         }
     }
 }

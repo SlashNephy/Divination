@@ -28,15 +28,27 @@ namespace Dalamud.Divination.Common.Api.XivApi
             }
         }
 
-        public IEnumerator<KeyValuePair<string, JToken>> GetEnumerator() => json.GetEnumerator()!;
+        public IEnumerator<KeyValuePair<string, JToken>> GetEnumerator()
+        {
+            return json.GetEnumerator()!;
+        }
 
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) json).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable) json).GetEnumerator();
+        }
 
         public int Count => json.Count;
 
-        public bool ContainsKey(string key) => json.ContainsKey(key);
+        public bool ContainsKey(string key)
+        {
+            return json.ContainsKey(key);
+        }
 
-        public bool TryGetValue(string key, out JToken value) => json.TryGetValue(key, out value!);
+        public bool TryGetValue(string key, out JToken value)
+        {
+            return json.TryGetValue(key, out value!);
+        }
 
         public IEnumerable<string> Keys => ((IDictionary<string, JToken>) json).Keys;
 

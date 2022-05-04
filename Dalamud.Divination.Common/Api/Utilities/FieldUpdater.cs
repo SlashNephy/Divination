@@ -11,13 +11,14 @@ namespace Dalamud.Divination.Common.Api.Utilities
 {
     internal class FieldUpdater : IFieldUpdater
     {
-        public object Object { get; }
-
         private readonly IChatClient chatClient;
-        private readonly IVoiceroid2ProxyClient voiceroid2ProxyClient;
         private readonly bool useTts;
+        private readonly IVoiceroid2ProxyClient voiceroid2ProxyClient;
 
-        public FieldUpdater(object obj, IChatClient chatClient, IVoiceroid2ProxyClient voiceroid2ProxyClient, bool useTts)
+        public FieldUpdater(object obj,
+            IChatClient chatClient,
+            IVoiceroid2ProxyClient voiceroid2ProxyClient,
+            bool useTts)
         {
             Object = obj;
             this.chatClient = chatClient;
@@ -25,30 +26,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
             this.useTts = useTts;
         }
 
-        private void Respond(List<Payload> payloads)
-        {
-            if (useTts)
-            {
-                var text = new SeString(payloads).TextValue;
-                voiceroid2ProxyClient.TalkAsync(text);
-            }
-            else
-            {
-                chatClient.Print(payloads);
-            }
-        }
-
-        private void RespondError(List<Payload> payloads)
-        {
-            if (useTts)
-            {
-                Respond(payloads);
-            }
-            else
-            {
-                chatClient.PrintError(payloads);
-            }
-        }
+        public object Object { get; }
 
         public bool TryUpdate(string key, string? value, IEnumerable<FieldInfo> fields)
         {
@@ -66,7 +44,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
                     EmphasisItalicPayload.ItalicsOn,
                     new TextPayload(key),
                     EmphasisItalicPayload.ItalicsOff,
-                    new TextPayload(" は存在しません。")
+                    new TextPayload(" は存在しません。"),
                 });
 
                 return false;
@@ -80,7 +58,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
                     EmphasisItalicPayload.ItalicsOn,
                     new TextPayload(key),
                     EmphasisItalicPayload.ItalicsOff,
-                    new TextPayload(" の変更は許可されていません。")
+                    new TextPayload(" の変更は許可されていません。"),
                 });
 
                 return false;
@@ -108,7 +86,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
                         EmphasisItalicPayload.ItalicsOn,
                         new TextPayload(key),
                         EmphasisItalicPayload.ItalicsOff,
-                        new TextPayload(" の変更はサポートされていません。")
+                        new TextPayload(" の変更はサポートされていません。"),
                     });
 
                     return false;
@@ -194,6 +172,31 @@ namespace Dalamud.Divination.Common.Api.Utilities
             return true;
         }
 
+        private void Respond(List<Payload> payloads)
+        {
+            if (useTts)
+            {
+                var text = new SeString(payloads).TextValue;
+                voiceroid2ProxyClient.TalkAsync(text);
+            }
+            else
+            {
+                chatClient.Print(payloads);
+            }
+        }
+
+        private void RespondError(List<Payload> payloads)
+        {
+            if (useTts)
+            {
+                Respond(payloads);
+            }
+            else
+            {
+                chatClient.PrintError(payloads);
+            }
+        }
+
         private void PrintConfigValueSuccessLog(FieldInfo fieldInfo, object? value)
         {
             Respond(new List<Payload>
@@ -206,7 +209,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
                 EmphasisItalicPayload.ItalicsOn,
                 new TextPayload($"{value ?? "null"}"),
                 EmphasisItalicPayload.ItalicsOff,
-                new TextPayload(" に変更しました。")
+                new TextPayload(" に変更しました。"),
             });
         }
 
@@ -226,7 +229,7 @@ namespace Dalamud.Divination.Common.Api.Utilities
                 EmphasisItalicPayload.ItalicsOn,
                 new TextPayload(fieldInfo.FieldType.Name),
                 EmphasisItalicPayload.ItalicsOff,
-                new TextPayload(") に変換できませんでした。")
+                new TextPayload(") に変換できませんでした。"),
             });
         }
     }

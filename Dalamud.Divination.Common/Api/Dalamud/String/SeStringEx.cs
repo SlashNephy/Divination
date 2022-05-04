@@ -6,12 +6,12 @@ using Dalamud.Game.Text.SeStringHandling;
 namespace Dalamud.Divination.Common.Api.Dalamud.String
 {
     /// <summary>
-    /// Dalamud が提供する SeString を補助する拡張メソッドが定義された静的クラスです。
+    ///     Dalamud が提供する SeString を補助する拡張メソッドが定義された静的クラスです。
     /// </summary>
     public static class SeStringEx
     {
         /// <summary>
-        /// インスタンスの値を強制的に UTF-8 文字列に変換します。
+        ///     インスタンスの値を強制的に UTF-8 文字列に変換します。
         /// </summary>
         /// <param name="seString">SeString インスタンス。</param>
         /// <returns>UTF-8 文字列。</returns>
@@ -21,7 +21,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud.String
         }
 
         /// <summary>
-        /// インスタンスの値を強制的に UTF-8 文字列に変換します。
+        ///     インスタンスの値を強制的に UTF-8 文字列に変換します。
         /// </summary>
         /// <param name="payload">Payload インスタンス。</param>
         /// <returns>UTF-8 文字列。</returns>
@@ -31,7 +31,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud.String
         }
 
         /// <summary>
-        /// インスタンスの値を強制的に UTF-8 文字列に変換します。
+        ///     インスタンスの値を強制的に UTF-8 文字列に変換します。
         /// </summary>
         /// <param name="payloads">Payload インスタンスのイテレータ。</param>
         /// <returns>UTF-8 文字列。</returns>
@@ -41,7 +41,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud.String
         }
 
         /// <summary>
-        /// インスタンスの値を強制的に UTF-8 文字列に変換します。
+        ///     インスタンスの値を強制的に UTF-8 文字列に変換します。
         /// </summary>
         /// <param name="payloads">Payload インスタンスの配列。</param>
         /// <returns>UTF-8 文字列。</returns>

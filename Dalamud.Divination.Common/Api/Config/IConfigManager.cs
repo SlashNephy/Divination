@@ -10,8 +10,8 @@ namespace Dalamud.Divination.Common.Api.Config
         public bool TryUpdate(string key, string? value, bool useTts);
 
         /// <summary>
-        /// 現在のプラグインの設定インスタンスをファイルに保存します。
-        /// プラグインの終了時に自動的に呼ばれます。
+        ///     現在のプラグインの設定インスタンスをファイルに保存します。
+        ///     プラグインの終了時に自動的に呼ばれます。
         /// </summary>
         public void Save();
     }

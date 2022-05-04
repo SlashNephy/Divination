@@ -11,16 +11,17 @@ using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Config
 {
-    internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfiguration> where TConfiguration : class, IPluginConfiguration, new()
+    internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfiguration>
+        where TConfiguration : class, IPluginConfiguration, new()
     {
         private readonly IChatClient chatClient;
-        private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
-        private readonly string pluginName;
         private readonly PluginConfigurations dalamud = new(DivinationEnvironment.XivLauncherPluginConfigDirectory);
+        private readonly string pluginName;
+        private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
-        public TConfiguration Config { get; }
-
-        public ConfigManager(IChatClient chatClient, Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient, string pluginName)
+        public ConfigManager(IChatClient chatClient,
+            Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient,
+            string pluginName)
         {
             this.chatClient = chatClient;
             this.voiceroid2ProxyClient = voiceroid2ProxyClient;
@@ -30,14 +31,7 @@ namespace Dalamud.Divination.Common.Api.Config
             PluginLog.Verbose("Config loaded: {Config}", JsonConvert.SerializeObject(Config));
         }
 
-        private static IEnumerable<FieldInfo> EnumerateConfigFields(bool includeUpdateIgnore = false)
-        {
-            var result = typeof(TConfiguration)
-                .GetFields()
-                .Where(x => x.FieldType == typeof(float) || x.FieldType == typeof(bool) || x.FieldType == typeof(int) || x.FieldType == typeof(string));
-
-            return !includeUpdateIgnore ? result : result.Where(x => x.GetCustomAttribute<UpdateProhibitedAttribute>() == null);
-        }
+        public TConfiguration Config { get; }
 
         public bool TryUpdate(string key, string? value, bool useTts)
         {
@@ -56,6 +50,17 @@ namespace Dalamud.Divination.Common.Api.Config
         public void Dispose()
         {
             Save();
+        }
+
+        private static IEnumerable<FieldInfo> EnumerateConfigFields(bool includeUpdateIgnore = false)
+        {
+            var result = typeof(TConfiguration).GetFields()
+                .Where(x => x.FieldType == typeof(float) || x.FieldType == typeof(bool) || x.FieldType == typeof(int) ||
+                            x.FieldType == typeof(string));
+
+            return !includeUpdateIgnore
+                ? result
+                : result.Where(x => x.GetCustomAttribute<UpdateProhibitedAttribute>() == null);
         }
     }
 }

@@ -5,14 +5,14 @@ using System.Text;
 namespace Dalamud.Divination.Common.Api.Version
 {
     /// <summary>
-    /// Git コミット履歴からバージョン情報を提供します。
+    ///     Git コミット履歴からバージョン情報を提供します。
     /// </summary>
     internal sealed class GitVersion : IGitVersion
     {
         private readonly Type? gitVersionInfo;
 
         /// <summary>
-        /// 与えられたアセンブリ内に含まれる Git コミット履歴からバージョン情報を組み立てます。
+        ///     与えられたアセンブリ内に含まれる Git コミット履歴からバージョン情報を組み立てます。
         /// </summary>
         /// <param name="assembly">アセンブリ。</param>
         public GitVersion(Assembly assembly)
@@ -60,6 +60,22 @@ namespace Dalamud.Divination.Common.Api.Version
         public string CommitDate => GetStringField("CommitDate");
         public int UncommittedChanges => GetIntField("UncommittedChanges");
 
+        public override string ToString()
+        {
+            if (gitVersionInfo == null)
+            {
+                return string.Empty;
+            }
+
+            var builder = new StringBuilder();
+            foreach (var field in gitVersionInfo.GetFields())
+            {
+                builder.AppendLine($"{field.Name} = {field.GetValue(null)}");
+            }
+
+            return builder.ToString();
+        }
+
         private int GetIntField(string key)
         {
             try
@@ -82,22 +98,6 @@ namespace Dalamud.Divination.Common.Api.Version
             {
                 return string.Empty;
             }
-        }
-
-        public override string ToString()
-        {
-            if (gitVersionInfo == null)
-            {
-                return string.Empty;
-            }
-
-            var builder = new StringBuilder();
-            foreach (var field in gitVersionInfo.GetFields())
-            {
-                builder.AppendLine($"{field.Name} = {field.GetValue(null)}");
-            }
-
-            return builder.ToString();
         }
     }
 }

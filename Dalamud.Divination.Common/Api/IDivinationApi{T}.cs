@@ -15,8 +15,7 @@ using Dalamud.Divination.Common.Api.XivApi;
 namespace Dalamud.Divination.Common.Api
 {
     public interface IDivinationApi<TConfiguration, out TDefinition> : IDisposable
-        where TConfiguration : class, IPluginConfiguration, new()
-        where TDefinition : DefinitionContainer, new()
+        where TConfiguration : class, IPluginConfiguration, new() where TDefinition : DefinitionContainer, new()
     {
         public IChatClient Chat { get; }
 

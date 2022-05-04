@@ -10,9 +10,8 @@ namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
 {
     internal sealed class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
     {
-        private readonly string url;
-
         private readonly HttpClient client = new();
+        private readonly string url;
 
         public Voiceroid2ProxyClient(string host = "localhost", int port = 4532)
         {
@@ -23,7 +22,7 @@ namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
         {
             var payload = new Dictionary<string, string>
             {
-                {"text", text}
+                {"text", text},
             };
             var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
 

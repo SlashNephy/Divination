@@ -8,8 +8,8 @@ namespace Dalamud.Divination.Common.Api.Version
     {
         public class Commands : ICommandProvider
         {
-            private readonly IVersionManager versionManager;
             private readonly IChatClient chatClient;
+            private readonly IVersionManager versionManager;
 
             public Commands(IVersionManager versionManager, IChatClient chatClient)
             {

@@ -8,12 +8,13 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
+    public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TContainer>
+        where TContainer : DefinitionContainer, new()
     {
-        private TContainer? container;
+        protected readonly CancellationTokenSource Cancellable = new();
         private readonly object containerLock = new();
         private readonly Task initializationTask;
-        protected readonly CancellationTokenSource Cancellable = new();
+        private TContainer? container;
 
         protected DefinitionProvider()
         {
@@ -37,8 +38,6 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         public virtual bool AllowObsoleteDefinitions => false;
 
-        internal abstract JObject? Fetch();
-
         public void Update(CancellationToken token)
         {
             var json = Fetch();
@@ -53,8 +52,8 @@ namespace Dalamud.Divination.Common.Api.Definition
                 {
                     Converters =
                     {
-                        new HexStringJsonConverter()
-                    }
+                        new HexStringJsonConverter(),
+                    },
                 });
 
                 var localGameVersion = ReadLocalGameVersion();
@@ -62,14 +61,15 @@ namespace Dalamud.Divination.Common.Api.Definition
                 {
                     PluginLog.Warning(
                         "The game version \"{DefinitionGameVersion}\" is not supported yet. The local one is \"{LocalGameVersion}\".",
-                        container?.Version ?? string.Empty, localGameVersion);
+                        container?.Version ?? string.Empty,
+                        localGameVersion);
 
                     if (!AllowObsoleteDefinitions)
                     {
                         container = new TContainer
                         {
                             Version = container?.Version,
-                            Patch = container?.Patch
+                            Patch = container?.Patch,
                         };
                     }
                 }
@@ -79,12 +79,23 @@ namespace Dalamud.Divination.Common.Api.Definition
 
                     PluginLog.Information(
                         "The definition file for patch {GamePatch} \"{DefinitionFilename}\" was loaded. Local game version is \"{LocalGameVersion}\".",
-                        container?.Patch ?? string.Empty, Filename, localGameVersion);
+                        container?.Patch ?? string.Empty,
+                        Filename,
+                        localGameVersion);
                 }
             }
 
-            PluginLog.Verbose("{DefinitionFilename}\n{DefinitionJson}", Filename, JsonConvert.SerializeObject(json, Formatting.Indented));
+            PluginLog.Verbose("{DefinitionFilename}\n{DefinitionJson}",
+                Filename,
+                JsonConvert.SerializeObject(json, Formatting.Indented));
         }
+
+        public virtual void Dispose()
+        {
+            Cancellable.Cancel();
+        }
+
+        internal abstract JObject? Fetch();
 
         private static string ReadLocalGameVersion()
         {
@@ -92,11 +103,6 @@ namespace Dalamud.Divination.Common.Api.Definition
             var gameVersionPath = Path.Combine(DivinationEnvironment.GameDirectory, "ffxivgame.ver");
 
             return File.ReadAllText(gameVersionPath).Trim();
-        }
-
-        public virtual void Dispose()
-        {
-            Cancellable.Cancel();
         }
     }
 }
