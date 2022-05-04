@@ -59,24 +59,26 @@ namespace Dalamud.Divination.Common.Api.Command
 
         private void OnCheckMessageHandled(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
         {
-            if (type == XivChatType.ErrorMessage && senderId == 0)
+            if (type != XivChatType.ErrorMessage || senderId != 0)
             {
-                var cmdMatch = commandRegex.Match(message.TextValue).Groups["command"];
+                return;
+            }
+
+            var cmdMatch = commandRegex.Match(message.TextValue).Groups["command"];
+            if (cmdMatch.Success)
+            {
+                var command = cmdMatch.Value;
+                if (ProcessCommand(command)) isHandled = true;
+                PluginLog.Debug($"Command: {command}");
+            }
+            else
+            {
+                cmdMatch = commandRegexCn.Match(message.TextValue).Groups["command"];
                 if (cmdMatch.Success)
                 {
                     var command = cmdMatch.Value;
                     if (ProcessCommand(command)) isHandled = true;
                     PluginLog.Debug($"Command: {command}");
-                }
-                else
-                {
-                    cmdMatch = commandRegexCn.Match(message.TextValue).Groups["command"];
-                    if (cmdMatch.Success)
-                    {
-                        var command = cmdMatch.Value;
-                        if (ProcessCommand(command)) isHandled = true;
-                        PluginLog.Debug($"Command: {command}");
-                    }
                 }
             }
         }
