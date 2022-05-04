@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Dalamud;
