@@ -22,9 +22,9 @@ namespace Dalamud.Divination.Common.Api.Command
         private readonly ChatGui chatGui;
         private readonly IChatClient chatClient;
 
-		private readonly Regex commandRegex;
-		private readonly Regex commandRegexCn;
-		private readonly List<DivinationCommand> commands = new();
+        private readonly Regex commandRegex;
+        private readonly Regex commandRegexCn;
+        private readonly List<DivinationCommand> commands = new();
         private readonly object commandsLock = new();
 
         public string? Prefix { get; }
@@ -40,11 +40,11 @@ namespace Dalamud.Divination.Common.Api.Command
 
             chatGui.CheckMessageHandled += OnCheckMessageHandled;
 
-			var dalamudCommandManager = commandManager.GetType();
+            var dalamudCommandManager = commandManager.GetType();
 
-			commandRegex = dalamudCommandManager.GetField("currentLangCommandRegex", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager) as Regex ?? throw new NotSupportedException();
-			commandRegexCn = dalamudCommandManager.GetField("commandRegexCn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager) as Regex ?? throw new NotSupportedException();
-		}
+            commandRegex = dalamudCommandManager.GetField("currentLangCommandRegex", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager) as Regex ?? throw new NotSupportedException();
+            commandRegexCn = dalamudCommandManager.GetField("commandRegexCn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager) as Regex ?? throw new NotSupportedException();
+        }
 
         public IReadOnlyList<DivinationCommand> Commands
         {
@@ -59,27 +59,27 @@ namespace Dalamud.Divination.Common.Api.Command
 
         private void OnCheckMessageHandled(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
         {
-			if (type == XivChatType.ErrorMessage && senderId == 0)
-			{
-				var cmdMatch = commandRegex.Match(message.TextValue).Groups["command"];
-				if (cmdMatch.Success)
-				{
-					var command = cmdMatch.Value;
-					if (ProcessCommand(command)) isHandled = true;
-					PluginLog.Debug($"Command: {command}");
-				}
-				else
-				{
-					cmdMatch = commandRegexCn.Match(message.TextValue).Groups["command"];
-					if (cmdMatch.Success)
-					{
-						var command = cmdMatch.Value;
-						if (ProcessCommand(command)) isHandled = true;
-						PluginLog.Debug($"Command: {command}");
-					}
-				}
-			}
-		}
+            if (type == XivChatType.ErrorMessage && senderId == 0)
+            {
+                var cmdMatch = commandRegex.Match(message.TextValue).Groups["command"];
+                if (cmdMatch.Success)
+                {
+                    var command = cmdMatch.Value;
+                    if (ProcessCommand(command)) isHandled = true;
+                    PluginLog.Debug($"Command: {command}");
+                }
+                else
+                {
+                    cmdMatch = commandRegexCn.Match(message.TextValue).Groups["command"];
+                    if (cmdMatch.Success)
+                    {
+                        var command = cmdMatch.Value;
+                        if (ProcessCommand(command)) isHandled = true;
+                        PluginLog.Debug($"Command: {command}");
+                    }
+                }
+            }
+        }
 
         public bool ProcessCommand(string text)
         {
