@@ -17,7 +17,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
             public Commands(IDefinitionManager<TContainer> manager)
             {
-                this.manager = (DefinitionManager<TContainer>)manager;
+                this.manager = (DefinitionManager<TContainer>) manager;
             }
 
             [Command("def", "version")]
@@ -25,7 +25,8 @@ namespace Dalamud.Divination.Common.Api.Definition
             [HiddenCommand(HideInHelp = false)]
             private void OnDefVersionCommand()
             {
-                manager.chatClient.Print($"定義ファイル: ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
+                manager.chatClient.Print(
+                    $"定義ファイル: ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 
             [Command("def", "fetch")]
@@ -34,7 +35,8 @@ namespace Dalamud.Divination.Common.Api.Definition
             private void OnDefFetchCommand()
             {
                 manager.Provider.Update(CancellationToken.None);
-                manager.chatClient.Print($"定義ファイルを再取得しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
+                manager.chatClient.Print(
+                    $"定義ファイルを再取得しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
             }
 
             [Command("def", "show")]
@@ -68,7 +70,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                     new TextPayload($"定義名は {typeof(TContainer).FullName} で定義されているフィールド名です。大文字小文字を区別しません。\n"),
                     new TextPayload("定義値が空白の場合, null として設定します。\n"),
                     new TextPayload("利用可能な定義名の一覧:\n"),
-                    new TextPayload(string.Join("\n", defKeys))
+                    new TextPayload(string.Join("\n", defKeys)),
                 });
             }
 

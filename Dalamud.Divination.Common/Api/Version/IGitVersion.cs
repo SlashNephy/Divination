@@ -36,7 +36,7 @@
         public int UncommittedChanges { get; }
 
         /// <summary>
-        /// リフレクションを用いて, すべてのバージョン情報の文字列を返します。
+        ///     リフレクションを用いて, すべてのバージョン情報の文字列を返します。
         /// </summary>
         public string ToString();
     }

@@ -31,32 +31,35 @@ namespace Dalamud.Divination.Common.Api.Time
             var days = hours / HoursOfDay;
             var months = days / DaysOfMonth;
 
-            return new EorzeaTime(
-                months / MonthsOfYear + 1,
+            return new EorzeaTime(months / MonthsOfYear + 1,
                 months % MonthsOfYear + 1,
                 days % DaysOfMonth + 1,
                 hours % HoursOfDay,
                 minutes % MinutesOfHour);
         }
 
-        public static EorzeaTime Add(this EorzeaTime et, int year = default, int month = default, int day = default, int hour = default, int minute = default)
+        public static EorzeaTime Add(this EorzeaTime et,
+            int year = default,
+            int month = default,
+            int day = default,
+            int hour = default,
+            int minute = default)
         {
-            return new EorzeaTime(
-                et.Year + year,
-                et.Month + month,
-                et.Day + day,
-                et.Hour + hour,
-                et.Minute + minute);
+            return new EorzeaTime(et.Year + year, et.Month + month, et.Day + day, et.Hour + hour, et.Minute + minute);
         }
 
-        public static EorzeaTime Set(this EorzeaTime et, int? year = default, int? month = default, int? day = default, int? hour = default, int? minute = default)
+        public static EorzeaTime Set(this EorzeaTime et,
+            int? year = default,
+            int? month = default,
+            int? day = default,
+            int? hour = default,
+            int? minute = default)
         {
-            return new EorzeaTime(
-                 year ?? et.Year,
-                 month ?? et.Month,
-                 day ?? et.Day,
-                 hour ?? et.Hour,
-                 minute ?? et.Minute);
+            return new EorzeaTime(year ?? et.Year,
+                month ?? et.Month,
+                day ?? et.Day,
+                hour ?? et.Hour,
+                minute ?? et.Minute);
         }
     }
 }

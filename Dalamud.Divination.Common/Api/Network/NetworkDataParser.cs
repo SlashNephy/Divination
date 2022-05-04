@@ -6,10 +6,9 @@ namespace Dalamud.Divination.Common.Api.Network
 {
     internal sealed class NetworkDataParser : IDisposable
     {
+        public delegate void OnNetworkContextDelegate(NetworkContext context);
         private readonly GameNetwork gameNetwork;
         private readonly int maxByteLength;
-
-        public delegate void OnNetworkContextDelegate(NetworkContext context);
         public OnNetworkContextDelegate? OnNetworkContext;
 
         public NetworkDataParser(GameNetwork gameNetwork, int maxByteLength = 1024)
@@ -19,7 +18,16 @@ namespace Dalamud.Divination.Common.Api.Network
             this.maxByteLength = maxByteLength;
         }
 
-        private void OnNetworkMessage(IntPtr dataPtr, ushort opcode, uint sourceActorId, uint targetActorId, NetworkMessageDirection direction)
+        public void Dispose()
+        {
+            gameNetwork.NetworkMessage -= OnNetworkMessage;
+        }
+
+        private void OnNetworkMessage(IntPtr dataPtr,
+            ushort opcode,
+            uint sourceActorId,
+            uint targetActorId,
+            NetworkMessageDirection direction)
         {
             if (OnNetworkContext == null)
             {
@@ -35,7 +43,8 @@ namespace Dalamud.Divination.Common.Api.Network
             var data = new byte[maxByteLength];
             Marshal.Copy(dataPtr, data, 0, data.Length);
 
-            var context = new NetworkContext{
+            var context = new NetworkContext
+            {
                 Time = DateTime.Now,
                 RawHeader = header,
                 Opcode = opcode,
@@ -43,14 +52,9 @@ namespace Dalamud.Divination.Common.Api.Network
                 DataPtr = dataPtr,
                 SourceActorId = sourceActorId,
                 TargetActorId = targetActorId,
-                Direction = direction
+                Direction = direction,
             };
             OnNetworkContext.Invoke(context);
-        }
-
-        public void Dispose()
-        {
-            gameNetwork.NetworkMessage -= OnNetworkMessage;
         }
     }
 }

@@ -8,10 +8,9 @@ using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    internal partial class DefinitionManager<TContainer> : IDefinitionManager<TContainer>, ICommandProvider where TContainer : DefinitionContainer, new()
+    internal partial class DefinitionManager<TContainer> : IDefinitionManager<TContainer>, ICommandProvider
+        where TContainer : DefinitionContainer, new()
     {
-        public IDefinitionProvider<TContainer> Provider { get; }
-
         private readonly IChatClient chatClient;
         private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
@@ -22,10 +21,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             this.voiceroid2ProxyClient = voiceroid2ProxyClient;
         }
 
-        private IEnumerable<FieldInfo> EnumerateDefinitionsFields()
-        {
-            return Provider.Container.GetType().GetFields();
-        }
+        public IDefinitionProvider<TContainer> Provider { get; }
 
         public bool TryUpdate(string key, string? value, bool useTts)
         {
@@ -40,6 +36,11 @@ namespace Dalamud.Divination.Common.Api.Definition
         public void Dispose()
         {
             Provider.Dispose();
+        }
+
+        private IEnumerable<FieldInfo> EnumerateDefinitionsFields()
+        {
+            return Provider.Container.GetType().GetFields();
         }
     }
 }

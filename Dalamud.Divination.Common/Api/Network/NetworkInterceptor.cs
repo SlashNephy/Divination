@@ -28,6 +28,19 @@ namespace Dalamud.Divination.Common.Api.Network
             handlers.Remove(handler);
         }
 
+        public void Dispose()
+        {
+            parser.OnNetworkContext -= Consume;
+            parser.Dispose();
+
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            foreach (var handler in handlers.OfType<IDisposable>())
+            {
+                handler.Dispose();
+            }
+            handlers.Clear();
+        }
+
         private void Consume(NetworkContext context)
         {
             foreach (var handler in handlers)
@@ -57,19 +70,6 @@ namespace Dalamud.Divination.Common.Api.Network
             {
                 PluginLog.Error(exception, "Error occurred while ConsumeEach");
             }
-        }
-
-        public void Dispose()
-        {
-            parser.OnNetworkContext -= Consume;
-            parser.Dispose();
-
-            // ReSharper disable once SuspiciousTypeConversion.Global
-            foreach (var handler in handlers.OfType<IDisposable>())
-            {
-                handler.Dispose();
-            }
-            handlers.Clear();
         }
     }
 }

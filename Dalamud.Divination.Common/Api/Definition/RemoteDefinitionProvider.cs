@@ -6,11 +6,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    internal sealed class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
+    internal sealed class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer>
+        where TContainer : DefinitionContainer, new()
     {
-        private readonly string url;
-        private readonly Timer timer = new(60 * 60 * 1000);
         private readonly HttpClient client = new();
+        private readonly Timer timer = new(60 * 60 * 1000);
+        private readonly string url;
 
         public RemoteDefinitionProvider(string url, string filename)
         {
@@ -21,12 +22,12 @@ namespace Dalamud.Divination.Common.Api.Definition
             timer.Start();
         }
 
+        public override string Filename { get; }
+
         private void OnTimerElapsed(object? _, ElapsedEventArgs __)
         {
             Update(Cancellable.Token);
         }
-
-        public override string Filename { get; }
 
         internal override JObject Fetch()
         {

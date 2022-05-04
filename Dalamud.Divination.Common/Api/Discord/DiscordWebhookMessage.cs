@@ -12,6 +12,12 @@ namespace Dalamud.Divination.Common.Api.Discord
 
         public record DiscordEmbed
         {
+            public enum EmbedType
+            {
+                Rich, Image, Video,
+                Gifv, Article, Link,
+            }
+
             public string? Title { get; init; }
             public EmbedType? Type { get; init; }
             public string? Description { get; init; }
@@ -25,11 +31,6 @@ namespace Dalamud.Divination.Common.Api.Discord
             public EmbedProvider? Provider { get; init; }
             public EmbedAuthor? Author { get; init; }
             public List<EmbedField>? Fields { get; init; }
-
-            public enum EmbedType
-            {
-                Rich, Image, Video, Gifv, Article, Link
-            }
 
             public record EmbedFooter
             {

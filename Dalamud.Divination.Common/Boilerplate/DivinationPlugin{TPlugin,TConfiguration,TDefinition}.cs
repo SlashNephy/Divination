@@ -11,20 +11,33 @@ using Dalamud.Plugin;
 namespace Dalamud.Divination.Common.Boilerplate
 {
     /// <summary>
-    /// Divination プラグインのボイラープレートを提供します。
-    /// このクラスを継承することで Dalamud 互換のプラグインを作成できます。
+    ///     Divination プラグインのボイラープレートを提供します。
+    ///     このクラスを継承することで Dalamud 互換のプラグインを作成できます。
     /// </summary>
     /// <typeparam name="TPlugin">プラグインのクラス。</typeparam>
     /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
     /// <typeparam name="TDefinition">プラグインの外部定義クラス。</typeparam>
     [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-    public abstract class DivinationPlugin<TPlugin, TConfiguration, TDefinition> : IDivinationPluginApi<TConfiguration, TDefinition>
+    public abstract class
+        DivinationPlugin<TPlugin, TConfiguration, TDefinition> : IDivinationPluginApi<TConfiguration, TDefinition>
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration, TDefinition>
         where TConfiguration : class, IPluginConfiguration, new()
         where TDefinition : DefinitionContainer, new()
     {
+        protected DivinationPlugin(DalamudPluginInterface pluginInterface)
+        {
+            Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
+            IsDisposed = false;
+            Dalamud = new DalamudApi(pluginInterface);
+            Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
+
+            PluginLog.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}",
+                Name,
+                Divination.Version.Plugin.InformationalVersion);
+        }
+
         /// <summary>
-        /// プラグインのインスタンスの静的プロパティ。
+        ///     プラグインのインスタンスの静的プロパティ。
         /// </summary>
 #pragma warning disable 8618
         public static TPlugin Instance { get; private set; }
@@ -38,20 +51,10 @@ namespace Dalamud.Divination.Common.Boilerplate
         public IDivinationApi<TConfiguration, TDefinition> Divination { get; }
         public Assembly Assembly => Instance.GetType().Assembly;
 
-        protected DivinationPlugin(DalamudPluginInterface pluginInterface)
-        {
-            Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
-            IsDisposed = false;
-            Dalamud = new DalamudApi(pluginInterface);
-            Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
-
-            PluginLog.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.Version.Plugin.InformationalVersion);
-        }
-
         #region IDisposable
 
         /// <summary>
-        /// Divination プラグイン内で確保されているすべてのリソースを解放します。
+        ///     Divination プラグイン内で確保されているすべてのリソースを解放します。
         /// </summary>
         public void Dispose()
         {
@@ -60,14 +63,14 @@ namespace Dalamud.Divination.Common.Boilerplate
         }
 
         /// <summary>
-        /// .NET 管理リソースを解放します。
+        ///     .NET 管理リソースを解放します。
         /// </summary>
         protected virtual void ReleaseManaged()
         {
         }
 
         /// <summary>
-        /// .NET 管理外のリソースの解放を試みます。
+        ///     .NET 管理外のリソースの解放を試みます。
         /// </summary>
         protected virtual void ReleaseUnmanaged()
         {

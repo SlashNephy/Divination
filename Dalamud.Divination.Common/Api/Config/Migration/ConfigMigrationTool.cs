@@ -9,7 +9,8 @@ namespace Dalamud.Divination.Common.Api.Config.Migration
     {
         public static bool Merge<T>(string filename, T config) where T : class, IPluginConfiguration
         {
-            var previousConfigPath = Path.Combine(DivinationEnvironment.XivLauncherDirectory, "pluginConfigs", filename);
+            var previousConfigPath =
+                Path.Combine(DivinationEnvironment.XivLauncherDirectory, "pluginConfigs", filename);
             if (!File.Exists(previousConfigPath))
             {
                 return false;

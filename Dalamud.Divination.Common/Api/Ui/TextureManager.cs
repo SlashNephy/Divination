@@ -14,12 +14,12 @@ namespace Dalamud.Divination.Common.Api.Ui
 {
     internal sealed class TextureManager : ITextureManager
     {
-        private readonly DataManager dataManager;
-        private readonly UiBuilder uiBuilder;
-
-        private readonly HttpClient client = new();
         private readonly Dictionary<uint, TextureWrap?> cache = new();
         private readonly object cacheLock = new();
+
+        private readonly HttpClient client = new();
+        private readonly DataManager dataManager;
+        private readonly UiBuilder uiBuilder;
 
         public TextureManager(DataManager dataManager, UiBuilder uiBuilder)
         {
@@ -41,6 +41,17 @@ namespace Dalamud.Divination.Common.Api.Ui
 
                 return null;
             }
+        }
+
+        public void Dispose()
+        {
+            foreach (var texture in cache.Values)
+            {
+                texture?.Dispose();
+            }
+            cache.Clear();
+
+            client.Dispose();
         }
 
         private void LoadIconTexture(uint iconId)
@@ -66,7 +77,10 @@ namespace Dalamud.Divination.Common.Api.Ui
                 var iconTex = dataManager.GetIcon(iconId);
                 if (iconTex != null)
                 {
-                    var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(), iconTex.Header.Width, iconTex.Header.Height, 4);
+                    var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(),
+                        iconTex.Header.Width,
+                        iconTex.Header.Height,
+                        4);
                     if (tex.ImGuiHandle != IntPtr.Zero)
                     {
                         return tex;
@@ -106,17 +120,6 @@ namespace Dalamud.Divination.Common.Api.Ui
             tex.Dispose();
 
             return null;
-        }
-
-        public void Dispose()
-        {
-            foreach (var texture in cache.Values)
-            {
-                texture?.Dispose();
-            }
-            cache.Clear();
-
-            client.Dispose();
         }
     }
 }

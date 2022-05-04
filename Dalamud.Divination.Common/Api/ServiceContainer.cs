@@ -1,7 +1,7 @@
-﻿using Dalamud.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dalamud.Logging;
 
 namespace Dalamud.Divination.Common.Api
 {

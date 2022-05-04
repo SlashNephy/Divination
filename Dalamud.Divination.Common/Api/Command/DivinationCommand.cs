@@ -9,24 +9,17 @@ namespace Dalamud.Divination.Common.Api.Command
 {
     public sealed class DivinationCommand
     {
-        public MethodInfo Method { get; }
-        internal readonly ICommandProvider Instance;
-        public CommandAttribute Attribute { get; }
-        public string? Help { get; }
-        public bool HideInHelp { get; }
-        public bool HideInStartUp { get; }
-
-        public bool CanReceiveContext { get; }
-        public string[] Syntaxes { get; }
-        public Regex Regex { get; }
-        public int Priority { get; }
-
         private static readonly Regex ArgRegex = new(@"^<(\w+)>$", RegexOptions.Compiled);
         private static readonly Regex OptionalArgRegex = new(@"^<(\w+)\?>$", RegexOptions.Compiled);
         private static readonly Regex VarargRegex = new(@"^<(\w+)\.\.\.>$", RegexOptions.Compiled);
         private static readonly Regex OptionalVarargRegex = new(@"^<(\w+)\.\.\.\?>$", RegexOptions.Compiled);
+        internal readonly ICommandProvider Instance;
 
-        public DivinationCommand(MethodInfo method, ICommandProvider instance, CommandAttribute attribute, string defaultPrefix, string pluginName)
+        public DivinationCommand(MethodInfo method,
+            ICommandProvider instance,
+            CommandAttribute attribute,
+            string defaultPrefix,
+            string pluginName)
         {
             Attribute = attribute;
             Method = method;
@@ -42,7 +35,8 @@ namespace Dalamud.Divination.Common.Api.Command
                     CanReceiveContext = true;
                     break;
                 default:
-                    throw new ArgumentException($"引数が不正です。CommandContext 以外の型が引数となっているため, コマンドハンドラとして登録できません。\nMethod = {instance.GetType().FullName}#{method.Name}");
+                    throw new ArgumentException(
+                        $"引数が不正です。CommandContext 以外の型が引数となっているため, コマンドハンドラとして登録できません。\nMethod = {instance.GetType().FullName}#{method.Name}");
             }
 
             if (!attribute.Commands.First().StartsWith("/"))
@@ -93,7 +87,8 @@ namespace Dalamud.Divination.Common.Api.Command
                 return i == 0 ? x : $" {x}";
             });
 
-            Regex = new Regex($"^{string.Join(string.Empty, syntaxes)}$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            Regex = new Regex($"^{string.Join(string.Empty, syntaxes)}$",
+                RegexOptions.IgnoreCase | RegexOptions.Compiled);
             Priority = priority;
 
             Help = method.GetCustomAttribute<CommandHelpAttribute>()?.Help.Replace("{Name}", pluginName);
@@ -103,8 +98,19 @@ namespace Dalamud.Divination.Common.Api.Command
             HideInStartUp = hidden?.HideInStartUp ?? false;
         }
 
+        public MethodInfo Method { get; }
+        public CommandAttribute Attribute { get; }
+        public string? Help { get; }
+        public bool HideInHelp { get; }
+        public bool HideInStartUp { get; }
+
+        public bool CanReceiveContext { get; }
+        public string[] Syntaxes { get; }
+        public Regex Regex { get; }
+        public int Priority { get; }
+
         /// <summary>
-        /// このコマンドの使用例。
+        ///     このコマンドの使用例。
         /// </summary>
         public string Usage => string.Join(" ", Syntaxes);
     }

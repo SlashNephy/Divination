@@ -3,22 +3,12 @@
 namespace Dalamud.Divination.Common.Api.Command
 {
     /// <summary>
-    /// 呼び出されたコマンドのコンテキストを持つクラスです。このクラスは継承できません。
+    ///     呼び出されたコマンドのコンテキストを持つクラスです。このクラスは継承できません。
     /// </summary>
     public sealed class CommandContext
     {
         /// <summary>
-        /// 呼び出されたコマンド。
-        /// </summary>
-        public DivinationCommand Command { get; }
-
-        /// <summary>
-        /// コマンドに与えられた引数の配列。
-        /// </summary>
-        public Match Match { get; }
-
-        /// <summary>
-        /// コマンドのコンテキストを初期化します。
+        ///     コマンドのコンテキストを初期化します。
         /// </summary>
         /// <param name="command">コマンド。</param>
         /// <param name="match">正規表現のマッチ結果。</param>
@@ -27,6 +17,16 @@ namespace Dalamud.Divination.Common.Api.Command
             Command = command;
             Match = match;
         }
+
+        /// <summary>
+        ///     呼び出されたコマンド。
+        /// </summary>
+        public DivinationCommand Command { get; }
+
+        /// <summary>
+        ///     コマンドに与えられた引数の配列。
+        /// </summary>
+        public Match Match { get; }
 
         public string? this[string name] => Match.Groups.TryGetValue(name, out var result) ? result.Value : null;
 

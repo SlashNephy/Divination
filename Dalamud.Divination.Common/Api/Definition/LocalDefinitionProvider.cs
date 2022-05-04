@@ -4,8 +4,10 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
+    internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer>
+        where TContainer : DefinitionContainer, new()
     {
+        private readonly string fallbackUrl;
         private readonly FileSystemWatcher watcher;
 
         public LocalDefinitionProvider(string filename, string fallbackUrl)
@@ -24,7 +26,6 @@ namespace Dalamud.Divination.Common.Api.Definition
         }
 
         public override string Filename { get; }
-        private readonly string fallbackUrl;
 
         public override bool AllowObsoleteDefinitions => true;
 

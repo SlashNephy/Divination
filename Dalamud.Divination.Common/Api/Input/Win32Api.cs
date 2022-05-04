@@ -36,14 +36,18 @@ namespace Dalamud.Divination.Common.Api.Input
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        private static extern IntPtr FindWindowEx(IntPtr parentWnd, IntPtr previousWnd, string lpClassName, string lpWindowText);
+        private static extern IntPtr FindWindowEx(IntPtr parentWnd,
+            IntPtr previousWnd,
+            string lpClassName,
+            string lpWindowText);
 
         [DllImport("user32.dll")]
-        public static extern int ToUnicode(uint virtualKeyCode, uint scanCode,
+        public static extern int ToUnicode(uint virtualKeyCode,
+            uint scanCode,
             byte[] keyboardState,
-            [Out] [MarshalAs(UnmanagedType.LPWStr, SizeConst = 64)]
-            StringBuilder receivingBuffer,
-            int bufferSize, uint flags);
+            [Out] [MarshalAs(UnmanagedType.LPWStr, SizeConst = 64)] StringBuilder receivingBuffer,
+            int bufferSize,
+            uint flags);
 
         public static IntPtr GetGameWindowHandle()
         {

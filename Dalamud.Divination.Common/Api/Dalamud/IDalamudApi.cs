@@ -28,6 +28,8 @@ namespace Dalamud.Divination.Common.Api.Dalamud
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public interface IDalamudApi
     {
+        public DalamudPluginInterface PluginInterface { get; }
+
         #region IoC
 
         public DataManager DataManager { get; }
@@ -83,7 +85,5 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         public TitleScreenMenu TitleScreenMenu { get; }
 
         #endregion
-
-        public DalamudPluginInterface PluginInterface { get; }
     }
 }

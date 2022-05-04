@@ -31,6 +31,20 @@ namespace Dalamud.Divination.Common.Api.Dalamud
 {
     internal sealed class DalamudApi : IDalamudApi
     {
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        public DalamudApi(DalamudPluginInterface pluginInterface)
+        {
+            PluginInterface = pluginInterface;
+
+            if (!pluginInterface.Inject(this))
+            {
+                throw new PlatformNotSupportedException(
+                    "Failed to inject via IoC. Dalamud API might make breaking changes.");
+            }
+        }
+
+        public DalamudPluginInterface PluginInterface { get; }
+
         #region IoC
 
         [PluginService]
@@ -138,18 +152,5 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         public TitleScreenMenu TitleScreenMenu { get; private set; }
 
         #endregion
-
-        public DalamudPluginInterface PluginInterface { get; }
-
-        // ReSharper disable once NotNullMemberIsNotInitialized
-        public DalamudApi(DalamudPluginInterface pluginInterface)
-        {
-            PluginInterface = pluginInterface;
-
-            if (!pluginInterface.Inject(this))
-            {
-                throw new PlatformNotSupportedException("Failed to inject via IoC. Dalamud API might make breaking changes.");
-            }
-        }
     }
 }

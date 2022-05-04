@@ -19,23 +19,48 @@ using Dalamud.Divination.Common.Boilerplate.Features;
 namespace Dalamud.Divination.Common.Api
 {
     internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationApi<TConfiguration, TDefinition>
-        where TConfiguration : class, IPluginConfiguration, new()
-        where TDefinition : DefinitionContainer, new()
+        where TConfiguration : class, IPluginConfiguration, new() where TDefinition : DefinitionContainer, new()
     {
+        public DivinationApi(IDalamudApi api,
+            Assembly assembly,
+            IDivinationPluginApi<TConfiguration, TDefinition> plugin)
+        {
+            Dalamud = api;
+            Assembly = assembly;
+            Plugin = plugin;
+
+            Command?.RegisterCommandsByAttribute(new VersionManager.Commands(Version, Chat));
+            if (Definition != null)
+            {
+                Command?.RegisterCommandsByAttribute(new DefinitionManager<TDefinition>.Commands(Definition));
+            }
+            Command?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(Config, Command, Chat));
+            Command?.RegisterCommandsByAttribute(ConfigWindow);
+        }
+
         private IDalamudApi Dalamud { get; }
         private Assembly Assembly { get; }
         private IDivinationPluginApi<TConfiguration, TDefinition> Plugin { get; }
 
-        public IChatClient Chat => ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui, Dalamud.ClientState));
+        public IChatClient Chat =>
+            ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui, Dalamud.ClientState));
 
         [SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
         public ICommandProcessor? Command => ServiceContainer.GetOrPutOptional(() =>
         {
             var processor = Plugin switch
             {
-                ICommandSupport commandSupport => new CommandProcessor(Plugin.Name, commandSupport.MainCommandPrefix, Dalamud.ChatGui, Chat, Dalamud.CommandManager),
-                ICommandProvider => new CommandProcessor(Plugin.Name, null, Dalamud.ChatGui, Chat, Dalamud.CommandManager),
-                _ => null
+                ICommandSupport commandSupport => new CommandProcessor(Plugin.Name,
+                    commandSupport.MainCommandPrefix,
+                    Dalamud.ChatGui,
+                    Chat,
+                    Dalamud.CommandManager),
+                ICommandProvider => new CommandProcessor(Plugin.Name,
+                    null,
+                    Dalamud.ChatGui,
+                    Chat,
+                    Dalamud.CommandManager),
+                _ => null,
             };
 
             if (processor == null)
@@ -48,7 +73,8 @@ namespace Dalamud.Divination.Common.Api
             return processor;
         });
 
-        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() => new ConfigManager<TConfiguration>(Chat, () => Voiceroid2Proxy, Plugin.Name));
+        public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() =>
+            new ConfigManager<TConfiguration>(Chat, () => Voiceroid2Proxy, Plugin.Name));
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
             // ReSharper disable once SuspiciousTypeConversion.Global
@@ -76,29 +102,16 @@ namespace Dalamud.Divination.Common.Api
             return null;
         });
 
-        public ITextureManager Texture => ServiceContainer.GetOrPut(() => new TextureManager(Dalamud.DataManager, Dalamud.PluginInterface.UiBuilder));
+        public ITextureManager Texture => ServiceContainer.GetOrPut(() =>
+            new TextureManager(Dalamud.DataManager, Dalamud.PluginInterface.UiBuilder));
         public IVersionManager Version => ServiceContainer.GetOrPut(() => new VersionManager(
             new GitVersion(Assembly),
             new GitVersion(Assembly.GetExecutingAssembly())));
         public IVoiceroid2ProxyClient Voiceroid2Proxy => ServiceContainer.GetOrPut(() => new Voiceroid2ProxyClient());
         public IXivApiClient XivApi => ServiceContainer.GetOrPut(() => new XivApiClient());
         public IKeyStrokeManager KeyStroke => ServiceContainer.GetOrPut(() => new KeyStrokeManager());
-        public INetworkInterceptor Network => ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork));
-
-        public DivinationApi(IDalamudApi api, Assembly assembly, IDivinationPluginApi<TConfiguration, TDefinition> plugin)
-        {
-            Dalamud = api;
-            Assembly = assembly;
-            Plugin = plugin;
-
-            Command?.RegisterCommandsByAttribute(new VersionManager.Commands(Version, Chat));
-            if (Definition != null)
-            {
-                Command?.RegisterCommandsByAttribute(new DefinitionManager<TDefinition>.Commands(Definition));
-            }
-            Command?.RegisterCommandsByAttribute(new ConfigManager<TConfiguration>.Commands(Config, Command, Chat));
-            Command?.RegisterCommandsByAttribute(ConfigWindow);
-        }
+        public INetworkInterceptor Network =>
+            ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork));
 
         #region IDisposable
 
