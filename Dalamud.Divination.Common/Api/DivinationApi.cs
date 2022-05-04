@@ -33,8 +33,8 @@ namespace Dalamud.Divination.Common.Api
         {
             var processor = Plugin switch
             {
-                ICommandSupport commandSupport => new CommandProcessor(Plugin.Name, commandSupport.MainCommandPrefix, Dalamud.ChatGui, Chat),
-                ICommandProvider => new CommandProcessor(Plugin.Name, null, Dalamud.ChatGui, Chat),
+                ICommandSupport commandSupport => new CommandProcessor(Plugin.Name, commandSupport.MainCommandPrefix, Dalamud.ChatGui, Chat, Dalamud.CommandManager),
+                ICommandProvider => new CommandProcessor(Plugin.Name, null, Dalamud.ChatGui, Chat, Dalamud.CommandManager),
                 _ => null
             };
 
