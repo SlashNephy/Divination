@@ -17,7 +17,7 @@ namespace Divination.AetheryteLinkInChat
 {
     public class AetheryteLinkInChatPlugin : IDalamudPlugin
     {
-        public string Name => "Dalamud.Divination.AetheryteLinkInChat";
+        public string Name => "Divination.AetheryteLinkInChat";
 
         // @formatter:off
         [PluginService] [RequiredVersion("1.0")] public static DalamudPluginInterface PluginInterface { get; private set; } = null!;
