@@ -2,7 +2,7 @@
 
 namespace Divination.AetheryteLinkInChat
 {
-    public class PluginConfig :IPluginConfiguration
+    public class Configuration : IPluginConfiguration
     {
         public bool Enabled;
 

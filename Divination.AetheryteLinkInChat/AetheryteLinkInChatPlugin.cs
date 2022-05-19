@@ -1,40 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dalamud.Divination.Common.Api.Ui.Window;
-using Dalamud.Divination.Common.Boilerplate;
-using Dalamud.Divination.Common.Boilerplate.Features;
+using Dalamud.Data;
+using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Game.Command;
+using Dalamud.IoC;
 using Dalamud.Logging;
 using Dalamud.Plugin;
+using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat
 {
-    public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlugin, PluginConfig>,
-        IDalamudPlugin,
-        IConfigWindowSupport<PluginConfig>,
-        ICommandSupport
+    public class AetheryteLinkInChatPlugin : IDalamudPlugin
     {
+        public string Name => "Dalamud.Divination.AetheryteLinkInChat";
+
+        // @formatter:off
+        [PluginService] [RequiredVersion("1.0")] public static DalamudPluginInterface PluginInterface { get; private set; } = null!;
+        [PluginService] [RequiredVersion("1.0")] public static DataManager GameData { get; private set; } = null!;
+        [PluginService] [RequiredVersion("1.0")] public static CommandManager Commands { get; private set; } = null!;
+        [PluginService] [RequiredVersion("1.0")] public static ChatGui ChatGui { get; private set; } = null!;
+        // @formatter:on
+
+        private readonly string commandName = "/alic";
         private const int LinkCommandId = 1;
         private readonly DalamudLinkPayload? linkPayload;
+        private readonly Configuration config;
+        private bool showConfig;
 
-        public AetheryteLinkInChatPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+        public AetheryteLinkInChatPlugin()
         {
-            linkPayload = pluginInterface.AddChatLinkHandler(LinkCommandId, HandleAetheryteLink);
-            Dalamud.ChatGui.ChatMessage += OnChatReceived;
+            config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+            linkPayload = PluginInterface.AddChatLinkHandler(LinkCommandId, HandleAetheryteLink);
+            ChatGui.ChatMessage += OnChatReceived;
+            PluginInterface.UiBuilder.Draw += DrawConfigWindow;
+            PluginInterface.UiBuilder.OpenConfigUi += OpenConfigUi;
+
+            Commands.AddHandler(commandName, new CommandInfo(OnCommandExecute)
+            {
+                HelpMessage = "show configuration",
+                ShowInHelp = true,
+            });
         }
 
-        public string MainCommandPrefix => "/alic";
-        public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+        public void Dispose()
+        {
+            PluginInterface.RemoveChatLinkHandler();
+            ChatGui.ChatMessage -= OnChatReceived;
+            PluginInterface.UiBuilder.Draw -= DrawConfigWindow;
+            PluginInterface.UiBuilder.OpenConfigUi -= OpenConfigUi;
+            Commands.RemoveHandler(commandName);
+        }
 
-        private void OnChatReceived(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+        private void OnCommandExecute(string cmd, string args)
+        {
+            showConfig = true;
+        }
+
+        #region configUI
+        private void OpenConfigUi()
+        {
+            showConfig = true;
+        }
+        private void DrawConfigWindow()
+        {
+            if (!showConfig) return;
+
+            if (ImGui.Begin($"Config", ref showConfig, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
+            {
+                ImGui.Checkbox("Display the nearest aetheryte to the chat coordinates.", ref config.Enabled);
+                ImGui.Indent();
+                ImGui.Text("*** require Teleporter plugin ***");
+                ImGui.Unindent();
+
+                if (ImGui.Button("Save & Close"))
+                {
+                    showConfig = false;
+                    PluginInterface.SavePluginConfig(config);
+                }
+
+                ImGui.End();
+            }
+        }
+        #endregion
+
+        #region chatLogic
+        private void OnChatReceived(XivChatType type, uint senderId, ref SeString sender, ref SeString message,
+            ref bool isHandled)
         {
             try
             {
-                if (Config.Enabled)
+                if (config.Enabled)
                 {
                     AppendNearestAetheryteLink(ref message);
                 }
@@ -54,20 +114,22 @@ namespace Divination.AetheryteLinkInChat
             }
 
             // 対象のエリア内の最も近いエーテライトを探す
-            var nearestAetheryte = Dalamud.DataManager.GetExcelSheet<Aetheryte>()!
+            var nearestAetheryte = GameData.GetExcelSheet<Aetheryte>()!
                 // 対象のエリア内に限定
                 .Where(x => x.Territory.Row == mapLink.TerritoryType.RowId)
                 // MapMarker に変換
                 .Select(x => (
                     aetheryte: x,
-                    marker: Dalamud.DataManager.GetExcelSheet<MapMarker>()!
+                    marker: GameData.GetExcelSheet<MapMarker>()!
                         // エーテライトのマーカーに限定
                         .Where(marker => marker.DataType is 3 or 4)
                         .FirstOrDefault(marker => marker.DataKey == x.RowId)
                 ))
                 .Where(x => x.marker != null)
                 // 座標を変換
-                .OrderBy(x => Math.Pow((x.marker!.X * 42.0 / 2048 / mapLink.Map.SizeFactor * 100 + 1) - mapLink.XCoord, 2) + Math.Pow((x.marker.Y * 42.0 / 2048 / mapLink.Map.SizeFactor * 100 + 1) - mapLink.YCoord, 2))
+                .OrderBy(x =>
+                    Math.Pow((x.marker!.X * 42.0 / 2048 / mapLink.Map.SizeFactor * 100 + 1) - mapLink.XCoord, 2) +
+                    Math.Pow((x.marker.Y * 42.0 / 2048 / mapLink.Map.SizeFactor * 100 + 1) - mapLink.YCoord, 2))
                 .FirstOrDefault();
             if (nearestAetheryte == default)
             {
@@ -105,13 +167,8 @@ namespace Divination.AetheryteLinkInChat
                 return;
             }
 
-            Dalamud.CommandManager.ProcessCommand($"/tp {link.Payloads.OfType<TextPayload>().Last().Text}");
+            Commands.ProcessCommand($"/tp {link.Payloads.OfType<TextPayload>().Last().Text}");
         }
-
-        protected override void ReleaseManaged()
-        {
-            Dalamud.ChatGui.ChatMessage -= OnChatReceived;
-            Dalamud.PluginInterface.RemoveChatLinkHandler();
-        }
+        #endregion
     }
 }
