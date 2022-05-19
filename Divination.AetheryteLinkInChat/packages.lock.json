@@ -13,9 +13,6 @@
         "requested": "[5.*, )",
         "resolved": "5.10.1",
         "contentHash": "H30ThorrFCs4jLeTH4fX+LsuFu6jM70Bc7GOvC6Nya3E1dIeIFrvs0Lwtt//V5CQWhvHRXu53ov1rmJYcMY5kQ=="
-      },
-      "dalamud.divination.common": {
-        "type": "Project"
       }
     }
   }
