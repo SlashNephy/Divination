@@ -1,4 +1,4 @@
-# repo.horoscope.dev
+# Dalamud.DivinationPluginRepo
 
 This is a custom third-party plugin repository that can be used with Dalamud / XivLauncher.
 
