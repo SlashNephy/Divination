@@ -87,10 +87,10 @@ def merge_manifests(stable, testing):
     for key in manifest_keys:
         stable_path = f"dist/stable/{key}"
         stable_manifest = stable.get(key, {})
-        stable_link = f"{PROVIDER}/stable/{key}"
+        stable_link = f"{PROVIDER}/stable/{key}/latest.zip"
         testing_path = f"dist/testing/{key}"
         testing_manifest = testing.get(key, {})
-        testing_link = f"{PROVIDER}/testing/{key}"
+        testing_link = f"{PROVIDER}/testing/{key}/latest.zip"
 
         manifest = testing_manifest.copy() if testing_manifest else stable_manifest.copy()
 
