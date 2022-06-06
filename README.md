@@ -10,7 +10,7 @@ We are not responsible for any inconvenience caused by installing or using the p
 
 ## Plugin List
 
-The available Dalamud.Divination plugins are listed [here](https://repo.horoscope.dev/dist).
+The available Dalamud.Divination plugins are listed [here](https://horoscope-dev.github.io/Dalamud.DivinationPluginRepo/dist).
 
 ## Repo URL
 
@@ -18,4 +18,4 @@ The available Dalamud.Divination plugins are listed [here](https://repo.horoscop
 
 Drop the following url into your third-party repo URL list.
 
-`https://repo.horoscope.dev/dist/pluginmaster.json`
+`https://horoscope-dev.github.io/Dalamud.DivinationPluginRepo/dist/pluginmaster.json`
