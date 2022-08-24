@@ -7,6 +7,7 @@ using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Utilities;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Logging;
+using Dalamud.Plugin;
 using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Config
@@ -15,19 +16,19 @@ namespace Dalamud.Divination.Common.Api.Config
         where TConfiguration : class, IPluginConfiguration, new()
     {
         private readonly IChatClient chatClient;
-        private readonly PluginConfigurations dalamud = new(DivinationEnvironment.XivLauncherPluginConfigDirectory);
-        private readonly string pluginName;
+        private readonly DalamudPluginInterface pluginInterface;
         private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
-        public ConfigManager(IChatClient chatClient,
-            Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient,
-            string pluginName)
+        public ConfigManager(
+            DalamudPluginInterface pluginInterface,
+            IChatClient chatClient,
+            Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient)
         {
+            this.pluginInterface = pluginInterface;
             this.chatClient = chatClient;
             this.voiceroid2ProxyClient = voiceroid2ProxyClient;
-            this.pluginName = pluginName;
 
-            Config = dalamud.LoadForType<TConfiguration>(pluginName);
+            Config = pluginInterface.GetPluginConfig() as TConfiguration ?? new TConfiguration();
             PluginLog.Verbose("Config loaded: {Config}", JsonConvert.SerializeObject(Config));
         }
 
@@ -43,7 +44,7 @@ namespace Dalamud.Divination.Common.Api.Config
 
         public void Save()
         {
-            dalamud.Save(Config, pluginName);
+            pluginInterface.SavePluginConfig(Config);
             PluginLog.Verbose("Config saved: {Config}", JsonConvert.SerializeObject(Config));
         }
 
