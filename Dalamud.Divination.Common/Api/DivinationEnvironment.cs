@@ -34,7 +34,5 @@ namespace Dalamud.Divination.Common.Api
         /// </summary>
         public static string XivLauncherDirectory =>
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher");
-
-        public static string XivLauncherPluginConfigDirectory => Path.Combine(XivLauncherDirectory, "pluginConfigs");
     }
 }

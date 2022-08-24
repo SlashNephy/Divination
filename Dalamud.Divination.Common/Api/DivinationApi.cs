@@ -74,7 +74,7 @@ namespace Dalamud.Divination.Common.Api
         });
 
         public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() =>
-            new ConfigManager<TConfiguration>(Chat, () => Voiceroid2Proxy, Plugin.Name));
+            new ConfigManager<TConfiguration>(Dalamud.PluginInterface, Chat, () => Voiceroid2Proxy));
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
             // ReSharper disable once SuspiciousTypeConversion.Global
