@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+      <TargetFramework>net6.0-windows</TargetFramework>
+    </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
         <ProjectReference Include="..\Divination.DiscordIntegration.IpcModel\Divination.DiscordIntegration.IpcModel.csproj" />
 
