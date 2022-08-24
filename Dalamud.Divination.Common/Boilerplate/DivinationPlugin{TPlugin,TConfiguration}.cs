@@ -1,5 +1,4 @@
 ﻿using Dalamud.Configuration;
-using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Boilerplate
 {
@@ -8,7 +7,7 @@ namespace Dalamud.Divination.Common.Boilerplate
         where TPlugin : DivinationPlugin<TPlugin, TConfiguration, EmptyDefinitionContainer>
         where TConfiguration : class, IPluginConfiguration, new()
     {
-        protected DivinationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+        protected DivinationPlugin() : base()
         {
         }
     }

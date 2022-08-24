@@ -9,7 +9,7 @@ namespace Dalamud.Divination.Common.Api
     /// <summary>
     ///     各 Divination プラグインが実装している各種 API のインターフェイスです。
     /// </summary>
-    public interface IDivinationPluginApi<TConfiguration, out TDefinition> : IDisposable
+    public interface IDivinationPluginApi<TConfiguration, out TDefinition> : IDisposable, IDalamudApi
         where TConfiguration : class, IPluginConfiguration, new() where TDefinition : DefinitionContainer, new()
     {
         /// <summary>
