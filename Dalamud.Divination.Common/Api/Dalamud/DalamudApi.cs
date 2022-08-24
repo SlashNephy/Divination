@@ -83,7 +83,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         public FateTable FateTable { get; private set; }
 
         [PluginService]
-        [RequiredVersion("1.0.0")]
+        [RequiredVersion("1.0")]
         public GamepadState GamepadState { get; private set; }
 
         [PluginService]
