@@ -4,6 +4,7 @@
         <Company>Horoscope.dev</Company>
         <Product>Divination</Product>
         <Copyright>Copyright (c) Asteria Nocturna</Copyright>
+        <TargetFramework>net6.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
