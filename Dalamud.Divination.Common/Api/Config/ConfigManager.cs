@@ -50,7 +50,7 @@ namespace Dalamud.Divination.Common.Api.Config
 
         public void Dispose()
         {
-            Save();
+            // Save();
         }
 
         private static IEnumerable<FieldInfo> EnumerateConfigFields(bool includeUpdateIgnore = false)
