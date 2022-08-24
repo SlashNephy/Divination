@@ -13,7 +13,6 @@ using Dalamud.Game.ClientState.Objects;
 using Dalamud.Game.ClientState.Party;
 using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
-using Dalamud.Game.Gui.ContextMenus;
 using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Gui.FlyText;
 using Dalamud.Game.Gui.PartyFinder;
@@ -77,8 +76,6 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         public AetheryteList AetheryteList { get; }
 
         public GamepadState GamepadState { get; }
-
-        public ContextMenu ContextMenu { get; }
 
         public DtrBar DtrBar { get; }
 

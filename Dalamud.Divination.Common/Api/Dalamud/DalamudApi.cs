@@ -13,7 +13,6 @@ using Dalamud.Game.ClientState.Objects;
 using Dalamud.Game.ClientState.Party;
 using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
-using Dalamud.Game.Gui.ContextMenus;
 using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Gui.FlyText;
 using Dalamud.Game.Gui.PartyFinder;
@@ -118,10 +117,6 @@ namespace Dalamud.Divination.Common.Api.Dalamud
         [PluginService]
         [RequiredVersion("1.0")]
         public GameGui GameGui { get; private set; }
-
-        [PluginService]
-        [RequiredVersion("1.0")]
-        public ContextMenu ContextMenu { get; private set; }
 
         [PluginService]
         [RequiredVersion("1.0")]
