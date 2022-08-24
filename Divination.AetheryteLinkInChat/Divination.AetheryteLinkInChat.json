@@ -11,7 +11,7 @@
   ],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 6,
+  "DalamudApiLevel": 7,
   "LoadPriority": 0,
   "ImageUrls": [],
   "IconUrl": null

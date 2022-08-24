@@ -49,6 +49,7 @@ namespace Divination.AetheryteLinkInChat
 
         public void Dispose()
         {
+            PluginInterface.SavePluginConfig(config);
             PluginInterface.RemoveChatLinkHandler();
             ChatGui.ChatMessage -= OnChatReceived;
             PluginInterface.UiBuilder.Draw -= DrawConfigWindow;

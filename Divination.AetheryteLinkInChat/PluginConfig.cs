@@ -4,7 +4,7 @@ namespace Divination.AetheryteLinkInChat
 {
     public class Configuration : IPluginConfiguration
     {
-        public bool Enabled;
+        public bool Enabled = true;
 
         public int Version { get; set; }
     }
