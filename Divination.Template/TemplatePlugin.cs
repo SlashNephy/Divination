@@ -16,9 +16,11 @@ namespace Divination.Template
     {
         public TemplatePlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
+            Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
             PluginLog.Information("Plugin loaded!");
         }
 
+        public override PluginConfig Config { get; }
         string ICommandSupport.MainCommandPrefix => "/template";
         string IDefinitionSupport.DefinitionUrl => "https://ephemera.horoscope.dev/dist/Template.json";
         ConfigWindow<PluginConfig> IConfigWindowSupport<PluginConfig>.CreateConfigWindow() => new PluginConfigWindow();
@@ -32,6 +34,7 @@ namespace Divination.Template
 
         protected override void ReleaseManaged()
         {
+            Dalamud.PluginInterface.SavePluginConfig(Config);
         }
 
         protected override void ReleaseUnmanaged()
