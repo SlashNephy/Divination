@@ -111,7 +111,7 @@ namespace Dalamud.Divination.Common.Api.Ui
                 await stream.CopyToAsync(fileStream);
             }
 
-            var tex = uiBuilder.LoadImage(path);
+            var tex = await uiBuilder.LoadImageAsync(path);
             if (tex.ImGuiHandle != IntPtr.Zero)
             {
                 return tex;
