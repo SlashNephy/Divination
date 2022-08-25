@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Definition;
 using Dalamud.Divination.Common.Api.Utilities;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
-using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Config
@@ -15,11 +15,11 @@ namespace Dalamud.Divination.Common.Api.Config
         where TConfiguration : class, IPluginConfiguration, new()
     {
         private readonly IChatClient chatClient;
-        private readonly IDivinationPluginApi<TConfiguration, EmptyDefinitionContainer> pluginApi;
+        private readonly IDivinationPluginApi<TConfiguration, DefinitionContainer> pluginApi;
         private readonly DalamudPluginInterface pluginInterface;
         private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
-        public ConfigManager(IDivinationPluginApi<TConfiguration, EmptyDefinitionContainer> pluginApi,
+        public ConfigManager(IDivinationPluginApi<TConfiguration, DefinitionContainer> pluginApi,
             DalamudPluginInterface pluginInterface,
             IChatClient chatClient,
             Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient)

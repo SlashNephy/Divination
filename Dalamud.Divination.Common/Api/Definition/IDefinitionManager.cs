@@ -2,7 +2,8 @@
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public interface IDefinitionManager<out TContainer> : IDisposable where TContainer : DefinitionContainer, new()
+    public interface IDefinitionManager<out TContainer> : IDisposable
+        where TContainer : DefinitionContainer
     {
         public IDefinitionProvider<TContainer> Provider { get; }
 
