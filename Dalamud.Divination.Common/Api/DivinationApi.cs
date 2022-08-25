@@ -69,7 +69,7 @@ namespace Dalamud.Divination.Common.Api
             }
 
             processor.RegisterCommandsByAttribute(new DirectoryCommands());
-            processor.RegisterCommandsByAttribute((ICommandProvider) Plugin);
+            processor.RegisterCommandsByAttribute((ICommandProvider)Plugin);
             return processor;
         });
 

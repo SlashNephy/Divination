@@ -17,7 +17,7 @@ namespace Dalamud.Divination.Common.Api.Definition
 
             public Commands(IDefinitionManager<TContainer> manager)
             {
-                this.manager = (DefinitionManager<TContainer>) manager;
+                this.manager = (DefinitionManager<TContainer>)manager;
             }
 
             [Command("def", "version")]

@@ -80,7 +80,7 @@ namespace Dalamud.Divination.Common.Api.Version
         {
             try
             {
-                return (int) gitVersionInfo!.GetField(key)!.GetValue(null)!;
+                return (int)gitVersionInfo!.GetField(key)!.GetValue(null)!;
             }
             catch
             {

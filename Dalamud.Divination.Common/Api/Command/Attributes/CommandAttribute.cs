@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 
 namespace Dalamud.Divination.Common.Api.Command.Attributes
