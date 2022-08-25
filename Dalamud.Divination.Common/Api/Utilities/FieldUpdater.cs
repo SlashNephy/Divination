@@ -197,13 +197,13 @@ namespace Dalamud.Divination.Common.Api.Utilities
             }
         }
 
-        private void PrintConfigValueSuccessLog(FieldInfo fieldInfo, object? value)
+        private void PrintConfigValueSuccessLog(MemberInfo memberInfo, object? value)
         {
             Respond(new List<Payload>
             {
                 new TextPayload("フィールド "),
                 EmphasisItalicPayload.ItalicsOn,
-                new TextPayload(fieldInfo.Name),
+                new TextPayload(memberInfo.Name),
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(" の値を "),
                 EmphasisItalicPayload.ItalicsOn,
