@@ -76,7 +76,7 @@ namespace Dalamud.Divination.Common.Api
 
         public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() =>
             new ConfigManager<TConfiguration>(
-                (Plugin as IDivinationPluginApi<TConfiguration, EmptyDefinitionContainer>)!,
+                Plugin,
                 Dalamud.PluginInterface,
                 Chat,
                 () => Voiceroid2Proxy));

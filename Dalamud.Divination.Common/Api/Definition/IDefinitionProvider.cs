@@ -3,7 +3,8 @@ using System.Threading;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public interface IDefinitionProvider<out TContainer> : IDisposable where TContainer : DefinitionContainer, new()
+    public interface IDefinitionProvider<out TContainer> : IDisposable
+        where TContainer : DefinitionContainer
     {
         /// <summary>
         ///     定義ファイルの名前。
