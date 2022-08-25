@@ -12,11 +12,6 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
     {
         public TConfiguration Config => ConfigManager.Config;
 
-        public void Save()
-        {
-            ConfigManager.Save();
-        }
-
         public void Dispose()
         {
             UiBuilder.OpenConfigUi -= OnMainCommand;

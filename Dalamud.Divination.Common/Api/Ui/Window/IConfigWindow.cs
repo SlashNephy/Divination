@@ -6,7 +6,5 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
         where TConfiguration : class, IPluginConfiguration, new()
     {
         public TConfiguration Config { get; }
-
-        public void Save();
     }
 }
