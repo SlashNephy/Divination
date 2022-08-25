@@ -32,9 +32,8 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
           # Required by GitVersion
           fetch-depth: 0
@@ -44,10 +43,10 @@ jobs:
           Invoke-WebRequest -Uri ${{ env.DALAMUD_ZIP_URL }} -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
         env:
-          DALAMUD_ZIP_URL: https://goatcorp.github.io/dalamud-distrib/net5/latest.zip
+          DALAMUD_ZIP_URL: https://goatcorp.github.io/dalamud-distrib/stg/latest.zip
 
       - name: Restore Nuget Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
@@ -65,7 +64,17 @@ jobs:
           echo "PLUGIN_DESCRIPTION=$($json["Description"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
 
       - name: Build Plugin
-        run: dotnet build --configuration Release --no-restore --nologo -maxcpucount:1 /p:OutputPath=bin\CIRelease\ /p:Product=Divination /p:Company=Horoscope '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
+        run: |
+          dotnet build \
+            --configuration Release \
+            --no-restore \
+            --nologo \
+            -maxcpucount:1 \
+            /p:OutputPath=bin\CIRelease\ \
+            /p:Product=Divination \
+            /p:Company=Horoscope \
+            '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' \
+            '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
@@ -81,7 +90,7 @@ jobs:
 
     steps:
       - name: Checkout Plugin Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ env.PLUGIN_REPOSITORY }}
           token: ${{ secrets.GH_PAT }}
@@ -91,7 +100,7 @@ jobs:
         id: short-sha
 
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
           path: dist/testing/${{ env.PLUGIN_PROJECT_NAME }}
