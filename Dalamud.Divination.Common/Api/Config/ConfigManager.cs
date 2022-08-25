@@ -6,9 +6,8 @@ using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Utilities;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
-using Dalamud.Logging;
+using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Plugin;
-using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Config
 {
@@ -16,23 +15,34 @@ namespace Dalamud.Divination.Common.Api.Config
         where TConfiguration : class, IPluginConfiguration, new()
     {
         private readonly IChatClient chatClient;
+        private readonly IDivinationPluginApi<TConfiguration, EmptyDefinitionContainer> pluginApi;
         private readonly DalamudPluginInterface pluginInterface;
         private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
-        public ConfigManager(
+        public ConfigManager(IDivinationPluginApi<TConfiguration, EmptyDefinitionContainer> pluginApi,
             DalamudPluginInterface pluginInterface,
             IChatClient chatClient,
             Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient)
         {
+            this.pluginApi = pluginApi;
             this.pluginInterface = pluginInterface;
             this.chatClient = chatClient;
             this.voiceroid2ProxyClient = voiceroid2ProxyClient;
-
-            Config = pluginInterface.GetPluginConfig() as TConfiguration ?? new TConfiguration();
-            PluginLog.Verbose("Config loaded: {Config}", JsonConvert.SerializeObject(Config));
         }
 
-        public TConfiguration Config { get; }
+        // ベースクラス初期化後 → プラグインクラス初期化なので、ロード直後は Config 利用不可
+        public TConfiguration Config
+        {
+            get
+            {
+                if (pluginApi.Config == default)
+                {
+                    throw new AggregateException("Config has not initialized yet.");
+                }
+
+                return pluginApi.Config;
+            }
+        }
 
         public bool TryUpdate(string key, string? value, bool useTts)
         {
@@ -40,17 +50,6 @@ namespace Dalamud.Divination.Common.Api.Config
 
             var fields = EnumerateConfigFields(true);
             return updater.TryUpdate(key, value, fields);
-        }
-
-        public void Save()
-        {
-            pluginInterface.SavePluginConfig(Config);
-            PluginLog.Verbose("Config saved: {Config}", JsonConvert.SerializeObject(Config));
-        }
-
-        public void Dispose()
-        {
-            // Save();
         }
 
         private static IEnumerable<FieldInfo> EnumerateConfigFields(bool includeUpdateIgnore = false)
