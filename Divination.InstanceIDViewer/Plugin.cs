@@ -14,9 +14,11 @@ namespace Divination.InstanceIDViewer
     {
 
         [PluginService]
+        [RequiredVersion("1.0")]
         public static ChatGui ChatGui { get; private set; }
 
         [PluginService]
+        [RequiredVersion("1.0")]
         public static GameNetwork GameNetwork { get; private set; }
         
         public string Name => "Divination.InstanceIDViewer";
