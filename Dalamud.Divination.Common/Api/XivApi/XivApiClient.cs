@@ -32,7 +32,7 @@ namespace Dalamud.Divination.Common.Api.XivApi
             var data = JObject.Parse(result);
 
             PluginLog.Verbose("{Code}: {Method} {Url}",
-                (int) response.StatusCode,
+                (int)response.StatusCode,
                 response.RequestMessage!.Method.Method,
                 url);
 
@@ -50,10 +50,10 @@ namespace Dalamud.Divination.Common.Api.XivApi
             using var response = await client.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             dynamic json = JObject.Parse(result);
-            var data = (JObject) ((JArray) json.Results).First();
+            var data = (JObject)((JArray)json.Results).First();
 
             PluginLog.Verbose("{Code}: {Method} {Url}",
-                (int) response.StatusCode,
+                (int)response.StatusCode,
                 response.RequestMessage!.Method.Method,
                 url);
             return new XivApiResponse(data);

@@ -6,7 +6,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud
     {
         public static string AsString(this SeIconChar icon)
         {
-            return ((char) icon).ToString();
+            return ((char)icon).ToString();
         }
     }
 }

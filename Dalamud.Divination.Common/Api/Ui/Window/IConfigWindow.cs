@@ -1,4 +1,4 @@
-using Dalamud.Configuration;
+﻿using Dalamud.Configuration;
 
 namespace Dalamud.Divination.Common.Api.Ui.Window
 {

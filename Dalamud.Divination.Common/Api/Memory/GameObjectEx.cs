@@ -1,4 +1,4 @@
-using Dalamud.Game.ClientState.Objects.Types;
+﻿using Dalamud.Game.ClientState.Objects.Types;
 
 namespace Dalamud.Divination.Common.Api.Memory
 {

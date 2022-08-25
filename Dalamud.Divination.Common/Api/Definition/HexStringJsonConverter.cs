@@ -19,7 +19,7 @@ namespace Dalamud.Divination.Common.Api.Definition
             switch (reader.TokenType)
             {
                 case JsonToken.String:
-                    var value = (string) reader.Value!;
+                    var value = (string)reader.Value!;
                     return Cast(objectType, Convert.ToInt32(value, 16));
                 case JsonToken.Integer:
                     return Cast(objectType, Convert.ToInt32(reader.Value));

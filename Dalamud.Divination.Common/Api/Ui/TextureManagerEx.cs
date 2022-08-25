@@ -6,7 +6,7 @@ namespace Dalamud.Divination.Common.Api.Ui
     {
         public static TextureWrap? GetIconTexture(this ITextureManager manager, int iconId)
         {
-            return manager.GetIconTexture((uint) iconId);
+            return manager.GetIconTexture((uint)iconId);
         }
     }
 }

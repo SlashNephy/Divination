@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Dalamud.Divination.Common.Api.Time
 {
@@ -16,7 +16,7 @@ namespace Dalamud.Divination.Common.Api.Time
             var days = DaysOfMonth * months + (et.Day - 1);
             var hours = HoursOfDay * days + et.Hour;
             var minutes = MinutesOfHour * hours + et.Minute;
-            var seconds = (long) Math.Round(minutes * TimeRate / MinutesOfHour);
+            var seconds = (long)Math.Round(minutes * TimeRate / MinutesOfHour);
 
             var utc = DateTimeOffset.FromUnixTimeSeconds(seconds);
             return utc.DateTime;
@@ -24,9 +24,9 @@ namespace Dalamud.Divination.Common.Api.Time
 
         public static EorzeaTime ToEorzeaTime(this DateTime lt)
         {
-            var utc = (DateTimeOffset) DateTime.SpecifyKind(lt, DateTimeKind.Utc);
+            var utc = (DateTimeOffset)DateTime.SpecifyKind(lt, DateTimeKind.Utc);
 
-            var minutes = (int) Math.Round(utc.ToUnixTimeSeconds() * MinutesOfHour / TimeRate);
+            var minutes = (int)Math.Round(utc.ToUnixTimeSeconds() * MinutesOfHour / TimeRate);
             var hours = minutes / MinutesOfHour;
             var days = hours / HoursOfDay;
             var months = days / DaysOfMonth;
