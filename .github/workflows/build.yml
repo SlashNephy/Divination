@@ -65,15 +65,15 @@ jobs:
 
       - name: Build Plugin
         run: |
-          dotnet build \
-            --configuration Release \
-            --no-restore \
-            --nologo \
-            -maxcpucount:1 \
-            /p:OutputPath=bin\CIRelease\ \
-            /p:Product=Divination \
-            /p:Company=Horoscope \
-            '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' \
+          dotnet build `
+            --configuration Release `
+            --no-restore `
+            --nologo `
+            -maxcpucount:1 `
+            /p:OutputPath=bin\CIRelease\ `
+            /p:Product=Divination `
+            /p:Company=Horoscope `
+            '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' `
             '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
 
       - name: Upload Artifact
