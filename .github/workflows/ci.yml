@@ -15,12 +15,12 @@ on:
 
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: windows-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout Repository
@@ -42,11 +42,10 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
 
-      - name: Pack
-        run: dotnet pack --configuration Release --include-source
-
       - name: Push
+        if: github.event_name != 'pull_request'
         run: |
+          dotnet pack --configuration Release --include-source
           dotnet nuget push */bin/x64/Release/*.nupkg `
             --source https://api.nuget.org/v3/index.json `
             --api-key ${{ secrets.NUGET_API_KEY }}
