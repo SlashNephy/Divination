@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
 using Newtonsoft.Json.Linq;
 
@@ -26,15 +27,18 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         private void OnTimerElapsed(object? _, ElapsedEventArgs __)
         {
-            Update(Cancellable.Token);
+            Task.Run(async () =>
+            {
+                await Update(Cancellable.Token);
+            });
         }
 
-        internal override JObject Fetch()
+        internal override async Task<JObject?> Fetch()
         {
-            using var stream = client.GetStreamAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
+            await using var stream = await client.GetStreamAsync(url);
 
             using var reader = new StreamReader(stream, Encoding.UTF8);
-            var content = reader.ReadToEnd();
+            var content = await reader.ReadToEndAsync();
 
             return JObject.Parse(content);
         }

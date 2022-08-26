@@ -33,17 +33,19 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         private void OnDefinitionFileChanged(object sender, FileSystemEventArgs e)
         {
-            Task.Delay(1000, Cancellable.Token);
-            Update(Cancellable.Token);
+            Task.Run(async () =>
+            {
+                await Update(Cancellable.Token);
+            });
         }
 
-        internal override JObject Fetch()
+        internal override async Task<JObject?> Fetch()
         {
             var localPath = Path.Combine(DivinationEnvironment.DivinationDirectory, Filename);
             if (!File.Exists(localPath))
             {
                 using var remote = new RemoteDefinitionProvider<TContainer>(fallbackUrl, Filename);
-                return remote.Fetch();
+                return await remote.Fetch();
             }
 
             var exceptions = new List<Exception>();
@@ -51,13 +53,14 @@ namespace Dalamud.Divination.Common.Api.Definition
             {
                 try
                 {
-                    var content = File.ReadAllText(localPath);
+                    var content = await File.ReadAllTextAsync(localPath);
                     return JObject.Parse(content);
                 }
                 // ファイルロックされてる場合などで失敗するので10回までリトライさせる
                 catch (IOException e)
                 {
                     exceptions.Add(e);
+                    await Task.Delay(500, Cancellable.Token);
                 }
             }
 
