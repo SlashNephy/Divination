@@ -42,10 +42,35 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
 
-      - name: Push
+      - name: Publish
         if: github.event_name != 'pull_request'
         run: |
           dotnet pack --configuration Release --include-source
           dotnet nuget push */bin/x64/Release/*.nupkg `
             --source https://api.nuget.org/v3/index.json `
             --api-key ${{ secrets.NUGET_API_KEY }}
+
+  format:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '${{ env.DOTNET_VERSION }}'
+
+      - name: Format
+        run: dotnet format
+
+      - name: Push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '🧹 dotnet format'
