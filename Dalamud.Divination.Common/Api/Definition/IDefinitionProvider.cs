@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Dalamud.Divination.Common.Api.Definition
 {
-    public interface IDefinitionProvider<out TContainer> : IDisposable
-        where TContainer : DefinitionContainer
+    public interface IDefinitionProvider<out TContainer> : IDisposable where TContainer : DefinitionContainer
     {
         /// <summary>
         ///     定義ファイルの名前。
@@ -24,6 +24,6 @@ namespace Dalamud.Divination.Common.Api.Definition
         /// <summary>
         ///     この IDefinitionProvider の保持している定義を更新します。
         /// </summary>
-        public void Update(CancellationToken token);
+        public Task Update(CancellationToken token);
     }
 }

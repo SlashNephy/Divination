@@ -38,13 +38,15 @@ namespace Dalamud.Divination.Common.Api.Definition
 
         public virtual bool AllowObsoleteDefinitions => false;
 
-        public void Update(CancellationToken token)
+        public async Task Update(CancellationToken token)
         {
-            var json = Fetch();
-            if (json == null)
+            var json = await Fetch();
+            if (json == default)
             {
                 return;
             }
+
+            var localGameVersion = await ReadLocalGameVersion();
 
             lock (containerLock)
             {
@@ -56,7 +58,6 @@ namespace Dalamud.Divination.Common.Api.Definition
                     },
                 });
 
-                var localGameVersion = ReadLocalGameVersion();
                 if (localGameVersion != container?.Version)
                 {
                     PluginLog.Warning(
@@ -95,14 +96,15 @@ namespace Dalamud.Divination.Common.Api.Definition
             Cancellable.Cancel();
         }
 
-        internal abstract JObject? Fetch();
+        internal abstract Task<JObject?> Fetch();
 
-        private static string ReadLocalGameVersion()
+        private static async Task<string> ReadLocalGameVersion()
         {
             // "C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\ffxivgame.ver"
             var gameVersionPath = Path.Combine(DivinationEnvironment.GameDirectory, "ffxivgame.ver");
 
-            return File.ReadAllText(gameVersionPath).Trim();
+            var content = await File.ReadAllTextAsync(gameVersionPath);
+            return content.Trim();
         }
     }
 }
