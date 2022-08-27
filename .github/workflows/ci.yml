@@ -4,12 +4,12 @@ env:
 
 ### BEGIN TEMPLATE ###
 
-name: Build
+name: CI
 
 on:
   push:
-    paths-ignore:
-      - '*.md'
+    branches-ignore:
+      - 'renovate/**'
 
   release:
     types:
@@ -19,8 +19,6 @@ on:
     types:
       - opened
       - synchronize
-    paths-ignore:
-      - '*.md'
 
   workflow_dispatch:
 
@@ -111,3 +109,23 @@ jobs:
           default_author: github_actions
           pull: NO-PULL
           message: Deploy ${{ env.PLUGIN_PROJECT_NAME }} @ ${{ steps.short-sha.outputs.sha }}
+
+  format:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Format
+        run: dotnet format
+
+      - name: Push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '🧹 dotnet format'
