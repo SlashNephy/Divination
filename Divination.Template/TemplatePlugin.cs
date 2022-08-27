@@ -18,13 +18,16 @@ namespace Divination.Template
         public TemplatePlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
             Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
-            PluginLog.Information("Plugin loaded!");
         }
 
-        public override PluginConfig Config { get; }
-        string ICommandSupport.MainCommandPrefix => "/template";
-        string IDefinitionSupport.DefinitionUrl => "https://horoscope-dev.github.io/Dalamud.Divination.Ephemera/dist/Template.json";
-        ConfigWindow<PluginConfig> IConfigWindowSupport<PluginConfig>.CreateConfigWindow() => new PluginConfigWindow();
+        protected override void ReleaseManaged()
+        {
+            Dalamud.PluginInterface.SavePluginConfig(Config);
+        }
+
+        #region ICommandSupport
+
+        public string MainCommandPrefix => "/template";
 
         [Command("/example", "foo", "<arg>", "<optionalarg?>", "<vararg...>")]
         [CommandHelp("This is sample command.")]
@@ -33,13 +36,18 @@ namespace Divination.Template
             PluginLog.Information("/example called.");
         }
 
-        protected override void ReleaseManaged()
-        {
-            Dalamud.PluginInterface.SavePluginConfig(Config);
-        }
+        #endregion
 
-        protected override void ReleaseUnmanaged()
-        {
-        }
+        #region IConfigWindowSupport
+
+        public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+
+        #endregion
+
+        #region IDefinitionSupport
+
+        public string DefinitionUrl => "https://horoscope-dev.github.io/Dalamud.Divination.Ephemera/dist/Template.json";
+
+        #endregion
     }
 }

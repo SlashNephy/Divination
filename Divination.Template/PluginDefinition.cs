@@ -4,6 +4,6 @@ namespace Divination.Template
 {
     public class PluginDefinition : DefinitionContainer
     {
-        public int? SampleOffset;
+        public int? SomeOffset;
     }
 }
