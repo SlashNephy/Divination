@@ -24,7 +24,9 @@ namespace Dalamud.Divination.Common.Boilerplate
         where TConfiguration : class, IPluginConfiguration, new()
         where TDefinition : DefinitionContainer, new()
     {
+#pragma warning disable CS8618
         protected DivinationPlugin(DalamudPluginInterface pluginInterface)
+#pragma warning restore CS8618
         {
             Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
             IsDisposed = false;
@@ -45,7 +47,7 @@ namespace Dalamud.Divination.Common.Boilerplate
 
         public string Name => $"Divination.{Instance.GetType().Name.Replace("Plugin", string.Empty)}";
         public bool IsDisposed { get; private set; }
-        public abstract TConfiguration Config { get; }
+        public TConfiguration Config { get; init; }
         public TDefinition? Definition => Divination.Definition?.Container;
         public IDalamudApi Dalamud { get; }
         public IDivinationApi<TConfiguration, TDefinition> Divination { get; }
