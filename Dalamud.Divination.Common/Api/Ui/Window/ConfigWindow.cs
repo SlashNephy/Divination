@@ -4,6 +4,7 @@ using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Config;
 using Dalamud.Interface;
+using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Ui.Window
 {
@@ -11,6 +12,7 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
         ICommandProvider where TConfiguration : class, IPluginConfiguration, new()
     {
         public TConfiguration Config => ConfigManager.Config;
+        public DalamudPluginInterface Interface => ConfigManager.Interface;
 
         public void Dispose()
         {
@@ -40,6 +42,7 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
             UiBuilder.OpenConfigUi += OnMainCommand;
             UiBuilder.Draw += OnDraw;
         }
+
 #pragma warning disable 8618
         internal IConfigManager<TConfiguration> ConfigManager { get; set; }
         internal UiBuilder UiBuilder { get; set; }

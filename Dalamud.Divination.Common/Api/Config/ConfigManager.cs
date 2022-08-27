@@ -16,7 +16,6 @@ namespace Dalamud.Divination.Common.Api.Config
     {
         private readonly IChatClient chatClient;
         private readonly IDivinationPluginApi<TConfiguration, DefinitionContainer> pluginApi;
-        private readonly DalamudPluginInterface pluginInterface;
         private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
         public ConfigManager(IDivinationPluginApi<TConfiguration, DefinitionContainer> pluginApi,
@@ -25,7 +24,7 @@ namespace Dalamud.Divination.Common.Api.Config
             Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient)
         {
             this.pluginApi = pluginApi;
-            this.pluginInterface = pluginInterface;
+            Interface = pluginInterface;
             this.chatClient = chatClient;
             this.voiceroid2ProxyClient = voiceroid2ProxyClient;
         }
@@ -43,6 +42,8 @@ namespace Dalamud.Divination.Common.Api.Config
                 return pluginApi.Config;
             }
         }
+
+        public DalamudPluginInterface Interface { get; }
 
         public bool TryUpdate(string key, string? value, bool useTts)
         {

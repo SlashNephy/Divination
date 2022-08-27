@@ -1,4 +1,5 @@
 ﻿using Dalamud.Configuration;
+using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Ui.Window
 {
@@ -6,5 +7,6 @@ namespace Dalamud.Divination.Common.Api.Ui.Window
         where TConfiguration : class, IPluginConfiguration, new()
     {
         public TConfiguration Config { get; }
+        public DalamudPluginInterface Interface { get; }
     }
 }
