@@ -8,6 +8,7 @@ using Dalamud.Plugin;
 
 namespace Divination.Template
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public sealed class TemplatePlugin : DivinationPlugin<TemplatePlugin, PluginConfig, PluginDefinition>,
         IDalamudPlugin,
         ICommandSupport,
@@ -22,7 +23,7 @@ namespace Divination.Template
 
         public override PluginConfig Config { get; }
         string ICommandSupport.MainCommandPrefix => "/template";
-        string IDefinitionSupport.DefinitionUrl => "https://ephemera.horoscope.dev/dist/Template.json";
+        string IDefinitionSupport.DefinitionUrl => "https://horoscope-dev.github.io/Dalamud.Divination.Ephemera/dist/Template.json";
         ConfigWindow<PluginConfig> IConfigWindowSupport<PluginConfig>.CreateConfigWindow() => new PluginConfigWindow();
 
         [Command("/example", "foo", "<arg>", "<optionalarg?>", "<vararg...>")]

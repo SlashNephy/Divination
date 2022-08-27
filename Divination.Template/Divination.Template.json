@@ -1,6 +1,6 @@
 {
   "Author": "[Author]",
-  "Name": "Divination.Template",
+  "Name": "[Name]",
   "Punchline": "[Punchline]",
   "Description": "[Description]",
   "Tags": [
@@ -18,9 +18,14 @@
   ],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 4,
+  "DalamudApiLevel": 7,
+  "LoadRequiredState": 2,
+  "LoadSync": false,
   "LoadPriority": 0,
+  "CanUnloadAsync": false,
   "ImageUrls": [
   ],
-  "IconUrl": null
+  "IconUrl": null,
+  "AcceptsFeedback": true,
+  "FeedbackMessage": null
 }
