@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Divination.Debugger", "Divination.Debugger\Divination.Debugger.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dalamud.Divination.Common", "Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj", "{845AC207-815B-49CB-A413-F720A453B34E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -17,10 +15,6 @@ Global
 		{2D22984A-7D71-4861-9367-7764C322E663}.Debug|x64.Build.0 = Debug|x64
 		{2D22984A-7D71-4861-9367-7764C322E663}.Release|x64.ActiveCfg = Release|Any CPU
 		{2D22984A-7D71-4861-9367-7764C322E663}.Release|x64.Build.0 = Release|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|x64.ActiveCfg = Debug|x64
-		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|x64.Build.0 = Debug|x64
-		{845AC207-815B-49CB-A413-F720A453B34E}.Release|x64.ActiveCfg = Release|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

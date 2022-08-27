@@ -8,49 +8,52 @@ using Dalamud.Logging;
 using Dalamud.Plugin;
 using Divination.Debugger.Window;
 
-namespace Divination.Debugger;
-
-public partial class DebuggerPlugin : DivinationPlugin<DebuggerPlugin, PluginConfig>,
-    IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
+namespace Divination.Debugger
 {
-    private readonly NetworkListener listener = new();
-
-    public DebuggerPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public partial class DebuggerPlugin : DivinationPlugin<DebuggerPlugin, PluginConfig>,
+        IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
     {
-        Divination.ConfigWindow!.IsDrawing = Config.OpenAtStart;
+        private readonly NetworkListener listener = new();
 
-        Dalamud.ChatGui.ChatMessage += OnChatMessage;
-        Divination.Network.AddHandler(listener);
-    }
-
-    private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
-    {
-        if (Config.EnableVerboseChatLog)
+        public DebuggerPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
-            var text = new StringBuilder();
-            text.AppendLine($"[{type}, {isHandled}] {sender.TextValue} ({senderId}): {message.TextValue}");
+            Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
+            Divination.ConfigWindow!.IsDrawing = Config.OpenAtStart;
 
-            foreach (var payload in sender.Payloads)
-            {
-                text.AppendLine($"  {payload}");
-            }
-
-            foreach (var payload in message.Payloads)
-            {
-                text.AppendLine($"    {payload}");
-            }
-
-            PluginLog.Verbose("{Chat}", text.ToString());
+            Dalamud.ChatGui.ChatMessage += OnChatMessage;
+            Divination.Network.AddHandler(listener);
         }
-    }
 
-    protected override void ReleaseManaged()
-    {
-        Dalamud.ChatGui.ChatMessage -= OnChatMessage;
-        Divination.Network.RemoveHandler(listener);
-        listener.Dispose();
-    }
+        private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+        {
+            if (Config.EnableVerboseChatLog)
+            {
+                var text = new StringBuilder();
+                text.AppendLine($"[{type}, {isHandled}] {sender.TextValue} ({senderId}): {message.TextValue}");
 
-    public string MainCommandPrefix => "/debug";
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+                foreach (var payload in sender.Payloads)
+                {
+                    text.AppendLine($"  {payload}");
+                }
+
+                foreach (var payload in message.Payloads)
+                {
+                    text.AppendLine($"    {payload}");
+                }
+
+                PluginLog.Verbose("{Chat}", text.ToString());
+            }
+        }
+
+        protected override void ReleaseManaged()
+        {
+            Dalamud.PluginInterface.SavePluginConfig(Config);
+            Dalamud.ChatGui.ChatMessage -= OnChatMessage;
+            Divination.Network.RemoveHandler(listener);
+            listener.Dispose();
+        }
+
+        public string MainCommandPrefix => "/debug";
+        public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+    }
 }

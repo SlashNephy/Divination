@@ -4,43 +4,44 @@ using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Lumina.Excel.GeneratedSheets;
 
-namespace Divination.Debugger;
-
-public partial class DebuggerPlugin
+namespace Divination.Debugger
 {
-    [Command("/color")]
-    [CommandHelp("FFXIV で使用可能なカラーコードの一覧を出力します。")]
-    private void OnColorCommand()
+    public partial class DebuggerPlugin
     {
-        Divination.Chat.Print(payloads =>
+        [Command("/color")]
+        [CommandHelp("FFXIV で使用可能なカラーコードの一覧を出力します。")]
+        private void OnColorCommand()
         {
-            payloads.Add(new TextPayload("UIForeground:\n"));
-
-            var i = 0;
-            foreach (var color in Dalamud.DataManager.GetExcelSheet<UIColor>()!)
+            Divination.Chat.Print(payloads =>
             {
-                payloads.AddRange(new Payload[]
-                {
-                    new UIForegroundPayload((ushort) color.RowId),
-                    new TextPayload($"{color.RowId:D3}"),
-                    UIForegroundPayload.UIForegroundOff,
-                    new TextPayload(++i % 10 == 0 ? "\n" : " ")
-                });
-            }
+                payloads.Add(new TextPayload("UIForeground:\n"));
 
-            payloads.Add(new TextPayload("\nUIGlow:\n"));
-
-            i = 0;
-            foreach (var color in Dalamud.DataManager.GetExcelSheet<UIColor>()!)
-            {
-                payloads.AddRange(new Payload[]
+                var i = 0;
+                foreach (var color in Dalamud.DataManager.GetExcelSheet<UIColor>()!)
                 {
-                    new UIGlowPayload((ushort) color.RowId),
-                    new TextPayload($"{color.RowId:D3}"),
-                    UIGlowPayload.UIGlowOff,
-                    new TextPayload(++i % 10 == 0 ? "\n" : " ")
-                });
-            }
-        });
+                    payloads.AddRange(new Payload[]
+                    {
+                        new UIForegroundPayload((ushort) color.RowId),
+                        new TextPayload($"{color.RowId:D3}"),
+                        UIForegroundPayload.UIForegroundOff,
+                        new TextPayload(++i % 10 == 0 ? "\n" : " ")
+                    });
+                }
+
+                payloads.Add(new TextPayload("\nUIGlow:\n"));
+
+                i = 0;
+                foreach (var color in Dalamud.DataManager.GetExcelSheet<UIColor>()!)
+                {
+                    payloads.AddRange(new Payload[]
+                    {
+                        new UIGlowPayload((ushort) color.RowId),
+                        new TextPayload($"{color.RowId:D3}"),
+                        UIGlowPayload.UIGlowOff,
+                        new TextPayload(++i % 10 == 0 ? "\n" : " "),
+                    });
+                }
+            });
+        }
     }
 }
