@@ -4,8 +4,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
-
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
             <Private>False</Private>
@@ -23,6 +21,7 @@
             <Private>False</Private>
         </Reference>
 
+        <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.180" />
         <PackageReference Include="DalamudPackager" Version="2.1.7" />
     </ItemGroup>
 </Project>

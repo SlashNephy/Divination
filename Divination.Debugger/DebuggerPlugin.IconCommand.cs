@@ -5,27 +5,28 @@ using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
-namespace Divination.Debugger;
-
-public partial class DebuggerPlugin
+namespace Divination.Debugger
 {
-    [Command("/icon")]
-    [CommandHelp("FFXIV で使用可能なアイコンフォントの一覧を出力します。")]
-    private void OnIconCommand()
+    public partial class DebuggerPlugin
     {
-        Divination.Chat.Print(payloads =>
+        [Command("/icon")]
+        [CommandHelp("FFXIV で使用可能なアイコンフォントの一覧を出力します。")]
+        private void OnIconCommand()
         {
-            payloads.Add(new TextPayload("Icon fonts:\n"));
-
-            foreach (var (i, icon) in Enum.GetValues(typeof(BitmapFontIcon)).Cast<BitmapFontIcon>().Select((x, i) => (i, x)))
+            Divination.Chat.Print(payloads =>
             {
-                payloads.AddRange(new Payload[]
+                payloads.Add(new TextPayload("Icon fonts:\n"));
+
+                foreach (var (i, icon) in Enum.GetValues(typeof(BitmapFontIcon)).Cast<BitmapFontIcon>().Select((x, i) => (i, x)))
                 {
-                    new TextPayload($"{i:D3}"),
-                    new IconPayload(icon),
-                    new TextPayload((i + 1) % 5 == 0 ? "\n" : " ")
-                });
-            }
-        });
+                    payloads.AddRange(new Payload[]
+                    {
+                        new TextPayload($"{i:D3}"),
+                        new IconPayload(icon),
+                        new TextPayload((i + 1) % 5 == 0 ? "\n" : " "),
+                    });
+                }
+            });
+        }
     }
 }
