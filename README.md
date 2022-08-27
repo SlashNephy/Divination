@@ -1,24 +1,24 @@
 # Dalamud.Divination.Template
 
-📝 Template repository for Dalamud.Divination Plugins
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/horoscope-dev/Dalamud.Divination.Template/CI?style=flat-square)](https://github.com/horoscope-dev/Dalamud.Divination.Template/actions/workflows/ci.yml)
+
+A template for developing Divination projects.
 
 ## How to use
 
-0. Click "Use this template" on GitHub.
-1. Open the solution, then rename "Divination.Template" project in JetBrains Rider.
-2. Replace all "Template" with the project name.
-3. Update the Common lib as desired.
+1. Click "Use this template" on GitHub.
+2. Open the solution, and rename `Divination.Template` to your preferred name.
+3. Replace all `Template` strings with your project name.
+4. Edit `.github/workflows/ci.yml`.
+5. Issue GitHub PAT (Private Access Token), and add it to the repository secrets
+   with the name `GH_PAT`. Please note that you must issue a PAT with write access to the plugin repository as described
+   below.
+6. Start coding!
 
-    ```shell
-    $ git submodule foreach git pull origin master
-    $ git submodule foreach git checkout master
-    ```
+## Distribution
 
-4. Edit `.github/workflows/build.yml` and put `GH_PAT` (with "repo:public_repo" scope) in repository secrets setting.
-5. Start coding!
+This repository is automatically built by GitHub Actions and published to the plugin repository (default:
+[Dalamud.DivinationPluginRepo](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo)).
 
-## Plugin Repository
-
-This repository will be automatically built and published to the [plugin repository](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo).
-
-Plugins are published to the stable repository when a release tag is created, and to the testing repository when a commit is pushed to the `master` branch.
+When a release tag is created, it is published to the stable repository, and when a push to `master` branch is made, it is
+published to the testing repository.
