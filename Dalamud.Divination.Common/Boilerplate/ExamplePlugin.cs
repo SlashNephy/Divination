@@ -9,8 +9,6 @@ namespace Dalamud.Divination.Common.Boilerplate
             Config = pluginInterface.GetPluginConfig() as EmptyConfig ?? new EmptyConfig();
         }
 
-        public override EmptyConfig Config { get; }
-
         protected override void ReleaseManaged()
         {
             Dalamud.PluginInterface.SavePluginConfig(Config);
