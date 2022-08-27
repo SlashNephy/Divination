@@ -4,9 +4,9 @@
     "net6.0-windows7.0": {
       "Dalamud.Divination.Common": {
         "type": "Direct",
-        "requested": "[0.1.0-beta.178, )",
-        "resolved": "0.1.0-beta.178",
-        "contentHash": "Bz56JabpAe1S6V7JV9VJZQdOO8Afjy5stqz+z8rrevvhmIx0nHMQL719pNDyMYkQgNfuigO+phfjl4GeYBIQ3w=="
+        "requested": "[0.1.0-beta.180, )",
+        "resolved": "0.1.0-beta.180",
+        "contentHash": "Wq2lDA3JuG2BMy77/opyvHZ9JdJk8TWmapQbUjtSKBwr03I/evAMmGyc/SycRAlgAw5HauOmCKpxfp4exWEUzg=="
       },
       "DalamudPackager": {
         "type": "Direct",

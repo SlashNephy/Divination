@@ -4,7 +4,7 @@ namespace Divination.Template
 {
     public class PluginConfig : IPluginConfiguration
     {
-        public bool Enabled;
+        public bool SomeFlag;
 
         public int Version { get; set; }
     }

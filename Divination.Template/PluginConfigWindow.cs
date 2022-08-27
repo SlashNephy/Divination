@@ -16,7 +16,7 @@ namespace Divination.Template
                 if (ImGui.Button("Save & Close"))
                 {
                     IsOpen = false;
-                    TemplatePlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
+                    Interface.SavePluginConfig(Config);
                 }
 
                 ImGui.End();
