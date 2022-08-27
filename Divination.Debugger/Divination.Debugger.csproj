@@ -22,6 +22,6 @@
         </Reference>
 
         <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.180" />
-        <PackageReference Include="DalamudPackager" Version="2.1.7" />
+        <PackageReference Include="DalamudPackager" Version="2.1.8" />
     </ItemGroup>
 </Project>
