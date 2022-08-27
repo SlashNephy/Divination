@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
-
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
             <Private>False</Private>
@@ -11,7 +9,8 @@
             <Private>False</Private>
         </Reference>
 
-        <PackageReference Include="DalamudPackager" Version="2.*">
+        <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.178" />
+        <PackageReference Include="DalamudPackager" Version="2.1.8">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
