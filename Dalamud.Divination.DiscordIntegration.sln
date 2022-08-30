@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Divination.DiscordIntegration", "Divination.DiscordIntegration\Divination.DiscordIntegration.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dalamud.Divination.Common", "Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj", "{845AC207-815B-49CB-A413-F720A453B34E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Divination.DiscordIntegration.IpcModel", "Divination.DiscordIntegration.IpcModel\Divination.DiscordIntegration.IpcModel.csproj", "{82F7D766-5436-46E9-85D2-A7B5A408FE0A}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{2D22984A-7D71-4861-9367-7764C322E663}.Debug|x64.Build.0 = Debug|x64
 		{2D22984A-7D71-4861-9367-7764C322E663}.Release|x64.ActiveCfg = Release|Any CPU
 		{2D22984A-7D71-4861-9367-7764C322E663}.Release|x64.Build.0 = Release|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|x64.ActiveCfg = Debug|x64
-		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|x64.Build.0 = Debug|x64
-		{845AC207-815B-49CB-A413-F720A453B34E}.Release|x64.ActiveCfg = Release|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Release|x64.Build.0 = Release|Any CPU
 		{82F7D766-5436-46E9-85D2-A7B5A408FE0A}.Debug|x64.ActiveCfg = Debug|x64
 		{82F7D766-5436-46E9-85D2-A7B5A408FE0A}.Debug|x64.Build.0 = Debug|x64
 		{82F7D766-5436-46E9-85D2-A7B5A408FE0A}.Release|x64.ActiveCfg = Release|x64

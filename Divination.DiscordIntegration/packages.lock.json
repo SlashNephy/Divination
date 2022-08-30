@@ -2,11 +2,17 @@
   "version": 1,
   "dependencies": {
     "net6.0-windows7.0": {
+      "Dalamud.Divination.Common": {
+        "type": "Direct",
+        "requested": "[0.1.0-beta.180, )",
+        "resolved": "0.1.0-beta.180",
+        "contentHash": "Wq2lDA3JuG2BMy77/opyvHZ9JdJk8TWmapQbUjtSKBwr03I/evAMmGyc/SycRAlgAw5HauOmCKpxfp4exWEUzg=="
+      },
       "DalamudPackager": {
         "type": "Direct",
-        "requested": "[2.1.7, )",
-        "resolved": "2.1.7",
-        "contentHash": "jnZ/sdInyn07ycuWI+pPOtP/xE3v+c4+jYJfDt36FWnBF9NKqkpzfviJtPl/jGLgbaCmFIXu+Yid0N8GvdKefg=="
+        "requested": "[2.1.8, )",
+        "resolved": "2.1.8",
+        "contentHash": "YqagNXs9InxmqkXzq7kLveImxnodkBEicAhydMXVp7dFjC7xb76U6zGgAax4/BWIWfZeWzr5DJyQSev31kj81A=="
       },
       "DiscordRichPresence": {
         "type": "Direct",
@@ -20,9 +26,15 @@
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[5.*, )",
-        "resolved": "5.10.1",
-        "contentHash": "H30ThorrFCs4jLeTH4fX+LsuFu6jM70Bc7GOvC6Nya3E1dIeIFrvs0Lwtt//V5CQWhvHRXu53ov1rmJYcMY5kQ=="
+        "requested": "[5.10.3, )",
+        "resolved": "5.10.3",
+        "contentHash": "UE5+vWL5xG8S/lJSh6w6bYTQxxgFuSSQLql7Czh6gM3Q0Y1XTpjufL9jtv8+xzqsAJIzvrPRyMwdGf3nf/z95Q=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Direct",
+        "requested": "[13.0.1, )",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       },
       "Microsoft.NETCore.Platforms": {
         "type": "Transitive",
@@ -37,11 +49,6 @@
           "System.Security.AccessControl": "4.5.0",
           "System.Security.Principal.Windows": "4.5.0"
         }
-      },
-      "Newtonsoft.Json": {
-        "type": "Transitive",
-        "resolved": "12.0.2",
-        "contentHash": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA=="
       },
       "System.Security.AccessControl": {
         "type": "Transitive",
@@ -59,9 +66,6 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0"
         }
-      },
-      "dalamud.divination.common": {
-        "type": "Project"
       },
       "divination.discordintegration.ipcmodel": {
         "type": "Project"
