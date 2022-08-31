@@ -154,7 +154,7 @@ namespace Divination.DiscordIntegration.Data
 
         public static string? GetImageKey(this ClassJob job)
         {
-            return job == ClassJob.Unknown ? null : $"job_{(byte) job}";
+            return job == ClassJob.Unknown ? null : $"job_{(byte)job}";
         }
     }
 }

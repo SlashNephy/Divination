@@ -154,18 +154,18 @@ namespace Divination.DiscordIntegration
             Y = $"{player.Position.Y:F1}";
             Z = $"{player.Position.Z:F1}";
             Hp = $"{player.CurrentHp.ToString()}/{player.MaxHp.ToString()}";
-            Hpp = $"{Math.Round((float) player.CurrentHp / player.MaxHp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
+            Hpp = $"{Math.Round((float)player.CurrentHp / player.MaxHp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
             Mp = $"{player.CurrentMp.ToString()}/{player.MaxMp.ToString()}";
-            Mpp = $"{Math.Round((float) player.CurrentMp / player.MaxMp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
+            Mpp = $"{Math.Round((float)player.CurrentMp / player.MaxMp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
             Cp = $"{player.CurrentCp.ToString()}/{player.MaxCp.ToString()}";
-            Cpp = $"{Math.Round((float) player.CurrentCp / player.MaxCp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
+            Cpp = $"{Math.Round((float)player.CurrentCp / player.MaxCp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
             Gp = $"{player.CurrentGp}/{player.MaxGp}";
-            Gpp = $"{Math.Round((float) player.CurrentGp / player.MaxGp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
+            Gpp = $"{Math.Round((float)player.CurrentGp / player.MaxGp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
         }
 
         private void UpdateJob()
         {
-            var classJob = Enum.IsDefined(typeof(ClassJob), player.ClassJob.Id) ? (ClassJob) player.ClassJob.Id : ClassJob.Unknown;
+            var classJob = Enum.IsDefined(typeof(ClassJob), player.ClassJob.Id) ? (ClassJob)player.ClassJob.Id : ClassJob.Unknown;
             if (DiscordIntegrationPlugin.Instance.Config.ShowJobSmallImage)
             {
                 smallImageKey = classJob.GetImageKey();
@@ -188,7 +188,7 @@ namespace Divination.DiscordIntegration
 
             if (DiscordIntegrationPlugin.Instance.Config.ShowLoadingLargeImage)
             {
-                var loadingImage = (LoadingImage) (territoryType?.LoadingImage ?? 0);
+                var loadingImage = (LoadingImage)(territoryType?.LoadingImage ?? 0);
                 largeImageKey = loadingImage.GetImageKey();
             }
         }
@@ -202,7 +202,7 @@ namespace Divination.DiscordIntegration
             {
                 isTargeting = true;
                 Thp = $"{character.CurrentHp.ToString()}/{character.MaxHp.ToString()}";
-                Thpp = $"{Math.Round((float) character.CurrentHp / character.MaxHp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
+                Thpp = $"{Math.Round((float)character.CurrentHp / character.MaxHp * 100, 1).ToString(CultureInfo.InvariantCulture)}";
             }
         }
 
@@ -281,7 +281,7 @@ namespace Divination.DiscordIntegration
             var icon = player.GetIcon().GetValueOrDefault();
             if (Enum.IsDefined(typeof(OnlineStatus), icon))
             {
-                onlineStatus = (OnlineStatus) icon;
+                onlineStatus = (OnlineStatus)icon;
             }
             else
             {
@@ -322,7 +322,7 @@ namespace Divination.DiscordIntegration
             var titleId = player.GetTitle().GetValueOrDefault();
             if (titleId != default)
             {
-                var titleSheet = DiscordIntegrationPlugin.Instance.Dalamud.DataManager.GetExcelSheet<Title>()!.GetRow((uint) titleId);
+                var titleSheet = DiscordIntegrationPlugin.Instance.Dalamud.DataManager.GetExcelSheet<Title>()!.GetRow((uint)titleId);
                 Title = titleSheet?.Feminine?.RawString;
             }
         }
