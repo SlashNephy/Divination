@@ -1,4 +1,4 @@
-using Dalamud.Logging;
+﻿using Dalamud.Logging;
 using DiscordRPC.Logging;
 
 namespace Divination.DiscordIntegration.Discord
