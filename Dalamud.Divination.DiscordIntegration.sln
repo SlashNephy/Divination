@@ -7,6 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Divination.DiscordIntegrati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Divination.DiscordIntegration.IpcModel", "Divination.DiscordIntegration.IpcModel\Divination.DiscordIntegration.IpcModel.csproj", "{82F7D766-5436-46E9-85D2-A7B5A408FE0A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C79E8185-5DCD-48D0-B57F-20E8D285B1EF}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		GitVersion.yml = GitVersion.yml
+		README.md = README.md
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
