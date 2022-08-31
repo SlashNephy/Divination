@@ -94,12 +94,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: gitversion.json
-          path: dist/testing/${{ env.PLUGIN_PROJECT_NAME }}
+          path: gitversion
 
       - name: Read InformationalVersion
         id: version
         run:
-          value=$(cat dist/testing/${{ env.PLUGIN_PROJECT_NAME }}/gitversion.json | jq .InformationalVersion)
+          value=$(cat gitversion/gitversion.json | jq .InformationalVersion)
+          rm -rf gitversion
           echo "::set-output name=value::$value"
 
       - name: Prepare commits.json
