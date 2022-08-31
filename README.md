@@ -9,11 +9,10 @@ A template for developing Divination projects.
 1. Click "Use this template" on GitHub.
 2. Open the solution, and rename `Divination.Template` to your preferred name.
 3. Replace all `Template` strings with your project name.
-4. Edit `.github/workflows/ci.yml`.
-5. Issue GitHub PAT (Private Access Token), and add it to the repository secrets
+4. Issue GitHub PAT (Private Access Token), and add it to the repository secrets
    with the name `GH_PAT`. Please note that you must issue a PAT with write access to the plugin repository as described
    below.
-6. Start coding!
+5. Start coding!
 
 ## Distribution
 

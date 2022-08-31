@@ -1,6 +1,5 @@
 mode: ContinuousDelivery
-assembly-versioning-format: '{Major}.{Minor}.{Patch}.{BuildMetaData ?? 0}'
-assembly-file-versioning-format: '{Major}.{Minor}.{Patch}.{BuildMetaData ?? 0}'
-assembly-informational-format: '{Major}.{Minor}.{Patch}.{BuildMetaData ?? 0}.{ShortSha}.{CommitDate}'
-continuous-delivery-fallback-tag: ci
+assembly-versioning-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource ?? 0}'
+assembly-file-versioning-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource ?? 0}'
+assembly-informational-format: '{Major}.{Minor}.{Patch}.{CommitsSinceVersionSource ?? 0}.{EscapedBranchName}.{ShortSha}.{CommitDate}'
 commit-date-format: 'yyyyMMdd'
