@@ -41,7 +41,7 @@ jobs:
 
       - name: Read InformationalVersion
         id: version
-        run:
+        run: |
           value=$(cat gitversion/gitversion.json | jq .InformationalVersion)
           rm -rf gitversion
           echo "::set-output name=value::$value"
