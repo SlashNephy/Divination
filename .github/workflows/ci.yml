@@ -94,7 +94,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: gitversion.json
-          path: dist/testing/${{ env.PLUGIN_PROJECT_NAME }}/gitversion.json
+          path: dist/testing/${{ env.PLUGIN_PROJECT_NAME }}
 
       - name: Read InformationalVersion
         id: version
@@ -121,7 +121,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         continue-on-error: true
         with:
-          commit_message: 'Deploy ${{ env.PLUGIN_PROJECT_NAME }} @ ${{ steps.version.outputs.value }}'
+          commit_message: 'Deploy ${{ env.PLUGIN_PROJECT_NAME }} ${{ steps.version.outputs.value }}'
 
   format:
     runs-on: ubuntu-latest
