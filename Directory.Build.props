@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <TargetFramework>net5.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <Platforms>x64</Platforms>
         <PlatformTarget>x64</PlatformTarget>
         <LangVersion>preview</LangVersion>
@@ -8,13 +8,11 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <IsPackable>false</IsPackable>
-
         <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="GitVersion.MsBuild" Version="5.*">
+        <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>

@@ -15,6 +15,7 @@ namespace Divination.DiscordIntegration
 
         public DiscordIntegrationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
+            Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
             SetDefaultPresence();
 
             timer.Elapsed += OnElapsed;
@@ -30,6 +31,7 @@ namespace Divination.DiscordIntegration
 
         protected override void ReleaseManaged()
         {
+            Dalamud.PluginInterface.SavePluginConfig(Config);
             IpcManager.Unregister();
             timer.Dispose();
             discord.Dispose();
