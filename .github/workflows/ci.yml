@@ -1,19 +1,20 @@
 name: CI
 
 env:
-  # https://github.com/goatcorp/dalamud-distrib
   DALAMUD_ZIP_URL: 'https://goatcorp.github.io/dalamud-distrib/stg/latest.zip'
   DOTNET_VERSION: '6.0.x'
 
 on:
   push:
-    branches-ignore:
-      - 'renovate/**'
 
   pull_request:
     types:
       - opened
       - synchronize
+
+  release:
+    types:
+      - created
 
   workflow_dispatch:
 
@@ -28,7 +29,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          # Required by GitVersion
+          # GitVersion
           fetch-depth: 0
 
       - name: Setup .NET
@@ -54,26 +55,9 @@ jobs:
             --skip-duplicate
 
   format:
-    runs-on: ubuntu-latest
-
+    if: github.event_name == 'push'
+    uses: SlashNephy/.github/.github/workflows/dotnet-format.yml@master
+    with:
+      dotnet-version: '${{ env.DOTNET_VERSION }}'
     permissions:
       contents: write
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '${{ env.DOTNET_VERSION }}'
-
-      - name: Format
-        run: dotnet format
-
-      - name: Push
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: '🧹 dotnet format'
