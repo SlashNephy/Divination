@@ -57,7 +57,7 @@ namespace Divination.DiscordIntegration.Data
     {
         public static string? GetLocalizedName(this OnlineStatus status)
         {
-            var data = DiscordIntegrationPlugin.Instance.Dalamud.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.OnlineStatus>()!.GetRow((uint) status);
+            var data = DiscordIntegrationPlugin.Instance.Dalamud.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.OnlineStatus>()!.GetRow((uint)status);
 
             return data?.Name?.RawString;
         }
