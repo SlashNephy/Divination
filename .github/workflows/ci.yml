@@ -46,6 +46,7 @@ jobs:
           $json = Get-Content $json_path | ConvertFrom-Json -AsHashtable
           echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
           echo "PLUGIN_DESCRIPTION=$($json["Description"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
+
       - name: Build Plugin
         run: |
           dotnet build `
@@ -56,11 +57,19 @@ jobs:
             /p:Company=Horoscope `
             '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' `
             '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
-      - name: Upload Artifact
+
+      - name: Upload Artifact (release)
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
           path: ${{ env.PLUGIN_PROJECT_NAME }}\bin\CIRelease\${{ env.PLUGIN_PROJECT_NAME }}
+          if-no-files-found: error
+
+      - name: Upload Artifact (gitversion.json)
+        uses: actions/upload-artifact@v3
+        with:
+          name: gitversion.json
+          path: ${{ env.PLUGIN_PROJECT_NAME }}\obj\gitversion.json
           if-no-files-found: error
 
   deploy:
@@ -75,15 +84,23 @@ jobs:
           repository: ${{ env.PLUGIN_REPOSITORY }}
           token: ${{ secrets.GH_PAT }}
 
-      - name: Prepare Short SHA
-        uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-
-      - name: Download Artifact
+      - name: Download Artifact (release)
         uses: actions/download-artifact@v3
         with:
           name: ${{ env.PLUGIN_PROJECT_NAME }}
           path: dist/testing/${{ env.PLUGIN_PROJECT_NAME }}
+
+      - name: Download Artifact (gitversion.json)
+        uses: actions/download-artifact@v3
+        with:
+          name: gitversion.json
+          path: dist/testing/${{ env.PLUGIN_PROJECT_NAME }}/gitversion.json
+
+      - name: Read InformationalVersion
+        id: version
+        run:
+          value=$(cat dist/testing/${{ env.PLUGIN_PROJECT_NAME }}/gitversion.json | jq .InformationalVersion)
+          echo "::set-output name=value::$value"
 
       - name: Prepare commits.json
         run: |
@@ -92,6 +109,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GH_PAT }}" \
             https://api.github.com/repos/${{ github.repository }}/commits
+
       - name: Prepare event.json
         run: echo '${{ toJSON(github.event) }}' > dist/testing/${{ env.PLUGIN_PROJECT_NAME }}/event.json
 
@@ -103,7 +121,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         continue-on-error: true
         with:
-          commit_message: 'Deploy ${{ env.PLUGIN_PROJECT_NAME }} @ ${{ steps.short-sha.outputs.sha }}'
+          commit_message: 'Deploy ${{ env.PLUGIN_PROJECT_NAME }} @ ${{ steps.version.outputs.value }}'
 
   format:
     runs-on: ubuntu-latest
