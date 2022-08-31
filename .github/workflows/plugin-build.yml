@@ -1,0 +1,64 @@
+name: 'Build Plugin'
+
+on:
+  workflow_call:
+    inputs:
+      plugin-name:
+        required: true
+        type: string
+      dalamud-zip-url:
+        required: false
+        type: string
+        default: 'https://goatcorp.github.io/dalamud-distrib/stg/latest.zip'
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+          # GitVersion
+          fetch-depth: 0
+
+      - name: Download Dalamud
+        run: |
+          Invoke-WebRequest -Uri ${{ inputs.dalamud-zip-url }} -OutFile latest.zip
+          Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
+
+      - name: Prepare Plugin Meta
+        run: |
+          $json_path = ".\${{ inputs.plugin-name }}\${{ inputs.plugin-name }}.json"
+          $json = Get-Content $json_path | ConvertFrom-Json -AsHashtable
+          echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
+          echo "PLUGIN_DESCRIPTION=$($json["Description"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
+
+      - name: Build Plugin
+        run: |
+          dotnet build `
+            --configuration Release `
+            -maxcpucount:1 `
+            /p:OutputPath=bin\CIRelease\ `
+            /p:Product=Divination `
+            /p:Company=Horoscope `
+            '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' `
+            '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
+
+      - name: Upload Artifact (release)
+        uses: actions/upload-artifact@v3
+        with:
+          name: '${{ inputs.plugin-name }}'
+          path: '${{ inputs.plugin-name }}\bin\CIRelease\${{ inputs.plugin-name }}'
+          if-no-files-found: error
+
+      - name: Upload Artifact (gitversion.json)
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'gitversion.json'
+          path: '${{ inputs.plugin-name }}\obj\gitversion.json'
+          if-no-files-found: error

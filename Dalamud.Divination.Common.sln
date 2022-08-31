@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E1E20F20
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		.editorconfig = .editorconfig
 		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.github\workflows\plugin-build.yml = .github\workflows\plugin-build.yml
+		.github\workflows\plugin-deploy.yml = .github\workflows\plugin-deploy.yml
 	EndProjectSection
 EndProject
 Global
