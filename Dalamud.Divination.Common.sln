@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E1E20F20
 		.github\workflows\plugin-deploy.yml = .github\workflows\plugin-deploy.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.JsonFormatter", "Dalamud.JsonFormatter\Dalamud.JsonFormatter.csproj", "{F8236290-C8F6-4384-BEB4-A709806FDCF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,10 @@ Global
 		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|x64.Build.0 = Debug|x64
 		{845AC207-815B-49CB-A413-F720A453B34E}.Release|x64.ActiveCfg = Release|x64
 		{845AC207-815B-49CB-A413-F720A453B34E}.Release|x64.Build.0 = Release|x64
+		{F8236290-C8F6-4384-BEB4-A709806FDCF6}.Debug|x64.ActiveCfg = Debug|x64
+		{F8236290-C8F6-4384-BEB4-A709806FDCF6}.Debug|x64.Build.0 = Debug|x64
+		{F8236290-C8F6-4384-BEB4-A709806FDCF6}.Release|x64.ActiveCfg = Release|x64
+		{F8236290-C8F6-4384-BEB4-A709806FDCF6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
