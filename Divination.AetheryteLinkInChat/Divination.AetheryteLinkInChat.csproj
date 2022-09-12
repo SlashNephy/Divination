@@ -1,7 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-      <TargetFramework>net6.0-windows</TargetFramework>
-    </PropertyGroup>
     <ItemGroup>
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
@@ -20,7 +17,7 @@
             <Private>False</Private>
         </Reference>
 
-        <PackageReference Include="DalamudPackager" Version="2.*">
+        <PackageReference Include="DalamudPackager" Version="2.1.8">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
