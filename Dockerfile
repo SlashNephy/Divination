@@ -21,7 +21,7 @@ RUN gradle -version > /dev/null \
     && gradle shadowJar --parallel --no-daemon
 
 # Final Stage
-FROM --platform=$TARGETPLATFORM adoptopenjdk:11-jre-hotspot
+FROM --platform=$TARGETPLATFORM adoptopenjdk:11.0.11_9-jre-hotspot
 
 COPY --from=build /app/build/libs/Divination.SseServer-all.jar /app/Divination.SseServer.jar
 
