@@ -21,7 +21,7 @@
             <Private>false</Private>
         </Reference>
 
-        <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+        <PackageReference Include="DiscordRichPresence" Version="1.1.1.14" />
         <PackageReference Include="DalamudPackager" Version="2.1.8" />
     </ItemGroup>
 </Project>
