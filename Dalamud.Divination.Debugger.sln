@@ -5,6 +5,16 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Divination.Debugger", "Divination.Debugger\Divination.Debugger.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C8C83232-5EE1-465B-873D-DA29AF22DF3C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		GitVersion.yml = GitVersion.yml
+		README.md = README.md
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
