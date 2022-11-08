@@ -39,7 +39,7 @@ namespace Divination.Debugger.Window
         }
 
         // https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/Character/Character.cs
-        private const int PlayerStructSize = 0x19F0;
+        private const int PlayerStructSize = 0x1B00;
 
         private readonly string[] dataTypes = Enum.GetNames(typeof(DataType)).ToArray();
 
