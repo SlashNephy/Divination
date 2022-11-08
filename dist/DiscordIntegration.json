@@ -1,7 +1,7 @@
 {
-    "Version": "2022.03.01.0000.0000",
-    "Patch": "6.08HF",
+    "Version": "2022.10.26.0000.0000",
+    "Patch": "6.28",
 
-    "TitleOffset": "0x19B8",
-    "IconOffset": "0x19C2"
+    "TitleOffset": "0x1ACC",
+    "IconOffset": "0x1AD6"
 }
