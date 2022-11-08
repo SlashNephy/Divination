@@ -44,7 +44,7 @@ jobs:
           Invoke-WebRequest -Uri ${{ env.DALAMUD_ZIP_URL }} -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
         env:
-          DALAMUD_ZIP_URL: https://goatcorp.github.io/dalamud-distrib/net5/latest.zip
+          DALAMUD_ZIP_URL: https://goatcorp.github.io/dalamud-distrib/stg/latest.zip
 
       - name: Restore Nuget Cache
         uses: actions/cache@v2
