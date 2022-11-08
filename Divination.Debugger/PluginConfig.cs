@@ -28,10 +28,10 @@ namespace Divination.Debugger
         private readonly Array dataTypes = Enum.GetValues(typeof(DataType));
 
         [JsonIgnore]
-        public DataType PlayerDataType => (DataType) dataTypes.GetValue(PlayerDataTypeIndex)!;
+        public DataType PlayerDataType => (DataType)dataTypes.GetValue(PlayerDataTypeIndex)!;
 
         [JsonIgnore]
-        public DataType NetworkDataType => (DataType) dataTypes.GetValue(NetworkDataTypeIndex)!;
+        public DataType NetworkDataType => (DataType)dataTypes.GetValue(NetworkDataTypeIndex)!;
 
         public int Version { get; set; }
     }

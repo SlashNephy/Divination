@@ -119,7 +119,7 @@ namespace Divination.Debugger.Window
                 case int i32:
                     return i32 == filterValue;
                 case ulong u64:
-                    return u64 == (ulong) filterValue;
+                    return u64 == (ulong)filterValue;
                 case long i64:
                     return i64 == filterValue;
                 default:
