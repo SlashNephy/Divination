@@ -2,6 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Divination.AetheryteLinkInChat", "Divination.AetheryteLinkInChat\Divination.AetheryteLinkInChat.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{8147D02E-C390-43E7-8CDD-CE738CA9A1AD}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		GitVersion.yml = GitVersion.yml
+		README.md = README.md
+		.editorconfig = .editorconfig
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
