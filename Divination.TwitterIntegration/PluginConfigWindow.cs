@@ -110,7 +110,7 @@ namespace Divination.TwitterIntegration
                     return;
                 }
 
-                TwitterIntegrationPlugin.Twitter.Lists.OwnershipsAsync(count:50).ContinueWith(completed =>
+                TwitterIntegrationPlugin.Twitter.Lists.OwnershipsAsync(count: 50).ContinueWith(completed =>
                 {
                     if (completed.IsCompleted)
                     {
