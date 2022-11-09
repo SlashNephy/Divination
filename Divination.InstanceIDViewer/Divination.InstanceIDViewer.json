@@ -1,10 +1,24 @@
 {
   "Author": "Horoscope developers",
-  "Name": "InstanceIDViewer",
-  "InternalName": "Divination.InstanceIDViewer",
-  "AssemblyVersion": "1.1.1.0",
+  "Name": "Divination.InstanceIDViewer",
+  "Punchline": "",
   "Description": "show instance id in chat when instance changed",
-  "RepoUrl": "https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer",
+  "Tags": [
+    "Discord"
+  ],
+  "CategoryTags": [
+    "social"
+  ],
+  "IsHide": false,
+  "ApplicableVersion": "any",
   "DalamudApiLevel": 7,
-  "LoadPriority": 0
+  "LoadRequiredState": 2,
+  "LoadSync": false,
+  "LoadPriority": 0,
+  "CanUnloadAsync": false,
+  "ImageUrls": [
+  ],
+  "IconUrl": null,
+  "AcceptsFeedback": true,
+  "FeedbackMessage": null
 }
