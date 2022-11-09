@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <ProjectReference Include="..\Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj" />
-
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
             <Private>False</Private>
@@ -12,6 +10,7 @@
         </Reference>
 
         <PackageReference Include="CoreTweet" Version="1.0.0.483" />
-        <PackageReference Include="DalamudPackager" Version="2.*" />
+        <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.184" />
+        <PackageReference Include="DalamudPackager" Version="2.1.8" />
     </ItemGroup>
 </Project>
