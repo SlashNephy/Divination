@@ -2,6 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.Divination.InstanceIDViewer", "Divination.InstanceIDViewer\Divination.InstanceIDViewer.csproj", "{3EE0EA2E-E221-4E7F-9A6F-D0E24212DD78}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{3993DC3B-56F2-4900-855C-0EFB17A62212}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		GitVersion.yml = GitVersion.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
