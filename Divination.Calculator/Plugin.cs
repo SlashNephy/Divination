@@ -4,20 +4,18 @@ using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 
 namespace Divination.Calculator
 {
-    public class CalculatorPlugin : DivinationPlugin<CalculatorPlugin>, IDalamudPlugin, ICommandProvider
+    public class Plugin : DivinationPlugin<Plugin>, IDalamudPlugin, ICommandProvider
     {
-        public CalculatorPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+        public Plugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
-            PluginLog.Information("Plugin loaded!");
         }
 
-        [Command("/calc", "<text...>")]
-        [CommandHelp("数式 <text...> を計算し, 結果を表示します。基本的な四則演算をサポートしています。")]
+        [Command("/calc", "<expression...>")]
+        [CommandHelp("Compute <expression... > and display the result. Support basic four arithmetic operations.")]
         private void OnCalcCommand(CommandContext context)
         {
             var result = new DataTable()
@@ -28,7 +26,8 @@ namespace Divination.Calculator
                 new TextPayload($"{context["text"]} = "),
                 EmphasisItalicPayload.ItalicsOn,
                 new TextPayload(result),
-                EmphasisItalicPayload.ItalicsOff));
+                EmphasisItalicPayload.ItalicsOff)
+            );
         }
     }
 }

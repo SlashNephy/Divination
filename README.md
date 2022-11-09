@@ -1,9 +1,16 @@
-# Dalamud.Divination.Calculator
+# Divination.Calculator
 
 ➗ Dalamud Plugin to add /calc command
 
-## Plugin Repository
+## Installation
 
-This repository will be automatically built and published to the [plugin repository](https://github.com/SlashNephy/Dalamud.DivinationPluginRepo).
+You can install this plugin from
+the [Divination plugin repository](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo).
 
-Plugins are published to the stable repository when a release tag is created, and to the testing repository when a commit is pushed to the `master` branch.
+このプラグインは [Divination プラグインリポジトリ](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo) からインストールできます。
+
+## Disclaimer
+
+Use this plugin at your own risk. We are not responsible for any damages caused by using this plugin.
+
+このプラグインは自己責任で使用してください。このプラグインを使用して発生した損害について、私たちは一切の責任を負いません。
