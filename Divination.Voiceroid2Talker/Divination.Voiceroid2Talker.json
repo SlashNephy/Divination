@@ -12,8 +12,14 @@
   ],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 6,
+  "DalamudApiLevel": 7,
+  "LoadRequiredState": 2,
+  "LoadSync": false,
   "LoadPriority": 0,
-  "ImageUrls": [],
-  "IconUrl": null
+  "CanUnloadAsync": false,
+  "ImageUrls": [
+  ],
+  "IconUrl": null,
+  "AcceptsFeedback": true,
+  "FeedbackMessage": null
 }

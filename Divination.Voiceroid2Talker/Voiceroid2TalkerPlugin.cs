@@ -18,6 +18,7 @@ namespace Divination.Voiceroid2Talker
     {
         public Voiceroid2TalkerPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
+            Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
             Dalamud.ChatGui.ChatMessage += OnChatReceived;
         }
 

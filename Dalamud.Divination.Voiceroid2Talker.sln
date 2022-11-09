@@ -2,7 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Divination.Voiceroid2Talker", "Divination.Voiceroid2Talker\Divination.Voiceroid2Talker.csproj", "{2D22984A-7D71-4861-9367-7764C322E663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.Divination.Common", "Common\Dalamud.Divination.Common\Dalamud.Divination.Common.csproj", "{845AC207-815B-49CB-A413-F720A453B34E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{5A04E793-CAC2-4CAE-9605-3D7683038CF6}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		GitVersion.yml = GitVersion.yml
+		README.md = README.md
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +22,5 @@ Global
 		{2D22984A-7D71-4861-9367-7764C322E663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D22984A-7D71-4861-9367-7764C322E663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D22984A-7D71-4861-9367-7764C322E663}.Release|Any CPU.Build.0 = Release|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{845AC207-815B-49CB-A413-F720A453B34E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
