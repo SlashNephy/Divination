@@ -88,7 +88,7 @@ namespace Divination.TwitterIntegration
                 {
                     try
                     {
-                        var result = await Twitter.Lists.StatusesAsync(listId, count:5, since_id:Config.SinceId);
+                        var result = await Twitter.Lists.StatusesAsync(listId, count: 5, since_id: Config.SinceId);
 
                         foreach (var status in result.Reverse())
                         {
