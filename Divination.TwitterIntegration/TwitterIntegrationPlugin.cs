@@ -21,6 +21,7 @@ namespace Divination.TwitterIntegration
     {
         public TwitterIntegrationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
         {
+            Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
             Task.Run(WatchTimeline);
         }
 

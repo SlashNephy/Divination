@@ -1,0 +1,41 @@
+name: 'CI'
+
+on:
+  push:
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+  release:
+    types:
+      - created
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: horoscope-dev/Dalamud.Divination.Common/.github/workflows/plugin-build.yml@master
+    with:
+      plugin-name: 'Divination.TwitterIntegration'
+    permissions:
+      contents: read
+      actions: write
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    needs: build
+    uses: horoscope-dev/Dalamud.Divination.Common/.github/workflows/plugin-deploy.yml@master
+    with:
+      plugin-name: 'Divination.TwitterIntegration'
+    secrets:
+      DEPLOY_GITHUB_TOKEN: '${{ secrets.GH_PAT }}'
+    permissions:
+      actions: read
+
+  format:
+    if: github.event_name == 'push'
+    uses: SlashNephy/.github/.github/workflows/dotnet-format.yml@master
+    permissions:
+      contents: write
