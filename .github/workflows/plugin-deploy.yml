@@ -44,7 +44,7 @@ jobs:
         run: |
           value=$(cat gitversion/gitversion.json | jq .InformationalVersion)
           rm -rf gitversion
-          echo "::set-output name=value::$value"
+          echo "value=$value" >> $GITHUB_OUTPUT
 
       - name: Prepare commits.json
         run: |
