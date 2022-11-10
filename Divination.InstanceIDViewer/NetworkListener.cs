@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Network;
 using Dalamud.Game.Gui.Dtr;

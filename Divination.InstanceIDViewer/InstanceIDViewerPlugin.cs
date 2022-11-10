@@ -1,4 +1,4 @@
-using Dalamud.Divination.Common.Boilerplate;
+﻿using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Plugin;
 
 namespace Divination.InstanceIDViewer
