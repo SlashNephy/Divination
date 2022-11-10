@@ -1,18 +1,23 @@
-﻿using Dalamud.Divination.Common.Api.Chat;
+using System;
+using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Network;
+using Dalamud.Game.Gui.Dtr;
 using Dalamud.Game.Text;
 
 namespace Divination.InstanceIDViewer
 {
-    public class NetworkListener : INetworkHandler
+    public class NetworkListener : INetworkHandler, IDisposable
     {
         private readonly IChatClient chat;
+        private readonly DtrBarEntry bar;
+
         private readonly object lastServerIdLock = new();
         private ushort lastServerId;
 
-        public NetworkListener(IChatClient chat)
+        public NetworkListener(IChatClient chat, DtrBarEntry bar)
         {
             this.chat = chat;
+            this.bar = bar;
         }
 
         public bool CanHandleReceivedMessage(NetworkContext context) => true;
@@ -29,13 +34,16 @@ namespace Divination.InstanceIDViewer
                 }
 
                 chat.Print(
-                    $"[InstanceIDViewer] instance id changed: {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}");
+                    $"Instance ID changed: {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}");
+                bar.Text = $"{SeIconChar.ArrowDown.ToIconString()} {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}";
 
-                if (serverId != 0)
-                {
-                    lastServerId = serverId;
-                }
+                lastServerId = serverId;
             }
+        }
+
+        public void Dispose()
+        {
+            bar.Dispose();
         }
     }
 }
