@@ -2,11 +2,15 @@ name: CI
 
 on:
   push:
+    branches-ignore:
+      - 'renovate/**'
 
   pull_request:
     types:
       - opened
       - synchronize
+    branches-ignore:
+      - 'renovate/**'
 
   release:
     types:
