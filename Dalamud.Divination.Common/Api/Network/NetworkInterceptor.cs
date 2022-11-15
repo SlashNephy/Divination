@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Game.Network;
 using Dalamud.Logging;
 
@@ -12,11 +13,16 @@ namespace Dalamud.Divination.Common.Api.Network
         private readonly List<INetworkHandler> handlers = new();
         private readonly NetworkDataParser parser;
 
-        public NetworkInterceptor(GameNetwork gameNetwork)
+        public NetworkInterceptor(GameNetwork gameNetwork, IChatClient chat)
         {
             parser = new NetworkDataParser(gameNetwork);
             parser.OnNetworkContext += Consume;
+
+            OpcodeDetectorManager = new OpcodeDetectorManager(chat);
+            handlers.Add(OpcodeDetectorManager);
         }
+
+        public OpcodeDetectorManager OpcodeDetectorManager { get; }
 
         public void AddHandler(INetworkHandler handler)
         {

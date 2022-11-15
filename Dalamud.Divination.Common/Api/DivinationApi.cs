@@ -14,7 +14,6 @@ using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Api.Version;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Divination.Common.Api.XivApi;
-using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 
 namespace Dalamud.Divination.Common.Api
@@ -70,16 +69,12 @@ namespace Dalamud.Divination.Common.Api
             }
 
             processor.RegisterCommandsByAttribute(new DirectoryCommands());
-            processor.RegisterCommandsByAttribute((ICommandProvider)Plugin);
+            processor.RegisterCommandsByAttribute((ICommandProvider) Plugin);
             return processor;
         });
 
         public IConfigManager<TConfiguration> Config => ServiceContainer.GetOrPut(() =>
-            new ConfigManager<TConfiguration>(
-                Plugin,
-                Dalamud.PluginInterface,
-                Chat,
-                () => Voiceroid2Proxy));
+            new ConfigManager<TConfiguration>(Plugin, Dalamud.PluginInterface, Chat, () => Voiceroid2Proxy));
         public ConfigWindow<TConfiguration>? ConfigWindow => ServiceContainer.GetOrPutOptional(() =>
         {
             // ReSharper disable once SuspiciousTypeConversion.Global
@@ -116,7 +111,7 @@ namespace Dalamud.Divination.Common.Api
         public IXivApiClient XivApi => ServiceContainer.GetOrPut(() => new XivApiClient());
         public IKeyStrokeManager KeyStroke => ServiceContainer.GetOrPut(() => new KeyStrokeManager());
         public INetworkInterceptor Network =>
-            ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork));
+            ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork, Chat));
 
         #region IDisposable
 

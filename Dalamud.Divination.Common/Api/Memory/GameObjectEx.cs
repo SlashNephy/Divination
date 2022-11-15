@@ -1,67 +1,49 @@
-﻿using Dalamud.Game.ClientState.Objects.Types;
+﻿using System;
+using Dalamud.Game.ClientState.Objects.Types;
 
 namespace Dalamud.Divination.Common.Api.Memory
 {
+    [Obsolete("Use gameObject.Address.ReadXXX / WriteXXX directly.")]
     public static class GameObjectEx
     {
         public static byte ReadByte(this GameObject gameObject, int offset)
         {
-            return MemoryUtils.ReadByte(gameObject.Address, offset);
+            return gameObject.Address.ReadByte(offset);
         }
 
-        public static byte? ReadByte(this GameObject gameObject, int? offset)
+        public static void WriteByte(this GameObject gameObject, int offset, byte value)
         {
-            return MemoryUtils.ReadByte(gameObject.Address, offset);
-        }
-
-        public static bool WriteByte(this GameObject gameObject, int? offset, byte? value)
-        {
-            return MemoryUtils.WriteByte(gameObject.Address, offset, value);
+            gameObject.Address.WriteByte(offset, value);
         }
 
         public static short ReadInt16(this GameObject gameObject, int offset)
         {
-            return MemoryUtils.ReadInt16(gameObject.Address, offset);
+            return gameObject.Address.ReadInt16(offset);
         }
 
-        public static short? ReadInt16(this GameObject gameObject, int? offset)
+        public static void WriteInt16(this GameObject gameObject, int offset, short value)
         {
-            return MemoryUtils.ReadInt16(gameObject.Address, offset);
-        }
-
-        public static bool WriteInt16(this GameObject gameObject, int? offset, short? value)
-        {
-            return MemoryUtils.WriteInt16(gameObject.Address, offset, value);
+            gameObject.Address.WriteInt16(offset, value);
         }
 
         public static int ReadInt32(this GameObject gameObject, int offset)
         {
-            return MemoryUtils.ReadInt32(gameObject.Address, offset);
+            return gameObject.Address.ReadInt32(offset);
         }
 
-        public static int? ReadInt32(this GameObject gameObject, int? offset)
+        public static void WriteInt32(this GameObject gameObject, int offset, int value)
         {
-            return MemoryUtils.ReadInt32(gameObject.Address, offset);
-        }
-
-        public static bool WriteInt32(this GameObject gameObject, int? offset, int? value)
-        {
-            return MemoryUtils.WriteInt32(gameObject.Address, offset, value);
+            gameObject.Address.WriteInt32(offset, value);
         }
 
         public static long ReadInt64(this GameObject gameObject, int offset)
         {
-            return MemoryUtils.ReadInt64(gameObject.Address, offset);
+            return gameObject.Address.ReadInt64(offset);
         }
 
-        public static long? ReadInt64(this GameObject gameObject, int? offset)
+        public static void WriteInt64(this GameObject gameObject, int offset, long value)
         {
-            return MemoryUtils.ReadInt64(gameObject.Address, offset);
-        }
-
-        public static bool WriteInt64(this GameObject gameObject, int? offset, long? value)
-        {
-            return MemoryUtils.WriteInt64(gameObject.Address, offset, value);
+            gameObject.Address.WriteInt64(offset, value);
         }
     }
 }

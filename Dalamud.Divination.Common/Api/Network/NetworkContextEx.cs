@@ -5,11 +5,13 @@ namespace Dalamud.Divination.Common.Api.Network
 {
     public static class NetworkContextEx
     {
+        [Obsolete("Use context.Data.ReadUInt16 directly.")]
         public static ushort ReadUInt16(this NetworkContext context, int index)
         {
             return BitConverter.ToUInt16(context.Data, index);
         }
 
+        [Obsolete("Use context.Data.ReadUInt32 directly.")]
         public static uint ReadUInt32(this NetworkContext context, int index)
         {
             return BitConverter.ToUInt32(context.Data, index);
@@ -27,7 +29,7 @@ namespace Dalamud.Divination.Common.Api.Network
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
             try
             {
-                structure = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T))!;
+                structure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T))!;
             }
             finally
             {
