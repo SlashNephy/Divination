@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Version;
 using Dalamud.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -46,7 +46,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                 return;
             }
 
-            var localGameVersion = await ReadLocalGameVersion();
+            var localGameVersion = await GameVersion.ReadCurrentAsync();
 
             lock (containerLock)
             {
@@ -58,7 +58,7 @@ namespace Dalamud.Divination.Common.Api.Definition
                     },
                 });
 
-                if (localGameVersion != container?.Version)
+                if (localGameVersion.ToString() != container?.Version)
                 {
                     PluginLog.Warning(
                         "The game version \"{DefinitionGameVersion}\" is not supported yet. The local one is \"{LocalGameVersion}\".",
@@ -97,14 +97,5 @@ namespace Dalamud.Divination.Common.Api.Definition
         }
 
         internal abstract Task<JObject?> Fetch();
-
-        private static async Task<string> ReadLocalGameVersion()
-        {
-            // "C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\ffxivgame.ver"
-            var gameVersionPath = Path.Combine(DivinationEnvironment.GameDirectory, "ffxivgame.ver");
-
-            var content = await File.ReadAllTextAsync(gameVersionPath);
-            return content.Trim();
-        }
     }
 }

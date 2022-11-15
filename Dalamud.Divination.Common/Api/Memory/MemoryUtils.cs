@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Dalamud.Divination.Common.Api.Memory
 {
+    [Obsolete("Use Dalamud.Divination.Common.Api.Memory.IntPtrEx instead.")]
     public static class MemoryUtils
     {
         public static byte ReadByte(IntPtr address, int offset)
