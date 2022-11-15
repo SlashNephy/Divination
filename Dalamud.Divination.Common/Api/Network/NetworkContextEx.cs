@@ -29,7 +29,7 @@ namespace Dalamud.Divination.Common.Api.Network
             var handle = GCHandle.Alloc(data, GCHandleType.Pinned);
             try
             {
-                structure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T))!;
+                structure = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T))!;
             }
             finally
             {
