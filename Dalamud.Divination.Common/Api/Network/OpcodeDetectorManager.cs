@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Network
 {
-    public class OpcodeDetectorManager : INetworkHandler
+    public class OpcodeDetectorManager : INetworkHandler, IOpcodeDetectorManager
     {
         private readonly IChatClient chat;
 

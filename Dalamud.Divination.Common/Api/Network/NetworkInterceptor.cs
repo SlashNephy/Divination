@@ -18,11 +18,12 @@ namespace Dalamud.Divination.Common.Api.Network
             parser = new NetworkDataParser(gameNetwork);
             parser.OnNetworkContext += Consume;
 
-            OpcodeDetectorManager = new OpcodeDetectorManager(chat);
-            handlers.Add(OpcodeDetectorManager);
+            var manager = new OpcodeDetectorManager(chat);
+            OpcodeDetectorManager = manager;
+            handlers.Add(manager);
         }
 
-        public OpcodeDetectorManager OpcodeDetectorManager { get; }
+        public IOpcodeDetectorManager OpcodeDetectorManager { get; }
 
         public void AddHandler(INetworkHandler handler)
         {
