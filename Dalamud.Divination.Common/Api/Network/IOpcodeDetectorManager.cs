@@ -2,6 +2,8 @@
 {
     public interface IOpcodeDetectorManager
     {
+        public void Enable();
+        public void Disable();
         public void Register(IOpcodeDetector detector);
     }
 }
