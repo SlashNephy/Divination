@@ -58,11 +58,12 @@ namespace Dalamud.Divination.Common.Api.Network
                                 result[key] = $"0x{value:X4}";
                             }
 
-                            chat.Print(JsonConvert.SerializeObject(result, Formatting.Indented));
+                            chat.Print(JsonConvert.SerializeObject(result, Formatting.Indented),
+                                type: XivChatType.Notice);
                         }
                         else
                         {
-                            chat.Print(description);
+                            chat.Print(description, type: XivChatType.Notice);
                         }
                     }
                 }
