@@ -13,10 +13,11 @@ namespace Dalamud.Divination.Common.Api.Network
     {
         private readonly IChatClient chat;
 
-        private readonly List<(IOpcodeDetector detector, uint step, Dictionary<string, ushort> definitions)> detectors =
-            new();
+        private readonly List<(IOpcodeDetector detector, uint step, Dictionary<string, ushort> definitions, bool done)>
+            detectors = new();
 
         private readonly object detectorsLock = new();
+        private bool enabled;
 
         public OpcodeDetectorManager(IChatClient chat)
         {
@@ -25,14 +26,15 @@ namespace Dalamud.Divination.Common.Api.Network
 
         public bool CanHandleReceivedMessage(NetworkContext context)
         {
-            return true;
+            return enabled;
         }
 
         public void HandleReceivedMessage(NetworkContext context)
         {
             lock (detectorsLock)
             {
-                foreach (var (index, (detector, step, definitions)) in detectors.Select((x, i) => (i, x)))
+                int? deletionIndex = null;
+                foreach (var (index, (detector, step, definitions, _)) in detectors.Select((x, i) => (i, x)))
                 {
                     if (detector.Detect(context, step, definitions))
                     {
@@ -47,6 +49,9 @@ namespace Dalamud.Divination.Common.Api.Network
                         var description = detector.DescribeStep(itemRef.step);
                         if (description == default)
                         {
+                            itemRef.done = true;
+                            deletionIndex = index;
+
                             var result = new Dictionary<string, string>
                             {
                                 {"Version", GameVersion.ReadCurrent().ToString()},
@@ -67,7 +72,22 @@ namespace Dalamud.Divination.Common.Api.Network
                         }
                     }
                 }
+
+                if (deletionIndex != default)
+                {
+                    detectors.RemoveAt(deletionIndex.Value);
+                }
             }
+        }
+
+        public void Enable()
+        {
+            enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
         }
 
         public void Register(IOpcodeDetector detector)
@@ -77,7 +97,7 @@ namespace Dalamud.Divination.Common.Api.Network
             {
                 lock (detectorsLock)
                 {
-                    detectors.Add((detector, 0, new Dictionary<string, ushort>()));
+                    detectors.Add((detector, 0, new Dictionary<string, ushort>(), false));
                 }
                 chat.Print(description, type: XivChatType.Notice);
             }
