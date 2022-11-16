@@ -88,6 +88,11 @@ namespace Dalamud.Divination.Common.Api.Network
         public void Disable()
         {
             enabled = false;
+
+            lock (detectorsLock)
+            {
+                detectors.Clear();
+            }
         }
 
         public void Register(IOpcodeDetector detector)
