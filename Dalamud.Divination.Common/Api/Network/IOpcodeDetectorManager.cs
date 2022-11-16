@@ -1,4 +1,4 @@
-﻿namespace Dalamud.Divination.Common.Api.Network
+namespace Dalamud.Divination.Common.Api.Network
 {
     public interface IOpcodeDetectorManager
     {
