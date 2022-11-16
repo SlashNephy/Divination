@@ -73,7 +73,7 @@ namespace Dalamud.Divination.Common.Api.Network
                     }
                 }
 
-                if (deletionIndex != default)
+                if (deletionIndex != null)
                 {
                     detectors.RemoveAt(deletionIndex.Value);
                 }
