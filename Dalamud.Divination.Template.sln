@@ -7,7 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Divination.Template", "Divi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{CB5BAFAC-74E6-4C7E-9918-8C2B0BE9C46A}"
 ProjectSection(SolutionItems) = preProject
-	Directory.Build.props = Directory.Build.props
 	GitVersion.yml = GitVersion.yml
 	README.md = README.md
 	.config\dotnet-tools.json = .config\dotnet-tools.json
