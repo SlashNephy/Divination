@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net6.0-windows7.0": {
+      "Dalamud.Divination.Common": {
+        "type": "Direct",
+        "requested": "[0.1.0-beta.180, )",
+        "resolved": "0.1.0-beta.180",
+        "contentHash": "Wq2lDA3JuG2BMy77/opyvHZ9JdJk8TWmapQbUjtSKBwr03I/evAMmGyc/SycRAlgAw5HauOmCKpxfp4exWEUzg=="
+      },
+      "DalamudPackager": {
+        "type": "Direct",
+        "requested": "[2.1.8, )",
+        "resolved": "2.1.8",
+        "contentHash": "YqagNXs9InxmqkXzq7kLveImxnodkBEicAhydMXVp7dFjC7xb76U6zGgAax4/BWIWfZeWzr5DJyQSev31kj81A=="
+      },
+      "GitVersion.MsBuild": {
+        "type": "Direct",
+        "requested": "[5.10.3, )",
+        "resolved": "5.10.3",
+        "contentHash": "UE5+vWL5xG8S/lJSh6w6bYTQxxgFuSSQLql7Czh6gM3Q0Y1XTpjufL9jtv8+xzqsAJIzvrPRyMwdGf3nf/z95Q=="
+      }
+    }
+  }
+}
