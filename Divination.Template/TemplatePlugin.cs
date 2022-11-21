@@ -46,7 +46,7 @@ namespace Divination.Template
 
         #region IDefinitionSupport
 
-        public string DefinitionUrl => "https://horoscope-dev.github.io/Dalamud.Divination.Ephemera/dist/Template.json";
+        public string DefinitionUrl => "https://github.com/horoscope-dev/Divination.Definitions/raw/master/dist/Template.json";
 
         #endregion
     }
