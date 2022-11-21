@@ -18,7 +18,7 @@ jobs:
   build:
     uses: horoscope-dev/Dalamud.Divination.Common/.github/workflows/plugin-build.yml@master
     with:
-      plugin-name: 'Divination.Template'
+      plugin-name: 'Divination.PerfectComplex'
     permissions:
       contents: read
       actions: write
@@ -28,7 +28,7 @@ jobs:
     needs: build
     uses: horoscope-dev/Dalamud.Divination.Common/.github/workflows/plugin-deploy.yml@master
     with:
-      plugin-name: 'Divination.Template'
+      plugin-name: 'Divination.PerfectComplex'
     secrets:
       DEPLOY_GITHUB_TOKEN: '${{ secrets.GH_PAT }}'
     permissions:
