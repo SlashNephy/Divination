@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    uses: horoscope-dev/Divination.Common/.github/workflows/plugin-build.yml@master
+    uses: horoscope-dev/Dalamud.Divination.Common/.github/workflows/plugin-build.yml@master
     with:
       plugin-name: 'Divination.Template'
     permissions:
@@ -26,7 +26,7 @@ jobs:
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     needs: build
-    uses: horoscope-dev/Divination.Common/.github/workflows/plugin-deploy.yml@master
+    uses: horoscope-dev/Dalamud.Divination.Common/.github/workflows/plugin-deploy.yml@master
     with:
       plugin-name: 'Divination.Template'
     secrets:
