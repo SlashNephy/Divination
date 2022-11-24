@@ -3,5 +3,7 @@
   "Patch": "6.28HF",
 
   "TitleOffset": "0x1ACC",
+  "MainHandWeaponOffset": "0x6E0",
+  "OffHandWeaponOffset": "0x748",
   "OnlineStatusOffset": "0x1AD6"
 }
