@@ -1,8 +1,8 @@
 # AetheryteLinkInChat
 
-🚀 Dalamud Plugin to add a link to teleport you to the nearest aetheryte in chat. [pohky/TeleporterPlugin](https://github.com/pohky/TeleporterPlugin) must be installed.
+🚀 Dalamud Plugin to add a link to teleport you to the nearest aetheryte in chat.
 
-🚀 チャットログのマップ座標に最寄りのエーテライトへのリンクを付け加える Dalamud プラグインです。リンクをクリックすることで最寄りのエーテライトへテレポートできます。[pohky/TeleporterPlugin](https://github.com/pohky/TeleporterPlugin) が必要です。
+🚀 チャットログのマップ座標に最寄りのエーテライトへのリンクを付け加える Dalamud プラグインです。リンクをクリックすることで最寄りのエーテライトへテレポートできます。
 
 ## Installation
 
