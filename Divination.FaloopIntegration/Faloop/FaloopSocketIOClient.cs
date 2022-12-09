@@ -104,13 +104,13 @@ public class FaloopSocketIOClient : IDisposable
 
         using var apiClient = new FaloopApiClient();
         var initialSession = await apiClient.RefreshAsync();
-        if (initialSession is not {Success: true})
+        if (initialSession is not { Success: true })
         {
             throw new ApplicationException($"refresh failed: {initialSession}");
         }
 
         var login = await apiClient.LoginAsync(username, password, initialSession.SessionId, initialSession.Token);
-        if (login is not {Success: true})
+        if (login is not { Success: true })
         {
             throw new ApplicationException($"login failed: {login}");
         }
@@ -168,7 +168,7 @@ public class FaloopSocketIOClient : IDisposable
         for (var index = 0; index < response.Count; index++)
         {
             var payload = response.GetValue(index).Deserialize<FaloopEventPayload>();
-            if (payload is not {Type: "mob", SubType: "report"})
+            if (payload is not { Type: "mob", SubType: "report" })
             {
                 continue;
             }
