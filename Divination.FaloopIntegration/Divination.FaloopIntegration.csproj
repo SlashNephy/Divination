@@ -9,6 +9,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+    <RootNamespace>Divination.FaloopIntegration</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +21,16 @@
       <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Lumina">
+      <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Lumina.Excel">
+      <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
 
+    <PackageReference Include="SocketIOClient" Version="3.0.7" />
     <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.207" />
     <PackageReference Include="DalamudPackager" Version="2.1.8">
       <PrivateAssets>all</PrivateAssets>

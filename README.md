@@ -1,10 +1,8 @@
-# Divination.Template
+# Divination.FaloopIntegration
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/horoscope-dev/Divination.Template/CI?style=flat-square)](https://github.com/horoscope-dev/Divination.Template/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/horoscope-dev/Divination.Template/CI?style=flat-square)](https://github.com/horoscope-dev/Divination.FaloopIntegration/actions/workflows/ci.yml)
 
-Template repository for Dalamud plugins.
-
-Dalamud プラグインのテンプレートリポジトリです。
+Provide simple integration with Faloop. Mob notification in chat.
 
 ## Installation
 
