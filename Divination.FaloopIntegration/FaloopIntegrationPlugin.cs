@@ -93,11 +93,11 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         var jurisdiction = rank switch
         {
-            "S" => (Jurisdiction) Config.RankSJurisdiction,
-            "A" => (Jurisdiction) Config.RankAJurisdiction,
-            "B" => (Jurisdiction) Config.RankBJurisdiction,
-            "F" => (Jurisdiction) Config.FateJurisdiction,
-            _ => (Jurisdiction) Config.RankSJurisdiction,
+            "S" => (Jurisdiction)Config.RankSJurisdiction,
+            "A" => (Jurisdiction)Config.RankAJurisdiction,
+            "B" => (Jurisdiction)Config.RankBJurisdiction,
+            "F" => (Jurisdiction)Config.FateJurisdiction,
+            _ => (Jurisdiction)Config.RankSJurisdiction,
         };
 
         switch (jurisdiction)
@@ -193,11 +193,11 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         }
 
         var n = 41 / (map.SizeFactor / 100.0);
-        var loc = location.Location.Split(new[] {','}, 2)
+        var loc = location.Location.Split(new[] { ',' }, 2)
             .Select(int.Parse)
             .Select(x => x / 2048.0 * n + 1)
             .Select(x => Math.Round(x, 1))
-            .Select(x => (float) x)
+            .Select(x => (float)x)
             .ToList();
 
         var mapLink = SeString.CreateMapLink(zone.RowId, zone.Map.Row, loc[0], loc[1]);
