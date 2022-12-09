@@ -1,18 +1,12 @@
 {
-  "Author": "[Author]",
-  "Name": "[Name]",
-  "Punchline": "[Punchline]",
-  "Description": "[Description]",
+  "Author": "Asteria Nocturna",
+  "Name": "Divination.FaloopIntegration",
+  "Punchline": "Faloop notification in chat",
+  "Description": "Provide simple integration with Faloop. Mob notification in chat.",
   "Tags": [
-    "[Tag]"
+    "mobhunt"
   ],
   "CategoryTags": [
-    "other",
-    "jobs",
-    "ui",
-    "minigames",
-    "inventory",
-    "sound",
     "social",
     "utility"
   ],
