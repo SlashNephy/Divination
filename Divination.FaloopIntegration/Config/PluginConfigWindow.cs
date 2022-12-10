@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
-using Dalamud.Logging;
-using Divination.FaloopIntegration.Faloop.Model;
 using ImGuiNET;
 
 namespace Divination.FaloopIntegration.Config;
@@ -14,50 +11,10 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.Begin($"{FaloopIntegrationPlugin.Instance.Name} Config", ref IsOpen))
         {
-            if (ImGui.CollapsingHeader("Account"))
-            {
-                ImGui.InputText("Faloop Username", ref Config.FaloopUsername, 32);
-                ImGui.InputText("Faloop Password", ref Config.FaloopPassword, 128);
-            }
-
-            if (ImGui.CollapsingHeader("Per Rank"))
-            {
-                ImGui.Indent();
-
-                DrawPerRankConfig("Rank S", ref Config.RankS);
-                DrawPerRankConfig("Rank A", ref Config.RankA);
-                DrawPerRankConfig("Rank B", ref Config.RankB);
-                DrawPerRankConfig("Fate", ref Config.Fate);
-
-                ImGui.Unindent();
-            }
-
-            if (ImGui.CollapsingHeader("Party Finder"))
-            {
-                ImGui.Combo($"Channel##Party Finder", ref Config.PartyFinder.Channel, channels, channels.Length);
-
-                ImGui.Checkbox($"Report New Recruiting", ref Config.PartyFinder.EnableReport);
-            }
-
-            if (ImGui.CollapsingHeader("Debug"))
-            {
-                if (ImGui.Button("Emit mock payload"))
-                {
-                    Task.Run(async () =>
-                    {
-                        try
-                        {
-                            FaloopIntegrationPlugin.Instance.OnMobReport(MockData.SpawnMobReport);
-                            await Task.Delay(3000);
-                            FaloopIntegrationPlugin.Instance.OnMobReport(MockData.DeathMobReport);
-                        }
-                        catch (Exception exception)
-                        {
-                            PluginLog.Error(exception, "mock");
-                        }
-                    });
-                }
-            }
+            DrawAccountConfig();
+            DrawPerRankConfigs();
+            DrawPartyFinderConfig();
+            DrawDebugConfig();
 
             if (ImGui.Button("Save & Close"))
             {
@@ -67,6 +24,30 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             }
 
             ImGui.End();
+        }
+    }
+
+    private void DrawAccountConfig()
+    {
+        if (ImGui.CollapsingHeader("Account"))
+        {
+            ImGui.InputText("Faloop Username", ref Config.FaloopUsername, 32);
+            ImGui.InputText("Faloop Password", ref Config.FaloopPassword, 128);
+        }
+    }
+
+    private void DrawPerRankConfigs()
+    {
+        if (ImGui.CollapsingHeader("Per Rank"))
+        {
+            ImGui.Indent();
+
+            DrawPerRankConfig("Rank S", ref Config.RankS);
+            DrawPerRankConfig("Rank A", ref Config.RankA);
+            DrawPerRankConfig("Rank B", ref Config.RankB);
+            DrawPerRankConfig("Fate", ref Config.Fate);
+
+            ImGui.Unindent();
         }
     }
 
@@ -80,6 +61,29 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox($"Spawn Report##{label}", ref config.EnableSpawnReport);
             ImGui.SameLine();
             ImGui.Checkbox($"Death Report##{label}", ref config.EnableDeathReport);
+
+            ImGui.Checkbox($"Disable Report In Duty##{label}", ref config.DisableInDuty);
+        }
+    }
+
+    private void DrawPartyFinderConfig()
+    {
+        if (ImGui.CollapsingHeader("Party Finder"))
+        {
+            ImGui.Combo($"Channel##Party Finder", ref Config.PartyFinder.Channel, channels, channels.Length);
+
+            ImGui.Checkbox($"Report New Recruiting", ref Config.PartyFinder.EnableReport);
+        }
+    }
+
+    private void DrawDebugConfig()
+    {
+        if (ImGui.CollapsingHeader("Debug"))
+        {
+            if (ImGui.Button("Emit mock payload"))
+            {
+                FaloopIntegrationPlugin.Instance.EmitMockData();
+            }
         }
     }
 
