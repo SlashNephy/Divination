@@ -32,6 +32,13 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 ImGui.Unindent();
             }
 
+            if (ImGui.CollapsingHeader("Party Finder"))
+            {
+                ImGui.Combo($"Channel##Party Finder", ref Config.PartyFinder.Channel, channels, channels.Length);
+
+                ImGui.Checkbox($"Report New Recruiting", ref Config.PartyFinder.EnableReport);
+            }
+
             if (ImGui.CollapsingHeader("Debug"))
             {
                 if (ImGui.Button("Emit mock payload"))
