@@ -84,7 +84,6 @@ public class FaloopSocketIOClient : IDisposable
         client.OnConnected += HandleOnConnected;
         client.OnDisconnected += HandleOnDisconnected;
         client.OnError += HandleOnError;
-        client.On("message", HandleOnMobReport);
         client.On("message", HandleOnMessage);
         client.OnAny(HandleOnAny);
         client.OnReconnected += HandleReconnected;
@@ -163,12 +162,12 @@ public class FaloopSocketIOClient : IDisposable
         }
     }
 
-    private void HandleOnMobReport(SocketIOResponse response)
+    private void HandleOnMessage(SocketIOResponse response)
     {
         for (var index = 0; index < response.Count; index++)
         {
             var payload = response.GetValue(index).Deserialize<FaloopEventPayload>();
-            if (payload is not { Type: "mob", SubType: "report" })
+            if (payload is not {Type: "mob", SubType: "report"})
             {
                 continue;
             }
@@ -188,10 +187,7 @@ public class FaloopSocketIOClient : IDisposable
                 PluginLog.Error(exception, nameof(HandleOnMessage));
             }
         }
-    }
 
-    private void HandleOnMessage(SocketIOResponse response)
-    {
         try
         {
             OnMessage?.Invoke(response);
