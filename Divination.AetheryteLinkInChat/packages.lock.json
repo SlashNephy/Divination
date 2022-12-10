@@ -4,9 +4,9 @@
     "net6.0-windows7.0": {
       "Dalamud.Divination.Common": {
         "type": "Direct",
-        "requested": "[0.1.0-beta.183, )",
-        "resolved": "0.1.0-beta.183",
-        "contentHash": "ciMMyblEz+H1OC46W7cvL/Ab9/irSOaZrmBDV5izUj3+tfhD5ueo0fxyeYVXPrx/QzVh+r5qEpBM0YX/pMngBA=="
+        "requested": "[0.1.0-beta.207, )",
+        "resolved": "0.1.0-beta.207",
+        "contentHash": "AMbC/7IXD/sS2OJzhfBtsX0VxMVMDqjIijPm3qQadv1CEeeHmU3tUwzWdrD4m7Lg0o1jjhXWw/KXk1pbak6/fQ=="
       },
       "DalamudPackager": {
         "type": "Direct",
@@ -16,9 +16,9 @@
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[5.10.3, )",
-        "resolved": "5.10.3",
-        "contentHash": "UE5+vWL5xG8S/lJSh6w6bYTQxxgFuSSQLql7Czh6gM3Q0Y1XTpjufL9jtv8+xzqsAJIzvrPRyMwdGf3nf/z95Q=="
+        "requested": "[5.11.1, )",
+        "resolved": "5.11.1",
+        "contentHash": "JlJB4dAc/MpLQvbF8OeyMKotDo5EcgU2pXmB+MlTe64B1Y0fc9GTMiAHiyUiHLnFRnOtrcSi1C3BsfRTmlD0sA=="
       }
     }
   }
