@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
+using Dalamud.Game.Gui.PartyFinder.Types;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -43,6 +44,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         socket.OnReconnectFailed += OnReconnectFailed;
         socket.OnPing += OnPing;
         socket.OnPong += OnPong;
+        Dalamud.PartyFinderGui.ReceiveListing += OnReceiveListing;
 
         Connect();
     }
@@ -298,6 +300,31 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         PluginLog.Debug("Pong: {Span}", span);
     }
 
+    private void OnReceiveListing(PartyFinderListing listing, PartyFinderListingEventArgs args)
+    {
+        if (listing.Category != DutyCategory.TheHunt)
+        {
+            return;
+        }
+
+        if (Dalamud.PartyList.Length > 1)
+        {
+            return;
+        }
+
+        Dalamud.ChatGui.PrintChat(new XivChatEntry
+        {
+            Name = "パーティ募集",
+            Message = new SeString(new List<Payload>
+            {
+                new TextPayload($"モブハントに募集があります。 {listing.Name.TextValue}"),
+            }),
+            Type = Enum.GetValues<XivChatType>()[Config.PartyFinder.Channel],
+        });
+
+        PluginLog.Debug("ReceiveListing: {Name}, {Description}", listing.Name.TextValue, listing.Description.TextValue);
+    }
+
     public void Connect()
     {
         if (string.IsNullOrWhiteSpace(Config.FaloopUsername) || string.IsNullOrWhiteSpace(Config.FaloopPassword))
@@ -323,6 +350,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
         socket.Dispose();
+        Dalamud.PartyFinderGui.ReceiveListing -= OnReceiveListing;
     }
 
     public string MainCommandPrefix => "/faloop";
