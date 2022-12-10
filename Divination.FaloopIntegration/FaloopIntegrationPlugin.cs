@@ -237,7 +237,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
     private static string FormatTimeSpan(DateTime time)
     {
-        var span = DateTime.Now - time;
+        var span = DateTime.UtcNow - time;
         var builder = new StringBuilder();
         if (span.Days > 0)
         {
