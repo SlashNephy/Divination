@@ -81,7 +81,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         var world = Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(data.WorldId);
         var dataCenter = world?.DataCenter?.Value;
-        if (world == null || dataCenter == null)
+        if (world == default || dataCenter == default)
         {
             PluginLog.Debug("OnMobReport: world == null || dataCenter == null");
             return;
@@ -89,27 +89,27 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
         var currentDataCenter = currentWorld?.DataCenter?.Value;
-        if (currentWorld == null || currentDataCenter == null)
+        if (currentWorld == default || currentDataCenter == default)
         {
             PluginLog.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
             return;
         }
 
-        Jurisdiction? jurisdiction = rank switch
+        var config = rank switch
         {
-            "S" => (Jurisdiction)Config.RankSJurisdiction,
-            "A" => (Jurisdiction)Config.RankAJurisdiction,
-            "B" => (Jurisdiction)Config.RankBJurisdiction,
-            "F" => (Jurisdiction)Config.FateJurisdiction,
-            _ => null,
+            "S" => Config.RankS,
+            "A" => Config.RankA,
+            "B" => Config.RankB,
+            "F" => Config.Fate,
+            _ => default,
         };
-        if (!jurisdiction.HasValue)
+        if (config == default)
         {
-            PluginLog.Debug("OnMobReport: jurisdiction == null");
+            PluginLog.Debug("OnMobReport: config == null");
             return;
         }
 
-        switch (jurisdiction)
+        switch ((Jurisdiction) config.Jurisdiction)
         {
             case Jurisdiction.All:
             case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
@@ -122,18 +122,18 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         switch (data.Action)
         {
-            case "spawn" when Config.EnableSpawnReport:
-                OnSpawnMobReport(data, mob, world);
+            case "spawn" when config.EnableSpawnReport:
+                OnSpawnMobReport(data, mob, world, config.Channel);
                 PluginLog.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
-            case "death" when Config.EnableDeathReport:
-                OnDeathMobReport(data, mob, world);
+            case "death" when config.EnableDeathReport:
+                OnDeathMobReport(data, mob, world, config.Channel);
                 PluginLog.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
     }
 
-    private void OnSpawnMobReport(MobReportData data, BNpcName mob, World world)
+    private void OnSpawnMobReport(MobReportData data, BNpcName mob, World world, int channel)
     {
         var spawn = data.Data.Deserialize<MobReportData.Spawn>();
         if (spawn == default)
@@ -163,11 +163,11 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         {
             Name = "Faloop",
             Message = new SeString(payloads),
-            Type = Enum.GetValues<XivChatType>()[Config.Channel],
+            Type = Enum.GetValues<XivChatType>()[channel],
         });
     }
 
-    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world)
+    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world, int channel)
     {
         var death = data.Data.Deserialize<MobReportData.Death>();
         if (death == default)
@@ -185,7 +185,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{world.Name} が討伐されました。({FormatTimeSpan(death.StartedAt)})"),
             }),
-            Type = Enum.GetValues<XivChatType>()[Config.Channel],
+            Type = Enum.GetValues<XivChatType>()[channel],
         });
     }
 
@@ -220,16 +220,16 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
     }
 
-    private static string? GetInstanceIcon(int? instance)
+    private static TextPayload? GetInstanceIcon(int? instance)
     {
         switch (instance)
         {
             case 1:
-                return SeIconChar.Instance1.ToIconString();
+                return new TextPayload(SeIconChar.Instance1.ToIconString());
             case 2:
-                return SeIconChar.Instance2.ToIconString();
+                return new TextPayload(SeIconChar.Instance2.ToIconString());
             case 3:
-                return SeIconChar.Instance3.ToIconString();
+                return new TextPayload(SeIconChar.Instance3.ToIconString());
             default:
                 return default;
         }

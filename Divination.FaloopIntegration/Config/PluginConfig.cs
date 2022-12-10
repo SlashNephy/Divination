@@ -1,4 +1,6 @@
-﻿using Dalamud.Configuration;
+﻿using System;
+using System.Linq;
+using Dalamud.Configuration;
 using Dalamud.Game.Text;
 
 namespace Divination.FaloopIntegration.Config;
@@ -10,12 +12,34 @@ public class PluginConfig : IPluginConfiguration
     public string FaloopUsername = string.Empty;
     public string FaloopPassword = string.Empty;
 
-    public int RankSJurisdiction = (int)Jurisdiction.World;
-    public int RankAJurisdiction;
-    public int RankBJurisdiction;
-    public int FateJurisdiction;
+    public PerRankConfig RankS = new()
+    {
+        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
+        Jurisdiction = (int) Jurisdiction.World,
+        EnableSpawnReport = true,
+        EnableDeathReport = true,
+    };
 
-    public int Channel = (int)XivChatType.Echo;
-    public bool EnableSpawnReport;
-    public bool EnableDeathReport;
+    public PerRankConfig RankA = new()
+    {
+        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
+    };
+
+    public PerRankConfig RankB = new()
+    {
+        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
+    };
+
+    public PerRankConfig Fate = new()
+    {
+        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
+    };
+
+    public class PerRankConfig
+    {
+        public int Channel;
+        public int Jurisdiction;
+        public bool EnableSpawnReport;
+        public bool EnableDeathReport;
+    }
 }
