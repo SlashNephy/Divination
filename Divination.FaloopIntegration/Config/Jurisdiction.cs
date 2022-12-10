@@ -1,8 +1,10 @@
-﻿namespace Divination.FaloopIntegration.Config;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Divination.FaloopIntegration.Config;
 
 public enum Jurisdiction
 {
-    None,
+    [SuppressMessage("ReSharper", "UnusedMember.Global")] None,
     World,
     DataCenter,
     Region,

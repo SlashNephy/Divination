@@ -54,8 +54,8 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
     private void OnDisconnected(string cause)
     {
-        Divination.Chat.PrintError("Faloop から切断されました。");
-        PluginLog.Error("Disconnected = {Cause}", cause);
+        Divination.Chat.Print("Faloop から切断されました。");
+        PluginLog.Warning("Disconnected = {Cause}", cause);
     }
 
     private static void OnError(string error)
@@ -68,46 +68,54 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         var mob = Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(data.MobId);
         if (mob == default)
         {
+            PluginLog.Debug("OnMobReport: mob == null");
             return;
         }
 
         var rank = FaloopEmbedData.Mobs.Find(x => x.Id == data.MobId)?.Rank;
         if (rank == default)
         {
+            PluginLog.Debug("OnMobReport: rank == null");
             return;
         }
 
         var world = Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(data.WorldId);
-        var dataCenter = world?.DataCenter;
+        var dataCenter = world?.DataCenter?.Value;
         if (world == null || dataCenter == null)
         {
+            PluginLog.Debug("OnMobReport: world == null || dataCenter == null");
             return;
         }
 
-        var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld;
-        var currentDataCenter = currentWorld?.GameData?.DataCenter;
+        var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
+        var currentDataCenter = currentWorld?.DataCenter?.Value;
         if (currentWorld == null || currentDataCenter == null)
         {
+            PluginLog.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
             return;
         }
 
-        var jurisdiction = rank switch
+        Jurisdiction? jurisdiction = rank switch
         {
             "S" => (Jurisdiction)Config.RankSJurisdiction,
             "A" => (Jurisdiction)Config.RankAJurisdiction,
             "B" => (Jurisdiction)Config.RankBJurisdiction,
             "F" => (Jurisdiction)Config.FateJurisdiction,
-            _ => (Jurisdiction)Config.RankSJurisdiction,
+            _ => null,
         };
+        if (!jurisdiction.HasValue)
+        {
+            PluginLog.Debug("OnMobReport: jurisdiction == null");
+            return;
+        }
 
         switch (jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Region when dataCenter.Value?.Region == currentDataCenter.Value?.Region:
-            case Jurisdiction.DataCenter when dataCenter.Row == currentDataCenter.Row:
-            case Jurisdiction.World when world.RowId == currentWorld.Id:
+            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
+            case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
+            case Jurisdiction.World when world.RowId == currentWorld.RowId:
                 break;
-            case Jurisdiction.None:
             default:
                 return;
         }
@@ -116,9 +124,11 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         {
             case "spawn" when Config.EnableSpawnReport:
                 OnSpawnMobReport(data, mob, world);
+                PluginLog.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
             case "death" when Config.EnableDeathReport:
                 OnDeathMobReport(data, mob, world);
+                PluginLog.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
     }
@@ -128,6 +138,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         var spawn = data.Data.Deserialize<MobReportData.Spawn>();
         if (spawn == default)
         {
+            PluginLog.Debug("OnSpawnMobReport: spawn == null");
             return;
         }
 
@@ -161,6 +172,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         var death = data.Data.Deserialize<MobReportData.Death>();
         if (death == default)
         {
+            PluginLog.Debug("OnDeathMobReport: death == null");
             return;
         }
 
@@ -183,12 +195,14 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         var map = zone?.Map.Value;
         if (zone == null || map == null)
         {
+            PluginLog.Debug("CreateMapLink: zone == null || map == null");
             return default;
         }
 
         var location = FaloopEmbedData.ZonePois.Find(x => x.Id == zonePoiId);
         if (location == default)
         {
+            PluginLog.Debug("CreateMapLink: location == null");
             return default;
         }
 
