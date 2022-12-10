@@ -193,7 +193,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
     {
         var zone = Dalamud.DataManager.GetExcelSheet<TerritoryType>()?.GetRow(zoneId);
         var map = zone?.Map.Value;
-        if (zone == null || map == null)
+        if (zone == default || map == default)
         {
             PluginLog.Debug("CreateMapLink: zone == null || map == null");
             return default;
@@ -251,7 +251,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         {
             builder.Append($"{span.Minutes}分前");
         }
-        else if (span.Seconds > 0)
+        else if (span.Seconds > 10)
         {
             builder.Append($"{span.Seconds}秒前");
         }
