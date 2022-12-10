@@ -111,7 +111,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return;
         }
 
-        switch ((Jurisdiction) config.Jurisdiction)
+        switch ((Jurisdiction)config.Jurisdiction)
         {
             case Jurisdiction.All:
             case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
