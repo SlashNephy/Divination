@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
+using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.Gui.PartyFinder.Types;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
@@ -111,6 +112,12 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return;
         }
 
+        if (config.DisableInDuty && Dalamud.Condition[ConditionFlag.BoundByDuty])
+        {
+            PluginLog.Debug("OnMobReport: in duty");
+            return;
+        }
+
         switch ((Jurisdiction)config.Jurisdiction)
         {
             case Jurisdiction.All:
@@ -119,6 +126,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             case Jurisdiction.World when world.RowId == currentWorld.RowId:
                 break;
             default:
+                PluginLog.Verbose("OnMobReport: unmatched");
                 return;
         }
 

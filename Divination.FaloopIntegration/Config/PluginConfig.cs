@@ -46,6 +46,7 @@ public class PluginConfig : IPluginConfiguration
         public int Jurisdiction;
         public bool EnableSpawnReport;
         public bool EnableDeathReport;
+        public bool DisableInDuty;
     }
 
     public class PartyFinderConfig
