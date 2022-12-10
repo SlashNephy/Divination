@@ -65,7 +65,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         PluginLog.Error("Error = {Error}", error);
     }
 
-    public void OnMobReport(MobReportData data)
+    private void OnMobReport(MobReportData data)
     {
         var mob = Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(data.MobId);
         if (mob == default)
@@ -342,6 +342,23 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             catch (Exception exception)
             {
                 PluginLog.Error(exception, "connect failed");
+            }
+        });
+    }
+
+    public void EmitMockData()
+    {
+        Task.Run(async () =>
+        {
+            try
+            {
+                OnMobReport(MockData.SpawnMobReport);
+                await Task.Delay(3000);
+                OnMobReport(MockData.DeathMobReport);
+            }
+            catch (Exception exception)
+            {
+                PluginLog.Error(exception, nameof(EmitMockData));
             }
         });
     }
