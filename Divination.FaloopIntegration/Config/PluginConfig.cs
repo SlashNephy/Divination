@@ -15,7 +15,7 @@ public class PluginConfig : IPluginConfiguration
     public PerRankConfig RankS = new()
     {
         Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
-        Jurisdiction = (int) Jurisdiction.World,
+        Jurisdiction = (int)Jurisdiction.World,
         EnableSpawnReport = true,
         EnableDeathReport = true,
     };
