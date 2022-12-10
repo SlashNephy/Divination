@@ -12,7 +12,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
     public override void Draw()
     {
-        if (ImGui.Begin($"{FaloopIntegrationPlugin.Instance.Name} Config", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
+        if (ImGui.Begin($"{FaloopIntegrationPlugin.Instance.Name} Config", ref IsOpen))
         {
             if (ImGui.CollapsingHeader("Account"))
             {
@@ -20,42 +20,37 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 ImGui.InputText("Faloop Password", ref Config.FaloopPassword, 128);
             }
 
-            if (ImGui.CollapsingHeader("Jurisdiction"))
+            if (ImGui.CollapsingHeader("Per Rank"))
             {
-                ImGui.Combo("Rank S", ref Config.RankSJurisdiction, jurisdictions, jurisdictions.Length);
-                ImGui.Combo("Rank A", ref Config.RankAJurisdiction, jurisdictions, jurisdictions.Length);
-                ImGui.Combo("Rank B", ref Config.RankBJurisdiction, jurisdictions, jurisdictions.Length);
-                ImGui.Combo("Fate", ref Config.FateJurisdiction, jurisdictions, jurisdictions.Length);
+                ImGui.Indent();
+
+                DrawPerRankConfig("Rank S", ref Config.RankS);
+                DrawPerRankConfig("Rank A", ref Config.RankA);
+                DrawPerRankConfig("Rank B", ref Config.RankB);
+                DrawPerRankConfig("Fate", ref Config.Fate);
+
+                ImGui.Unindent();
             }
 
-            if (ImGui.CollapsingHeader("Report"))
+            if (ImGui.CollapsingHeader("Debug"))
             {
-                ImGui.Combo("Channel", ref Config.Channel, channels, channels.Length);
-
-                ImGui.Checkbox("Spawn", ref Config.EnableSpawnReport);
-                ImGui.Checkbox("Death", ref Config.EnableDeathReport);
-            }
-
-            ImGui.Separator();
-
-            if (ImGui.Button("Emit mock payload"))
-            {
-                Task.Run(async () =>
+                if (ImGui.Button("Emit mock payload"))
                 {
-                    try
+                    Task.Run(async () =>
                     {
-                        FaloopIntegrationPlugin.Instance.OnMobReport(MockData.SpawnMobReport);
-                        await Task.Delay(3000);
-                        FaloopIntegrationPlugin.Instance.OnMobReport(MockData.DeathMobReport);
-                    }
-                    catch (Exception exception)
-                    {
-                        PluginLog.Error(exception, "mock");
-                    }
-                });
+                        try
+                        {
+                            FaloopIntegrationPlugin.Instance.OnMobReport(MockData.SpawnMobReport);
+                            await Task.Delay(3000);
+                            FaloopIntegrationPlugin.Instance.OnMobReport(MockData.DeathMobReport);
+                        }
+                        catch (Exception exception)
+                        {
+                            PluginLog.Error(exception, "mock");
+                        }
+                    });
+                }
             }
-
-            ImGui.Separator();
 
             if (ImGui.Button("Save & Close"))
             {
@@ -65,6 +60,19 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             }
 
             ImGui.End();
+        }
+    }
+
+    private void DrawPerRankConfig(string label, ref PluginConfig.PerRankConfig config)
+    {
+        if (ImGui.CollapsingHeader(label))
+        {
+            ImGui.Combo($"Channel##{label}", ref config.Channel, channels, channels.Length);
+            ImGui.Combo($"Jurisdiction##{label}", ref config.Jurisdiction, jurisdictions, jurisdictions.Length);
+
+            ImGui.Checkbox($"Spawn Report##{label}", ref config.EnableSpawnReport);
+            ImGui.SameLine();
+            ImGui.Checkbox($"Death Report##{label}", ref config.EnableDeathReport);
         }
     }
 
