@@ -308,27 +308,43 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         PluginLog.Debug("Pong: {Span}", span);
     }
 
+    private readonly List<uint> listingIds = new();
+
     private void OnReceiveListing(PartyFinderListing listing, PartyFinderListingEventArgs args)
     {
         if (listing.Category != DutyCategory.TheHunt)
         {
+            PluginLog.Verbose("OnReceiveListing: Category != DutyCategory.TheHunt");
             return;
         }
 
         if (Dalamud.PartyList.Length > 1 || listing.Name.TextValue == Dalamud.ClientState.LocalPlayer?.Name.TextValue)
         {
+            PluginLog.Debug("OnReceiveListing: PartyList.Length > 1 || Name == LocalPlayer.Name");
             return;
         }
 
-        Dalamud.ChatGui.PrintChat(new XivChatEntry
+        lock (listingIds)
         {
-            Name = "パーティ募集",
-            Message = new SeString(new List<Payload>
+            if (listingIds.Contains(listing.Id))
             {
-                new TextPayload($"モブハントに募集があります。 {listing.Name.TextValue}"),
-            }),
-            Type = Enum.GetValues<XivChatType>()[Config.PartyFinder.Channel],
-        });
+                PluginLog.Verbose("OnReceiveListing: already received");
+                return;
+            }
+
+            Dalamud.ChatGui.PrintChat(new XivChatEntry
+            {
+                Name = "パーティ募集",
+                Message = new SeString(new List<Payload>
+                {
+                    new TextPayload("モブハントに募集があります。"),
+                    new PlayerPayload(listing.Name.TextValue, listing.HomeWorld.Value.RowId),
+                }),
+                Type = Enum.GetValues<XivChatType>()[Config.PartyFinder.Channel],
+            });
+
+            listingIds.Add(listing.Id);
+        }
 
         PluginLog.Debug("ReceiveListing: {Name}, {Description}", listing.Name.TextValue, listing.Description.TextValue);
     }
