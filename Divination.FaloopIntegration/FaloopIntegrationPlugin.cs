@@ -133,17 +133,17 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         switch (data.Action)
         {
             case "spawn" when config.EnableSpawnReport:
-                OnSpawnMobReport(data, mob, world, config.Channel);
+                OnSpawnMobReport(data, mob, world, config.Channel, rank);
                 PluginLog.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
             case "death" when config.EnableDeathReport:
-                OnDeathMobReport(data, mob, world, config.Channel);
+                OnDeathMobReport(data, mob, world, config.Channel, rank);
                 PluginLog.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
     }
 
-    private void OnSpawnMobReport(MobReportData data, BNpcName mob, World world, int channel)
+    private void OnSpawnMobReport(MobReportData data, BNpcName mob, World world, int channel, string rank)
     {
         var spawn = data.Data.Deserialize<MobReportData.Spawn>();
         if (spawn == default)
@@ -154,7 +154,8 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         var payloads = new List<Payload>
         {
-            new TextPayload($"{SeIconChar.BoxedLetterS.ToIconString()} {mob.Singular.RawString} "),
+            GetRankIcon(rank),
+            new TextPayload($" {mob.Singular.RawString} "),
         };
 
         var mapLink = CreateMapLink(spawn.ZoneId, spawn.ZonePoiIds.First(), data.ZoneInstance);
@@ -177,7 +178,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         });
     }
 
-    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world, int channel)
+    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world, int channel, string rank)
     {
         var death = data.Data.Deserialize<MobReportData.Death>();
         if (death == default)
@@ -191,7 +192,8 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             Name = "Faloop",
             Message = new SeString(new List<Payload>
             {
-                new TextPayload($"{SeIconChar.BoxedLetterS.ToIconString()} {mob.Singular.RawString}"),
+                GetRankIcon(rank),
+                new TextPayload($" {mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{world.Name} が討伐されました。({FormatTimeSpan(death.StartedAt)})"),
             }),
@@ -228,6 +230,23 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         var instanceIcon = GetInstanceIcon(instance);
         return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
+    }
+
+    private static TextPayload GetRankIcon(string rank)
+    {
+        switch (rank)
+        {
+            case "S":
+                return new TextPayload(SeIconChar.BoxedLetterS.ToIconString());
+            case "A":
+                return new TextPayload(SeIconChar.BoxedLetterA.ToIconString());
+            case "B":
+                return new TextPayload(SeIconChar.BoxedLetterB.ToIconString());
+            case "F":
+                return new TextPayload(SeIconChar.BoxedLetterF.ToIconString());
+            default:
+                throw new ArgumentException($"Unknown rank: {rank}");
+        }
     }
 
     private static TextPayload? GetInstanceIcon(int? instance)
