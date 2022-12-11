@@ -37,6 +37,18 @@ public class MobReportData
 
         [JsonPropertyName("zonePoiIds")]
         public List<int> ZonePoiIds { get; set; }
+
+        [JsonPropertyName("reporters")]
+        public List<Reporter>? Reporters { get; set; }
+
+        public class Reporter
+        {
+            [JsonPropertyName("id")]
+            public int Id { get; set; }
+
+            [JsonPropertyName("name")]
+            public string Name { get; set; }
+        }
     }
 
     public class Death
