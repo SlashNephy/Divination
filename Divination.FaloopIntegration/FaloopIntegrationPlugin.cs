@@ -315,7 +315,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return;
         }
 
-        if (Dalamud.PartyList.Length > 1)
+        if (Dalamud.PartyList.Length > 1 || listing.Name.TextValue == Dalamud.ClientState.LocalPlayer?.Name.TextValue)
         {
             return;
         }
