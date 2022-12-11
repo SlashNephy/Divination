@@ -94,29 +94,21 @@ public class FaloopSocketIOClient : IDisposable
         client.OnPong += HandleOnPong;
     }
 
-    public async Task Connect(string username, string password)
+    public async Task Connect(FaloopSession session)
     {
+        if (!session.IsLoggedIn)
+        {
+            throw new ApplicationException("session is not authenticated.");
+        }
+
         if (client.Connected)
         {
             await client.DisconnectAsync();
         }
 
-        using var apiClient = new FaloopApiClient();
-        var initialSession = await apiClient.RefreshAsync();
-        if (initialSession is not { Success: true })
+        client.Options.Auth = new Dictionary<string, string?>
         {
-            throw new ApplicationException($"refresh failed: {initialSession}");
-        }
-
-        var login = await apiClient.LoginAsync(username, password, initialSession.SessionId, initialSession.Token);
-        if (login is not { Success: true })
-        {
-            throw new ApplicationException($"login failed: {login}");
-        }
-
-        client.Options.Auth = new Dictionary<string, string>
-        {
-            {"sessionid", login.SessionId},
+            {"sessionid", session.SessionId},
         };
 
         await client.ConnectAsync();

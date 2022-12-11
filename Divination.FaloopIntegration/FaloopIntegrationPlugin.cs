@@ -29,6 +29,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
     IConfigWindowSupport<PluginConfig>
 {
     private readonly FaloopSocketIOClient socket = new();
+    private readonly FaloopSession session = new();
 
     public FaloopIntegrationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -380,7 +381,10 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         {
             try
             {
-                await socket.Connect(Config.FaloopUsername, Config.FaloopPassword);
+                if (await session.LoginAsync(Config.FaloopUsername, Config.FaloopPassword))
+                {
+                    await socket.Connect(session);
+                }
             }
             catch (Exception exception)
             {
