@@ -171,7 +171,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
 
         Dalamud.ChatGui.PrintChat(new XivChatEntry
         {
-            Name = "Faloop",
+            Name = spawn.Reporters?.FirstOrDefault()?.Name ?? "Faloop",
             Message = new SeString(payloads),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
