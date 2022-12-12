@@ -4,6 +4,8 @@
 
 🚀 チャットログのマップ座標に最寄りのエーテライトへのリンクを付け加える Dalamud プラグインです。リンクをクリックすることで最寄りのエーテライトへテレポートできます。
 
+![image](https://user-images.githubusercontent.com/7302150/206868416-b76669cb-10d8-47d8-a51e-d6dcef0a937d.png)
+
 ## Installation
 
 You can install this plugin from the [Divination plugin repository](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo).
