@@ -3,34 +3,43 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
+using Dalamud.Divination.Common.Boilerplate.Features;
+using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Logging;
 using Dalamud.Plugin;
+using Divination.AetheryteLinkInChat.Config;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat;
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
-public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlugin>, IDalamudPlugin
+public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlugin, PluginConfig>,
+    IDalamudPlugin,
+    ICommandSupport,
+    IConfigWindowSupport<PluginConfig>
 {
     private const uint LinkCommandId = 0;
     private readonly DalamudLinkPayload linkPayload;
+    private volatile uint queuedAetheryteId;
 
     public AetheryteLinkInChatPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
+        Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         linkPayload = pluginInterface.AddChatLinkHandler(LinkCommandId, HandleLink);
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
+        Dalamud.Condition.ConditionChange += OnConditionChanged;
     }
 
-    protected override void ReleaseManaged()
-    {
-        Dalamud.PluginInterface.RemoveChatLinkHandler();
-        Dalamud.ChatGui.ChatMessage -= OnChatReceived;
-    }
+    public string MainCommandPrefix => "/alic";
+
+    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
 
     private void OnChatReceived(XivChatType type,
         uint senderId,
@@ -44,7 +53,26 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, "OnChatReceived");
+            PluginLog.Error(exception, nameof(OnChatReceived));
+        }
+    }
+
+    private void OnConditionChanged(ConditionFlag flag, bool value)
+    {
+        if (queuedAetheryteId == default || !Config.AllowTeleportQueueing)
+        {
+            return;
+        }
+
+        switch (flag)
+        {
+            case ConditionFlag.InCombat when !value:
+                Task.Delay(Config.QueuedTeleportDelay)
+                    .ContinueWith(_ =>
+                    {
+                        TeleportToAetheryte(queuedAetheryteId);
+                    });
+                return;
         }
     }
 
@@ -76,10 +104,12 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             // 対象のエリア内に限定
             .Where(x => x.Territory.Row == mapLink.TerritoryType.RowId)
             // MapMarker に変換
-            .Select(x => (aetheryte: x, marker: mapMarkers
-                // エーテライトのマーカーに限定
-                .Where(marker => marker.DataType is 3 or 4)
-                .FirstOrDefault(marker => marker.DataKey == x.RowId)))
+            .Select(x => (
+                aetheryte: x,
+                marker: mapMarkers
+                    // エーテライトのマーカーに限定
+                    .Where(marker => marker.DataType is 3 or 4)
+                    .FirstOrDefault(marker => marker.DataKey == x.RowId)))
             .Where(x => x.marker != null)
             // 座標を変換
             .OrderBy(x =>
@@ -118,7 +148,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
 
     private void HandleLink(uint id, SeString link)
     {
-        PluginLog.Verbose("Link = {Json}", link.ToJson());
+        PluginLog.Verbose("HandleLink: link = {Json}", link.ToJson());
 
         if (id != LinkCommandId)
         {
@@ -126,10 +156,12 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
-        // 途中で改行された場合、正常にエーテライト名を取れないので空白文字を除去する
-        // 今のところエーテライト名に空白が入ることはないので問題ないと思う...
-        // カスタムの RawPayload が実装できるようになったら実装を変更する
+        // 最初には矢印の TextPayload が入っているので除外する
         var aetheryteName = string.Join("", link.Payloads.OfType<TextPayload>().Skip(1).Select(x => x.Text));
+
+        // 途中で改行された場合、正常にエーテライト名を取れないので空白文字を除去する
+        // 今のところエーテライト名に空白が入るものは存在しないので問題ないと思う...
+        // カスタムの RawPayload が実装できるようになったら実装を変更する
         aetheryteName = new Regex(@"\s+").Replace(aetheryteName, "");
 
         var aetheryte = FindAetheryteByName(aetheryteName);
@@ -139,16 +171,30 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
-        TeleportToAetheryte(aetheryte);
+        if (Dalamud.Condition[ConditionFlag.InCombat])
+        {
+            queuedAetheryteId = aetheryte.RowId;
+            Divination.Chat.Print($"現在テレポを実行できません。「{aetheryteName}」へのテレポをキューに追加しました。");
+        }
+        else
+        {
+            TeleportToAetheryte(aetheryte.RowId);
+        }
     }
 
     private Aetheryte? FindAetheryteByName(string name)
     {
-        var aetherytes = Dalamud.DataManager.GetExcelSheet<Aetheryte>();
-        return aetherytes?.FirstOrDefault(x => x.PlaceName.Value?.Name.RawString == name);
+        return Dalamud.DataManager.GetExcelSheet<Aetheryte>()
+            ?.FirstOrDefault(x => x.PlaceName.Value?.Name.RawString == name);
     }
 
-    private unsafe void TeleportToAetheryte(Aetheryte aetheryte)
+    private Aetheryte? FindAetheryteById(uint id)
+    {
+        return Dalamud.DataManager.GetExcelSheet<Aetheryte>()
+            ?.FirstOrDefault(x => x.RowId == id);
+    }
+
+    private unsafe void TeleportToAetheryte(uint id)
     {
         var teleport = Telepo.Instance();
         if (teleport == default)
@@ -157,25 +203,43 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
+        if (!CheckAetheryte(teleport, id))
+        {
+            PluginLog.Error("TeleportToAetheryte: aetheryte with ID {Id} is invalid.", id);
+        }
+        else if (!teleport->Teleport(id, 0))
+        {
+            PluginLog.Error("TeleportToAetheryte: could not teleport to {Id}", id);
+        }
+
+        if (Config.PrintAetheryteName)
+        {
+            Divination.Chat.Print($"「{FindAetheryteById(id)?.PlaceName.Value?.Name.RawString}」にテレポしています...");
+        }
+
+        queuedAetheryteId = default;
+    }
+
+    private static unsafe bool CheckAetheryte(Telepo* teleport, uint id)
+    {
         teleport->UpdateAetheryteList();
 
-        var found = false;
-        for (var it = teleport->TeleportList.First; it != teleport->TeleportList.Last; ++it)
+        for (var it = teleport->TeleportList.First; it != teleport->TeleportList.Last; it++)
         {
-            if (it->AetheryteId == aetheryte.RowId)
+            if (it->AetheryteId == id)
             {
-                found = true;
-                break;
+                return true;
             }
         }
 
-        if (!found)
-        {
-            PluginLog.Error("Aetheryte with ID {Id} is invalid.", aetheryte.RowId);
-        }
-        else if (!teleport->Teleport(aetheryte.RowId, 0))
-        {
-            PluginLog.Error($"Could not teleport to {Name}", aetheryte.PlaceName.Value?.Name ?? string.Empty);
-        }
+        return false;
+    }
+
+    protected override void ReleaseManaged()
+    {
+        Dalamud.PluginInterface.SavePluginConfig(Config);
+        Dalamud.PluginInterface.RemoveChatLinkHandler();
+        Dalamud.ChatGui.ChatMessage -= OnChatReceived;
+        Dalamud.Condition.ConditionChange -= OnConditionChanged;
     }
 }
