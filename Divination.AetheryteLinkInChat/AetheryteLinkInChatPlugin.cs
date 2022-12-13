@@ -67,6 +67,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         switch (flag)
         {
             case ConditionFlag.InCombat when !value:
+            case ConditionFlag.BetweenAreas when !value:
                 Task.Delay(Config.QueuedTeleportDelay)
                     .ContinueWith(_ =>
                     {
@@ -171,7 +172,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
-        if (Dalamud.Condition[ConditionFlag.InCombat])
+        if (Dalamud.Condition[ConditionFlag.InCombat] || Dalamud.Condition[ConditionFlag.BetweenAreas])
         {
             queuedAetheryteId = aetheryte.RowId;
             Divination.Chat.Print($"現在テレポを実行できません。「{aetheryteName}」へのテレポをキューに追加しました。");
@@ -196,6 +197,8 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
 
     private unsafe void TeleportToAetheryte(uint id)
     {
+        queuedAetheryteId = default;
+
         var teleport = Telepo.Instance();
         if (teleport == default)
         {
@@ -216,8 +219,6 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         {
             Divination.Chat.Print($"「{FindAetheryteById(id)?.PlaceName.Value?.Name.RawString}」にテレポしています...");
         }
-
-        queuedAetheryteId = default;
     }
 
     private static unsafe bool CheckAetheryte(Telepo* teleport, uint id)
