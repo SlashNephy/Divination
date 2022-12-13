@@ -13,7 +13,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             DrawAccountConfig();
             DrawPerRankConfigs();
-            DrawPartyFinderConfig();
             DrawDebugConfig();
 
             if (ImGui.Button("Save & Close"))
@@ -63,16 +62,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox($"Death Report##{label}", ref config.EnableDeathReport);
 
             ImGui.Checkbox($"Disable Report In Duty##{label}", ref config.DisableInDuty);
-        }
-    }
-
-    private void DrawPartyFinderConfig()
-    {
-        if (ImGui.CollapsingHeader("Party Finder"))
-        {
-            ImGui.Combo($"Channel##Party Finder", ref Config.PartyFinder.Channel, channels, channels.Length);
-
-            ImGui.Checkbox($"Report New Recruiting", ref Config.PartyFinder.EnableReport);
         }
     }
 
