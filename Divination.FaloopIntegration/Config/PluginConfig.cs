@@ -35,11 +35,6 @@ public class PluginConfig : IPluginConfiguration
         Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
     };
 
-    public PartyFinderConfig PartyFinder = new()
-    {
-        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
-    };
-
     public class PerRankConfig
     {
         public int Channel;
@@ -47,11 +42,5 @@ public class PluginConfig : IPluginConfiguration
         public bool EnableSpawnReport;
         public bool EnableDeathReport;
         public bool DisableInDuty;
-    }
-
-    public class PartyFinderConfig
-    {
-        public int Channel;
-        public bool EnableReport;
     }
 }
