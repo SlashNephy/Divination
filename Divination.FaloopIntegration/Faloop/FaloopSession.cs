@@ -7,6 +7,12 @@ namespace Divination.FaloopIntegration.Faloop;
 public class FaloopSession : IDisposable
 {
     private readonly FaloopApiClient client = new();
+    public readonly FaloopEmbedData EmbedData;
+
+    public FaloopSession()
+    {
+        EmbedData = new FaloopEmbedData(client);
+    }
 
     public bool IsLoggedIn { get; private set; }
 
@@ -27,6 +33,16 @@ public class FaloopSession : IDisposable
         if (login is not {Success: true})
         {
             PluginLog.Debug("LoginAsync: login is not success");
+            return false;
+        }
+
+        try
+        {
+            await EmbedData.Initialize();
+        }
+        catch (Exception exception)
+        {
+            PluginLog.Error(exception, "LoginAsync: EmbedData.Initialize failed");
             return false;
         }
 

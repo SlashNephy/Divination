@@ -73,6 +73,27 @@ public class FaloopApiClient : IDisposable
         });
     }
 
+    public async Task<string> DownloadText(Uri uri)
+    {
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = uri,
+            Headers =
+            {
+                {"Origin", "https://faloop.app"},
+                {"Referer", "https://faloop.app/"},
+                {
+                    "User-Agent",
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+                },
+            },
+        };
+
+        using var response = await client.SendAsync(request);
+        return await response.Content.ReadAsStringAsync();
+    }
+
     public void Dispose()
     {
         client.Dispose();
