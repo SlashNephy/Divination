@@ -76,7 +76,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return;
         }
 
-        var rank = FaloopEmbedData.Mobs.Find(x => x.Id == data.MobId)?.Rank;
+        var rank = session.EmbedData.Mobs.FirstOrDefault(x => x.Id == data.MobId)?.Rank;
         if (rank == default)
         {
             PluginLog.Debug("OnMobReport: rank == null");
@@ -212,7 +212,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return default;
         }
 
-        var location = FaloopEmbedData.ZonePois.Find(x => x.Id == zonePoiId);
+        var location = session.EmbedData.ZoneLocations.FirstOrDefault(x => x.Id == zonePoiId);
         if (location == default)
         {
             PluginLog.Debug("CreateMapLink: location == null");
