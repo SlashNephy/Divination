@@ -74,6 +74,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox($"Death Report##{label}", ref config.EnableDeathReport);
 
             ImGui.Checkbox($"Disable Report In Duty##{label}", ref config.DisableInDuty);
+
+            ImGui.Checkbox($"Skip Orphan Report##{label}", ref config.SkipOrphanReport);
         }
     }
 

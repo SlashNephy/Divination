@@ -15,30 +15,22 @@ public class PluginConfig : IPluginConfiguration
 
     public PerRankConfig RankS = new()
     {
-        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
         Jurisdiction = (int)Jurisdiction.World,
         EnableSpawnReport = true,
         EnableDeathReport = true,
     };
 
-    public PerRankConfig RankA = new()
-    {
-        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
-    };
+    public PerRankConfig RankA = new();
 
-    public PerRankConfig RankB = new()
-    {
-        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
-    };
+    public PerRankConfig RankB = new();
 
-    public PerRankConfig Fate = new()
-    {
-        Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo),
-    };
+    public PerRankConfig Fate = new();
+
+    public List<SpawnHistory> SpawnHistories = new();
 
     public class PerRankConfig
     {
-        public int Channel;
+        public int Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo);
         public int Jurisdiction;
         public Dictionary<MajorPatch, bool> MajorPatches = new()
         {
@@ -51,5 +43,13 @@ public class PluginConfig : IPluginConfiguration
         public bool EnableSpawnReport;
         public bool EnableDeathReport;
         public bool DisableInDuty;
+        public bool SkipOrphanReport;
+    }
+
+    public class SpawnHistory
+    {
+        public uint MobId;
+        public uint WorldId;
+        public DateTime At;
     }
 }

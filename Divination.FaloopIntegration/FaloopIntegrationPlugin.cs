@@ -47,6 +47,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         socket.OnPong += OnPong;
 
         Connect();
+        CleanSpawnHistories();
     }
 
     private void OnConnected()
@@ -142,7 +143,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
                 PluginLog.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
             case "death" when config.EnableDeathReport:
-                OnDeathMobReport(data, mob, world, config.Channel, mobData.Rank);
+                OnDeathMobReport(data, mob, world, config.Channel, mobData.Rank, config.SkipOrphanReport);
                 PluginLog.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
@@ -156,6 +157,13 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             PluginLog.Debug("OnSpawnMobReport: spawn == null");
             return;
         }
+
+        Config.SpawnHistories.Add(new PluginConfig.SpawnHistory
+        {
+            MobId = data.MobId,
+            WorldId = data.WorldId,
+            At = spawn.Timestamp,
+        });
 
         var payloads = new List<Payload>
         {
@@ -183,12 +191,19 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         });
     }
 
-    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world, int channel, string rank)
+    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world, int channel, string rank, bool skipOrphanReport)
     {
         var death = data.Data.Deserialize<MobReportData.Death>();
         if (death == default)
         {
             PluginLog.Debug("OnDeathMobReport: death == null");
+            return;
+        }
+
+        if (skipOrphanReport &&
+            Config.SpawnHistories.RemoveAll(x => x.MobId == data.MobId && x.WorldId == data.WorldId) == 0)
+        {
+            PluginLog.Debug("OnDeathMobReport: skipOrphanReport");
             return;
         }
 
@@ -371,6 +386,11 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
                 PluginLog.Error(exception, nameof(EmitMockData));
             }
         });
+    }
+
+    private void CleanSpawnHistories()
+    {
+        Config.SpawnHistories.RemoveAll(x => DateTime.UtcNow - x.At > TimeSpan.FromHours(1));
     }
 
     protected override void ReleaseManaged()
