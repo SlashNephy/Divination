@@ -1,3 +1,5 @@
-﻿namespace Divination.FaloopIntegration.Faloop.Model.Embed;
+﻿using Divination.FaloopIntegration.Config;
 
-public record MobData(int Id, string Rank);
+namespace Divination.FaloopIntegration.Faloop.Model.Embed;
+
+public record MobData(int Id, string Rank, MajorPatch Version);

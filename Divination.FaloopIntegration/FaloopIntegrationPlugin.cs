@@ -74,10 +74,10 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return;
         }
 
-        var rank = session.EmbedData.Mobs.FirstOrDefault(x => x.Id == data.MobId)?.Rank;
-        if (rank == default)
+        var mobData = session.EmbedData.Mobs.FirstOrDefault(x => x.Id == data.MobId);
+        if (mobData == default)
         {
-            PluginLog.Debug("OnMobReport: rank == null");
+            PluginLog.Debug("OnMobReport: mobData == null");
             return;
         }
 
@@ -97,7 +97,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
             return;
         }
 
-        var config = rank switch
+        var config = mobData.Rank switch
         {
             "S" => Config.RankS,
             "A" => Config.RankA,
@@ -108,6 +108,12 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         if (config == default)
         {
             PluginLog.Debug("OnMobReport: config == null");
+            return;
+        }
+
+        if (!config.MajorPatches.TryGetValue(mobData.Version, out var value) || !value)
+        {
+            PluginLog.Debug("OnMobReport: MajorPatches");
             return;
         }
 
@@ -132,11 +138,11 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
         switch (data.Action)
         {
             case "spawn" when config.EnableSpawnReport:
-                OnSpawnMobReport(data, mob, world, config.Channel, rank);
+                OnSpawnMobReport(data, mob, world, config.Channel, mobData.Rank);
                 PluginLog.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
             case "death" when config.EnableDeathReport:
-                OnDeathMobReport(data, mob, world, config.Channel, rank);
+                OnDeathMobReport(data, mob, world, config.Channel, mobData.Rank);
                 PluginLog.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
