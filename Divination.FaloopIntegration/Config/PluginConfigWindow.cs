@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
 using ImGuiNET;
@@ -57,6 +58,17 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Combo($"Channel##{label}", ref config.Channel, channels, channels.Length);
             ImGui.Combo($"Jurisdiction##{label}", ref config.Jurisdiction, jurisdictions, jurisdictions.Length);
 
+            ImGui.Text("Expansions");
+            ImGui.Indent();
+            foreach (var patchVersion in Enum.GetValues<MajorPatch>())
+            {
+                ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.MajorPatches, patchVersion, out _);
+                ImGui.Checkbox(Enum.GetName(patchVersion), ref value);
+                ImGui.SameLine();
+            }
+            ImGui.Unindent();
+            ImGui.NewLine();
+
             ImGui.Checkbox($"Spawn Report##{label}", ref config.EnableSpawnReport);
             ImGui.SameLine();
             ImGui.Checkbox($"Death Report##{label}", ref config.EnableDeathReport);
@@ -65,7 +77,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         }
     }
 
-    private void DrawDebugConfig()
+    private static void DrawDebugConfig()
     {
         if (ImGui.CollapsingHeader("Debug"))
         {
@@ -78,4 +90,5 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     private readonly string[] jurisdictions = Enum.GetNames<Jurisdiction>();
     private readonly string[] channels = Enum.GetNames<XivChatType>();
+    private readonly string[] majorPatches = Enum.GetNames<MajorPatch>();
 }
