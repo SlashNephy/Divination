@@ -1,4 +1,5 @@
 ﻿using Dalamud.Divination.Common.Api.Ui.Window;
+using Divination.AetheryteLinkInChat.Localize;
 using ImGuiNET;
 
 namespace Divination.AetheryteLinkInChat.Config;
@@ -7,23 +8,21 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
     public override void Draw()
     {
-        if (ImGui.Begin($"{AetheryteLinkInChatPlugin.Instance.Name} Config", ref IsOpen,
-            ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
+        if (ImGui.Begin(Localization.ConfigWindowTitle.Format(AetheryteLinkInChatPlugin.Instance.Name), ref IsOpen, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
         {
-            ImGui.Checkbox("Print Aetheryte Name to Chat", ref Config.PrintAetheryteName);
-
-            ImGui.Checkbox("Allow Teleport Queueing", ref Config.AllowTeleportQueueing);
+            ImGui.Checkbox(Localization.AllowTeleportQueueing.ToString(), ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
             {
-                ImGui.SliderInt("Queued Teleport Delay (ms)", ref Config.QueuedTeleportDelay, 500, 5000);
+                ImGui.SliderInt(Localization.QueueTeleportDelay.ToString(), ref Config.QueuedTeleportDelay, 500, 5000);
             }
 
             ImGui.Indent();
-            ImGui.Text("It can queue when teleport is unavailable, e.g. in combat.");
-            ImGui.Text("Then your teleport will be executed after the Delay.");
+            ImGui.Text(Localization.QueuedTeleportDescription.ToString());
             ImGui.Unindent();
 
-            if (ImGui.Button("Save & Close"))
+            ImGui.Spacing();
+
+            if (ImGui.Button(Localization.SaveConfigButton.ToString()))
             {
                 IsOpen = false;
                 Interface.SavePluginConfig(Config);
