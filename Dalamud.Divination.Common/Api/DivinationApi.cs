@@ -65,7 +65,7 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
         }
 
         processor.RegisterCommandsByAttribute(new DirectoryCommands());
-        processor.RegisterCommandsByAttribute((ICommandProvider) Plugin);
+        processor.RegisterCommandsByAttribute((ICommandProvider)Plugin);
         return processor;
     });
 
