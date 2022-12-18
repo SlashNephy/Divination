@@ -88,7 +88,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
-        message = message.Append(" ");
+        message = message.Append(new NewLinePayload());
 
         foreach (var (index, path) in paths.Select((x, i) => (i, x)))
         {
@@ -100,7 +100,9 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                     {
                         new IconPayload(BitmapFontIcon.Aetheryte),
                         linkPayload,
+                        new UIForegroundPayload(069),
                         new TextPayload(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString),
+                        UIForegroundPayload.UIForegroundOff,
                         RawPayload.LinkTerminator,
                     };
                     payloads.InsertRange(2, SeString.TextArrowPayloads);
