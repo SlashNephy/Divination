@@ -11,6 +11,9 @@ namespace Divination.AetheryteLinkInChat;
 
 public class AetheryteSolver
 {
+    private const uint MaxCalculateDepth = 5;
+    private const double BetweenAreaDistanceCost = 10.0;
+
     private readonly ExcelSheet<Aetheryte> aetheryteSheet;
     private readonly ExcelSheet<Map> mapSheet;
     private readonly ExcelSheet<MapMarker> mapMarkerSheet;
@@ -43,6 +46,7 @@ public class AetheryteSolver
                             continue;
                         case BoundaryTeleportPath boundary:
                             (x, y) = ConvertMarkerToCoordinate(boundary.ConnectedMarker, boundary.ConnectedMap);
+                            distance += BetweenAreaDistanceCost;
                             continue;
                     }
                 }
@@ -57,7 +61,7 @@ public class AetheryteSolver
     private IEnumerable<ITeleportPath[]> CalculateTeleportPaths(TerritoryType territoryType, Map map, uint depth = 0)
     {
         // 現在の探索深度が上限に達したら終了
-        if (depth >= 5)
+        if (depth >= MaxCalculateDepth)
         {
             yield break;
         }
