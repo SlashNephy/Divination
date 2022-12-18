@@ -21,7 +21,8 @@ public class Teleporter
         ConditionFlag.OccupiedInQuestEvent,
     };
 
-    private volatile Aetheryte? queuedAetheryte;
+    private Aetheryte? queuedAetheryte;
+    private readonly object queuedAetheryteLock = new();
     private readonly Condition condition;
 
     public Teleporter(Condition condition)
@@ -33,7 +34,10 @@ public class Teleporter
 
     public unsafe bool TeleportToAetheryte(Aetheryte aetheryte)
     {
-        queuedAetheryte = default;
+        lock (queuedAetheryteLock)
+        {
+            queuedAetheryte = default;
+        }
 
         var teleport = Telepo.Instance();
         if (teleport == default)
@@ -59,17 +63,23 @@ public class Teleporter
 
     public void TeleportToQueuedAetheryte()
     {
-        if (queuedAetheryte == default)
+        lock (queuedAetheryteLock)
         {
-            return;
-        }
+            if (queuedAetheryte == default)
+            {
+                return;
+            }
 
-        TeleportToAetheryte(queuedAetheryte);
+            TeleportToAetheryte(queuedAetheryte);
+        }
     }
 
     public void QueueTeleport(Aetheryte aetheryte)
     {
-        queuedAetheryte = aetheryte;
+        lock (queuedAetheryteLock)
+        {
+            queuedAetheryte = aetheryte;
+        }
     }
 
     private static unsafe bool CheckAetheryte(Telepo* teleport, uint id)

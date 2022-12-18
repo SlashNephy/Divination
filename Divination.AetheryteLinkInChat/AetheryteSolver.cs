@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Data;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Logging;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
 
@@ -11,34 +12,88 @@ namespace Divination.AetheryteLinkInChat;
 public class AetheryteSolver
 {
     private readonly ExcelSheet<Aetheryte> aetheryteSheet;
+    private readonly ExcelSheet<Map> mapSheet;
     private readonly ExcelSheet<MapMarker> mapMarkerSheet;
 
     public AetheryteSolver(DataManager dataManager)
     {
         aetheryteSheet = dataManager.GetExcelSheet<Aetheryte>() ?? throw new ApplicationException("aetheryteSheet == null");
+        mapSheet = dataManager.GetExcelSheet<Map>() ?? throw new ApplicationException("mapSheet == null");
         mapMarkerSheet = dataManager.GetExcelSheet<MapMarker>() ?? throw new ApplicationException("mapMarkerSheet == null");
     }
 
-    public record TeleportPath(Aetheryte? Aetheryte, MapMarker Marker);
-
-    public IEnumerable<TeleportPath> CalculateTeleportPathsForMapLink(MapLinkPayload payload)
+    public IEnumerable<ITeleportPath> CalculateTeleportPathsForMapLink(MapLinkPayload payload)
     {
-        var aetherytes = GetAetherytesInTerritoryType(payload.TerritoryType).ToList();
-        if (aetherytes.Count > 0)
-        {
-            var nearest = aetherytes.MinBy(x =>
-                CalculateEuclideanDistanceBetweenMarker(payload.XCoord, payload.YCoord, x.marker, payload.Map));
-            if (nearest != default)
+        var paths = CalculateTeleportPaths(payload.TerritoryType, payload.Map)
+            .MinBy(paths =>
             {
-                yield return new TeleportPath(nearest.aetheryte, nearest.marker);
-                yield break;
-            }
+                var distance = 0.0;
+                var (x, y) = ((double) payload.XCoord, (double) payload.YCoord);
+
+                foreach (var path in paths)
+                {
+                    var (markerX, markerY) = ConvertMarkerToCoordinate(path.Marker, path.Map);
+                    PluginLog.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
+                    distance += CalculateEuclideanDistance(x, y, markerX, markerY);
+
+                    switch (path)
+                    {
+                        case AetheryteTeleportPath aetheryte:
+                            (x, y) = ConvertMarkerToCoordinate(aetheryte.Marker, aetheryte.Map);
+                            continue;
+                        case BoundaryTeleportPath boundary:
+                            (x, y) = ConvertMarkerToCoordinate(boundary.ConnectedMarker, boundary.ConnectedMap);
+                            continue;
+                    }
+                }
+
+                PluginLog.Verbose("distance = {D}, paths = {P}", distance, paths);
+                return distance;
+            });
+
+        return paths?.Reverse() ?? new ITeleportPath[] { };
+    }
+
+    private IEnumerable<ITeleportPath[]> CalculateTeleportPaths(TerritoryType territoryType, Map map, uint depth = 0)
+    {
+        // 現在の探索深度が上限に達したら終了
+        if (depth >= 5)
+        {
+            yield break;
         }
 
-        var boundaries = GetBoundariesInMap(payload.Map).ToList();
-        if (boundaries.Count > 0)
+        // エリア内のエーテライトを探す
+        foreach (var (aetheryte, marker) in GetAetherytesInTerritoryType(territoryType))
         {
+            yield return new ITeleportPath[]
+            {
+                new AetheryteTeleportPath(aetheryte, marker, map),
+            };
+        }
 
+        // エリア内のマップ境界を探す
+        foreach (var marker in GetBoundariesInMap(map))
+        {
+            var connectedMap = mapSheet.GetRow(marker.DataKey);
+            var connectedTerritoryType = connectedMap?.TerritoryType.Value;
+            var connectedMarker = mapMarkerSheet
+                // エリア境界のマーカー
+                .Where(x => x.DataType == 1)
+                // 近接エリアに移動した先のマーカーを探す
+                .FirstOrDefault(x => x.RowId == connectedMap?.MapMarkerRange && x.DataKey == map.RowId);
+
+            PluginLog.Verbose("marker = {S} ({N})", marker.PlaceNameSubtext.Value?.Name.RawString ?? "", marker.DataKey);
+            PluginLog.Verbose("connectedTerritoryType = {S}", connectedTerritoryType?.PlaceName.Value?.Name.RawString ?? "");
+            PluginLog.Verbose("connectedMap = {S}", connectedMap?.PlaceName.Value?.Name.RawString ?? "");
+            PluginLog.Verbose("connectedMarker = {S}", connectedMarker?.PlaceNameSubtext.Value?.Name.RawString ?? "");
+
+            if (connectedTerritoryType != default && connectedMap != default && connectedMarker != default)
+            {
+                foreach (var paths in CalculateTeleportPaths(connectedTerritoryType, connectedMap, ++depth))
+                {
+                    yield return paths.Prepend(new BoundaryTeleportPath(connectedMarker, connectedMap, marker, map)).ToArray();
+                }
+            }
         }
     }
 
@@ -72,7 +127,7 @@ public class AetheryteSolver
             // エリア境界のマーカー
             .Where(x => x.DataType == 1)
             // 現在のマップのマーカー
-            .Where(x => x.RowId == map.RowId);
+            .Where(x => x.RowId == map.MapMarkerRange);
     }
 
     private static (double, double) ConvertMarkerToCoordinate(MapMarker marker, Map map)
@@ -82,10 +137,11 @@ public class AetheryteSolver
         return (x, y);
     }
 
-    private static double CalculateEuclideanDistanceBetweenMarker(float x, float y, MapMarker marker, Map map)
+    private static (double, double) ConvertCoordinateToRaw(double x, double y, Map map)
     {
-        var (markerX, markerY) = ConvertMarkerToCoordinate(marker, map);
-        return CalculateEuclideanDistance(x, y, markerX, markerY);
+        var x2= (x - 1) * 2048 * map.SizeFactor / 42.0 / 100;
+        var y2 = (y - 1) * 2048 * map.SizeFactor / 42.0 / 100;
+        return (x2, y2);
     }
 
     private static double CalculateEuclideanDistance(double x1, double y1, double x2, double y2)
