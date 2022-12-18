@@ -31,7 +31,7 @@ public class AetheryteSolver
             .MinBy(paths =>
             {
                 var distance = 0.0;
-                var (x, y) = ((double) payload.XCoord, (double) payload.YCoord);
+                var (x, y) = ((double)payload.XCoord, (double)payload.YCoord);
 
                 foreach (var path in paths)
                 {
@@ -143,7 +143,7 @@ public class AetheryteSolver
 
     private static (double, double) ConvertCoordinateToRaw(double x, double y, Map map)
     {
-        var x2= (x - 1) * 2048 * map.SizeFactor / 42.0 / 100;
+        var x2 = (x - 1) * 2048 * map.SizeFactor / 42.0 / 100;
         var y2 = (y - 1) * 2048 * map.SizeFactor / 42.0 / 100;
         return (x2, y2);
     }
