@@ -12,7 +12,7 @@ namespace Divination.AetheryteLinkInChat;
 public class AetheryteSolver
 {
     private const uint MaxCalculateDepth = 5;
-    private const double BetweenAreaDistanceCost = 10.0;
+    private const double BetweenAreaDistanceCost = 5.0;
 
     private readonly ExcelSheet<Aetheryte> aetheryteSheet;
     private readonly ExcelSheet<Map> mapSheet;
@@ -37,7 +37,16 @@ public class AetheryteSolver
                 {
                     var (markerX, markerY) = ConvertMarkerToCoordinate(path.Marker, path.Map);
                     PluginLog.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
-                    distance += CalculateEuclideanDistance(x, y, markerX, markerY);
+
+                    PluginLog.Verbose("path = {S}", path);
+                    if (path is AetheryteTeleportPath {Aetheryte.AethernetGroup: > 0})
+                    {
+                        PluginLog.Verbose("skip distance calculation: this is aethernet: {S}", path);
+                    }
+                    else
+                    {
+                        distance += CalculateEuclideanDistance(x, y, markerX, markerY);
+                    }
 
                     switch (path)
                     {
