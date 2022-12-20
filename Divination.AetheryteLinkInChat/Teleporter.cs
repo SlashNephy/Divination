@@ -34,10 +34,7 @@ public class Teleporter
 
     public unsafe bool TeleportToAetheryte(Aetheryte aetheryte)
     {
-        lock (queuedAetheryteLock)
-        {
-            queuedAetheryte = default;
-        }
+        queuedAetheryte = default;
 
         var teleport = Telepo.Instance();
         if (teleport == default)
@@ -61,16 +58,16 @@ public class Teleporter
         return true;
     }
 
-    public void TeleportToQueuedAetheryte()
+    public Aetheryte? TeleportToQueuedAetheryte()
     {
         lock (queuedAetheryteLock)
         {
-            if (queuedAetheryte == default)
+            if (queuedAetheryte != default && TeleportToAetheryte(queuedAetheryte))
             {
-                return;
+                return queuedAetheryte;
             }
 
-            TeleportToAetheryte(queuedAetheryte);
+            return default;
         }
     }
 
