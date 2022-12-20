@@ -99,7 +99,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             switch (path)
             {
                 // テレポ可能なエーテライト
-                case AetheryteTeleportPath {Aetheryte.IsAetheryte: true} aetheryte:
+                case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
                     var payloads = new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aetheryte),
@@ -114,7 +114,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                     message = message.Append(payloads);
                     break;
                 // 仮設エーテライト・都市内エーテライト
-                case AetheryteTeleportPath {Aetheryte.IsAetheryte: false} aetheryte:
+                case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
                     message = message.Append(new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aethernet),
