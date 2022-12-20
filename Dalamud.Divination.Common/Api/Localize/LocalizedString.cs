@@ -21,7 +21,7 @@ public sealed class LocalizedString
             return cached;
         }
 
-        var api = ServiceContainer.Get<DalamudApi>();
+        var api = ServiceContainer.Get<IDalamudApi>();
         switch (api?.ClientState.ClientLanguage)
         {
             case ClientLanguage.Japanese when !string.IsNullOrWhiteSpace(Ja):
@@ -53,3 +53,4 @@ public sealed class LocalizedString
         return string.Format(ToString(), args);
     }
 }
+
