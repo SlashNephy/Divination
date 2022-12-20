@@ -19,6 +19,11 @@ public class Teleporter
         ConditionFlag.ReadyingVisitOtherWorld,
         ConditionFlag.OccupiedInEvent,
         ConditionFlag.OccupiedInQuestEvent,
+        ConditionFlag.OccupiedSummoningBell,
+        ConditionFlag.OccupiedInCutSceneEvent,
+        ConditionFlag.Occupied33,
+        ConditionFlag.BoundByDuty,
+        ConditionFlag.BoundByDuty56,
     };
 
     private Aetheryte? queuedAetheryte;
