@@ -67,7 +67,11 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         Task.Delay(Config.QueuedTeleportDelay)
             .ContinueWith(_ =>
             {
-                teleporter.TeleportToQueuedAetheryte();
+                var aetheryte = teleporter.TeleportToQueuedAetheryte();
+                if (aetheryte != default)
+                {
+                    Divination.Chat.Print(Localization.QueuedTeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+                }
             });
     }
 

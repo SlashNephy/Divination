@@ -14,6 +14,12 @@ public static class Localization
         Ja = "現在テレポを実行できません。「{0}」へのテレポをキューに追加しました。",
     };
 
+    public static readonly LocalizedString QueuedTeleportingMessage = new()
+    {
+        En = "Teleporting to \"{0}\"...",
+        Ja = "キューに追加された「{0}」にテレポしています...",
+    };
+
     public static readonly LocalizedString ConfigWindowTitle = new()
     {
         En = "{0} Config",
