@@ -1,5 +1,4 @@
 ﻿using Dalamud.Divination.Common.Api.Ui.Window;
-using Divination.AetheryteLinkInChat.Localize;
 using ImGuiNET;
 
 namespace Divination.AetheryteLinkInChat.Config;
