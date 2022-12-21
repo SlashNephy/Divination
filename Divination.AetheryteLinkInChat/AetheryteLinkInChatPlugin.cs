@@ -14,7 +14,6 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Logging;
 using Dalamud.Plugin;
 using Divination.AetheryteLinkInChat.Config;
-using Divination.AetheryteLinkInChat.Localize;
 
 namespace Divination.AetheryteLinkInChat;
 
