@@ -67,9 +67,10 @@ public class Teleporter
     {
         lock (queuedAetheryteLock)
         {
-            if (queuedAetheryte != default && TeleportToAetheryte(queuedAetheryte))
+            var aetheryte = queuedAetheryte;
+            if (aetheryte != default && TeleportToAetheryte(aetheryte))
             {
-                return queuedAetheryte;
+                return aetheryte;
             }
 
             return default;
