@@ -33,7 +33,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         linkPayload = pluginInterface.AddChatLinkHandler(LinkCommandId, HandleLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
-        teleporter = new Teleporter(Dalamud.Condition);
+        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList);
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
         Dalamud.Condition.ConditionChange += OnConditionChanged;
     }
