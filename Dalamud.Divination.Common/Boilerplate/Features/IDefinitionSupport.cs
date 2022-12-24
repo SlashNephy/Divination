@@ -1,7 +1,6 @@
-﻿namespace Dalamud.Divination.Common.Boilerplate.Features
+﻿namespace Dalamud.Divination.Common.Boilerplate.Features;
+
+public interface IDefinitionSupport
 {
-    public interface IDefinitionSupport
-    {
-        public string DefinitionUrl { get; }
-    }
+    public string DefinitionUrl { get; }
 }

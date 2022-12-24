@@ -1,8 +1,7 @@
 ﻿using Dalamud.Divination.Common.Api.Definition;
 
-namespace Dalamud.Divination.Common.Boilerplate
+namespace Dalamud.Divination.Common.Boilerplate;
+
+public sealed class EmptyDefinitionContainer : DefinitionContainer
 {
-    public sealed class EmptyDefinitionContainer : DefinitionContainer
-    {
-    }
 }

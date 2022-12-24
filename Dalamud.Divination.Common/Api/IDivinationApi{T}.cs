@@ -12,32 +12,30 @@ using Dalamud.Divination.Common.Api.Version;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Divination.Common.Api.XivApi;
 
-namespace Dalamud.Divination.Common.Api
+namespace Dalamud.Divination.Common.Api;
+
+public interface IDivinationApi<TConfiguration, out TDefinition> : IDisposable
+    where TConfiguration : class, IPluginConfiguration, new() where TDefinition : DefinitionContainer
 {
-    public interface IDivinationApi<TConfiguration, out TDefinition> : IDisposable
-        where TConfiguration : class, IPluginConfiguration, new()
-        where TDefinition : DefinitionContainer
-    {
-        public IChatClient Chat { get; }
+    public IChatClient Chat { get; }
 
-        public ICommandProcessor? Command { get; }
+    public ICommandProcessor? Command { get; }
 
-        public ITextureManager Texture { get; }
+    public ITextureManager Texture { get; }
 
-        public IVersionManager Version { get; }
+    public IVersionManager Version { get; }
 
-        public IVoiceroid2ProxyClient Voiceroid2Proxy { get; }
+    public IVoiceroid2ProxyClient Voiceroid2Proxy { get; }
 
-        public IXivApiClient XivApi { get; }
+    public IXivApiClient XivApi { get; }
 
-        public IKeyStrokeManager KeyStroke { get; }
+    public IKeyStrokeManager KeyStroke { get; }
 
-        public INetworkInterceptor Network { get; }
+    public INetworkInterceptor Network { get; }
 
-        public IConfigManager<TConfiguration> Config { get; }
+    public IConfigManager<TConfiguration> Config { get; }
 
-        public ConfigWindow<TConfiguration>? ConfigWindow { get; }
+    public ConfigWindow<TConfiguration>? ConfigWindow { get; }
 
-        public IDefinitionManager<TDefinition>? Definition { get; }
-    }
+    public IDefinitionManager<TDefinition>? Definition { get; }
 }

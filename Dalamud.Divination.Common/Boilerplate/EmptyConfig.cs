@@ -1,9 +1,8 @@
 ﻿using Dalamud.Configuration;
 
-namespace Dalamud.Divination.Common.Boilerplate
+namespace Dalamud.Divination.Common.Boilerplate;
+
+public sealed class EmptyConfig : IPluginConfiguration
 {
-    public sealed class EmptyConfig : IPluginConfiguration
-    {
-        public int Version { get; set; }
-    }
+    public int Version { get; set; }
 }

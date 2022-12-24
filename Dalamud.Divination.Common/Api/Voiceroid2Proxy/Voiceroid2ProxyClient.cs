@@ -6,40 +6,39 @@ using System.Threading.Tasks;
 using Dalamud.Logging;
 using Newtonsoft.Json;
 
-namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy
+namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy;
+
+internal sealed class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
 {
-    internal sealed class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
+    private readonly HttpClient client = new();
+    private readonly string url;
+
+    public Voiceroid2ProxyClient(string host = "localhost", int port = 4532)
     {
-        private readonly HttpClient client = new();
-        private readonly string url;
+        url = $"http://{host}:{port.ToString()}/talk";
+    }
 
-        public Voiceroid2ProxyClient(string host = "localhost", int port = 4532)
+    public async Task TalkAsync(string text)
+    {
+        var payload = new Dictionary<string, string>
         {
-            url = $"http://{host}:{port.ToString()}/talk";
-        }
+            {"text", text},
+        };
+        var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
 
-        public async Task TalkAsync(string text)
+        try
         {
-            var payload = new Dictionary<string, string>
-            {
-                {"text", text},
-            };
-            var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-
-            try
-            {
-                await client.PostAsync(url, content);
-                PluginLog.Verbose("Talk: {Text}", text);
-            }
-            catch (Exception ex)
-            {
-                PluginLog.Error(ex, "Error occurred while TalkAsync");
-            }
+            await client.PostAsync(url, content);
+            PluginLog.Verbose("Talk: {Text}", text);
         }
-
-        public void Dispose()
+        catch (Exception ex)
         {
-            client.Dispose();
+            PluginLog.Error(ex, "Error occurred while TalkAsync");
         }
+    }
+
+    public void Dispose()
+    {
+        client.Dispose();
     }
 }

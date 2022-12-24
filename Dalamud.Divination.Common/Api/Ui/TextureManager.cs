@@ -10,116 +10,116 @@ using Dalamud.Logging;
 using Dalamud.Utility;
 using ImGuiScene;
 
-namespace Dalamud.Divination.Common.Api.Ui
+namespace Dalamud.Divination.Common.Api.Ui;
+
+internal sealed class TextureManager : ITextureManager
 {
-    internal sealed class TextureManager : ITextureManager
+    private readonly Dictionary<uint, TextureWrap?> cache = new();
+    private readonly object cacheLock = new();
+
+    private readonly HttpClient client = new();
+    private readonly DataManager dataManager;
+    private readonly UiBuilder uiBuilder;
+
+    public TextureManager(DataManager dataManager, UiBuilder uiBuilder)
     {
-        private readonly Dictionary<uint, TextureWrap?> cache = new();
-        private readonly object cacheLock = new();
+        this.dataManager = dataManager;
+        this.uiBuilder = uiBuilder;
+    }
 
-        private readonly HttpClient client = new();
-        private readonly DataManager dataManager;
-        private readonly UiBuilder uiBuilder;
-
-        public TextureManager(DataManager dataManager, UiBuilder uiBuilder)
+    public TextureWrap? GetIconTexture(uint iconId)
+    {
+        lock (cacheLock)
         {
-            this.dataManager = dataManager;
-            this.uiBuilder = uiBuilder;
-        }
-
-        public TextureWrap? GetIconTexture(uint iconId)
-        {
-            lock (cacheLock)
+            if (cache.TryGetValue(iconId, out var texture))
             {
-                if (cache.TryGetValue(iconId, out var texture))
-                {
-                    return texture;
-                }
-
-                cache[iconId] = null;
-                LoadIconTexture(iconId);
-
-                return null;
+                return texture;
             }
-        }
 
-        public void Dispose()
+            cache[iconId] = null;
+            LoadIconTexture(iconId);
+
+            return null;
+        }
+    }
+
+    public void Dispose()
+    {
+        foreach (var texture in cache.Values)
         {
-            foreach (var texture in cache.Values)
-            {
-                texture?.Dispose();
-            }
-            cache.Clear();
-
-            client.Dispose();
+            texture?.Dispose();
         }
 
-        private void LoadIconTexture(uint iconId)
-        {
-            Task.Run(async () =>
-            {
-                try
-                {
-                    cache[iconId] = LoadIconTextureFromLumina(iconId) ?? await LoadIconTextureFromXivApi(iconId);
-                }
-                catch (Exception exception)
-                {
-                    cache.Remove(iconId);
-                    PluginLog.Error(exception, "Error occurred while LoadIconTexture");
-                }
-            });
-        }
+        cache.Clear();
 
-        private TextureWrap? LoadIconTextureFromLumina(uint iconId)
+        client.Dispose();
+    }
+
+    private void LoadIconTexture(uint iconId)
+    {
+        Task.Run(async () =>
         {
             try
             {
-                var iconTex = dataManager.GetIcon(iconId);
-                if (iconTex != null)
-                {
-                    var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(),
-                        iconTex.Header.Width,
-                        iconTex.Header.Height,
-                        4);
-                    if (tex.ImGuiHandle != IntPtr.Zero)
-                    {
-                        return tex;
-                    }
-
-                    tex.Dispose();
-                }
+                cache[iconId] = LoadIconTextureFromLumina(iconId) ?? await LoadIconTextureFromXivApi(iconId);
             }
-            catch (NotImplementedException)
+            catch (Exception exception)
             {
+                cache.Remove(iconId);
+                PluginLog.Error(exception, "Error occurred while LoadIconTexture");
             }
-            catch (MissingFieldException)
-            {
-            }
+        });
+    }
 
-            return null;
-        }
-
-        private async Task<TextureWrap?> LoadIconTextureFromXivApi(uint iconId)
+    private TextureWrap? LoadIconTextureFromLumina(uint iconId)
+    {
+        try
         {
-            var path = Path.Combine(DivinationEnvironment.CacheDirectory, $"Icon.{iconId}.png");
-            if (!File.Exists(path))
+            var iconTex = dataManager.GetIcon(iconId);
+            if (iconTex != null)
             {
-                var iconUrl = XivApiClient.GetIconUrl(iconId);
-                await using var stream = await client.GetStreamAsync(iconUrl);
-                await using var fileStream = new FileStream(path, FileMode.CreateNew, FileAccess.Write);
+                var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(),
+                    iconTex.Header.Width,
+                    iconTex.Header.Height,
+                    4);
+                if (tex.ImGuiHandle != IntPtr.Zero)
+                {
+                    return tex;
+                }
 
-                await stream.CopyToAsync(fileStream);
+                tex.Dispose();
             }
-
-            var tex = await uiBuilder.LoadImageAsync(path);
-            if (tex.ImGuiHandle != IntPtr.Zero)
-            {
-                return tex;
-            }
-
-            tex.Dispose();
-
-            return null;
         }
+        catch (NotImplementedException)
+        {
+        }
+        catch (MissingFieldException)
+        {
+        }
+
+        return null;
+    }
+
+    private async Task<TextureWrap?> LoadIconTextureFromXivApi(uint iconId)
+    {
+        var path = Path.Combine(DivinationEnvironment.CacheDirectory, $"Icon.{iconId}.png");
+        if (!File.Exists(path))
+        {
+            var iconUrl = XivApiClient.GetIconUrl(iconId);
+            await using var stream = await client.GetStreamAsync(iconUrl);
+            await using var fileStream = new FileStream(path, FileMode.CreateNew, FileAccess.Write);
+
+            await stream.CopyToAsync(fileStream);
+        }
+
+        var tex = await uiBuilder.LoadImageAsync(path);
+        if (tex.ImGuiHandle != IntPtr.Zero)
+        {
+            return tex;
+        }
+
+        tex.Dispose();
+
+        return null;
     }
 }

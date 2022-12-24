@@ -1,9 +1,8 @@
-﻿namespace Dalamud.Divination.Common.Api.Network
+﻿namespace Dalamud.Divination.Common.Api.Network;
+
+public interface IOpcodeDetectorManager
 {
-    public interface IOpcodeDetectorManager
-    {
-        public void Enable();
-        public void Disable();
-        public void Register(IOpcodeDetector detector);
-    }
+    public void Enable();
+    public void Disable();
+    public void Register(IOpcodeDetector detector);
 }
