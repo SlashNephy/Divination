@@ -18,7 +18,7 @@ public static class Localization
 
     public static readonly LocalizedString QueuedTeleportingMessage = new()
     {
-        En = "Teleporting to \"{0}\"...",
+        En = "Teleporting to \"{0}\" (queued) ...",
         Ja = "キューに追加された「{0}」にテレポしています...",
     };
 
