@@ -12,7 +12,7 @@ namespace Divination.AetheryteLinkInChat;
 public class AetheryteSolver
 {
     private const uint MaxCalculateDepth = 5;
-    private const double BetweenAreaDistanceCost = 5.0;
+    private const double BetweenAreaDistanceCost = 8.0;
 
     private readonly ExcelSheet<Aetheryte> aetheryteSheet;
     private readonly ExcelSheet<Map> mapSheet;
