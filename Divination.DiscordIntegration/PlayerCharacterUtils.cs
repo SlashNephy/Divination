@@ -7,12 +7,14 @@ namespace Divination.DiscordIntegration
     {
         public static byte? GetIcon(this PlayerCharacter character)
         {
-            return character.ReadByte(DiscordIntegrationPlugin.Instance.Divination.Definition?.Provider.Container.IconOffset);
+            var offset = DiscordIntegrationPlugin.Instance.Divination.Definition?.Provider.Container.IconOffset;
+            return !offset.HasValue ? default : character.ReadByte(offset.Value);
         }
 
         public static short? GetTitle(this PlayerCharacter character)
         {
-            return character.ReadInt16(DiscordIntegrationPlugin.Instance.Divination.Definition?.Provider.Container.TitleOffset);
+            var offset = DiscordIntegrationPlugin.Instance.Divination.Definition?.Provider.Container.TitleOffset;
+            return !offset.HasValue ? default : character.ReadInt16(offset.Value);
         }
     }
 }
