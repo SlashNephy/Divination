@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
@@ -101,11 +100,11 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                     var payloads = new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aetheryte),
-                        linkPayload,
                         new UIForegroundPayload(069),
+                        linkPayload,
                         new TextPayload(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString),
-                        UIForegroundPayload.UIForegroundOff,
                         RawPayload.LinkTerminator,
+                        UIForegroundPayload.UIForegroundOff,
                     };
                     payloads.InsertRange(2, SeString.TextArrowPayloads);
 
@@ -146,8 +145,13 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
-        // 最初に矢印の TextPayload が入っているので除外する
-        var aetheryteName = string.Join("", link.Payloads.OfType<TextPayload>().Skip(1).Select(x => x.Text));
+        var aetheryteName = link.Payloads.OfType<TextPayload>().FirstOrDefault()?.Text;
+        if (aetheryteName == default)
+        {
+            PluginLog.Error("HandleLink: aetheryteName == null");
+            return;
+        }
+
         var aetheryte = solver.FindAetheryteByName(aetheryteName);
         if (aetheryte == default)
         {
