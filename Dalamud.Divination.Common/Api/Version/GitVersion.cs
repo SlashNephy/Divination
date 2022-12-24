@@ -80,7 +80,7 @@ internal sealed class GitVersion : IGitVersion
     {
         try
         {
-            return (int) gitVersionInfo!.GetField(key)!.GetValue(null)!;
+            return (int)gitVersionInfo!.GetField(key)!.GetValue(null)!;
         }
         catch
         {

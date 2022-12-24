@@ -89,7 +89,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
             var context = new CommandContext(command, match);
 
             command.Method.Invoke(command.Method.IsStatic ? null : command.Instance,
-                command.CanReceiveContext ? new object[] {context} : Array.Empty<object>());
+                command.CanReceiveContext ? new object[] { context } : Array.Empty<object>());
         }
         catch (Exception exception)
         {

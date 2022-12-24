@@ -35,7 +35,7 @@ public sealed class XivApiResponse : IReadOnlyDictionary<string, JToken>
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return ((IEnumerable) json).GetEnumerator();
+        return ((IEnumerable)json).GetEnumerator();
     }
 
     public int Count => json.Count;
@@ -50,7 +50,7 @@ public sealed class XivApiResponse : IReadOnlyDictionary<string, JToken>
         return json.TryGetValue(key, out value!);
     }
 
-    public IEnumerable<string> Keys => ((IDictionary<string, JToken>) json).Keys;
+    public IEnumerable<string> Keys => ((IDictionary<string, JToken>)json).Keys;
 
-    public IEnumerable<JToken> Values => ((IDictionary<string, JToken>) json).Values;
+    public IEnumerable<JToken> Values => ((IDictionary<string, JToken>)json).Values;
 }

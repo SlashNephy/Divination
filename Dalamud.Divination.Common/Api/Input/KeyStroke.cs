@@ -39,7 +39,7 @@ public static class KeyStroke
                     case >= Win32Api.Vk0 and <= Win32Api.Vk9:
                         return $"{key - Win32Api.Vk0}";
                     case >= Win32Api.VkA and <= Win32Api.VkZ:
-                        return $"{(char) ('A' + key - Win32Api.VkA)}";
+                        return $"{(char)('A' + key - Win32Api.VkA)}";
                     case >= Win32Api.VkNum0 and <= Win32Api.VkNum9:
                         return $"NUM {key - Win32Api.VkNum0}";
                     case >= Win32Api.VkF1 and <= Win32Api.VkF24:

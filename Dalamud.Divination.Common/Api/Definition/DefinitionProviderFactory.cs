@@ -9,7 +9,7 @@ public static class DefinitionProviderFactory<TContainer> where TContainer : Def
         var filename = Path.GetFileName(url);
 
 #if DEBUG
-            return new LocalDefinitionProvider<TContainer>(filename, url);
+        return new LocalDefinitionProvider<TContainer>(filename, url);
 #else
         return new RemoteDefinitionProvider<TContainer>(url, filename);
 #endif

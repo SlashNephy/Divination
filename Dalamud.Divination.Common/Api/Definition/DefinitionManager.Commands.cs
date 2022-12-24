@@ -17,7 +17,7 @@ internal partial class DefinitionManager<TContainer>
 
         public Commands(IDefinitionManager<TContainer> manager)
         {
-            this.manager = (DefinitionManager<TContainer>) manager;
+            this.manager = (DefinitionManager<TContainer>)manager;
         }
 
         [Command("def", "version")]
