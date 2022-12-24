@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Dalamud.Game.ClientState.Aetherytes;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
@@ -29,10 +30,12 @@ public class Teleporter
     private Aetheryte? queuedAetheryte;
     private readonly object queuedAetheryteLock = new();
     private readonly Condition condition;
+    private readonly AetheryteList aetheryteList;
 
-    public Teleporter(Condition condition)
+    public Teleporter(Condition condition, AetheryteList aetheryteList)
     {
         this.condition = condition;
+        this.aetheryteList = aetheryteList;
     }
 
     public bool IsTeleportUnavailable => teleportUnavailableFlags.Any(x => condition[x]);
@@ -48,7 +51,7 @@ public class Teleporter
             return false;
         }
 
-        if (!CheckAetheryte(teleport, aetheryte.RowId))
+        if (!CheckAetheryte(aetheryte.RowId))
         {
             PluginLog.Error("TeleportToAetheryte: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
             return false;
@@ -85,18 +88,8 @@ public class Teleporter
         }
     }
 
-    private static unsafe bool CheckAetheryte(Telepo* teleport, uint id)
+    private bool CheckAetheryte(uint id)
     {
-        teleport->UpdateAetheryteList();
-
-        for (var it = teleport->TeleportList.First; it != teleport->TeleportList.Last; it++)
-        {
-            if (it->AetheryteId == id)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return aetheryteList.Any(x => x.AetheryteId == id);
     }
 }
