@@ -161,9 +161,4 @@ public class AetheryteSolver
     {
         return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
     }
-
-    public Aetheryte? FindAetheryteByName(string name)
-    {
-        return aetheryteSheet.FirstOrDefault(x => x.PlaceName.Value?.Name.RawString == name);
-    }
 }

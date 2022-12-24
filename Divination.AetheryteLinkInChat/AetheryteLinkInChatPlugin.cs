@@ -103,6 +103,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                         new UIForegroundPayload(069),
                         linkPayload,
                         new TextPayload(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString),
+                        new AetherytePayload(aetheryte.Aetheryte),
                         RawPayload.LinkTerminator,
                         UIForegroundPayload.UIForegroundOff,
                     };
@@ -145,17 +146,10 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
-        var aetheryteName = link.Payloads.OfType<TextPayload>().FirstOrDefault()?.Text;
-        if (aetheryteName == default)
-        {
-            PluginLog.Error("HandleLink: aetheryteName == null");
-            return;
-        }
-
-        var aetheryte = solver.FindAetheryteByName(aetheryteName);
+        var aetheryte = link.Payloads.OfType<RawPayload>().Select(AetherytePayload.Parse).FirstOrDefault(x => x != default);
         if (aetheryte == default)
         {
-            PluginLog.Error("HandleLink: aetheryte ({Name}) == null", aetheryteName);
+            PluginLog.Error("HandleLink: aetheryte ({Text}) == null", link.ToString());
             return;
         }
 
