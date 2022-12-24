@@ -6,6 +6,6 @@ public static class SeIconCharEx
 {
     public static string AsString(this SeIconChar icon)
     {
-        return ((char) icon).ToString();
+        return ((char)icon).ToString();
     }
 }
