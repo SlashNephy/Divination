@@ -28,7 +28,6 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
     private readonly DalamudLinkPayload linkPayload;
     private readonly AetheryteSolver solver;
     private readonly Teleporter teleporter;
-    private readonly Regex spaceRegex = new(@"\s+", RegexOptions.Compiled);
 
     public AetheryteLinkInChatPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -149,12 +148,6 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
 
         // 最初に矢印の TextPayload が入っているので除外する
         var aetheryteName = string.Join("", link.Payloads.OfType<TextPayload>().Skip(1).Select(x => x.Text));
-
-        // 途中で改行された場合、正常にエーテライト名を取れないので空白文字を除去する
-        // 今のところエーテライト名に空白が入るものは存在しないので問題ないと思う...
-        // カスタムの RawPayload が実装できるようになったら実装を変更する
-        aetheryteName = spaceRegex.Replace(aetheryteName, "");
-
         var aetheryte = solver.FindAetheryteByName(aetheryteName);
         if (aetheryte == default)
         {
