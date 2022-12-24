@@ -16,12 +16,12 @@
       },
       "DiscordRichPresence": {
         "type": "Direct",
-        "requested": "[1.1.1.14, )",
-        "resolved": "1.1.1.14",
-        "contentHash": "9DAETjebo1EK4eD0t3NUlg7jltXszIyVKBzY3xBw5bgRkxoexbX1ZcJGK8Pfzq+LV7Ybc/GUGNGmH6LU75mkNw==",
+        "requested": "[1.1.3.18, )",
+        "resolved": "1.1.3.18",
+        "contentHash": "cu8ilTx4DPuU3YJO1bNF+UtTlVvQIihvJ7AwoRKkcy9+cZ+fUxKfQsMpEcfm3PndT3zExpljPbS9wMdbLeYdAg==",
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "GitVersion.MsBuild": {
