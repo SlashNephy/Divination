@@ -22,65 +22,64 @@ using Dalamud.Game.Network;
 using Dalamud.Interface;
 using Dalamud.Plugin;
 
-namespace Dalamud.Divination.Common.Api.Dalamud
+namespace Dalamud.Divination.Common.Api.Dalamud;
+
+[SuppressMessage("ReSharper", "UnusedMember.Global")]
+public interface IDalamudApi
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public interface IDalamudApi
-    {
-        public DalamudPluginInterface PluginInterface { get; }
+    public DalamudPluginInterface PluginInterface { get; }
 
-        #region IoC
+    #region IoC
 
-        public DataManager DataManager { get; }
+    public DataManager DataManager { get; }
 
-        public ChatHandlers ChatHandlers { get; }
+    public ChatHandlers ChatHandlers { get; }
 
-        public BuddyList BuddyList { get; }
+    public BuddyList BuddyList { get; }
 
-        public ClientState ClientState { get; }
+    public ClientState ClientState { get; }
 
-        public Condition Condition { get; }
+    public Condition Condition { get; }
 
-        public FateTable FateTable { get; }
+    public FateTable FateTable { get; }
 
-        public JobGauges JobGauges { get; }
+    public JobGauges JobGauges { get; }
 
-        public KeyState KeyState { get; }
+    public KeyState KeyState { get; }
 
-        public ObjectTable ObjectTable { get; }
+    public ObjectTable ObjectTable { get; }
 
-        public TargetManager TargetManager { get; }
+    public TargetManager TargetManager { get; }
 
-        public PartyList PartyList { get; }
+    public PartyList PartyList { get; }
 
-        public CommandManager CommandManager { get; }
+    public CommandManager CommandManager { get; }
 
-        public Framework Framework { get; }
+    public Framework Framework { get; }
 
-        public ChatGui ChatGui { get; }
+    public ChatGui ChatGui { get; }
 
-        public FlyTextGui FlyTextGui { get; }
+    public FlyTextGui FlyTextGui { get; }
 
-        public GameGui GameGui { get; }
+    public GameGui GameGui { get; }
 
-        public PartyFinderGui PartyFinderGui { get; }
+    public PartyFinderGui PartyFinderGui { get; }
 
-        public ToastGui ToastGui { get; }
+    public ToastGui ToastGui { get; }
 
-        public LibcFunction LibcFunction { get; }
+    public LibcFunction LibcFunction { get; }
 
-        public GameNetwork GameNetwork { get; }
+    public GameNetwork GameNetwork { get; }
 
-        public SigScanner SigScanner { get; }
+    public SigScanner SigScanner { get; }
 
-        public AetheryteList AetheryteList { get; }
+    public AetheryteList AetheryteList { get; }
 
-        public GamepadState GamepadState { get; }
+    public GamepadState GamepadState { get; }
 
-        public DtrBar DtrBar { get; }
+    public DtrBar DtrBar { get; }
 
-        public TitleScreenMenu TitleScreenMenu { get; }
+    public TitleScreenMenu TitleScreenMenu { get; }
 
-        #endregion
-    }
+    #endregion
 }

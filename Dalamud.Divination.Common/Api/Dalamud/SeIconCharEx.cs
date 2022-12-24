@@ -1,12 +1,11 @@
 ﻿using Dalamud.Game.Text;
 
-namespace Dalamud.Divination.Common.Api.Dalamud
+namespace Dalamud.Divination.Common.Api.Dalamud;
+
+public static class SeIconCharEx
 {
-    public static class SeIconCharEx
+    public static string AsString(this SeIconChar icon)
     {
-        public static string AsString(this SeIconChar icon)
-        {
-            return ((char)icon).ToString();
-        }
+        return ((char) icon).ToString();
     }
 }

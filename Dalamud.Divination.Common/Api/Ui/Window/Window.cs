@@ -1,15 +1,14 @@
-﻿namespace Dalamud.Divination.Common.Api.Ui.Window
+﻿namespace Dalamud.Divination.Common.Api.Ui.Window;
+
+public abstract class Window : IWindow
 {
-    public abstract class Window : IWindow
+    protected bool IsOpen;
+
+    public bool IsDrawing
     {
-        protected bool IsOpen;
-
-        public bool IsDrawing
-        {
-            get => IsOpen;
-            set => IsOpen = value;
-        }
-
-        public abstract void Draw();
+        get => IsOpen;
+        set => IsOpen = value;
     }
+
+    public abstract void Draw();
 }

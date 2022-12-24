@@ -4,73 +4,73 @@ using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace Dalamud.Divination.Common.Api.Definition
+namespace Dalamud.Divination.Common.Api.Definition;
+
+internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer>
+    where TContainer : DefinitionContainer, new()
 {
-    internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer>
-        where TContainer : DefinitionContainer, new()
+    private readonly string fallbackUrl;
+    private readonly FileSystemWatcher watcher;
+
+    public LocalDefinitionProvider(string filename, string fallbackUrl)
     {
-        private readonly string fallbackUrl;
-        private readonly FileSystemWatcher watcher;
+        Filename = filename;
+        this.fallbackUrl = fallbackUrl;
 
-        public LocalDefinitionProvider(string filename, string fallbackUrl)
+        if (!Directory.Exists(DivinationEnvironment.DivinationDirectory))
         {
-            Filename = filename;
-            this.fallbackUrl = fallbackUrl;
+            Directory.CreateDirectory(DivinationEnvironment.DivinationDirectory);
+        }
 
-            if (!Directory.Exists(DivinationEnvironment.DivinationDirectory))
+        watcher = new FileSystemWatcher(DivinationEnvironment.DivinationDirectory, filename);
+
+        watcher.Changed += OnDefinitionFileChanged;
+        watcher.EnableRaisingEvents = true;
+    }
+
+    public override string Filename { get; }
+
+    public override bool AllowObsoleteDefinitions => true;
+
+    private void OnDefinitionFileChanged(object sender, FileSystemEventArgs e)
+    {
+        Task.Run(async () =>
+        {
+            await Update(Cancellable.Token);
+        });
+    }
+
+    internal override async Task<JObject?> Fetch()
+    {
+        var localPath = Path.Combine(DivinationEnvironment.DivinationDirectory, Filename);
+        if (!File.Exists(localPath))
+        {
+            using var remote = new RemoteDefinitionProvider<TContainer>(fallbackUrl, Filename);
+            return await remote.Fetch();
+        }
+
+        var exceptions = new List<Exception>();
+        for (var retry = 0; retry < 10; retry++)
+        {
+            try
             {
-                Directory.CreateDirectory(DivinationEnvironment.DivinationDirectory);
+                var content = await File.ReadAllTextAsync(localPath);
+                return JObject.Parse(content);
             }
-            watcher = new FileSystemWatcher(DivinationEnvironment.DivinationDirectory, filename);
-
-            watcher.Changed += OnDefinitionFileChanged;
-            watcher.EnableRaisingEvents = true;
-        }
-
-        public override string Filename { get; }
-
-        public override bool AllowObsoleteDefinitions => true;
-
-        private void OnDefinitionFileChanged(object sender, FileSystemEventArgs e)
-        {
-            Task.Run(async () =>
+            // ファイルロックされてる場合などで失敗するので10回までリトライさせる
+            catch (IOException e)
             {
-                await Update(Cancellable.Token);
-            });
-        }
-
-        internal override async Task<JObject?> Fetch()
-        {
-            var localPath = Path.Combine(DivinationEnvironment.DivinationDirectory, Filename);
-            if (!File.Exists(localPath))
-            {
-                using var remote = new RemoteDefinitionProvider<TContainer>(fallbackUrl, Filename);
-                return await remote.Fetch();
+                exceptions.Add(e);
+                await Task.Delay(500, Cancellable.Token);
             }
-
-            var exceptions = new List<Exception>();
-            for (var retry = 0; retry < 10; retry++)
-            {
-                try
-                {
-                    var content = await File.ReadAllTextAsync(localPath);
-                    return JObject.Parse(content);
-                }
-                // ファイルロックされてる場合などで失敗するので10回までリトライさせる
-                catch (IOException e)
-                {
-                    exceptions.Add(e);
-                    await Task.Delay(500, Cancellable.Token);
-                }
-            }
-
-            throw new AggregateException(exceptions);
         }
 
-        public override void Dispose()
-        {
-            base.Dispose();
-            watcher.Dispose();
-        }
+        throw new AggregateException(exceptions);
+    }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+        watcher.Dispose();
     }
 }

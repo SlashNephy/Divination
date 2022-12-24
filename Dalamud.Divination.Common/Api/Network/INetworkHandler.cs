@@ -1,23 +1,22 @@
-﻿namespace Dalamud.Divination.Common.Api.Network
+﻿namespace Dalamud.Divination.Common.Api.Network;
+
+public interface INetworkHandler
 {
-    public interface INetworkHandler
+    bool CanHandleReceivedMessage(NetworkContext context)
     {
-        bool CanHandleReceivedMessage(NetworkContext context)
-        {
-            return false;
-        }
+        return false;
+    }
 
-        void HandleReceivedMessage(NetworkContext context)
-        {
-        }
+    void HandleReceivedMessage(NetworkContext context)
+    {
+    }
 
-        bool CanHandleSentMessage(NetworkContext context)
-        {
-            return false;
-        }
+    bool CanHandleSentMessage(NetworkContext context)
+    {
+        return false;
+    }
 
-        void HandleSentMessage(NetworkContext context)
-        {
-        }
+    void HandleSentMessage(NetworkContext context)
+    {
     }
 }

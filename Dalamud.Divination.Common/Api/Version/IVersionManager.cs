@@ -1,8 +1,7 @@
-﻿namespace Dalamud.Divination.Common.Api.Version
+﻿namespace Dalamud.Divination.Common.Api.Version;
+
+public interface IVersionManager
 {
-    public interface IVersionManager
-    {
-        public IGitVersion Plugin { get; }
-        public IGitVersion Divination { get; }
-    }
+    public IGitVersion Plugin { get; }
+    public IGitVersion Divination { get; }
 }
