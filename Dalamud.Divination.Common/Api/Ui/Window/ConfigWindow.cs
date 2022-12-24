@@ -6,46 +6,46 @@ using Dalamud.Divination.Common.Api.Config;
 using Dalamud.Interface;
 using Dalamud.Plugin;
 
-namespace Dalamud.Divination.Common.Api.Ui.Window
+namespace Dalamud.Divination.Common.Api.Ui.Window;
+
+public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConfiguration>, IDisposable,
+    ICommandProvider where TConfiguration : class, IPluginConfiguration, new()
 {
-    public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConfiguration>, IDisposable,
-        ICommandProvider where TConfiguration : class, IPluginConfiguration, new()
+    public TConfiguration Config => ConfigManager.Config;
+    public DalamudPluginInterface Interface => ConfigManager.Interface;
+
+    public void Dispose()
     {
-        public TConfiguration Config => ConfigManager.Config;
-        public DalamudPluginInterface Interface => ConfigManager.Interface;
+        UiBuilder.OpenConfigUi -= OnMainCommand;
+        UiBuilder.Draw -= OnDraw;
+    }
 
-        public void Dispose()
+    [Command("")]
+    [HiddenCommand(HideInHelp = false)]
+    [CommandHelp("{Name} の設定ウィンドウを開きます。")]
+    private void OnMainCommand()
+    {
+        this.Toggle();
+    }
+
+    private void OnDraw()
+    {
+        if (!IsDrawing)
         {
-            UiBuilder.OpenConfigUi -= OnMainCommand;
-            UiBuilder.Draw -= OnDraw;
+            return;
         }
 
-        [Command("")]
-        [CommandHelp("{Name} の設定ウィンドウを開きます。")]
-        private void OnMainCommand()
-        {
-            this.Toggle();
-        }
+        Draw();
+    }
 
-        private void OnDraw()
-        {
-            if (!IsDrawing)
-            {
-                return;
-            }
-
-            Draw();
-        }
-
-        internal void EnableHook()
-        {
-            UiBuilder.OpenConfigUi += OnMainCommand;
-            UiBuilder.Draw += OnDraw;
-        }
+    internal void EnableHook()
+    {
+        UiBuilder.OpenConfigUi += OnMainCommand;
+        UiBuilder.Draw += OnDraw;
+    }
 
 #pragma warning disable 8618
-        internal IConfigManager<TConfiguration> ConfigManager { get; set; }
-        internal UiBuilder UiBuilder { get; set; }
+    internal IConfigManager<TConfiguration> ConfigManager { get; set; }
+    internal UiBuilder UiBuilder { get; set; }
 #pragma warning restore 8618
-    }
 }
