@@ -9,7 +9,7 @@ namespace Divination.AetheryteLinkInChat;
 public sealed class AetherytePayload : Payload
 {
     // 未使用だと思われる
-    private const byte EmbeddedInfoTypeByte = (byte) (EmbeddedInfoType.DalamudLink + 1);
+    private const byte EmbeddedInfoTypeByte = (byte)(EmbeddedInfoType.DalamudLink + 1);
 
     private uint AetheryteId { get; set; }
     private Aetheryte? Aetheryte => DataResolver.GetExcelSheet<Aetheryte>()?.GetRow(AetheryteId);
@@ -33,7 +33,7 @@ public sealed class AetherytePayload : Payload
             START_BYTE,
             (byte) SeStringChunkType.Interactable,
         };
-        bytes.AddRange(MakeInteger((uint) data.Length + 1));
+        bytes.AddRange(MakeInteger((uint)data.Length + 1));
         bytes.Add(EmbeddedInfoTypeByte);
         bytes.AddRange(data);
         bytes.Add(END_BYTE);
@@ -56,7 +56,7 @@ public sealed class AetherytePayload : Payload
             return default;
         }
 
-        if (reader.ReadByte() != (byte) SeStringChunkType.Interactable)
+        if (reader.ReadByte() != (byte)SeStringChunkType.Interactable)
         {
             return default;
         }
