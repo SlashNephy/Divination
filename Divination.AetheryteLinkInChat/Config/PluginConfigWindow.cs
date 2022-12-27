@@ -12,7 +12,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox(Localization.AllowTeleportQueueing.ToString(), ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
             {
-                ImGui.SliderInt(Localization.QueueTeleportDelay.ToString(), ref Config.QueuedTeleportDelay, 500, 5000);
+                ImGui.SliderInt(Localization.QueueTeleportDelay.ToString(), ref Config.QueuedTeleportDelay, 250, 5000);
             }
 
             ImGui.Indent();
