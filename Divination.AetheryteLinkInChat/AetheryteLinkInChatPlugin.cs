@@ -89,6 +89,14 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
             return;
         }
 
+        // ワールド間テレポの経路を追加する
+        solver.AppendGrandCompanyAetheryte(
+            paths,
+            (uint) Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
+            message,
+            Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,
+            Dalamud.ClientState.TerritoryType);
+
         message = message.Append(new NewLinePayload());
 
         foreach (var (index, path) in paths.Select((x, i) => (i, x)))
@@ -125,6 +133,22 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                     {
                         new IconPayload(BitmapFontIcon.FlyZone),
                         new TextPayload(boundary.ConnectedMarker.PlaceNameSubtext.Value?.Name.RawString),
+                    });
+                    break;
+                // ワールド間テレポ
+                case WorldTeleportPath world:
+                    message = message.Append(new List<Payload>
+                    {
+                        new IconPayload(BitmapFontIcon.Aetheryte),
+                        new UIForegroundPayload(069),
+                        linkPayload,
+                        new TextPayload(world.Aetheryte.PlaceName.Value?.Name.RawString),
+                        new AetherytePayload(world.Aetheryte),
+                        RawPayload.LinkTerminator,
+                        UIForegroundPayload.UIForegroundOff,
+                        new TextPayload($" {SeIconChar.ArrowRight.ToIconString()} "),
+                        new IconPayload(BitmapFontIcon.CrossWorld),
+                        new TextPayload(world.World.Name.RawString),
                     });
                     break;
             }
