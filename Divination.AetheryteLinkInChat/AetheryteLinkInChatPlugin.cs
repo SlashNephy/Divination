@@ -7,6 +7,7 @@ using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Game.ClientState.Conditions;
+using Dalamud.Game.Command;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -23,6 +24,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
     IConfigWindowSupport<PluginConfig>
 {
     private const uint LinkCommandId = 0;
+    private const string TeleportGcCommand = "/teleportgc";
 
     private readonly DalamudLinkPayload linkPayload;
     private readonly AetheryteSolver solver;
@@ -34,8 +36,13 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         linkPayload = pluginInterface.AddChatLinkHandler(LinkCommandId, HandleLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
         teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList);
+
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
         Dalamud.Condition.ConditionChange += OnConditionChanged;
+        Dalamud.CommandManager.AddHandler(TeleportGcCommand, new CommandInfo(OnTeleportGcCommand)
+        {
+            HelpMessage = Localization.TeleportGcHelpMessage.ToString(),
+        });
     }
 
     public string MainCommandPrefix => "/alic";
@@ -188,11 +195,32 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         }
     }
 
+    private void OnTeleportGcCommand(string command, string arguments)
+    {
+        var aetheryteId = (uint) Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte];
+        if (aetheryteId == default)
+        {
+            return;
+        }
+
+        var aetheryte = solver.GetAetheryteById(aetheryteId);
+        if (aetheryte == default)
+        {
+            return;
+        }
+
+        if (teleporter.TeleportToAetheryte(aetheryte))
+        {
+            Divination.Chat.Print(Localization.TeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+        }
+    }
+
     protected override void ReleaseManaged()
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
         Dalamud.PluginInterface.RemoveChatLinkHandler();
         Dalamud.ChatGui.ChatMessage -= OnChatReceived;
         Dalamud.Condition.ConditionChange -= OnConditionChanged;
+        Dalamud.CommandManager.RemoveHandler(TeleportGcCommand);
     }
 }
