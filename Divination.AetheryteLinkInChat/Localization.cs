@@ -63,4 +63,10 @@ public static class Localization
         En = "Save & Close",
         Ja = "保存して閉じる",
     };
+
+    public static readonly LocalizedString TeleportGcHelpMessage = new()
+    {
+        En = "Teleports you to Grand Company Aetheryte. Useful for teleporting to another world. The aetheryte can be changed from plugin config.",
+        Ja = "三国のエーテライトにテレポします。ワールド間テレポに便利です。優先する三国エーテライトは設定から変更できます。",
+    };
 }

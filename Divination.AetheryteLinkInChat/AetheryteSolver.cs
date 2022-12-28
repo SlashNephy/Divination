@@ -230,4 +230,9 @@ public class AetheryteSolver
         var map = mapSheet.FirstOrDefault(x => x.MapMarkerRange == marker?.RowId);
         return (marker, map);
     }
+
+    public Aetheryte? GetAetheryteById(uint id)
+    {
+        return aetheryteSheet.GetRow(id);
+    }
 }
