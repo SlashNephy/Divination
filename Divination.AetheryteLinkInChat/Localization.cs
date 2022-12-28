@@ -46,6 +46,18 @@ public static class Localization
         Ja = "戦闘中などでテレポが実行できないときはテレポをキューします。\nテレポが可能になったあと、遅延を挟んでからテレポを実行します。",
     };
 
+    public static readonly LocalizedString PreferredGrandCompanyAetheryte = new()
+    {
+        En = "Preferred Grand Company Aetheryte",
+        Ja = "優先する三国エーテライト",
+    };
+
+    public static readonly LocalizedString PreferredGrandCompanyAetheryteDescription = new()
+    {
+        En = "You can specify the Aetheryte to be used when teleporting to another world.\nIn the case of coordinate information for another world, this Aetheryte will be displayed at the beginning of the route.",
+        Ja = "別ワールドにテレポするときに使用するエーテライトを指定できます。\n別ワールドの座標情報の場合、このエーテライトが経路の先頭に表示されるようになります。",
+    };
+
     public static readonly LocalizedString SaveConfigButton = new()
     {
         En = "Save & Close",

@@ -7,5 +7,6 @@ public class PluginConfig : IPluginConfiguration
     public int Version { get; set; }
 
     public bool AllowTeleportQueueing;
-    public int QueuedTeleportDelay = 2000;
+    public int QueuedTeleportDelay = 3000;
+    public int PreferredGrandCompanyAetheryte;
 }

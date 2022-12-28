@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Data;
+using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Logging;
+using Divination.AetheryteLinkInChat.Config;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
 
@@ -17,12 +19,16 @@ public class AetheryteSolver
     private readonly ExcelSheet<Aetheryte> aetheryteSheet;
     private readonly ExcelSheet<Map> mapSheet;
     private readonly ExcelSheet<MapMarker> mapMarkerSheet;
+    private readonly ExcelSheet<World> worldSheet;
+    private readonly ExcelSheet<TerritoryType> territoryTypeSheet;
 
     public AetheryteSolver(DataManager dataManager)
     {
         aetheryteSheet = dataManager.GetExcelSheet<Aetheryte>() ?? throw new ApplicationException("aetheryteSheet == null");
         mapSheet = dataManager.GetExcelSheet<Map>() ?? throw new ApplicationException("mapSheet == null");
         mapMarkerSheet = dataManager.GetExcelSheet<MapMarker>() ?? throw new ApplicationException("mapMarkerSheet == null");
+        worldSheet = dataManager.GetExcelSheet<World>() ?? throw new ApplicationException("worldSheet == null");
+        territoryTypeSheet = dataManager.GetExcelSheet<TerritoryType>() ?? throw new ApplicationException("territoryTypeSheet == null");
     }
 
     public IEnumerable<ITeleportPath> CalculateTeleportPathsForMapLink(MapLinkPayload payload)
@@ -64,7 +70,70 @@ public class AetheryteSolver
                 return distance;
             });
 
-        return paths?.Reverse() ?? new ITeleportPath[] { };
+        return paths?.Reverse() ?? Array.Empty<ITeleportPath>();
+    }
+
+    public void AppendGrandCompanyAetheryte(
+        List<ITeleportPath> paths,
+        uint grandCompanyAetheryteId,
+        SeString message,
+        World? currentWorld,
+        ushort currentTerritoryTypeId)
+    {
+        var territory = territoryTypeSheet.GetRow(currentTerritoryTypeId);
+        if (territory == default)
+        {
+            PluginLog.Debug("AppendGrandCompanyAetheryte: territory == default");
+            return;
+        }
+
+        var grandCompanyAetheryteIds = Enum.GetValues<GrandCompanyAetheryte>().Select(x => (uint) x).ToList();
+        var aetheryte = GetAetherytesInTerritoryType(territory)
+            .Select(x => x.aetheryte)
+            .FirstOrDefault(x => grandCompanyAetheryteIds.Contains(x.RowId));
+        if (aetheryte == default)
+        {
+            if (grandCompanyAetheryteId == default)
+            {
+                PluginLog.Debug("AppendGrandCompanyAetheryte: grandCompanyAetheryteId == default");
+                return;
+            }
+
+            aetheryte = aetheryteSheet.GetRow(grandCompanyAetheryteId);
+            if (aetheryte == default)
+            {
+                PluginLog.Debug("AppendGrandCompanyAetheryte: aetheryte == null");
+                return;
+            }
+        }
+
+        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text)).ToLower();
+        var world = worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId).FirstOrDefault(x => text.Contains(x.Name.RawString.ToLower()));
+        if (world == default)
+        {
+            PluginLog.Debug("AppendGrandCompanyAetheryte: world == null");
+            return;
+        }
+
+        if (world.RowId == currentWorld?.RowId)
+        {
+            PluginLog.Debug("AppendGrandCompanyAetheryte: world == currentWorld");
+            return;
+        }
+
+        var (marker, map) = GetMarkerFromAetheryte(aetheryte);
+        if (marker == default)
+        {
+            PluginLog.Debug("AppendGrandCompanyAetheryte: marker == null");
+            return;
+        }
+        if (map == default)
+        {
+            PluginLog.Debug("AppendGrandCompanyAetheryte: map == null");
+            return;
+        }
+
+        paths.Insert(0, new WorldTeleportPath(aetheryte, world, marker, map));
     }
 
     private IEnumerable<ITeleportPath[]> CalculateTeleportPaths(TerritoryType territoryType, Map map, uint depth = 0)
@@ -150,15 +219,15 @@ public class AetheryteSolver
         return (x, y);
     }
 
-    private static (double, double) ConvertCoordinateToRaw(double x, double y, Map map)
-    {
-        var x2 = (x - 1) * 2048 * map.SizeFactor / 42.0 / 100;
-        var y2 = (y - 1) * 2048 * map.SizeFactor / 42.0 / 100;
-        return (x2, y2);
-    }
-
     private static double CalculateEuclideanDistance(double x1, double y1, double x2, double y2)
     {
         return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+    }
+
+    private (MapMarker? marker, Map? map) GetMarkerFromAetheryte(Aetheryte aetheryte)
+    {
+        var marker = mapMarkerSheet.Where(x => x.DataType == 3).FirstOrDefault(x => x.DataKey == aetheryte.RowId);
+        var map = mapSheet.FirstOrDefault(x => x.MapMarkerRange == marker?.RowId);
+        return (marker, map);
     }
 }

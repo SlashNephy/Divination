@@ -23,3 +23,11 @@ public record BoundaryTeleportPath(MapMarker ConnectedMarker, Map ConnectedMap, 
         return ConnectedMarker.PlaceNameSubtext.Value?.Name.RawString;
     }
 }
+
+public record WorldTeleportPath(Aetheryte Aetheryte, World World, MapMarker Marker, Map Map) : ITeleportPath
+{
+    public override string ToString()
+    {
+        return World.Name.RawString;
+    }
+}
