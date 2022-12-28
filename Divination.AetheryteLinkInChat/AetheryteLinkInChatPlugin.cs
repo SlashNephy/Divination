@@ -99,7 +99,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         // ワールド間テレポの経路を追加する
         solver.AppendGrandCompanyAetheryte(
             paths,
-            (uint) Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
+            (uint)Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
             message,
             Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,
             Dalamud.ClientState.TerritoryType);
@@ -197,7 +197,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
 
     private void OnTeleportGcCommand(string command, string arguments)
     {
-        var aetheryteId = (uint) Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte];
+        var aetheryteId = (uint)Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte];
         if (aetheryteId == default)
         {
             return;
