@@ -17,7 +17,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         var sheet = AetheryteLinkInChatPlugin.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>();
         grandCompanyAetheryteNames = Enum.GetValues<GrandCompanyAetheryte>()
-            .Select(x => sheet?.GetRow((uint) x)?.PlaceName.Value?.Name.RawString ?? Enum.GetName(x) ?? string.Empty)
+            .Select(x => sheet?.GetRow((uint)x)?.PlaceName.Value?.Name.RawString ?? Enum.GetName(x) ?? string.Empty)
             .ToArray();
     }
 

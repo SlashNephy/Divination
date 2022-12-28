@@ -87,7 +87,7 @@ public class AetheryteSolver
             return;
         }
 
-        var grandCompanyAetheryteIds = Enum.GetValues<GrandCompanyAetheryte>().Select(x => (uint) x).ToList();
+        var grandCompanyAetheryteIds = Enum.GetValues<GrandCompanyAetheryte>().Select(x => (uint)x).ToList();
         var aetheryte = GetAetherytesInTerritoryType(territory)
             .Select(x => x.aetheryte)
             .FirstOrDefault(x => grandCompanyAetheryteIds.Contains(x.RowId));
