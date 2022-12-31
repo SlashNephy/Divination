@@ -47,6 +47,13 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Text(Localization.PreferredGrandCompanyAetheryteDescription.ToString());
             ImGui.Unindent();
 
+            ImGui.Checkbox(Localization.ConsiderTeleportsToOtherWorlds.ToString(),
+                ref Config.ConsiderTeleportsToOtherWorlds);
+            ImGui.Indent();
+            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDescription.ToString());
+            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDisclaimer.ToString());
+            ImGui.Unindent();
+
             ImGui.Separator();
 
             if (ImGui.Button(Localization.SaveConfigButton.ToString()))

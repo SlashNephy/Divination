@@ -9,4 +9,5 @@ public class PluginConfig : IPluginConfiguration
     public bool AllowTeleportQueueing;
     public int QueuedTeleportDelay = 3000;
     public int PreferredGrandCompanyAetheryte;
+    public bool ConsiderTeleportsToOtherWorlds;
 }

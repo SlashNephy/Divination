@@ -97,12 +97,14 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
         }
 
         // ワールド間テレポの経路を追加する
-        solver.AppendGrandCompanyAetheryte(
-            paths,
-            (uint) Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
-            message,
-            Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,
-            Dalamud.ClientState.TerritoryType);
+        if (Config.ConsiderTeleportsToOtherWorlds)
+        {
+            solver.AppendGrandCompanyAetheryte(paths,
+                (uint) Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
+                message,
+                Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,
+                Dalamud.ClientState.TerritoryType);
+        }
 
         message = message.Append(new NewLinePayload());
 
