@@ -46,6 +46,24 @@ public static class Localization
         Ja = "戦闘中などでテレポが実行できないときはテレポをキューします。\nテレポが可能になったあと、遅延を挟んでからテレポを実行します。",
     };
 
+    public static readonly LocalizedString ConsiderTeleportsToOtherWorlds = new()
+    {
+        En = "Consider Teleports to Other Worlds",
+        Ja = "他ワールドへのテレポを経路計算に考慮する",
+    };
+
+    public static readonly LocalizedString ConsiderTeleportsToOtherWorldsDescription = new()
+    {
+        En = "When enabled, the Grand Company Aetheryte will be prepended to the best path\nif a destination world is different from the player's current world.",
+        Ja = "有効にすると、目的地のワールドがプレイヤーの現在のワールドと異なる場合に、\n三国エーテライトを最短経路の先頭に付加します。",
+    };
+
+    public static readonly LocalizedString ConsiderTeleportsToOtherWorldsDisclaimer = new()
+    {
+        En = "This function simply detects the world name from the chat message.\nAs such, it may cause malfunctions.",
+        Ja = "この機能は、単にワールド名をチャットメッセージから検出しているだけです。\nそのため、誤作動を起こす場合もあります。",
+    };
+
     public static readonly LocalizedString PreferredGrandCompanyAetheryte = new()
     {
         En = "Preferred Grand Company Aetheryte",
@@ -54,8 +72,8 @@ public static class Localization
 
     public static readonly LocalizedString PreferredGrandCompanyAetheryteDescription = new()
     {
-        En = "You can specify the Aetheryte to be used when teleporting to another world.\nIn the case of coordinate information for another world, this Aetheryte will be displayed at the beginning of the route.",
-        Ja = "別ワールドにテレポするときに使用するエーテライトを指定できます。\n別ワールドの座標情報の場合、このエーテライトが経路の先頭に表示されるようになります。",
+        En = "You can select the preferred Grand Company Aetheryte\nto use for teleporting to other worlds, for example.",
+        Ja = "別ワールドにテレポするときなどに使用する、\n優先する三国エーテライトを選択できます。",
     };
 
     public static readonly LocalizedString SaveConfigButton = new()
@@ -66,7 +84,7 @@ public static class Localization
 
     public static readonly LocalizedString TeleportGcHelpMessage = new()
     {
-        En = "Teleports you to Grand Company Aetheryte. Useful for teleporting to another world. The aetheryte can be changed from plugin config.",
+        En = "Teleports you to Grand Company Aetheryte. Useful for teleporting to other worlds. The aetheryte can be changed from plugin config.",
         Ja = "三国のエーテライトにテレポします。ワールド間テレポに便利です。優先する三国エーテライトは設定から変更できます。",
     };
 }
