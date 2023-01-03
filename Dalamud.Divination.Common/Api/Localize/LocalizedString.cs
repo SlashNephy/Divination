@@ -8,6 +8,8 @@ public sealed class LocalizedString
 
     public string En { get; init; } = string.Empty;
     public string? Ja { get; init; }
+    public string? Ge { get; init; }
+    public string? Fr { get; init; }
 
     public static explicit operator string(LocalizedString localizedString)
     {
@@ -27,6 +29,12 @@ public sealed class LocalizedString
             case ClientLanguage.Japanese when !string.IsNullOrWhiteSpace(Ja):
                 cached = Ja;
                 return Ja;
+            case ClientLanguage.German when !string.IsNullOrWhiteSpace(Ge):
+                cached = Ge;
+                return Ge;
+            case ClientLanguage.French when !string.IsNullOrWhiteSpace(Fr):
+                cached = Fr;
+                return Fr;
             default:
                 cached = En;
                 return En;
@@ -53,4 +61,3 @@ public sealed class LocalizedString
         return string.Format(ToString(), args);
     }
 }
-
