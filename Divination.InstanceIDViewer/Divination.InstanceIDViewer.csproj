@@ -37,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.184" />
+      <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.217" />
       <PackageReference Include="DalamudPackager" Version="2.1.8" />
     </ItemGroup>
 
