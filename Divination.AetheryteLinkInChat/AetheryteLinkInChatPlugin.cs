@@ -121,7 +121,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                         new UIForegroundPayload(069),
                         linkPayload,
                         new TextPayload(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString),
-                        new AetherytePayload(aetheryte.Aetheryte),
+                        new AetherytePayload(aetheryte.Aetheryte).ToRawPayload(),
                         RawPayload.LinkTerminator,
                         UIForegroundPayload.UIForegroundOff,
                     };
@@ -153,7 +153,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
                         new UIForegroundPayload(069),
                         linkPayload,
                         new TextPayload(world.Aetheryte.PlaceName.Value?.Name.RawString),
-                        new AetherytePayload(world.Aetheryte),
+                        new AetherytePayload(world.Aetheryte).ToRawPayload(),
                         RawPayload.LinkTerminator,
                         UIForegroundPayload.UIForegroundOff,
                         new TextPayload($" {SeIconChar.ArrowRight.ToIconString()} "),
