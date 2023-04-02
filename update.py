@@ -4,7 +4,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from zipfile import ZipFile
 
-PROVIDER = os.getenv("PROVIDER", "https://horoscope-dev.github.io/Dalamud.DivinationPluginRepo/dist")
+PROVIDER = os.getenv("PROVIDER", "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist")
 
 def extract_manifests(env):
     manifests = {}
