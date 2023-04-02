@@ -18,4 +18,4 @@ The available Dalamud.Divination plugins are listed [here](https://horoscope-dev
 
 Drop the following url into your third-party repo URL list.
 
-`https://horoscope-dev.github.io/Dalamud.DivinationPluginRepo/dist/pluginmaster.json`
+`https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/pluginmaster.json`
