@@ -1,23 +1,18 @@
-name: Update PluginMaster
+name: Update Plugin Master
 
-on: 
+on:
   push:
-    paths-ignore:
-      - '**.md'
-      - '**/pluginmaster.json'
-
+    paths:
+      - 'docs/plugins/stable/**'
+      - 'docs/plugins/testing/**'
     branches:
       - master
-
-  schedule:
-    - cron:  '0 * * * *'
-
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    concurrency: staging
+    concurrency: update-plugin-master
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -28,10 +23,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'
+          python-version: '3.11'
 
       - name: Update PluginMaster
-        run: python update.py
+        run: python packages/PluginRepo/update.py
 
       - name: Push PluginMaster
         uses: EndBug/add-and-commit@v9
