@@ -3,13 +3,14 @@ name: 'Format Plugin Manifest'
 on:
   workflow_call:
     inputs:
-      plugin-name:
-        required: true
+      working-directory:
+        required: false
         type: string
+        default: '.'
       dotnet-version:
         required: false
         type: string
-        default: '6.0.x'
+        default: '7.0.x'
       commit-message:
         required: false
         type: string
@@ -24,25 +25,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Checkout Repository (Common)
         uses: actions/checkout@v3
         with:
-          repository: 'horoscope-dev/Dalamud.Divination.Common'
-          path: 'Common'
-          token: '${{ secrets.GITHUB_TOKEN }}'
-          # GitVersion
-          fetch-depth: 0
+          repository: 'SlashNephy/Divination'
+          path: 'Divination'
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '${{ inputs.dotnet-version }}'
 
       - name: Format
         run: dotnet run --project Dalamud.JsonFormatter
-        working-directory: 'Common'
+        working-directory: 'Divination/packages/Common'
         env:
-          PLUGIN_JSON_PATH: '..\${{ inputs.plugin-name }}\${{ inputs.plugin-name }}.json'
+          TARGET_DIR: '${{ inputs.working-directory }}'
