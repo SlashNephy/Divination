@@ -1,0 +1,24 @@
+name: Build (DownloadCounter)
+
+on:
+  push:
+    paths:
+      - 'packages/DownloadCounter/**'
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  actions: read
+  security-events: write
+
+jobs:
+  build:
+    uses: SlashNephy/.github/.github/workflows/docker-build.yml@master
+    with:
+      image-name: ghcr.io/slashnephy/divination-download-counter
+      image-platforms: linux/amd64
+      context: packages/DownloadCounter
