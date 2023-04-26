@@ -1,21 +1,23 @@
-# Dalamud.DivinationPluginRepo
+This is a custom third-party plugin repository that can be used with XivLauncher.
 
-This is a custom third-party plugin repository that can be used with Dalamud / XivLauncher.
+## ⏱️ TL;DR
+
+Use `https://xiv.starry.blue/plugins/master.json`.
 
 ## ⚠️ Disclaimer
 
-Installation of plugins contained in this repository is at your own risk.
+Please install Dalamud plugins distributed in this repository at your own risk.
 
-We are not responsible for any inconvenience caused by installing or using the plugins.
+We do not take responsibility for any damages caused by the use of these plugins.
 
 ## Plugin List
 
-The available Dalamud.Divination plugins are listed [here](https://horoscope-dev.github.io/Dalamud.DivinationPluginRepo/dist).
+Available Dalamud plugins are listed [here](/plugins).
 
 ## Repo URL
 
 ![image](https://user-images.githubusercontent.com/7302150/137894902-e0079b2d-29c6-4616-9794-c2c161c4aba5.png)
 
-Drop the following url into your third-party repo URL list.
+Drop the following URL into your third-party repo list.
 
-`https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/pluginmaster.json`
+`https://xiv.starry.blue/plugins/master.json`
