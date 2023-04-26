@@ -1,0 +1,24 @@
+{
+  "Author": "Asteria Nocturna",
+  "Name": "Divination.Debugger",
+  "Punchline": "You don't need this unless you are developer.",
+  "Description": "Tiny tool to inspect game...",
+  "Tags": [
+    "Development",
+    "Debug"
+  ],
+  "CategoryTags": [
+    "utility"
+  ],
+  "IsHide": false,
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 7,
+  "LoadRequiredState": 0,
+  "LoadSync": false,
+  "LoadPriority": 0,
+  "CanUnloadAsync": false,
+  "ImageUrls": [],
+  "IconUrl": null,
+  "AcceptsFeedback": false,
+  "FeedbackMessage": null
+}
