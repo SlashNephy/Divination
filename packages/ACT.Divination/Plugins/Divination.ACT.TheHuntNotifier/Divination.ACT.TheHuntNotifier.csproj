@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF24AAAC-3960-4708-A979-D6B8E8A9B20A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Divination.ACT.TheHuntNotifier</RootNamespace>
+    <AssemblyName>Divination.ACT.TheHuntNotifier</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Advanced Combat Tracker">
+      <HintPath>..\..\SDK\Advanced Combat Tracker.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PluginTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluginTabControl.Designer.cs">
+      <DependentUpon>PluginTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="TheHunt\Data\ApiResponse.cs" />
+    <Compile Include="TheHunt\Data\Area.cs" />
+    <Compile Include="TheHunt\Data\Mob.cs" />
+    <Compile Include="TheHunt\Data\Point.cs" />
+    <Compile Include="TheHunt\Data\Report.cs" />
+    <Compile Include="TheHunt\Data\Resources.cs" />
+    <Compile Include="TheHunt\Data\World.cs" />
+    <Compile Include="TheHunt\BigEndianBinaryReader.cs" />
+    <Compile Include="TheHunt\TheHuntClient.cs" />
+    <Compile Include="Worker.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mob_hunt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PluginTabControl.resx">
+      <DependentUpon>PluginTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Divination.ACT\Divination.ACT.csproj">
+      <Project>{b21bb1cb-0332-429c-8525-8f240ac31ade}</Project>
+      <Name>Divination.ACT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Divination.Common.Toast\Divination.Common.Toast.csproj">
+      <Project>{DE97CB1A-0691-4B8E-B2A7-4CC8FCE5A1F3}</Project>
+      <Name>Divination.Common.Toast</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Divination.Common\Divination.Common.csproj">
+      <Project>{D47E9DB2-292F-4F7F-B116-F6BC281D9A5E}</Project>
+      <Name>Divination.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.19041.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd $(TargetDir)
+copy /y /b $(TargetFileName) $(TargetFileName).Single.dll
+"$(SolutionDir)\SDK\ILMerge.exe" /v4 /lib:"%25USERPROFILE%25\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0" /ndebug /out:$(TargetFileName) $(TargetFileName).Single.dll Divination.Common.dll Divination.ACT.dll Newtonsoft.Json.dll</PostBuildEvent>
+  </PropertyGroup>
+</Project>
