@@ -1,9 +1,9 @@
-name: Check (SseServer.Faloop)
+name: Check (DiscordBot)
 
 on:
   pull_request:
     paths:
-      - 'packages/SseServer.Faloop/**'
+      - 'packages/DiscordBot/**'
     types:
       - opened
       - synchronize
@@ -17,4 +17,4 @@ jobs:
     uses: SlashNephy/.github/.github/workflows/gradle-run.yml@master
     with:
       task: build
-      working-directory: packages/SseServer.Faloop
+      working-directory: packages/DiscordBot
