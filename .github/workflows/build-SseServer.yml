@@ -1,0 +1,24 @@
+name: Build (SseServer)
+
+on:
+  push:
+    paths:
+      - 'packages/SseServer/**'
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  actions: read
+  security-events: write
+
+jobs:
+  build:
+    uses: SlashNephy/.github/.github/workflows/docker-build.yml@master
+    with:
+      image-name: ghcr.io/slashnephy/divination-sse-server
+      image-platforms: linux/amd64
+      context: packages/SseServer

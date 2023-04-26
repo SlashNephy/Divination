@@ -1,0 +1,20 @@
+name: Check (SseServer)
+
+on:
+  pull_request:
+    paths:
+      - 'packages/SseServer/**'
+    types:
+      - opened
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    uses: SlashNephy/.github/.github/workflows/gradle-run.yml@master
+    with:
+      task: build
+      working-directory: packages/SseServer
