@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net6.0-windows7.0": {
+      "Dalamud.Divination.Common": {
+        "type": "Direct",
+        "requested": "[0.1.0-beta.216, )",
+        "resolved": "0.1.0-beta.216",
+        "contentHash": "sfqdHJ7kNFFcgapPdKuQa2ARCuSslAXk1WJSpu+fmbVaM3PZMax9yXulcPIKH27wrPVn5QbrDk+UwnNBqLjGtw=="
+      },
+      "DalamudPackager": {
+        "type": "Direct",
+        "requested": "[2.1.8, )",
+        "resolved": "2.1.8",
+        "contentHash": "YqagNXs9InxmqkXzq7kLveImxnodkBEicAhydMXVp7dFjC7xb76U6zGgAax4/BWIWfZeWzr5DJyQSev31kj81A=="
+      },
+      "DiscordRichPresence": {
+        "type": "Direct",
+        "requested": "[1.1.3.18, )",
+        "resolved": "1.1.3.18",
+        "contentHash": "cu8ilTx4DPuU3YJO1bNF+UtTlVvQIihvJ7AwoRKkcy9+cZ+fUxKfQsMpEcfm3PndT3zExpljPbS9wMdbLeYdAg==",
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.5.0",
+          "Newtonsoft.Json": "13.0.1"
+        }
+      },
+      "GitVersion.MsBuild": {
+        "type": "Direct",
+        "requested": "[5.11.1, )",
+        "resolved": "5.11.1",
+        "contentHash": "JlJB4dAc/MpLQvbF8OeyMKotDo5EcgU2pXmB+MlTe64B1Y0fc9GTMiAHiyUiHLnFRnOtrcSi1C3BsfRTmlD0sA=="
+      },
+      "Microsoft.NETCore.Platforms": {
+        "type": "Transitive",
+        "resolved": "2.0.0",
+        "contentHash": "VdLJOCXhZaEMY7Hm2GKiULmn7IEPFE4XC5LPSfBVCUIA8YLZVh846gtfBJalsPQF2PlzdD7ecX7DZEulJ402ZQ=="
+      },
+      "Microsoft.Win32.Registry": {
+        "type": "Transitive",
+        "resolved": "4.5.0",
+        "contentHash": "+FWlwd//+Tt56316p00hVePBCouXyEzT86Jb3+AuRotTND0IYn0OO3obs1gnQEs/txEnt+rF2JBGLItTG+Be6A==",
+        "dependencies": {
+          "System.Security.AccessControl": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        }
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
+      "System.Security.AccessControl": {
+        "type": "Transitive",
+        "resolved": "4.5.0",
+        "contentHash": "vW8Eoq0TMyz5vAG/6ce483x/CP83fgm4SJe5P8Tb1tZaobcvPrbMEL7rhH1DRdrYbbb6F0vq3OlzmK0Pkwks5A==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        }
+      },
+      "System.Security.Principal.Windows": {
+        "type": "Transitive",
+        "resolved": "4.5.0",
+        "contentHash": "U77HfRXlZlOeIXd//Yoj6Jnk8AXlbeisf1oq1os+hxOGVnuG+lGSfGqTwTZBoORFF6j/0q7HXIl8cqwQ9aUGqQ==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0"
+        }
+      },
+      "divination.discordintegration.ipcmodel": {
+        "type": "Project"
+      }
+    }
+  }
+}
