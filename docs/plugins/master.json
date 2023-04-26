@@ -11,7 +11,7 @@
     "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.AetheryteLinkInChat/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.AetheryteLinkInChat/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.AetheryteLinkInChat",
     "IsHide": false,
@@ -20,7 +20,7 @@
     "LoadPriority": 0,
     "Name": "Divination.AetheryteLinkInChat",
     "Punchline": "Quick teleport for Mob Hunting",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/AetheryteLinkInChat",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.AetheryteLinkInChat",
     "Tags": [
       "teleporter"
     ],
@@ -38,7 +38,7 @@
     "Description": "Simple plugin to just add /calc command.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.Calculator/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Calculator/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.Calculator",
     "IsHide": false,
@@ -47,7 +47,7 @@
     "LoadPriority": 0,
     "Name": "Divination.Calculator",
     "Punchline": "/calc 33 - 4",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/Calculator",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.Calculator",
     "Tags": [
       "utility"
     ],
@@ -65,7 +65,7 @@
     "Description": "Tiny tool to inspect game...",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.Debugger/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Debugger/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.Debugger",
     "IsHide": false,
@@ -74,7 +74,7 @@
     "LoadPriority": 0,
     "Name": "Divination.Debugger",
     "Punchline": "You don't need this unless you are developer.",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/Debugger",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.Debugger",
     "Tags": [
       "Development",
       "Debug"
@@ -93,7 +93,7 @@
     "Description": "Dalamud Plugin to support Rich Presence for FFXIV.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.DiscordIntegration/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.DiscordIntegration/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.DiscordIntegration",
     "IsHide": false,
@@ -102,7 +102,7 @@
     "LoadPriority": 0,
     "Name": "Divination.DiscordIntegration",
     "Punchline": "Fully-customizable Discord Rich Presence",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/DiscordIntegration",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.DiscordIntegration",
     "Tags": [
       "Discord"
     ],
@@ -121,7 +121,7 @@
     "Description": "Provide simple integration with Faloop. Mob notification in chat.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.FaloopIntegration/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.FaloopIntegration/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.FaloopIntegration",
     "IsHide": false,
@@ -130,7 +130,7 @@
     "LoadPriority": 0,
     "Name": "Divination.FaloopIntegration",
     "Punchline": "Faloop notification in chat",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/FaloopIntegration",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.FaloopIntegration",
     "Tags": [
       "mobhunt"
     ],
@@ -148,16 +148,16 @@
     "Description": "show instance id in chat when instance changed",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.InstanceIDViewer/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.InstanceIDViewer/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.InstanceIDViewer",
     "IsHide": false,
     "IsTestingExclusive": false,
-    "LastUpdated": 1682512568,
+    "LastUpdated": 1682516049,
     "LoadPriority": 0,
     "Name": "Divination.InstanceIDViewer",
     "Punchline": "",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/InstanceIDViewer",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.InstanceIDViewer",
     "Tags": [
       "Discord"
     ],
@@ -182,7 +182,7 @@
     "Description": "[Description]",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.PerfectComplex/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.PerfectComplex/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.PerfectComplex",
     "IsHide": false,
@@ -191,7 +191,7 @@
     "LoadPriority": 0,
     "Name": "[Name]",
     "Punchline": "[Punchline]",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/PerfectComplex",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.PerfectComplex",
     "Tags": [
       "[Tag]"
     ],
@@ -209,7 +209,7 @@
     "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.PowerUtils/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.PowerUtils/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.PowerUtils",
     "IsHide": false,
@@ -218,7 +218,7 @@
     "LoadPriority": 0,
     "Name": "Divination.PowerUtils",
     "Punchline": "Save Energy!",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/PowerUtils",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.PowerUtils",
     "Tags": [
       "Command"
     ],
@@ -243,7 +243,7 @@
     "Description": "[Description]",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.Template/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Template/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.Template",
     "IsHide": false,
@@ -252,7 +252,7 @@
     "LoadPriority": 0,
     "Name": "[Name]",
     "Punchline": "[Punchline]",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/FaloopIntegration",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.FaloopIntegration",
     "Tags": [
       "[Tag]"
     ],
@@ -270,7 +270,7 @@
     "Description": "Dalamud Plugin to add tweet function and Twitter timeline in FFXIV chat",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.TwitterIntegration/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.TwitterIntegration/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.TwitterIntegration",
     "IsHide": false,
@@ -279,7 +279,7 @@
     "LoadPriority": 0,
     "Name": "Divination.TwitterIntegration",
     "Punchline": "Tweet in FFXIV chat.",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/TwitterIntegration",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.TwitterIntegration",
     "Tags": [
       "Twitter"
     ],
@@ -297,7 +297,7 @@
     "Description": "Add /voiceroid2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.Voiceroid2Talker/latest.zip",
     "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Voiceroid2Talker/latest.zip",
-    "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
+    "IconUrl": null,
     "ImageUrls": [],
     "InternalName": "Divination.Voiceroid2Talker",
     "IsHide": false,
@@ -306,7 +306,7 @@
     "LoadPriority": 0,
     "Name": "Divination.Voiceroid2Talker",
     "Punchline": "Text-to-Speech for Voiceroid2",
-    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/Voiceroid2Talker",
+    "RepoUrl": "https://github.com/horoscope-dev/Divination.Voiceroid2Talker",
     "Tags": [
       "Text-to-speech",
       "Voiceroid"
