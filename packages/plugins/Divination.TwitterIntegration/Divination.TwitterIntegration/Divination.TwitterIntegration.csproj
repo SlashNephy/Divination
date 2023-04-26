@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <Reference Include="Dalamud">
+            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGui.NET">
+            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <PackageReference Include="CoreTweet" Version="2.0.0-beta.1" />
+        <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.216" />
+        <PackageReference Include="DalamudPackager" Version="2.1.8" />
+    </ItemGroup>
+</Project>
