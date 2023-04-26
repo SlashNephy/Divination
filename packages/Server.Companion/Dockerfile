@@ -1,14 +1,13 @@
-FROM python:3.9-alpine
+FROM python:3.11.3-alpine
 
+COPY ./requirements.txt /tmp/
 RUN apk add --update --no-cache --virtual .build-deps \
         build-base \
         linux-headers \
-    && pip install --no-cache-dir \
-        discord.py \
-        aiohttp \
-    && apk del --purge .build-deps
+    && pip install --no-cache-dir -r /tmp/requirements.txt \
+    && apk del --purge .build-deps \
+    && rm -f /tmp/requirements.txt
 
-COPY entrypoint.py /entrypoint.py
+COPY ./entrypoint.py /entrypoint.py
 
-LABEL org.opencontainers.image.source https://github.com/SlashNephy/Divination.Server.Companion
 ENTRYPOINT ["python", "-u", "/entrypoint.py"]
