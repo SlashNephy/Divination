@@ -6,6 +6,10 @@ on:
       plugin-name:
         required: true
         type: string
+      working-directory:
+        required: false
+        type: string
+        default: '.'
       dalamud-zip-url:
         required: false
         type: string
@@ -34,10 +38,11 @@ jobs:
 
       - name: Prepare Plugin Meta
         run: |
-          $json_path = ".\${{ inputs.plugin-name }}\${{ inputs.plugin-name }}.json"
+          $json_path = ".\${{ inputs.plugin-name }}.json"
           $json = Get-Content $json_path | ConvertFrom-Json -AsHashtable
           echo "PLUGIN_AUTHOR=Copyright (c) $($json["Author"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
           echo "PLUGIN_DESCRIPTION=$($json["Description"].Replace(",", "%2c"))" >> $env:GITHUB_ENV
+        working-directory: '${{ inputs.working-directory }}'
 
       - name: Build Plugin
         run: |
@@ -46,20 +51,20 @@ jobs:
             -maxcpucount:1 `
             /p:OutputPath=bin\CIRelease\ `
             /p:Product=Divination `
-            /p:Company=Horoscope `
             '/p:Copyright="${{ env.PLUGIN_AUTHOR }}"' `
             '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
+        working-directory: '${{ inputs.working-directory }}'
 
       - name: Upload Artifact (release)
         uses: actions/upload-artifact@v3
         with:
           name: '${{ inputs.plugin-name }}'
-          path: '${{ inputs.plugin-name }}\bin\CIRelease\${{ inputs.plugin-name }}'
+          path: '${{ inputs.working-directory }}/${{ inputs.plugin-name }}/bin/CIRelease/${{ inputs.plugin-name }}'
           if-no-files-found: error
 
       - name: Upload Artifact (gitversion.json)
         uses: actions/upload-artifact@v3
         with:
           name: 'gitversion.json'
-          path: '${{ inputs.plugin-name }}\obj\gitversion.json'
+          path: '${{ inputs.working-directory }}/${{ inputs.plugin-name }}/obj/gitversion.json'
           if-no-files-found: error

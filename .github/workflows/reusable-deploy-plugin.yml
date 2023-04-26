@@ -9,7 +9,7 @@ on:
       plugin-repository:
         required: false
         type: string
-        default: 'horoscope-dev/Dalamud.DivinationPluginRepo'
+        default: ''
     secrets:
       DEPLOY_GITHUB_TOKEN:
         required: true
@@ -21,7 +21,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Plugin Repository
+      - name: Checkout Plugin Repository (Default)
+        if: inputs.plugin-repository == ''
+        uses: actions/checkout@v3
+        with:
+          repository: 'SlashNephy/Divination'
+          token: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
+      - name: Checkout Plugin Repository (Custom)
+        if: inputs.plugin-repository != ''
         uses: actions/checkout@v3
         with:
           repository: '${{ inputs.plugin-repository }}'
@@ -31,7 +38,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: '${{ inputs.plugin-name }}'
-          path: 'dist/testing/${{ inputs.plugin-name }}'
+          path: 'docs/plugins/testing/${{ inputs.plugin-name }}'
 
       - name: Download Artifact (gitversion.json)
         uses: actions/download-artifact@v3
@@ -49,17 +56,20 @@ jobs:
       - name: Prepare commits.json
         run: |
           curl \
-            -o dist/testing/${{ inputs.plugin-name }}/commits.json \
+            -o docs/plugins/testing/${{ inputs.plugin-name }}/commits.json \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.DEPLOY_GITHUB_TOKEN }}" \
             https://api.github.com/repos/${{ github.repository }}/commits
 
       - name: Prepare event.json
-        run: echo '${{ toJSON(github.event) }}' > dist/testing/${{ inputs.plugin-name }}/event.json
+        run: echo '${{ toJSON(github.event) }}' > docs/plugins/testing/${{ inputs.plugin-name }}/event.json
 
       - name: Copy Artifact (stable)
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
-        run: cp -rf dist/testing/${{ inputs.plugin-name }} dist/stable/${{ inputs.plugin-name }}
+        run: cp -rf docs/plugins/testing/${{ inputs.plugin-name }} docs/plugins/stable/${{ inputs.plugin-name }}
+
+      - name: Pull
+        run: git pull
 
       - name: Push to Plugin Repository
         uses: stefanzweifel/git-auto-commit-action@v4
