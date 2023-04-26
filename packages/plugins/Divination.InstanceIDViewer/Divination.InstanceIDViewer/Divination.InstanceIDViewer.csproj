@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <Title>Divination.InstanceIDViewer</Title>
+        <Authors>Suzuka Asagiri</Authors>
+        <Copyright>Copyright © Horoscope since 2021</Copyright>
+        <PackageProjectUrl>https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/horoscope-dev/Dalamud.Divination.InstanceIDViewer</RepositoryUrl>
+        <Company>Horoscope</Company>
+        <NeutralLanguage>ja-JP</NeutralLanguage>
+        <RootNamespace>Divination.InstanceIDViewer</RootNamespace>
+        <PackageVersion>6.11.0</PackageVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants />
+      <OutputPath>bin\Debug\</OutputPath>
+      <DebugSymbols>false</DebugSymbols>
+        <OutputType>Library</OutputType>
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants />
+      <OutputPath>bin\Release\</OutputPath>
+      <DebugSymbols>false</DebugSymbols>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Dalamud">
+          <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+          <Private>False</Private>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.217" />
+      <PackageReference Include="DalamudPackager" Version="2.1.8" />
+    </ItemGroup>
+
+</Project>
