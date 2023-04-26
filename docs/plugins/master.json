@@ -9,8 +9,8 @@
     "Changelog": "5e34ef2: Merge remote-tracking branch 'origin/master'\n\n# Conflicts:\n#\tDivination.AetheryteLinkInChat/AetheryteLinkInChatPlugin.cs\n3a75a44: add ConsiderTeleportsToOtherWorlds flag\n062e788: \ud83e\uddf9 dotnet format\ne434392: /teleportgc \u30b3\u30de\u30f3\u30c9\nda5381b: \u30ef\u30fc\u30eb\u30c9\u540d\u304c\u542b\u307e\u308c\u3066\u3044\u305f\u5834\u5408\u306b\u306f\u30ef\u30fc\u30eb\u30c9\u9593\u30c6\u30ec\u30dd\u3092\u8003\u616e\u3059\u308b\n53b89df: \u6700\u5c0f\u5024\u3092\u4e0b\u3052\u308b\nd579900: Merge pull request #12 from horoscope-dev/renovate/dalamud.divination.common-0.x\n\nUpdate dependency Dalamud.Divination.Common to v0.1.0-beta.216\ndb25e49: Update dependency Dalamud.Divination.Common to v0.1.0-beta.216\n9d054d0: Common \u66f4\u65b0\ndd2b5f9: AetheryteList API \u3092\u4f7f\u3046\nc70b494: \ud83e\uddf9 dotnet format\n4c541c9: \u30b3\u30b9\u30c8\u8abf\u6574\n9abc81d: AetherytePayload \u3092\u4f5c\u3063\u305f\n368c9a9: DalamudLinkPayload \u3092\u633f\u5165\u3059\u308b\u4f4d\u7f6e\u3092\u5909\u66f4\n81dff22: \u66f8\u304d\u8fbc\u3080\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u4e88\u3081\u6539\u884c\u3057\u3066\u3042\u308b\u306e\u3067\u30b9\u30da\u30fc\u30b9\u3092\u53d6\u308a\u9664\u304f\u5fc5\u8981\u306f\u306a\u3044\ncd513a2: fix loc on queued teleporting message\n51b6759: Merge remote-tracking branch 'origin/master'\n547f98b: \u30df\u30b9\u3063\u3066 default \u306b\u306a\u3063\u3066\u305f\n3febecf: \ud83e\uddf9 dotnet format\nfeeb6e7: \u30ed\u30fc\u30ab\u30e9\u30a4\u30ba\u306e\u6a5f\u80fd\u3092 Common \u306b\u8ffd\u3044\u3084\u3063\u305f\n36c8e22: \ud83e\uddf9 dotnet format\nfaa11ba: Merge remote-tracking branch 'origin/master'\n\n# Conflicts:\n#\tDivination.AetheryteLinkInChat/AetheryteSolver.cs\n#\tDivination.AetheryteLinkInChat/Localize/Localization.cs\n#\tDivination.AetheryteLinkInChat/Teleporter.cs\n980c26e: \u5bfe\u8c61\u306e ConditionFlag \u3092\u8ffd\u52a0\nf67e06b: \u30ad\u30e5\u30fc\u306e\u30c6\u30ec\u30dd\u3092\u5b9f\u884c\u3059\u308b\u5834\u5408\u306b\u3082\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u51fa\u3059\nc57d8de: Update README.md\na473294: \u90fd\u5e02\u5185\u30a8\u30fc\u30c6\u30e9\u30a4\u30c8\u3092\u5229\u7528\u3059\u308b\u5834\u5408\u306f\u8ddd\u96e2\u30bc\u30ed\n56c1cf7: \ud83e\uddf9 dotnet format\n176ce9a: \u30c1\u30e3\u30c3\u30c8\u306e\u30d5\u30a9\u30fc\u30de\u30c3\u30c8\u5909\u66f4\nfd3a79a: \u30a8\u30ea\u30a2\u79fb\u52d5\u306b\u306f\u30b3\u30b9\u30c8\u3092\u8db3\u3059\n9786355: \u96a3\u63a5\u30a8\u30ea\u30a2\u3092\u8de8\u3050\u6700\u77ed\u7d4c\u8def\u3092\u8a08\u7b97\u3067\u304d\u308b\u3088\u3046\u306b",
     "DalamudApiLevel": 7,
     "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/stable/Divination.AetheryteLinkInChat/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.AetheryteLinkInChat/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.AetheryteLinkInChat/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.AetheryteLinkInChat/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.AetheryteLinkInChat",
@@ -20,7 +20,7 @@
     "LoadPriority": 0,
     "Name": "Divination.AetheryteLinkInChat",
     "Punchline": "Quick teleport for Mob Hunting",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.AetheryteLinkInChat",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/AetheryteLinkInChat",
     "Tags": [
       "teleporter"
     ],
@@ -36,8 +36,8 @@
     "Changelog": "c0aab4f: Merge pull request #3 from horoscope-dev/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.11.1\na3438d0: Merge pull request #12 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nchore(deps): update dependency gitversion.msbuild to v5.11.1\n26b4ffa: Merge pull request #2 from horoscope-dev/renovate/dalamudpackager-2.x\n\nchore(deps): update dependency dalamudpackager to v2.1.8\n2ce1f36: \ud83e\uddf9 dotnet format\n485afbe: chore(deps): update dependency gitversion.tool to v5.11.1\n62e0bb9: chore(deps): update dependency gitversion.msbuild to v5.11.1\n1c32ca6: chore(deps): update dependency dalamudpackager to v2.1.8\n17dadef: \ud83e\uddf9 dotnet format\n90f0198: API 7\nbc3e948: \ud83d\udd27 chore(renovate): update config\n70a64f8: feat: Support Patch 6.1\ndabbe6d: feat: Support Dalamud API 5",
     "DalamudApiLevel": 7,
     "Description": "Simple plugin to just add /calc command.",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/stable/Divination.Calculator/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.Calculator/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.Calculator/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Calculator/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.Calculator",
@@ -47,7 +47,7 @@
     "LoadPriority": 0,
     "Name": "Divination.Calculator",
     "Punchline": "/calc 33 - 4",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.Calculator",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/Calculator",
     "Tags": [
       "utility"
     ],
@@ -63,8 +63,8 @@
     "Changelog": "a84b585: Merge pull request #3 from horoscope-dev/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.11.1\n2f79521: Merge pull request #12 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nchore(deps): update dependency gitversion.msbuild to v5.11.1\n9db02f8: \ud83e\uddf9 dotnet format\nad40198: chore(deps): update dependency gitversion.msbuild to v5.11.1\nfeb14f8: chore(deps): update dependency gitversion.tool to v5.11.1\nfc5a6c9: SeIconChar \u3082\u8868\u793a\u53ef\u80fd\u306b\u3059\u308b\nb7fdf26: \u30e1\u30e2\u30ea\u7bc4\u56f2\u3092\u5909\u66f4\nfc19909: \ud83e\uddf9 dotnet format\naa8d5b2: \u30ea\u30d5\u30a1\u30af\u30bf\u30ea\u30f3\u30b0\n5d555ef: Merge pull request #2 from horoscope-dev/renovate/dalamudpackager-2.x\n\nchore(deps): update dependency dalamudpackager to v2.1.8\n4473e28: chore(deps): update dependency dalamudpackager to v2.1.8\nad4d625: Template \u306e\u5909\u66f4\u306b\u8ffd\u5f93\n688db78: \ud83d\udd27 chore(renovate): update config\n6aecbc7: feat: Support Patch 6.1\n8a9c2bb: fix: result won't show due to queue\n3181092: feat: log on matched packets\n13ee3a6: fix: network value filtering\n3a68e91: feat: add Clear button\n2213911: fix: index is no longer skipped\ne3c613d: fix: network data can overflow\n97079b1: feat: show Opcode\n4e31c81: fix: priority between LocalPlayer and Target\n0b3ca6c: fix: Enum.GetName receives non-enum accidentally\nc451ef4: fix: allow unsafe codes\n39638e2: feat: readable memory data view",
     "DalamudApiLevel": 7,
     "Description": "Tiny tool to inspect game...",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/stable/Divination.Debugger/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.Debugger/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.Debugger/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Debugger/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.Debugger",
@@ -74,7 +74,7 @@
     "LoadPriority": 0,
     "Name": "Divination.Debugger",
     "Punchline": "You don't need this unless you are developer.",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.Debugger",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/Debugger",
     "Tags": [
       "Development",
       "Debug"
@@ -91,8 +91,8 @@
     "Changelog": "675aa21: Common \u66f4\u65b0\n34ce59f: Dalamud \u304c\u63d0\u4f9b\u3059\u308b Newtonsoft.Json \u3092\u4f7f\u3046\n9e1fdec: Merge pull request #15 from horoscope-dev/renovate/discordrichpresence-1.x\n\nUpdate dependency DiscordRichPresence to v1.1.3.18\n0d30f64: Merge pull request #13 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nUpdate dependency GitVersion.MsBuild to v5.11.1\nede5fab: Merge pull request #14 from horoscope-dev/renovate/gitversion.tool-5.x\n\nUpdate dependency gitversion.tool to v5.11.1\nf98ebfc: Update dependency DiscordRichPresence to v1.1.3.18\n97ceb0f: \u30ea\u30dd\u30b8\u30c8\u30ea\u5909\u66f4\ne51c076: \ud83e\uddf9 dotnet format\nf51539c: Update dependency gitversion.tool to v5.11.1\nb2ba067: Update dependency GitVersion.MsBuild to v5.11.1\n6a4dab2: Update README\ndae271d: Merge pull request #12 from horoscope-dev/renovate/discordrichpresence-1.x\n\nUpdate dependency DiscordRichPresence to v1.1.1.14\ncade51e: Update dependency DiscordRichPresence to v1.1.1.14\nf5f8ed5: \ud83e\uddf9 dotnet format\n4c36da1: Reusable workflows \u3092\u4f7f\u3046\n7d4b5fe: \u30af\u30ea\u30fc\u30f3\u30a2\u30c3\u30d7\nd5fead1: \u30d1\u30b9\u4fee\u6b63\n82c55ad: gitversion.json \u3092\u8aad\u3080\nd1d912b: \u30d0\u30fc\u30b8\u30e7\u30f3\u6226\u7565\u3092\u5909\u66f4\n12fcc04: \u30a2\u30af\u30b7\u30e7\u30f3\u5909\u3048\u3066\u307f\u308b\n8788afe: \u30d0\u30fc\u30b8\u30e7\u30f3\u60c5\u5831\u306e\u8868\u8a18\u3092\u4fee\u6b63\n4e068da: csproj \u306b TargetFramework \u3092\u66f8\u304b\u306a\u3044\n5555f4c: \ud83e\uddf9 dotnet format\n6e294d7: Dalamud 7\n773ad0a: Common \u3092 Nuget \u7d4c\u7531\u3067\u53c2\u7167\u3059\u308b\n1b9d765: \ud83d\udd27 chore(renovate): update config\nc250b99: re-enable .NET6\n75b16f2: Update Common\n82e9aa4: Merge branch 'master' of https://github.com/horoscope-dev/Dalamud.Divination.DiscordIntegration\n5d2c35b: Update DiscordIntegrationPlugin.cs",
     "DalamudApiLevel": 7,
     "Description": "Dalamud Plugin to support Rich Presence for FFXIV.",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/stable/Divination.DiscordIntegration/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.DiscordIntegration/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.DiscordIntegration/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.DiscordIntegration/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.DiscordIntegration",
@@ -102,7 +102,7 @@
     "LoadPriority": 0,
     "Name": "Divination.DiscordIntegration",
     "Punchline": "Fully-customizable Discord Rich Presence",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.DiscordIntegration",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/DiscordIntegration",
     "Tags": [
       "Discord"
     ],
@@ -119,8 +119,8 @@
     "Changelog": "9c56b60: Merge remote-tracking branch 'origin/master'\n3eee367: \u53d7\u4fe1\u3057\u3066\u3044\u306a\u3044\u8a0e\u4f10\u5831\u544a\u3092\u975e\u8868\u793a\u306b\u3059\u308b\u30aa\u30d7\u30b7\u30e7\u30f3\ndda6a1f: \ud83e\uddf9 dotnet format\n1c949fc: \u62e1\u5f35\u30d0\u30fc\u30b8\u30e7\u30f3\u306b\u5fdc\u3058\u3066\u30d5\u30a3\u30eb\u30bf\u30fc\u3067\u304d\u308b\u3088\u3046\u306b\n890454d: Merge remote-tracking branch 'origin/master'\n12b6ff2: \u30d1\u30fc\u30c6\u30a3\u52df\u96c6\u3092\u5ec3\u6b62\n87be32a: \ud83e\uddf9 dotnet format\naa0c69a: main.js \u306b\u57cb\u3081\u8fbc\u307e\u308c\u305f JSON \u3092\u8aad\u307f\u53d6\u308b\n0c13f30: Session\n7a25bab: \u30e9\u30f3\u30af\u306b\u5fdc\u3058\u305f\u8a18\u53f7\u3092\u4f7f\u3046\u3088\u3046\u306b\u4fee\u6b63\n27ebc30: \u5831\u544a\u8005\u540d\u304c\u3042\u308c\u3070\u4f7f\u3046\nbd12183: \u540c\u3058\u30d1\u30fc\u30c6\u30a3\u52df\u96c6\u306f\u7121\u8996\n3d3a520: \u81ea\u5206\u306e\u30d1\u30fc\u30c6\u30a3\u52df\u96c6\u306f\u7121\u8996\nad8b5df: \u30b3\u30f3\u30c6\u30f3\u30c4\u4e2d\u306b\u901a\u77e5\u3092\u7121\u52b9\u5316\u3059\u308b\u8a2d\u5b9a\u3092\u8ffd\u52a0\n66fb2c7: \u30ea\u30d5\u30a1\u30af\u30bf\u30ea\u30f3\u30b0\n2a38ff7: Merge remote-tracking branch 'origin/master'\n0d8490a: \u30d1\u30fc\u30c6\u30a3\u52df\u96c6\u306b\u5bfe\u5fdc\n6ab1db2: \ud83e\uddf9 dotnet format\n5805511: \u8a2d\u5b9a\u3092\u6574\u7406\n82aad7b: 10\u79d2\u4ee5\u4e0a\u306e\u3068\u304d\u306b\u79d2\u6570\u3092\u51fa\u3059\n4f9dc76: Merge remote-tracking branch 'origin/master'\ndbf9970: \u30bf\u30a4\u30e0\u30be\u30fc\u30f3\u3092\u4fee\u6b63\nee6f83b: \ud83e\uddf9 dotnet format\na785e82: Merge remote-tracking branch 'origin/master'\neb2d307: \u30c7\u30d0\u30c3\u30b0\u30ed\u30b0\u3092\u8ffd\u52a0\n008ce6b: \u540c\u540d\u306e\u30a4\u30d9\u30f3\u30c8\u306b\u5bfe\u3057\u3066\u4ed6\u306b\u30cf\u30f3\u30c9\u30e9\u30fc\u3092\u53d7\u3051\u53d6\u308c\u306a\u3044\u3088\u3046\u3060\u3063\u305f\n3ce229e: Merge pull request #2 from horoscope-dev/renovate/gitversion.tool-5.x\n\nUpdate dependency gitversion.tool to v5.11.1\n1ee9d92: Update dependency gitversion.tool to v5.11.1\nffe49d7: \ud83e\uddf9 dotnet format\ne0f8938: Publish",
     "DalamudApiLevel": 7,
     "Description": "Provide simple integration with Faloop. Mob notification in chat.",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/stable/Divination.FaloopIntegration/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.FaloopIntegration/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.FaloopIntegration/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.FaloopIntegration/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.FaloopIntegration",
@@ -130,7 +130,7 @@
     "LoadPriority": 0,
     "Name": "Divination.FaloopIntegration",
     "Punchline": "Faloop notification in chat",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.FaloopIntegration",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/FaloopIntegration",
     "Tags": [
       "mobhunt"
     ],
@@ -146,8 +146,8 @@
     "Changelog": "314e729: Merge pull request #11 from horoscope-dev/renovate/gitversion.tool-5.x\n\nUpdate dependency gitversion.tool to v5.11.1\n3775611: Update dependency gitversion.tool to v5.11.1\n4778e15: Merge pull request #4 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nUpdate dependency GitVersion.MsBuild to v5.11.1\n2675eac: Merge pull request #3 from horoscope-dev/renovate/dalamudpackager-2.x\n\nUpdate dependency DalamudPackager to v2.1.8\nc84e2e4: \ud83e\uddf9 dotnet format\nd7ddaa4: Update dependency GitVersion.MsBuild to v5.11.1\n580363e: Update dependency DalamudPackager to v2.1.8\n4afbd88: \ud83e\uddf9 dotnet format\n841b8b4: DtrBar \u3067\u30b5\u30fc\u30d0\u30fc\u60c5\u5831\u30d0\u30fc\u306b\u30a4\u30f3\u30b9\u30bf\u30f3\u30b9ID\u3092\u8868\u793a\u3059\u308b\u3088\u3046\u306b\n1d2a188: \u30d3\u30eb\u30c9\u69cb\u6210\u304c\u9593\u9055\u3063\u3066\u3044\u305f\n983d0c9: \ud83e\uddf9 dotnet format\n0c37ca6: reusable workflow \u3092\u4f7f\u3046\nd38dffc: \ud83d\udd27 chore(renovate): update config\nf7080d1: .NET 6/Api7\n575f29e: Bump version to 6.11.0\n87fb5ed: DalamudApiLevel 5 -> 6\n55b6259: Dalamud api 5\n47e921a: Update build.yaml\nbacd86d: fix\n6d27f69: fix project name\n6577000: fix PLUGIN_PROJECT_NAME\n00685a5: rename\nbfe5652: Dlalamud API4\n0f7745f: Dlalamud API4\n240d645: Delete InstanceIDViewer.sln.DotSettings.user\nedfde33: Create README.md\nef1e4df: fix\n5c73961: init",
     "DalamudApiLevel": 7,
     "Description": "show instance id in chat when instance changed",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/stable/Divination.InstanceIDViewer/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.InstanceIDViewer/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/Divination.InstanceIDViewer/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.InstanceIDViewer/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.InstanceIDViewer",
@@ -157,7 +157,7 @@
     "LoadPriority": 0,
     "Name": "Divination.InstanceIDViewer",
     "Punchline": "",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.InstanceIDViewer",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/InstanceIDViewer",
     "Tags": [
       "Discord"
     ],
@@ -180,8 +180,8 @@
     "Changelog": "3799fec: Merge pull request #2 from horoscope-dev/renovate/gitversion.tool-5.x\n\nUpdate dependency gitversion.tool to v5.11.1\n9c1f4dd: Update dependency gitversion.tool to v5.11.1\n9a83c73: \ud83e\uddf9 dotnet format\nb7d57be: rename Template\neb35051: Initial commit",
     "DalamudApiLevel": 7,
     "Description": "[Description]",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.PerfectComplex/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.PerfectComplex/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.PerfectComplex/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.PerfectComplex/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.PerfectComplex",
@@ -191,7 +191,7 @@
     "LoadPriority": 0,
     "Name": "[Name]",
     "Punchline": "[Punchline]",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.PerfectComplex",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/PerfectComplex",
     "Tags": [
       "[Tag]"
     ],
@@ -207,8 +207,8 @@
     "Changelog": "930b290: Merge pull request #2 from horoscope-dev/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.11.1\n2fbe9fe: Merge pull request #11 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nchore(deps): update dependency gitversion.msbuild to v5.11.1\n7593cba: \ud83e\uddf9 dotnet format\na19a69e: chore(deps): update dependency gitversion.tool to v5.11.1\nab8761f: chore(deps): update dependency gitversion.msbuild to v5.11.1\n9c4e535: Merge remote-tracking branch 'origin/master'\nc2095ea: \u30b5\u30d6\u30e2\u30b8\u30e5\u30fc\u30eb\u9664\u53bb\n00c46f8: \ud83e\uddf9 dotnet format\n0db1577: API 7\n707d83e: \ud83d\udd27 chore(renovate): update config\nc48c154: feat: Support Patch 6.1\n7245a13: feat: Support Dalamud API 5\nb2ad1e6: Update build.yml\n9a10147: Update build.yml\ncbc810c: Update build.yml\n9aca661: Update build.yml\n0d7aea6: Update build.yml\nf5b1206: Update build.yml",
     "DalamudApiLevel": 7,
     "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.PowerUtils/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.PowerUtils/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.PowerUtils/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.PowerUtils/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.PowerUtils",
@@ -218,7 +218,7 @@
     "LoadPriority": 0,
     "Name": "Divination.PowerUtils",
     "Punchline": "Save Energy!",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.PowerUtils",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/PowerUtils",
     "Tags": [
       "Command"
     ],
@@ -241,8 +241,8 @@
     "Changelog": "9a65177: Initial commit",
     "DalamudApiLevel": 7,
     "Description": "[Description]",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.Template/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.Template/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.Template/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Template/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.Template",
@@ -252,7 +252,7 @@
     "LoadPriority": 0,
     "Name": "[Name]",
     "Punchline": "[Punchline]",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.FaloopIntegration",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/FaloopIntegration",
     "Tags": [
       "[Tag]"
     ],
@@ -268,8 +268,8 @@
     "Changelog": "72f71b2: \ud83e\uddf9 dotnet format\nd69d7b5: \u30a2\u30c3\u30d7\u30b0\u30ec\u30fc\u30c9\ne90d154: file-scoped namespace\n731b882: Merge pull request #2 from horoscope-dev/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.11.1\n7da899e: Merge pull request #11 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nchore(deps): update dependency gitversion.msbuild to v5.11.1\nf6033dd: \ud83e\uddf9 dotnet format\n40896cf: chore(deps): update dependency gitversion.tool to v5.11.1\ncc15592: chore(deps): update dependency gitversion.msbuild to v5.11.1\nffa0a46: \ud83e\uddf9 dotnet format\n63fc144: API 7\n54f71b8: \ud83d\udd27 chore(renovate): update config\ne88a5f9: feat: Support Patch 6.1\n39f73bc: feat: Support Dalamud API 5",
     "DalamudApiLevel": 7,
     "Description": "Dalamud Plugin to add tweet function and Twitter timeline in FFXIV chat",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.TwitterIntegration/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.TwitterIntegration/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.TwitterIntegration/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.TwitterIntegration/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.TwitterIntegration",
@@ -279,7 +279,7 @@
     "LoadPriority": 0,
     "Name": "Divination.TwitterIntegration",
     "Punchline": "Tweet in FFXIV chat.",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.TwitterIntegration",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/TwitterIntegration",
     "Tags": [
       "Twitter"
     ],
@@ -295,8 +295,8 @@
     "Changelog": "a9c071a: Merge pull request #2 from horoscope-dev/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.11.1\n58cbb32: Merge pull request #11 from horoscope-dev/renovate/gitversion.msbuild-5.x\n\nchore(deps): update dependency gitversion.msbuild to v5.11.1\nb95a902: \ud83e\uddf9 dotnet format\nfb86636: chore(deps): update dependency gitversion.tool to v5.11.1\neb8e9c9: chore(deps): update dependency gitversion.msbuild to v5.11.1\nbf74b5c: \ud83e\uddf9 dotnet format\n0f21f2f: API 7\n0f5b930: \ud83d\udd27 chore(renovate): update config\n9808e0c: feat: Support Patch 6.1\n08b6aaf: feat: Support Dalamud API 6",
     "DalamudApiLevel": 7,
     "Description": "Add /voiceroid2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
-    "DownloadLinkInstall": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.Voiceroid2Talker/latest.zip",
-    "DownloadLinkTesting": "https://slashnephy.github.io/Dalamud.DivinationPluginRepo/dist/testing/Divination.Voiceroid2Talker/latest.zip",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Divination.Voiceroid2Talker/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Divination.Voiceroid2Talker/latest.zip",
     "IconUrl": "https://avatars.githubusercontent.com/u/7855451?v=4&s=64",
     "ImageUrls": [],
     "InternalName": "Divination.Voiceroid2Talker",
@@ -306,7 +306,7 @@
     "LoadPriority": 0,
     "Name": "Divination.Voiceroid2Talker",
     "Punchline": "Text-to-Speech for Voiceroid2",
-    "RepoUrl": "https://github.com/horoscope-dev/Divination.Voiceroid2Talker",
+    "RepoUrl": "https://github.com/SlashNephy/Divination/blob/master/packages/plugins/Voiceroid2Talker",
     "Tags": [
       "Text-to-speech",
       "Voiceroid"
