@@ -1,0 +1,24 @@
+name: Build (DiscordBot)
+
+on:
+  push:
+    paths:
+      - 'packages/DiscordBot/**'
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  actions: read
+  security-events: write
+
+jobs:
+  build:
+    uses: SlashNephy/.github/.github/workflows/docker-build.yml@master
+    with:
+      image-name: ghcr.io/slashnephy/divination-discord-bot
+      image-platforms: linux/amd64
+      context: packages/DiscordBot
