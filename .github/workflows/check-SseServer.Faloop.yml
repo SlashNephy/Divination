@@ -1,0 +1,18 @@
+name: Check (SseServer.Faloop)
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    uses: SlashNephy/.github/.github/workflows/gradle-run.yml@master
+    with:
+      task: build
+      working-directory: packages/SseServer.Faloop
