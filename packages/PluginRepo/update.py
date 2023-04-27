@@ -6,14 +6,22 @@ from zipfile import ZipFile
 
 def extract_manifests(env):
     manifests = {}
+    if not os.path.isdir(f"docs/plugins/{env}"):
+        return manifests
+
     for dir_path, _, filenames in os.walk(f"docs/plugins/{env}"):
         if "latest.zip" not in filenames:
             continue
 
-        with ZipFile(f"{dir_path}/latest.zip") as z:
-            plugin_name = dir_path.split("/")[-1]
-            manifest = json.loads(z.read(f"{plugin_name}.json").decode())
-            manifests[manifest["InternalName"]] = manifest
+        plugin_name = dir_path.split("/")[-1]
+        if os.path.exists(f"{dir_path}/{plugin_name}.json"):
+            with open(f"{dir_path}/{plugin_name}.json") as f:
+                manifest = json.load(f)
+                manifests[manifest["InternalName"]] = manifest
+        else:
+            with ZipFile(f"{dir_path}/latest.zip") as z:
+                manifest = json.loads(z.read(f"{plugin_name}.json").decode())
+                manifests[manifest["InternalName"]] = manifest
 
     return manifests
 
@@ -98,7 +106,7 @@ def merge_manifests(stable, testing):
 
         manifest["Changelog"] = get_changelog(testing_path) or get_changelog(stable_path)
         manifest["IsHide"] = testing_manifest.get("IsHide", stable_manifest.get("IsHide", False))
-        manifest["RepoUrl"] = get_repo_url(testing_path) or get_repo_url(stable_path) or testing_manifest.get("RepoUrl", stable_manifest.get("RepoUrl"))
+        manifest["RepoUrl"] = testing_manifest.get("RepoUrl", stable_manifest.get("RepoUrl")) or get_repo_url(testing_path) or get_repo_url(stable_path)
         manifest["AssemblyVersion"] = stable_manifest["AssemblyVersion"] if stable_manifest else testing_manifest["AssemblyVersion"]
         manifest["TestingAssemblyVersion"] = testing_manifest["AssemblyVersion"] if testing_manifest else None
         manifest["IsTestingExclusive"] = not bool(stable_manifest) and bool(testing_manifest)
