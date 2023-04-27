@@ -23,7 +23,7 @@ jobs:
           token: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
 
       - name: Restore mtime
-        uses: chetan/git-restore-mtime-action@v1
+        uses: chetan/git-restore-mtime-action@v2
 
       - name: Setup Python
         uses: actions/setup-python@v4
