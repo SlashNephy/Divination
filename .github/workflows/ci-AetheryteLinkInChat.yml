@@ -19,7 +19,7 @@ jobs:
   build:
     uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@master
     with:
-      plugin-name: 'Divination.AetheryteLinkInChat'
+      plugin-name: 'AetheryteLinkInChat'
       working-directory: 'packages/plugins/AetheryteLinkInChat'
     permissions:
       contents: read
@@ -30,7 +30,7 @@ jobs:
     needs: build
     uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@master
     with:
-      plugin-name: 'Divination.AetheryteLinkInChat'
+      plugin-name: 'AetheryteLinkInChat'
     secrets:
       DEPLOY_GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     permissions:
