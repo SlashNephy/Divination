@@ -1,4 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+      <RootNamespace>Divination.PowerUtils</RootNamespace>
+    </PropertyGroup>
+    
     <ItemGroup>
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
@@ -9,7 +13,7 @@
             <Private>False</Private>
         </Reference>
 
-        <ProjectReference Include="..\..\Common\Common.csproj"/>
+        <ProjectReference Include="..\..\Common\Common.csproj" />
 
         <PackageReference Include="DalamudPackager" Version="2.1.8" />
     </ItemGroup>

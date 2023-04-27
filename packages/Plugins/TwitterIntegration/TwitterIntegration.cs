@@ -16,10 +16,10 @@ using Dalamud.Plugin;
 
 namespace Divination.TwitterIntegration;
 
-public class TwitterIntegrationPlugin : DivinationPlugin<TwitterIntegrationPlugin, PluginConfig>,
+public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginConfig>,
     IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
 {
-    public TwitterIntegrationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public TwitterIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         Task.Run(WatchTimeline);

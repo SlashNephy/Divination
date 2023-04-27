@@ -12,7 +12,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
     public override void Draw()
     {
-        if (ImGui.Begin($"{TwitterIntegrationPlugin.Instance.Name} 設定", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
+        if (ImGui.Begin($"{TwitterIntegration.Instance.Name} 設定", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
         {
             ImGuiEx.TextConfig("Consumer Key", ref Config.ConsumerKey, 64);
             ImGuiEx.TextConfig("Consumer Secret", ref Config.ConsumerSecret, 64);
@@ -37,7 +37,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             {
                 IsOpen = false;
 
-                TwitterIntegrationPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
+                TwitterIntegration.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
                 PluginLog.Information("Config saved");
             }
 
@@ -55,13 +55,13 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.Button("Authenticate"))
         {
-            if (string.IsNullOrEmpty(TwitterIntegrationPlugin.Instance.Config.ConsumerKey) || string.IsNullOrEmpty(TwitterIntegrationPlugin.Instance.Config.ConsumerSecret))
+            if (string.IsNullOrEmpty(TwitterIntegration.Instance.Config.ConsumerKey) || string.IsNullOrEmpty(TwitterIntegration.Instance.Config.ConsumerSecret))
             {
-                TwitterIntegrationPlugin.Instance.Divination.Chat.PrintError("Consumer Key または Consumer Secret が設定されていません。");
+                TwitterIntegration.Instance.Divination.Chat.PrintError("Consumer Key または Consumer Secret が設定されていません。");
                 return;
             }
 
-            _session = OAuth.Authorize(TwitterIntegrationPlugin.Instance.Config.ConsumerKey, TwitterIntegrationPlugin.Instance.Config.ConsumerSecret);
+            _session = OAuth.Authorize(TwitterIntegration.Instance.Config.ConsumerKey, TwitterIntegration.Instance.Config.ConsumerSecret);
             Process.Start(_session!.AuthorizeUri.AbsoluteUri);
 
             _isPinWindowDrawing = true;
@@ -75,10 +75,10 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             var tokens = _session?.GetTokens(_pin);
             if (tokens != null)
             {
-                TwitterIntegrationPlugin.Instance.Config.AccessToken = tokens.AccessToken;
-                TwitterIntegrationPlugin.Instance.Config.AccessTokenSecret = tokens.AccessTokenSecret;
+                TwitterIntegration.Instance.Config.AccessToken = tokens.AccessToken;
+                TwitterIntegration.Instance.Config.AccessTokenSecret = tokens.AccessTokenSecret;
 
-                TwitterIntegrationPlugin.Instance.Divination.Chat.Print("Twitter API への認証に成功しました。");
+                TwitterIntegration.Instance.Divination.Chat.Print("Twitter API への認証に成功しました。");
             }
 
             _session = null;
@@ -104,22 +104,22 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.Button("Find List"))
         {
-            if (TwitterIntegrationPlugin.Twitter == null)
+            if (TwitterIntegration.Twitter == null)
             {
-                TwitterIntegrationPlugin.Instance.Divination.Chat.PrintError("Twitter API の資格情報が設定されていません。");
+                TwitterIntegration.Instance.Divination.Chat.PrintError("Twitter API の資格情報が設定されていません。");
                 return;
             }
 
-            TwitterIntegrationPlugin.Twitter.Lists.OwnershipsAsync(count: 50).ContinueWith(completed =>
+            TwitterIntegration.Twitter.Lists.OwnershipsAsync(count: 50).ContinueWith(completed =>
             {
                 if (completed.IsCompleted)
                 {
-                    TwitterIntegrationPlugin.Instance.Divination.Chat.Print(
+                    TwitterIntegration.Instance.Divination.Chat.Print(
                         $"使用可能なリスト一覧です。\n{string.Join("\n", completed.Result.Select(list => $"{list.Name} (ID: {list.Id})"))}");
                 }
                 else if (completed.Exception != null)
                 {
-                    TwitterIntegrationPlugin.Instance.Divination.Chat.PrintError("リスト一覧の取得に失敗しました。");
+                    TwitterIntegration.Instance.Divination.Chat.PrintError("リスト一覧の取得に失敗しました。");
                     PluginLog.Error(completed.Exception, "Error occurred while OwnershipsAsync");
                 }
             });

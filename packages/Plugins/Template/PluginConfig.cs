@@ -1,11 +1,10 @@
 ﻿using Dalamud.Configuration;
 
-namespace Divination.Template
-{
-    public class PluginConfig : IPluginConfiguration
-    {
-        public bool SomeFlag;
+namespace Divination.Template;
 
-        public int Version { get; set; }
-    }
+public class PluginConfig : IPluginConfiguration
+{
+    public bool SomeFlag;
+
+    public int Version { get; set; }
 }

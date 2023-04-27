@@ -22,7 +22,7 @@ using SocketIOClient;
 namespace Divination.FaloopIntegration;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegrationPlugin, PluginConfig>,
+public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, PluginConfig>,
     IDalamudPlugin,
     ICommandSupport,
     IConfigWindowSupport<PluginConfig>
@@ -30,7 +30,7 @@ public sealed class FaloopIntegrationPlugin : DivinationPlugin<FaloopIntegration
     private readonly FaloopSocketIOClient socket = new();
     private readonly FaloopSession session = new();
 
-    public FaloopIntegrationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public FaloopIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
 

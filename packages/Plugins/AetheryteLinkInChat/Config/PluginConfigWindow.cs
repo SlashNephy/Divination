@@ -15,7 +15,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     public PluginConfigWindow()
     {
-        var sheet = AetheryteLinkInChatPlugin.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>();
+        var sheet = AetheryteLinkInChat.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>();
         grandCompanyAetheryteNames = Enum.GetValues<GrandCompanyAetheryte>()
             .Select(x => sheet?.GetRow((uint)x)?.PlaceName.Value?.Name.RawString ?? Enum.GetName(x) ?? string.Empty)
             .ToArray();
@@ -23,7 +23,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     public override void Draw()
     {
-        if (ImGui.Begin(Localization.ConfigWindowTitle.Format(AetheryteLinkInChatPlugin.Instance.Name), ref IsOpen, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
+        if (ImGui.Begin(Localization.ConfigWindowTitle.Format(AetheryteLinkInChat.Instance.Name), ref IsOpen, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
         {
             ImGui.Checkbox(Localization.AllowTeleportQueueing.ToString(), ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
