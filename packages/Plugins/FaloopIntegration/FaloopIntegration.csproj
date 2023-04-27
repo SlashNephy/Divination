@@ -24,7 +24,7 @@
         </Reference>
         <PackageReference Include="AngleSharp" Version="0.17.1" />
         <PackageReference Include="SocketIOClient" Version="3.0.7" />
-        <PackageReference Include="DalamudPackager" Version="2.1.8">
+        <PackageReference Include="DalamudPackager" Version="2.1.11">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
