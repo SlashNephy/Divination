@@ -94,7 +94,7 @@
           "System.Text.Encodings.Web": "7.0.0"
         }
       },
-      "common": {
+      "Dalamud.Divination.Common": {
         "type": "Project"
       }
     }

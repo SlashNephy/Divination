@@ -60,7 +60,7 @@
           "Microsoft.NETCore.Platforms": "2.0.0"
         }
       },
-      "common": {
+      "Dalamud.Divination.Common": {
         "type": "Project"
       },
       "discordintegration.ipcmodel": {
