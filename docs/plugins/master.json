@@ -25,5 +25,37 @@
       "teleporter"
     ],
     "TestingAssemblyVersion": "0.1.0.1101"
+  },
+  {
+    "AcceptsFeedback": false,
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1107",
+    "Author": "Asteria Nocturna",
+    "CanUnloadAsync": false,
+    "CategoryTags": [
+      "utility"
+    ],
+    "Changelog": "8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI\n7430ca8: feat(SseServer): add CI\n578192f: feat(DownloadCounter): add CI\n3c6450d: feat(DiscordBot): add CI\nf4d5c34: feat(SseServer.Faloop): add CI",
+    "DalamudApiLevel": 8,
+    "Description": "Tiny tool to inspect game...",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Debugger/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Debugger/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "Debugger",
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "LastUpdated": 1682600829,
+    "LoadPriority": 0,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
+    "Name": "Divination.Debugger",
+    "Punchline": "You don't need this unless you are developer.",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "Development",
+      "Debug"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1107"
   }
 ]
