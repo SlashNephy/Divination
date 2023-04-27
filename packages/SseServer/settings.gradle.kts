@@ -1,1 +1,1 @@
-rootProject.name = "Divination.SseServer"
+rootProject.name = "SseServer"

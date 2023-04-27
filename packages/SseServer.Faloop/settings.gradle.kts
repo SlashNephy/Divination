@@ -1,1 +1,1 @@
-rootProject.name = "Divination.SseServer.Faloop"
+rootProject.name = "SseServer.Faloop"

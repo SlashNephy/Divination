@@ -1,1 +1,1 @@
-rootProject.name = "Divination.DiscordBot"
+rootProject.name = "DiscordBot"
