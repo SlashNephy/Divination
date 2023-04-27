@@ -3,6 +3,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <RootNamespace>Divination.AetheryteLinkInChat</RootNamespace>
     </PropertyGroup>
+  
     <ItemGroup>
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
@@ -24,13 +25,11 @@
             <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        
-        <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.216" />
 
         <PackageReference Include="DalamudPackager" Version="2.1.8">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 
-        <PackageReference Update="GitVersion.MsBuild" Version="5.12.0" />
+        <ProjectReference Include="..\..\Common\Common.csproj" />
     </ItemGroup>
 </Project>
