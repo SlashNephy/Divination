@@ -5,51 +5,50 @@ using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Divination.ChatFilter.Filters;
 
-namespace Divination.ChatFilter
-{
-    public class ChatFilterManager : IDisposable
-    {
-        private readonly List<IChatFilter> filters = new()
-        {
-            new DebugMessageFilter(),
-            new DuplicatedMapLinkFilter(),
-            new DuplicatedMessageFilter(),
-            new LsGreetingFilter(),
-            new NoticeFilter(),
-            new NoviceNetworkJoinMessageFilter(),
-            new SonarRankBFilter()
-        };
+namespace Divination.ChatFilter;
 
-        public ChatFilterManager()
+public class ChatFilterManager : IDisposable
+{
+    private readonly List<IChatFilter> filters = new()
+    {
+        new DebugMessageFilter(),
+        new DuplicatedMapLinkFilter(),
+        new DuplicatedMessageFilter(),
+        new LsGreetingFilter(),
+        new NoticeFilter(),
+        new NoviceNetworkJoinMessageFilter(),
+        new SonarRankBFilter()
+    };
+
+    public ChatFilterManager()
+    {
+        ChatFilterPlugin.Instance.Dalamud.ChatGui.ChatMessage += OnChatMessage;
+    }
+
+    private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+    {
+        if (isHandled)
         {
-            ChatFilterPlugin.Instance.Dalamud.ChatGui.ChatMessage += OnChatMessage;
+            return;
         }
 
-        private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+        foreach (var filter in filters.Where(x => x.IsAvailable()))
         {
-            if (isHandled)
+            if (filter.Test(type, sender, message))
             {
+                isHandled = true;
                 return;
             }
-
-            foreach (var filter in filters.Where(x => x.IsAvailable()))
-            {
-                if (filter.Test(type, sender, message))
-                {
-                    isHandled = true;
-                    return;
-                }
-            }
         }
+    }
 
-        public void Dispose()
+    public void Dispose()
+    {
+        ChatFilterPlugin.Instance.Dalamud.ChatGui.ChatMessage -= OnChatMessage;
+
+        foreach (var disposable in filters.OfType<IDisposable>())
         {
-            ChatFilterPlugin.Instance.Dalamud.ChatGui.ChatMessage -= OnChatMessage;
-
-            foreach (var disposable in filters.OfType<IDisposable>())
-            {
-                disposable.Dispose();
-            }
+            disposable.Dispose();
         }
     }
 }

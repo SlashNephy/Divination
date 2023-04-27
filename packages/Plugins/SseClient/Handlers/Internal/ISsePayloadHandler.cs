@@ -1,6 +1,5 @@
-﻿namespace Divination.SseClient.Handlers
+﻿namespace Divination.SseClient.Handlers;
+
+public interface ISsePayloadHandler
 {
-    public interface ISsePayloadHandler
-    {
-    }
 }

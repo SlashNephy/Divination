@@ -4,13 +4,13 @@
     "net7.0-windows7.0": {
       "3v.EvtSource": {
         "type": "Direct",
-        "requested": "[2.*, )",
+        "requested": "[2.0.0, )",
         "resolved": "2.0.0",
         "contentHash": "+5mAL4BrKXC0bQd8SAv3WACGPEmHEwzDQliT+ao//BowPmX+W+zHMGVj+O3xM+tjkNPpwKY89dSQfbf7wpO4DQ=="
       },
       "DalamudPackager": {
         "type": "Direct",
-        "requested": "[2.*, )",
+        "requested": "[2.1.11, )",
         "resolved": "2.1.11",
         "contentHash": "9qlAWoRRTiL/geAvuwR/g6Bcbrd/bJJgVnB/RurBiyKs6srsP0bvpoo8IK+Eg8EA6jWeM6/YJWs66w4FIAzqPw=="
       },
@@ -19,6 +19,9 @@
         "requested": "[5.12.0, )",
         "resolved": "5.12.0",
         "contentHash": "dJuigXycpJNOiLT9or7mkHSkGFHgGW3/p6cNNYEKZBa7Hhp1FdX/cvqYWWYhRLpfoZOedeA7aRbYiOB3vW/dvA=="
+      },
+      "Dalamud.Divination.Common": {
+        "type": "Project"
       }
     }
   }
