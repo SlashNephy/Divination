@@ -1,0 +1,45 @@
+name: 'CI (InstanceIDViewer)'
+
+on:
+  push:
+    paths:
+      - 'packages/Plugins/InstanceIDViewer/**'
+      - 'packages/Common/**'
+  pull_request:
+    paths:
+      - 'packages/Plugins/InstanceIDViewer/**'
+      - 'packages/Common/**'
+    types:
+      - opened
+      - synchronize
+  release:
+    types:
+      - created
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@master
+    with:
+      plugin-name: 'InstanceIDViewer'
+      working-directory: 'packages/Plugins/InstanceIDViewer'
+    permissions:
+      contents: read
+      actions: write
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    needs: build
+    uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@master
+    with:
+      plugin-name: 'InstanceIDViewer'
+    secrets:
+      DEPLOY_GITHUB_TOKEN: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
+    permissions:
+      actions: read
+
+  format:
+    if: github.event_name == 'push'
+    uses: SlashNephy/.github/.github/workflows/dotnet-format.yml@master
+    permissions:
+      contents: write
