@@ -1,0 +1,19 @@
+{
+  "Author": "Asteria Nocturna",
+  "Name": "Divination.ChatFilter",
+  "Punchline": "Filter annoying spams!",
+  "Description": "Remove unnecessary chat messages by complex built-in filters.",
+  "Tags": [
+    "Chat"
+  ],
+  "CategoryTags": [
+    "ui",
+    "social"
+  ],
+  "IsHide": false,
+  "ApplicableVersion": "any",
+  "DalamudApiLevel": 4,
+  "LoadPriority": 0,
+  "ImageUrls": [],
+  "IconUrl": null
+}
