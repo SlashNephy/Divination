@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+
+    <AssemblyTitle>Shared library for Divination projects</AssemblyTitle>
+    <Company>Horoscope.dev</Company>
+    <Product>Divination</Product>
+    <Copyright>Copyright (c) Asteria Nocturna</Copyright>
+    <RepositoryType>GitHub</RepositoryType>
+    <Description>A shared library used by the Divination projects to provide boilerplate for Dalamud plugin and to complement Dalamud APIs.</Description>
+    <RepositoryUrl>https://github.com/horoscope-dev/Dalamud.Divination.Common</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RootNamespace>Dalamud.Divination.Common</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Dalamud">
+      <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ImGui.NET">
+      <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ImGuiScene">
+      <HintPath>$(DalamudLibPath)ImGuiScene.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Lumina">
+      <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <PackageReference Include="GitVersion.MsBuild" Version="5.11.1">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
