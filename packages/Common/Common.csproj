@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/horoscope-dev/Dalamud.Divination.Common</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RootNamespace>Dalamud.Divination.Common</RootNamespace>
+    <AssemblyName>Dalamud.Divination.Common</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
