@@ -1,13 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net6.0-windows7.0": {
-      "Dalamud.Divination.Common": {
-        "type": "Direct",
-        "requested": "[0.1.0-beta.184, )",
-        "resolved": "0.1.0-beta.184",
-        "contentHash": "HS366ETrqBhXbrdgcvfXrqZhZ7QQf1uC4jfBWfKrAzrkl30LA7LiNipQVI462WXZz2jM2vi9OASQUicklMlNPg=="
-      },
+    "net7.0-windows7.0": {
       "DalamudPackager": {
         "type": "Direct",
         "requested": "[2.1.8, )",
@@ -16,9 +10,12 @@
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[5.11.1, )",
-        "resolved": "5.11.1",
-        "contentHash": "JlJB4dAc/MpLQvbF8OeyMKotDo5EcgU2pXmB+MlTe64B1Y0fc9GTMiAHiyUiHLnFRnOtrcSi1C3BsfRTmlD0sA=="
+        "requested": "[5.12.0, )",
+        "resolved": "5.12.0",
+        "contentHash": "dJuigXycpJNOiLT9or7mkHSkGFHgGW3/p6cNNYEKZBa7Hhp1FdX/cvqYWWYhRLpfoZOedeA7aRbYiOB3vW/dvA=="
+      },
+      "common": {
+        "type": "Project"
       }
     }
   }

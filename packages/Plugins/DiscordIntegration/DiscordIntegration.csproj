@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <PackageReference Include="Dalamud.Divination.Common" Version="0.1.0-beta.216" />
-        <ProjectReference Include="..\Divination.DiscordIntegration.IpcModel\Divination.DiscordIntegration.IpcModel.csproj" />
+        <ProjectReference Include="..\..\Common\Common.csproj"/>
+        <ProjectReference Include="..\DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj" />
 
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
