@@ -8,13 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{CA96
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat", "packages\Plugins\AetheryteLinkInChat\AetheryteLinkInChat.csproj", "{F2292259-3916-48E6-A67E-1FB7893E1254}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{60F60A0A-17B2-4A9E-A428-4C0178C5438F}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		Directory.Build.props = Directory.Build.props
-		GitVersion.yml = GitVersion.yml
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "packages\Plugins\Calculator\Calculator.csproj", "{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration", "packages\Plugins\DiscordIntegration\DiscordIntegration.csproj", "{EF081021-4C26-4B66-856B-D78ABB09CBE4}"
