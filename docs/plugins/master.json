@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1101",
+    "Author": "Asteria Nocturna",
+    "CategoryTags": [
+      "utility"
+    ],
+    "Changelog": "b494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI\n7430ca8: feat(SseServer): add CI\n578192f: feat(DownloadCounter): add CI\n3c6450d: feat(DiscordBot): add CI\nf4d5c34: feat(SseServer.Faloop): add CI\n9da3848: feat(Server.Companion): add CI\n50a1625: Merge remote-tracking branch 'origin/master'\ndc36cb4: fix(PluginRepo): update urls\n6bc7e98: Create CNAME\na08dea4: refactor(PluginRepo): move\n9202b07: refactor(Dalamud.DivinationPluginRepo): migrate to monorepo\n680453b: chore: do not trigger CI temporarily",
+    "DalamudApiLevel": 8,
+    "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/AetheryteLinkInChat/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/AetheryteLinkInChat/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "AetheryteLinkInChat",
+    "IsHide": false,
+    "IsTestingExclusive": false,
+    "LastUpdated": 1682596674,
+    "LoadPriority": 0,
+    "Name": "Divination.AetheryteLinkInChat",
+    "Punchline": "Quick teleport for Mob Hunting",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "teleporter"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1101"
+  }
+]
