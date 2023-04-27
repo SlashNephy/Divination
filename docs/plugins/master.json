@@ -1,12 +1,14 @@
 [
   {
+    "AcceptsFeedback": false,
     "ApplicableVersion": "any",
     "AssemblyVersion": "0.1.0.1101",
     "Author": "Asteria Nocturna",
+    "CanUnloadAsync": false,
     "CategoryTags": [
       "utility"
     ],
-    "Changelog": "b494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI\n7430ca8: feat(SseServer): add CI\n578192f: feat(DownloadCounter): add CI\n3c6450d: feat(DiscordBot): add CI\nf4d5c34: feat(SseServer.Faloop): add CI\n9da3848: feat(Server.Companion): add CI\n50a1625: Merge remote-tracking branch 'origin/master'\ndc36cb4: fix(PluginRepo): update urls\n6bc7e98: Create CNAME\na08dea4: refactor(PluginRepo): move\n9202b07: refactor(Dalamud.DivinationPluginRepo): migrate to monorepo\n680453b: chore: do not trigger CI temporarily",
+    "Changelog": "ca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI\n7430ca8: feat(SseServer): add CI",
     "DalamudApiLevel": 8,
     "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/stable/AetheryteLinkInChat/latest.zip",
@@ -16,15 +18,17 @@
     "InternalName": "AetheryteLinkInChat",
     "IsHide": false,
     "IsTestingExclusive": false,
-    "LastUpdated": 1682596674,
+    "LastUpdated": 1682600829,
     "LoadPriority": 0,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
     "Name": "Divination.AetheryteLinkInChat",
     "Punchline": "Quick teleport for Mob Hunting",
     "RepoUrl": "https://github.com/SlashNephy/Divination",
     "Tags": [
       "teleporter"
     ],
-    "TestingAssemblyVersion": "0.1.0.1101"
+    "TestingAssemblyVersion": "0.1.0.1107"
   },
   {
     "AcceptsFeedback": false,
@@ -55,6 +59,163 @@
     "Tags": [
       "Development",
       "Debug"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1107"
+  },
+  {
+    "AcceptsFeedback": true,
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1107",
+    "Author": "Asteria Nocturna",
+    "CanUnloadAsync": false,
+    "CategoryTags": [
+      "social"
+    ],
+    "Changelog": "21a194b: \u2699\ufe0f Deploy InstanceIDViewer \"0.1.0-beta.1107.333794c.20230427\"\n5165dbb: \u2699\ufe0f Deploy FaloopIntegration \"0.1.0-beta.1107.333794c.20230427\"\n87cc905: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1107.333794c.20230427\"\nca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI",
+    "DalamudApiLevel": 8,
+    "Description": "Dalamud Plugin to support Rich Presence for FFXIV.",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/DiscordIntegration/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/DiscordIntegration/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "DiscordIntegration",
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "LastUpdated": 1682600829,
+    "LoadPriority": 0,
+    "LoadRequiredState": 2,
+    "LoadSync": false,
+    "Name": "Divination.DiscordIntegration",
+    "Punchline": "Fully-customizable Discord Rich Presence",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "Discord"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1107"
+  },
+  {
+    "AcceptsFeedback": true,
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1107",
+    "Author": "Asteria Nocturna",
+    "CanUnloadAsync": false,
+    "CategoryTags": [
+      "social",
+      "utility"
+    ],
+    "Changelog": "87cc905: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1107.333794c.20230427\"\nca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI",
+    "DalamudApiLevel": 8,
+    "Description": "Provide simple integration with Faloop. Mob notification in chat.",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/FaloopIntegration/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/FaloopIntegration/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "FaloopIntegration",
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "LastUpdated": 1682600829,
+    "LoadPriority": 0,
+    "LoadRequiredState": 2,
+    "LoadSync": false,
+    "Name": "Divination.FaloopIntegration",
+    "Punchline": "Faloop notification in chat",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "mobhunt"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1107"
+  },
+  {
+    "AcceptsFeedback": true,
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1107",
+    "Author": "Horoscope developers",
+    "CanUnloadAsync": false,
+    "CategoryTags": [
+      "social"
+    ],
+    "Changelog": "5165dbb: \u2699\ufe0f Deploy FaloopIntegration \"0.1.0-beta.1107.333794c.20230427\"\n87cc905: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1107.333794c.20230427\"\nca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format",
+    "DalamudApiLevel": 8,
+    "Description": "show instance id in chat when instance changed",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/InstanceIDViewer/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/InstanceIDViewer/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "InstanceIDViewer",
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "LastUpdated": 1682600829,
+    "LoadPriority": 0,
+    "LoadRequiredState": 2,
+    "LoadSync": false,
+    "Name": "Divination.InstanceIDViewer",
+    "Punchline": "",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "Discord"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1107"
+  },
+  {
+    "AcceptsFeedback": true,
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1107",
+    "Author": "Asteria Nocturna",
+    "CanUnloadAsync": false,
+    "CategoryTags": [
+      "utility"
+    ],
+    "Changelog": "8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI\n7430ca8: feat(SseServer): add CI\n578192f: feat(DownloadCounter): add CI\n3c6450d: feat(DiscordBot): add CI",
+    "DalamudApiLevel": 8,
+    "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/PowerUtils/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/PowerUtils/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "PowerUtils",
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "LastUpdated": 1682600829,
+    "LoadPriority": 0,
+    "LoadRequiredState": 2,
+    "LoadSync": false,
+    "Name": "Divination.PowerUtils",
+    "Punchline": "Save Energy!",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "Command"
+    ],
+    "TestingAssemblyVersion": "0.1.0.1107"
+  },
+  {
+    "AcceptsFeedback": true,
+    "ApplicableVersion": "any",
+    "AssemblyVersion": "0.1.0.1107",
+    "Author": "Asteria Nocturna",
+    "CanUnloadAsync": false,
+    "CategoryTags": [
+      "utility"
+    ],
+    "Changelog": "3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI\n7430ca8: feat(SseServer): add CI\n578192f: feat(DownloadCounter): add CI",
+    "DalamudApiLevel": 8,
+    "Description": "Add /voiceroid2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
+    "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/Voiceroid2Talker/latest.zip",
+    "DownloadLinkTesting": "https://xiv.starry.blue/plugins/testing/Voiceroid2Talker/latest.zip",
+    "IconUrl": null,
+    "ImageUrls": [],
+    "InternalName": "Voiceroid2Talker",
+    "IsHide": false,
+    "IsTestingExclusive": true,
+    "LastUpdated": 1682600829,
+    "LoadPriority": 0,
+    "LoadRequiredState": 2,
+    "LoadSync": false,
+    "Name": "Divination.Voiceroid2Talker",
+    "Punchline": "Text-to-Speech for Voiceroid2",
+    "RepoUrl": "https://github.com/SlashNephy/Divination",
+    "Tags": [
+      "Text-to-speech",
+      "Voiceroid"
     ],
     "TestingAssemblyVersion": "0.1.0.1107"
   }
