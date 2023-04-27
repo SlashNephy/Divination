@@ -59,12 +59,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: '${{ inputs.plugin-name }}'
-          path: '${{ inputs.working-directory }}/${{ inputs.plugin-name }}/bin/CIRelease/${{ inputs.plugin-name }}'
+          path: '${{ inputs.working-directory }}/bin/CIRelease/${{ inputs.plugin-name }}'
           if-no-files-found: error
 
       - name: Upload Artifact (gitversion.json)
         uses: actions/upload-artifact@v3
         with:
-          name: 'gitversion.json'
-          path: '${{ inputs.working-directory }}/${{ inputs.plugin-name }}/obj/gitversion.json'
+          name: '${{ inputs.plugin-name }}-GitVersion'
+          path: '${{ inputs.working-directory }}/obj/gitversion.json'
           if-no-files-found: error

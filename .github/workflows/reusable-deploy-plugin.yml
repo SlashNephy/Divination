@@ -43,7 +43,7 @@ jobs:
       - name: Download Artifact (gitversion.json)
         uses: actions/download-artifact@v3
         with:
-          name: 'gitversion.json'
+          name: '${{ inputs.plugin-name }}-GitVersion'
           path: 'gitversion'
 
       - name: Read InformationalVersion
@@ -66,13 +66,10 @@ jobs:
 
       - name: Copy Artifact (stable)
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
-        run: cp -rf docs/plugins/testing/${{ inputs.plugin-name }} docs/plugins/stable/${{ inputs.plugin-name }}
-
-      - name: Pull
-        run: git pull
+        run: cp -rf docs/plugins/testing/${{ inputs.plugin-name }} docs/plugins/stable/
 
       - name: Push to Plugin Repository
         uses: stefanzweifel/git-auto-commit-action@v4
         continue-on-error: true
         with:
-          commit_message: 'Deploy ${{ inputs.plugin-name }} ${{ steps.version.outputs.value }}'
+          commit_message: '⚙️ Deploy ${{ inputs.plugin-name }} ${{ steps.version.outputs.value }}'
