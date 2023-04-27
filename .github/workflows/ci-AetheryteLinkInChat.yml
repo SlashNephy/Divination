@@ -3,10 +3,12 @@ name: 'CI (AetheryteLinkInChat)'
 on:
   push:
     paths:
-      - 'packages/plugins/AetheryteLinkInChat'
+      - 'packages/Plugins/AetheryteLinkInChat/**'
+      - 'packages/Common/**'
   pull_request:
     paths:
-      - 'packages/plugins/AetheryteLinkInChat'
+      - 'packages/Plugins/AetheryteLinkInChat/**'
+      - 'packages/Common/**'
     types:
       - opened
       - synchronize
@@ -20,7 +22,7 @@ jobs:
     uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@master
     with:
       plugin-name: 'AetheryteLinkInChat'
-      working-directory: 'packages/plugins/AetheryteLinkInChat'
+      working-directory: 'packages/Plugins/AetheryteLinkInChat'
     permissions:
       contents: read
       actions: write
@@ -32,9 +34,8 @@ jobs:
     with:
       plugin-name: 'AetheryteLinkInChat'
     secrets:
-      DEPLOY_GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      DEPLOY_GITHUB_TOKEN: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
     permissions:
-      contents: write
       actions: read
 
   format:

@@ -45,7 +45,7 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           dotnet pack --configuration Release --include-source
-          dotnet nuget push */bin/x64/Release/*.symbols.nupkg `
+          dotnet nuget push bin\Release\*.symbols.nupkg `
             --source https://api.nuget.org/v3/index.json `
             --api-key ${{ secrets.NUGET_API_KEY }} `
             --skip-duplicate
