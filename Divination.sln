@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "packages\Common\Common.csproj", "{C00AD6CE-4F53-4415-B105-183A7CD79FA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.JsonFormatter", "packages\Dalamud.JsonFormatter\Dalamud.JsonFormatter.csproj", "{FAA37EBE-8FEE-4FAF-9A05-F43CB33B7D7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{CA9673D4-31AB-452F-8FD4-D9B264FEDB39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Debug|Any CPU.Build.0 = Debug|x64
+		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Release|Any CPU.ActiveCfg = Release|x64
+		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Release|Any CPU.Build.0 = Release|x64
+		{FAA37EBE-8FEE-4FAF-9A05-F43CB33B7D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA37EBE-8FEE-4FAF-9A05-F43CB33B7D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA37EBE-8FEE-4FAF-9A05-F43CB33B7D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA37EBE-8FEE-4FAF-9A05-F43CB33B7D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
