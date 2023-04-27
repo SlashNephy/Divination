@@ -7,7 +7,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
     public override void Draw()
     {
-        if (ImGui.Begin(PerfectComplexPlugin.Instance.Name, ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
+        if (ImGui.Begin(PerfectComplex.Instance.Name, ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
         {
             if (ImGui.Button("Save & Close"))
             {

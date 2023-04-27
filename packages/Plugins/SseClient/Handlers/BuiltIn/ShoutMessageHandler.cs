@@ -5,36 +5,35 @@ using Dalamud.Game.Text.SeStringHandling;
 using Divination.SseClient.Payloads;
 using ImGuiNET;
 
-namespace Divination.SseClient.Handlers.BuiltIn
+namespace Divination.SseClient.Handlers.BuiltIn;
+
+public class ShoutMessageHandler : ISsePayloadReceiver, ISsePayloadEmitter
 {
-    public class ShoutMessageHandler : ISsePayloadReceiver, ISsePayloadEmitter
+    public string EventIdentifier => "shout";
+
+    public bool CanEmit(XivChatType chatType) => SseClient.Instance.Config.SendShoutMessages;
+
+    public void EmitChatMessage(XivChatType type, SeString sender, SeString message)
     {
-        public string EventIdentifier => "shout";
-
-        public bool CanEmit(XivChatType chatType) => SseClientPlugin.Instance.Config.SendShoutMessages;
-
-        public void EmitChatMessage(XivChatType type, SeString sender, SeString message)
+        this.EmitPayload(new SsePayload
         {
-            this.EmitPayload(new SsePayload
-            {
-                ChatType = type,
-                SenderSeString = sender,
-                MessageSeString = message
-            });
-        }
+            ChatType = type,
+            SenderSeString = sender,
+            MessageSeString = message
+        });
+    }
 
-        public bool CanReceive() => SseClientPlugin.Instance.Config.ReceiveMobHuntShoutMessages;
+    public bool CanReceive() => SseClient.Instance.Config.ReceiveMobHuntShoutMessages;
 
-        private readonly Dictionary<string, bool> test = new Dictionary<string, bool>();
+    private readonly Dictionary<string, bool> test = new Dictionary<string, bool>();
 
-        public void Receive(string eventId, SsePayload payload)
+    public void Receive(string eventId, SsePayload payload)
+    {
+        SseUtils.PrintSseChat(new XivChatEntry
         {
-            SseUtils.PrintSseChat(new XivChatEntry
-            {
-                Type = SseClientPlugin.Instance.Config.MobHuntShoutMessagesType,
-                Name = FormatShoutSenderName(payload),
-                Message = payload.MessageSeString
-            });
-        }
+            Type = SseClient.Instance.Config.MobHuntShoutMessagesType,
+            Name = FormatShoutSenderName(payload),
+            Message = payload.MessageSeString
+        });
     }
 }

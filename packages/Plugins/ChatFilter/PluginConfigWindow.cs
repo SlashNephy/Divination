@@ -2,28 +2,27 @@
 using Dalamud.Logging;
 using ImGuiNET;
 
-namespace Divination.ChatFilter
+namespace Divination.ChatFilter;
+
+public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
-    public class PluginConfigWindow : ConfigWindow<PluginConfig>
+    public override void Draw()
     {
-        public override void Draw()
+        if (ImGui.Begin($"{ChatFilterPlugin.Instance.Name} Config", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
         {
-            if (ImGui.Begin($"{ChatFilterPlugin.Instance.Name} Config", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
+            ImGui.Text("This is config window.");
+
+            ImGui.Separator();
+
+            if (ImGui.Button("Save & Close"))
             {
-                ImGui.Text("This is config window.");
+                IsOpen = false;
 
-                ImGui.Separator();
-
-                if (ImGui.Button("Save & Close"))
-                {
-                    IsOpen = false;
-
-                    ChatFilterPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                    PluginLog.Information("Config saved");
-                }
-
-                ImGui.End();
+                ChatFilterPlugin.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
+                PluginLog.Information("Config saved");
             }
+
+            ImGui.End();
         }
     }
 }

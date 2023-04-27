@@ -2,37 +2,36 @@
 using Dalamud.Game.Text.SeStringHandling;
 using Divination.SseClient.Payloads;
 
-namespace Divination.SseClient.Handlers.BuiltIn
+namespace Divination.SseClient.Handlers.BuiltIn;
+
+public abstract class BuildInChatHandler : ISsePayloadReceiver, ISsePayloadEmitter
 {
-    public abstract class BuildInChatHandler : ISsePayloadReceiver, ISsePayloadEmitter
+    protected readonly XivChatType TargetChatType;
+    protected readonly string EventId;
+
+    public BuildInChatHandler(XivChatType targetChatType, string eventId)
     {
-        protected readonly XivChatType TargetChatType;
-        protected readonly string EventId;
+        TargetChatType = targetChatType;
+        EventId = eventId;
+    }
 
-        public BuildInChatHandler(XivChatType targetChatType, string eventId)
+    public void Receive(string eventId, SsePayload payload)
+    {
+        SseUtils.PrintSseChat(new XivChatEntry
         {
-            TargetChatType = targetChatType;
-            EventId = eventId;
-        }
+            Type = SseClient.Instance.Config.MobHuntShoutMessagesType,
+            Name = FormatShoutSenderName(payload),
+            Message = payload.MessageSeString
+        });
+    }
 
-        public void Receive(string eventId, SsePayload payload)
+    public void EmitChatMessage(XivChatType type, SeString sender, SeString message)
+    {
+        SseUtils.SendPayload(EventId, new SsePayload
         {
-            SseUtils.PrintSseChat(new XivChatEntry
-            {
-                Type = SseClientPlugin.Instance.Config.MobHuntShoutMessagesType,
-                Name = FormatShoutSenderName(payload),
-                Message = payload.MessageSeString
-            });
-        }
-
-        public void EmitChatMessage(XivChatType type, SeString sender, SeString message)
-        {
-            SseUtils.SendPayload(EventId, new SsePayload
-            {
-                ChatType = type,
-                SenderSeString = sender,
-                MessageSeString = message
-            });
-        }
+            ChatType = type,
+            SenderSeString = sender,
+            MessageSeString = message
+        });
     }
 }

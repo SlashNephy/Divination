@@ -9,13 +9,13 @@ using Dalamud.Plugin;
 namespace Divination.PerfectComplex;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public sealed class PerfectComplexPlugin : DivinationPlugin<PerfectComplexPlugin, PluginConfig, PluginDefinition>,
+public sealed class PerfectComplex : DivinationPlugin<PerfectComplex, PluginConfig, PluginDefinition>,
     IDalamudPlugin,
     ICommandSupport,
     IConfigWindowSupport<PluginConfig>,
     IDefinitionSupport
 {
-    public PerfectComplexPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public PerfectComplex(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
     }

@@ -1,28 +1,28 @@
 ﻿using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
-using Dalamud.Logging;
 using Dalamud.Plugin;
+using Divination.SseClient.Handlers;
 
-namespace Divination.ChatFilter;
+namespace Divination.SseClient;
 
-public sealed class ChatFilterPlugin : DivinationPlugin<ChatFilterPlugin, PluginConfig>,
+public sealed class SseClient : DivinationPlugin<SseClient, PluginConfig>,
     IDalamudPlugin,
     ICommandSupport,
     IConfigWindowSupport<PluginConfig>
 {
-    private readonly ChatFilterManager manager = new();
+    public readonly SseConnectionManager Connection = new();
 
-    public ChatFilterPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public SseClient(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
-        PluginLog.Information("Plugin loaded!");
+        Connection.Connect();
     }
 
     protected override void ReleaseManaged()
     {
-        manager.Dispose();
+        Connection.Dispose();
     }
 
-    string ICommandSupport.MainCommandPrefix => "/filters";
+    string ICommandSupport.MainCommandPrefix => "/sse";
     ConfigWindow<PluginConfig> IConfigWindowSupport<PluginConfig>.CreateConfigWindow() => new PluginConfigWindow();
 }

@@ -1,7 +1,6 @@
-﻿namespace Divination.SseClient.Handlers.MobHunt
+﻿namespace Divination.SseClient.Handlers.MobHunt;
+
+public class MobHuntActorHandler
 {
-    public class MobHuntActorHandler
-    {
         
-    }
 }

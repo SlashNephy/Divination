@@ -1,10 +1,9 @@
 ﻿using Divination.SseClient.Payloads;
 
-namespace Divination.SseClient.Handlers
+namespace Divination.SseClient.Handlers;
+
+public interface ISsePayloadReceiver : ISsePayloadHandler
 {
-    public interface ISsePayloadReceiver : ISsePayloadHandler
-    {
-        public bool CanReceive(string eventId);
-        public void Receive(string eventId, SsePayload payload);
-    }
+    public bool CanReceive(string eventId);
+    public void Receive(string eventId, SsePayload payload);
 }

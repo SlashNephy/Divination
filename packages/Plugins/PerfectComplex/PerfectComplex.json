@@ -1,24 +1,18 @@
 {
-  "Author": "[Author]",
-  "Name": "[Name]",
-  "Punchline": "[Punchline]",
-  "Description": "[Description]",
+  "Author": "Asteria Nocturna",
+  "Name": "Divination.PerfectComplex",
+  "Punchline": "",
+  "Description": "",
   "Tags": [
     "[Tag]"
   ],
   "CategoryTags": [
-    "other",
-    "jobs",
     "ui",
-    "minigames",
-    "inventory",
-    "sound",
-    "social",
     "utility"
   ],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 7,
+  "DalamudApiLevel": 8,
   "LoadRequiredState": 2,
   "LoadSync": false,
   "LoadPriority": 0,
