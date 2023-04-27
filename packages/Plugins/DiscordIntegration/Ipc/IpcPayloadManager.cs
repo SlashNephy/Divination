@@ -1,61 +1,60 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Divination.DiscordIntegration.Ipc
+namespace Divination.DiscordIntegration.Ipc;
+
+public static class IpcPayloadManager
 {
-    public static class IpcPayloadManager
+    public static void UpdateVariables(string? source, string? group, Dictionary<string, object?>? variables)
     {
-        public static void UpdateVariables(string? source, string? group, Dictionary<string, object?>? variables)
+        if (variables == null)
         {
-            if (variables == null)
-            {
-                return;
-            }
-
-            lock (Formatter.IpcVariables)
-            {
-                foreach (var (key, variable) in variables)
-                {
-                    Formatter.IpcVariables[$"{{{key}}}"] = new IpcValueRecord(variable?.ToString() ?? string.Empty, source, group);
-                }
-            }
+            return;
         }
 
-        public static void ClearVariables(string? source, string? group)
+        lock (Formatter.IpcVariables)
         {
-            lock (Formatter.IpcVariables)
+            foreach (var (key, variable) in variables)
             {
-                foreach (var (key, _) in Formatter.IpcVariables.Where(pair => pair.Value.Source == source && pair.Value.Group == group).ToList())
-                {
-                    Formatter.IpcVariables.Remove(key);
-                }
+                Formatter.IpcVariables[$"{{{key}}}"] = new IpcValueRecord(variable?.ToString() ?? string.Empty, source, group);
             }
         }
+    }
 
-        public static void UpdateTemplates(string? source, string? group, Dictionary<string, string?>? templates)
+    public static void ClearVariables(string? source, string? group)
+    {
+        lock (Formatter.IpcVariables)
         {
-            if (templates == null)
+            foreach (var (key, _) in Formatter.IpcVariables.Where(pair => pair.Value.Source == source && pair.Value.Group == group).ToList())
             {
-                return;
-            }
-
-            lock (Formatter.IpcTemplates)
-            {
-                foreach (var (key, template) in templates)
-                {
-                    Formatter.IpcTemplates[key] = new IpcValueRecord(template ?? string.Empty, source, group);
-                }
+                Formatter.IpcVariables.Remove(key);
             }
         }
+    }
 
-        public static void ClearTemplates(string? source, string? group)
+    public static void UpdateTemplates(string? source, string? group, Dictionary<string, string?>? templates)
+    {
+        if (templates == null)
         {
-            lock (Formatter.IpcTemplates)
+            return;
+        }
+
+        lock (Formatter.IpcTemplates)
+        {
+            foreach (var (key, template) in templates)
             {
-                foreach (var (key, _) in Formatter.IpcTemplates.Where(pair => pair.Value.Source == source && pair.Value.Group == group).ToList())
-                {
-                    Formatter.IpcTemplates.Remove(key);
-                }
+                Formatter.IpcTemplates[key] = new IpcValueRecord(template ?? string.Empty, source, group);
+            }
+        }
+    }
+
+    public static void ClearTemplates(string? source, string? group)
+    {
+        lock (Formatter.IpcTemplates)
+        {
+            foreach (var (key, _) in Formatter.IpcTemplates.Where(pair => pair.Value.Source == source && pair.Value.Group == group).ToList())
+            {
+                Formatter.IpcTemplates.Remove(key);
             }
         }
     }

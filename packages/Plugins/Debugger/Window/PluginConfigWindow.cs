@@ -9,161 +9,160 @@ using Dalamud.Game.Network;
 using Dalamud.Logging;
 using ImGuiNET;
 
-namespace Divination.Debugger.Window
+namespace Divination.Debugger.Window;
+
+public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
-    public class PluginConfigWindow : ConfigWindow<PluginConfig>
+    public override void Draw()
     {
-        public override void Draw()
+        if (ImGui.Begin(Debugger.Instance.Name, ref IsOpen, ImGuiWindowFlags.HorizontalScrollbar))
         {
-            if (ImGui.Begin(DebuggerPlugin.Instance.Name, ref IsOpen, ImGuiWindowFlags.HorizontalScrollbar))
+            if (ImGui.BeginTabBar($"#{Debugger.Instance.Name}-tabs"))
             {
-                if (ImGui.BeginTabBar($"#{DebuggerPlugin.Instance.Name}-tabs"))
-                {
-                    CreatePlayerAnalyzerTab();
-                    CreateNetworkAnalyzerTab();
-                    CreateConfigTab();
+                CreatePlayerAnalyzerTab();
+                CreateNetworkAnalyzerTab();
+                CreateConfigTab();
 
-                    ImGui.EndTabBar();
-                }
-
-                ImGui.Separator();
-
-                if (ImGui.Button("Save & Close"))
-                {
-                    IsOpen = false;
-                    Interface.SavePluginConfig(Config);
-                }
-
-                ImGui.End();
+                ImGui.EndTabBar();
             }
+
+            ImGui.Separator();
+
+            if (ImGui.Button("Save & Close"))
+            {
+                IsOpen = false;
+                Interface.SavePluginConfig(Config);
+            }
+
+            ImGui.End();
         }
+    }
 
-        // https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/Character/Character.cs
-        private const int PlayerStructSize = 0x1B00;
+    // https://github.com/aers/FFXIVClientStructs/blob/main/FFXIVClientStructs/FFXIV/Client/Game/Character/Character.cs
+    private const int PlayerStructSize = 0x1B00;
 
-        private readonly string[] dataTypes = Enum.GetNames(typeof(DataType)).ToArray();
+    private readonly string[] dataTypes = Enum.GetNames(typeof(DataType)).ToArray();
 
-        private void CreatePlayerAnalyzerTab()
+    private void CreatePlayerAnalyzerTab()
+    {
+        if (ImGui.BeginTabItem("Player"))
         {
-            if (ImGui.BeginTabItem("Player"))
+            var target = Debugger.Instance.Dalamud.TargetManager.Target as Character ?? Debugger.Instance.Dalamud.ClientState.LocalPlayer;
+            if (target == null)
             {
-                var target = DebuggerPlugin.Instance.Dalamud.TargetManager.Target as Character ?? DebuggerPlugin.Instance.Dalamud.ClientState.LocalPlayer;
-                if (target == null)
-                {
-                    ImGui.Text("Neither LocalPlayer nor Target is detected.");
-                    ImGui.EndTabItem();
-                    return;
-                }
-
-                ImGui.Text($"Source = {target.Name} ({(DebuggerPlugin.Instance.Dalamud.TargetManager.Target == null ? "LocalPlayer" : "Target")})");
-
-                ImGui.Separator();
-
-                ImGui.Combo("Data Type", ref Config.PlayerDataTypeIndex, dataTypes, dataTypes.Length);
-
-                ImGui.Checkbox("Enable Value Filter", ref Config.PlayerEnableValueFilter);
-                unsafe
-                {
-                    fixed (long* ptr = &Config.PlayerFilterValue)
-                    {
-                        ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
-                    }
-                }
-
-                ImGui.Separator();
-
-                var data = new byte[PlayerStructSize];
-                Marshal.Copy(target.Address, data, 0, data.Length);
-
-                var viewer = new DataViewer(Config.PlayerDataType, data, Config.PlayerEnableValueFilter, Config.PlayerFilterValue);
-                viewer.Draw();
-
+                ImGui.Text("Neither LocalPlayer nor Target is detected.");
                 ImGui.EndTabItem();
+                return;
             }
+
+            ImGui.Text($"Source = {target.Name} ({(Debugger.Instance.Dalamud.TargetManager.Target == null ? "LocalPlayer" : "Target")})");
+
+            ImGui.Separator();
+
+            ImGui.Combo("Data Type", ref Config.PlayerDataTypeIndex, dataTypes, dataTypes.Length);
+
+            ImGui.Checkbox("Enable Value Filter", ref Config.PlayerEnableValueFilter);
+            unsafe
+            {
+                fixed (long* ptr = &Config.PlayerFilterValue)
+                {
+                    ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
+                }
+            }
+
+            ImGui.Separator();
+
+            var data = new byte[PlayerStructSize];
+            Marshal.Copy(target.Address, data, 0, data.Length);
+
+            var viewer = new DataViewer(Config.PlayerDataType, data, Config.PlayerEnableValueFilter, Config.PlayerFilterValue);
+            viewer.Draw();
+
+            ImGui.EndTabItem();
         }
+    }
 
-        private NetworkContext? lastNetworkContext;
-        private DataViewer? lastNetworkViewer;
+    private NetworkContext? lastNetworkContext;
+    private DataViewer? lastNetworkViewer;
 
-        private void CreateNetworkAnalyzerTab()
+    private void CreateNetworkAnalyzerTab()
+    {
+        if (ImGui.BeginTabItem("Network"))
         {
-            if (ImGui.BeginTabItem("Network"))
+            ImGui.Checkbox("Enable Network Listener", ref Config.NetworkEnableListener);
+            ImGui.Checkbox("Log matched packets", ref Config.NetworkLogMatchedPackets);
+
+            if (ImGui.Button("Clear"))
             {
-                ImGui.Checkbox("Enable Network Listener", ref Config.NetworkEnableListener);
-                ImGui.Checkbox("Log matched packets", ref Config.NetworkLogMatchedPackets);
-
-                if (ImGui.Button("Clear"))
-                {
-                    lastNetworkContext = null;
-                    lastNetworkViewer = null;
-                }
-
-                ImGui.Separator();
-
-                ImGui.Checkbox("Download", ref Config.NetworkListenDownload);
-                ImGui.SameLine();
-                ImGui.Checkbox("Upload", ref Config.NetworkListenUpload);
-
-                ImGui.Combo("Data Type", ref Config.NetworkDataTypeIndex, dataTypes, dataTypes.Length);
-                ImGui.Checkbox("Enable Value Filter", ref Config.NetworkEnableValueFilter);
-
-                unsafe
-                {
-                    fixed (long* ptr = &Config.NetworkFilterValue)
-                    {
-                        ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
-                    }
-                }
-
-                ImGui.Checkbox("Enable Opcode Filter", ref Config.NetworkEnableOpcodeFilter);
-                ImGui.InputInt("Opcode", ref Config.NetworkFilterOpcode);
-
-                ImGui.Separator();
-
-                var context = NetworkListener.Contexts.TryTake(out var ctx) ? ctx : lastNetworkContext;
-                if (context != null)
-                {
-                    var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.NetworkFilterValue);
-                    if (viewer.Any())
-                    {
-                        lastNetworkContext = context;
-                        lastNetworkViewer = viewer;
-                    }
-                    else
-                    {
-                        context = lastNetworkContext;
-                        viewer = lastNetworkViewer;
-                    }
-
-                    if (context != null && viewer != null)
-                    {
-                        ImGui.Text($"Direction = {Enum.GetName(typeof(NetworkMessageDirection), context.Direction)}");
-                        ImGui.Text($"Opcode = 0x{context.Opcode:X4}");
-
-                        viewer.Draw();
-
-                        if (Config.NetworkLogMatchedPackets)
-                        {
-                            PluginLog.Debug("{Context}", context);
-                        }
-                    }
-                }
-
-                ImGui.EndTabItem();
+                lastNetworkContext = null;
+                lastNetworkViewer = null;
             }
+
+            ImGui.Separator();
+
+            ImGui.Checkbox("Download", ref Config.NetworkListenDownload);
+            ImGui.SameLine();
+            ImGui.Checkbox("Upload", ref Config.NetworkListenUpload);
+
+            ImGui.Combo("Data Type", ref Config.NetworkDataTypeIndex, dataTypes, dataTypes.Length);
+            ImGui.Checkbox("Enable Value Filter", ref Config.NetworkEnableValueFilter);
+
+            unsafe
+            {
+                fixed (long* ptr = &Config.NetworkFilterValue)
+                {
+                    ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
+                }
+            }
+
+            ImGui.Checkbox("Enable Opcode Filter", ref Config.NetworkEnableOpcodeFilter);
+            ImGui.InputInt("Opcode", ref Config.NetworkFilterOpcode);
+
+            ImGui.Separator();
+
+            var context = NetworkListener.Contexts.TryTake(out var ctx) ? ctx : lastNetworkContext;
+            if (context != null)
+            {
+                var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.NetworkFilterValue);
+                if (viewer.Any())
+                {
+                    lastNetworkContext = context;
+                    lastNetworkViewer = viewer;
+                }
+                else
+                {
+                    context = lastNetworkContext;
+                    viewer = lastNetworkViewer;
+                }
+
+                if (context != null && viewer != null)
+                {
+                    ImGui.Text($"Direction = {Enum.GetName(typeof(NetworkMessageDirection), context.Direction)}");
+                    ImGui.Text($"Opcode = 0x{context.Opcode:X4}");
+
+                    viewer.Draw();
+
+                    if (Config.NetworkLogMatchedPackets)
+                    {
+                        PluginLog.Debug("{Context}", context);
+                    }
+                }
+            }
+
+            ImGui.EndTabItem();
         }
+    }
 
-        private void CreateConfigTab()
+    private void CreateConfigTab()
+    {
+        if (ImGui.BeginTabItem("Config"))
         {
-            if (ImGui.BeginTabItem("Config"))
-            {
-                ImGuiEx.CheckboxConfig("起動時にウィンドウを開く", ref Config.OpenAtStart);
+            ImGuiEx.CheckboxConfig("起動時にウィンドウを開く", ref Config.OpenAtStart);
 
-                ImGuiEx.CheckboxConfig("冗長なチャットログを表示する", ref Config.EnableVerboseChatLog,
-                    "SeString としてパースされた, 冗長なチャットメッセージの構造をログに表示します。");
+            ImGuiEx.CheckboxConfig("冗長なチャットログを表示する", ref Config.EnableVerboseChatLog,
+                "SeString としてパースされた, 冗長なチャットメッセージの構造をログに表示します。");
 
-                ImGui.EndTabItem();
-            }
+            ImGui.EndTabItem();
         }
     }
 }

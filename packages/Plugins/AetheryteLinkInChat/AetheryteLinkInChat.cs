@@ -18,7 +18,7 @@ using Divination.AetheryteLinkInChat.Config;
 namespace Divination.AetheryteLinkInChat;
 
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlugin, PluginConfig>,
+public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginConfig>,
     IDalamudPlugin,
     ICommandSupport,
     IConfigWindowSupport<PluginConfig>
@@ -30,7 +30,7 @@ public class AetheryteLinkInChatPlugin : DivinationPlugin<AetheryteLinkInChatPlu
     private readonly AetheryteSolver solver;
     private readonly Teleporter teleporter;
 
-    public AetheryteLinkInChatPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public AetheryteLinkInChat(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         linkPayload = pluginInterface.AddChatLinkHandler(LinkCommandId, HandleLink);

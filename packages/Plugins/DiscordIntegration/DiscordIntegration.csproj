@@ -1,6 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+      <RootNamespace>Divination.DiscordIntegration</RootNamespace>
+    </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\Common\Common.csproj"/>
+        <ProjectReference Include="..\..\Common\Common.csproj" />
         <ProjectReference Include="..\DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj" />
 
         <Reference Include="Dalamud">

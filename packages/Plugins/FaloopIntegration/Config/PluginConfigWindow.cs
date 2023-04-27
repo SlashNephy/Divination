@@ -10,7 +10,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
     public override void Draw()
     {
-        if (ImGui.Begin($"{FaloopIntegrationPlugin.Instance.Name} Config", ref IsOpen))
+        if (ImGui.Begin($"{FaloopIntegration.Instance.Name} Config", ref IsOpen))
         {
             DrawAccountConfig();
             DrawPerRankConfigs();
@@ -20,7 +20,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             {
                 IsOpen = false;
                 Interface.SavePluginConfig(Config);
-                FaloopIntegrationPlugin.Instance.Connect();
+                FaloopIntegration.Instance.Connect();
             }
 
             ImGui.End();
@@ -85,7 +85,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             if (ImGui.Button("Emit mock payload"))
             {
-                FaloopIntegrationPlugin.Instance.EmitMockData();
+                FaloopIntegration.Instance.EmitMockData();
             }
         }
     }
