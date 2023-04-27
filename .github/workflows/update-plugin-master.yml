@@ -9,6 +9,8 @@ on:
       - master
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -16,6 +18,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          repository: 'SlashNephy/Divination'
+          token: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
 
       - name: Restore mtime
         uses: chetan/git-restore-mtime-action@v1
@@ -28,8 +33,11 @@ jobs:
       - name: Update PluginMaster
         run: python packages/PluginRepo/update.py
 
-      - name: Push PluginMaster
-        uses: EndBug/add-and-commit@v9
+      - name: Pull
+        run: git pull
+
+      - name: Push to Plugin Repository
+        uses: stefanzweifel/git-auto-commit-action@v4
+        continue-on-error: true
         with:
-          default_author: github_actions
-          message: Regenerate PluginMaster
+          commit_message: '⚙️ Regenerate PluginMaster'
