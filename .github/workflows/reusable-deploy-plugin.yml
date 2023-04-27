@@ -66,7 +66,10 @@ jobs:
 
       - name: Copy Artifact (stable)
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
-        run: cp -rf docs/plugins/testing/${{ inputs.plugin-name }} docs/plugins/stable/
+        run: cp -rf docs/plugins/testing/${{ inputs.plugin-name }} docs/plugins/stable/${{ inputs.plugin-name }}/
+
+      - name: Pull
+        run: git pull
 
       - name: Push to Plugin Repository
         uses: stefanzweifel/git-auto-commit-action@v4
