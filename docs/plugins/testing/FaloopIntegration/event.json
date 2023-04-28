@@ -1,7 +1,7 @@
 {
-  "after": "d90fc5662a876523fa53aeed1963d9d3f4372453",
+  "after": "f011e982b58d25e912ffe05f4da2ab83ab441734",
   "base_ref": null,
-  "before": "b655299371c35ce8a257b3fe8fd9f4b3142b1261",
+  "before": "88f60d82397a3c07d681102fa4e9b15b6c056e4d",
   "commits": [
     {
       "author": {
@@ -10,61 +10,43 @@
         "username": "renovate[bot]"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "name": "renovate[bot]",
+        "username": "renovate[bot]"
       },
       "distinct": true,
-      "id": "901a89bc1de18acdd41639c5ac76899aa2719b43",
-      "message": "chore(deps): update dependency anglesharp to v1",
-      "timestamp": "2023-04-27T13:09:13Z",
-      "tree_id": "f31866a7cfb785ebef7e83c5e8d76d98cc25ed16",
-      "url": "https://github.com/SlashNephy/Divination/commit/901a89bc1de18acdd41639c5ac76899aa2719b43"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": true,
-      "id": "d90fc5662a876523fa53aeed1963d9d3f4372453",
-      "message": "Merge pull request #18 from SlashNephy/renovate/anglesharp-1.x\n\nchore(deps): update dependency anglesharp to v1",
-      "timestamp": "2023-04-28T10:17:42+09:00",
-      "tree_id": "5e16712c00374e0fad1b682d6a13c90b44bddf3c",
-      "url": "https://github.com/SlashNephy/Divination/commit/d90fc5662a876523fa53aeed1963d9d3f4372453"
+      "id": "f011e982b58d25e912ffe05f4da2ab83ab441734",
+      "message": "chore(deps): update dependency socketioclient to v3.0.8",
+      "timestamp": "2023-04-28T20:46:01Z",
+      "tree_id": "183536ab0b1880f52a76766f672f027f5c87ed1c",
+      "url": "https://github.com/SlashNephy/Divination/commit/f011e982b58d25e912ffe05f4da2ab83ab441734"
     }
   ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/b655299371c3...d90fc5662a87",
+  "compare": "https://github.com/SlashNephy/Divination/compare/88f60d82397a...f011e982b58d",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "spica@starry.blue",
-      "name": "SlashNephy",
-      "username": "SlashNephy"
+      "email": "29139614+renovate[bot]@users.noreply.github.com",
+      "name": "renovate[bot]",
+      "username": "renovate[bot]"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "29139614+renovate[bot]@users.noreply.github.com",
+      "name": "renovate[bot]",
+      "username": "renovate[bot]"
     },
     "distinct": true,
-    "id": "d90fc5662a876523fa53aeed1963d9d3f4372453",
-    "message": "Merge pull request #18 from SlashNephy/renovate/anglesharp-1.x\n\nchore(deps): update dependency anglesharp to v1",
-    "timestamp": "2023-04-28T10:17:42+09:00",
-    "tree_id": "5e16712c00374e0fad1b682d6a13c90b44bddf3c",
-    "url": "https://github.com/SlashNephy/Divination/commit/d90fc5662a876523fa53aeed1963d9d3f4372453"
+    "id": "f011e982b58d25e912ffe05f4da2ab83ab441734",
+    "message": "chore(deps): update dependency socketioclient to v3.0.8",
+    "timestamp": "2023-04-28T20:46:01Z",
+    "tree_id": "183536ab0b1880f52a76766f672f027f5c87ed1c",
+    "url": "https://github.com/SlashNephy/Divination/commit/f011e982b58d25e912ffe05f4da2ab83ab441734"
   },
   "pusher": {
-    "email": "spica@starry.blue",
-    "name": "SlashNephy"
+    "email": null,
+    "name": "renovate[bot]"
   },
   "ref": "refs/heads/master",
   "repository": {
@@ -84,7 +66,7 @@
     "created_at": 1682507960,
     "default_branch": "master",
     "deployments_url": "https://api.github.com/repos/SlashNephy/Divination/deployments",
-    "description": "[WIP] FINAL FANTASY XIV toolkits",
+    "description": "FINAL FANTASY XIV toolkits",
     "disabled": false,
     "downloads_url": "https://api.github.com/repos/SlashNephy/Divination/downloads",
     "events_url": "https://api.github.com/repos/SlashNephy/Divination/events",
@@ -129,8 +111,8 @@
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 6,
-    "open_issues_count": 6,
+    "open_issues": 2,
+    "open_issues_count": 2,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
       "email": "spica@starry.blue",
@@ -155,9 +137,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1682644663,
+    "pushed_at": 1682714762,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 42941,
+    "size": 43435,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
     "stargazers": 1,
     "stargazers_count": 1,
@@ -174,7 +156,7 @@
       "xivlauncher"
     ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-04-27T07:04:08Z",
+    "updated_at": "2023-04-28T10:24:00Z",
     "url": "https://github.com/SlashNephy/Divination",
     "visibility": "public",
     "watchers": 1,
@@ -182,23 +164,23 @@
     "web_commit_signoff_required": false
   },
   "sender": {
-    "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
-    "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
-    "followers_url": "https://api.github.com/users/SlashNephy/followers",
-    "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
-    "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
+    "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+    "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+    "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+    "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+    "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/SlashNephy",
-    "id": 7302150,
-    "login": "SlashNephy",
-    "node_id": "MDQ6VXNlcjczMDIxNTA=",
-    "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
-    "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
-    "repos_url": "https://api.github.com/users/SlashNephy/repos",
+    "html_url": "https://github.com/apps/renovate",
+    "id": 29139614,
+    "login": "renovate[bot]",
+    "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+    "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+    "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+    "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
-    "type": "User",
-    "url": "https://api.github.com/users/SlashNephy"
+    "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+    "type": "Bot",
+    "url": "https://api.github.com/users/renovate%5Bbot%5D"
   }
 }
