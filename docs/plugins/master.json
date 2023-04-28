@@ -96,14 +96,14 @@
   {
     "AcceptsFeedback": true,
     "ApplicableVersion": "any",
-    "AssemblyVersion": "0.1.0.1218",
+    "AssemblyVersion": "0.1.0.1228",
     "Author": "Asteria Nocturna",
     "CanUnloadAsync": false,
     "CategoryTags": [
       "social",
       "utility"
     ],
-    "Changelog": "d90fc56: Merge pull request #18 from SlashNephy/renovate/anglesharp-1.x\n\nchore(deps): update dependency anglesharp to v1\nb655299: Update README.md\n3ba67b1: chore: remove build solution dir\nd1595fb: \u2699\ufe0f Regenerate PluginMaster\n27419ac: \u2699\ufe0f Deploy PerfectComplex \"0.1.0-beta.1211.3cebe8d.20230427\"\n25e91ec: \ud83e\uddf9 dotnet format\n3cebe8d: feat(PerfectComplex): add CI\n299ceb0: refactor(Plugins): fix build\n36a1882: refactor(Plugins): move solution\n3eba54a: upgrade: deps\n150a157: Merge pull request #12 from SlashNephy/renovate/gitversion.commandline-5.x\n\nchore(deps): update dependency gitversion.commandline to v5.12.0\n578a704: Merge pull request #14 from SlashNephy/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.12.0\n957ae67: Merge pull request #17 from SlashNephy/renovate/chetan-git-restore-mtime-action-2.x\n\nchore(deps): update chetan/git-restore-mtime-action action to v2\nc29bfda: chore(deps): update dependency gitversion.tool to v5.12.0\nac45b63: chore(deps): update dependency gitversion.commandline to v5.12.0\nedf486f: refactor(Divination.PerfectComplex): migrate to monorepo\nd7577a0: refactor(Divination.ChatFilter): migrate to monorepo\n0b70809: refactor(Divination.SseClient): migrate to monorepo\nff4c530: chore: add migration script\n91db9a6: Merge pull request #10 from SlashNephy/renovate/python-3.x\n\nchore(deps): update python docker tag to v3.11.3\n03bc9a9: \u2699\ufe0f Regenerate PluginMaster\n4890f2a: \u2699\ufe0f Deploy DiscordIntegration \"0.1.0-beta.1107.333794c.20230427\"\n21a194b: \u2699\ufe0f Deploy InstanceIDViewer \"0.1.0-beta.1107.333794c.20230427\"\n5165dbb: \u2699\ufe0f Deploy FaloopIntegration \"0.1.0-beta.1107.333794c.20230427\"\n87cc905: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1107.333794c.20230427\"\nca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n93a7d62: chore(deps): update python docker tag to v3.11.3\n901a89b: chore(deps): update dependency anglesharp to v1",
+    "Changelog": "f011e98: chore(deps): update dependency socketioclient to v3.0.8\n88f60d8: \u2699\ufe0f Deploy Calculator \"0.1.0-beta.1226.4c8bcd2.20230428\"\n4c8bcd2: fix: typo\nc863c07: \u2699\ufe0f Deploy TwitterIntegration \"0.1.0-beta.1224.b429343.20230428\"\nb429343: Update reusable-deploy-plugin.yml\nba681b6: chore(deps): update dependency gitversion.msbuild to v5.12.0\n7897119: chore(deps): update dependency discordrichpresence to v1.1.3.18\n2889f5c: chore(deps): update dependency microsoft.windows.sdk.contracts to v10.0.22621.755\n5b69dbe: \u2699\ufe0f Regenerate PluginMaster\n50defb8: \u2699\ufe0f Deploy FaloopIntegration \"0.1.0-beta.1218.d90fc56.20230428\"\nd90fc56: Merge pull request #18 from SlashNephy/renovate/anglesharp-1.x\n\nchore(deps): update dependency anglesharp to v1\nb655299: Update README.md\n3ba67b1: chore: remove build solution dir\nd1595fb: \u2699\ufe0f Regenerate PluginMaster\n27419ac: \u2699\ufe0f Deploy PerfectComplex \"0.1.0-beta.1211.3cebe8d.20230427\"\n25e91ec: \ud83e\uddf9 dotnet format\n3cebe8d: feat(PerfectComplex): add CI\n299ceb0: refactor(Plugins): fix build\n36a1882: refactor(Plugins): move solution\n3eba54a: upgrade: deps\n150a157: Merge pull request #12 from SlashNephy/renovate/gitversion.commandline-5.x\n\nchore(deps): update dependency gitversion.commandline to v5.12.0\n578a704: Merge pull request #14 from SlashNephy/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.12.0\n957ae67: Merge pull request #17 from SlashNephy/renovate/chetan-git-restore-mtime-action-2.x\n\nchore(deps): update chetan/git-restore-mtime-action action to v2\nc29bfda: chore(deps): update dependency gitversion.tool to v5.12.0\nac45b63: chore(deps): update dependency gitversion.commandline to v5.12.0\nedf486f: refactor(Divination.PerfectComplex): migrate to monorepo\nd7577a0: refactor(Divination.ChatFilter): migrate to monorepo\n0b70809: refactor(Divination.SseClient): migrate to monorepo\nff4c530: chore: add migration script\n91db9a6: Merge pull request #10 from SlashNephy/renovate/python-3.x\n\nchore(deps): update python docker tag to v3.11.3",
     "DalamudApiLevel": 8,
     "Description": "Provide simple integration with Faloop. Mob notification in chat.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/FaloopIntegration/latest.zip",
@@ -113,7 +113,7 @@
     "InternalName": "FaloopIntegration",
     "IsHide": false,
     "IsTestingExclusive": true,
-    "LastUpdated": 1682644662,
+    "LastUpdated": 1682714761,
     "LoadPriority": 0,
     "LoadRequiredState": 2,
     "LoadSync": false,
@@ -123,7 +123,7 @@
     "Tags": [
       "mobhunt"
     ],
-    "TestingAssemblyVersion": "0.1.0.1218"
+    "TestingAssemblyVersion": "0.1.0.1228"
   },
   {
     "AcceptsFeedback": true,
