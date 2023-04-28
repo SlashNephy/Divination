@@ -78,3 +78,4 @@ jobs:
         continue-on-error: true
         with:
           commit_message: '⚙️ Deploy ${{ inputs.plugin-name }} ${{ steps.version.outputs.value }}'
+          commit_author: 'StarryBlueSky-bot <97773209+StarryBlueSky-bot@users.noreply.github.com>'
