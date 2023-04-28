@@ -96,14 +96,14 @@
   {
     "AcceptsFeedback": true,
     "ApplicableVersion": "any",
-    "AssemblyVersion": "0.1.0.1107",
+    "AssemblyVersion": "0.1.0.1218",
     "Author": "Asteria Nocturna",
     "CanUnloadAsync": false,
     "CategoryTags": [
       "social",
       "utility"
     ],
-    "Changelog": "87cc905: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1107.333794c.20230427\"\nca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n8fe814b: \ud83d\udd27 chore(renovate): update config\n333794c: \ud83e\uddf9 dotnet format\n8e5976a: chore(deps): update dependency dalamudpackager to v2.1.11\nd41fdc1: feat(Plugins): add workflows\n2e9139e: \u2699\ufe0f Regenerate PluginMaster\na662a25: fix(PluginRepo): permission\n21c57a7: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1101.b494154.20230427\"\nb494154: fix: cp\nad64afc: fix: CI\na2512df: fix(Common): set AssemblyName to Dalamud.Divination.Common\ndfd214d: refactor(Plugins): use shorter names\nb500fec: upgrade(Plugins): .NET 7\n3b89b23: refactor(Plugins): move solution\n2e4a273: \ud83e\uddf9 dotnet format\nd7a4431: refactor(Common): move solution\n05639ed: chore(PluginRepo): load manifest from json prefer than zip\nc465594: cleanup(PluginRepo): delete old distrib\n888b24d: refactor(PluginRepo): rename plugins\n40e38db: Merge remote-tracking branch 'origin/master'\n0964503: refactor(Plugins): rename\n0aa1aa3: Merge pull request #1 from SlashNephy/renovate/configure\n\nConfigure Renovate\n0af4e6d: Merge remote-tracking branch 'origin/master'\nb6aa1c6: feat(AetheryteLinkInChat): add CI\n47edde5: feat(PluginRepo): add CI\nb696a01: \ud83e\uddf9 dotnet format\nb2f4c24: feat(Common): add CI",
+    "Changelog": "d90fc56: Merge pull request #18 from SlashNephy/renovate/anglesharp-1.x\n\nchore(deps): update dependency anglesharp to v1\nb655299: Update README.md\n3ba67b1: chore: remove build solution dir\nd1595fb: \u2699\ufe0f Regenerate PluginMaster\n27419ac: \u2699\ufe0f Deploy PerfectComplex \"0.1.0-beta.1211.3cebe8d.20230427\"\n25e91ec: \ud83e\uddf9 dotnet format\n3cebe8d: feat(PerfectComplex): add CI\n299ceb0: refactor(Plugins): fix build\n36a1882: refactor(Plugins): move solution\n3eba54a: upgrade: deps\n150a157: Merge pull request #12 from SlashNephy/renovate/gitversion.commandline-5.x\n\nchore(deps): update dependency gitversion.commandline to v5.12.0\n578a704: Merge pull request #14 from SlashNephy/renovate/gitversion.tool-5.x\n\nchore(deps): update dependency gitversion.tool to v5.12.0\n957ae67: Merge pull request #17 from SlashNephy/renovate/chetan-git-restore-mtime-action-2.x\n\nchore(deps): update chetan/git-restore-mtime-action action to v2\nc29bfda: chore(deps): update dependency gitversion.tool to v5.12.0\nac45b63: chore(deps): update dependency gitversion.commandline to v5.12.0\nedf486f: refactor(Divination.PerfectComplex): migrate to monorepo\nd7577a0: refactor(Divination.ChatFilter): migrate to monorepo\n0b70809: refactor(Divination.SseClient): migrate to monorepo\nff4c530: chore: add migration script\n91db9a6: Merge pull request #10 from SlashNephy/renovate/python-3.x\n\nchore(deps): update python docker tag to v3.11.3\n03bc9a9: \u2699\ufe0f Regenerate PluginMaster\n4890f2a: \u2699\ufe0f Deploy DiscordIntegration \"0.1.0-beta.1107.333794c.20230427\"\n21a194b: \u2699\ufe0f Deploy InstanceIDViewer \"0.1.0-beta.1107.333794c.20230427\"\n5165dbb: \u2699\ufe0f Deploy FaloopIntegration \"0.1.0-beta.1107.333794c.20230427\"\n87cc905: \u2699\ufe0f Deploy AetheryteLinkInChat \"0.1.0-beta.1107.333794c.20230427\"\nca1a86c: \u2699\ufe0f Deploy Voiceroid2Talker \"0.1.0-beta.1107.333794c.20230427\"\n3d99161: \u2699\ufe0f Deploy PowerUtils \"0.1.0-beta.1107.333794c.20230427\"\n8036316: \u2699\ufe0f Deploy Debugger \"0.1.0-beta.1107.333794c.20230427\"\n93a7d62: chore(deps): update python docker tag to v3.11.3\n901a89b: chore(deps): update dependency anglesharp to v1",
     "DalamudApiLevel": 8,
     "Description": "Provide simple integration with Faloop. Mob notification in chat.",
     "DownloadLinkInstall": "https://xiv.starry.blue/plugins/testing/FaloopIntegration/latest.zip",
@@ -113,7 +113,7 @@
     "InternalName": "FaloopIntegration",
     "IsHide": false,
     "IsTestingExclusive": true,
-    "LastUpdated": 1682600829,
+    "LastUpdated": 1682644662,
     "LoadPriority": 0,
     "LoadRequiredState": 2,
     "LoadSync": false,
@@ -123,7 +123,7 @@
     "Tags": [
       "mobhunt"
     ],
-    "TestingAssemblyVersion": "0.1.0.1107"
+    "TestingAssemblyVersion": "0.1.0.1218"
   },
   {
     "AcceptsFeedback": true,
