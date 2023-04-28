@@ -23,7 +23,7 @@
             <Private>False</Private>
         </Reference>
         <PackageReference Include="AngleSharp" Version="1.0.1" />
-        <PackageReference Include="SocketIOClient" Version="3.0.7" />
+        <PackageReference Include="SocketIOClient" Version="3.0.8" />
         <PackageReference Include="DalamudPackager" Version="2.1.11">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>

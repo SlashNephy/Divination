@@ -26,12 +26,12 @@
       },
       "SocketIOClient": {
         "type": "Direct",
-        "requested": "[3.0.7, )",
-        "resolved": "3.0.7",
-        "contentHash": "Bs84PEX/HSCHrRQJkE5gW+3iV3cbIeRDKzGnPFZseMNHLiL3yaImR1VI3R5KW4KD2PFW88I9wyC0CWncRn5U3g==",
+        "requested": "[3.0.8, )",
+        "resolved": "3.0.8",
+        "contentHash": "uFpKuga3GEoWjJWGIkN00jeQu8XqQlWBVrigw0yKk9kkmPRWF2JlrrcT5/y4EK0cfKXu2yCdnECx+Y/zAXjRGA==",
         "dependencies": {
           "System.Collections": "4.3.0",
-          "System.Text.Json": "7.0.0"
+          "System.Text.Json": "7.0.2"
         }
       },
       "Microsoft.NETCore.Platforms": {
@@ -80,8 +80,8 @@
       },
       "System.Text.Json": {
         "type": "Transitive",
-        "resolved": "7.0.0",
-        "contentHash": "DaGSsVqKsn/ia6RG8frjwmJonfos0srquhw09TlT8KRw5I43E+4gs+/bZj4K0vShJ5H9imCuXupb4RmS+dBy3w==",
+        "resolved": "7.0.2",
+        "contentHash": "/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
         }
