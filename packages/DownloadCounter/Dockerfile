@@ -1,16 +1,23 @@
-FROM python:3.11.3-alpine
-WORKDIR /
-EXPOSE 5000
-ENV TZ=Asia/Tokyo
-ENV FLASK_APP=entrypoint.py
-ENV PYTHONUNBUFFERED=1
+# syntax=docker/dockerfile:1
+FROM golang:1.20-4-bullseye AS build
+WORKDIR /app
 
-RUN apk add --update --no-cache tzdata
+COPY go.mod go.sum ./
+RUN go mod download
 
-COPY ./requirements.txt /tmp/
-RUN pip install --no-cache-dir -r /tmp/requirements.txt \
-    && rm -f /tmp/requirements.txt
+COPY ./ ./
+RUN make build
 
-COPY ./entrypoint.py /
+FROM debian:bullseye-slim
+WORKDIR /app
 
-ENTRYPOINT ["flask", "run", "--host", "0.0.0.0"]
+RUN groupadd -g 1000 app && useradd -u 1000 -g app app
+
+RUN apt-get update \
+    && apt-get install -yqq --no-install-recommends \
+      ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+USER app
+COPY --from=build /app/download-counter ./
+CMD ["./download-counter"]
