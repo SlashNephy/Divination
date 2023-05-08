@@ -1,0 +1,36 @@
+name: 'Build (PluginRepository)'
+
+on:
+  push:
+    paths:
+      - 'packages/PluginRepository/**'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: SlashNephy/.github/.github/workflows/yarn-run.yml@master
+    permissions:
+      contents: 'read'
+    with:
+      script: 'build'
+      working-directory: 'packages/PluginRepository'
+
+  lint:
+    uses: SlashNephy/.github/.github/workflows/yarn-lint.yml@master
+    permissions:
+      contents: 'read'
+      pull-requests: 'write'
+    with:
+      working-directory: 'packages/PluginRepository'
+
+  format:
+    if: github.event_name == 'push'
+    uses: SlashNephy/.github/.github/workflows/yarn-format.yml@master
+    permissions:
+      contents: 'write'
+    with:
+      working-directory: 'packages/PluginRepository'

@@ -1,0 +1,53 @@
+{
+  "name": "plugin-repository",
+  "version": "0.0.0",
+  "type": "module",
+  "author": "SlashNephy <spica@starry.blue>",
+  "repository": "https://github.com/SlashNephy/Divination",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "pages": "yarn build && cp -r dist/* ../../dist/ && python update.py",
+    "preview": "vite preview",
+    "format": "concurrently -n format: 'yarn:format:*'",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "yarn lint:prettier --write",
+    "lint": "concurrently -n lint: 'yarn:lint:*'",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check ."
+  },
+  "dependencies": {
+    "@nextui-org/react": "1.0.0-beta.12",
+    "@tabler/icons-react": "2.17.0",
+    "i18next": "22.4.15",
+    "i18next-browser-languagedetector": "7.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-i18next": "12.2.2",
+    "swr": "2.1.5"
+  },
+  "devDependencies": {
+    "@slashnephy/eslint-config": "0.4.22",
+    "@slashnephy/prettier-config": "0.1.16",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "@typescript-eslint/eslint-plugin": "5.59.2",
+    "@typescript-eslint/parser": "5.59.2",
+    "@vitejs/plugin-react-swc": "3.0.0",
+    "concurrently": "8.0.1",
+    "eslint": "8.40.0",
+    "eslint-plugin-deprecation": "1.4.1",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jest": "27.2.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-react-refresh": "0.3.4",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "prettier": "2.8.8",
+    "typescript": "5.0.2",
+    "vite": "4.3.5"
+  },
+  "packageManager": "yarn@3.5.1",
+  "engines": {
+    "node": ">=18"
+  }
+}

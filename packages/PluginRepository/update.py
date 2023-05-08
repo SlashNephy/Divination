@@ -6,10 +6,10 @@ from zipfile import ZipFile
 
 def extract_manifests(env):
     manifests = {}
-    if not os.path.isdir(f"docs/plugins/{env}"):
+    if not os.path.isdir(f"../../dist/plugins/{env}"):
         return manifests
 
-    for dir_path, _, filenames in os.walk(f"docs/plugins/{env}"):
+    for dir_path, _, filenames in os.walk(f"../../dist/plugins/{env}"):
         if "latest.zip" not in filenames:
             continue
 
@@ -95,10 +95,10 @@ def merge_manifests(stable, testing):
 
     manifests = []
     for key in manifest_keys:
-        stable_path = f"docs/plugins/stable/{key}"
+        stable_path = f"../../dist/plugins/stable/{key}"
         stable_manifest = stable.get(key, {})
         stable_link = f"https://xiv.starry.blue/plugins/stable/{key}/latest.zip"
-        testing_path = f"docs/plugins/testing/{key}"
+        testing_path = f"../../dist/plugins/testing/{key}"
         testing_manifest = testing.get(key, {})
         testing_link = f"https://xiv.starry.blue/plugins/testing/{key}/latest.zip"
 
@@ -123,47 +123,8 @@ def merge_manifests(stable, testing):
 def dump_master(manifests):
     manifests.sort(key=lambda x: x["InternalName"])
 
-    with open("docs/plugins/master.json", "w") as f:
+    with open("../../dist/plugins/master.json", "w") as f:
         json.dump(manifests, f, indent=2, sort_keys=True)
-
-
-def generate_markdown(manifests):
-    lines = [
-        "# Divination Plugins",
-        "",
-        "## Legend",
-        "",
-        "⚠️ = Testing/very experimental plugin. May cause game crashes or other inconveniences.",
-        "",
-        "## Plugin List",
-        "",
-        "| Name | Version | Author | Description |",
-        "|:-----|:-------:|:------:|:------------|"
-    ]
-
-    jst = timezone(timedelta(hours=9))
-
-    for manifest in manifests:
-        if manifest["IsHide"]:
-            continue
-
-        name = f"[{manifest['Name']}]({manifest['RepoUrl']})"
-
-        stable_version = f"**[{manifest['AssemblyVersion']}]({manifest['DownloadLinkInstall']})**" if manifest["DownloadLinkInstall"] != manifest["DownloadLinkTesting"] else "-"
-        testing_version = f"⚠️ [{manifest['TestingAssemblyVersion']}]({manifest['DownloadLinkTesting']})" if manifest["TestingAssemblyVersion"] else "-"
-        last_updated = datetime.fromtimestamp(manifest["LastUpdated"], tz=jst).strftime("%Y-%m-%d")
-        version = f"{stable_version} / {testing_version} ({last_updated})"
-
-        author = manifest["Author"]
-
-        tags = [fr"**\#{x}**" for x in manifest.get("CategoryTags", []) + manifest.get("Tags", [])]
-        description = f"{manifest.get('Punchline', '-')}<br>{manifest.get('Description', '-')}<br>{' '.join(tags)}"
-
-        lines.append(f"| {name} | {version} | {author} | {description} |")
-
-    with open("docs/plugins/README.md", "w") as f:
-        f.write("\n".join(lines))
-
 
 if __name__ == "__main__":
     stable_manifests = extract_manifests("stable")
@@ -171,4 +132,3 @@ if __name__ == "__main__":
     merged_manifests = merge_manifests(stable_manifests, testing_manifests)
 
     dump_master(merged_manifests)
-    generate_markdown(merged_manifests)
