@@ -38,7 +38,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: '${{ inputs.plugin-name }}'
-          path: 'docs/plugins/testing/${{ inputs.plugin-name }}'
+          path: 'dist/plugins/testing/${{ inputs.plugin-name }}'
 
       - name: Download Artifact (gitversion.json)
         uses: actions/download-artifact@v3
@@ -56,19 +56,19 @@ jobs:
       - name: Prepare commits.json
         run: |
           curl \
-            -o docs/plugins/testing/${{ inputs.plugin-name }}/commits.json \
+            -o dist/plugins/testing/${{ inputs.plugin-name }}/commits.json \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.DEPLOY_GITHUB_TOKEN }}" \
             https://api.github.com/repos/${{ github.repository }}/commits
 
       - name: Prepare event.json
-        run: echo '${{ toJSON(github.event) }}' > docs/plugins/testing/${{ inputs.plugin-name }}/event.json
+        run: echo '${{ toJSON(github.event) }}' > dist/plugins/testing/${{ inputs.plugin-name }}/event.json
 
       - name: Copy Artifact (stable)
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
         run: |
-          mkdir -p docs/plugins/stable/${{ inputs.plugin-name }}
-          cp -rf docs/plugins/testing/${{ inputs.plugin-name }}/* docs/plugins/stable/${{ inputs.plugin-name }}
+          mkdir -p dist/plugins/stable/${{ inputs.plugin-name }}
+          cp -rf dist/plugins/testing/${{ inputs.plugin-name }}/* dist/plugins/stable/${{ inputs.plugin-name }}
 
       - name: Pull
         run: git pull
