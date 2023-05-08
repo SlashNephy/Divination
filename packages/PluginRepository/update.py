@@ -1,5 +1,6 @@
 import json
 import os
+import urllib.request
 from datetime import datetime, timedelta, timezone
 from zipfile import ZipFile
 
@@ -90,17 +91,32 @@ def get_last_updated(path):
     return int(epoch.timestamp())
 
 
+def fetch_download_statistics():
+    request = urllib.request.Request(
+        "https://xiv.starry.blue/plugins/downloads",
+        headers={
+            "User-Agent": "Divination/PluginRepository (+https://github.com/SlashNephy/Divination)"
+        }
+    )
+    try:
+        with urllib.request.urlopen(request) as response:
+            return json.load(response)
+    except urllib.error.HTTPError:
+        return {}
+
+
 def merge_manifests(stable, testing):
     manifest_keys = set(list(stable.keys()) + list(testing.keys()))
+    statistics = fetch_download_statistics()
 
     manifests = []
     for key in manifest_keys:
         stable_path = f"../../dist/plugins/stable/{key}"
         stable_manifest = stable.get(key, {})
-        stable_link = f"https://xiv.starry.blue/plugins/stable/{key}/latest.zip"
+        stable_link = f"https://xiv.starry.blue/plugins/stable/{key}/download"
         testing_path = f"../../dist/plugins/testing/{key}"
         testing_manifest = testing.get(key, {})
-        testing_link = f"https://xiv.starry.blue/plugins/testing/{key}/latest.zip"
+        testing_link = f"https://xiv.starry.blue/plugins/testing/{key}/download"
 
         manifest = testing_manifest.copy() if testing_manifest else stable_manifest.copy()
 
@@ -114,6 +130,7 @@ def merge_manifests(stable, testing):
         manifest["DownloadLinkInstall"] = stable_link if stable_manifest else testing_link
         manifest["DownloadLinkTesting"] = testing_link if testing_manifest else stable_link
         manifest["IconUrl"] = testing_manifest.get("IconUrl", stable_manifest.get("IconUrl"))
+        manifest["DownloadCount"] = statistics.get(key, 0)
 
         manifests.append(manifest)
 
