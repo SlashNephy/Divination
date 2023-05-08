@@ -11,15 +11,3 @@ If there is no aetherite in the relevant area, the shortest route from the adjac
 該当エリアにエーテライトがない場合は、隣接エリアからの最短経路を表示します。
 
 ![image](https://user-images.githubusercontent.com/7302150/208411404-de281415-25fc-4ed3-83f8-f4c071d5a43d.png)
-
-## Installation
-
-You can install this plugin from the [Divination plugin repository](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo).
-
-このプラグインは [Divination プラグインリポジトリ](https://github.com/horoscope-dev/Dalamud.DivinationPluginRepo) からインストールできます。
-
-## Disclaimer
-
-Use this plugin at your own risk. We are not responsible for any damages caused by using this plugin.
-
-このプラグインは自己責任で使用してください。このプラグインを使用して発生した損害について、私たちは一切の責任を負いません。
