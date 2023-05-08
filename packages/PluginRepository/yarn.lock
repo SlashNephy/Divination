@@ -3146,12 +3146,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:0.3.4":
-  version: 0.3.4
-  resolution: "eslint-plugin-react-refresh@npm:0.3.4"
+"eslint-plugin-react-refresh@npm:0.4.1":
+  version: 0.4.1
+  resolution: "eslint-plugin-react-refresh@npm:0.4.1"
   peerDependencies:
     eslint: ">=7"
-  checksum: cfed1cc698da5e2c58d3c1e5868eb579e985418f10bbf5da84d6c4923499ce544c4d152c6fa6fa02ffcc02c248a1da77190741ab923075ee6cab181268ad6652
+  checksum: 932f982797ef54a87e20039c32739c1a6df8355165d17ba851620b4690632432f511605e20c30e6abdb4c58d2bd926e96347f9253db724dcf3dae92bd1258d1d
   languageName: node
   linkType: hard
 
@@ -5017,7 +5017,7 @@ __metadata:
     eslint-plugin-import: 2.27.5
     eslint-plugin-jest: 27.2.1
     eslint-plugin-react-hooks: 4.6.0
-    eslint-plugin-react-refresh: 0.3.4
+    eslint-plugin-react-refresh: 0.4.1
     eslint-plugin-unused-imports: 2.0.0
     i18next: 22.4.15
     i18next-browser-languagedetector: 7.0.1
