@@ -131,3 +131,5 @@ dist
 .pnp.*
 
 !.yarn/releases/
+plugins/**/*.js
+types/*.js

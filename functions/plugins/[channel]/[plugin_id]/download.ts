@@ -1,10 +1,13 @@
-import type { PagesEnv } from '../types/env'
+import type { PagesEnv } from '../../../types/env'
 
 export const onRequest: PagesFunction<PagesEnv, 'channel' | 'plugin_id'> = async (context) => {
   const channel = context.params.channel as string
   const pluginId = context.params.plugin_id as string
 
-  const redirectUrl = `https://xiv.starry.blue/plugins/${channel}/${pluginId}/latest.zip`
+  const redirectUrl = context.request.url.replace(
+    `/plugins/${channel}/${pluginId}/download`,
+    `/plugins/${channel}/${pluginId}/latest.zip`
+  )
   if (!(await checkRemoteResource(redirectUrl))) {
     return new Response(null, { status: 404 })
   }

@@ -1,4 +1,4 @@
-import type { PagesEnv } from './types/env'
+import type { PagesEnv } from '../types/env'
 
 export const onRequest: PagesFunction<PagesEnv> = async (context) => {
   const { keys } = await context.env.KV.list()
