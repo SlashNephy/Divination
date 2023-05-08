@@ -7,10 +7,10 @@ from zipfile import ZipFile
 
 def extract_manifests(env):
     manifests = {}
-    if not os.path.isdir(f"../../dist/plugins/{env}"):
+    if not os.path.isdir(f"dist/plugins/{env}"):
         return manifests
 
-    for dir_path, _, filenames in os.walk(f"../../dist/plugins/{env}"):
+    for dir_path, _, filenames in os.walk(f"dist/plugins/{env}"):
         if "latest.zip" not in filenames:
             continue
 
@@ -111,10 +111,10 @@ def merge_manifests(stable, testing):
 
     manifests = []
     for key in manifest_keys:
-        stable_path = f"../../dist/plugins/stable/{key}"
+        stable_path = f"dist/plugins/stable/{key}"
         stable_manifest = stable.get(key, {})
         stable_link = f"https://xiv.starry.blue/plugins/stable/{key}/download"
-        testing_path = f"../../dist/plugins/testing/{key}"
+        testing_path = f"dist/plugins/testing/{key}"
         testing_manifest = testing.get(key, {})
         testing_link = f"https://xiv.starry.blue/plugins/testing/{key}/download"
 
@@ -140,7 +140,7 @@ def merge_manifests(stable, testing):
 def dump_master(manifests):
     manifests.sort(key=lambda x: x["InternalName"])
 
-    with open("../../dist/plugins/master.json", "w") as f:
+    with open("dist/plugins/master.json", "w") as f:
         json.dump(manifests, f, indent=2, sort_keys=True)
 
 if __name__ == "__main__":

@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "pages": "yarn build && cp -r dist/* ../../dist/ && python update.py",
     "preview": "vite preview",
     "format": "concurrently -n format: 'yarn:format:*'",
     "format:eslint": "yarn lint:eslint --fix",
