@@ -3,8 +3,8 @@ name: Update Plugin Master
 on:
   push:
     paths:
-      - 'docs/plugins/stable/**'
-      - 'docs/plugins/testing/**'
+      - 'dist/plugins/stable/**'
+      - 'dist/plugins/testing/**'
     branches:
       - master
   workflow_dispatch:
