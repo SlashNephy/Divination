@@ -25,7 +25,7 @@ export function App(): React.JSX.Element {
 
       <Spacer y={1} />
 
-      <Card css={{ pl: '$6' }}>
+      <Card css={{ pl: '$6', pr: '$6' }}>
         <Card.Body>
           <Col>
             <Text h2>
@@ -76,71 +76,71 @@ export function PluginList(): React.JSX.Element {
 
   return (
     <Grid.Container gap={2}>
-      {plugins.map((plugin) => (
-        <Grid key={plugin.Name} md={4}>
-          <Card css={{ p: '$4' }}>
-            <Card.Header>
-              <Grid.Container>
-                <Grid xs={12}>
+      {plugins
+        .sort((a, b) => b.DownloadCount - a.DownloadCount)
+        .map((plugin) => (
+          <Grid key={plugin.InternalName} md={4}>
+            <Card css={{ p: '$4' }}>
+              <Card.Header>
+                <Col>
                   <Text h4 css={{ lineHeight: '$xs' }}>
-                    {plugin.Name} (API {plugin.DalamudApiLevel})
+                    {plugin.InternalName} (API {plugin.DalamudApiLevel})
                   </Text>
-                </Grid>
-                <Grid xs={12}>
                   <Text css={{ color: '$accents8' }}>{plugin.Punchline}</Text>
-                </Grid>
-              </Grid.Container>
-            </Card.Header>
-            <Card.Body css={{ py: '$2' }}>
-              <Row>
-                {plugin.CategoryTags.map((tag) => (
-                  <Badge key={tag} color="secondary">
-                    {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                  </Badge>
-                ))}
-                {plugin.Tags.map((tag) => (
-                  <Badge key={tag} color="primary">
-                    #{tag}
-                  </Badge>
-                ))}
-              </Row>
+                </Col>
+              </Card.Header>
+              <Card.Body css={{ py: '$2' }}>
+                <Row>
+                  {plugin.CategoryTags.map((tag) => (
+                    <Badge key={tag} color="secondary" variant="flat">
+                      {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                    </Badge>
+                  ))}
+                  {plugin.Tags.map((tag) => (
+                    <Badge key={tag} color="primary" variant="flat">
+                      #{tag}
+                    </Badge>
+                  ))}
+                  <Badge variant="flat">Downloads: {plugin.DownloadCount}</Badge>
+                  <Badge variant="flat">Author: {plugin.Author}</Badge>
+                </Row>
 
-              <Text>{plugin.Description}</Text>
+                <Text>{plugin.Description}</Text>
 
-              <Link
-                href={`${packageJson.repository}/tree/master/packages/Plugins/${plugin.InternalName}`}
-                target="_blank"
-              >
-                <IconBrandGithub />
-                {t('PluginListViewSourceCodeLabel')}
-              </Link>
-            </Card.Body>
-            <Card.Footer>
-              <Row justify="center">
-                {/* @ts-expect-error broken type Tooltip */}
-                <Tooltip rounded content={`v${plugin.AssemblyVersion}`}>
-                  <Link href={plugin.DownloadLinkInstall} target="_blank">
-                    <Button auto color="primary">
-                      {t('PluginListDownloadStableButton')}
-                    </Button>
-                  </Link>
-                </Tooltip>
+                <Link
+                  href={`${packageJson.repository}/tree/master/packages/Plugins/${plugin.InternalName}`}
+                  target="_blank"
+                >
+                  <IconBrandGithub />
+                  {t('PluginListViewSourceCodeLabel')}
+                </Link>
+              </Card.Body>
+              <Card.Footer>
+                <Row justify="center">
+                  {/* @ts-expect-error broken type Tooltip */}
+                  <Tooltip rounded content={`v${plugin.AssemblyVersion}`}>
+                    <Link href={plugin.DownloadLinkInstall} target="_blank">
+                      <Button auto color="primary">
+                        {t('PluginListDownloadStableButton')}
+                      </Button>
+                    </Link>
+                  </Tooltip>
 
-                <Spacer x={1} />
+                  <Spacer x={1} />
 
-                {/* @ts-expect-error broken type Tooltip */}
-                <Tooltip rounded content={`v${plugin.TestingAssemblyVersion}`}>
-                  <Link href={plugin.DownloadLinkTesting} target="_blank">
-                    <Button auto color="error">
-                      {t('PluginListDownloadTestingButton')}
-                    </Button>
-                  </Link>
-                </Tooltip>
-              </Row>
-            </Card.Footer>
-          </Card>
-        </Grid>
-      ))}
+                  {/* @ts-expect-error broken type Tooltip */}
+                  <Tooltip rounded content={`v${plugin.TestingAssemblyVersion}`}>
+                    <Link href={plugin.DownloadLinkTesting} target="_blank">
+                      <Button auto color="error">
+                        {t('PluginListDownloadTestingButton')}
+                      </Button>
+                    </Link>
+                  </Tooltip>
+                </Row>
+              </Card.Footer>
+            </Card>
+          </Grid>
+        ))}
     </Grid.Container>
   )
 }
