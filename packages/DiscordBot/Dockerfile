@@ -18,6 +18,6 @@ RUN gradle shadowJar --parallel --no-daemon
 FROM amazoncorretto:17.0.7
 WORKDIR /app
 
-COPY --from=build /app/build/libs/Divination.DiscordBot-all.jar /app/Divination.DiscordBot.jar
+COPY --from=build /app/build/libs/DiscordBot-all.jar /app/DiscordBot.jar
 
-ENTRYPOINT ["java", "-jar", "/app/Divination.DiscordBot.jar"]
+ENTRYPOINT ["java", "-jar", "/app/DiscordBot.jar"]
