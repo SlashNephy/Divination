@@ -15,7 +15,7 @@ dependencies {
 
     implementation("net.dv8tion:JDA:5.0.0-beta.8")
     implementation("blue.starry:gerolt:1.0.0")
-    implementation("org.jsoup:jsoup:1.15.4")
+    implementation("org.jsoup:jsoup:1.16.1")
 
     implementation("io.github.microutils:kotlin-logging:3.0.5")
     implementation("ch.qos.logback:logback-core:1.4.7")
