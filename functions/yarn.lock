@@ -573,9 +573,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:0.4.26":
-  version: 0.4.26
-  resolution: "@slashnephy/eslint-config@npm:0.4.26"
+"@slashnephy/eslint-config@npm:0.4.27":
+  version: 0.4.27
+  resolution: "@slashnephy/eslint-config@npm:0.4.27"
   dependencies:
     "@emotion/eslint-plugin": 11.10.0
     "@typescript-eslint/eslint-plugin": 5.59.2
@@ -607,10 +607,10 @@ __metadata:
     eslint-plugin-vitest: 0.1.4
     eslint-plugin-xss: 0.1.12
     eslint-plugin-yml: 1.5.0
-    typescript: 4.9.5
+    typescript: 5.0.4
   peerDependencies:
     eslint: ">= 8"
-  checksum: b95de52de081f33c86211537e68703281178e739a104e35b26b57f23a2b06d3554124f92572ae7347a7e66d8d2ec018f1fcb71ddea660a293da9916d5364d92d
+  checksum: 58ffffece2dedeb2a392bb88c202692b393a8a2eecccab52606c54dec31d8d46ec99cdd3379ca71462d5ba8fd7072f157ae6c4eb37042c95637412a71e37a5a8
   languageName: node
   linkType: hard
 
@@ -2694,7 +2694,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230419.0
-    "@slashnephy/eslint-config": 0.4.26
+    "@slashnephy/eslint-config": 0.4.27
     "@slashnephy/prettier-config": 0.1.19
     "@typescript-eslint/eslint-plugin": 5.59.5
     "@typescript-eslint/parser": 5.59.5
@@ -5015,16 +5015,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: ee000bc26848147ad423b581bd250075662a354d84f0e06eb76d3b892328d8d4440b7487b5a83e851b12b255f55d71835b008a66cbf8f255a11e4400159237db
-  languageName: node
-  linkType: hard
-
 "typescript@npm:5.0.4":
   version: 5.0.4
   resolution: "typescript@npm:5.0.4"
@@ -5032,16 +5022,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 82b94da3f4604a8946da585f7d6c3025fff8410779e5bde2855ab130d05e4fd08938b9e593b6ebed165bda6ad9292b230984f10952cf82f0a0ca07bbeaa08172
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@4.9.5#~builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
   languageName: node
   linkType: hard
 
