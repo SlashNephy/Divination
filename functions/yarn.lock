@@ -580,9 +580,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:0.4.32":
-  version: 0.4.32
-  resolution: "@slashnephy/eslint-config@npm:0.4.32"
+"@slashnephy/eslint-config@npm:0.4.33":
+  version: 0.4.33
+  resolution: "@slashnephy/eslint-config@npm:0.4.33"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@typescript-eslint/eslint-plugin": 5.59.5
@@ -610,14 +610,14 @@ __metadata:
     eslint-plugin-react: 7.32.2
     eslint-plugin-react-hooks: 4.6.0
     eslint-plugin-unused-imports: 2.0.0
-    eslint-plugin-userscripts: 0.2.13
+    eslint-plugin-userscripts: 0.3.0
     eslint-plugin-vitest: 0.2.2
     eslint-plugin-xss: 0.1.12
     eslint-plugin-yml: 1.7.0
     typescript: 5.0.4
   peerDependencies:
     eslint: ">= 8"
-  checksum: f7c0c9ef592cc2187bc61c39554bae2536c0bd5d3ec4fa9141c93608c3d8a353f68bb4bbf7d61f92407ed9b3c794366ae6a99d9e364bf8528835002043aec340
+  checksum: 830b302d4d3c239a697857f3b6102ca086665876bb5d0110d784ea3b6ac7eabea040995cbbe6bc985da0c87c64b93d2f0dbd6a3862cad6f2737469fe13f101c8
   languageName: node
   linkType: hard
 
@@ -2208,15 +2208,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-userscripts@npm:0.2.13":
-  version: 0.2.13
-  resolution: "eslint-plugin-userscripts@npm:0.2.13"
+"eslint-plugin-userscripts@npm:0.3.0":
+  version: 0.3.0
+  resolution: "eslint-plugin-userscripts@npm:0.3.0"
   dependencies:
     requireindex: ~1.2.0
     semver: ^7.3.8
   peerDependencies:
-    eslint: ">=6.0.0 <9"
-  checksum: d9d1b760c98d80050bec6729bd513adaf9e653e2b309c7d05d2252d7f67ba533ddda083e15e916e4383662b0e470943a4f9b1a79401f102641b5cbd3c80181be
+    eslint: ">=8.0.0 <9"
+  checksum: bfb384cd0afd2b5ff0bb702daddbce675ef5971707ac2a4f3155f91dde5d376e7500c56de37fd0e68074a9b3fe19086867854213fed707f9dc5de2606b43fa1b
   languageName: node
   linkType: hard
 
@@ -2643,7 +2643,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230419.0
-    "@slashnephy/eslint-config": 0.4.32
+    "@slashnephy/eslint-config": 0.4.33
     "@slashnephy/prettier-config": 0.1.21
     "@typescript-eslint/eslint-plugin": 5.59.5
     "@typescript-eslint/parser": 5.59.5
