@@ -16,7 +16,7 @@
     "lint:prettier": "prettier --check ."
   },
   "dependencies": {
-    "@nextui-org/react": "1.0.0-beta.12",
+    "@nextui-org/react": "1.0.0-beta.13",
     "@tabler/icons-react": "2.20.0",
     "i18next": "22.5.0",
     "i18next-browser-languagedetector": "7.0.1",

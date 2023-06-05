@@ -346,9 +346,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nextui-org/react@npm:1.0.0-beta.12":
-  version: 1.0.0-beta.12
-  resolution: "@nextui-org/react@npm:1.0.0-beta.12"
+"@nextui-org/react@npm:1.0.0-beta.13":
+  version: 1.0.0-beta.13
+  resolution: "@nextui-org/react@npm:1.0.0-beta.13"
   dependencies:
     "@babel/runtime": ^7.20.1
     "@react-aria/button": 3.6.2
@@ -385,7 +385,7 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 7086043d61de2d7bb057a3536d23043e70147699e83a662a16e397e3d028ebbbdc834cdc37f9007cca5a27f7bb670e050ab7b7b0bb12729f981461c7320e4a07
+  checksum: 4383585245f6775d61aa30c26834c92d0ee7df5140427ea3c7fa99d8d4a7780ad8398caf771543dbeb904a65add7ad148d248649b343648506c181a32648c478
   languageName: node
   linkType: hard
 
@@ -5081,7 +5081,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "plugin-repository@workspace:."
   dependencies:
-    "@nextui-org/react": 1.0.0-beta.12
+    "@nextui-org/react": 1.0.0-beta.13
     "@slashnephy/eslint-config": 0.4.34
     "@slashnephy/prettier-config": 0.1.23
     "@tabler/icons-react": 2.20.0
