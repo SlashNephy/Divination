@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20230518.0",
-    "@slashnephy/eslint-config": "0.4.34",
+    "@slashnephy/eslint-config": "0.4.35",
     "@slashnephy/prettier-config": "0.1.23",
     "@typescript-eslint/eslint-plugin": "5.59.8",
     "@typescript-eslint/parser": "5.59.8",
