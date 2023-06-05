@@ -23,10 +23,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:4.20230511.0":
-  version: 4.20230511.0
-  resolution: "@cloudflare/workers-types@npm:4.20230511.0"
-  checksum: fc69d6e25fea4feb2c5956b1457166e3997212609b8e0a5bd9a8bbec4427f5c7d729000327077370b79de4f387df9a6e7a72e04a18d7998bcfaa70816c95d0c4
+"@cloudflare/workers-types@npm:4.20230518.0":
+  version: 4.20230518.0
+  resolution: "@cloudflare/workers-types@npm:4.20230518.0"
+  checksum: 69c861437f1064b860b2a52129ed973f670090a8d2de9f4b205f86f8a2f40caec48b8c7614533c6531875d1fa254fc7d9da3ab52d7a6fff46be0f64079b394dc
   languageName: node
   linkType: hard
 
@@ -2761,7 +2761,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "functions@workspace:."
   dependencies:
-    "@cloudflare/workers-types": 4.20230511.0
+    "@cloudflare/workers-types": 4.20230518.0
     "@slashnephy/eslint-config": 0.4.34
     "@slashnephy/prettier-config": 0.1.23
     "@typescript-eslint/eslint-plugin": 5.59.8
