@@ -22,7 +22,7 @@
             <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <PackageReference Include="AngleSharp" Version="1.0.2" />
+        <PackageReference Include="AngleSharp" Version="1.0.3" />
         <PackageReference Include="SocketIOClient" Version="3.0.8" />
         <PackageReference Include="DalamudPackager" Version="2.1.11">
             <PrivateAssets>all</PrivateAssets>

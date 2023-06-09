@@ -4,9 +4,9 @@
     "net7.0-windows7.0": {
       "AngleSharp": {
         "type": "Direct",
-        "requested": "[1.0.2, )",
-        "resolved": "1.0.2",
-        "contentHash": "T02GUFKicXLDX+Sm1i+Fjh2TQWgcqmJARRdRhZPUYkvxvnFVDxIXnY59u9qKKBLBrgyFw+v6uV+efRZO675K6A==",
+        "requested": "[1.0.3, )",
+        "resolved": "1.0.3",
+        "contentHash": "8U4PfAOpm5HO3v3wVrKrDTp55QZYK1jSJyjyU7k1Y0WpScjkpnCLcaTfoawu1poX69NGWjdGMYAyMIZHibN1tw==",
         "dependencies": {
           "System.Text.Encoding.CodePages": "7.0.0"
         }
