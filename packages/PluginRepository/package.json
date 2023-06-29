@@ -19,7 +19,7 @@
     "@nextui-org/react": "1.0.0-beta.13",
     "@tabler/icons-react": "2.23.0",
     "i18next": "22.5.1",
-    "i18next-browser-languagedetector": "7.0.2",
+    "i18next-browser-languagedetector": "7.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "12.3.1",
