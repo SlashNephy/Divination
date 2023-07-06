@@ -9,7 +9,7 @@ require (
 	github.com/labstack/echo/v4 v4.10.2
 	github.com/labstack/gommon v0.4.0
 	github.com/lib/pq v1.10.9
-	github.com/pressly/goose/v3 v3.13.0
+	github.com/pressly/goose/v3 v3.13.1
 )
 
 require (
