@@ -36,8 +36,8 @@ github.com/mattn/go-sqlite3 v1.14.7 h1:fxWBnXkxfM6sRiuH3bqJ4CfzZojMOLVc0UTsTglEg
 github.com/mattn/go-sqlite3 v1.14.7/go.mod h1:NyWgC/yNuGj7Q9rpYnZvas74GogHl5/Z4A/KQRfk6bU=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/pressly/goose/v3 v3.13.0 h1:pJoIca9/9RwYVnSpk9riQotHIvkEC+fipyC/lkIKW98=
-github.com/pressly/goose/v3 v3.13.0/go.mod h1:1WCIzQuOGhpx+D7bal+tGadbwVPmdfy9fltqYLMA8lM=
+github.com/pressly/goose/v3 v3.13.1 h1:4kYsfsboJvQDg1MEcMnXs8ubbz4AeHHXMW19XEAy3vI=
+github.com/pressly/goose/v3 v3.13.1/go.mod h1:1WCIzQuOGhpx+D7bal+tGadbwVPmdfy9fltqYLMA8lM=
 github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec h1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE=
 github.com/stretchr/objx v0.1.0 h1:4G4v2dO3VZwixGIRoQ5Lfboy6nUhCyYzaqnIAPPhYs4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
