@@ -9,9 +9,9 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-client-java:2.3.0")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
+    implementation("io.ktor:ktor-client-java:2.3.2")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.2")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.2")
 
     implementation("net.dv8tion:JDA:5.0.0-beta.12")
     implementation("blue.starry:gerolt:1.0.0")
