@@ -3394,6 +3394,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-unused-imports@npm:3.0.0":
+  version: 3.0.0
+  resolution: "eslint-plugin-unused-imports@npm:3.0.0"
+  dependencies:
+    eslint-rule-composer: ^0.3.0
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": ^6.0.0
+    eslint: ^8.0.0
+  peerDependenciesMeta:
+    "@typescript-eslint/eslint-plugin":
+      optional: true
+  checksum: 51666f62cc8dccba2895ced83f3c1e0b78b68c357e17360e156c4db548bfdeda34cbd8725192fb4903f22d5069400fb22ded6039631df01ee82fd618dc307247
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-userscripts@npm:0.3.0":
   version: 0.3.0
   resolution: "eslint-plugin-userscripts@npm:0.3.0"
@@ -5202,7 +5217,7 @@ __metadata:
     eslint-plugin-jest: 27.2.2
     eslint-plugin-react-hooks: 4.6.0
     eslint-plugin-react-refresh: 0.4.3
-    eslint-plugin-unused-imports: 2.0.0
+    eslint-plugin-unused-imports: 3.0.0
     i18next: 22.5.1
     i18next-browser-languagedetector: 7.1.0
     prettier: 3.0.0
