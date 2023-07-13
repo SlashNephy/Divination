@@ -19,7 +19,7 @@ dependencies {
 
   implementation("io.github.microutils:kotlin-logging:3.0.5")
   implementation("ch.qos.logback:logback-core:1.4.7")
-  implementation("ch.qos.logback:logback-classic:1.4.7")
+  implementation("ch.qos.logback:logback-classic:1.4.8")
 }
 
 kotlin {
