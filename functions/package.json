@@ -24,7 +24,7 @@
     "eslint-plugin-deprecation": "1.4.1",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jest": "27.2.2",
-    "eslint-plugin-unused-imports": "2.0.0",
+    "eslint-plugin-unused-imports": "3.0.0",
     "prettier": "3.0.0",
     "typescript": "5.1.6",
     "wrangler": "3.2.0"
