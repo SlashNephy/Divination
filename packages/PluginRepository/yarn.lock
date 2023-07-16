@@ -5236,7 +5236,7 @@ __metadata:
     react-i18next: 12.3.1
     swr: 2.2.0
     typescript: 5.1.6
-    vite: 4.4.2
+    vite: 4.4.4
   languageName: unknown
   linkType: soft
 
@@ -5249,7 +5249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.13, postcss@npm:^8.4.24":
+"postcss@npm:^8.4.13, postcss@npm:^8.4.25":
   version: 8.4.26
   resolution: "postcss@npm:8.4.26"
   dependencies:
@@ -6175,13 +6175,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:4.4.2":
-  version: 4.4.2
-  resolution: "vite@npm:4.4.2"
+"vite@npm:4.4.4":
+  version: 4.4.4
+  resolution: "vite@npm:4.4.4"
   dependencies:
     esbuild: ^0.18.10
     fsevents: ~2.3.2
-    postcss: ^8.4.24
+    postcss: ^8.4.25
     rollup: ^3.25.2
   peerDependencies:
     "@types/node": ">= 14"
@@ -6211,7 +6211,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 37a1c3a0ccc4b80c0a696203d3608d6bf7dc98219ddc178e528b972e3305af9ab8f92dea455421024e98c59372f6a97b1b4cc409a05f757a64bff830610053c6
+  checksum: 51c208e53680fa46f7166e49b037625ae43d507f85f1fd3da7e290263bccb77d5f8c466fe82746285927620afeeff949ac3b8e1b6a7b4fe7bfe11419729256b4
   languageName: node
   linkType: hard
 
