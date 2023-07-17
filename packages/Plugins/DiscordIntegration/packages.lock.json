@@ -10,9 +10,9 @@
       },
       "DiscordRichPresence": {
         "type": "Direct",
-        "requested": "[1.1.3.18, )",
-        "resolved": "1.1.3.18",
-        "contentHash": "cu8ilTx4DPuU3YJO1bNF+UtTlVvQIihvJ7AwoRKkcy9+cZ+fUxKfQsMpEcfm3PndT3zExpljPbS9wMdbLeYdAg==",
+        "requested": "[1.1.4.20, )",
+        "resolved": "1.1.4.20",
+        "contentHash": "rn7mW7qlg6PM4lQceECsguNsSFoxVtPoGeIpHYqAZbtmbo49zTzPPSQmNVwQFUWVeZ0XxBv+UtHOFdLo6T9t3A==",
         "dependencies": {
           "Microsoft.Win32.Registry": "4.5.0",
           "Newtonsoft.Json": "13.0.1"
