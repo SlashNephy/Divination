@@ -15,7 +15,7 @@ COPY ./src/main/ /app/src/main/
 
 RUN gradle shadowJar --parallel --no-daemon
 
-FROM amazoncorretto:17.0.7@sha256:0b950170bd22cff5f76a289e501486c2b06e93314b1117139b2dca5e44455d21
+FROM amazoncorretto:17.0.7@sha256:42caee75951cc43cd6056d5d49393b9196eca3a62437d9179108c4f437db1473
 WORKDIR /app
 
 COPY --from=build /app/build/libs/Divination.SseServer-all.jar /app/Divination.SseServer.jar
