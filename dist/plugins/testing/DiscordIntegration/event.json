@@ -1,7 +1,7 @@
 {
-  "after": "14bae1ececfb00aba5d4d300d337c733f3cdb1d1",
+  "after": "61e72d9f8facab7060e7d131f07eae08d4226e75",
   "base_ref": null,
-  "before": "7d95f9f514afa9b8a4234acb6a30c5c6f6e6f4e0",
+  "before": "b3b39ae376386e54f677cbd8cb73e5f796b032b6",
   "commits": [
     {
       "author": {
@@ -15,14 +15,14 @@
         "username": "renovate[bot]"
       },
       "distinct": true,
-      "id": "14bae1ececfb00aba5d4d300d337c733f3cdb1d1",
-      "message": "chore(deps): update dependency discordrichpresence to v1.1.4.20",
-      "timestamp": "2023-07-19T11:10:48Z",
-      "tree_id": "95fb3a59cfd6c2eb1f2c31ea2a104875079fdb0a",
-      "url": "https://github.com/SlashNephy/Divination/commit/14bae1ececfb00aba5d4d300d337c733f3cdb1d1"
+      "id": "61e72d9f8facab7060e7d131f07eae08d4226e75",
+      "message": "chore(deps): update dependency discordrichpresence to v1.2.1.24",
+      "timestamp": "2023-07-29T15:14:47Z",
+      "tree_id": "1de17d2c8bcdc8862afc34961e57320f38435a0e",
+      "url": "https://github.com/SlashNephy/Divination/commit/61e72d9f8facab7060e7d131f07eae08d4226e75"
     }
   ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/7d95f9f514af...14bae1ececfb",
+  "compare": "https://github.com/SlashNephy/Divination/compare/b3b39ae37638...61e72d9f8fac",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +38,11 @@
       "username": "renovate[bot]"
     },
     "distinct": true,
-    "id": "14bae1ececfb00aba5d4d300d337c733f3cdb1d1",
-    "message": "chore(deps): update dependency discordrichpresence to v1.1.4.20",
-    "timestamp": "2023-07-19T11:10:48Z",
-    "tree_id": "95fb3a59cfd6c2eb1f2c31ea2a104875079fdb0a",
-    "url": "https://github.com/SlashNephy/Divination/commit/14bae1ececfb00aba5d4d300d337c733f3cdb1d1"
+    "id": "61e72d9f8facab7060e7d131f07eae08d4226e75",
+    "message": "chore(deps): update dependency discordrichpresence to v1.2.1.24",
+    "timestamp": "2023-07-29T15:14:47Z",
+    "tree_id": "1de17d2c8bcdc8862afc34961e57320f38435a0e",
+    "url": "https://github.com/SlashNephy/Divination/commit/61e72d9f8facab7060e7d131f07eae08d4226e75"
   },
   "pusher": {
     "email": null,
@@ -137,9 +137,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1689765048,
+    "pushed_at": 1690643687,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 49040,
+    "size": 49681,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
     "stargazers": 5,
     "stargazers_count": 5,
