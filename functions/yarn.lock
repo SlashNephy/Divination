@@ -443,11 +443,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@slashnephy/eslint-config@npm:1.0.2"
+"@slashnephy/eslint-config@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@slashnephy/eslint-config@npm:1.0.3"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
+    "@next/eslint-plugin-next": 13.4.12
     "@rushstack/eslint-patch": 1.3.2
     "@typescript-eslint/eslint-plugin": 6.2.0
     "@typescript-eslint/parser": 6.2.0
@@ -455,6 +456,7 @@ __metadata:
     eslint-config-next: 13.4.12
     eslint-config-prettier: 8.9.0
     eslint-config-standard: 17.1.0
+    eslint-import-resolver-node: 0.3.7
     eslint-import-resolver-typescript: 3.5.5
     eslint-plugin-css-import-order: 1.1.0
     eslint-plugin-css-reorder: 0.5.1
@@ -485,7 +487,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: 27487f61752a37050b7f73912b2a58a8a8e65e66dcca0ed7ebdb49b19b3d0f9c01687f28086a3ac7e6016cdd80f3a939a76fb21ad785202c63029bd32ae181e6
+  checksum: a4d10fa75ee598642d8e9ba2f72143424a3647af71ac6fb91e3e544dad739780c6a1319d61002be10d3a7c13f39bfffdef9441f9608f607cc161e46893d6062b
   languageName: node
   linkType: hard
 
@@ -1862,7 +1864,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.6, eslint-import-resolver-node@npm:^0.3.7":
+"eslint-import-resolver-node@npm:0.3.7, eslint-import-resolver-node@npm:^0.3.6, eslint-import-resolver-node@npm:^0.3.7":
   version: 0.3.7
   resolution: "eslint-import-resolver-node@npm:0.3.7"
   dependencies:
@@ -2708,7 +2710,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230724.0
-    "@slashnephy/eslint-config": 1.0.2
+    "@slashnephy/eslint-config": 1.0.3
     "@slashnephy/prettier-config": 0.1.25
     "@typescript-eslint/eslint-plugin": 6.2.0
     "@typescript-eslint/parser": 6.2.0
