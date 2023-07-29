@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM golang:1.20.6-bullseye@sha256:851af0a8ca4eba552c84db5b2edac7f3be15deb5892217961a1d4b175585a603 AS build
+FROM golang:1.20.6-bullseye@sha256:dbd915dbe6c7d7c8c325f1ad5eff108b4e9f798cd92c79f73ecd3d769ea73077 AS build
 WORKDIR /app
 
 COPY go.mod go.sum ./
