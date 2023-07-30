@@ -1927,20 +1927,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-deprecation@npm:1.4.1":
-  version: 1.4.1
-  resolution: "eslint-plugin-deprecation@npm:1.4.1"
-  dependencies:
-    "@typescript-eslint/utils": ^5.57.0
-    tslib: ^2.3.1
-    tsutils: ^3.21.0
-  peerDependencies:
-    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-    typescript: ^3.7.5 || ^4.0.0 || ^5.0.0
-  checksum: 75c7535d820d1749664705724cc979d706da126a2277f2937467f70156a2c220b10c66670f18226801c9555e4cd02312d353936f14d5752c2d2c648455fe5769
-  languageName: node
-  linkType: hard
-
 "eslint-plugin-deprecation@npm:1.5.0":
   version: 1.5.0
   resolution: "eslint-plugin-deprecation@npm:1.5.0"
@@ -2716,7 +2702,7 @@ __metadata:
     "@typescript-eslint/parser": 6.2.0
     concurrently: 8.2.0
     eslint: 8.45.0
-    eslint-plugin-deprecation: 1.4.1
+    eslint-plugin-deprecation: 1.5.0
     eslint-plugin-import: 2.27.5
     eslint-plugin-jest: 27.2.3
     eslint-plugin-unused-imports: 3.0.0
