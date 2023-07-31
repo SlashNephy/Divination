@@ -26,7 +26,7 @@
     "swr": "2.2.0"
   },
   "devDependencies": {
-    "@slashnephy/eslint-config": "1.0.4",
+    "@slashnephy/eslint-config": "1.0.5",
     "@slashnephy/prettier-config": "0.1.26",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
