@@ -1484,12 +1484,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/prettier-config@npm:0.1.26":
-  version: 0.1.26
-  resolution: "@slashnephy/prettier-config@npm:0.1.26"
+"@slashnephy/prettier-config@npm:0.1.27":
+  version: 0.1.27
+  resolution: "@slashnephy/prettier-config@npm:0.1.27"
   peerDependencies:
     prettier: ^3
-  checksum: 2326a1a9b00259a833147f5d45da7ef1be5db3aed336f9644c7c6cd265c965f0d95061a57a700e6befb17b654827ec735a740c61cb40b069b9e166fe0fa06092
+  checksum: 18eab6982a8b6e34a43d9cc6bbcca5fcb922dacae3ff5de94ceb56b9dcdf3cd6afcf07a9dbb571f4b556763c4ac5340ebe2fc52e86d4f22e19ee5c8abaa433e5
   languageName: node
   linkType: hard
 
@@ -5167,7 +5167,7 @@ __metadata:
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
     "@slashnephy/eslint-config": 1.0.5
-    "@slashnephy/prettier-config": 0.1.26
+    "@slashnephy/prettier-config": 0.1.27
     "@tabler/icons-react": 2.29.0
     "@types/react": 18.2.17
     "@types/react-dom": 18.2.7
