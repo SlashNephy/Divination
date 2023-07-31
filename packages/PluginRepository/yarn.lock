@@ -3043,7 +3043,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.26.0":
+"eslint-plugin-import@npm:2.28.0, eslint-plugin-import@npm:^2.26.0":
   version: 2.28.0
   resolution: "eslint-plugin-import@npm:2.28.0"
   dependencies:
@@ -5177,7 +5177,7 @@ __metadata:
     concurrently: 8.2.0
     eslint: 8.45.0
     eslint-plugin-deprecation: 1.5.0
-    eslint-plugin-import: 2.27.5
+    eslint-plugin-import: 2.28.0
     eslint-plugin-jest: 27.2.3
     eslint-plugin-react-hooks: 4.6.0
     eslint-plugin-react-refresh: 0.4.3
