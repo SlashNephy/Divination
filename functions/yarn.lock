@@ -443,9 +443,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@slashnephy/eslint-config@npm:1.0.4"
+"@slashnephy/eslint-config@npm:1.0.5":
+  version: 1.0.5
+  resolution: "@slashnephy/eslint-config@npm:1.0.5"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -476,7 +476,7 @@ __metadata:
     eslint-plugin-react: 7.33.0
     eslint-plugin-react-hooks: 4.6.0
     eslint-plugin-react-refresh: 0.4.3
-    eslint-plugin-storybook: 0.6.12
+    eslint-plugin-storybook: 0.6.13
     eslint-plugin-tsdoc: 0.2.17
     eslint-plugin-unused-imports: 3.0.0
     eslint-plugin-userscripts: 0.3.0
@@ -487,7 +487,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: d0c19517591866875826b0434547cfced2d3555e54ce2f00ce7fe0263aee1c6c88d54280a2c7b49a577567db478a8ca24d07f2235b7533dfc37e34084dc902bc
+  checksum: 3c3149c928d2fba9ee064cc4541f234e8d347b43dd653ae3a586987d1bb9ccf4bbdb252a67f99545af4cd731271dbde0141986d7a9c664fcea5b773a6e9a22b4
   languageName: node
   linkType: hard
 
@@ -2257,9 +2257,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.6.12":
-  version: 0.6.12
-  resolution: "eslint-plugin-storybook@npm:0.6.12"
+"eslint-plugin-storybook@npm:0.6.13":
+  version: 0.6.13
+  resolution: "eslint-plugin-storybook@npm:0.6.13"
   dependencies:
     "@storybook/csf": ^0.0.1
     "@typescript-eslint/utils": ^5.45.0
@@ -2267,7 +2267,7 @@ __metadata:
     ts-dedent: ^2.2.0
   peerDependencies:
     eslint: ">=6"
-  checksum: 8e0e160c71216019c291a5a03b797b5359076067d16ea03b3dec63594093d45398f028d15c47eb89f2ddb6e8db18cc7e376b02d921dacc4fb31bbc8da46363c8
+  checksum: 4d7bebd19bbebcdc36042e1e796dfd25fbde5f9d3a3d551a4d75fe1f41f537412f53fcf6b5e544386c5e0e2ce7af30efdabeb9169df27333e3e793a26fe2f008
   languageName: node
   linkType: hard
 
@@ -2794,7 +2794,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230724.0
-    "@slashnephy/eslint-config": 1.0.4
+    "@slashnephy/eslint-config": 1.0.5
     "@slashnephy/prettier-config": 0.1.26
     "@typescript-eslint/eslint-plugin": 6.2.0
     "@typescript-eslint/parser": 6.2.0
