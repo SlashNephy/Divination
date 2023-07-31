@@ -1436,9 +1436,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@slashnephy/eslint-config@npm:1.0.3"
+"@slashnephy/eslint-config@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@slashnephy/eslint-config@npm:1.0.4"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -1471,7 +1471,7 @@ __metadata:
     eslint-plugin-react-refresh: 0.4.3
     eslint-plugin-storybook: 0.6.12
     eslint-plugin-tsdoc: 0.2.17
-    eslint-plugin-unused-imports: 2.0.0
+    eslint-plugin-unused-imports: 3.0.0
     eslint-plugin-userscripts: 0.3.0
     eslint-plugin-vitest: 0.2.2
     eslint-plugin-xss: 0.1.12
@@ -1480,7 +1480,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: a4d10fa75ee598642d8e9ba2f72143424a3647af71ac6fb91e3e544dad739780c6a1319d61002be10d3a7c13f39bfffdef9441f9608f607cc161e46893d6062b
+  checksum: d0c19517591866875826b0434547cfced2d3555e54ce2f00ce7fe0263aee1c6c88d54280a2c7b49a577567db478a8ca24d07f2235b7533dfc37e34084dc902bc
   languageName: node
   linkType: hard
 
@@ -3295,21 +3295,6 @@ __metadata:
     "@microsoft/tsdoc": 0.14.2
     "@microsoft/tsdoc-config": 0.16.2
   checksum: d143a5f1c5967812d75f246ae2776cb030f6e7966b981406c9df9352a9ab02b035f294cedb30054eac2c4a217ee4ab2ed9fb76292bdccda9438e54d2d7b0146e
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-unused-imports@npm:2.0.0":
-  version: 2.0.0
-  resolution: "eslint-plugin-unused-imports@npm:2.0.0"
-  dependencies:
-    eslint-rule-composer: ^0.3.0
-  peerDependencies:
-    "@typescript-eslint/eslint-plugin": ^5.0.0
-    eslint: ^8.0.0
-  peerDependenciesMeta:
-    "@typescript-eslint/eslint-plugin":
-      optional: true
-  checksum: 8aa1e03e75da2a62a354065e0cb8fe370118c6f8d9720a32fe8c1da937de6adb81a4fed7d0d391d115ac9453b49029fb19f970d180a2cf3dba451fd4c20f0dc4
   languageName: node
   linkType: hard
 
@@ -5181,7 +5166,7 @@ __metadata:
   resolution: "plugin-repository@workspace:."
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
-    "@slashnephy/eslint-config": 1.0.3
+    "@slashnephy/eslint-config": 1.0.4
     "@slashnephy/prettier-config": 0.1.26
     "@tabler/icons-react": 2.29.0
     "@types/react": 18.2.17
