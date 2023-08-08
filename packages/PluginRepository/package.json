@@ -5,15 +5,15 @@
   "author": "SlashNephy <spica@starry.blue>",
   "repository": "https://github.com/SlashNephy/Divination",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "vite",
     "format": "concurrently -n format: 'yarn:format:*'",
     "format:eslint": "yarn lint:eslint --fix",
     "format:prettier": "yarn lint:prettier --write",
     "lint": "concurrently -n lint: 'yarn:lint:*'",
     "lint:eslint": "eslint .",
-    "lint:prettier": "prettier --check ."
+    "lint:prettier": "prettier --check .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@nextui-org/react": "1.0.0-beta.13",
