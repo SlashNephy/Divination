@@ -13,7 +13,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
 
-    implementation("net.dv8tion:JDA:5.0.0-beta.12")
+    implementation("net.dv8tion:JDA:5.0.0-beta.13")
     implementation("blue.starry:gerolt:1.0.0")
     implementation("org.jsoup:jsoup:1.16.1")
 
