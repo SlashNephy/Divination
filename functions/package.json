@@ -19,7 +19,7 @@
     "@slashnephy/prettier-config": "0.1.27",
     "concurrently": "8.2.0",
     "eslint": "8.47.0",
-    "prettier": "3.0.1",
+    "prettier": "3.0.2",
     "typescript": "5.1.6",
     "wrangler": "3.5.0"
   },
