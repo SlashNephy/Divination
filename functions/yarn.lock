@@ -30,37 +30,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-darwin-64@npm:1.20230814.1":
-  version: 1.20230814.1
-  resolution: "@cloudflare/workerd-darwin-64@npm:1.20230814.1"
+"@cloudflare/workerd-darwin-64@npm:1.20230904.0":
+  version: 1.20230904.0
+  resolution: "@cloudflare/workerd-darwin-64@npm:1.20230904.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-darwin-arm64@npm:1.20230814.1":
-  version: 1.20230814.1
-  resolution: "@cloudflare/workerd-darwin-arm64@npm:1.20230814.1"
+"@cloudflare/workerd-darwin-arm64@npm:1.20230904.0":
+  version: 1.20230904.0
+  resolution: "@cloudflare/workerd-darwin-arm64@npm:1.20230904.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-linux-64@npm:1.20230814.1":
-  version: 1.20230814.1
-  resolution: "@cloudflare/workerd-linux-64@npm:1.20230814.1"
+"@cloudflare/workerd-linux-64@npm:1.20230904.0":
+  version: 1.20230904.0
+  resolution: "@cloudflare/workerd-linux-64@npm:1.20230904.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-linux-arm64@npm:1.20230814.1":
-  version: 1.20230814.1
-  resolution: "@cloudflare/workerd-linux-arm64@npm:1.20230814.1"
+"@cloudflare/workerd-linux-arm64@npm:1.20230904.0":
+  version: 1.20230904.0
+  resolution: "@cloudflare/workerd-linux-arm64@npm:1.20230904.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-windows-64@npm:1.20230814.1":
-  version: 1.20230814.1
-  resolution: "@cloudflare/workerd-windows-64@npm:1.20230814.1"
+"@cloudflare/workerd-windows-64@npm:1.20230904.0":
+  version: 1.20230904.0
+  resolution: "@cloudflare/workerd-windows-64@npm:1.20230904.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -81,177 +81,177 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild-plugins/node-globals-polyfill@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "@esbuild-plugins/node-globals-polyfill@npm:0.1.1"
+"@esbuild-plugins/node-globals-polyfill@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@esbuild-plugins/node-globals-polyfill@npm:0.2.3"
   peerDependencies:
     esbuild: "*"
-  checksum: 68a41e2c377724e9cd46ca344ad219d289cc41a8b273d0d89bbc82bd90025b067b28234a865d8862a3f38c2a028ca4c93138dfca4e1e75e617efc314156c1ce0
+  checksum: f83eeaa382680b26a3b1cf6c396450332c41d2dc0f9fd935d3f4bacf5412bef7383d2aeb4246a858781435b7c005a570dadc81051f8a038f1ef2111f17d3d8b0
   languageName: node
   linkType: hard
 
-"@esbuild-plugins/node-modules-polyfill@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "@esbuild-plugins/node-modules-polyfill@npm:0.1.4"
+"@esbuild-plugins/node-modules-polyfill@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@esbuild-plugins/node-modules-polyfill@npm:0.2.2"
   dependencies:
     escape-string-regexp: ^4.0.0
     rollup-plugin-node-polyfills: ^0.2.1
   peerDependencies:
     esbuild: "*"
-  checksum: 39ff2a816139d71ebfbb78914c024565b6026da3146776aa10d27ee1330938ce78c7b2aad11c2d7768c7675d0942d1d1690dabfe60fa79e07dbb31cfbe396cec
+  checksum: 73c247a7559c68b7df080ab08dd3d0b0ab44b934840a4933df9626357b7183a9a5d8cf4ffa9c744f1bad8d7131bce0fde14a23203f7b262f9f14f7b3485bfdb1
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/android-arm64@npm:0.16.3"
+"@esbuild/android-arm64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/android-arm64@npm:0.17.19"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/android-arm@npm:0.16.3"
+"@esbuild/android-arm@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/android-arm@npm:0.17.19"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/android-x64@npm:0.16.3"
+"@esbuild/android-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/android-x64@npm:0.17.19"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/darwin-arm64@npm:0.16.3"
+"@esbuild/darwin-arm64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/darwin-arm64@npm:0.17.19"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/darwin-x64@npm:0.16.3"
+"@esbuild/darwin-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/darwin-x64@npm:0.17.19"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/freebsd-arm64@npm:0.16.3"
+"@esbuild/freebsd-arm64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/freebsd-arm64@npm:0.17.19"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/freebsd-x64@npm:0.16.3"
+"@esbuild/freebsd-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/freebsd-x64@npm:0.17.19"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-arm64@npm:0.16.3"
+"@esbuild/linux-arm64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-arm64@npm:0.17.19"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-arm@npm:0.16.3"
+"@esbuild/linux-arm@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-arm@npm:0.17.19"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-ia32@npm:0.16.3"
+"@esbuild/linux-ia32@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-ia32@npm:0.17.19"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-loong64@npm:0.16.3"
+"@esbuild/linux-loong64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-loong64@npm:0.17.19"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-mips64el@npm:0.16.3"
+"@esbuild/linux-mips64el@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-mips64el@npm:0.17.19"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-ppc64@npm:0.16.3"
+"@esbuild/linux-ppc64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-ppc64@npm:0.17.19"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-riscv64@npm:0.16.3"
+"@esbuild/linux-riscv64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-riscv64@npm:0.17.19"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-s390x@npm:0.16.3"
+"@esbuild/linux-s390x@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-s390x@npm:0.17.19"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/linux-x64@npm:0.16.3"
+"@esbuild/linux-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/linux-x64@npm:0.17.19"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/netbsd-x64@npm:0.16.3"
+"@esbuild/netbsd-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/netbsd-x64@npm:0.17.19"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/openbsd-x64@npm:0.16.3"
+"@esbuild/openbsd-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/openbsd-x64@npm:0.17.19"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/sunos-x64@npm:0.16.3"
+"@esbuild/sunos-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/sunos-x64@npm:0.17.19"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/win32-arm64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/win32-arm64@npm:0.16.3"
+"@esbuild/win32-arm64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/win32-arm64@npm:0.17.19"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/win32-ia32@npm:0.16.3"
+"@esbuild/win32-ia32@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/win32-ia32@npm:0.17.19"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@esbuild/win32-x64@npm:0.16.3":
-  version: 0.16.3
-  resolution: "@esbuild/win32-x64@npm:0.16.3"
+"@esbuild/win32-x64@npm:0.17.19":
+  version: 0.17.19
+  resolution: "@esbuild/win32-x64@npm:0.17.19"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -1723,32 +1723,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.16.3":
-  version: 0.16.3
-  resolution: "esbuild@npm:0.16.3"
+"esbuild@npm:0.17.19":
+  version: 0.17.19
+  resolution: "esbuild@npm:0.17.19"
   dependencies:
-    "@esbuild/android-arm": 0.16.3
-    "@esbuild/android-arm64": 0.16.3
-    "@esbuild/android-x64": 0.16.3
-    "@esbuild/darwin-arm64": 0.16.3
-    "@esbuild/darwin-x64": 0.16.3
-    "@esbuild/freebsd-arm64": 0.16.3
-    "@esbuild/freebsd-x64": 0.16.3
-    "@esbuild/linux-arm": 0.16.3
-    "@esbuild/linux-arm64": 0.16.3
-    "@esbuild/linux-ia32": 0.16.3
-    "@esbuild/linux-loong64": 0.16.3
-    "@esbuild/linux-mips64el": 0.16.3
-    "@esbuild/linux-ppc64": 0.16.3
-    "@esbuild/linux-riscv64": 0.16.3
-    "@esbuild/linux-s390x": 0.16.3
-    "@esbuild/linux-x64": 0.16.3
-    "@esbuild/netbsd-x64": 0.16.3
-    "@esbuild/openbsd-x64": 0.16.3
-    "@esbuild/sunos-x64": 0.16.3
-    "@esbuild/win32-arm64": 0.16.3
-    "@esbuild/win32-ia32": 0.16.3
-    "@esbuild/win32-x64": 0.16.3
+    "@esbuild/android-arm": 0.17.19
+    "@esbuild/android-arm64": 0.17.19
+    "@esbuild/android-x64": 0.17.19
+    "@esbuild/darwin-arm64": 0.17.19
+    "@esbuild/darwin-x64": 0.17.19
+    "@esbuild/freebsd-arm64": 0.17.19
+    "@esbuild/freebsd-x64": 0.17.19
+    "@esbuild/linux-arm": 0.17.19
+    "@esbuild/linux-arm64": 0.17.19
+    "@esbuild/linux-ia32": 0.17.19
+    "@esbuild/linux-loong64": 0.17.19
+    "@esbuild/linux-mips64el": 0.17.19
+    "@esbuild/linux-ppc64": 0.17.19
+    "@esbuild/linux-riscv64": 0.17.19
+    "@esbuild/linux-s390x": 0.17.19
+    "@esbuild/linux-x64": 0.17.19
+    "@esbuild/netbsd-x64": 0.17.19
+    "@esbuild/openbsd-x64": 0.17.19
+    "@esbuild/sunos-x64": 0.17.19
+    "@esbuild/win32-arm64": 0.17.19
+    "@esbuild/win32-ia32": 0.17.19
+    "@esbuild/win32-x64": 0.17.19
   dependenciesMeta:
     "@esbuild/android-arm":
       optional: true
@@ -1796,7 +1796,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: c2986b0433c6048b917c185067ea42427413ef4136c45012e180e48fc24e6f01af9c94ca7e9bc6dd29ac529af45d26c9d4eb5b8639c9a79f68f337d24aeda2af
+  checksum: ac11b1a5a6008e4e37ccffbd6c2c054746fc58d0ed4a2f9ee643bd030cfcea9a33a235087bc777def8420f2eaafb3486e76adb7bdb7241a9143b43a69a10afd8
   languageName: node
   linkType: hard
 
@@ -2805,7 +2805,7 @@ __metadata:
     eslint: 8.48.0
     prettier: 3.0.3
     typescript: 5.2.2
-    wrangler: 3.6.0
+    wrangler: 3.7.0
   languageName: unknown
   linkType: soft
 
@@ -3821,9 +3821,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20230814.1":
-  version: 3.20230814.1
-  resolution: "miniflare@npm:3.20230814.1"
+"miniflare@npm:3.20230904.0":
+  version: 3.20230904.0
+  resolution: "miniflare@npm:3.20230904.0"
   dependencies:
     acorn: ^8.8.0
     acorn-walk: ^8.2.0
@@ -3833,15 +3833,14 @@ __metadata:
     glob-to-regexp: ^0.4.1
     http-cache-semantics: ^4.1.0
     kleur: ^4.1.5
-    set-cookie-parser: ^2.6.0
     source-map-support: 0.5.21
     stoppable: ^1.1.0
-    undici: ^5.13.0
-    workerd: 1.20230814.1
+    undici: ^5.22.1
+    workerd: 1.20230904.0
     ws: ^8.11.0
     youch: ^3.2.2
     zod: ^3.20.6
-  checksum: 049c1f7ef499b693dade78dbef1cb795e82b63a4d790967944a1d468db87bcfd2039bdc360b13781ad8d4082926b2f8b084594fbbe64403ceb0b3142bcd0af6b
+  checksum: 2011a5d684abe4f420c199ee87a94584a3a1dedf874ad54f46101c0d282a29fbc16fc25798ea9972183ec0335d790402c7f30e1b006de7a9bc9e846225a9d7cb
   languageName: node
   linkType: hard
 
@@ -4853,13 +4852,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"set-cookie-parser@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "set-cookie-parser@npm:2.6.0"
-  checksum: bf11ebc594c53d84588f1b4c04f1b8ce14e0498b1c011b3d76b5c6d5aac481bbc3f7c5260ec4ce99bdc1d9aed19f9fc315e73166a36ca74d0f12349a73f6bdc9
-  languageName: node
-  linkType: hard
-
 "shebang-command@npm:^2.0.0":
   version: 2.0.0
   resolution: "shebang-command@npm:2.0.0"
@@ -5469,7 +5461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.13.0":
+"undici@npm:^5.22.1":
   version: 5.23.0
   resolution: "undici@npm:5.23.0"
   dependencies:
@@ -5645,15 +5637,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workerd@npm:1.20230814.1":
-  version: 1.20230814.1
-  resolution: "workerd@npm:1.20230814.1"
+"workerd@npm:1.20230904.0":
+  version: 1.20230904.0
+  resolution: "workerd@npm:1.20230904.0"
   dependencies:
-    "@cloudflare/workerd-darwin-64": 1.20230814.1
-    "@cloudflare/workerd-darwin-arm64": 1.20230814.1
-    "@cloudflare/workerd-linux-64": 1.20230814.1
-    "@cloudflare/workerd-linux-arm64": 1.20230814.1
-    "@cloudflare/workerd-windows-64": 1.20230814.1
+    "@cloudflare/workerd-darwin-64": 1.20230904.0
+    "@cloudflare/workerd-darwin-arm64": 1.20230904.0
+    "@cloudflare/workerd-linux-64": 1.20230904.0
+    "@cloudflare/workerd-linux-arm64": 1.20230904.0
+    "@cloudflare/workerd-windows-64": 1.20230904.0
   dependenciesMeta:
     "@cloudflare/workerd-darwin-64":
       optional: true
@@ -5667,22 +5659,22 @@ __metadata:
       optional: true
   bin:
     workerd: bin/workerd
-  checksum: aac580ae6a1a3d054b2114604fe0eaae59bfc96fcf79df5b8de73525cbbb9689b4df99bea07c46c3095d51dde80eedea8027fb539fd771b6f2d2f24f5432a571
+  checksum: 60fb31e095a415c45c373d3197644d88d2df88b27064b2f05e9ec52c85eac4c5f9b891a196cc294e99257d4a33ac1ab5eea3abcec4a4c7045836b1bb1d9ca002
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.6.0":
-  version: 3.6.0
-  resolution: "wrangler@npm:3.6.0"
+"wrangler@npm:3.7.0":
+  version: 3.7.0
+  resolution: "wrangler@npm:3.7.0"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.2.0
-    "@esbuild-plugins/node-globals-polyfill": ^0.1.1
-    "@esbuild-plugins/node-modules-polyfill": ^0.1.4
+    "@esbuild-plugins/node-globals-polyfill": ^0.2.3
+    "@esbuild-plugins/node-modules-polyfill": ^0.2.2
     blake3-wasm: ^2.1.5
     chokidar: ^3.5.3
-    esbuild: 0.16.3
+    esbuild: 0.17.19
     fsevents: ~2.3.2
-    miniflare: 3.20230814.1
+    miniflare: 3.20230904.0
     nanoid: ^3.3.3
     path-to-regexp: ^6.2.0
     selfsigned: ^2.0.1
@@ -5694,7 +5686,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 72186c20f96b9c40cc06b107520ad2631c72e872cd7efebde1869e01a3680717e8116a25eb7c67fd651480fb65083063af0f2129405a918ce14cf927f3b20e46
+  checksum: ae70bb2958d5f7d8d7b1d114b1cf11d81667b2f402821f44ec5662e74bfc42596cf0f84cf2a62c2a468542903bcd3f4dc7b37a32dcda5ac28bb7b91ee85af7aa
   languageName: node
   linkType: hard
 
