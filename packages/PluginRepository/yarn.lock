@@ -1447,9 +1447,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:1.0.6":
-  version: 1.0.6
-  resolution: "@slashnephy/eslint-config@npm:1.0.6"
+"@slashnephy/eslint-config@npm:1.0.7":
+  version: 1.0.7
+  resolution: "@slashnephy/eslint-config@npm:1.0.7"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -1460,6 +1460,7 @@ __metadata:
     eslint-config-next: 13.4.12
     eslint-config-prettier: 8.9.0
     eslint-config-standard: 17.1.0
+    eslint-gitignore: 0.1.0
     eslint-import-resolver-node: 0.3.7
     eslint-import-resolver-typescript: 3.5.5
     eslint-plugin-css-import-order: 1.1.0
@@ -1477,9 +1478,10 @@ __metadata:
     eslint-plugin-node: 11.1.0
     eslint-plugin-package-json: 0.1.4
     eslint-plugin-promise: 6.1.1
-    eslint-plugin-react: 7.33.0
+    eslint-plugin-react: 7.33.1
     eslint-plugin-react-hooks: 4.6.0
     eslint-plugin-react-refresh: 0.4.3
+    eslint-plugin-relay: 1.8.3
     eslint-plugin-storybook: 0.6.13
     eslint-plugin-tsdoc: 0.2.17
     eslint-plugin-unused-imports: 3.0.0
@@ -1491,7 +1493,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: 93a33f2352f13aa737877c350e34940482b6de1dc92a2e2fc37dc5f8d40d31698141ff83f1174f0d3e6ba20d20c0b5cf78ca5de951dcda8a7ab27a283b97b036
+  checksum: a5c21a8be98372af3a38a2bd1b0af18420d68852b01617b5d483d076b00e17c4515c72d84002465dec5fb9ec03252790a5ada52678c4c7c4dad09740d6ac1d88
   languageName: node
   linkType: hard
 
@@ -2141,7 +2143,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.flatmap@npm:^1.3.1":
+"array.prototype.flatmap@npm:^1.2.3, array.prototype.flatmap@npm:^1.3.1":
   version: 1.3.2
   resolution: "array.prototype.flatmap@npm:1.3.2"
   dependencies:
@@ -2953,6 +2955,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-gitignore@npm:0.1.0":
+  version: 0.1.0
+  resolution: "eslint-gitignore@npm:0.1.0"
+  dependencies:
+    array.prototype.flatmap: ^1.2.3
+    debug: ^4.1.1
+    fast-glob: ^3.2.2
+  peerDependencies:
+    eslint: ">=6.7.0"
+  checksum: a65dd2200b44c8683a107b36e99e72ce141366e2e9be6bb6dc39bf9446a14229ff95d256a0adc51504ec17885b1a18a51e4c80d77126b43a94ace660eeff9213
+  languageName: node
+  linkType: hard
+
 "eslint-import-resolver-node@npm:0.3.7":
   version: 0.3.7
   resolution: "eslint-import-resolver-node@npm:0.3.7"
@@ -3311,9 +3326,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.33.0":
-  version: 7.33.0
-  resolution: "eslint-plugin-react@npm:7.33.0"
+"eslint-plugin-react@npm:7.33.1":
+  version: 7.33.1
+  resolution: "eslint-plugin-react@npm:7.33.1"
   dependencies:
     array-includes: ^3.1.6
     array.prototype.flatmap: ^1.3.1
@@ -3332,7 +3347,7 @@ __metadata:
     string.prototype.matchall: ^4.0.8
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: f3ce2978322efd3c698b802dabfad070109dd1935c4e468545992b82b5fb8257ea3ad56732330bb46643182a09560129a259b436952b3e2aa426947d3abd2b1a
+  checksum: 0427bd24acb87422b7298686203167123ba289ba563384983f3d99fad7817eae7f63157fd2e9b868bdcf0760719c319ab1e22a44764a98302034b0c844763e57
   languageName: node
   linkType: hard
 
@@ -3359,6 +3374,15 @@ __metadata:
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
   checksum: b4c3d76390b0ae6b6f9fed78170604cc2c04b48e6778a637db339e8e3911ec9ef22510b0ae77c429698151d0f1b245f282177f384105b6830e7b29b9c9b26610
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-relay@npm:1.8.3":
+  version: 1.8.3
+  resolution: "eslint-plugin-relay@npm:1.8.3"
+  dependencies:
+    graphql: ^14.0.0 || ^15.0.0
+  checksum: 1e7e3df3eaa230c489050973650b48ce8c05e87cbe54eb9b09320fa2d9767ed65d07e217f6defdd7380eee847b474c6adc8ec59840357b4c8c6b452df1eb4aa5
   languageName: node
   linkType: hard
 
@@ -3642,7 +3666,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0, fast-glob@npm:^3.3.1":
+"fast-glob@npm:^3.2.2, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0, fast-glob@npm:^3.3.1":
   version: 3.3.1
   resolution: "fast-glob@npm:3.3.1"
   dependencies:
@@ -4000,6 +4024,13 @@ __metadata:
   version: 1.4.0
   resolution: "graphemer@npm:1.4.0"
   checksum: bab8f0be9b568857c7bec9fda95a89f87b783546d02951c40c33f84d05bb7da3fd10f863a9beb901463669b6583173a8c8cc6d6b306ea2b9b9d5d3d943c3a673
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^14.0.0 || ^15.0.0":
+  version: 15.8.0
+  resolution: "graphql@npm:15.8.0"
+  checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
   languageName: node
   linkType: hard
 
@@ -5303,7 +5334,7 @@ __metadata:
   resolution: "plugin-repository@workspace:."
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
-    "@slashnephy/eslint-config": 1.0.6
+    "@slashnephy/eslint-config": 1.0.7
     "@slashnephy/prettier-config": 0.1.27
     "@tabler/icons-react": 2.34.0
     "@types/react": 18.2.21
