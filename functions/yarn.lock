@@ -443,9 +443,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:1.0.7":
-  version: 1.0.7
-  resolution: "@slashnephy/eslint-config@npm:1.0.7"
+"@slashnephy/eslint-config@npm:2.0.5":
+  version: 2.0.5
+  resolution: "@slashnephy/eslint-config@npm:2.0.5"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -489,7 +489,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: a5c21a8be98372af3a38a2bd1b0af18420d68852b01617b5d483d076b00e17c4515c72d84002465dec5fb9ec03252790a5ada52678c4c7c4dad09740d6ac1d88
+  checksum: fcb6507809276ac4d9cdeb949601adcd54f3747867723199599eb2e5a71c33848cf8b83b02c9bd9d2baea1d03e3dbc95cdeefed50f19533471327eb6c37ce89f
   languageName: node
   linkType: hard
 
@@ -2728,7 +2728,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230914.0
-    "@slashnephy/eslint-config": 1.0.7
+    "@slashnephy/eslint-config": 2.0.5
     "@slashnephy/prettier-config": 0.1.27
     concurrently: 8.2.1
     eslint: 8.50.0
