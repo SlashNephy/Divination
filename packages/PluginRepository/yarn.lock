@@ -1447,9 +1447,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.6":
-  version: 2.0.6
-  resolution: "@slashnephy/eslint-config@npm:2.0.6"
+"@slashnephy/eslint-config@npm:2.0.7":
+  version: 2.0.7
+  resolution: "@slashnephy/eslint-config@npm:2.0.7"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -1493,7 +1493,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: 2c7ed045c0472ecffeac4beee21558d5d9078c4c111ae9fd0f0c366e99dd8359936c395f28def23371953859ed99033733fe002a237f9f810c4a81769db24c34
+  checksum: cab232650ef3774def2bdabcc01e7b5b5d7ba37db94ec4a26b1fd03c6597890afe63706d63d6a6dd1cdf46990527aa81d35ae6cef66340034222c5ff468966d5
   languageName: node
   linkType: hard
 
@@ -5355,7 +5355,7 @@ __metadata:
   resolution: "plugin-repository@workspace:."
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
-    "@slashnephy/eslint-config": 2.0.6
+    "@slashnephy/eslint-config": 2.0.7
     "@slashnephy/prettier-config": 1.0.5
     "@tabler/icons-react": 2.35.0
     "@types/react": 18.2.22
