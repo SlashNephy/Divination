@@ -1433,10 +1433,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/eslint-patch@npm:1.3.2":
-  version: 1.3.2
-  resolution: "@rushstack/eslint-patch@npm:1.3.2"
-  checksum: 010c87ef2d901faaaf70ea1bf86fd3e7b74f24e23205f836e9a32790bca2076afe5de58ded03c35cb482f83691c8d22b1a0c34291b075bfe81afd26cfa5d14cc
+"@rushstack/eslint-patch@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@rushstack/eslint-patch@npm:1.3.3"
+  checksum: fd8a19ec5842634da8e4c2c479a4d13ecbefa4f212e42c7f9c39e8706f9eeef7a50db8d6ea939884ac0ff36bb21930c9642068cf68e8309ad491c54f2fc30c01
   languageName: node
   linkType: hard
 
@@ -1447,13 +1447,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.10":
-  version: 2.0.10
-  resolution: "@slashnephy/eslint-config@npm:2.0.10"
+"@slashnephy/eslint-config@npm:2.0.11":
+  version: 2.0.11
+  resolution: "@slashnephy/eslint-config@npm:2.0.11"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
-    "@rushstack/eslint-patch": 1.3.2
+    "@rushstack/eslint-patch": 1.3.3
     "@typescript-eslint/eslint-plugin": 6.2.0
     "@typescript-eslint/parser": 6.2.0
     eslint-config-airbnb: 19.0.4
@@ -1461,7 +1461,7 @@ __metadata:
     eslint-config-prettier: 8.9.0
     eslint-config-standard: 17.1.0
     eslint-gitignore: 0.1.0
-    eslint-import-resolver-node: 0.3.7
+    eslint-import-resolver-node: 0.3.9
     eslint-import-resolver-typescript: 3.5.5
     eslint-plugin-css-import-order: 1.1.0
     eslint-plugin-css-reorder: 0.5.1
@@ -1493,7 +1493,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: 555fec8558ebefdc8f8639c1254e1491479cefa9b194542d5ac928976ab20df5a2edf7b084b2cf0c69eb7ac06bcac318ddb2fdbfb16fb9c5f2b9a36512f538a0
+  checksum: e311d3e94f41e164b3662c336af3b6e883cde01f54378602459abc4585b5e437512e3b84e57dabc15d539444dbbc159d6740c38f7e096316c0df9f56b24aeb9b
   languageName: node
   linkType: hard
 
@@ -2988,18 +2988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:0.3.7":
-  version: 0.3.7
-  resolution: "eslint-import-resolver-node@npm:0.3.7"
-  dependencies:
-    debug: ^3.2.7
-    is-core-module: ^2.11.0
-    resolve: ^1.22.1
-  checksum: 3379aacf1d2c6952c1b9666c6fa5982c3023df695430b0d391c0029f6403a7775414873d90f397e98ba6245372b6c8960e16e74d9e4a3b0c0a4582f3bdbe3d6e
-  languageName: node
-  linkType: hard
-
-"eslint-import-resolver-node@npm:^0.3.6, eslint-import-resolver-node@npm:^0.3.7":
+"eslint-import-resolver-node@npm:0.3.9, eslint-import-resolver-node@npm:^0.3.6, eslint-import-resolver-node@npm:^0.3.7":
   version: 0.3.9
   resolution: "eslint-import-resolver-node@npm:0.3.9"
   dependencies:
@@ -5355,7 +5344,7 @@ __metadata:
   resolution: "plugin-repository@workspace:."
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
-    "@slashnephy/eslint-config": 2.0.10
+    "@slashnephy/eslint-config": 2.0.11
     "@slashnephy/prettier-config": 1.0.8
     "@tabler/icons-react": 2.35.0
     "@types/react": 18.2.22
