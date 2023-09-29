@@ -14,7 +14,7 @@
     "lint:prettier": "prettier --check ."
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20230914.0",
+    "@cloudflare/workers-types": "4.20230922.0",
     "@slashnephy/eslint-config": "2.0.10",
     "@slashnephy/prettier-config": "1.0.8",
     "concurrently": "8.2.1",
