@@ -443,9 +443,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.11":
-  version: 2.0.11
-  resolution: "@slashnephy/eslint-config@npm:2.0.11"
+"@slashnephy/eslint-config@npm:2.0.12":
+  version: 2.0.12
+  resolution: "@slashnephy/eslint-config@npm:2.0.12"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -469,7 +469,7 @@ __metadata:
     eslint-plugin-jest-formatting: 3.1.0
     eslint-plugin-json: 3.1.0
     eslint-plugin-jsx-a11y: 6.7.1
-    eslint-plugin-n: 16.0.1
+    eslint-plugin-n: 16.0.2
     eslint-plugin-no-void-return-type: 1.0.2
     eslint-plugin-node: 11.1.0
     eslint-plugin-package-json: 0.1.4
@@ -489,7 +489,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: e311d3e94f41e164b3662c336af3b6e883cde01f54378602459abc4585b5e437512e3b84e57dabc15d539444dbbc159d6740c38f7e096316c0df9f56b24aeb9b
+  checksum: b48390d84311289671224b8ec66765e4c0ed79a1f60f9f0186c36121ff9af2769be33e7267e086cd54d24e587a0da9c4d9de7d5dcd331a9c5a219b3d4e594349
   languageName: node
   linkType: hard
 
@@ -2097,9 +2097,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-n@npm:16.0.1":
-  version: 16.0.1
-  resolution: "eslint-plugin-n@npm:16.0.1"
+"eslint-plugin-n@npm:16.0.2":
+  version: 16.0.2
+  resolution: "eslint-plugin-n@npm:16.0.2"
   dependencies:
     "@eslint-community/eslint-utils": ^4.4.0
     builtins: ^5.0.1
@@ -2111,7 +2111,7 @@ __metadata:
     semver: ^7.5.3
   peerDependencies:
     eslint: ">=7.0.0"
-  checksum: 407002bb06c2e4cefd5b1fb582a5e000ed190a47144edc7d7910afc32b4b0e76e4a72773207837ab73b0797f4a84f9ea83f8979d0bcab0225bfe672cd7e0e295
+  checksum: 44cffe32a3a3cd2a706e82f45fedf79e0af7cae20e7c5f3185707233d941de1058373a27b90e86a8f0e5f9830b02c90116deaa05f139a67556954de72bc4935d
   languageName: node
   linkType: hard
 
@@ -2717,7 +2717,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230922.0
-    "@slashnephy/eslint-config": 2.0.11
+    "@slashnephy/eslint-config": 2.0.12
     "@slashnephy/prettier-config": 1.0.9
     concurrently: 8.2.1
     eslint: 8.50.0
