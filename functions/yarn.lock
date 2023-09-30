@@ -443,9 +443,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.12":
-  version: 2.0.12
-  resolution: "@slashnephy/eslint-config@npm:2.0.12"
+"@slashnephy/eslint-config@npm:2.0.13":
+  version: 2.0.13
+  resolution: "@slashnephy/eslint-config@npm:2.0.13"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.12
@@ -472,9 +472,9 @@ __metadata:
     eslint-plugin-n: 16.0.2
     eslint-plugin-no-void-return-type: 1.0.2
     eslint-plugin-node: 11.1.0
-    eslint-plugin-package-json: 0.1.4
+    eslint-plugin-package-json: 0.1.5
     eslint-plugin-promise: 6.1.1
-    eslint-plugin-react: 7.33.1
+    eslint-plugin-react: 7.33.2
     eslint-plugin-react-hooks: 4.6.0
     eslint-plugin-react-refresh: 0.4.3
     eslint-plugin-relay: 1.8.3
@@ -489,7 +489,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: b48390d84311289671224b8ec66765e4c0ed79a1f60f9f0186c36121ff9af2769be33e7267e086cd54d24e587a0da9c4d9de7d5dcd331a9c5a219b3d4e594349
+  checksum: 77f33da61487d3989da347598744aee9c28f1c37dd2b727c7e0a2c916a664787cd77d9086bde5f5062e6bdbbfb5f56d243a6ea4ca42d09e14a485fb17d6aed62
   languageName: node
   linkType: hard
 
@@ -2138,16 +2138,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-package-json@npm:0.1.4":
-  version: 0.1.4
-  resolution: "eslint-plugin-package-json@npm:0.1.4"
+"eslint-plugin-package-json@npm:0.1.5":
+  version: 0.1.5
+  resolution: "eslint-plugin-package-json@npm:0.1.5"
   dependencies:
     disparity: ^3.0.0
     package-json-validator: ^0.6.3
     requireindex: ^1.2.0
   peerDependencies:
     eslint: ">=4.7.0"
-  checksum: c4526a62f11885f0fc3bc37f07995e9dad57932b0a16473fa412d2c9902ccbb55e01e7015b0d74e021cd67ff9d1a2a180d575ca032f7de1bfe155c0440f5a2e7
+  checksum: 1f6f6b35db333aec936028b5665aacc31cdc46562fea399279155a20ef67d75e047b7e895975d771b903a2ed7e833b755aa02d3f6204312b57a6d19b07dcad02
   languageName: node
   linkType: hard
 
@@ -2187,32 +2187,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.33.1":
-  version: 7.33.1
-  resolution: "eslint-plugin-react@npm:7.33.1"
-  dependencies:
-    array-includes: ^3.1.6
-    array.prototype.flatmap: ^1.3.1
-    array.prototype.tosorted: ^1.1.1
-    doctrine: ^2.1.0
-    estraverse: ^5.3.0
-    jsx-ast-utils: ^2.4.1 || ^3.0.0
-    minimatch: ^3.1.2
-    object.entries: ^1.1.6
-    object.fromentries: ^2.0.6
-    object.hasown: ^1.1.2
-    object.values: ^1.1.6
-    prop-types: ^15.8.1
-    resolve: ^2.0.0-next.4
-    semver: ^6.3.1
-    string.prototype.matchall: ^4.0.8
-  peerDependencies:
-    eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: 0427bd24acb87422b7298686203167123ba289ba563384983f3d99fad7817eae7f63157fd2e9b868bdcf0760719c319ab1e22a44764a98302034b0c844763e57
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-react@npm:^7.31.7":
+"eslint-plugin-react@npm:7.33.2, eslint-plugin-react@npm:^7.31.7":
   version: 7.33.2
   resolution: "eslint-plugin-react@npm:7.33.2"
   dependencies:
@@ -2717,7 +2692,7 @@ __metadata:
   resolution: "functions@workspace:."
   dependencies:
     "@cloudflare/workers-types": 4.20230922.0
-    "@slashnephy/eslint-config": 2.0.12
+    "@slashnephy/eslint-config": 2.0.13
     "@slashnephy/prettier-config": 1.0.9
     concurrently: 8.2.1
     eslint: 8.50.0
