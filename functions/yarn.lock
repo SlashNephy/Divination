@@ -2765,7 +2765,7 @@ __metadata:
     eslint: 8.50.0
     prettier: 3.0.3
     typescript: 5.2.2
-    wrangler: 3.9.1
+    wrangler: 3.10.1
   languageName: unknown
   linkType: soft
 
@@ -5470,9 +5470,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.9.1":
-  version: 3.9.1
-  resolution: "wrangler@npm:3.9.1"
+"wrangler@npm:3.10.1":
+  version: 3.10.1
+  resolution: "wrangler@npm:3.10.1"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.2.0
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
@@ -5494,7 +5494,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 1d234c8a7672e955b3383d3f371792aeb2c8d71cf52b8eacf734ac3c0e9d1c65055842134b66293921dbc9cf6ac219463654c744999b9ace127b1be53c70f631
+  checksum: 6231dbf4caf83c00b9e7bea3ecd1183f50fb57f4e09f3589a979fe678572578d4a4057ccc55022011580ee2c04fb0b0ce9a197bee9e55c240f6bdd4fa5420bc1
   languageName: node
   linkType: hard
 
