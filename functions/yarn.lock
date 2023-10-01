@@ -493,12 +493,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/prettier-config@npm:1.0.10":
-  version: 1.0.10
-  resolution: "@slashnephy/prettier-config@npm:1.0.10"
+"@slashnephy/prettier-config@npm:1.0.11":
+  version: 1.0.11
+  resolution: "@slashnephy/prettier-config@npm:1.0.11"
   peerDependencies:
     prettier: ^3
-  checksum: f72977a9064c8bf23aead7fac4bb8ce7a2015352d85434009571e5a20e22a8146fc3a5839726bee9d3c40744fc1b2ab8c87a34a48e1f8190b9ecb562637d4f09
+  checksum: 76535e2d1012ed2db5227948a1932630d22562d23d7ff5e0c5436ee67067c02a77e6eadcd61f7772da2d627d482f34efb1c8332685f3cbbed256cf4c9f9e8c1d
   languageName: node
   linkType: hard
 
@@ -2760,7 +2760,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": 4.20230922.0
     "@slashnephy/eslint-config": 2.0.15
-    "@slashnephy/prettier-config": 1.0.10
+    "@slashnephy/prettier-config": 1.0.11
     concurrently: 8.2.1
     eslint: 8.50.0
     prettier: 3.0.3
