@@ -1433,9 +1433,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.19":
-  version: 2.0.19
-  resolution: "@slashnephy/eslint-config@npm:2.0.19"
+"@slashnephy/eslint-config@npm:2.0.20":
+  version: 2.0.20
+  resolution: "@slashnephy/eslint-config@npm:2.0.20"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.19
@@ -1455,7 +1455,7 @@ __metadata:
     eslint-plugin-editorconfig: 4.0.3
     eslint-plugin-eslint-comments: 3.2.0
     eslint-plugin-import: 2.28.1
-    eslint-plugin-jest: 27.2.3
+    eslint-plugin-jest: 27.4.2
     eslint-plugin-jest-formatting: 3.1.0
     eslint-plugin-json: 3.1.0
     eslint-plugin-jsx-a11y: 6.7.1
@@ -1479,7 +1479,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: fac282fe4c1b3ba6cf112ebbb3e7dc1bb4abd0f1945ff3779585df6cc29d81d8a69c6dec6190a9bc5ab8f004665a9edad2ff720cd4e5fc49816398504fbb1816
+  checksum: a495254eca5fc9cca0945dc8c73c92df3cef2e64dcd94505bc1c29894608eb240e9720de4524edc499653a26035d2c4ce4df9d097690c33ed9b02dac348d0319
   languageName: node
   linkType: hard
 
@@ -3153,9 +3153,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:27.2.3":
-  version: 27.2.3
-  resolution: "eslint-plugin-jest@npm:27.2.3"
+"eslint-plugin-jest@npm:27.4.2":
+  version: 27.4.2
+  resolution: "eslint-plugin-jest@npm:27.4.2"
   dependencies:
     "@typescript-eslint/utils": ^5.10.0
   peerDependencies:
@@ -3167,7 +3167,7 @@ __metadata:
       optional: true
     jest:
       optional: true
-  checksum: 4c7e07f52f17749ac6fd0ff5fcd5ce30b88983ba31eeee322e4d48859f55eaa112f06172e586ad2031c00ff28bb2dfdc3d35c83895251b9c0e860fa47dfc5ff4
+  checksum: 99a8301ae00c37da97866b8b13c89a077716d2c653b26bc417d242e7300a43237c0017fd488c43966fa38585f19050facdbbc71d03ca36a1ce6f2ba930a9143e
   languageName: node
   linkType: hard
 
@@ -5090,7 +5090,7 @@ __metadata:
   resolution: "plugin-repository@workspace:."
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
-    "@slashnephy/eslint-config": 2.0.19
+    "@slashnephy/eslint-config": 2.0.20
     "@slashnephy/prettier-config": 1.0.13
     "@tabler/icons-react": 2.35.0
     "@types/react": 18.2.23
