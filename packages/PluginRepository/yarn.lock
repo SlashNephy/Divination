@@ -1419,10 +1419,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/eslint-patch@npm:1.3.3":
-  version: 1.3.3
-  resolution: "@rushstack/eslint-patch@npm:1.3.3"
-  checksum: fd8a19ec5842634da8e4c2c479a4d13ecbefa4f212e42c7f9c39e8706f9eeef7a50db8d6ea939884ac0ff36bb21930c9642068cf68e8309ad491c54f2fc30c01
+"@rushstack/eslint-patch@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@rushstack/eslint-patch@npm:1.5.1"
+  checksum: e4c25322312dbaa29e835a7ab4fbac53c8731dd0da65e46646e38945e296429e7fb91c2ef3da5af5d5938d44b0cde1d5290438ebb3dcb015e02b80b5e2530d24
   languageName: node
   linkType: hard
 
@@ -1433,13 +1433,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.21":
-  version: 2.0.21
-  resolution: "@slashnephy/eslint-config@npm:2.0.21"
+"@slashnephy/eslint-config@npm:2.0.22":
+  version: 2.0.22
+  resolution: "@slashnephy/eslint-config@npm:2.0.22"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.4.19
-    "@rushstack/eslint-patch": 1.3.3
+    "@rushstack/eslint-patch": 1.5.1
     "@typescript-eslint/eslint-plugin": 6.2.1
     "@typescript-eslint/parser": 6.2.1
     eslint-config-airbnb: 19.0.4
@@ -1479,7 +1479,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: 75f075ed96aa8ac9ce42dc54877bd740dc96404f4f9dce0c6afa4735f7e8a0d6b6a7d28539630c8da8814fa65080e72ecf129ded84091c6b1f23ed737ca4b453
+  checksum: 6412781ec718b3ab4d27fa14dde6fe8f34e923c22f4d6c3aa92068e1d38a556c90e58b72599db10351118a816ab73601515d1cc0cd597d6d4b59a5a24a6badad
   languageName: node
   linkType: hard
 
@@ -5090,7 +5090,7 @@ __metadata:
   resolution: "plugin-repository@workspace:."
   dependencies:
     "@nextui-org/react": 1.0.0-beta.13
-    "@slashnephy/eslint-config": 2.0.21
+    "@slashnephy/eslint-config": 2.0.22
     "@slashnephy/prettier-config": 1.0.14
     "@tabler/icons-react": 2.38.0
     "@types/react": 18.2.23
