@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@slashnephy/eslint-config": "2.0.23",
-    "@slashnephy/prettier-config": "1.0.14",
+    "@slashnephy/prettier-config": "1.0.15",
     "@types/react": "18.2.24",
     "@types/react-dom": "18.2.8",
     "@vitejs/plugin-react-swc": "3.4.0",
