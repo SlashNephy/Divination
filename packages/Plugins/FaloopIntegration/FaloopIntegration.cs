@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -11,7 +12,6 @@ using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 using Divination.FaloopIntegration.Config;
 using Divination.FaloopIntegration.Faloop;
@@ -58,12 +58,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private void OnDisconnected(string cause)
     {
         Divination.Chat.Print("Faloop から切断されました。");
-        PluginLog.Warning("Disconnected = {Cause}", cause);
+        DalamudLog.Log.Warning("Disconnected = {Cause}", cause);
     }
 
     private static void OnError(string error)
     {
-        PluginLog.Error("Error = {Error}", error);
+        DalamudLog.Log.Error("Error = {Error}", error);
     }
 
     private void OnMobReport(MobReportData data)
@@ -71,14 +71,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var mob = Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(data.MobId);
         if (mob == default)
         {
-            PluginLog.Debug("OnMobReport: mob == null");
+            DalamudLog.Log.Debug("OnMobReport: mob == null");
             return;
         }
 
         var mobData = session.EmbedData.Mobs.FirstOrDefault(x => x.Id == data.MobId);
         if (mobData == default)
         {
-            PluginLog.Debug("OnMobReport: mobData == null");
+            DalamudLog.Log.Debug("OnMobReport: mobData == null");
             return;
         }
 
@@ -86,7 +86,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var dataCenter = world?.DataCenter?.Value;
         if (world == default || dataCenter == default)
         {
-            PluginLog.Debug("OnMobReport: world == null || dataCenter == null");
+            DalamudLog.Log.Debug("OnMobReport: world == null || dataCenter == null");
             return;
         }
 
@@ -94,7 +94,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var currentDataCenter = currentWorld?.DataCenter?.Value;
         if (currentWorld == default || currentDataCenter == default)
         {
-            PluginLog.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
+            DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
             return;
         }
 
@@ -108,19 +108,19 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         };
         if (config == default)
         {
-            PluginLog.Debug("OnMobReport: config == null");
+            DalamudLog.Log.Debug("OnMobReport: config == null");
             return;
         }
 
         if (!config.MajorPatches.TryGetValue(mobData.Version, out var value) || !value)
         {
-            PluginLog.Debug("OnMobReport: MajorPatches");
+            DalamudLog.Log.Debug("OnMobReport: MajorPatches");
             return;
         }
 
         if (config.DisableInDuty && Dalamud.Condition[ConditionFlag.BoundByDuty])
         {
-            PluginLog.Debug("OnMobReport: in duty");
+            DalamudLog.Log.Debug("OnMobReport: in duty");
             return;
         }
 
@@ -132,7 +132,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case Jurisdiction.World when world.RowId == currentWorld.RowId:
                 break;
             default:
-                PluginLog.Verbose("OnMobReport: unmatched");
+                DalamudLog.Log.Verbose("OnMobReport: unmatched");
                 return;
         }
 
@@ -140,11 +140,11 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         {
             case "spawn" when config.EnableSpawnReport:
                 OnSpawnMobReport(data, mob, world, config.Channel, mobData.Rank);
-                PluginLog.Verbose("OnMobReport: OnSpawnMobReport");
+                DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
             case "death" when config.EnableDeathReport:
                 OnDeathMobReport(data, mob, world, config.Channel, mobData.Rank, config.SkipOrphanReport);
-                PluginLog.Verbose("OnMobReport: OnDeathMobReport");
+                DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
     }
@@ -154,7 +154,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var spawn = data.Data.Deserialize<MobReportData.Spawn>();
         if (spawn == default)
         {
-            PluginLog.Debug("OnSpawnMobReport: spawn == null");
+            DalamudLog.Log.Debug("OnSpawnMobReport: spawn == null");
             return;
         }
 
@@ -183,7 +183,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             new TextPayload($"{world.Name} が湧きました。({FormatTimeSpan(spawn.Timestamp)})"),
         });
 
-        Dalamud.ChatGui.PrintChat(new XivChatEntry
+        Dalamud.ChatGui.Print(new XivChatEntry
         {
             Name = spawn.Reporters?.FirstOrDefault()?.Name ?? "Faloop",
             Message = new SeString(payloads),
@@ -196,18 +196,18 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var death = data.Data.Deserialize<MobReportData.Death>();
         if (death == default)
         {
-            PluginLog.Debug("OnDeathMobReport: death == null");
+            DalamudLog.Log.Debug("OnDeathMobReport: death == null");
             return;
         }
 
         if (skipOrphanReport &&
             Config.SpawnHistories.RemoveAll(x => x.MobId == data.MobId && x.WorldId == data.WorldId) == 0)
         {
-            PluginLog.Debug("OnDeathMobReport: skipOrphanReport");
+            DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
             return;
         }
 
-        Dalamud.ChatGui.PrintChat(new XivChatEntry
+        Dalamud.ChatGui.Print(new XivChatEntry
         {
             Name = "Faloop",
             Message = new SeString(new List<Payload>
@@ -227,14 +227,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var map = zone?.Map.Value;
         if (zone == default || map == default)
         {
-            PluginLog.Debug("CreateMapLink: zone == null || map == null");
+            DalamudLog.Log.Debug("CreateMapLink: zone == null || map == null");
             return default;
         }
 
         var location = session.EmbedData.ZoneLocations.FirstOrDefault(x => x.Id == zonePoiId);
         if (location == default)
         {
-            PluginLog.Debug("CreateMapLink: location == null");
+            DalamudLog.Log.Debug("CreateMapLink: location == null");
             return default;
         }
 
@@ -314,37 +314,37 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private static void OnAny(string name, SocketIOResponse response)
     {
-        PluginLog.Debug("Event {Name} = {Message}", name, response);
+        DalamudLog.Log.Debug("Event {Name} = {Message}", name, response);
     }
 
     private static void OnReconnected(int count)
     {
-        PluginLog.Debug("Reconnected {N}", count);
+        DalamudLog.Log.Debug("Reconnected {N}", count);
     }
 
     private static void OnReconnectError(Exception exception)
     {
-        PluginLog.Error(exception, "Reconnect error");
+        DalamudLog.Log.Error(exception, "Reconnect error");
     }
 
     private static void OnReconnectAttempt(int count)
     {
-        PluginLog.Debug("Reconnect attempt {N}", count);
+        DalamudLog.Log.Debug("Reconnect attempt {N}", count);
     }
 
     private static void OnReconnectFailed()
     {
-        PluginLog.Debug("Reconnect failed");
+        DalamudLog.Log.Debug("Reconnect failed");
     }
 
     private static void OnPing()
     {
-        PluginLog.Debug("Ping");
+        DalamudLog.Log.Debug("Ping");
     }
 
     private static void OnPong(TimeSpan span)
     {
-        PluginLog.Debug("Pong: {Span}", span);
+        DalamudLog.Log.Debug("Pong: {Span}", span);
     }
 
     public void Connect()
@@ -366,7 +366,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             }
             catch (Exception exception)
             {
-                PluginLog.Error(exception, "connect failed");
+                DalamudLog.Log.Error(exception, "connect failed");
             }
         });
     }
@@ -383,7 +383,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             }
             catch (Exception exception)
             {
-                PluginLog.Error(exception, nameof(EmitMockData));
+                DalamudLog.Log.Error(exception, nameof(EmitMockData));
             }
         });
     }
