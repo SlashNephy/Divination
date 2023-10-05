@@ -50,6 +50,7 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
     {
         var processor = Plugin switch
         {
+
             ICommandSupport commandSupport => new CommandProcessor(Plugin.Name,
                 commandSupport.MainCommandPrefix,
                 Dalamud.ChatGui,
@@ -99,7 +100,7 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
     });
 
     public ITextureManager Texture => ServiceContainer.GetOrPut(() =>
-        new TextureManager(Dalamud.DataManager, Dalamud.PluginInterface.UiBuilder));
+        new TextureManager(Dalamud.TextureProvider, Dalamud.PluginInterface.UiBuilder));
     public IVersionManager Version => ServiceContainer.GetOrPut(() => new VersionManager(
         new GitVersion(Assembly),
         new GitVersion(Assembly.GetExecutingAssembly())));

@@ -1,27 +1,9 @@
 ﻿using System;
-using Dalamud.Data;
 using Dalamud.Game;
-using Dalamud.Game.ClientState;
-using Dalamud.Game.ClientState.Aetherytes;
-using Dalamud.Game.ClientState.Buddy;
-using Dalamud.Game.ClientState.Conditions;
-using Dalamud.Game.ClientState.Fates;
-using Dalamud.Game.ClientState.GamePad;
-using Dalamud.Game.ClientState.JobGauge;
-using Dalamud.Game.ClientState.Keys;
 using Dalamud.Game.ClientState.Objects;
-using Dalamud.Game.ClientState.Party;
-using Dalamud.Game.Command;
-using Dalamud.Game.Gui;
-using Dalamud.Game.Gui.Dtr;
-using Dalamud.Game.Gui.FlyText;
-using Dalamud.Game.Gui.PartyFinder;
-using Dalamud.Game.Gui.Toast;
-using Dalamud.Game.Libc;
-using Dalamud.Game.Network;
-using Dalamud.Interface;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 
 #pragma warning disable 8618
 // ReSharper disable UnusedAutoPropertyAccessor.Local
@@ -48,103 +30,108 @@ internal sealed class DalamudApi : IDalamudApi
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public DataManager DataManager { get; private set; }
+    public IDataManager DataManager { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public ChatHandlers ChatHandlers { get; private set; }
+    public ITextureProvider TextureProvider { get; private set; }
+
+    // TODO - Find something to replace chat handlers, since its private now
+    /*[PluginService]
+    [RequiredVersion("1.0")]
+    public ChatHandlers ChatHandlers { get; private set; }*/
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public Framework Framework { get; private set; }
+    public IFramework Framework { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public SigScanner SigScanner { get; private set; }
+    public ISigScanner SigScanner { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public ClientState ClientState { get; private set; }
+    public IClientState ClientState { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public AetheryteList AetheryteList { get; private set; }
+    public IAetheryteList AetheryteList { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public BuddyList BuddyList { get; private set; }
+    public IBuddyList BuddyList { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public Condition Condition { get; private set; }
+    public ICondition Condition { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public FateTable FateTable { get; private set; }
+    public IFateTable FateTable { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public GamepadState GamepadState { get; private set; }
+    public IGamepadState GamepadState { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public JobGauges JobGauges { get; private set; }
+    public IJobGauges JobGauges { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public KeyState KeyState { get; private set; }
+    public IKeyState KeyState { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public ObjectTable ObjectTable { get; private set; }
+    public IObjectTable ObjectTable { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public TargetManager TargetManager { get; private set; }
+    public ITargetManager TargetManager { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public PartyList PartyList { get; private set; }
+    public IPartyList PartyList { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public CommandManager CommandManager { get; private set; }
+    public ICommandManager CommandManager { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public ChatGui ChatGui { get; private set; }
+    public IChatGui ChatGui { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public GameGui GameGui { get; private set; }
+    public IGameGui GameGui { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public DtrBar DtrBar { get; private set; }
+    public IDtrBar DtrBar { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public FlyTextGui FlyTextGui { get; private set; }
+    public IFlyTextGui FlyTextGui { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public PartyFinderGui PartyFinderGui { get; private set; }
+    public IPartyFinderGui PartyFinderGui { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public ToastGui ToastGui { get; private set; }
+    public IToastGui ToastGui { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public LibcFunction LibcFunction { get; private set; }
+    public ILibcFunction LibcFunction { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public GameNetwork GameNetwork { get; private set; }
+    public IGameNetwork GameNetwork { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]
-    public TitleScreenMenu TitleScreenMenu { get; private set; }
+    public ITitleScreenMenu TitleScreenMenu { get; private set; }
 
     #endregion
 }

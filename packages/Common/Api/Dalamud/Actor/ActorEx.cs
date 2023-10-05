@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Dalamud.Game.ClientState;
 using Dalamud.Game.ClientState.Objects.SubKinds;
+using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Dalamud.Actor;
 
 public static class ActorEx
 {
-    public static async Task<PlayerCharacter> GetLocalPlayerAsync(this ClientState state,
+    public static async Task<PlayerCharacter> GetLocalPlayerAsync(this IClientState state,
         TimeSpan? delay = null,
         CancellationToken token = default)
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Dalamud.Logging;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Newtonsoft.Json;
 
 namespace Dalamud.Divination.Common.Api.Voiceroid2Proxy;
@@ -29,11 +29,11 @@ internal sealed class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
         try
         {
             await client.PostAsync(url, content);
-            PluginLog.Verbose("Talk: {Text}", text);
+            DalamudLog.Log.Verbose("Talk: {Text}", text);
         }
         catch (Exception ex)
         {
-            PluginLog.Error(ex, "Error occurred while TalkAsync");
+            DalamudLog.Log.Error(ex, "Error occurred while TalkAsync");
         }
     }
 
