@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Logging;
 using DiscordRPC;
 using DiscordRPC.Helper;
@@ -35,7 +36,7 @@ public sealed class DiscordApi : IDisposable
         };
         rpcClient.OnPresenceUpdate += (_, args) =>
         {
-            PluginLog.Verbose(
+            DalamudLog.Log.Verbose(
                 "RichPresence:\nDetails        = {Details}\nState          = {State}\nSmallImageText = {SmallImageText}\nLargeImageText = {LargeImageText}",
                 args.Presence.Details, args.Presence.State, args.Presence.Assets.SmallImageText, args.Presence.Assets.LargeImageText);
         };
@@ -106,7 +107,7 @@ public sealed class DiscordApi : IDisposable
         }
         catch (Exception ex)
         {
-            PluginLog.Error(ex, "Failed to send request");
+            DalamudLog.Log.Error(ex, "Failed to send request");
             return;
         }
 
@@ -114,7 +115,7 @@ public sealed class DiscordApi : IDisposable
         previousCustomStatusEmojiName = emojiName;
         previousCustomStatusText = text;
 
-        PluginLog.Verbose("CustomStatus: :{EmojiName}: ({EmojiId} / {Text})", emojiName ?? "null", emojiId ?? "null", text ?? "null");
+        DalamudLog.Log.Verbose("CustomStatus: :{EmojiName}: ({EmojiId} / {Text})", emojiName ?? "null", emojiId ?? "null", text ?? "null");
     }
 
     public void Dispose()

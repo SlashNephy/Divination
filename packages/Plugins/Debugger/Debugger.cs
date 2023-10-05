@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -41,7 +42,7 @@ public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>,
                 text.AppendLine($"    {payload}");
             }
 
-            PluginLog.Verbose("{Chat}", text.ToString());
+            DalamudLog.Log.Verbose("{Chat}", text.ToString());
         }
     }
 
