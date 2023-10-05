@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Logging;
 
 namespace Divination.FaloopIntegration.Faloop;
@@ -25,14 +26,14 @@ public class FaloopSession : IDisposable
         var initialSession = await client.RefreshAsync();
         if (initialSession is not { Success: true })
         {
-            PluginLog.Debug("LoginAsync: initialSession is not success");
+            DalamudLog.Log.Debug("LoginAsync: initialSession is not success");
             return false;
         }
 
         var login = await client.LoginAsync(username, password, initialSession.SessionId, initialSession.Token);
         if (login is not { Success: true })
         {
-            PluginLog.Debug("LoginAsync: login is not success");
+            DalamudLog.Log.Debug("LoginAsync: login is not success");
             return false;
         }
 
@@ -42,7 +43,7 @@ public class FaloopSession : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, "LoginAsync: EmbedData.Initialize failed");
+            DalamudLog.Log.Error(exception, "LoginAsync: EmbedData.Initialize failed");
             return false;
         }
 

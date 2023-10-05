@@ -12,7 +12,6 @@
   ],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 8,
   "LoadRequiredState": 2,
   "LoadSync": false,
   "LoadPriority": 0,

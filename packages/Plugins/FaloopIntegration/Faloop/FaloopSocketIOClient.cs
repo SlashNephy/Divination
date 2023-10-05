@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Logging;
 using Divination.FaloopIntegration.Faloop.Model;
 using SocketIOClient;
@@ -122,7 +123,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnConnected));
+            DalamudLog.Log.Error(exception, nameof(HandleOnConnected));
         }
         finally
         {
@@ -138,7 +139,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnDisconnected));
+            DalamudLog.Log.Error(exception, nameof(HandleOnDisconnected));
         }
     }
 
@@ -150,7 +151,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnError));
+            DalamudLog.Log.Error(exception, nameof(HandleOnError));
         }
     }
 
@@ -176,7 +177,7 @@ public class FaloopSocketIOClient : IDisposable
             }
             catch (Exception exception)
             {
-                PluginLog.Error(exception, nameof(HandleOnMessage));
+                DalamudLog.Log.Error(exception, nameof(HandleOnMessage));
             }
         }
 
@@ -186,7 +187,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnMessage));
+            DalamudLog.Log.Error(exception, nameof(HandleOnMessage));
         }
     }
 
@@ -198,7 +199,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnAny));
+            DalamudLog.Log.Error(exception, nameof(HandleOnAny));
         }
     }
 
@@ -210,7 +211,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleReconnected));
+            DalamudLog.Log.Error(exception, nameof(HandleReconnected));
         }
     }
 
@@ -222,7 +223,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception e)
         {
-            PluginLog.Error(e, nameof(HandleOnReconnectError));
+            DalamudLog.Log.Error(e, nameof(HandleOnReconnectError));
         }
     }
 
@@ -234,7 +235,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnReconnectAttempt));
+            DalamudLog.Log.Error(exception, nameof(HandleOnReconnectAttempt));
         }
     }
 
@@ -246,7 +247,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnReconnectFailed));
+            DalamudLog.Log.Error(exception, nameof(HandleOnReconnectFailed));
         }
     }
 
@@ -258,7 +259,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnPing));
+            DalamudLog.Log.Error(exception, nameof(HandleOnPing));
         }
     }
 
@@ -270,7 +271,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(HandleOnPong));
+            DalamudLog.Log.Error(exception, nameof(HandleOnPong));
         }
     }
 
