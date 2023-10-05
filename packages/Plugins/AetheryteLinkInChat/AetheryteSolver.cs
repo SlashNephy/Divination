@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Data;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Logging;
+using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.Config;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
@@ -22,7 +24,7 @@ public class AetheryteSolver
     private readonly ExcelSheet<World> worldSheet;
     private readonly ExcelSheet<TerritoryType> territoryTypeSheet;
 
-    public AetheryteSolver(DataManager dataManager)
+    public AetheryteSolver(IDataManager dataManager)
     {
         aetheryteSheet = dataManager.GetExcelSheet<Aetheryte>() ?? throw new ApplicationException("aetheryteSheet == null");
         mapSheet = dataManager.GetExcelSheet<Map>() ?? throw new ApplicationException("mapSheet == null");
@@ -42,12 +44,12 @@ public class AetheryteSolver
                 foreach (var path in paths)
                 {
                     var (markerX, markerY) = ConvertMarkerToCoordinate(path.Marker, path.Map);
-                    PluginLog.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
+                    DalamudLog.Log.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
 
-                    PluginLog.Verbose("path = {S}", path);
+                    DalamudLog.Log.Verbose("path = {S}", path);
                     if (path is AetheryteTeleportPath { Aetheryte.AethernetGroup: > 0 })
                     {
-                        PluginLog.Verbose("skip distance calculation: this is aethernet: {S}", path);
+                        DalamudLog.Log.Verbose("skip distance calculation: this is aethernet: {S}", path);
                     }
                     else
                     {
@@ -66,7 +68,7 @@ public class AetheryteSolver
                     }
                 }
 
-                PluginLog.Verbose("distance = {D}, paths = {P}", distance, paths);
+                DalamudLog.Log.Verbose("distance = {D}, paths = {P}", distance, paths);
                 return distance;
             });
 
@@ -83,7 +85,7 @@ public class AetheryteSolver
         var territory = territoryTypeSheet.GetRow(currentTerritoryTypeId);
         if (territory == default)
         {
-            PluginLog.Debug("AppendGrandCompanyAetheryte: territory == default");
+            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: territory == default");
             return;
         }
 
@@ -95,14 +97,14 @@ public class AetheryteSolver
         {
             if (grandCompanyAetheryteId == default)
             {
-                PluginLog.Debug("AppendGrandCompanyAetheryte: grandCompanyAetheryteId == default");
+                DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: grandCompanyAetheryteId == default");
                 return;
             }
 
             aetheryte = aetheryteSheet.GetRow(grandCompanyAetheryteId);
             if (aetheryte == default)
             {
-                PluginLog.Debug("AppendGrandCompanyAetheryte: aetheryte == null");
+                DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: aetheryte == null");
                 return;
             }
         }
@@ -111,25 +113,25 @@ public class AetheryteSolver
         var world = worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId).FirstOrDefault(x => text.Contains(x.Name.RawString.ToLower()));
         if (world == default)
         {
-            PluginLog.Debug("AppendGrandCompanyAetheryte: world == null");
+            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: world == null");
             return;
         }
 
         if (world.RowId == currentWorld?.RowId)
         {
-            PluginLog.Debug("AppendGrandCompanyAetheryte: world == currentWorld");
+            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: world == currentWorld");
             return;
         }
 
         var (marker, map) = GetMarkerFromAetheryte(aetheryte);
         if (marker == default)
         {
-            PluginLog.Debug("AppendGrandCompanyAetheryte: marker == null");
+            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: marker == null");
             return;
         }
         if (map == default)
         {
-            PluginLog.Debug("AppendGrandCompanyAetheryte: map == null");
+            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: map == null");
             return;
         }
 
@@ -164,10 +166,10 @@ public class AetheryteSolver
                 // 近接エリアに移動した先のマーカーを探す
                 .FirstOrDefault(x => x.RowId == connectedMap?.MapMarkerRange && x.DataKey == map.RowId);
 
-            PluginLog.Verbose("marker = {S} ({N})", marker.PlaceNameSubtext.Value?.Name.RawString ?? "", marker.DataKey);
-            PluginLog.Verbose("connectedTerritoryType = {S}", connectedTerritoryType?.PlaceName.Value?.Name.RawString ?? "");
-            PluginLog.Verbose("connectedMap = {S}", connectedMap?.PlaceName.Value?.Name.RawString ?? "");
-            PluginLog.Verbose("connectedMarker = {S}", connectedMarker?.PlaceNameSubtext.Value?.Name.RawString ?? "");
+            DalamudLog.Log.Verbose("marker = {S} ({N})", marker.PlaceNameSubtext.Value?.Name.RawString ?? "", marker.DataKey);
+            DalamudLog.Log.Verbose("connectedTerritoryType = {S}", connectedTerritoryType?.PlaceName.Value?.Name.RawString ?? "");
+            DalamudLog.Log.Verbose("connectedMap = {S}", connectedMap?.PlaceName.Value?.Name.RawString ?? "");
+            DalamudLog.Log.Verbose("connectedMarker = {S}", connectedMarker?.PlaceNameSubtext.Value?.Name.RawString ?? "");
 
             if (connectedTerritoryType != default && connectedMap != default && connectedMarker != default)
             {

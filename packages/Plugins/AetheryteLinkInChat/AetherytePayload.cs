@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat;
 
-public sealed class AetherytePayload : Payload
+public sealed class AetherytePayload : DalamudLinkPayload
 {
     // 未使用だと思われる
     private const byte EmbeddedInfoTypeByte = (byte)(EmbeddedInfoType.DalamudLink + 1);
