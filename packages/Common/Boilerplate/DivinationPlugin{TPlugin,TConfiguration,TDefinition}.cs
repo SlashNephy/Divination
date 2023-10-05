@@ -5,7 +5,6 @@ using Dalamud.Configuration;
 using Dalamud.Divination.Common.Api;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Definition;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Boilerplate;
@@ -28,12 +27,14 @@ public abstract class
     protected DivinationPlugin(DalamudPluginInterface pluginInterface)
 #pragma warning restore CS8618
     {
+        pluginInterface.Create<DalamudLog>();
         Instance = this as TPlugin ?? throw new TypeAccessException("クラス インスタンスが型パラメータ: TPlugin と一致しません。");
         IsDisposed = false;
         Dalamud = new DalamudApi(pluginInterface);
         Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
 
-        PluginLog.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}",
+
+        DalamudLog.Log.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}",
             Name,
             Divination.Version.Plugin.InformationalVersion);
     }

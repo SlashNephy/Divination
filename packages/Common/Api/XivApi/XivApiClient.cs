@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Dalamud.Logging;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.XivApi;
@@ -31,7 +31,7 @@ public sealed class XivApiClient : IXivApiClient
         var result = await response.Content.ReadAsStringAsync();
         var data = JObject.Parse(result);
 
-        PluginLog.Verbose("{Code}: {Method} {Url}",
+        DalamudLog.Log.Verbose("{Code}: {Method} {Url}",
             (int)response.StatusCode,
             response.RequestMessage!.Method.Method,
             url);
@@ -52,7 +52,7 @@ public sealed class XivApiClient : IXivApiClient
         dynamic json = JObject.Parse(result);
         var data = (JObject)((JArray)json.Results).First();
 
-        PluginLog.Verbose("{Code}: {Method} {Url}",
+        DalamudLog.Log.Verbose("{Code}: {Method} {Url}",
             (int)response.StatusCode,
             response.RequestMessage!.Method.Method,
             url);

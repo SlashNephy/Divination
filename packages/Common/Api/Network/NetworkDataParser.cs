@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Dalamud.Game.Network;
+using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Network;
 
 internal sealed class NetworkDataParser : IDisposable
 {
     public delegate void OnNetworkContextDelegate(NetworkContext context);
-    private readonly GameNetwork gameNetwork;
+    private readonly IGameNetwork gameNetwork;
     private readonly int maxByteLength;
     public OnNetworkContextDelegate? OnNetworkContext;
 
-    public NetworkDataParser(GameNetwork gameNetwork, int maxByteLength = 1024)
+    public NetworkDataParser(IGameNetwork gameNetwork, int maxByteLength = 1024)
     {
         this.gameNetwork = gameNetwork;
         this.gameNetwork.NetworkMessage += OnNetworkMessage;

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Dalamud.Game.ClientState;
-using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Chat;
 
@@ -17,13 +16,13 @@ internal sealed class ChatClient : IChatClient
     public static ushort ErrorMessageColor = 14;
     public static XivChatType NormalMessageType = XivChatType.Echo;
     public static XivChatType ErrorMessageType = XivChatType.ErrorMessage;
-    private readonly ChatGui gui;
+    private readonly IChatGui gui;
 
     private readonly BlockingCollection<XivChatEntry> queue = new();
 
     private readonly string title;
 
-    public ChatClient(string title, ChatGui gui, ClientState clientState)
+    public ChatClient(string title, IChatGui gui, IClientState clientState)
     {
         this.title = title.Replace("Divination.", string.Empty);
         this.gui = gui;
@@ -50,7 +49,7 @@ internal sealed class ChatClient : IChatClient
         }
         else
         {
-            gui.PrintChat(entry);
+            gui.Print(entry);
         }
     }
 
@@ -115,7 +114,7 @@ internal sealed class ChatClient : IChatClient
         {
             foreach (var entry in queue.GetConsumingEnumerable())
             {
-                gui.PrintChat(entry);
+                gui.Print(entry);
             }
         }
     }

@@ -20,12 +20,12 @@ public static class GameVersion
         return content.Trim();
     }
 
-    public static async Task<Game.GameVersion> ReadCurrentAsync()
+    public static async Task<string> ReadCurrentAsync()
     {
         return await ReadCurrentPlainAsync();
     }
 
-    public static Game.GameVersion ReadCurrent()
+    public static string ReadCurrent()
     {
         return ReadCurrentPlain();
     }

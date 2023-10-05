@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Version;
-using Dalamud.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -60,10 +60,10 @@ public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TCont
 
             if (localGameVersion.ToString() != container?.Version)
             {
-                PluginLog.Warning(
+                DalamudLog.Log.Warning(
                     "The game version \"{DefinitionGameVersion}\" is not supported yet. The local one is \"{LocalGameVersion}\".",
                     container?.Version ?? string.Empty,
-                    localGameVersion);
+                    (object)localGameVersion);
 
                 if (!AllowObsoleteDefinitions)
                 {
@@ -76,17 +76,18 @@ public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TCont
             }
             else
             {
-                container.IsObsolete = false;
+                if (container != null)
+                {
+                    container.IsObsolete = false;
 
-                PluginLog.Information(
-                    "The definition file for patch {GamePatch} \"{DefinitionFilename}\" was loaded. Local game version is \"{LocalGameVersion}\".",
-                    container?.Patch ?? string.Empty,
-                    Filename,
-                    localGameVersion);
+                    DalamudLog.Log.Info(
+                        "The definition file for patch {GamePatch} \"{DefinitionFilename}\" was loaded. Local game version is \"{LocalGameVersion}\".",
+                        container?.Patch ?? string.Empty, Filename, (object)localGameVersion);
+                }
             }
         }
 
-        PluginLog.Verbose("{DefinitionFilename}\n{DefinitionJson}",
+        DalamudLog.Log.Verbose("{DefinitionFilename}\n{DefinitionJson}",
             Filename,
             JsonConvert.SerializeObject(json, Formatting.Indented));
     }
