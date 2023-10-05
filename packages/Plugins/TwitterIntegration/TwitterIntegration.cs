@@ -5,6 +5,7 @@ using System.Web;
 using CoreTweet;
 using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Command.Attributes;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -75,7 +76,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
             else if (completed.Exception != null)
             {
                 Divination.Chat.PrintError("ツイートに失敗しました。");
-                PluginLog.Error(completed.Exception, "Failed to tweet");
+                DalamudLog.Log.Error(completed.Exception, "Failed to tweet");
             }
         });
     }
@@ -92,7 +93,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
 
                     foreach (var status in result.Reverse())
                     {
-                        Dalamud.ChatGui.PrintChat(new XivChatEntry
+                        Dalamud.ChatGui.Print(new XivChatEntry
                         {
                             Type = XivChatType.Echo,
                             Message = new SeString(
@@ -102,7 +103,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
                                 new TextPayload($"<@{status.User.ScreenName}> {HttpUtility.HtmlDecode(status.Text)}"))
                         });
 
-                        PluginLog.Verbose("Tweet = {Text} ({Id}) from {Name}", status.Text, status.Id, status.User.Name);
+                        DalamudLog.Log.Verbose("Tweet = {Text} ({Id}) from {Name}", status.Text, status.Id, status.User.Name);
                     }
 
                     if (result.Count > 0)
@@ -113,7 +114,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
                 catch (Exception exception)
                 {
                     Divination.Chat.PrintError("タイムラインの取得に失敗しました。");
-                    PluginLog.Error(exception, "Failed to fetch timeline");
+                    DalamudLog.Log.Error(exception, "Failed to fetch timeline");
                 }
             }
 

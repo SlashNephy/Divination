@@ -15,7 +15,7 @@
 
         <ProjectReference Include="..\..\Common\Common.csproj" />
 
-        <PackageReference Include="DalamudPackager" Version="2.1.11">
+        <PackageReference Include="DalamudPackager" Version="2.1.12">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
