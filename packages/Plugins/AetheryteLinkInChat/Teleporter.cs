@@ -1,10 +1,11 @@
 ﻿using System.Linq;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Aetherytes;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Logging;
+using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;
-using Condition = Dalamud.Game.ClientState.Conditions.Condition;
 
 namespace Divination.AetheryteLinkInChat;
 
@@ -29,13 +30,14 @@ public class Teleporter
 
     private Aetheryte? queuedAetheryte;
     private readonly object queuedAetheryteLock = new();
-    private readonly Condition condition;
-    private readonly AetheryteList aetheryteList;
+    private readonly ICondition condition;
+    private readonly IAetheryteList aetheryteList;
 
-    public Teleporter(Condition condition, AetheryteList aetheryteList)
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList)
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;
+
     }
 
     public bool IsTeleportUnavailable => teleportUnavailableFlags.Any(x => condition[x]);
@@ -47,19 +49,19 @@ public class Teleporter
         var teleport = Telepo.Instance();
         if (teleport == default)
         {
-            PluginLog.Debug("TeleportToAetheryte: teleport == null");
+            DalamudLog.Log.Debug("TeleportToAetheryte: teleport == null");
             return false;
         }
 
         if (!CheckAetheryte(aetheryte.RowId))
         {
-            PluginLog.Error("TeleportToAetheryte: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
+            DalamudLog.Log.Error("TeleportToAetheryte: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
             return false;
         }
 
         if (!teleport->Teleport(aetheryte.RowId, 0))
         {
-            PluginLog.Error("TeleportToAetheryte: could not teleport to {Id}", aetheryte.RowId);
+            DalamudLog.Log.Error("TeleportToAetheryte: could not teleport to {Id}", aetheryte.RowId);
             return false;
         }
 
