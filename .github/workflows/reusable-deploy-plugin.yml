@@ -74,7 +74,7 @@ jobs:
         run: git pull
 
       - name: Push to Plugin Repository
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         continue-on-error: true
         with:
           commit_message: '⚙️ Deploy ${{ inputs.plugin-name }} ${{ steps.version.outputs.value }}'
