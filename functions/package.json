@@ -16,7 +16,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "4.20231002.0",
     "@slashnephy/eslint-config": "2.0.25",
-    "@slashnephy/prettier-config": "1.0.15",
+    "@slashnephy/prettier-config": "1.0.16",
     "concurrently": "8.2.1",
     "eslint": "8.50.0",
     "prettier": "3.0.3",
