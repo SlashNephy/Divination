@@ -1,3 +1,3 @@
-export type PagesEnv = {
+export type Env = {
   KV: KVNamespace
 }
