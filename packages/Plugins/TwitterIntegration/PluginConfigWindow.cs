@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using CoreTweet;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Logging;
@@ -38,7 +39,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 IsOpen = false;
 
                 TwitterIntegration.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                PluginLog.Information("Config saved");
+                DalamudLog.Log.Information("Config saved");
             }
 
             ImGui.End();
@@ -120,7 +121,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 else if (completed.Exception != null)
                 {
                     TwitterIntegration.Instance.Divination.Chat.PrintError("リスト一覧の取得に失敗しました。");
-                    PluginLog.Error(completed.Exception, "Error occurred while OwnershipsAsync");
+                    DalamudLog.Log.Error(completed.Exception, "Error occurred while OwnershipsAsync");
                 }
             });
         }

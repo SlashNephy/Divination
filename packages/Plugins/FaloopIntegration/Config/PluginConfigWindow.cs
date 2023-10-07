@@ -63,7 +63,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             foreach (var patchVersion in Enum.GetValues<MajorPatch>())
             {
                 ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.MajorPatches, patchVersion, out _);
-                ImGui.Checkbox(Enum.GetName(patchVersion), ref value);
+                ImGui.Checkbox(Enum.GetName(patchVersion) + $"##{label}", ref value);
                 ImGui.SameLine();
             }
             ImGui.Unindent();

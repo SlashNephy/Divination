@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Chat;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.Network;
-using Dalamud.Logging;
+using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Network;
 
@@ -13,7 +14,7 @@ public sealed class NetworkInterceptor : INetworkInterceptor
     private readonly List<INetworkHandler> handlers = new();
     private readonly NetworkDataParser parser;
 
-    public NetworkInterceptor(GameNetwork gameNetwork, IChatClient chat)
+    public NetworkInterceptor(IGameNetwork gameNetwork, IChatClient chat)
     {
         parser = new NetworkDataParser(gameNetwork);
         parser.OnNetworkContext += Consume;
@@ -76,7 +77,7 @@ public sealed class NetworkInterceptor : INetworkInterceptor
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, "Error occurred while ConsumeEach");
+            DalamudLog.Log.Error(exception, "Error occurred while ConsumeEach");
         }
     }
 }

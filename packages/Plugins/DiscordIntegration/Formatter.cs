@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
@@ -40,7 +41,7 @@ public class Formatter
                     }
                     catch (Exception ex)
                     {
-                        PluginLog.Error(ex, "Error occurred while getting Instance");
+                        DalamudLog.Log.Error(ex, "Error occurred while getting Instance");
                     }
                 }
 
@@ -289,7 +290,7 @@ public class Formatter
 
             if (icon != 0)
             {
-                PluginLog.Warning("不明な Icon を検出しました。 Icon = {Icon}", icon);
+                DalamudLog.Log.Warning("不明な Icon を検出しました。 Icon = {Icon}", icon);
             }
         }
 

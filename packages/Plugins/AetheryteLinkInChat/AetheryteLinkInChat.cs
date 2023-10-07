@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -13,6 +14,7 @@ using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Logging;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.Config;
 
 namespace Divination.AetheryteLinkInChat;
@@ -57,7 +59,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         }
         catch (Exception exception)
         {
-            PluginLog.Error(exception, nameof(OnChatReceived));
+            DalamudLog.Log.Error(exception, nameof(OnChatReceived));
         }
     }
 
@@ -84,7 +86,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         var mapLink = message.Payloads.OfType<MapLinkPayload>().FirstOrDefault();
         if (mapLink == default)
         {
-            PluginLog.Verbose("AppendNearestAetheryteLink: mapLink == null");
+            DalamudLog.Log.Verbose("AppendNearestAetheryteLink: mapLink == null");
             return;
         }
 
@@ -92,7 +94,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         var paths = solver.CalculateTeleportPathsForMapLink(mapLink).ToList();
         if (paths.Count == 0)
         {
-            PluginLog.Debug("AppendNearestAetheryteLink: paths.Count == 0");
+            DalamudLog.Log.Debug("AppendNearestAetheryteLink: paths.Count == 0");
             return;
         }
 
@@ -106,8 +108,6 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,
                 Dalamud.ClientState.TerritoryType);
         }
-
-        message = message.Append(new NewLinePayload());
 
         foreach (var (index, path) in paths.Select((x, i) => (i, x)))
         {
@@ -172,18 +172,18 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private void HandleLink(uint id, SeString link)
     {
-        PluginLog.Verbose("HandleLink: link = {Json}", link.ToJson());
+        DalamudLog.Log.Verbose("HandleLink: link = {Json}", link.ToJson());
 
         if (id != LinkCommandId)
         {
-            PluginLog.Debug("HandleLink: id ({Id}) != LinkCommandId", id);
+            DalamudLog.Log.Debug("HandleLink: id ({Id}) != LinkCommandId", id);
             return;
         }
 
         var aetheryte = link.Payloads.OfType<RawPayload>().Select(AetherytePayload.Parse).FirstOrDefault(x => x != default);
         if (aetheryte == default)
         {
-            PluginLog.Error("HandleLink: aetheryte ({Text}) == null", link.ToString());
+            DalamudLog.Log.Error("HandleLink: aetheryte ({Text}) == null", link.ToString());
             return;
         }
 

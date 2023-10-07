@@ -7,7 +7,6 @@
   "CategoryTags": ["utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 8,
   "LoadRequiredState": 0,
   "LoadSync": false,
   "LoadPriority": 0,

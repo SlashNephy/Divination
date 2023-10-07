@@ -1,4 +1,5 @@
-﻿using Dalamud.Divination.Common.Api.Ui;
+﻿using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Logging;
 using ImGuiNET;
@@ -22,7 +23,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 IsOpen = false;
 
                 Voiceroid2Talker.Instance.Dalamud.PluginInterface.SavePluginConfig(Config);
-                PluginLog.Information("Config saved");
+                DalamudLog.Log.Information("Config saved");
             }
 
             ImGui.End();

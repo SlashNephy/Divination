@@ -1,9 +1,9 @@
 ﻿using System;
-using ImGuiScene;
+using Dalamud.Interface.Internal;
 
 namespace Dalamud.Divination.Common.Api.Ui;
 
 public interface ITextureManager : IDisposable
 {
-    public TextureWrap? GetIconTexture(uint iconId);
+    public IDalamudTextureWrap? GetIconTexture(uint iconId);
 }

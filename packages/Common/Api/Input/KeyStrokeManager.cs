@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using Dalamud.Logging;
+using Dalamud.Divination.Common.Api.Dalamud;
 
 namespace Dalamud.Divination.Common.Api.Input;
 
@@ -41,7 +41,7 @@ public sealed class KeyStrokeManager : IKeyStrokeManager
             }
         }
 
-        PluginLog.Debug("SendMessage: {Keys}", keys.ToReadableString());
+        DalamudLog.Log.Debug("SendMessage: {Keys}", keys.ToReadableString());
     }
 
     private static IntPtr GetGameWindowHandle()

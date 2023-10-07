@@ -1,5 +1,6 @@
 ﻿using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Command.Attributes;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -33,7 +34,7 @@ public sealed class Template : DivinationPlugin<Template, PluginConfig, PluginDe
     [CommandHelp("This is sample command.")]
     private static void OnExampleCommand(CommandContext context)
     {
-        PluginLog.Information("/example called.");
+        DalamudLog.Log.Information("/example called.");
     }
 
     #endregion

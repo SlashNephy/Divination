@@ -2,6 +2,7 @@
 using System.Linq;
 using Dalamud.Divination.Common.Api.Command;
 using Dalamud.Divination.Common.Api.Command.Attributes;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -43,7 +44,7 @@ public class Voiceroid2Talker : DivinationPlugin<Voiceroid2Talker, PluginConfig>
         }
         catch (Exception ex)
         {
-            PluginLog.Error(ex, "Error occurred in OnChatReceived");
+            DalamudLog.Log.Error(ex, "Error occurred in OnChatReceived");
         }
     }
 

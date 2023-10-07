@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dalamud.Logging;
+using Dalamud.Divination.Common.Api.Dalamud;
 
 namespace Dalamud.Divination.Common.Api;
 
@@ -47,7 +47,7 @@ internal static class ServiceContainer
             {
                 entry = (typeof(T), initializer());
                 Services.Add(entry);
-                PluginLog.Verbose($"Put<{entry.type}>: {entry.instance?.GetType()}");
+                DalamudLog.Log.Verbose($"Put<{entry.type}>: {entry.instance?.GetType()}");
             }
 
             return entry.instance as T;
@@ -72,12 +72,12 @@ internal static class ServiceContainer
                 if (instance is IDisposable disposable)
                 {
                     disposable.Dispose();
-                    PluginLog.Verbose("Dispose: {Disposable}", type.FullName!);
+                    DalamudLog.Log.Verbose("Dispose: {Disposable}", type.FullName!);
                 }
             }
 
             Services.Clear();
-            PluginLog.Verbose("ServiceContainer is clear");
+            DalamudLog.Log.Verbose("ServiceContainer is clear");
         }
     }
 }

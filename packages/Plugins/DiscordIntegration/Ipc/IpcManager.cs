@@ -1,4 +1,5 @@
-﻿using Dalamud.Logging;
+﻿using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Logging;
 using Dalamud.Plugin.Ipc;
 using Divination.DiscordIntegration.IpcModel;
 
@@ -32,7 +33,7 @@ public static class IpcManager
         IpcPayloadManager.ClearVariables(payload.Source, payload.Group);
         IpcPayloadManager.UpdateVariables(payload.Source, payload.Group, payload.Variables);
 
-        PluginLog.Verbose($"UpdateVariablesPayload (from {payload.Source}, group = {payload.Group}): {payload.Variables}");
+        DalamudLog.Log.Verbose($"UpdateVariablesPayload (from {payload.Source}, group = {payload.Group}): {payload.Variables}");
     }
 
     private static ICallGateSubscriber<ClearVariablesPayload, object> CreateClearVariablesSubscriber()
@@ -44,7 +45,7 @@ public static class IpcManager
     {
         IpcPayloadManager.ClearVariables(payload.Source, payload.Group);
 
-        PluginLog.Verbose($"ClearVariablesPayload (from {payload.Source}, group = {payload.Group})");
+        DalamudLog.Log.Verbose($"ClearVariablesPayload (from {payload.Source}, group = {payload.Group})");
     }
 
     private static ICallGateSubscriber<UpdateTemplatesPayload, object> CreateUpdateTemplatesSubscriber()
@@ -57,7 +58,7 @@ public static class IpcManager
         IpcPayloadManager.ClearTemplates(payload.Source, payload.Group);
         IpcPayloadManager.UpdateTemplates(payload.Source, payload.Group, payload.Templates);
 
-        PluginLog.Verbose($"UpdateTemplatesPayload (from {payload.Source}, group = {payload.Group}): {payload.Templates}");
+        DalamudLog.Log.Verbose($"UpdateTemplatesPayload (from {payload.Source}, group = {payload.Group}): {payload.Templates}");
     }
 
     private static ICallGateSubscriber<ClearTemplatesPayload, object> CreateClearTemplatesSubscriber()
@@ -69,6 +70,6 @@ public static class IpcManager
     {
         IpcPayloadManager.ClearTemplates(payload.Source, payload.Group);
 
-        PluginLog.Verbose($"ClearTemplatesPayload (from {payload.Source}, group = {payload.Group})");
+        DalamudLog.Log.Verbose($"ClearTemplatesPayload (from {payload.Source}, group = {payload.Group})");
     }
 }

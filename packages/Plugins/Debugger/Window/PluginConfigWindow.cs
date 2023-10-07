@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Network;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
@@ -144,7 +145,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
                     if (Config.NetworkLogMatchedPackets)
                     {
-                        PluginLog.Debug("{Context}", context);
+                        DalamudLog.Log.Debug("{Context}", context);
                     }
                 }
             }
