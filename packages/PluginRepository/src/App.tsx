@@ -4,7 +4,6 @@ import React, { Suspense } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { usePluginMaster } from './lib/usePluginMaster.ts'
-import packageJson from '../package.json'
 
 export function App(): React.JSX.Element {
   const { t } = useTranslation()
@@ -108,7 +107,7 @@ export function PluginList(): React.JSX.Element {
                 <Text>{plugin.Description}</Text>
 
                 <Link
-                  href={`${packageJson.repository}/tree/master/packages/Plugins/${plugin.InternalName}`}
+                  href={`https://github.com/SlashNephy/Divination/tree/master/packages/Plugins/${plugin.InternalName}`}
                   target="_blank"
                 >
                   <IconBrandGithub />

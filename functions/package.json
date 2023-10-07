@@ -5,7 +5,7 @@
   "repository": "https://github.com/SlashNephy/Divination",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --noEmit"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20231002.0",
