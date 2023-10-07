@@ -3,19 +3,8 @@
   "Name": "[Name]",
   "Punchline": "[Punchline]",
   "Description": "[Description]",
-  "Tags": [
-    "[Tag]"
-  ],
-  "CategoryTags": [
-    "other",
-    "jobs",
-    "ui",
-    "minigames",
-    "inventory",
-    "sound",
-    "social",
-    "utility"
-  ],
+  "Tags": ["[Tag]"],
+  "CategoryTags": ["other", "jobs", "ui", "minigames", "inventory", "sound", "social", "utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,
@@ -23,8 +12,7 @@
   "LoadSync": false,
   "LoadPriority": 0,
   "CanUnloadAsync": false,
-  "ImageUrls": [
-  ],
+  "ImageUrls": [],
   "IconUrl": null,
   "AcceptsFeedback": true,
   "FeedbackMessage": null

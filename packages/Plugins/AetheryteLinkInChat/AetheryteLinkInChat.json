@@ -3,12 +3,8 @@
   "Name": "Divination.AetheryteLinkInChat",
   "Punchline": "Quick teleport for Mob Hunting",
   "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
-  "Tags": [
-    "teleporter"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
+  "Tags": ["teleporter"],
+  "CategoryTags": ["utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,

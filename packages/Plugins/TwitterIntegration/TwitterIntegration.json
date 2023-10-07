@@ -3,12 +3,8 @@
   "Name": "Divination.TwitterIntegration",
   "Punchline": "Tweet in FFXIV chat.",
   "Description": "Dalamud Plugin to add tweet function and Twitter timeline in FFXIV chat",
-  "Tags": [
-    "Twitter"
-  ],
-  "CategoryTags": [
-    "social"
-  ],
+  "Tags": ["Twitter"],
+  "CategoryTags": ["social"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,

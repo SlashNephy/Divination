@@ -3,12 +3,8 @@
   "Name": "Divination.PowerUtils",
   "Punchline": "Save Energy!",
   "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
-  "Tags": [
-    "Command"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
+  "Tags": ["Command"],
+  "CategoryTags": ["utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,
@@ -16,8 +12,7 @@
   "LoadSync": false,
   "LoadPriority": 0,
   "CanUnloadAsync": false,
-  "ImageUrls": [
-  ],
+  "ImageUrls": [],
   "IconUrl": null,
   "AcceptsFeedback": true,
   "FeedbackMessage": null

@@ -4,9 +4,7 @@
   "tools": {
     "gitversion.tool": {
       "version": "5.12.0",
-      "commands": [
-        "dotnet-gitversion"
-      ]
+      "commands": ["dotnet-gitversion"]
     }
   }
 }

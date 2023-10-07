@@ -3,13 +3,8 @@
   "Name": "Divination.PerfectComplex",
   "Punchline": "",
   "Description": "",
-  "Tags": [
-    "[Tag]"
-  ],
-  "CategoryTags": [
-    "ui",
-    "utility"
-  ],
+  "Tags": ["[Tag]"],
+  "CategoryTags": ["ui", "utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,
@@ -17,8 +12,7 @@
   "LoadSync": false,
   "LoadPriority": 0,
   "CanUnloadAsync": false,
-  "ImageUrls": [
-  ],
+  "ImageUrls": [],
   "IconUrl": null,
   "AcceptsFeedback": true,
   "FeedbackMessage": null
