@@ -17,7 +17,7 @@ internal sealed class TextureManager : ITextureManager
     private readonly object cacheLock = new();
 
     private readonly HttpClient client = new();
-    private readonly ITextureProvider  textureProvider;
+    private readonly ITextureProvider textureProvider;
     private readonly UiBuilder uiBuilder;
 
     public TextureManager(ITextureProvider textureProvider, UiBuilder uiBuilder)
