@@ -1,9 +1,13 @@
-name: 'Build (PluginRepository)'
+name: 'Build (node)'
 
 on:
   push:
     paths:
+      - 'functions/**'
       - 'packages/PluginRepository/**'
+      - '.yarn/**'
+      - 'package.json'
+      - 'yarn.lock'
   pull_request:
     types:
       - opened
@@ -17,7 +21,6 @@ jobs:
       contents: 'read'
     with:
       script: 'build'
-      working-directory: 'packages/PluginRepository'
 
   lint:
     uses: SlashNephy/.github/.github/workflows/yarn-lint.yml@master
@@ -30,5 +33,3 @@ jobs:
     uses: SlashNephy/.github/.github/workflows/yarn-format.yml@master
     permissions:
       contents: 'write'
-    with:
-      working-directory: 'packages/PluginRepository'

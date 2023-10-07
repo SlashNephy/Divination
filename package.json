@@ -13,6 +13,7 @@
     "node": ">=20"
   },
   "scripts": {
+    "build": "yarn workspaces foreach -pi run build",
     "format": "concurrently -m 1 -n format: 'yarn:format:*'",
     "format:eslint": "yarn lint:eslint --fix",
     "format:prettier": "yarn lint:prettier --write",
