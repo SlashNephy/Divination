@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Dalamud.Data;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.XivApi;
 using Dalamud.Interface;
-using Dalamud.Logging;
-using Dalamud.Utility;
-using ImGuiScene;
+using Dalamud.Interface.Internal;
+using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Ui;
 
 internal sealed class TextureManager : ITextureManager
 {
-    private readonly Dictionary<uint, TextureWrap?> cache = new();
+    private readonly Dictionary<uint, IDalamudTextureWrap?> cache = new();
     private readonly object cacheLock = new();
 
     private readonly HttpClient client = new();
-    private readonly DataManager dataManager;
+    private readonly ITextureProvider  textureProvider;
     private readonly UiBuilder uiBuilder;
 
-    public TextureManager(DataManager dataManager, UiBuilder uiBuilder)
+    public TextureManager(ITextureProvider textureProvider, UiBuilder uiBuilder)
     {
-        this.dataManager = dataManager;
+        this.textureProvider = textureProvider;
         this.uiBuilder = uiBuilder;
     }
 
-    public TextureWrap? GetIconTexture(uint iconId)
+    public IDalamudTextureWrap? GetIconTexture(uint iconId)
     {
         lock (cacheLock)
         {
@@ -66,28 +65,24 @@ internal sealed class TextureManager : ITextureManager
             catch (Exception exception)
             {
                 cache.Remove(iconId);
-                PluginLog.Error(exception, "Error occurred while LoadIconTexture");
+                DalamudLog.Log.Error(exception, "Error occurred while LoadIconTexture");
             }
         });
     }
 
-    private TextureWrap? LoadIconTextureFromLumina(uint iconId)
+    private IDalamudTextureWrap? LoadIconTextureFromLumina(uint iconId)
     {
         try
         {
-            var iconTex = dataManager.GetIcon(iconId);
+            var iconTex = textureProvider.GetIcon(iconId);
             if (iconTex != null)
             {
-                var tex = uiBuilder.LoadImageRaw(iconTex.GetRgbaImageData(),
-                    iconTex.Header.Width,
-                    iconTex.Header.Height,
-                    4);
-                if (tex.ImGuiHandle != IntPtr.Zero)
+                if (iconTex.ImGuiHandle != IntPtr.Zero)
                 {
-                    return tex;
+                    return iconTex;
                 }
 
-                tex.Dispose();
+                iconTex.Dispose();
             }
         }
         catch (NotImplementedException)
@@ -100,7 +95,7 @@ internal sealed class TextureManager : ITextureManager
         return null;
     }
 
-    private async Task<TextureWrap?> LoadIconTextureFromXivApi(uint iconId)
+    private async Task<IDalamudTextureWrap?> LoadIconTextureFromXivApi(uint iconId)
     {
         var path = Path.Combine(DivinationEnvironment.CacheDirectory, $"Icon.{iconId}.png");
         if (!File.Exists(path))

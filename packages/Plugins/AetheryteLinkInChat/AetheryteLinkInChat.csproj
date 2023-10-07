@@ -26,10 +26,16 @@
             <Private>False</Private>
         </Reference>
 
-        <PackageReference Include="DalamudPackager" Version="2.1.11">
+        <PackageReference Include="DalamudPackager" Version="2.1.12">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 
         <ProjectReference Include="..\..\Common\Common.csproj" />
+    </ItemGroup>
+  
+    <ItemGroup>
+      <None Update="AetheryteLinkInChat.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 </Project>

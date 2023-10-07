@@ -1,4 +1,5 @@
-﻿using Dalamud.Logging;
+﻿using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Logging;
 using DiscordRPC.Logging;
 
 namespace Divination.DiscordIntegration.Discord;
@@ -20,7 +21,7 @@ public class DiscordRpcLogger : ILogger
         }
 
 #pragma warning disable CA1416
-        PluginLog.Verbose(message, args);
+        DalamudLog.Log.Verbose(message, args);
 #pragma warning restore CA1416
     }
 
@@ -32,7 +33,7 @@ public class DiscordRpcLogger : ILogger
         }
 
 #pragma warning disable CA1416
-        PluginLog.Information(message, args);
+        DalamudLog.Log.Information(message, args);
 #pragma warning restore CA1416
     }
 
@@ -44,7 +45,7 @@ public class DiscordRpcLogger : ILogger
         }
 
 #pragma warning disable CA1416
-        PluginLog.Warning(message, args);
+        DalamudLog.Log.Warning(message, args);
 #pragma warning restore CA1416
     }
 
@@ -56,7 +57,7 @@ public class DiscordRpcLogger : ILogger
         }
 
 #pragma warning disable CA1416
-        PluginLog.Error(message, args);
+        DalamudLog.Log.Error(message, args);
 #pragma warning restore CA1416
     }
 }
