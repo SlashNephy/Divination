@@ -3,12 +3,8 @@
   "Name": "Divination.Calculator",
   "Punchline": "/calc 33 - 4",
   "Description": "Simple plugin to just add /calc command.",
-  "Tags": [
-    "utility"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
+  "Tags": ["utility"],
+  "CategoryTags": ["utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,

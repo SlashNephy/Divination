@@ -1,0 +1,58 @@
+{
+  "license": "MIT",
+  "name": "divination",
+  "version": "0.0.0",
+  "author": "SlashNephy <spica@starry.blue>",
+  "repository": "https://github.com/SlashNephy/Divination",
+  "packageManager": "yarn@3.6.4",
+  "workspaces": [
+    "functions",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "format": "concurrently -m 1 -n format: 'yarn:format:*'",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "yarn lint:prettier --write",
+    "lint": "concurrently -n lint: 'yarn:lint:*'",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check ."
+  },
+  "devDependencies": {
+    "@slashnephy/eslint-config": "2.0.28",
+    "@slashnephy/prettier-config": "1.0.18",
+    "concurrently": "8.2.1",
+    "eslint": "8.51.0",
+    "prettier": "3.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@slashnephy/eslint-config"
+    ],
+    "overrides": [
+      {
+        "files": "functions/**/*.ts",
+        "parserOptions": {
+          "project": "./functions/tsconfig.json"
+        }
+      },
+      {
+        "files": "packages/PluginRepository/src/**/*.{ts,tsx}",
+        "parserOptions": {
+          "project": "./packages/PluginRepository/tsconfig.json"
+        }
+      },
+      {
+        "files": "packages/PluginRepository/vite.config.ts",
+        "parserOptions": {
+          "project": "./packages/PluginRepository/tsconfig.node.json"
+        }
+      }
+    ],
+    "ignorePatterns": [
+      "packages/**/obj/*.json"
+    ]
+  }
+}

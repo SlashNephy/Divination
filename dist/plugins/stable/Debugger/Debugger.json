@@ -5,13 +5,8 @@
   "AssemblyVersion": "0.1.0.1255",
   "Description": "Tiny tool to inspect game...",
   "ApplicableVersion": "any",
-  "Tags": [
-    "Development",
-    "Debug"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
+  "Tags": ["Development", "Debug"],
+  "CategoryTags": ["utility"],
   "DalamudApiLevel": 8,
   "LoadRequiredState": 0,
   "LoadSync": false,

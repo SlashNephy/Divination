@@ -5,12 +5,8 @@
   "AssemblyVersion": "0.1.0.1255",
   "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
   "ApplicableVersion": "any",
-  "Tags": [
-    "teleporter"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
+  "Tags": ["teleporter"],
+  "CategoryTags": ["utility"],
   "DalamudApiLevel": 8,
   "LoadRequiredState": 0,
   "LoadSync": false,

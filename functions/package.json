@@ -1,35 +1,19 @@
 {
   "name": "functions",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "author": "SlashNephy <spica@starry.blue>",
   "repository": "https://github.com/SlashNephy/Divination",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "format": "concurrently -n format: 'yarn:format:*'",
-    "format:eslint": "yarn lint:eslint --fix",
-    "format:prettier": "yarn lint:prettier --write",
-    "lint": "concurrently -n lint: 'yarn:lint:*'",
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier --check ."
+    "build": "tsc"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20231002.0",
-    "@slashnephy/eslint-config": "2.0.28",
-    "@slashnephy/prettier-config": "1.0.18",
-    "concurrently": "8.2.1",
-    "eslint": "8.50.0",
-    "prettier": "3.0.3",
     "typescript": "5.2.2",
     "wrangler": "3.10.1"
   },
   "packageManager": "yarn@3.6.4",
   "engines": {
     "node": ">=18"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@slashnephy/eslint-config"
-    ]
   }
 }

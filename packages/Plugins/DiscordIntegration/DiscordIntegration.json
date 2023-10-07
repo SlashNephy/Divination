@@ -3,12 +3,8 @@
   "Name": "Divination.DiscordIntegration",
   "Punchline": "Fully-customizable Discord Rich Presence",
   "Description": "Dalamud Plugin to support Rich Presence for FFXIV.",
-  "Tags": [
-    "Discord"
-  ],
-  "CategoryTags": [
-    "social"
-  ],
+  "Tags": ["Discord"],
+  "CategoryTags": ["social"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,
@@ -16,8 +12,7 @@
   "LoadSync": false,
   "LoadPriority": 0,
   "CanUnloadAsync": false,
-  "ImageUrls": [
-  ],
+  "ImageUrls": [],
   "IconUrl": null,
   "AcceptsFeedback": true,
   "FeedbackMessage": null

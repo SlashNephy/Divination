@@ -3,13 +3,8 @@
   "Name": "Divination.SseClient",
   "Punchline": "Enhance your chat to receive external messages",
   "Description": "Receive SSE payloads such as Discord messages, mob hunt information and so on.",
-  "Tags": [
-    "Chat"
-  ],
-  "CategoryTags": [
-    "social",
-    "utility"
-  ],
+  "Tags": ["Chat"],
+  "CategoryTags": ["social", "utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
   "DalamudApiLevel": 8,

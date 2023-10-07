@@ -5,12 +5,8 @@
   "AssemblyVersion": "0.1.0.1419",
   "Description": "Dalamud Plugin to support Rich Presence for FFXIV.",
   "ApplicableVersion": "any",
-  "Tags": [
-    "Discord"
-  ],
-  "CategoryTags": [
-    "social"
-  ],
+  "Tags": ["Discord"],
+  "CategoryTags": ["social"],
   "DalamudApiLevel": 8,
   "LoadRequiredState": 2,
   "LoadSync": false,

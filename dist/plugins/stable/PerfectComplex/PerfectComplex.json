@@ -5,13 +5,8 @@
   "AssemblyVersion": "0.1.0.1255",
   "Description": "",
   "ApplicableVersion": "any",
-  "Tags": [
-    "[Tag]"
-  ],
-  "CategoryTags": [
-    "ui",
-    "utility"
-  ],
+  "Tags": ["[Tag]"],
+  "CategoryTags": ["ui", "utility"],
   "DalamudApiLevel": 8,
   "LoadRequiredState": 2,
   "LoadSync": false,

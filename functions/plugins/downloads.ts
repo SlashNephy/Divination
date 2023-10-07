@@ -8,6 +8,7 @@ export const onRequest: PagesFunction<PagesEnv> = async (context) => {
   )
   const result = await Promise.all(promises)
   const payload: Record<string, number> = result.reduce((acc, [name, count]) => ({ ...acc, [name]: count }), {})
+
   return Response.json(payload)
 }
 
@@ -18,5 +19,6 @@ const getDownloadCount = async (kv: KVNamespace, pluginId: string): Promise<numb
   }
 
   const count = parseInt(countRaw, 10)
+
   return Number.isNaN(count) ? 0 : count
 }

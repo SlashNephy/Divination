@@ -1,7 +1,6 @@
 import useSWR from 'swr'
 
 export type PluginManifest = {
-  /* eslint-disable @typescript-eslint/naming-convention */
   AssemblyVersion: string
   Author: string
   CategoryTags: string[]
@@ -16,7 +15,6 @@ export type PluginManifest = {
   RepoUrl: string
   Tags: string[]
   TestingAssemblyVersion: string
-  /* eslint-enable @typescript-eslint/naming-convention */
 }
 
 export function usePluginMaster(): PluginManifest[] {

@@ -20,6 +20,7 @@ export const onRequest: PagesFunction<PagesEnv, 'channel' | 'plugin_id'> = async
 const checkRemoteResource = async (url: string): Promise<boolean> => {
   try {
     const response = await fetch(url)
+
     return response.status >= 200 && response.status < 300
   } catch (e: unknown) {
     return false
@@ -33,6 +34,7 @@ const getDownloadCount = async (kv: KVNamespace, pluginId: string): Promise<numb
   }
 
   const count = parseInt(countRaw, 10)
+
   return Number.isNaN(count) ? 0 : count
 }
 

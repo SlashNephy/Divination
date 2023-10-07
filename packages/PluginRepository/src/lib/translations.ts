@@ -1,6 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/naming-convention */
-
 export type Translation = {
   TopDescription: string
   HowToUseHeader: string

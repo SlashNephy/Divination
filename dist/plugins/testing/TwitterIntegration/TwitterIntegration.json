@@ -5,12 +5,8 @@
   "AssemblyVersion": "0.1.0.1255",
   "Description": "Dalamud Plugin to add tweet function and Twitter timeline in FFXIV chat",
   "ApplicableVersion": "any",
-  "Tags": [
-    "Twitter"
-  ],
-  "CategoryTags": [
-    "social"
-  ],
+  "Tags": ["Twitter"],
+  "CategoryTags": ["social"],
   "DalamudApiLevel": 8,
   "LoadRequiredState": 0,
   "LoadSync": false,

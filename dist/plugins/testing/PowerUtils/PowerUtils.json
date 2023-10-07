@@ -5,12 +5,8 @@
   "AssemblyVersion": "0.1.0.1107",
   "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
   "ApplicableVersion": "any",
-  "Tags": [
-    "Command"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
+  "Tags": ["Command"],
+  "CategoryTags": ["utility"],
   "DalamudApiLevel": 8,
   "LoadRequiredState": 2,
   "LoadSync": false,
