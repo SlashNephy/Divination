@@ -1,52 +1,124 @@
 {
-  "after": "61e72d9f8facab7060e7d131f07eae08d4226e75",
+  "after": "65bf7a3ecf0fb73334d047d323a01913d9b523df",
   "base_ref": null,
-  "before": "b3b39ae376386e54f677cbd8cb73e5f796b032b6",
+  "before": "fc262ea5de990aa61fb15de6317e67afab2c9efe",
   "commits": [
     {
       "author": {
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "name": "renovate[bot]",
-        "username": "renovate[bot]"
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
       },
       "committer": {
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "name": "renovate[bot]",
-        "username": "renovate[bot]"
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
       },
       "distinct": true,
-      "id": "61e72d9f8facab7060e7d131f07eae08d4226e75",
-      "message": "chore(deps): update dependency discordrichpresence to v1.2.1.24",
-      "timestamp": "2023-07-29T15:14:47Z",
-      "tree_id": "1de17d2c8bcdc8862afc34961e57320f38435a0e",
-      "url": "https://github.com/SlashNephy/Divination/commit/61e72d9f8facab7060e7d131f07eae08d4226e75"
+      "id": "26edcdbb3014f8d43ac9023b938358201d2b1d63",
+      "message": "Update Common to API v9",
+      "timestamp": "2023-10-05T00:49:55-03:00",
+      "tree_id": "8929cbdbfd6ed60d6c696545aa6ab8f23d04a105",
+      "url": "https://github.com/SlashNephy/Divination/commit/26edcdbb3014f8d43ac9023b938358201d2b1d63"
+    },
+    {
+      "author": {
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
+      },
+      "committer": {
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
+      },
+      "distinct": true,
+      "id": "8511c57dfde263713e36e4667bb86fde0bb26992",
+      "message": "Update AetheryteLinkInChat to API v9",
+      "timestamp": "2023-10-05T01:26:07-03:00",
+      "tree_id": "b67798ce8961e2f8d023cd6176e9c8bbe4d2b996",
+      "url": "https://github.com/SlashNephy/Divination/commit/8511c57dfde263713e36e4667bb86fde0bb26992"
+    },
+    {
+      "author": {
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
+      },
+      "committer": {
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
+      },
+      "distinct": true,
+      "id": "da0a54edb8e8bd6c45743d466805e073daa726cd",
+      "message": "Update FaloopIntegration to API v9",
+      "timestamp": "2023-10-05T01:54:23-03:00",
+      "tree_id": "4c84ba4d51388461bc6d4b36b48ddf43d0b4b1d8",
+      "url": "https://github.com/SlashNephy/Divination/commit/da0a54edb8e8bd6c45743d466805e073daa726cd"
+    },
+    {
+      "author": {
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
+      },
+      "committer": {
+        "email": "douglas@diyagi.dev",
+        "name": "Diyagi",
+        "username": "Diyagi"
+      },
+      "distinct": true,
+      "id": "e4775b87a49e396799115455d5fb1b746ef237b8",
+      "message": "Update projects to API v9",
+      "timestamp": "2023-10-05T02:16:05-03:00",
+      "tree_id": "d55c9f8d80b31076e422e337c12c0e0f1b2d7c12",
+      "url": "https://github.com/SlashNephy/Divination/commit/e4775b87a49e396799115455d5fb1b746ef237b8"
+    },
+    {
+      "author": {
+        "email": "spica@starry.blue",
+        "name": "SlashNephy",
+        "username": "SlashNephy"
+      },
+      "committer": {
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
+      },
+      "distinct": true,
+      "id": "65bf7a3ecf0fb73334d047d323a01913d9b523df",
+      "message": "Merge pull request #324 from Diyagi/apiv9\n\nUpdate projects to API v9",
+      "timestamp": "2023-10-07T22:13:29+09:00",
+      "tree_id": "53c6d4e4a4dcbb2d2712fa2c83bb61aff3ff35fd",
+      "url": "https://github.com/SlashNephy/Divination/commit/65bf7a3ecf0fb73334d047d323a01913d9b523df"
     }
   ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/b3b39ae37638...61e72d9f8fac",
+  "compare": "https://github.com/SlashNephy/Divination/compare/fc262ea5de99...65bf7a3ecf0f",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "29139614+renovate[bot]@users.noreply.github.com",
-      "name": "renovate[bot]",
-      "username": "renovate[bot]"
+      "email": "spica@starry.blue",
+      "name": "SlashNephy",
+      "username": "SlashNephy"
     },
     "committer": {
-      "email": "29139614+renovate[bot]@users.noreply.github.com",
-      "name": "renovate[bot]",
-      "username": "renovate[bot]"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "61e72d9f8facab7060e7d131f07eae08d4226e75",
-    "message": "chore(deps): update dependency discordrichpresence to v1.2.1.24",
-    "timestamp": "2023-07-29T15:14:47Z",
-    "tree_id": "1de17d2c8bcdc8862afc34961e57320f38435a0e",
-    "url": "https://github.com/SlashNephy/Divination/commit/61e72d9f8facab7060e7d131f07eae08d4226e75"
+    "id": "65bf7a3ecf0fb73334d047d323a01913d9b523df",
+    "message": "Merge pull request #324 from Diyagi/apiv9\n\nUpdate projects to API v9",
+    "timestamp": "2023-10-07T22:13:29+09:00",
+    "tree_id": "53c6d4e4a4dcbb2d2712fa2c83bb61aff3ff35fd",
+    "url": "https://github.com/SlashNephy/Divination/commit/65bf7a3ecf0fb73334d047d323a01913d9b523df"
   },
   "pusher": {
-    "email": null,
-    "name": "renovate[bot]"
+    "email": "spica@starry.blue",
+    "name": "SlashNephy"
   },
   "ref": "refs/heads/master",
   "repository": {
@@ -71,8 +143,8 @@
     "downloads_url": "https://api.github.com/repos/SlashNephy/Divination/downloads",
     "events_url": "https://api.github.com/repos/SlashNephy/Divination/events",
     "fork": false,
-    "forks": 2,
-    "forks_count": 2,
+    "forks": 3,
+    "forks_count": 3,
     "forks_url": "https://api.github.com/repos/SlashNephy/Divination/forks",
     "full_name": "SlashNephy/Divination",
     "git_commits_url": "https://api.github.com/repos/SlashNephy/Divination/git/commits{/sha}",
@@ -83,7 +155,7 @@
     "has_downloads": true,
     "has_issues": true,
     "has_pages": false,
-    "has_projects": true,
+    "has_projects": false,
     "has_wiki": false,
     "homepage": "http://xiv.starry.blue/",
     "hooks_url": "https://api.github.com/repos/SlashNephy/Divination/hooks",
@@ -111,8 +183,8 @@
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 20,
-    "open_issues_count": 20,
+    "open_issues": 28,
+    "open_issues_count": 28,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
       "email": "spica@starry.blue",
@@ -137,12 +209,12 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1690643687,
+    "pushed_at": 1696684409,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 49681,
+    "size": 51318,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
-    "stargazers": 5,
-    "stargazers_count": 5,
+    "stargazers": 6,
+    "stargazers_count": 6,
     "stargazers_url": "https://api.github.com/repos/SlashNephy/Divination/stargazers",
     "statuses_url": "https://api.github.com/repos/SlashNephy/Divination/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/SlashNephy/Divination/subscribers",
@@ -150,33 +222,37 @@
     "svn_url": "https://github.com/SlashNephy/Divination",
     "tags_url": "https://api.github.com/repos/SlashNephy/Divination/tags",
     "teams_url": "https://api.github.com/repos/SlashNephy/Divination/teams",
-    "topics": ["dalamud", "dalamud-plugin", "xivlauncher"],
+    "topics": [
+      "dalamud",
+      "dalamud-plugin",
+      "xivlauncher"
+    ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-05-22T15:26:10Z",
+    "updated_at": "2023-09-02T08:12:49Z",
     "url": "https://github.com/SlashNephy/Divination",
     "visibility": "public",
-    "watchers": 5,
-    "watchers_count": 5,
+    "watchers": 6,
+    "watchers_count": 6,
     "web_commit_signoff_required": false
   },
   "sender": {
-    "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-    "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-    "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-    "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-    "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+    "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+    "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+    "followers_url": "https://api.github.com/users/SlashNephy/followers",
+    "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+    "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/apps/renovate",
-    "id": 29139614,
-    "login": "renovate[bot]",
-    "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-    "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-    "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-    "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+    "html_url": "https://github.com/SlashNephy",
+    "id": 7302150,
+    "login": "SlashNephy",
+    "node_id": "MDQ6VXNlcjczMDIxNTA=",
+    "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+    "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+    "repos_url": "https://api.github.com/users/SlashNephy/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-    "type": "Bot",
-    "url": "https://api.github.com/users/renovate%5Bbot%5D"
+    "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/SlashNephy"
   }
 }
