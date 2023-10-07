@@ -2,12 +2,16 @@
   "Author": "Asteria Nocturna",
   "Name": "Divination.AetheryteLinkInChat",
   "InternalName": "AetheryteLinkInChat",
-  "AssemblyVersion": "0.1.0.1255",
+  "AssemblyVersion": "0.1.0.1562",
   "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
   "ApplicableVersion": "any",
-  "Tags": ["teleporter"],
-  "CategoryTags": ["utility"],
-  "DalamudApiLevel": 8,
+  "Tags": [
+    "teleporter"
+  ],
+  "CategoryTags": [
+    "utility"
+  ],
+  "DalamudApiLevel": 9,
   "LoadRequiredState": 0,
   "LoadSync": false,
   "CanUnloadAsync": false,
