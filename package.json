@@ -1,17 +1,9 @@
 {
-  "license": "MIT",
   "name": "divination",
   "version": "0.0.0",
   "author": "SlashNephy <spica@starry.blue>",
   "repository": "https://github.com/SlashNephy/Divination",
-  "packageManager": "yarn@3.6.4",
-  "workspaces": [
-    "functions",
-    "packages/*"
-  ],
-  "engines": {
-    "node": ">=20"
-  },
+  "license": "MIT",
   "scripts": {
     "build": "yarn workspaces foreach -pi run build",
     "format": "concurrently -m 1 -n format: 'yarn:format:*'",
@@ -27,6 +19,10 @@
     "concurrently": "8.2.1",
     "eslint": "8.51.0",
     "prettier": "3.0.3"
+  },
+  "packageManager": "yarn@3.6.4",
+  "engines": {
+    "node": ">=20"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +51,9 @@
     "ignorePatterns": [
       "packages/**/obj/*.json"
     ]
-  }
+  },
+  "workspaces": [
+    "functions",
+    "packages/*"
+  ]
 }
