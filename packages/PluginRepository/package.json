@@ -24,7 +24,7 @@
     "@types/react-dom": "18.2.8",
     "@vitejs/plugin-react-swc": "3.4.0",
     "typescript": "5.2.2",
-    "vite": "4.4.9"
+    "vite": "4.4.11"
   },
   "packageManager": "yarn@3.6.4",
   "engines": {
