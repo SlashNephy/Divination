@@ -1660,9 +1660,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.32":
-  version: 2.0.32
-  resolution: "@slashnephy/eslint-config@npm:2.0.32"
+"@slashnephy/eslint-config@npm:2.0.33":
+  version: 2.0.33
+  resolution: "@slashnephy/eslint-config@npm:2.0.33"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.5.4
@@ -1701,12 +1701,12 @@ __metadata:
     eslint-plugin-userscripts: 0.4.0
     eslint-plugin-vitest: 0.3.2
     eslint-plugin-xss: 0.1.12
-    eslint-plugin-yml: 1.9.0
+    eslint-plugin-yml: 1.10.0
     typescript: 5.2.2
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: dace32980c1794c1e45d872a5d63b302ce7c7e93e6d12467f8ca1bb16a799b7f794cb8d33011dc5d033423c2fe730c23b91ce938ace598a5c04b13edc385306f
+  checksum: 358a9c119b03965263f32f97abda8ba9eb702ec34836130140e733e965d1d08dd6a509df7286a09dce7637683eb1c92252c108e3c0a7588c571f4679c5486185
   languageName: node
   linkType: hard
 
@@ -2859,7 +2859,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "divination@workspace:."
   dependencies:
-    "@slashnephy/eslint-config": 2.0.32
+    "@slashnephy/eslint-config": 2.0.33
     "@slashnephy/prettier-config": 1.0.21
     concurrently: 8.2.1
     eslint: 8.51.0
@@ -3225,6 +3225,15 @@ __metadata:
   version: 4.0.0
   resolution: "escape-string-regexp@npm:4.0.0"
   checksum: 98b48897d93060f2322108bf29db0feba7dd774be96cd069458d1453347b25ce8682ecc39859d4bca2203cc0ab19c237bcc71755eff49a0f8d90beadeeba5cc5
+  languageName: node
+  linkType: hard
+
+"eslint-compat-utils@npm:^0.1.0":
+  version: 0.1.2
+  resolution: "eslint-compat-utils@npm:0.1.2"
+  peerDependencies:
+    eslint: ">=6.0.0"
+  checksum: 2315d9db81efb7f58808053bf32a1d5970b38e01cd8244f4f1b5aa05d883255c5c93fc184e9c29a0e7e2dcf16ff16330977302474d3fa870e41c5bed9c66f76b
   languageName: node
   linkType: hard
 
@@ -3733,17 +3742,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-yml@npm:1.9.0":
-  version: 1.9.0
-  resolution: "eslint-plugin-yml@npm:1.9.0"
+"eslint-plugin-yml@npm:1.10.0":
+  version: 1.10.0
+  resolution: "eslint-plugin-yml@npm:1.10.0"
   dependencies:
     debug: ^4.3.2
+    eslint-compat-utils: ^0.1.0
     lodash: ^4.17.21
     natural-compare: ^1.4.0
     yaml-eslint-parser: ^1.2.1
   peerDependencies:
     eslint: ">=6.0.0"
-  checksum: d6ee8a32e1230e12aefc951040d06270f8c0fe9a7f93fa091a35eef05ebcf550556620ddabc65fcdb33700767445d6d07f71efd31021660ad51f1b8f0d0ed200
+  checksum: bd913df237a9ee65388389b4ba65c68dbb169d041237d8e8ca1e2f415f0202e0a85aabafdc59d2688bb11ae319d1972df7e292cf0c637b1ebe88ae518497ffff
   languageName: node
   linkType: hard
 

@@ -14,7 +14,7 @@
     "lint:prettier": "prettier --check ."
   },
   "devDependencies": {
-    "@slashnephy/eslint-config": "2.0.32",
+    "@slashnephy/eslint-config": "2.0.33",
     "@slashnephy/prettier-config": "1.0.21",
     "concurrently": "8.2.1",
     "eslint": "8.51.0",
