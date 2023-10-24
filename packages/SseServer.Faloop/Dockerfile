@@ -15,7 +15,7 @@ COPY ./src/main/ /app/src/main/
 
 RUN gradle shadowJar --parallel --no-daemon
 
-FROM amazoncorretto:17.0.7@sha256:42caee75951cc43cd6056d5d49393b9196eca3a62437d9179108c4f437db1473
+FROM amazoncorretto:17.0.9@sha256:4f12c3ab62e9a75d8de9b8d69245790c12a660778aea141a3a9aac243820cf68
 WORKDIR /app
 
 COPY --from=build /app/build/libs/Divination.SseServer.Faloop-all.jar /app/Divination.SseServer.Faloop.jar
