@@ -17,7 +17,7 @@
     "@slashnephy/eslint-config": "2.0.43",
     "@slashnephy/prettier-config": "1.0.30",
     "concurrently": "8.2.2",
-    "eslint": "8.51.0",
+    "eslint": "8.52.0",
     "prettier": "3.0.3"
   },
   "packageManager": "yarn@3.6.4",
