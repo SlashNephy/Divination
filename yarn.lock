@@ -1673,9 +1673,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.48":
-  version: 2.0.48
-  resolution: "@slashnephy/eslint-config@npm:2.0.48"
+"@slashnephy/eslint-config@npm:2.0.49":
+  version: 2.0.49
+  resolution: "@slashnephy/eslint-config@npm:2.0.49"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.5.6
@@ -1695,7 +1695,7 @@ __metadata:
     eslint-plugin-editorconfig: 4.0.3
     eslint-plugin-eslint-comments: 3.2.0
     eslint-plugin-import: 2.29.0
-    eslint-plugin-jest: 27.4.3
+    eslint-plugin-jest: 27.6.0
     eslint-plugin-jest-formatting: 3.1.0
     eslint-plugin-json: 3.1.0
     eslint-plugin-jsx-a11y: 6.7.1
@@ -1706,7 +1706,7 @@ __metadata:
     eslint-plugin-promise: 6.1.1
     eslint-plugin-react: 7.33.2
     eslint-plugin-react-hooks: 4.6.0
-    eslint-plugin-react-refresh: 0.4.3
+    eslint-plugin-react-refresh: 0.4.4
     eslint-plugin-relay: 1.8.3
     eslint-plugin-storybook: 0.6.15
     eslint-plugin-tsdoc: 0.2.17
@@ -1719,7 +1719,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: f7cb46828a2e07fc3de5ab26fdb849cd42e4197f4384f9bf0d3e95e2bbf8856a54c34905329e502403754ea72391df11453553c043d6b01264861f3849aa931b
+  checksum: db136d0b6821cc8e50381ecce4aad42ecba8e523c730156e978eb939deab7a085daeb13ac9515206e1f6ff977349660991a0a75312d6b33c56f991c0adc3768e
   languageName: node
   linkType: hard
 
@@ -2831,7 +2831,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "divination@workspace:."
   dependencies:
-    "@slashnephy/eslint-config": 2.0.48
+    "@slashnephy/eslint-config": 2.0.49
     "@slashnephy/prettier-config": 1.0.33
     concurrently: 8.2.2
     eslint: 8.52.0
@@ -3459,9 +3459,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:27.4.3":
-  version: 27.4.3
-  resolution: "eslint-plugin-jest@npm:27.4.3"
+"eslint-plugin-jest@npm:27.6.0":
+  version: 27.6.0
+  resolution: "eslint-plugin-jest@npm:27.6.0"
   dependencies:
     "@typescript-eslint/utils": ^5.10.0
   peerDependencies:
@@ -3473,7 +3473,7 @@ __metadata:
       optional: true
     jest:
       optional: true
-  checksum: de062a04f30d72535aecfd6594aa302cf350d62e86805c8f0edbb3dce4cde5b557766e7acfd0f87709a9b70854cc2522c04b875337925c64d0d9bc1118ef4693
+  checksum: 4c42641f9bf2d597761637028083e20b9f81762308e98baae40eb805d3e81ff8d837f06f4f0c1a2fd249e2be2fb24d33b7aafeaa8942de805c2b8d7c3b6fc4e4
   languageName: node
   linkType: hard
 
@@ -3595,12 +3595,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:0.4.3":
-  version: 0.4.3
-  resolution: "eslint-plugin-react-refresh@npm:0.4.3"
+"eslint-plugin-react-refresh@npm:0.4.4":
+  version: 0.4.4
+  resolution: "eslint-plugin-react-refresh@npm:0.4.4"
   peerDependencies:
     eslint: ">=7"
-  checksum: 0332c950bb46c3058fd06acb1dbdc3ea0af05238645f4c0f575e0e367440dc56afb928f855833d321b9e8109e08c63d5f476cc55d507f883a80c289bfcd509cb
+  checksum: 6b93f43cef5f69c18751db3267ce6cc7cb88f07061df28fc12401be56d93f37134f2a794c760f51cd5f84c5e81d81b003ef761ca76e7674646808b82884aa356
   languageName: node
   linkType: hard
 
