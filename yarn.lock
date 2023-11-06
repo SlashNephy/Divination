@@ -1680,9 +1680,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.52":
-  version: 2.0.52
-  resolution: "@slashnephy/eslint-config@npm:2.0.52"
+"@slashnephy/eslint-config@npm:2.0.53":
+  version: 2.0.53
+  resolution: "@slashnephy/eslint-config@npm:2.0.53"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.5.6
@@ -1719,14 +1719,14 @@ __metadata:
     eslint-plugin-tsdoc: 0.2.17
     eslint-plugin-unused-imports: 3.0.0
     eslint-plugin-userscripts: 0.4.0
-    eslint-plugin-vitest: 0.3.8
+    eslint-plugin-vitest: 0.3.9
     eslint-plugin-xss: 0.1.12
     eslint-plugin-yml: 1.10.0
     typescript: 5.2.2
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: 62d00105610f0e41f6f4a425265618acc8d8eaa2a1449a94b852747ad701373261d36ea3171b3627fef0aab7669add0997ca96b26ef9e7e83314b4a8083210a8
+  checksum: 84e84b4108893f5f0b2a51e6cb810d093deb981a07cf9bb74c88a2639c6dd2c6985874d5a7bd9ed81c6422c05419a721beeb31d6ebacbbfa420742e2bf3f97d3
   languageName: node
   linkType: hard
 
@@ -2139,7 +2139,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.9.1, @typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.7.5":
+"@typescript-eslint/utils@npm:6.9.1, @typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.9.1":
   version: 6.9.1
   resolution: "@typescript-eslint/utils@npm:6.9.1"
   dependencies:
@@ -2849,7 +2849,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "divination@workspace:."
   dependencies:
-    "@slashnephy/eslint-config": 2.0.52
+    "@slashnephy/eslint-config": 2.0.53
     "@slashnephy/prettier-config": 1.0.36
     concurrently: 8.2.2
     eslint: 8.52.0
@@ -3708,18 +3708,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vitest@npm:0.3.8":
-  version: 0.3.8
-  resolution: "eslint-plugin-vitest@npm:0.3.8"
+"eslint-plugin-vitest@npm:0.3.9":
+  version: 0.3.9
+  resolution: "eslint-plugin-vitest@npm:0.3.9"
   dependencies:
-    "@typescript-eslint/utils": ^6.7.5
+    "@typescript-eslint/utils": ^6.9.1
   peerDependencies:
     eslint: ">=8.0.0"
     vitest: "*"
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: ed48a402ecc3e45b8703294f6b1a163347f39fd4ad58f209b9929f149239b44029a4cc262d7797613491b2231fb281b98460dda79bb0e88871bc756e8a3d1dc9
+    vitest:
+      optional: true
+  checksum: c25d45d4b1350d50269cd079712be4993eb2edf3a4ac211896d23f3d2476f263e0fddc4bcfe9642aaecb33c12c964058d9e1f07aaa745feacfbf5df7a7eb5096
   languageName: node
   linkType: hard
 
