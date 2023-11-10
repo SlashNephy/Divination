@@ -1673,9 +1673,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.55":
-  version: 2.0.55
-  resolution: "@slashnephy/eslint-config@npm:2.0.55"
+"@slashnephy/eslint-config@npm:2.0.56":
+  version: 2.0.56
+  resolution: "@slashnephy/eslint-config@npm:2.0.56"
   dependencies:
     "@emotion/eslint-plugin": 11.11.0
     "@next/eslint-plugin-next": 13.5.6
@@ -1699,7 +1699,7 @@ __metadata:
     eslint-plugin-jest-formatting: 3.1.0
     eslint-plugin-json: 3.1.0
     eslint-plugin-jsx-a11y: 6.8.0
-    eslint-plugin-n: 16.2.0
+    eslint-plugin-n: 16.3.0
     eslint-plugin-no-void-return-type: 1.0.2
     eslint-plugin-node: 11.1.0
     eslint-plugin-package-json: 0.1.5
@@ -1719,7 +1719,7 @@ __metadata:
     yaml-eslint-parser: 1.2.2
   peerDependencies:
     eslint: ^8
-  checksum: df4c55f6a18f547b2197cc9f29c68f54d97b942296e82b7ce022772f74302eba29caf4139f977a43e9f964de8dba9221e02e6200813f030f8efbecf43a27e907
+  checksum: 3b0c83f7d32fc736940a4109a7a31f2b417d5910abce73f32d8ac6509a187afa93ac84a7d86d9ddaeedc736d8a22131060591f134b78852990656e19422b5a3b
   languageName: node
   linkType: hard
 
@@ -2922,7 +2922,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "divination@workspace:."
   dependencies:
-    "@slashnephy/eslint-config": 2.0.55
+    "@slashnephy/eslint-config": 2.0.56
     "@slashnephy/prettier-config": 1.0.38
     concurrently: 8.2.2
     eslint: 8.53.0
@@ -3604,9 +3604,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-n@npm:16.2.0":
-  version: 16.2.0
-  resolution: "eslint-plugin-n@npm:16.2.0"
+"eslint-plugin-n@npm:16.3.0":
+  version: 16.3.0
+  resolution: "eslint-plugin-n@npm:16.3.0"
   dependencies:
     "@eslint-community/eslint-utils": ^4.4.0
     builtins: ^5.0.1
@@ -3619,7 +3619,7 @@ __metadata:
     semver: ^7.5.3
   peerDependencies:
     eslint: ">=7.0.0"
-  checksum: 124ba4f418c895d81201ddc0c61cdca246c8aaa652e572653fad0dd66701aaef30598956fbe676726ab1037e600eddeaba52cd1a71b86f41e50a97f6e725055e
+  checksum: 1463618c4935203d86f7ebe5076b2a9b5da9a7b57db588527e21243190a4aa2a0a401d74bd5cb9b8b3d39ca40741996a35d9e891c29c8c876fa1185af46ac7cf
   languageName: node
   linkType: hard
 
