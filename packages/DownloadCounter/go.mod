@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/caarlos0/env/v8 v8.0.0
+	github.com/caarlos0/env/v9 v9.0.0
 	github.com/doug-martin/goqu/v9 v9.18.0
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/labstack/echo/v4 v4.11.3
