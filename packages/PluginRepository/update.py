@@ -101,7 +101,7 @@ def fetch_download_statistics():
     try:
         with urllib.request.urlopen(request) as response:
             return json.load(response)
-    except urllib.error.HTTPError:
+    except:
         return {}
 
 
