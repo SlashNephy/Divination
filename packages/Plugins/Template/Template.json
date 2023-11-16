@@ -7,7 +7,7 @@
   "CategoryTags": ["other", "jobs", "ui", "minigames", "inventory", "sound", "social", "utility"],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 8,
+  "DalamudApiLevel": 9,
   "LoadRequiredState": 2,
   "LoadSync": false,
   "LoadPriority": 0,
