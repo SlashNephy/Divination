@@ -1,70 +1,52 @@
 {
-  "after": "333794cb5b5b1bdeadb1f75482e66330191f1262",
+  "after": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
   "base_ref": null,
-  "before": "d41fdc1525e894e53a44fc626744a1f3afd64c0f",
+  "before": "0bb4991a145ce589741101e6fb03b9bdcc0504d5",
   "commits": [
     {
       "author": {
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "name": "renovate[bot]",
-        "username": "renovate[bot]"
+        "email": "spica@starry.blue",
+        "name": "SlashNephy",
+        "username": "SlashNephy"
       },
       "committer": {
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "name": "renovate[bot]",
-        "username": "renovate[bot]"
+        "email": "spica@starry.blue",
+        "name": "SlashNephy",
+        "username": "SlashNephy"
       },
       "distinct": true,
-      "id": "8e5976a59ad9eb5cd42d0ea7044665c4d0993dde",
-      "message": "chore(deps): update dependency dalamudpackager to v2.1.11",
-      "timestamp": "2023-04-27T13:07:09Z",
-      "tree_id": "1341e2d71682075035d0206758e7f21cd312f3c9",
-      "url": "https://github.com/SlashNephy/Divination/commit/8e5976a59ad9eb5cd42d0ea7044665c4d0993dde"
-    },
-    {
-      "author": {
-        "email": "renovate[bot]@users.noreply.github.com",
-        "name": "renovate[bot]",
-        "username": "renovate[bot]"
-      },
-      "committer": {
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "name": "renovate[bot]",
-        "username": "renovate[bot]"
-      },
-      "distinct": true,
-      "id": "333794cb5b5b1bdeadb1f75482e66330191f1262",
-      "message": "🧹 dotnet format",
-      "timestamp": "2023-04-27T13:07:09Z",
-      "tree_id": "85bf15dfc8a9d11e302592e82484913934fe0033",
-      "url": "https://github.com/SlashNephy/Divination/commit/333794cb5b5b1bdeadb1f75482e66330191f1262"
+      "id": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+      "message": "updade DalamudApiLevel to 9",
+      "timestamp": "2023-11-16T13:51:39+09:00",
+      "tree_id": "5d9de52ca33a17a8ebc45a7f2bea6cfae0fdad1f",
+      "url": "https://github.com/SlashNephy/Divination/commit/8e7ac38594b0640ead6d21400f7ea4a86935a352"
     }
   ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/d41fdc1525e8...333794cb5b5b",
+  "compare": "https://github.com/SlashNephy/Divination/compare/0bb4991a145c...8e7ac38594b0",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "renovate[bot]@users.noreply.github.com",
-      "name": "renovate[bot]",
-      "username": "renovate[bot]"
+      "email": "spica@starry.blue",
+      "name": "SlashNephy",
+      "username": "SlashNephy"
     },
     "committer": {
-      "email": "29139614+renovate[bot]@users.noreply.github.com",
-      "name": "renovate[bot]",
-      "username": "renovate[bot]"
+      "email": "spica@starry.blue",
+      "name": "SlashNephy",
+      "username": "SlashNephy"
     },
     "distinct": true,
-    "id": "333794cb5b5b1bdeadb1f75482e66330191f1262",
-    "message": "🧹 dotnet format",
-    "timestamp": "2023-04-27T13:07:09Z",
-    "tree_id": "85bf15dfc8a9d11e302592e82484913934fe0033",
-    "url": "https://github.com/SlashNephy/Divination/commit/333794cb5b5b1bdeadb1f75482e66330191f1262"
+    "id": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+    "message": "updade DalamudApiLevel to 9",
+    "timestamp": "2023-11-16T13:51:39+09:00",
+    "tree_id": "5d9de52ca33a17a8ebc45a7f2bea6cfae0fdad1f",
+    "url": "https://github.com/SlashNephy/Divination/commit/8e7ac38594b0640ead6d21400f7ea4a86935a352"
   },
   "pusher": {
-    "email": null,
-    "name": "renovate[bot]"
+    "email": "spica@starry.blue",
+    "name": "SlashNephy"
   },
   "ref": "refs/heads/master",
   "repository": {
@@ -84,13 +66,13 @@
     "created_at": 1682507960,
     "default_branch": "master",
     "deployments_url": "https://api.github.com/repos/SlashNephy/Divination/deployments",
-    "description": "[WIP] FINAL FANTASY XIV toolkits",
+    "description": "FINAL FANTASY XIV toolkits",
     "disabled": false,
     "downloads_url": "https://api.github.com/repos/SlashNephy/Divination/downloads",
     "events_url": "https://api.github.com/repos/SlashNephy/Divination/events",
     "fork": false,
-    "forks": 1,
-    "forks_count": 1,
+    "forks": 3,
+    "forks_count": 3,
     "forks_url": "https://api.github.com/repos/SlashNephy/Divination/forks",
     "full_name": "SlashNephy/Divination",
     "git_commits_url": "https://api.github.com/repos/SlashNephy/Divination/git/commits{/sha}",
@@ -100,8 +82,8 @@
     "has_discussions": false,
     "has_downloads": true,
     "has_issues": true,
-    "has_pages": true,
-    "has_projects": true,
+    "has_pages": false,
+    "has_projects": false,
     "has_wiki": false,
     "homepage": "http://xiv.starry.blue/",
     "hooks_url": "https://api.github.com/repos/SlashNephy/Divination/hooks",
@@ -129,8 +111,8 @@
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 6,
-    "open_issues_count": 6,
+    "open_issues": 25,
+    "open_issues_count": 25,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
       "email": "spica@starry.blue",
@@ -155,12 +137,12 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1682600830,
+    "pushed_at": 1700110353,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 41319,
+    "size": 54759,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
-    "stargazers": 1,
-    "stargazers_count": 1,
+    "stargazers": 7,
+    "stargazers_count": 7,
     "stargazers_url": "https://api.github.com/repos/SlashNephy/Divination/stargazers",
     "statuses_url": "https://api.github.com/repos/SlashNephy/Divination/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/SlashNephy/Divination/subscribers",
@@ -168,33 +150,37 @@
     "svn_url": "https://github.com/SlashNephy/Divination",
     "tags_url": "https://api.github.com/repos/SlashNephy/Divination/tags",
     "teams_url": "https://api.github.com/repos/SlashNephy/Divination/teams",
-    "topics": ["dalamud", "dalamud-plugin", "xivlauncher"],
+    "topics": [
+      "dalamud",
+      "dalamud-plugin",
+      "xivlauncher"
+    ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-04-27T07:04:08Z",
+    "updated_at": "2023-11-15T00:55:57Z",
     "url": "https://github.com/SlashNephy/Divination",
     "visibility": "public",
-    "watchers": 1,
-    "watchers_count": 1,
+    "watchers": 7,
+    "watchers_count": 7,
     "web_commit_signoff_required": false
   },
   "sender": {
-    "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-    "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-    "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-    "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-    "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+    "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+    "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+    "followers_url": "https://api.github.com/users/SlashNephy/followers",
+    "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+    "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/apps/renovate",
-    "id": 29139614,
-    "login": "renovate[bot]",
-    "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-    "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-    "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-    "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+    "html_url": "https://github.com/SlashNephy",
+    "id": 7302150,
+    "login": "SlashNephy",
+    "node_id": "MDQ6VXNlcjczMDIxNTA=",
+    "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+    "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+    "repos_url": "https://api.github.com/users/SlashNephy/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-    "type": "Bot",
-    "url": "https://api.github.com/users/renovate%5Bbot%5D"
+    "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/SlashNephy"
   }
 }

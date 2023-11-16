@@ -2,12 +2,16 @@
   "Author": "Asteria Nocturna",
   "Name": "Divination.PowerUtils",
   "InternalName": "PowerUtils",
-  "AssemblyVersion": "0.1.0.1107",
+  "AssemblyVersion": "0.1.0.1687",
   "Description": "Add /power save, /power balance, /power perf, /monitoroff commands for power management",
   "ApplicableVersion": "any",
-  "Tags": ["Command"],
-  "CategoryTags": ["utility"],
-  "DalamudApiLevel": 8,
+  "Tags": [
+    "Command"
+  ],
+  "CategoryTags": [
+    "utility"
+  ],
+  "DalamudApiLevel": 9,
   "LoadRequiredState": 2,
   "LoadSync": false,
   "CanUnloadAsync": false,
