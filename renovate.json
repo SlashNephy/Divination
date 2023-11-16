@@ -1,5 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>SlashNephy/.github:renovate-config"],
-  "ignorePaths": ["packages/ACT/**"]
+  "ignorePaths": [
+    "packages/ACT/**",
+    "packages/DiscordBot/**",
+    "packages/DownloadCounter/**",
+    "packages/Server.Companion/**",
+    "packages/SseServer.Faloop/**",
+    "packages/SseServer/**"
+  ]
 }

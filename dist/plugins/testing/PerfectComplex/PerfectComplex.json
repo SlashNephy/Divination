@@ -2,12 +2,17 @@
   "Author": "Asteria Nocturna",
   "Name": "Divination.PerfectComplex",
   "InternalName": "PerfectComplex",
-  "AssemblyVersion": "0.1.0.1255",
+  "AssemblyVersion": "0.1.0.1687",
   "Description": "",
   "ApplicableVersion": "any",
-  "Tags": ["[Tag]"],
-  "CategoryTags": ["ui", "utility"],
-  "DalamudApiLevel": 8,
+  "Tags": [
+    "[Tag]"
+  ],
+  "CategoryTags": [
+    "ui",
+    "utility"
+  ],
+  "DalamudApiLevel": 9,
   "LoadRequiredState": 2,
   "LoadSync": false,
   "CanUnloadAsync": false,

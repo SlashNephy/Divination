@@ -4136,7 +4136,7 @@ __metadata:
     "@slashnephy/prettier-config": 1.0.42
     concurrently: 8.2.2
     eslint: 8.53.0
-    prettier: 3.0.3
+    prettier: 3.1.0
   languageName: unknown
   linkType: soft
 
@@ -5684,12 +5684,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:22.5.1":
-  version: 22.5.1
-  resolution: "i18next@npm:22.5.1"
+"i18next@npm:23.7.6":
+  version: 23.7.6
+  resolution: "i18next@npm:23.7.6"
   dependencies:
-    "@babel/runtime": ^7.20.6
-  checksum: 175f8ab7fac2abcee147b00cc2d8e7d4fa9b05cdc227f02cac841fc2fd9545ed4a6d88774f594f8ad12dc944e4d34cc8e88aa00c8b9947baef9e859d93abd305
+    "@babel/runtime": ^7.23.2
+  checksum: ddfca4277f9a19b0c5d85f8506384f8bfebe8b32d75a51d472d81e9c39ada5911594d8a41fa63ab25f66f63a9519544809d1a46ef6f6d905af1e2724b39ba55b
   languageName: node
   linkType: hard
 
@@ -6845,7 +6845,7 @@ __metadata:
     "@types/react": 18.2.37
     "@types/react-dom": 18.2.15
     "@vitejs/plugin-react-swc": 3.4.1
-    i18next: 22.5.1
+    i18next: 23.7.6
     i18next-browser-languagedetector: 7.2.0
     react: 18.2.0
     react-dom: 18.2.0
@@ -6883,12 +6883,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.0.3":
-  version: 3.0.3
-  resolution: "prettier@npm:3.0.3"
+"prettier@npm:3.1.0":
+  version: 3.1.0
+  resolution: "prettier@npm:3.1.0"
   bin:
     prettier: bin/prettier.cjs
-  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
+  checksum: 44b556bd56f74d7410974fbb2418bb4e53a894d3e7b42f6f87779f69f27a6c272fa7fc27cec0118cd11730ef3246478052e002cbd87e9a253f9cd04a56aa7d9b
   languageName: node
   linkType: hard
 
