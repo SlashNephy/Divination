@@ -5,7 +5,7 @@
   "repository": "https://github.com/SlashNephy/Divination",
   "license": "MIT",
   "scripts": {
-    "build": "yarn workspaces foreach -pi run build",
+    "build": "yarn workspaces foreach -Api run build",
     "format": "concurrently -m 1 -n format: 'yarn:format:*'",
     "format:eslint": "yarn lint:eslint --fix",
     "format:prettier": "yarn lint:prettier --write",
