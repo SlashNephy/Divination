@@ -1,12 +1,13 @@
-import { Badge, Button, Card, Col, Container, Grid, Link, Loading, Row, Spacer, Text, Tooltip } from '@nextui-org/react'
-import { IconAlertTriangleFilled, IconBook, IconBrandGithub, IconPuzzle } from '@tabler/icons-react'
-import React, { Suspense } from 'react'
+import { Badge, Card, Checkbox, Col, Container, Link, Loading, Row, Spacer, Table, Text } from '@nextui-org/react'
+import { IconAlertTriangleFilled, IconBook, IconPuzzle } from '@tabler/icons-react'
+import React, { Suspense, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { usePluginMaster } from './lib/usePluginMaster.ts'
 
 export function App(): React.JSX.Element {
   const { t } = useTranslation()
+  const [isTesting, setIsTesting] = useState(false)
 
   return (
     <Container>
@@ -38,7 +39,9 @@ export function App(): React.JSX.Element {
             <Text h2>
               <IconAlertTriangleFilled />️ {t('DisclaimerHeader')}
             </Text>
-            <Text>{t('DisclaimerDescription')}</Text>
+            <Text>
+              <Trans i18nKey="DisclaimerDescription" />
+            </Text>
           </Col>
         </Card.Body>
       </Card>
@@ -52,6 +55,9 @@ export function App(): React.JSX.Element {
               <IconPuzzle />️ {t('PluginListHeader')}
             </Text>
             <Text>{t('PluginListDescription')}</Text>
+            <Checkbox isSelected={isTesting} size="sm" onChange={setIsTesting}>
+              {t('PluginListShowTestingVersions')}
+            </Checkbox>
 
             <Suspense
               fallback={
@@ -60,7 +66,7 @@ export function App(): React.JSX.Element {
                 </Row>
               }
             >
-              <PluginList />
+              <PluginList isTesting={isTesting} />
             </Suspense>
           </Col>
         </Card.Body>
@@ -69,77 +75,65 @@ export function App(): React.JSX.Element {
   )
 }
 
-export function PluginList(): React.JSX.Element {
+type PluginListProps = {
+  isTesting: boolean
+}
+
+export function PluginList({ isTesting }: PluginListProps): React.JSX.Element {
   const { t } = useTranslation()
   const plugins = usePluginMaster()
 
   return (
-    <Grid.Container gap={2}>
-      {plugins
-        .sort((a, b) => b.DownloadCount - a.DownloadCount)
-        .map((plugin) => (
-          <Grid key={plugin.InternalName} md={4}>
-            <Card css={{ p: '$4' }}>
-              <Card.Header>
-                <Col>
-                  <Text h4 css={{ lineHeight: '$xs' }}>
-                    {plugin.InternalName} (API {plugin.DalamudApiLevel})
-                  </Text>
-                  <Text css={{ color: '$accents8' }}>{plugin.Punchline}</Text>
-                </Col>
-              </Card.Header>
-              <Card.Body css={{ py: '$2' }}>
-                <Row>
-                  {plugin.CategoryTags.map((tag) => (
-                    <Badge key={tag} color="secondary" variant="flat">
-                      {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                    </Badge>
-                  ))}
-                  {plugin.Tags.map((tag) => (
-                    <Badge key={tag} color="primary" variant="flat">
-                      #{tag}
-                    </Badge>
-                  ))}
-                  <Badge variant="flat">Downloads: {plugin.DownloadCount}</Badge>
-                  <Badge variant="flat">Author: {plugin.Author}</Badge>
-                </Row>
-
-                <Text>{plugin.Description}</Text>
-
+    <Table>
+      <Table.Header>
+        <Table.Column>{t('PluginListTableHeaderName')}</Table.Column>
+        <Table.Column>{t('PluginListTableHeaderDescription')}</Table.Column>
+        <Table.Column>{t('PluginListTableHeaderVersion')}</Table.Column>
+        <Table.Column>{t('PluginListTableHeaderDownloads')}</Table.Column>
+      </Table.Header>
+      <Table.Body>
+        {plugins
+          .sort((a, b) => b.DownloadCount - a.DownloadCount)
+          .map((plugin) => (
+            <Table.Row key={plugin.InternalName}>
+              <Table.Cell>
                 <Link
                   href={`https://github.com/SlashNephy/Divination/tree/master/packages/Plugins/${plugin.InternalName}`}
                   target="_blank"
                 >
-                  <IconBrandGithub />
-                  {t('PluginListViewSourceCodeLabel')}
+                  {plugin.InternalName}
                 </Link>
-              </Card.Body>
-              <Card.Footer>
-                <Row justify="center">
-                  {/* @ts-expect-error broken type Tooltip */}
-                  <Tooltip rounded content={`v${plugin.AssemblyVersion}`}>
-                    <Link href={plugin.DownloadLinkInstall} target="_blank">
-                      <Button auto color="primary">
-                        {t('PluginListDownloadStableButton')}
-                      </Button>
-                    </Link>
-                  </Tooltip>
-
-                  <Spacer x={1} />
-
-                  {/* @ts-expect-error broken type Tooltip */}
-                  <Tooltip rounded content={`v${plugin.TestingAssemblyVersion}`}>
-                    <Link href={plugin.DownloadLinkTesting} target="_blank">
-                      <Button auto color="error">
-                        {t('PluginListDownloadTestingButton')}
-                      </Button>
-                    </Link>
-                  </Tooltip>
-                </Row>
-              </Card.Footer>
-            </Card>
-          </Grid>
-        ))}
-    </Grid.Container>
+              </Table.Cell>
+              <Table.Cell>
+                {plugin.Description && (
+                  <>
+                    <p style={{ wordWrap: 'break-word', wordBreak: 'break-all', width: '100%', tableLayout: 'fixed' }}>
+                      {plugin.Description}
+                    </p>
+                    <br />
+                  </>
+                )}
+                {plugin.CategoryTags.map((tag) => (
+                  <Badge key={tag} color="secondary" variant="flat">
+                    {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                  </Badge>
+                ))}
+                {plugin.Tags.map((tag) => (
+                  <Badge key={tag} color="primary" variant="flat">
+                    #{tag}
+                  </Badge>
+                ))}
+              </Table.Cell>
+              <Table.Cell>
+                <Link href={isTesting ? plugin.DownloadLinkTesting : plugin.DownloadLinkInstall} target="_blank">
+                  {isTesting ? plugin.TestingAssemblyVersion : plugin.AssemblyVersion}
+                </Link>{' '}
+                (API {plugin.DalamudApiLevel})
+              </Table.Cell>
+              <Table.Cell>{plugin.DownloadCount}</Table.Cell>
+            </Table.Row>
+          ))}
+      </Table.Body>
+    </Table>
   )
 }
