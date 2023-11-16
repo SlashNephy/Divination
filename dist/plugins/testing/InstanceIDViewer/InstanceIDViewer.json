@@ -2,12 +2,16 @@
   "Author": "Horoscope developers",
   "Name": "Divination.InstanceIDViewer",
   "InternalName": "InstanceIDViewer",
-  "AssemblyVersion": "0.1.0.1243",
+  "AssemblyVersion": "0.1.0.1687",
   "Description": "show instance id in chat when instance changed",
   "ApplicableVersion": "any",
-  "Tags": ["Discord"],
-  "CategoryTags": ["social"],
-  "DalamudApiLevel": 8,
+  "Tags": [
+    "Discord"
+  ],
+  "CategoryTags": [
+    "social"
+  ],
+  "DalamudApiLevel": 9,
   "LoadRequiredState": 2,
   "LoadSync": false,
   "CanUnloadAsync": false,

@@ -1,7 +1,7 @@
 {
-  "after": "6c05d37ced437e19346b1de8e855f1d143e8c979",
+  "after": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
   "base_ref": null,
-  "before": "56216309d091763482e31254b63ddfffe2c2847a",
+  "before": "0bb4991a145ce589741101e6fb03b9bdcc0504d5",
   "commits": [
     {
       "author": {
@@ -15,104 +15,14 @@
         "username": "SlashNephy"
       },
       "distinct": true,
-      "id": "fbc5e48bd817316bcdaa7a8b2b413104e19a6541",
-      "message": "docs(Plugins): update old README",
-      "timestamp": "2023-05-08T18:13:48+09:00",
-      "tree_id": "80a037d6616c88df8451816d4c2bcd3a197f1ce5",
-      "url": "https://github.com/SlashNephy/Divination/commit/fbc5e48bd817316bcdaa7a8b2b413104e19a6541"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "distinct": true,
-      "id": "6a8a8f5ff4b6a4a7a96bb27d4110223e83034b59",
-      "message": "refactor(PluginRepository): docs -> dist",
-      "timestamp": "2023-05-08T18:15:09+09:00",
-      "tree_id": "26bc8a140dc37575bf1c0c176a03785b51af7695",
-      "url": "https://github.com/SlashNephy/Divination/commit/6a8a8f5ff4b6a4a7a96bb27d4110223e83034b59"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "distinct": true,
-      "id": "875d02eda5607021f4f96f99d4dae70fba610b8c",
-      "message": "feat(PluginRepository): static pages",
-      "timestamp": "2023-05-08T18:40:42+09:00",
-      "tree_id": "1f1b60faf0d39069302f89fe5eb6f14b4a864c35",
-      "url": "https://github.com/SlashNephy/Divination/commit/875d02eda5607021f4f96f99d4dae70fba610b8c"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "distinct": true,
-      "id": "6ee9aef3fd6c90706c8bb5535dc881c57a71f88e",
-      "message": "chore(PluginRepository): do not generate master.json on CI",
-      "timestamp": "2023-05-08T18:41:04+09:00",
-      "tree_id": "1d26adba335ce82f81472179f135ff7fe95b67dc",
-      "url": "https://github.com/SlashNephy/Divination/commit/6ee9aef3fd6c90706c8bb5535dc881c57a71f88e"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "distinct": true,
-      "id": "3abb953201baa11071b9d76c6be29c91149e0079",
-      "message": "chore(PluginRepository): enable download counter",
-      "timestamp": "2023-05-08T18:52:49+09:00",
-      "tree_id": "0da2453109224cee82f3e7bf4b84e0526e541380",
-      "url": "https://github.com/SlashNephy/Divination/commit/3abb953201baa11071b9d76c6be29c91149e0079"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "distinct": true,
-      "id": "6c05d37ced437e19346b1de8e855f1d143e8c979",
-      "message": "Merge remote-tracking branch origin/master",
-      "timestamp": "2023-05-08T18:54:11+09:00",
-      "tree_id": "0da2453109224cee82f3e7bf4b84e0526e541380",
-      "url": "https://github.com/SlashNephy/Divination/commit/6c05d37ced437e19346b1de8e855f1d143e8c979"
+      "id": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+      "message": "updade DalamudApiLevel to 9",
+      "timestamp": "2023-11-16T13:51:39+09:00",
+      "tree_id": "5d9de52ca33a17a8ebc45a7f2bea6cfae0fdad1f",
+      "url": "https://github.com/SlashNephy/Divination/commit/8e7ac38594b0640ead6d21400f7ea4a86935a352"
     }
   ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/56216309d091...6c05d37ced43",
+  "compare": "https://github.com/SlashNephy/Divination/compare/0bb4991a145c...8e7ac38594b0",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -128,11 +38,11 @@
       "username": "SlashNephy"
     },
     "distinct": true,
-    "id": "6c05d37ced437e19346b1de8e855f1d143e8c979",
-    "message": "Merge remote-tracking branch origin/master",
-    "timestamp": "2023-05-08T18:54:11+09:00",
-    "tree_id": "0da2453109224cee82f3e7bf4b84e0526e541380",
-    "url": "https://github.com/SlashNephy/Divination/commit/6c05d37ced437e19346b1de8e855f1d143e8c979"
+    "id": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+    "message": "updade DalamudApiLevel to 9",
+    "timestamp": "2023-11-16T13:51:39+09:00",
+    "tree_id": "5d9de52ca33a17a8ebc45a7f2bea6cfae0fdad1f",
+    "url": "https://github.com/SlashNephy/Divination/commit/8e7ac38594b0640ead6d21400f7ea4a86935a352"
   },
   "pusher": {
     "email": "spica@starry.blue",
@@ -161,8 +71,8 @@
     "downloads_url": "https://api.github.com/repos/SlashNephy/Divination/downloads",
     "events_url": "https://api.github.com/repos/SlashNephy/Divination/events",
     "fork": false,
-    "forks": 2,
-    "forks_count": 2,
+    "forks": 3,
+    "forks_count": 3,
     "forks_url": "https://api.github.com/repos/SlashNephy/Divination/forks",
     "full_name": "SlashNephy/Divination",
     "git_commits_url": "https://api.github.com/repos/SlashNephy/Divination/git/commits{/sha}",
@@ -172,8 +82,8 @@
     "has_discussions": false,
     "has_downloads": true,
     "has_issues": true,
-    "has_pages": true,
-    "has_projects": true,
+    "has_pages": false,
+    "has_projects": false,
     "has_wiki": false,
     "homepage": "http://xiv.starry.blue/",
     "hooks_url": "https://api.github.com/repos/SlashNephy/Divination/hooks",
@@ -201,8 +111,8 @@
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 3,
-    "open_issues_count": 3,
+    "open_issues": 25,
+    "open_issues_count": 25,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
       "email": "spica@starry.blue",
@@ -227,12 +137,12 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1683539656,
+    "pushed_at": 1700110353,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 44827,
+    "size": 54759,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
-    "stargazers": 1,
-    "stargazers_count": 1,
+    "stargazers": 7,
+    "stargazers_count": 7,
     "stargazers_url": "https://api.github.com/repos/SlashNephy/Divination/stargazers",
     "statuses_url": "https://api.github.com/repos/SlashNephy/Divination/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/SlashNephy/Divination/subscribers",
@@ -240,13 +150,17 @@
     "svn_url": "https://github.com/SlashNephy/Divination",
     "tags_url": "https://api.github.com/repos/SlashNephy/Divination/tags",
     "teams_url": "https://api.github.com/repos/SlashNephy/Divination/teams",
-    "topics": ["dalamud", "dalamud-plugin", "xivlauncher"],
+    "topics": [
+      "dalamud",
+      "dalamud-plugin",
+      "xivlauncher"
+    ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-04-28T10:24:00Z",
+    "updated_at": "2023-11-15T00:55:57Z",
     "url": "https://github.com/SlashNephy/Divination",
     "visibility": "public",
-    "watchers": 1,
-    "watchers_count": 1,
+    "watchers": 7,
+    "watchers_count": 7,
     "web_commit_signoff_required": false
   },
   "sender": {
