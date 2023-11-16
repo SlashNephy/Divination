@@ -9,13 +9,13 @@ repositories {
 }
 
 dependencies {
-  implementation("io.ktor:ktor-client-java:2.3.0")
-  implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
-  implementation("io.ktor:ktor-server-jetty:2.3.0")
-  implementation("io.ktor:ktor-server-content-negotiation:2.3.0")
-  implementation("io.ktor:ktor-server-call-logging:2.3.0")
-  implementation("io.ktor:ktor-server-forwarded-header:2.3.0")
-  implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
+  implementation("io.ktor:ktor-client-java:2.3.6")
+  implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
+  implementation("io.ktor:ktor-server-jetty:2.3.6")
+  implementation("io.ktor:ktor-server-content-negotiation:2.3.6")
+  implementation("io.ktor:ktor-server-call-logging:2.3.6")
+  implementation("io.ktor:ktor-server-forwarded-header:2.3.6")
+  implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
 
   implementation("io.github.microutils:kotlin-logging:3.0.5")
   implementation("ch.qos.logback:logback-core:1.4.7")

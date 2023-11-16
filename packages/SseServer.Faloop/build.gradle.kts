@@ -9,10 +9,10 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-client-java:2.3.0")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.0")
-    implementation("io.ktor:ktor-client-logging:2.3.0")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.0")
+    implementation("io.ktor:ktor-client-java:2.3.6")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
+    implementation("io.ktor:ktor-client-logging:2.3.6")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
 
     implementation("io.socket:socket.io-client:2.1.0")
 
