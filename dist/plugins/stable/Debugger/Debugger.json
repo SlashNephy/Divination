@@ -2,12 +2,17 @@
   "Author": "Asteria Nocturna",
   "Name": "Divination.Debugger",
   "InternalName": "Debugger",
-  "AssemblyVersion": "0.1.0.1255",
+  "AssemblyVersion": "0.1.0.1718",
   "Description": "Tiny tool to inspect game...",
   "ApplicableVersion": "any",
-  "Tags": ["Development", "Debug"],
-  "CategoryTags": ["utility"],
-  "DalamudApiLevel": 8,
+  "Tags": [
+    "Development",
+    "Debug"
+  ],
+  "CategoryTags": [
+    "utility"
+  ],
+  "DalamudApiLevel": 9,
   "LoadRequiredState": 0,
   "LoadSync": false,
   "CanUnloadAsync": false,
