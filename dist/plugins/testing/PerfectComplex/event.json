@@ -1,5 +1,53 @@
 {
-  "inputs": null,
+  "after": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+  "base_ref": null,
+  "before": "0bb4991a145ce589741101e6fb03b9bdcc0504d5",
+  "commits": [
+    {
+      "author": {
+        "email": "spica@starry.blue",
+        "name": "SlashNephy",
+        "username": "SlashNephy"
+      },
+      "committer": {
+        "email": "spica@starry.blue",
+        "name": "SlashNephy",
+        "username": "SlashNephy"
+      },
+      "distinct": true,
+      "id": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+      "message": "updade DalamudApiLevel to 9",
+      "timestamp": "2023-11-16T13:51:39+09:00",
+      "tree_id": "5d9de52ca33a17a8ebc45a7f2bea6cfae0fdad1f",
+      "url": "https://github.com/SlashNephy/Divination/commit/8e7ac38594b0640ead6d21400f7ea4a86935a352"
+    }
+  ],
+  "compare": "https://github.com/SlashNephy/Divination/compare/0bb4991a145c...8e7ac38594b0",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "head_commit": {
+    "author": {
+      "email": "spica@starry.blue",
+      "name": "SlashNephy",
+      "username": "SlashNephy"
+    },
+    "committer": {
+      "email": "spica@starry.blue",
+      "name": "SlashNephy",
+      "username": "SlashNephy"
+    },
+    "distinct": true,
+    "id": "8e7ac38594b0640ead6d21400f7ea4a86935a352",
+    "message": "updade DalamudApiLevel to 9",
+    "timestamp": "2023-11-16T13:51:39+09:00",
+    "tree_id": "5d9de52ca33a17a8ebc45a7f2bea6cfae0fdad1f",
+    "url": "https://github.com/SlashNephy/Divination/commit/8e7ac38594b0640ead6d21400f7ea4a86935a352"
+  },
+  "pusher": {
+    "email": "spica@starry.blue",
+    "name": "SlashNephy"
+  },
   "ref": "refs/heads/master",
   "repository": {
     "allow_forking": true,
@@ -15,7 +63,7 @@
     "compare_url": "https://api.github.com/repos/SlashNephy/Divination/compare/{base}...{head}",
     "contents_url": "https://api.github.com/repos/SlashNephy/Divination/contents/{+path}",
     "contributors_url": "https://api.github.com/repos/SlashNephy/Divination/contributors",
-    "created_at": "2023-04-26T11:19:20Z",
+    "created_at": 1682507960,
     "default_branch": "master",
     "deployments_url": "https://api.github.com/repos/SlashNephy/Divination/deployments",
     "description": "FINAL FANTASY XIV toolkits",
@@ -23,8 +71,8 @@
     "downloads_url": "https://api.github.com/repos/SlashNephy/Divination/downloads",
     "events_url": "https://api.github.com/repos/SlashNephy/Divination/events",
     "fork": false,
-    "forks": 2,
-    "forks_count": 2,
+    "forks": 3,
+    "forks_count": 3,
     "forks_url": "https://api.github.com/repos/SlashNephy/Divination/forks",
     "full_name": "SlashNephy/Divination",
     "git_commits_url": "https://api.github.com/repos/SlashNephy/Divination/git/commits{/sha}",
@@ -35,7 +83,7 @@
     "has_downloads": true,
     "has_issues": true,
     "has_pages": false,
-    "has_projects": true,
+    "has_projects": false,
     "has_wiki": false,
     "homepage": "http://xiv.starry.blue/",
     "hooks_url": "https://api.github.com/repos/SlashNephy/Divination/hooks",
@@ -56,16 +104,18 @@
       "spdx_id": "MIT",
       "url": "https://api.github.com/licenses/mit"
     },
+    "master_branch": "master",
     "merges_url": "https://api.github.com/repos/SlashNephy/Divination/merges",
     "milestones_url": "https://api.github.com/repos/SlashNephy/Divination/milestones{/number}",
     "mirror_url": null,
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 3,
-    "open_issues_count": 3,
+    "open_issues": 25,
+    "open_issues_count": 25,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+      "email": "spica@starry.blue",
       "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
       "followers_url": "https://api.github.com/users/SlashNephy/followers",
       "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
@@ -74,6 +124,7 @@
       "html_url": "https://github.com/SlashNephy",
       "id": 7302150,
       "login": "SlashNephy",
+      "name": "SlashNephy",
       "node_id": "MDQ6VXNlcjczMDIxNTA=",
       "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
       "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
@@ -86,11 +137,12 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": "2023-05-08T10:27:59Z",
+    "pushed_at": 1700110353,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 44827,
+    "size": 54759,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
-    "stargazers_count": 1,
+    "stargazers": 7,
+    "stargazers_count": 7,
     "stargazers_url": "https://api.github.com/repos/SlashNephy/Divination/stargazers",
     "statuses_url": "https://api.github.com/repos/SlashNephy/Divination/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/SlashNephy/Divination/subscribers",
@@ -98,13 +150,17 @@
     "svn_url": "https://github.com/SlashNephy/Divination",
     "tags_url": "https://api.github.com/repos/SlashNephy/Divination/tags",
     "teams_url": "https://api.github.com/repos/SlashNephy/Divination/teams",
-    "topics": ["dalamud", "dalamud-plugin", "xivlauncher"],
+    "topics": [
+      "dalamud",
+      "dalamud-plugin",
+      "xivlauncher"
+    ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-04-28T10:24:00Z",
-    "url": "https://api.github.com/repos/SlashNephy/Divination",
+    "updated_at": "2023-11-15T00:55:57Z",
+    "url": "https://github.com/SlashNephy/Divination",
     "visibility": "public",
-    "watchers": 1,
-    "watchers_count": 1,
+    "watchers": 7,
+    "watchers_count": 7,
     "web_commit_signoff_required": false
   },
   "sender": {
@@ -126,6 +182,5 @@
     "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
     "type": "User",
     "url": "https://api.github.com/users/SlashNephy"
-  },
-  "workflow": ".github/workflows/ci-PerfectComplex.yml"
+  }
 }
