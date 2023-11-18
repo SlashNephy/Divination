@@ -2,7 +2,7 @@
   "Author": "Asteria Nocturna",
   "Name": "Divination.AetheryteLinkInChat",
   "InternalName": "AetheryteLinkInChat",
-  "AssemblyVersion": "0.1.0.1562",
+  "AssemblyVersion": "0.1.0.1723",
   "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
   "ApplicableVersion": "any",
   "Tags": [

@@ -1,125 +1,5 @@
 {
-  "after": "65bf7a3ecf0fb73334d047d323a01913d9b523df",
-  "base_ref": null,
-  "before": "fc262ea5de990aa61fb15de6317e67afab2c9efe",
-  "commits": [
-    {
-      "author": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "committer": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "distinct": true,
-      "id": "26edcdbb3014f8d43ac9023b938358201d2b1d63",
-      "message": "Update Common to API v9",
-      "timestamp": "2023-10-05T00:49:55-03:00",
-      "tree_id": "8929cbdbfd6ed60d6c696545aa6ab8f23d04a105",
-      "url": "https://github.com/SlashNephy/Divination/commit/26edcdbb3014f8d43ac9023b938358201d2b1d63"
-    },
-    {
-      "author": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "committer": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "distinct": true,
-      "id": "8511c57dfde263713e36e4667bb86fde0bb26992",
-      "message": "Update AetheryteLinkInChat to API v9",
-      "timestamp": "2023-10-05T01:26:07-03:00",
-      "tree_id": "b67798ce8961e2f8d023cd6176e9c8bbe4d2b996",
-      "url": "https://github.com/SlashNephy/Divination/commit/8511c57dfde263713e36e4667bb86fde0bb26992"
-    },
-    {
-      "author": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "committer": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "distinct": true,
-      "id": "da0a54edb8e8bd6c45743d466805e073daa726cd",
-      "message": "Update FaloopIntegration to API v9",
-      "timestamp": "2023-10-05T01:54:23-03:00",
-      "tree_id": "4c84ba4d51388461bc6d4b36b48ddf43d0b4b1d8",
-      "url": "https://github.com/SlashNephy/Divination/commit/da0a54edb8e8bd6c45743d466805e073daa726cd"
-    },
-    {
-      "author": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "committer": {
-        "email": "douglas@diyagi.dev",
-        "name": "Diyagi",
-        "username": "Diyagi"
-      },
-      "distinct": true,
-      "id": "e4775b87a49e396799115455d5fb1b746ef237b8",
-      "message": "Update projects to API v9",
-      "timestamp": "2023-10-05T02:16:05-03:00",
-      "tree_id": "d55c9f8d80b31076e422e337c12c0e0f1b2d7c12",
-      "url": "https://github.com/SlashNephy/Divination/commit/e4775b87a49e396799115455d5fb1b746ef237b8"
-    },
-    {
-      "author": {
-        "email": "spica@starry.blue",
-        "name": "SlashNephy",
-        "username": "SlashNephy"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": true,
-      "id": "65bf7a3ecf0fb73334d047d323a01913d9b523df",
-      "message": "Merge pull request #324 from Diyagi/apiv9\n\nUpdate projects to API v9",
-      "timestamp": "2023-10-07T22:13:29+09:00",
-      "tree_id": "53c6d4e4a4dcbb2d2712fa2c83bb61aff3ff35fd",
-      "url": "https://github.com/SlashNephy/Divination/commit/65bf7a3ecf0fb73334d047d323a01913d9b523df"
-    }
-  ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/fc262ea5de99...65bf7a3ecf0f",
-  "created": false,
-  "deleted": false,
-  "forced": false,
-  "head_commit": {
-    "author": {
-      "email": "spica@starry.blue",
-      "name": "SlashNephy",
-      "username": "SlashNephy"
-    },
-    "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
-    },
-    "distinct": true,
-    "id": "65bf7a3ecf0fb73334d047d323a01913d9b523df",
-    "message": "Merge pull request #324 from Diyagi/apiv9\n\nUpdate projects to API v9",
-    "timestamp": "2023-10-07T22:13:29+09:00",
-    "tree_id": "53c6d4e4a4dcbb2d2712fa2c83bb61aff3ff35fd",
-    "url": "https://github.com/SlashNephy/Divination/commit/65bf7a3ecf0fb73334d047d323a01913d9b523df"
-  },
-  "pusher": {
-    "email": "spica@starry.blue",
-    "name": "SlashNephy"
-  },
+  "inputs": null,
   "ref": "refs/heads/master",
   "repository": {
     "allow_forking": true,
@@ -135,7 +15,7 @@
     "compare_url": "https://api.github.com/repos/SlashNephy/Divination/compare/{base}...{head}",
     "contents_url": "https://api.github.com/repos/SlashNephy/Divination/contents/{+path}",
     "contributors_url": "https://api.github.com/repos/SlashNephy/Divination/contributors",
-    "created_at": 1682507960,
+    "created_at": "2023-04-26T11:19:20Z",
     "default_branch": "master",
     "deployments_url": "https://api.github.com/repos/SlashNephy/Divination/deployments",
     "description": "FINAL FANTASY XIV toolkits",
@@ -176,18 +56,16 @@
       "spdx_id": "MIT",
       "url": "https://api.github.com/licenses/mit"
     },
-    "master_branch": "master",
     "merges_url": "https://api.github.com/repos/SlashNephy/Divination/merges",
     "milestones_url": "https://api.github.com/repos/SlashNephy/Divination/milestones{/number}",
     "mirror_url": null,
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 28,
-    "open_issues_count": 28,
+    "open_issues": 10,
+    "open_issues_count": 10,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
-      "email": "spica@starry.blue",
       "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
       "followers_url": "https://api.github.com/users/SlashNephy/followers",
       "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
@@ -196,7 +74,6 @@
       "html_url": "https://github.com/SlashNephy",
       "id": 7302150,
       "login": "SlashNephy",
-      "name": "SlashNephy",
       "node_id": "MDQ6VXNlcjczMDIxNTA=",
       "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
       "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
@@ -209,12 +86,11 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1696684409,
+    "pushed_at": "2023-11-17T22:47:19Z",
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 51318,
+    "size": 58336,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
-    "stargazers": 6,
-    "stargazers_count": 6,
+    "stargazers_count": 7,
     "stargazers_url": "https://api.github.com/repos/SlashNephy/Divination/stargazers",
     "statuses_url": "https://api.github.com/repos/SlashNephy/Divination/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/SlashNephy/Divination/subscribers",
@@ -228,11 +104,11 @@
       "xivlauncher"
     ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-09-02T08:12:49Z",
-    "url": "https://github.com/SlashNephy/Divination",
+    "updated_at": "2023-11-16T07:08:43Z",
+    "url": "https://api.github.com/repos/SlashNephy/Divination",
     "visibility": "public",
-    "watchers": 6,
-    "watchers_count": 6,
+    "watchers": 7,
+    "watchers_count": 7,
     "web_commit_signoff_required": false
   },
   "sender": {
@@ -254,5 +130,6 @@
     "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
     "type": "User",
     "url": "https://api.github.com/users/SlashNephy"
-  }
+  },
+  "workflow": ".github/workflows/ci-AetheryteLinkInChat.yml"
 }
