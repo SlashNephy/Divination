@@ -1,7 +1,7 @@
 {
-  "after": "776878758df896ac396c4a94e9463213228cdf17",
+  "after": "c1627623c27fc8ef468251d2210836d229bb674b",
   "base_ref": null,
-  "before": "4984b81cd2c567e3ce56e8fd4b0a0951ee87c51c",
+  "before": "4878702a7fc95a09d5ed93abb57ad6317f0edc3b",
   "commits": [
     {
       "author": {
@@ -15,14 +15,14 @@
         "username": "renovate[bot]"
       },
       "distinct": true,
-      "id": "776878758df896ac396c4a94e9463213228cdf17",
-      "message": "chore(deps): update dependency anglesharp to v1.0.6",
-      "timestamp": "2023-11-14T16:48:12Z",
-      "tree_id": "d489cf9a4c44869bd066ea2cb86ae186f562356f",
-      "url": "https://github.com/SlashNephy/Divination/commit/776878758df896ac396c4a94e9463213228cdf17"
+      "id": "c1627623c27fc8ef468251d2210836d229bb674b",
+      "message": "chore(deps): update dependency anglesharp to v1.0.7",
+      "timestamp": "2023-11-20T22:01:32Z",
+      "tree_id": "ab460ce7295d0eec1aee7887d26e97a71c3fb3b3",
+      "url": "https://github.com/SlashNephy/Divination/commit/c1627623c27fc8ef468251d2210836d229bb674b"
     }
   ],
-  "compare": "https://github.com/SlashNephy/Divination/compare/4984b81cd2c5...776878758df8",
+  "compare": "https://github.com/SlashNephy/Divination/compare/4878702a7fc9...c1627623c27f",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +38,11 @@
       "username": "renovate[bot]"
     },
     "distinct": true,
-    "id": "776878758df896ac396c4a94e9463213228cdf17",
-    "message": "chore(deps): update dependency anglesharp to v1.0.6",
-    "timestamp": "2023-11-14T16:48:12Z",
-    "tree_id": "d489cf9a4c44869bd066ea2cb86ae186f562356f",
-    "url": "https://github.com/SlashNephy/Divination/commit/776878758df896ac396c4a94e9463213228cdf17"
+    "id": "c1627623c27fc8ef468251d2210836d229bb674b",
+    "message": "chore(deps): update dependency anglesharp to v1.0.7",
+    "timestamp": "2023-11-20T22:01:32Z",
+    "tree_id": "ab460ce7295d0eec1aee7887d26e97a71c3fb3b3",
+    "url": "https://github.com/SlashNephy/Divination/commit/c1627623c27fc8ef468251d2210836d229bb674b"
   },
   "pusher": {
     "email": null,
@@ -111,8 +111,8 @@
     "name": "Divination",
     "node_id": "R_kgDOJblaww",
     "notifications_url": "https://api.github.com/repos/SlashNephy/Divination/notifications{?since,all,participating}",
-    "open_issues": 24,
-    "open_issues_count": 24,
+    "open_issues": 7,
+    "open_issues_count": 7,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
       "email": "spica@starry.blue",
@@ -137,12 +137,12 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/SlashNephy/Divination/pulls{/number}",
-    "pushed_at": 1699980492,
+    "pushed_at": 1700517692,
     "releases_url": "https://api.github.com/repos/SlashNephy/Divination/releases{/id}",
-    "size": 53492,
+    "size": 56766,
     "ssh_url": "git@github.com:SlashNephy/Divination.git",
-    "stargazers": 6,
-    "stargazers_count": 6,
+    "stargazers": 7,
+    "stargazers_count": 7,
     "stargazers_url": "https://api.github.com/repos/SlashNephy/Divination/stargazers",
     "statuses_url": "https://api.github.com/repos/SlashNephy/Divination/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/SlashNephy/Divination/subscribers",
@@ -156,11 +156,11 @@
       "xivlauncher"
     ],
     "trees_url": "https://api.github.com/repos/SlashNephy/Divination/git/trees{/sha}",
-    "updated_at": "2023-09-02T08:12:49Z",
+    "updated_at": "2023-11-16T07:08:43Z",
     "url": "https://github.com/SlashNephy/Divination",
     "visibility": "public",
-    "watchers": 6,
-    "watchers_count": 6,
+    "watchers": 7,
+    "watchers_count": 7,
     "web_commit_signoff_required": false
   },
   "sender": {
