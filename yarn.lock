@@ -4404,7 +4404,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20231121.0"
     typescript: "npm:5.3.2"
-    wrangler: "npm:3.16.0"
+    wrangler: "npm:3.17.1"
   languageName: unknown
   linkType: soft
 
@@ -5343,9 +5343,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20231030.0":
-  version: 3.20231030.0
-  resolution: "miniflare@npm:3.20231030.0"
+"miniflare@npm:3.20231030.1":
+  version: 3.20231030.1
+  resolution: "miniflare@npm:3.20231030.1"
   dependencies:
     acorn: "npm:^8.8.0"
     acorn-walk: "npm:^8.2.0"
@@ -5361,7 +5361,7 @@ __metadata:
     zod: "npm:^3.20.6"
   bin:
     miniflare: bootstrap.js
-  checksum: f5b752cff7ddf6146a20aef8a345e64364f752079e5a271dc569aa05c7e91a6864e86dcdd9f327f1eaf7d0e80ecd41e712069ec5017e66d30d24292dfaf6f766
+  checksum: 0d86d4234e856658394b4206c55d1a80b2a8cd78e5644a6c325db8c636964c9ec6e3b4f36c54789dc9566cb07be7c36faac7e0330de11ee85ef7885787a7b7d5
   languageName: node
   linkType: hard
 
@@ -7275,9 +7275,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.16.0":
-  version: 3.16.0
-  resolution: "wrangler@npm:3.16.0"
+"wrangler@npm:3.17.1":
+  version: 3.17.1
+  resolution: "wrangler@npm:3.17.1"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.2.0"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
@@ -7286,7 +7286,7 @@ __metadata:
     chokidar: "npm:^3.5.3"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20231030.0"
+    miniflare: "npm:3.20231030.1"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
     resolve.exports: "npm:^2.0.2"
@@ -7300,7 +7300,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 415d2c06d69a0901c9ff2d7a7222e776e45b3a502840bc0b01b0da3b919187324dd969d5c52913e6f74286874facdf18cd878532175cc4825ed86238470a9061
+  checksum: 44ccfbaabe18e882d692791587966b372a0d38b7742c93a7d99242cd25287a675f452c8a3a21bbb6bea8294d9eaf13e9991a7cc2533608bf95dca744cacfa156
   languageName: node
   linkType: hard
 
