@@ -1865,12 +1865,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/prettier-config@npm:1.0.52":
-  version: 1.0.52
-  resolution: "@slashnephy/prettier-config@npm:1.0.52"
+"@slashnephy/prettier-config@npm:1.0.53":
+  version: 1.0.53
+  resolution: "@slashnephy/prettier-config@npm:1.0.53"
   peerDependencies:
     prettier: ^3
-  checksum: d8749eded32fe0169307cd3e23cec1223d4010c8d9963afdc4ef9139d72c3196702c3f2a8df3de909e8896311b67eb9d894d37bf3c8e0aeb1885eefe8d9e615f
+  checksum: 6f479aa24ef9e460765da52244f1f10804b43ccc73aea3303a72cf1bf4502e81b251039ffcd3fa8de0c82478756dd74a55905481cc6d7d35991c71a747e727fb
   languageName: node
   linkType: hard
 
@@ -3106,7 +3106,7 @@ __metadata:
   resolution: "divination@workspace:."
   dependencies:
     "@slashnephy/eslint-config": "npm:2.0.72"
-    "@slashnephy/prettier-config": "npm:1.0.52"
+    "@slashnephy/prettier-config": "npm:1.0.53"
     concurrently: "npm:8.2.2"
     eslint: "npm:8.54.0"
     prettier: "npm:3.1.0"
