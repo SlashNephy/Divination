@@ -1815,9 +1815,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.76":
-  version: 2.0.76
-  resolution: "@slashnephy/eslint-config@npm:2.0.76"
+"@slashnephy/eslint-config@npm:2.0.77":
+  version: 2.0.77
+  resolution: "@slashnephy/eslint-config@npm:2.0.77"
   dependencies:
     "@emotion/eslint-plugin": "npm:11.11.0"
     "@next/eslint-plugin-next": "npm:13.5.6"
@@ -1857,11 +1857,11 @@ __metadata:
     eslint-plugin-vitest: "npm:0.3.10"
     eslint-plugin-xss: "npm:0.1.12"
     eslint-plugin-yml: "npm:1.10.0"
-    typescript: "npm:5.3.2"
+    typescript: "npm:5.3.3"
     yaml-eslint-parser: "npm:1.2.2"
   peerDependencies:
     eslint: ^8
-  checksum: a958c8a440c5359ed8189289fab95ec34a33346ceb850ea8937addb89b2f8efb8da6cd2fc2320dce4946ec66cb3eec98dc75738f590aed67e7415150ecba2ad7
+  checksum: 51e0f94de2ecd2c1e3e21a860b9350dec32d013180e82c4c3e8ca4cd63bc897244f98c6a9032cc4bfd86ae6d9351330ea1cf74b02a6394fe735925cf3da41dc2
   languageName: node
   linkType: hard
 
@@ -3025,7 +3025,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "divination@workspace:."
   dependencies:
-    "@slashnephy/eslint-config": "npm:2.0.76"
+    "@slashnephy/eslint-config": "npm:2.0.77"
     "@slashnephy/prettier-config": "npm:1.0.56"
     concurrently: "npm:8.2.2"
     eslint: "npm:8.55.0"
@@ -6894,16 +6894,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.3.2":
-  version: 5.3.2
-  resolution: "typescript@npm:5.3.2"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 415e5fb6611f5713e460bad48039f00bcfdbde53a2f911727862d5aa9c5d5edd250059a419df382d8f031709e15a169c41eb62b6a401da5eec7ac0f4e359d6ac
-  languageName: node
-  linkType: hard
-
 "typescript@npm:5.3.3":
   version: 5.3.3
   resolution: "typescript@npm:5.3.3"
@@ -6911,16 +6901,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 6e4e6a14a50c222b3d14d4ea2f729e79f972fa536ac1522b91202a9a65af3605c2928c4a790a4a50aa13694d461c479ba92cedaeb1e7b190aadaa4e4b96b8e18
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A5.3.2#optional!builtin<compat/typescript>":
-  version: 5.3.2
-  resolution: "typescript@patch:typescript@npm%3A5.3.2#optional!builtin<compat/typescript>::version=5.3.2&hash=e012d7"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 1b45cdfb577a78ae7a9a9d0b77a7b772142cb98ba05e4e5aefba7044a028ded885bcecef63166407a5986645cea816fe4986894336aacd5e791796ea79a6a7ed
   languageName: node
   linkType: hard
 
