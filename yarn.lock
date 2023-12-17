@@ -1822,9 +1822,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@slashnephy/eslint-config@npm:2.0.84":
-  version: 2.0.84
-  resolution: "@slashnephy/eslint-config@npm:2.0.84"
+"@slashnephy/eslint-config@npm:2.0.85":
+  version: 2.0.85
+  resolution: "@slashnephy/eslint-config@npm:2.0.85"
   dependencies:
     "@emotion/eslint-plugin": "npm:11.11.0"
     "@next/eslint-plugin-next": "npm:13.5.6"
@@ -1861,14 +1861,14 @@ __metadata:
     eslint-plugin-tsdoc: "npm:0.2.17"
     eslint-plugin-unused-imports: "npm:3.0.0"
     eslint-plugin-userscripts: "npm:0.4.0"
-    eslint-plugin-vitest: "npm:0.3.10"
+    eslint-plugin-vitest: "npm:0.3.17"
     eslint-plugin-xss: "npm:0.1.12"
-    eslint-plugin-yml: "npm:1.10.0"
+    eslint-plugin-yml: "npm:1.11.0"
     typescript: "npm:5.3.3"
     yaml-eslint-parser: "npm:1.2.2"
   peerDependencies:
     eslint: ^8
-  checksum: aff92f34b2f16b6bdfde38f666c2ba21bc30c22d725bdf65417270973ca15eec48d35944902a2755f786f43026bb7101b6ab0aff4f4d96c031ccc3e29efc61bd
+  checksum: 1eea7c53368f0e827e76198716d91e204a311976af3d914709801e7718848b98303d62955414a413efdad2017bf3737447b3d634a19359ce08e1afef34fa8002
   languageName: node
   linkType: hard
 
@@ -2313,7 +2313,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.14.0":
+"@typescript-eslint/utils@npm:6.14.0, @typescript-eslint/utils@npm:^6.13.2":
   version: 6.14.0
   resolution: "@typescript-eslint/utils@npm:6.14.0"
   dependencies:
@@ -2348,7 +2348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.11.0":
+"@typescript-eslint/utils@npm:^6.0.0":
   version: 6.13.2
   resolution: "@typescript-eslint/utils@npm:6.13.2"
   dependencies:
@@ -3101,7 +3101,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "divination@workspace:."
   dependencies:
-    "@slashnephy/eslint-config": "npm:2.0.84"
+    "@slashnephy/eslint-config": "npm:2.0.85"
     "@slashnephy/prettier-config": "npm:1.0.63"
     concurrently: "npm:8.2.2"
     eslint: "npm:8.55.0"
@@ -3477,7 +3477,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-compat-utils@npm:^0.1.0, eslint-compat-utils@npm:^0.1.2":
+"eslint-compat-utils@npm:^0.1.1, eslint-compat-utils@npm:^0.1.2":
   version: 0.1.2
   resolution: "eslint-compat-utils@npm:0.1.2"
   peerDependencies:
@@ -3969,11 +3969,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vitest@npm:0.3.10":
-  version: 0.3.10
-  resolution: "eslint-plugin-vitest@npm:0.3.10"
+"eslint-plugin-vitest@npm:0.3.17":
+  version: 0.3.17
+  resolution: "eslint-plugin-vitest@npm:0.3.17"
   dependencies:
-    "@typescript-eslint/utils": "npm:^6.11.0"
+    "@typescript-eslint/utils": "npm:^6.13.2"
   peerDependencies:
     eslint: ">=8.0.0"
     vitest: "*"
@@ -3982,7 +3982,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: f574e6421319e3d4ce00aafe89452bf463c82b65e25296c859fad37ec30c9d1d2f33bbcb3b3f40ec3b0770cf07b05c2c4fbab15877048963636e884863947559
+  checksum: 506bf0c2db538bfd5bd10f10f3744259f279edfcb8bd70b938117a79639b733fa88185782a193cb233e612f3dafddaf49d5d3005f1fe350e71fcfed4a39b3431
   languageName: node
   linkType: hard
 
@@ -3995,18 +3995,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-yml@npm:1.10.0":
-  version: 1.10.0
-  resolution: "eslint-plugin-yml@npm:1.10.0"
+"eslint-plugin-yml@npm:1.11.0":
+  version: 1.11.0
+  resolution: "eslint-plugin-yml@npm:1.11.0"
   dependencies:
     debug: "npm:^4.3.2"
-    eslint-compat-utils: "npm:^0.1.0"
+    eslint-compat-utils: "npm:^0.1.1"
     lodash: "npm:^4.17.21"
     natural-compare: "npm:^1.4.0"
     yaml-eslint-parser: "npm:^1.2.1"
   peerDependencies:
     eslint: ">=6.0.0"
-  checksum: 4760e11290666056e3fe8f0c9dfc9bc15eed766169826b72cb8ad83469793ed65c3387313a500355d038e8be87487adc0dba2bc52aa8659aacfd23bd856f306b
+  checksum: 43e9d6a8539415d74d877c1feb31d6d9c20cc0acb4adcfc9c235d69fa49518097fa53a9f7cf1c11cdca7f130202f10d5b8971046676750a3f28a6c85e67d19ec
   languageName: node
   linkType: hard
 
