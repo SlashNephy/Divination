@@ -79,6 +79,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cspotcode/source-map-support@npm:0.8.1":
+  version: 0.8.1
+  resolution: "@cspotcode/source-map-support@npm:0.8.1"
+  dependencies:
+    "@jridgewell/trace-mapping": "npm:0.3.9"
+  checksum: b6e38a1712fab242c86a241c229cf562195aad985d0564bd352ac404be583029e89e93028ffd2c251d2c407ecac5fb0cbdca94a2d5c10f29ac806ede0508b3ff
+  languageName: node
+  linkType: hard
+
 "@emotion/eslint-plugin@npm:11.11.0":
   version: 11.11.0
   resolution: "@emotion/eslint-plugin@npm:11.11.0"
@@ -625,7 +634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/resolve-uri@npm:^3.1.0":
+"@jridgewell/resolve-uri@npm:^3.0.3, @jridgewell/resolve-uri@npm:^3.1.0":
   version: 3.1.1
   resolution: "@jridgewell/resolve-uri@npm:3.1.1"
   checksum: 64d59df8ae1a4e74315eb1b61e012f1c7bc8aac47a3a1e683f6fe7008eab07bc512a742b7aa7c0405685d1421206de58c9c2e6adbfe23832f8bd69408ffc183e
@@ -643,6 +652,16 @@ __metadata:
   version: 1.4.15
   resolution: "@jridgewell/sourcemap-codec@npm:1.4.15"
   checksum: 89960ac087781b961ad918978975bcdf2051cd1741880469783c42de64239703eab9db5230d776d8e6a09d73bb5e4cb964e07d93ee6e2e7aea5a7d726e865c09
+  languageName: node
+  linkType: hard
+
+"@jridgewell/trace-mapping@npm:0.3.9":
+  version: 0.3.9
+  resolution: "@jridgewell/trace-mapping@npm:0.3.9"
+  dependencies:
+    "@jridgewell/resolve-uri": "npm:^3.0.3"
+    "@jridgewell/sourcemap-codec": "npm:^1.4.10"
+  checksum: 83deafb8e7a5ca98993c2c6eeaa93c270f6f647a4c0dc00deb38c9cf9b2d3b7bf15e8839540155247ef034a052c0ec4466f980bf0c9e2ab63b97d16c0cedd3ff
   languageName: node
   linkType: hard
 
@@ -4377,7 +4396,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20231121.0"
     typescript: "npm:5.3.3"
-    wrangler: "npm:3.19.0"
+    wrangler: "npm:3.21.0"
   languageName: unknown
   linkType: soft
 
@@ -5323,9 +5342,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20231030.3":
-  version: 3.20231030.3
-  resolution: "miniflare@npm:3.20231030.3"
+"miniflare@npm:3.20231030.4":
+  version: 3.20231030.4
+  resolution: "miniflare@npm:3.20231030.4"
   dependencies:
     acorn: "npm:^8.8.0"
     acorn-walk: "npm:^8.2.0"
@@ -5341,7 +5360,7 @@ __metadata:
     zod: "npm:^3.20.6"
   bin:
     miniflare: bootstrap.js
-  checksum: 988bec15ebef26770c5e6f3b8d1012748fcac404cb1040a2a806a097918c6cb3b45170238abca8b48060dfef74c433f66d50c422dac2995f7ad6000d6fa48e92
+  checksum: 7ff15450f57486399c4243c1113352013a6c1d8220b5aafb86b73a49db7c210a3b65465c89d44be1d7892b8c8e95f776ee67937b15ba34d54234dcd64239b004
   languageName: node
   linkType: hard
 
@@ -7258,24 +7277,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.19.0":
-  version: 3.19.0
-  resolution: "wrangler@npm:3.19.0"
+"wrangler@npm:3.21.0":
+  version: 3.21.0
+  resolution: "wrangler@npm:3.21.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.2.0"
+    "@cspotcode/source-map-support": "npm:0.8.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     blake3-wasm: "npm:^2.1.5"
     chokidar: "npm:^3.5.3"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20231030.3"
+    miniflare: "npm:3.20231030.4"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
     resolve.exports: "npm:^2.0.2"
     selfsigned: "npm:^2.0.1"
     source-map: "npm:0.6.1"
-    source-map-support: "npm:0.5.21"
     xxhash-wasm: "npm:^1.0.1"
   dependenciesMeta:
     fsevents:
@@ -7283,7 +7302,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 18ff7dfce24c34c077e77162f978a74021324a7f21653352436956915e7ceaa45220823bf5982bb11bb78233f5ea99c61b88c923f9021ef866709cbf75e12a52
+  checksum: de92fe6c16577ff9ba2d8a8ac5b9e6a0eb42c2d49c444839bfe6315e1f32f2cb4288589eacd21aae7765b21c8581964961f8eca004f0265a3edee58b13ba6de8
   languageName: node
   linkType: hard
 
