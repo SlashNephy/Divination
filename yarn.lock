@@ -4403,7 +4403,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20231218.0"
     typescript: "npm:5.3.3"
-    wrangler: "npm:3.21.0"
+    wrangler: "npm:3.22.1"
   languageName: unknown
   linkType: soft
 
@@ -7284,9 +7284,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.21.0":
-  version: 3.21.0
-  resolution: "wrangler@npm:3.21.0"
+"wrangler@npm:3.22.1":
+  version: 3.22.1
+  resolution: "wrangler@npm:3.22.1"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.2.0"
     "@cspotcode/source-map-support": "npm:0.8.1"
@@ -7309,7 +7309,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: de92fe6c16577ff9ba2d8a8ac5b9e6a0eb42c2d49c444839bfe6315e1f32f2cb4288589eacd21aae7765b21c8581964961f8eca004f0265a3edee58b13ba6de8
+  checksum: 41b39b54f96aa907a2e59ce54b6b25fac2916f8628627997e1ceb7f51f77011e9b9a90edbbbc0986f84978c3c04123bff43bce95bf8ec055f0a34c6bfb8c5266
   languageName: node
   linkType: hard
 
