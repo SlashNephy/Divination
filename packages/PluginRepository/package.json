@@ -12,7 +12,7 @@
   "dependencies": {
     "@nextui-org/react": "1.0.0-beta.13",
     "@tabler/icons-react": "2.45.0",
-    "framer-motion": "10.17.9",
+    "framer-motion": "10.17.12",
     "i18next": "23.7.16",
     "i18next-browser-languagedetector": "7.2.0",
     "react": "18.2.0",
