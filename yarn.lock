@@ -5084,9 +5084,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:10.17.12":
-  version: 10.17.12
-  resolution: "framer-motion@npm:10.17.12"
+"framer-motion@npm:10.18.0":
+  version: 10.18.0
+  resolution: "framer-motion@npm:10.18.0"
   dependencies:
     "@emotion/is-prop-valid": "npm:^0.8.2"
     tslib: "npm:^2.4.0"
@@ -5101,7 +5101,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 0239092137d599cb38fc1eb5521f66341bf41bde69c344c6155c08a5868d96ead3e943d549bf12b9030533116e8bb4c48b49066b36a06fadc7c735b95318548c
+  checksum: 8dc61e16af34ea7c7e830e03f588c54b7a186a767787eb6373ac692bbffa219959d50b7cf983f54305951e121ea7d50ebd4819920290fc6ad58b03fc5eb2bdde
   languageName: node
   linkType: hard
 
@@ -6835,7 +6835,7 @@ __metadata:
     "@types/react": "npm:18.2.47"
     "@types/react-dom": "npm:18.2.18"
     "@vitejs/plugin-react-swc": "npm:3.5.0"
-    framer-motion: "npm:10.17.12"
+    framer-motion: "npm:10.18.0"
     i18next: "npm:23.7.16"
     i18next-browser-languagedetector: "npm:7.2.0"
     react: "npm:18.2.0"
