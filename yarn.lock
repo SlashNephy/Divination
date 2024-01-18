@@ -5129,7 +5129,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20231218.0"
     typescript: "npm:5.3.3"
-    wrangler: "npm:3.22.4"
+    wrangler: "npm:3.22.5"
   languageName: unknown
   linkType: soft
 
@@ -6217,9 +6217,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20231218.1":
-  version: 3.20231218.1
-  resolution: "miniflare@npm:3.20231218.1"
+"miniflare@npm:3.20231218.2":
+  version: 3.20231218.2
+  resolution: "miniflare@npm:3.20231218.2"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     acorn: "npm:^8.8.0"
@@ -6235,7 +6235,7 @@ __metadata:
     zod: "npm:^3.20.6"
   bin:
     miniflare: bootstrap.js
-  checksum: 08acfcb819233ab4f7ba4a631a3c5a78a8b7592febf8d426a28393d905a435e562744fbc69528184d95bd9582982316a12a5cd99210deabc1b7fb7bfecb00cc4
+  checksum: 73565d5e2a1a3d38336401dbf675e99b175311499aca3bb00b75e148677d8ff6f1ea9bb9bc19680e5355e8fd9d0a03ae1f3728533fcf99dc09c7d1ac848ed95a
   languageName: node
   linkType: hard
 
@@ -7133,7 +7133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.1.7, resolve@npm:^1.10.1, resolve@npm:^1.22.2, resolve@npm:^1.22.4":
+"resolve@npm:^1.1.7, resolve@npm:^1.10.1, resolve@npm:^1.22.2, resolve@npm:^1.22.4, resolve@npm:^1.22.8":
   version: 1.22.8
   resolution: "resolve@npm:1.22.8"
   dependencies:
@@ -7169,7 +7169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.1.7#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.1.7#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.8#optional!builtin<compat/resolve>":
   version: 1.22.8
   resolution: "resolve@patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
   dependencies:
@@ -8344,21 +8344,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.22.4":
-  version: 3.22.4
-  resolution: "wrangler@npm:3.22.4"
+"wrangler@npm:3.22.5":
+  version: 3.22.5
+  resolution: "wrangler@npm:3.22.5"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.2.0"
-    "@cspotcode/source-map-support": "npm:0.8.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     blake3-wasm: "npm:^2.1.5"
     chokidar: "npm:^3.5.3"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20231218.1"
+    miniflare: "npm:3.20231218.2"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
+    resolve: "npm:^1.22.8"
     resolve.exports: "npm:^2.0.2"
     selfsigned: "npm:^2.0.1"
     source-map: "npm:0.6.1"
@@ -8369,7 +8369,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 89cf1482fa3381f18123389bd72ff322a506951fe140e5bd6c6737eb862d33bfb86d4b183d27b22d59dab9c14e35fe88a0a012219921d67ca722476318dcfbf8
+  checksum: 7a4697d6a162ff658fe1091f76dd35fdfe22d7121c0f86273611649b2382cbea89cf024b6025598aadc1dfe23e16855792f7b952a44e1d4d37af0517c02fc857
   languageName: node
   linkType: hard
 
