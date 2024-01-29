@@ -5217,7 +5217,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:4.20240117.0"
     typescript: "npm:5.3.3"
-    wrangler: "npm:3.23.0"
+    wrangler: "npm:3.25.0"
   languageName: unknown
   linkType: soft
 
@@ -6291,9 +6291,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20231218.2":
-  version: 3.20231218.2
-  resolution: "miniflare@npm:3.20231218.2"
+"miniflare@npm:3.20231218.4":
+  version: 3.20231218.4
+  resolution: "miniflare@npm:3.20231218.4"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     acorn: "npm:^8.8.0"
@@ -6302,14 +6302,14 @@ __metadata:
     exit-hook: "npm:^2.2.1"
     glob-to-regexp: "npm:^0.4.1"
     stoppable: "npm:^1.1.0"
-    undici: "npm:^5.22.1"
+    undici: "npm:^5.28.2"
     workerd: "npm:1.20231218.0"
     ws: "npm:^8.11.0"
     youch: "npm:^3.2.2"
     zod: "npm:^3.20.6"
   bin:
     miniflare: bootstrap.js
-  checksum: 73565d5e2a1a3d38336401dbf675e99b175311499aca3bb00b75e148677d8ff6f1ea9bb9bc19680e5355e8fd9d0a03ae1f3728533fcf99dc09c7d1ac848ed95a
+  checksum: 02d3a6964af5860326e1f194f780430e629701e06deeafef9a82bb855a7eab72e9724ae12f54d5b44c875d58c0d4f69fe77bcbbc3c833c9cb96e268f7ffed9e7
   languageName: node
   linkType: hard
 
@@ -8106,7 +8106,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.22.1":
+"undici@npm:^5.28.2":
   version: 5.28.2
   resolution: "undici@npm:5.28.2"
   dependencies:
@@ -8419,9 +8419,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.23.0":
-  version: 3.23.0
-  resolution: "wrangler@npm:3.23.0"
+"wrangler@npm:3.25.0":
+  version: 3.25.0
+  resolution: "wrangler@npm:3.25.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.2.0"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
@@ -8430,7 +8430,7 @@ __metadata:
     chokidar: "npm:^3.5.3"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20231218.2"
+    miniflare: "npm:3.20231218.4"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
     resolve: "npm:^1.22.8"
@@ -8444,7 +8444,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 14bea49d47eb6955d9930ddbec8e33446251ac7ec75be822c1a98be0981b9d92c8d31a643eaa18edcda0205c0d63557f8c405bd7e6585f51f2a4a00faa7c4607
+  checksum: 740b9081c5a1d3fee7701b440293db8b21d25a8600de0e612926dfb8d3350e5310e53422a01694ecd6d8a0b08e260e9b557a57d176b20a384d05bf33d32b7f06
   languageName: node
   linkType: hard
 
