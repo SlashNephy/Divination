@@ -5636,12 +5636,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:23.8.2":
-  version: 23.8.2
-  resolution: "i18next@npm:23.8.2"
+"i18next@npm:23.8.3":
+  version: 23.8.3
+  resolution: "i18next@npm:23.8.3"
   dependencies:
     "@babel/runtime": "npm:^7.23.2"
-  checksum: 10/594c4d5bafd9ac0073a5f2c0ccb40b157571857d43f7f22949a5ab6ea07e6e6f7e39058ddee6e7396369b54d5d741e76cba59c0d5c23ce0ab99e06b249c66f5e
+  checksum: 10/1d23794bb91627bd15a1b1580517f9094da3028a94ad686a8ddbceb034ac2b7e20d3526ea098f644d58c915e35f8f1d7a7226489f226858e9273937ce7422ccb
   languageName: node
   linkType: hard
 
@@ -6923,7 +6923,7 @@ __metadata:
     "@types/react-dom": "npm:18.2.19"
     "@vitejs/plugin-react-swc": "npm:3.6.0"
     framer-motion: "npm:10.18.0"
-    i18next: "npm:23.8.2"
+    i18next: "npm:23.8.3"
     i18next-browser-languagedetector: "npm:7.2.0"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
