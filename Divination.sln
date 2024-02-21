@@ -30,6 +30,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "packages\Plugin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfectComplex", "packages\Plugins\PerfectComplex\PerfectComplex.csproj", "{4A86A947-5DE9-444D-95F1-47A13861370F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Definitions", "Definitions", "{CF571B43-476D-42BC-9AE6-F6A6287BAFA7}"
+	ProjectSection(SolutionItems) = preProject
+		docs\definitions\DiscordIntegration.json = docs\definitions\DiscordIntegration.json
+		docs\definitions\PerfectComplex.json = docs\definitions\PerfectComplex.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
