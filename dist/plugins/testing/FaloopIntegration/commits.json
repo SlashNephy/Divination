@@ -1,24 +1,266 @@
 [
   {
-    "sha": "2ac64c1515b0e58e81cd392878a4b41cff418199",
-    "node_id": "C_kwDOJblaw9oAKDJhYzY0YzE1MTViMGU1OGU4MWNkMzkyODc4YTRiNDFjZmY0MTgxOTk",
+    "sha": "bd0d1fa868f335728dc7100b23c3645a74869a2a",
+    "node_id": "C_kwDOJblaw9oAKGJkMGQxZmE4NjhmMzM1NzI4ZGM3MTAwYjIzYzM2NDVhNzQ4NjlhMmE",
+    "commit": {
+      "author": {
+        "name": "SlashNephy",
+        "email": "spica@starry.blue",
+        "date": "2024-02-21T11:23:38Z"
+      },
+      "committer": {
+        "name": "SlashNephy",
+        "email": "spica@starry.blue",
+        "date": "2024-02-21T11:23:38Z"
+      },
+      "message": "restore solution",
+      "tree": {
+        "sha": "2a2fb46048162960c18776017dc05ac27dc6376f",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/2a2fb46048162960c18776017dc05ac27dc6376f"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/bd0d1fa868f335728dc7100b23c3645a74869a2a",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAggfcY8HluAkMk6PhtFWwEixhdYG\nLCoVAX9KJfCvY/Ps0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQJ2xwUDCtBHmHB0Tnj2kY9JPWjwv3SxHVcnsFa+Iep4H7JeEY2frH0079GIuF0XhFw\ntEgGgvMGUsSqtaO+UKgAk=\n-----END SSH SIGNATURE-----",
+        "payload": "tree 2a2fb46048162960c18776017dc05ac27dc6376f\nparent 362db023b13d056e276e33e1cc16bf14d29daaa5\nauthor SlashNephy <spica@starry.blue> 1708514618 +0900\ncommitter SlashNephy <spica@starry.blue> 1708514618 +0900\n\nrestore solution\n"
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/bd0d1fa868f335728dc7100b23c3645a74869a2a",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/bd0d1fa868f335728dc7100b23c3645a74869a2a",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/bd0d1fa868f335728dc7100b23c3645a74869a2a/comments",
+    "author": {
+      "login": "SlashNephy",
+      "id": 7302150,
+      "node_id": "MDQ6VXNlcjczMDIxNTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/SlashNephy",
+      "html_url": "https://github.com/SlashNephy",
+      "followers_url": "https://api.github.com/users/SlashNephy/followers",
+      "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+      "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+      "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+      "repos_url": "https://api.github.com/users/SlashNephy/repos",
+      "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "SlashNephy",
+      "id": 7302150,
+      "node_id": "MDQ6VXNlcjczMDIxNTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/SlashNephy",
+      "html_url": "https://github.com/SlashNephy",
+      "followers_url": "https://api.github.com/users/SlashNephy/followers",
+      "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+      "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+      "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+      "repos_url": "https://api.github.com/users/SlashNephy/repos",
+      "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "362db023b13d056e276e33e1cc16bf14d29daaa5",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/362db023b13d056e276e33e1cc16bf14d29daaa5",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/362db023b13d056e276e33e1cc16bf14d29daaa5"
+      }
+    ]
+  },
+  {
+    "sha": "362db023b13d056e276e33e1cc16bf14d29daaa5",
+    "node_id": "C_kwDOJblaw9oAKDM2MmRiMDIzYjEzZDA1NmUyNzZlMzNlMWNjMTZiZjE0ZDI5ZGFhYTU",
+    "commit": {
+      "author": {
+        "name": "SlashNephy",
+        "email": "spica@starry.blue",
+        "date": "2024-02-21T11:23:04Z"
+      },
+      "committer": {
+        "name": "SlashNephy",
+        "email": "spica@starry.blue",
+        "date": "2024-02-21T11:23:04Z"
+      },
+      "message": "update IoC for latest Dalamud",
+      "tree": {
+        "sha": "ee7b6fe8d6e44e96d9c1c4cff5035462c3677c2c",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/ee7b6fe8d6e44e96d9c1c4cff5035462c3677c2c"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/362db023b13d056e276e33e1cc16bf14d29daaa5",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAggfcY8HluAkMk6PhtFWwEixhdYG\nLCoVAX9KJfCvY/Ps0AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQEcFxBDrBE5OMTjIuuPoMtR6xpQ0aXHbuTiweCsLMHDwiItUH6VslnfaPoNiThrDDf\naHOlh6erNv/2uTumYmmgI=\n-----END SSH SIGNATURE-----",
+        "payload": "tree ee7b6fe8d6e44e96d9c1c4cff5035462c3677c2c\nparent c29f70468db195bc9df931eb170c5291f4ebcd0c\nauthor SlashNephy <spica@starry.blue> 1708514584 +0900\ncommitter SlashNephy <spica@starry.blue> 1708514584 +0900\n\nupdate IoC for latest Dalamud\n"
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/362db023b13d056e276e33e1cc16bf14d29daaa5",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/362db023b13d056e276e33e1cc16bf14d29daaa5",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/362db023b13d056e276e33e1cc16bf14d29daaa5/comments",
+    "author": {
+      "login": "SlashNephy",
+      "id": 7302150,
+      "node_id": "MDQ6VXNlcjczMDIxNTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/SlashNephy",
+      "html_url": "https://github.com/SlashNephy",
+      "followers_url": "https://api.github.com/users/SlashNephy/followers",
+      "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+      "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+      "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+      "repos_url": "https://api.github.com/users/SlashNephy/repos",
+      "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "SlashNephy",
+      "id": 7302150,
+      "node_id": "MDQ6VXNlcjczMDIxNTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/SlashNephy",
+      "html_url": "https://github.com/SlashNephy",
+      "followers_url": "https://api.github.com/users/SlashNephy/followers",
+      "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+      "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+      "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+      "repos_url": "https://api.github.com/users/SlashNephy/repos",
+      "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c29f70468db195bc9df931eb170c5291f4ebcd0c",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c29f70468db195bc9df931eb170c5291f4ebcd0c",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/c29f70468db195bc9df931eb170c5291f4ebcd0c"
+      }
+    ]
+  },
+  {
+    "sha": "c29f70468db195bc9df931eb170c5291f4ebcd0c",
+    "node_id": "C_kwDOJblaw9oAKGMyOWY3MDQ2OGRiMTk1YmM5ZGY5MzFlYjE3MGM1MjkxZjRlYmNkMGM",
+    "commit": {
+      "author": {
+        "name": "SlashNephy",
+        "email": "spica@starry.blue",
+        "date": "2024-02-21T10:53:29Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2024-02-21T10:53:29Z"
+      },
+      "message": "Merge pull request #540 from SlashNephy/dependabot/go_modules/packages/DownloadCounter/golang.org/x/crypto-0.17.0\n\nBump golang.org/x/crypto from 0.15.0 to 0.17.0 in /packages/DownloadCounter",
+      "tree": {
+        "sha": "7f1061684df9e07bc531e1834d34caf1e9d2dc73",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/7f1061684df9e07bc531e1834d34caf1e9d2dc73"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/c29f70468db195bc9df931eb170c5291f4ebcd0c",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJl1dYpCRC1aQ7uu5UhlAAAopAQAF3bqlOra9Q2u/31gjeRi4wd\n4BjIi7OVrOXJBqzKjd/WHv1/WgJVGDQUyapKVkS3hK25gfEuPLVc/wF2G7ffgi1P\nDtipX/VctlPuHQ6dImHgfUWpRcA05gy8kUmIp0tvBlHijgYaHwu2fF1huH5dYJzA\nLwOuVm3zfyYZ6D/Z05NnS63cL462Yq/LW2jJRfqgY9eViXzOJBPEGaUIq18mfl5n\n/f4qR8gwW3MjnS0vclvKX7Aj/yLJuokw7PVZAZtWy7wdDoR3Lej2aZ8drBlmb1XB\nAemKRdqKlmFR71wHIfnsIyDVp2y7ks5B2rbT03nxDRMj1qS1gK+N0D+GuzZ2nWxV\njiXE5LvRsfMlv4KQVspfDkBbbXM6oPxnTzfzn+JzKPWPtlhwtR8bWgu4tKdrt9Ve\nzZBznid8aq9GoBKy+Uro6eByOxzV9OnR/oXZB/idFzG16hc2B8EG018b8EgHonga\n7oKEx/StDfwte7KZv2binKuWhzWYvc6d9PCH0z0HjHX2wZhmgWNAgTwqIMzbENfk\nsYZmPx9xwmU2hPjBX4wf6sLHxMPjyXoQitjmip32Kx2B437TvMIFYGD1b2UgpR5f\n1YW/PShhf3va0r1OBuA5p/+iYDoHkJAls1Rhib2I6eyTUCn0wFIxo8RLNvQjJNLj\nZ813cWeM4FMMAVY57sVZ\n=pwGN\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 7f1061684df9e07bc531e1834d34caf1e9d2dc73\nparent c400ffb6186c7f9b6863a8e2705c32c3337ed7e2\nparent 198118c254702d03ba44e93febb800bee691f63b\nauthor SlashNephy <spica@starry.blue> 1708512809 +0900\ncommitter GitHub <noreply@github.com> 1708512809 +0900\n\nMerge pull request #540 from SlashNephy/dependabot/go_modules/packages/DownloadCounter/golang.org/x/crypto-0.17.0\n\nBump golang.org/x/crypto from 0.15.0 to 0.17.0 in /packages/DownloadCounter"
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c29f70468db195bc9df931eb170c5291f4ebcd0c",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/c29f70468db195bc9df931eb170c5291f4ebcd0c",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/c29f70468db195bc9df931eb170c5291f4ebcd0c/comments",
+    "author": {
+      "login": "SlashNephy",
+      "id": 7302150,
+      "node_id": "MDQ6VXNlcjczMDIxNTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7302150?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/SlashNephy",
+      "html_url": "https://github.com/SlashNephy",
+      "followers_url": "https://api.github.com/users/SlashNephy/followers",
+      "following_url": "https://api.github.com/users/SlashNephy/following{/other_user}",
+      "gists_url": "https://api.github.com/users/SlashNephy/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/SlashNephy/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/SlashNephy/subscriptions",
+      "organizations_url": "https://api.github.com/users/SlashNephy/orgs",
+      "repos_url": "https://api.github.com/users/SlashNephy/repos",
+      "events_url": "https://api.github.com/users/SlashNephy/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/SlashNephy/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c400ffb6186c7f9b6863a8e2705c32c3337ed7e2",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c400ffb6186c7f9b6863a8e2705c32c3337ed7e2",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/c400ffb6186c7f9b6863a8e2705c32c3337ed7e2"
+      },
+      {
+        "sha": "198118c254702d03ba44e93febb800bee691f63b",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/198118c254702d03ba44e93febb800bee691f63b",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/198118c254702d03ba44e93febb800bee691f63b"
+      }
+    ]
+  },
+  {
+    "sha": "c400ffb6186c7f9b6863a8e2705c32c3337ed7e2",
+    "node_id": "C_kwDOJblaw9oAKGM0MDBmZmI2MTg2YzdmOWI2ODYzYThlMjcwNWMzMmMzMzM3ZWQ3ZTI",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-21T21:42:50Z"
+        "date": "2024-02-19T22:23:49Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-22T02:28:47Z"
+        "date": "2024-02-20T13:40:17Z"
       },
-      "message": "chore(deps): update dependency anglesharp to v1.1.0",
+      "message": "fix(deps): update dependency i18next to v23.8.3",
       "tree": {
-        "sha": "e703aac8fc709c7e9c9916b58e4b3596d144a966",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/e703aac8fc709c7e9c9916b58e4b3596d144a966"
+        "sha": "9156d56a68d1fa7b3c2a5659480bec0e231cfec1",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/9156d56a68d1fa7b3c2a5659480bec0e231cfec1"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/2ac64c1515b0e58e81cd392878a4b41cff418199",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/c400ffb6186c7f9b6863a8e2705c32c3337ed7e2",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -27,9 +269,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/2ac64c1515b0e58e81cd392878a4b41cff418199",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/2ac64c1515b0e58e81cd392878a4b41cff418199",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/2ac64c1515b0e58e81cd392878a4b41cff418199/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c400ffb6186c7f9b6863a8e2705c32c3337ed7e2",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/c400ffb6186c7f9b6863a8e2705c32c3337ed7e2",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/c400ffb6186c7f9b6863a8e2705c32c3337ed7e2/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -72,32 +314,32 @@
     },
     "parents": [
       {
-        "sha": "1b58ea92a4996b4545140e25dac97a5eb8d42bbb",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/1b58ea92a4996b4545140e25dac97a5eb8d42bbb",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/1b58ea92a4996b4545140e25dac97a5eb8d42bbb"
+        "sha": "fddc2f6429360c4f8a8196b7738f3da024e64625",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/fddc2f6429360c4f8a8196b7738f3da024e64625",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/fddc2f6429360c4f8a8196b7738f3da024e64625"
       }
     ]
   },
   {
-    "sha": "1b58ea92a4996b4545140e25dac97a5eb8d42bbb",
-    "node_id": "C_kwDOJblaw9oAKDFiNThlYTkyYTQ5OTZiNDU0NTE0MGUyNWRhYzk3YTVlYjhkNDJiYmI",
+    "sha": "fddc2f6429360c4f8a8196b7738f3da024e64625",
+    "node_id": "C_kwDOJblaw9oAKGZkZGMyZjY0MjkzNjBjNGY4YTgxOTZiNzczOGYzZGEwMjRlNjQ2MjU",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-21T18:26:28Z"
+        "date": "2024-02-19T01:59:22Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-21T21:40:14Z"
+        "date": "2024-02-19T22:23:04Z"
       },
-      "message": "chore(deps): update dependency wrangler to v3.23.0",
+      "message": "chore(deps): update dependency wrangler to v3.28.3",
       "tree": {
-        "sha": "c5f93804f576159164a207823cb3fc26fff412e1",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/c5f93804f576159164a207823cb3fc26fff412e1"
+        "sha": "a21ba249fab36e6fa655d9b2ff7b65afea482bac",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/a21ba249fab36e6fa655d9b2ff7b65afea482bac"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/1b58ea92a4996b4545140e25dac97a5eb8d42bbb",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/fddc2f6429360c4f8a8196b7738f3da024e64625",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -106,9 +348,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/1b58ea92a4996b4545140e25dac97a5eb8d42bbb",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/1b58ea92a4996b4545140e25dac97a5eb8d42bbb",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/1b58ea92a4996b4545140e25dac97a5eb8d42bbb/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/fddc2f6429360c4f8a8196b7738f3da024e64625",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/fddc2f6429360c4f8a8196b7738f3da024e64625",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/fddc2f6429360c4f8a8196b7738f3da024e64625/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -151,32 +393,111 @@
     },
     "parents": [
       {
-        "sha": "34d2f89619f3c8505587f2752483233c51d68b6b",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/34d2f89619f3c8505587f2752483233c51d68b6b",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/34d2f89619f3c8505587f2752483233c51d68b6b"
+        "sha": "7326f0c2b4447ad3f1fabce6f41503b183eeffa3",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7326f0c2b4447ad3f1fabce6f41503b183eeffa3",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/7326f0c2b4447ad3f1fabce6f41503b183eeffa3"
       }
     ]
   },
   {
-    "sha": "34d2f89619f3c8505587f2752483233c51d68b6b",
-    "node_id": "C_kwDOJblaw9oAKDM0ZDJmODk2MTlmM2M4NTA1NTg3ZjI3NTI0ODMyMzNjNTFkNjhiNmI",
+    "sha": "7326f0c2b4447ad3f1fabce6f41503b183eeffa3",
+    "node_id": "C_kwDOJblaw9oAKDczMjZmMGMyYjQ0NDdhZDNmMWZhYmNlNmY0MTUwM2IxODNlZWZmYTM",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-21T16:17:40Z"
+        "date": "2024-02-18T19:11:11Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-21T18:24:52Z"
+        "date": "2024-02-19T01:58:33Z"
+      },
+      "message": "fix(deps): update dependency swr to v2.2.5",
+      "tree": {
+        "sha": "2c867a7b0bd84961998ac4379bcb782b27a95633",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/2c867a7b0bd84961998ac4379bcb782b27a95633"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/7326f0c2b4447ad3f1fabce6f41503b183eeffa3",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7326f0c2b4447ad3f1fabce6f41503b183eeffa3",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/7326f0c2b4447ad3f1fabce6f41503b183eeffa3",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/7326f0c2b4447ad3f1fabce6f41503b183eeffa3/comments",
+    "author": {
+      "login": "renovate[bot]",
+      "id": 29139614,
+      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/renovate%5Bbot%5D",
+      "html_url": "https://github.com/apps/renovate",
+      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "renovate[bot]",
+      "id": 29139614,
+      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/renovate%5Bbot%5D",
+      "html_url": "https://github.com/apps/renovate",
+      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "85f3813596f4c180e77136e38ff45a4400886a84",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/85f3813596f4c180e77136e38ff45a4400886a84",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/85f3813596f4c180e77136e38ff45a4400886a84"
+      }
+    ]
+  },
+  {
+    "sha": "85f3813596f4c180e77136e38ff45a4400886a84",
+    "node_id": "C_kwDOJblaw9oAKDg1ZjM4MTM1OTZmNGMxODBlNzcxMzZlMzhmZjQ1YTQ0MDA4ODZhODQ",
+    "commit": {
+      "author": {
+        "name": "renovate[bot]",
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "date": "2024-02-18T15:33:41Z"
+      },
+      "committer": {
+        "name": "renovate[bot]",
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "date": "2024-02-18T19:09:35Z"
       },
       "message": "chore(deps): lock file maintenance",
       "tree": {
-        "sha": "54e4d4e9ce4a99561c389d14e51aadda27e6c42c",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/54e4d4e9ce4a99561c389d14e51aadda27e6c42c"
+        "sha": "0248dde15e46c85adbb722c833d0d4b518f39477",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/0248dde15e46c85adbb722c833d0d4b518f39477"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/34d2f89619f3c8505587f2752483233c51d68b6b",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/85f3813596f4c180e77136e38ff45a4400886a84",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -185,9 +506,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/34d2f89619f3c8505587f2752483233c51d68b6b",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/34d2f89619f3c8505587f2752483233c51d68b6b",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/34d2f89619f3c8505587f2752483233c51d68b6b/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/85f3813596f4c180e77136e38ff45a4400886a84",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/85f3813596f4c180e77136e38ff45a4400886a84",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/85f3813596f4c180e77136e38ff45a4400886a84/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -230,32 +551,32 @@
     },
     "parents": [
       {
-        "sha": "a49978dabc238c7aa9fea451b10fd47ef26d635d",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/a49978dabc238c7aa9fea451b10fd47ef26d635d",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/a49978dabc238c7aa9fea451b10fd47ef26d635d"
+        "sha": "a573b2a4d1112b79c039fc425f3d7b92cb790dce",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/a573b2a4d1112b79c039fc425f3d7b92cb790dce",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/a573b2a4d1112b79c039fc425f3d7b92cb790dce"
       }
     ]
   },
   {
-    "sha": "a49978dabc238c7aa9fea451b10fd47ef26d635d",
-    "node_id": "C_kwDOJblaw9oAKGE0OTk3OGRhYmMyMzhjN2FhOWZlYTQ1MWIxMGZkNDdlZjI2ZDYzNWQ",
+    "sha": "a573b2a4d1112b79c039fc425f3d7b92cb790dce",
+    "node_id": "C_kwDOJblaw9oAKGE1NzNiMmE0ZDExMTJiNzljMDM5ZmM0MjVmM2Q3YjkyY2I3OTBkY2U",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-20T10:47:26Z"
+        "date": "2024-02-16T18:58:59Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-20T16:54:59Z"
+        "date": "2024-02-18T15:28:20Z"
       },
-      "message": "chore(deps): update dependency @cloudflare/workers-types to v4.20240117.0",
+      "message": "chore(deps): update dependency vite to v5.1.3",
       "tree": {
-        "sha": "52da319f469b76b00fd673491227665846b22bcc",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/52da319f469b76b00fd673491227665846b22bcc"
+        "sha": "7742aec45dd5cff139eae611a759b9c33bc578ae",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/7742aec45dd5cff139eae611a759b9c33bc578ae"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/a49978dabc238c7aa9fea451b10fd47ef26d635d",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/a573b2a4d1112b79c039fc425f3d7b92cb790dce",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -264,9 +585,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/a49978dabc238c7aa9fea451b10fd47ef26d635d",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/a49978dabc238c7aa9fea451b10fd47ef26d635d",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/a49978dabc238c7aa9fea451b10fd47ef26d635d/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/a573b2a4d1112b79c039fc425f3d7b92cb790dce",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/a573b2a4d1112b79c039fc425f3d7b92cb790dce",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/a573b2a4d1112b79c039fc425f3d7b92cb790dce/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -309,32 +630,32 @@
     },
     "parents": [
       {
-        "sha": "e58c48a9192189f891d92d80ce4b15540699f67c",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e58c48a9192189f891d92d80ce4b15540699f67c",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/e58c48a9192189f891d92d80ce4b15540699f67c"
+        "sha": "818869076baa5c8f6a3296ec2a7a3ec68fc97749",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/818869076baa5c8f6a3296ec2a7a3ec68fc97749",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/818869076baa5c8f6a3296ec2a7a3ec68fc97749"
       }
     ]
   },
   {
-    "sha": "e58c48a9192189f891d92d80ce4b15540699f67c",
-    "node_id": "C_kwDOJblaw9oAKGU1OGM0OGE5MTkyMTg5Zjg5MWQ5MmQ4MGNlNGIxNTU0MDY5OWY2N2M",
+    "sha": "818869076baa5c8f6a3296ec2a7a3ec68fc97749",
+    "node_id": "C_kwDOJblaw9oAKDgxODg2OTA3NmJhYTVjOGY2YTMyOTZlYzJhN2EzZWM2OGZjOTc3NDk",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-20T02:13:36Z"
+        "date": "2024-02-13T18:14:17Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-20T10:45:46Z"
+        "date": "2024-02-16T18:58:13Z"
       },
-      "message": "chore(deps): update dependency prettier to v3.2.4",
+      "message": "chore(deps): update dependency wrangler to v3.28.2",
       "tree": {
-        "sha": "3b21416488ce7f07cd02148479a424bc9c812a51",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/3b21416488ce7f07cd02148479a424bc9c812a51"
+        "sha": "9db0844e70fa54e1ae2f8b61fdb6c333065796f9",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/9db0844e70fa54e1ae2f8b61fdb6c333065796f9"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/e58c48a9192189f891d92d80ce4b15540699f67c",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/818869076baa5c8f6a3296ec2a7a3ec68fc97749",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -343,9 +664,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e58c48a9192189f891d92d80ce4b15540699f67c",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/e58c48a9192189f891d92d80ce4b15540699f67c",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/e58c48a9192189f891d92d80ce4b15540699f67c/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/818869076baa5c8f6a3296ec2a7a3ec68fc97749",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/818869076baa5c8f6a3296ec2a7a3ec68fc97749",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/818869076baa5c8f6a3296ec2a7a3ec68fc97749/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -388,32 +709,32 @@
     },
     "parents": [
       {
-        "sha": "00d65df6b34879f941d427e6ddcdaede6d309241",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/00d65df6b34879f941d427e6ddcdaede6d309241",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/00d65df6b34879f941d427e6ddcdaede6d309241"
+        "sha": "18d81dbe1cf4ae83de19769933453b0edb2ed353",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/18d81dbe1cf4ae83de19769933453b0edb2ed353",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/18d81dbe1cf4ae83de19769933453b0edb2ed353"
       }
     ]
   },
   {
-    "sha": "00d65df6b34879f941d427e6ddcdaede6d309241",
-    "node_id": "C_kwDOJblaw9oAKDAwZDY1ZGY2YjM0ODc5Zjk0MWQ0MjdlNmRkY2RhZWRlNmQzMDkyNDE",
+    "sha": "18d81dbe1cf4ae83de19769933453b0edb2ed353",
+    "node_id": "C_kwDOJblaw9oAKDE4ZDgxZGJlMWNmNGFlODNkZTE5NzY5OTMzNDUzYjBlZGIyZWQzNTM",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-19T22:35:02Z"
+        "date": "2024-02-12T10:52:48Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-20T02:12:15Z"
+        "date": "2024-02-12T13:56:03Z"
       },
-      "message": "chore(deps): update dependency vite to v5.0.12 [security]",
+      "message": "chore(deps): update dependency wrangler to v3.28.1",
       "tree": {
-        "sha": "9aeab33516a1b0895bb404a86c1c4b08ba417207",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/9aeab33516a1b0895bb404a86c1c4b08ba417207"
+        "sha": "e891c0d50faf1d3d887c21a2a4956bc02798f6c5",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/e891c0d50faf1d3d887c21a2a4956bc02798f6c5"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/00d65df6b34879f941d427e6ddcdaede6d309241",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/18d81dbe1cf4ae83de19769933453b0edb2ed353",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -422,9 +743,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/00d65df6b34879f941d427e6ddcdaede6d309241",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/00d65df6b34879f941d427e6ddcdaede6d309241",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/00d65df6b34879f941d427e6ddcdaede6d309241/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/18d81dbe1cf4ae83de19769933453b0edb2ed353",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/18d81dbe1cf4ae83de19769933453b0edb2ed353",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/18d81dbe1cf4ae83de19769933453b0edb2ed353/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -467,32 +788,32 @@
     },
     "parents": [
       {
-        "sha": "64050c5c973d5145ef13b99be2a896b0c95edce2",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/64050c5c973d5145ef13b99be2a896b0c95edce2",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/64050c5c973d5145ef13b99be2a896b0c95edce2"
+        "sha": "7ec5a7c6067ad725b1d122fd70e24fbdb6c59706",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ec5a7c6067ad725b1d122fd70e24fbdb6c59706",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/7ec5a7c6067ad725b1d122fd70e24fbdb6c59706"
       }
     ]
   },
   {
-    "sha": "64050c5c973d5145ef13b99be2a896b0c95edce2",
-    "node_id": "C_kwDOJblaw9oAKDY0MDUwYzVjOTczZDUxNDVlZjEzYjk5YmUyYTg5NmIwYzk1ZWRjZTI",
+    "sha": "7ec5a7c6067ad725b1d122fd70e24fbdb6c59706",
+    "node_id": "C_kwDOJblaw9oAKDdlYzVhN2M2MDY3YWQ3MjViMWQxMjJmZDcwZTI0ZmJkYjZjNTk3MDY",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-18T11:35:13Z"
+        "date": "2024-02-11T22:55:16Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-19T19:21:46Z"
+        "date": "2024-02-12T10:50:54Z"
       },
-      "message": "chore(deps): update dependency wrangler to v3.22.5",
+      "message": "chore(deps): update dependency vite to v5.1.1",
       "tree": {
-        "sha": "ae1f4abb483fac6893f91cc4656a97fd7efd4df4",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/ae1f4abb483fac6893f91cc4656a97fd7efd4df4"
+        "sha": "92b42f29e5beae3d68141438529ceef052014c09",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/92b42f29e5beae3d68141438529ceef052014c09"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/64050c5c973d5145ef13b99be2a896b0c95edce2",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/7ec5a7c6067ad725b1d122fd70e24fbdb6c59706",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -501,9 +822,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/64050c5c973d5145ef13b99be2a896b0c95edce2",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/64050c5c973d5145ef13b99be2a896b0c95edce2",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/64050c5c973d5145ef13b99be2a896b0c95edce2/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ec5a7c6067ad725b1d122fd70e24fbdb6c59706",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/7ec5a7c6067ad725b1d122fd70e24fbdb6c59706",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ec5a7c6067ad725b1d122fd70e24fbdb6c59706/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -546,32 +867,32 @@
     },
     "parents": [
       {
-        "sha": "7ac6af9f1c62f9e9c392718f5a8b074279b935bc",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ac6af9f1c62f9e9c392718f5a8b074279b935bc",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/7ac6af9f1c62f9e9c392718f5a8b074279b935bc"
+        "sha": "9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3"
       }
     ]
   },
   {
-    "sha": "7ac6af9f1c62f9e9c392718f5a8b074279b935bc",
-    "node_id": "C_kwDOJblaw9oAKDdhYzZhZjlmMWM2MmY5ZTljMzkyNzE4ZjVhOGIwNzQyNzliOTM1YmM",
+    "sha": "9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3",
+    "node_id": "C_kwDOJblaw9oAKDljMDc3OGRjMGZkMmJlYjdiMTQyMDQzYWMzYjJjMDZiYzBkMzZjZDM",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-17T20:25:17Z"
+        "date": "2024-02-11T19:31:46Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-18T11:34:31Z"
+        "date": "2024-02-11T22:54:20Z"
       },
-      "message": "chore(deps): update dependency @types/react to v18.2.48",
+      "message": "chore(deps): update dependency @cloudflare/workers-types to v4.20240208.0",
       "tree": {
-        "sha": "a75b32b6f19bbe99ed8d2d8ee4436de81195344f",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/a75b32b6f19bbe99ed8d2d8ee4436de81195344f"
+        "sha": "e94566b6dd79b34c223eb51b968ec2f95c17104f",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/e94566b6dd79b34c223eb51b968ec2f95c17104f"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/7ac6af9f1c62f9e9c392718f5a8b074279b935bc",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -580,9 +901,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ac6af9f1c62f9e9c392718f5a8b074279b935bc",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/7ac6af9f1c62f9e9c392718f5a8b074279b935bc",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ac6af9f1c62f9e9c392718f5a8b074279b935bc/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/9c0778dc0fd2beb7b142043ac3b2c06bc0d36cd3/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -625,190 +946,32 @@
     },
     "parents": [
       {
-        "sha": "99e474abf4716a8fc038e0f08c1a8733d069d3ac",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/99e474abf4716a8fc038e0f08c1a8733d069d3ac",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/99e474abf4716a8fc038e0f08c1a8733d069d3ac"
+        "sha": "4bc14ed729963e1783f46fe80d6db85ad99bc4de",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/4bc14ed729963e1783f46fe80d6db85ad99bc4de",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/4bc14ed729963e1783f46fe80d6db85ad99bc4de"
       }
     ]
   },
   {
-    "sha": "99e474abf4716a8fc038e0f08c1a8733d069d3ac",
-    "node_id": "C_kwDOJblaw9oAKDk5ZTQ3NGFiZjQ3MTZhOGZjMDM4ZTBmMDhjMWE4NzMzZDA2OWQzYWM",
+    "sha": "4bc14ed729963e1783f46fe80d6db85ad99bc4de",
+    "node_id": "C_kwDOJblaw9oAKDRiYzE0ZWQ3Mjk5NjNlMTc4M2Y0NmZlODBkNmRiODVhZDk5YmM0ZGU",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-16T00:01:57Z"
+        "date": "2024-02-11T16:11:01Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-17T20:24:27Z"
-      },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.3.5",
-      "tree": {
-        "sha": "afef08984e8377fa6c0d387f9cee49b0c5fcc6d7",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/afef08984e8377fa6c0d387f9cee49b0c5fcc6d7"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/99e474abf4716a8fc038e0f08c1a8733d069d3ac",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/99e474abf4716a8fc038e0f08c1a8733d069d3ac",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/99e474abf4716a8fc038e0f08c1a8733d069d3ac",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/99e474abf4716a8fc038e0f08c1a8733d069d3ac/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "5ec1918e08469d396d7ffb539b6a4f8b7805a76b",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/5ec1918e08469d396d7ffb539b6a4f8b7805a76b",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/5ec1918e08469d396d7ffb539b6a4f8b7805a76b"
-      }
-    ]
-  },
-  {
-    "sha": "5ec1918e08469d396d7ffb539b6a4f8b7805a76b",
-    "node_id": "C_kwDOJblaw9oAKDVlYzE5MThlMDg0NjlkMzk2ZDdmZmI1MzliNmE0ZjhiNzgwNWE3NmI",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-14T20:24:00Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-16T00:01:13Z"
-      },
-      "message": "fix(deps): update dependency @tabler/icons-react to v2.46.0",
-      "tree": {
-        "sha": "5d85cbf0eea61de34d945933c37d8ab0a853d857",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/5d85cbf0eea61de34d945933c37d8ab0a853d857"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/5ec1918e08469d396d7ffb539b6a4f8b7805a76b",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/5ec1918e08469d396d7ffb539b6a4f8b7805a76b",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/5ec1918e08469d396d7ffb539b6a4f8b7805a76b",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/5ec1918e08469d396d7ffb539b6a4f8b7805a76b/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "343b420d3872386288e556062e993ecb52688839",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/343b420d3872386288e556062e993ecb52688839",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/343b420d3872386288e556062e993ecb52688839"
-      }
-    ]
-  },
-  {
-    "sha": "343b420d3872386288e556062e993ecb52688839",
-    "node_id": "C_kwDOJblaw9oAKDM0M2I0MjBkMzg3MjM4NjI4OGU1NTYwNjJlOTkzZWNiNTI2ODg4Mzk",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-14T15:11:14Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-14T20:22:48Z"
+        "date": "2024-02-11T19:30:13Z"
       },
       "message": "chore(deps): lock file maintenance",
       "tree": {
-        "sha": "fb89022079f7a3e3ca3284b3393e4a4dfcf831bd",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/fb89022079f7a3e3ca3284b3393e4a4dfcf831bd"
+        "sha": "d12f047803d53d542f0570104f1333497ebb3733",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/d12f047803d53d542f0570104f1333497ebb3733"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/343b420d3872386288e556062e993ecb52688839",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/4bc14ed729963e1783f46fe80d6db85ad99bc4de",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -817,9 +980,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/343b420d3872386288e556062e993ecb52688839",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/343b420d3872386288e556062e993ecb52688839",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/343b420d3872386288e556062e993ecb52688839/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/4bc14ed729963e1783f46fe80d6db85ad99bc4de",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/4bc14ed729963e1783f46fe80d6db85ad99bc4de",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/4bc14ed729963e1783f46fe80d6db85ad99bc4de/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -862,32 +1025,32 @@
     },
     "parents": [
       {
-        "sha": "756978c6b7af594d3e3d818133ce29e6d914dcb8",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/756978c6b7af594d3e3d818133ce29e6d914dcb8",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/756978c6b7af594d3e3d818133ce29e6d914dcb8"
+        "sha": "1fd06ffee4179f5e02ee450dac6b092d2eee356c",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/1fd06ffee4179f5e02ee450dac6b092d2eee356c",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/1fd06ffee4179f5e02ee450dac6b092d2eee356c"
       }
     ]
   },
   {
-    "sha": "756978c6b7af594d3e3d818133ce29e6d914dcb8",
-    "node_id": "C_kwDOJblaw9oAKDc1Njk3OGM2YjdhZjU5NGQzZTNkODE4MTMzY2UyOWU2ZDkxNGRjYjg",
+    "sha": "1fd06ffee4179f5e02ee450dac6b092d2eee356c",
+    "node_id": "C_kwDOJblaw9oAKDFmZDA2ZmZlZTQxNzlmNWUwMmVlNDUwZGFjNmIwOTJkMmVlZTM1NmM",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-12T20:19:41Z"
+        "date": "2024-02-08T00:12:19Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-13T17:02:20Z"
+        "date": "2024-02-10T18:06:53Z"
       },
-      "message": "fix(deps): update dependency framer-motion to v10.18.0",
+      "message": "chore(deps): update react monorepo",
       "tree": {
-        "sha": "6af0296d16fa56c1f89e3f034952bbe8331f9b02",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/6af0296d16fa56c1f89e3f034952bbe8331f9b02"
+        "sha": "d7a231b1df67d29662e7550d53bfbf6598ffad03",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/d7a231b1df67d29662e7550d53bfbf6598ffad03"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/756978c6b7af594d3e3d818133ce29e6d914dcb8",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/1fd06ffee4179f5e02ee450dac6b092d2eee356c",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -896,9 +1059,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/756978c6b7af594d3e3d818133ce29e6d914dcb8",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/756978c6b7af594d3e3d818133ce29e6d914dcb8",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/756978c6b7af594d3e3d818133ce29e6d914dcb8/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/1fd06ffee4179f5e02ee450dac6b092d2eee356c",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/1fd06ffee4179f5e02ee450dac6b092d2eee356c",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/1fd06ffee4179f5e02ee450dac6b092d2eee356c/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -941,32 +1104,32 @@
     },
     "parents": [
       {
-        "sha": "151a4d75ffdd1b2cde096fbc89d1d8cef55512a8",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/151a4d75ffdd1b2cde096fbc89d1d8cef55512a8",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/151a4d75ffdd1b2cde096fbc89d1d8cef55512a8"
+        "sha": "08617d73f8169f2dadd3fb275a2633776fa8366b",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/08617d73f8169f2dadd3fb275a2633776fa8366b",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/08617d73f8169f2dadd3fb275a2633776fa8366b"
       }
     ]
   },
   {
-    "sha": "151a4d75ffdd1b2cde096fbc89d1d8cef55512a8",
-    "node_id": "C_kwDOJblaw9oAKDE1MWE0ZDc1ZmZkZDFiMmNkZTA5NmZiYzg5ZDFkOGNlZjU1NTEyYTg",
+    "sha": "08617d73f8169f2dadd3fb275a2633776fa8366b",
+    "node_id": "C_kwDOJblaw9oAKDA4NjE3ZDczZjgxNjlmMmRhZGQzZmIyNzVhMjYzMzc3NmZhODM2NmI",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-12T17:24:38Z"
+        "date": "2024-02-07T06:39:54Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-12T20:18:15Z"
+        "date": "2024-02-08T00:11:13Z"
       },
-      "message": "chore(deps): update dependency wrangler to v3.22.4",
+      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.3.14",
       "tree": {
-        "sha": "8d6acda1b6c4f77ee5a605f6a6ac8b2ab388bab8",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/8d6acda1b6c4f77ee5a605f6a6ac8b2ab388bab8"
+        "sha": "9c427604183296cfc7bd7b49ef339f63ded14eb7",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/9c427604183296cfc7bd7b49ef339f63ded14eb7"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/151a4d75ffdd1b2cde096fbc89d1d8cef55512a8",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/08617d73f8169f2dadd3fb275a2633776fa8366b",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -975,9 +1138,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/151a4d75ffdd1b2cde096fbc89d1d8cef55512a8",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/151a4d75ffdd1b2cde096fbc89d1d8cef55512a8",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/151a4d75ffdd1b2cde096fbc89d1d8cef55512a8/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/08617d73f8169f2dadd3fb275a2633776fa8366b",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/08617d73f8169f2dadd3fb275a2633776fa8366b",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/08617d73f8169f2dadd3fb275a2633776fa8366b/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1020,32 +1183,32 @@
     },
     "parents": [
       {
-        "sha": "d97a6cf4d5bfbbeb0599598387b43fe4d91df394",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/d97a6cf4d5bfbbeb0599598387b43fe4d91df394",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/d97a6cf4d5bfbbeb0599598387b43fe4d91df394"
+        "sha": "eecabd0574199ac6940a61c1a7ae8af81f568720",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/eecabd0574199ac6940a61c1a7ae8af81f568720",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/eecabd0574199ac6940a61c1a7ae8af81f568720"
       }
     ]
   },
   {
-    "sha": "d97a6cf4d5bfbbeb0599598387b43fe4d91df394",
-    "node_id": "C_kwDOJblaw9oAKGQ5N2E2Y2Y0ZDViZmJiZWIwNTk5NTk4Mzg3YjQzZmU0ZDkxZGYzOTQ",
+    "sha": "eecabd0574199ac6940a61c1a7ae8af81f568720",
+    "node_id": "C_kwDOJblaw9oAKGVlY2FiZDA1NzQxOTlhYzY5NDBhNjFjMWE3YWU4YWY4MWY1Njg3MjA",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-11T07:20:19Z"
+        "date": "2024-02-05T00:51:50Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-12T17:23:04Z"
+        "date": "2024-02-07T06:38:32Z"
       },
-      "message": "fix(deps): update dependency framer-motion to v10.17.12",
+      "message": "chore(deps): update dependency prettier to v3.2.5",
       "tree": {
-        "sha": "9b3092c18b21cb27f3c82451b7f75113d8aa08b5",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/9b3092c18b21cb27f3c82451b7f75113d8aa08b5"
+        "sha": "be6de67a8f49669d2a1db7973e0c04941b54cc46",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/be6de67a8f49669d2a1db7973e0c04941b54cc46"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/d97a6cf4d5bfbbeb0599598387b43fe4d91df394",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/eecabd0574199ac6940a61c1a7ae8af81f568720",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1054,9 +1217,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/d97a6cf4d5bfbbeb0599598387b43fe4d91df394",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/d97a6cf4d5bfbbeb0599598387b43fe4d91df394",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/d97a6cf4d5bfbbeb0599598387b43fe4d91df394/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/eecabd0574199ac6940a61c1a7ae8af81f568720",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/eecabd0574199ac6940a61c1a7ae8af81f568720",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/eecabd0574199ac6940a61c1a7ae8af81f568720/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1099,32 +1262,32 @@
     },
     "parents": [
       {
-        "sha": "cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea"
+        "sha": "e8742b66a31d0d3d89f46b772713a1e2e136f56a",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e8742b66a31d0d3d89f46b772713a1e2e136f56a",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/e8742b66a31d0d3d89f46b772713a1e2e136f56a"
       }
     ]
   },
   {
-    "sha": "cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea",
-    "node_id": "C_kwDOJblaw9oAKGNkYmU0YWYwY2NjYmI0NDA4YWFlNzQ4ZTdjNWVmMGIzYmJmYmEzZWE",
+    "sha": "e8742b66a31d0d3d89f46b772713a1e2e136f56a",
+    "node_id": "C_kwDOJblaw9oAKGU4NzQyYjY2YTMxZDBkM2Q4OWY0NmI3NzI3MTNhMWUyZTEzNmY1NmE",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-11T04:19:08Z"
+        "date": "2024-02-04T19:44:14Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-11T07:19:30Z"
+        "date": "2024-02-05T00:50:52Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.3.1",
+      "message": "fix(deps): update dependency @tabler/icons-react to v2.47.0",
       "tree": {
-        "sha": "f6ba8bf17d90a1683d0d12bb53cf677c6985c6b7",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/f6ba8bf17d90a1683d0d12bb53cf677c6985c6b7"
+        "sha": "95b6ec45629419b418c733368bda4f96f0937251",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/95b6ec45629419b418c733368bda4f96f0937251"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/e8742b66a31d0d3d89f46b772713a1e2e136f56a",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1133,9 +1296,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/cdbe4af0cccbb4408aae748e7c5ef0b3bbfba3ea/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e8742b66a31d0d3d89f46b772713a1e2e136f56a",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/e8742b66a31d0d3d89f46b772713a1e2e136f56a",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/e8742b66a31d0d3d89f46b772713a1e2e136f56a/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1178,427 +1341,32 @@
     },
     "parents": [
       {
-        "sha": "6fd2eb3e1592dbc729fd994cedf560008bb31f7f",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/6fd2eb3e1592dbc729fd994cedf560008bb31f7f",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/6fd2eb3e1592dbc729fd994cedf560008bb31f7f"
+        "sha": "c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f"
       }
     ]
   },
   {
-    "sha": "6fd2eb3e1592dbc729fd994cedf560008bb31f7f",
-    "node_id": "C_kwDOJblaw9oAKDZmZDJlYjNlMTU5MmRiYzcyOWZkOTk0Y2VkZjU2MDAwOGJiMzFmN2Y",
+    "sha": "c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f",
+    "node_id": "C_kwDOJblaw9oAKGM4ZTM3ZWEzNWJiZGQzZTJkZDgwZGQ2Nzc4ZmY4Y2NiYTBmYzA0MWY",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-09T11:58:42Z"
+        "date": "2024-02-04T16:04:45Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-11T04:18:05Z"
-      },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.1.4",
-      "tree": {
-        "sha": "41952c872a515eead3ac3f42f9b485e1ce82f399",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/41952c872a515eead3ac3f42f9b485e1ce82f399"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/6fd2eb3e1592dbc729fd994cedf560008bb31f7f",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/6fd2eb3e1592dbc729fd994cedf560008bb31f7f",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/6fd2eb3e1592dbc729fd994cedf560008bb31f7f",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/6fd2eb3e1592dbc729fd994cedf560008bb31f7f/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "1f69ed7f609d3c203c02ad093b76677b65cd9b86",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/1f69ed7f609d3c203c02ad093b76677b65cd9b86",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/1f69ed7f609d3c203c02ad093b76677b65cd9b86"
-      }
-    ]
-  },
-  {
-    "sha": "1f69ed7f609d3c203c02ad093b76677b65cd9b86",
-    "node_id": "C_kwDOJblaw9oAKDFmNjllZDdmNjA5ZDNjMjAzYzAyYWQwOTNiNzY2NzdiNjVjZDliODY",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T22:33:12Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-09T11:57:58Z"
-      },
-      "message": "chore(deps): update dependency @types/react to v18.2.47",
-      "tree": {
-        "sha": "a4267ba67260cd0f2edcbbef26f180ceb8da7ee4",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/a4267ba67260cd0f2edcbbef26f180ceb8da7ee4"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/1f69ed7f609d3c203c02ad093b76677b65cd9b86",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/1f69ed7f609d3c203c02ad093b76677b65cd9b86",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/1f69ed7f609d3c203c02ad093b76677b65cd9b86",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/1f69ed7f609d3c203c02ad093b76677b65cd9b86/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc"
-      }
-    ]
-  },
-  {
-    "sha": "fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc",
-    "node_id": "C_kwDOJblaw9oAKGZhM2FlMWY2ZjU3MWQ0YmYyOWExYjU1YjJjYTUzYzhjNDVhMDY3ZmM",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T16:56:25Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T22:32:15Z"
-      },
-      "message": "chore(deps): update dependency tailwindcss to v3.4.1",
-      "tree": {
-        "sha": "fe303d4cfb26266cefea88bca6b2cc4167ae40c6",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/fe303d4cfb26266cefea88bca6b2cc4167ae40c6"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/fa3ae1f6f571d4bf29a1b55b2ca53c8c45a067fc/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85"
-      }
-    ]
-  },
-  {
-    "sha": "bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85",
-    "node_id": "C_kwDOJblaw9oAKGJkYTBhZGJiYmVjYmRmN2NjMWViOWIzMDQ0ZjVjNWFiMjUzYzZmODU",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T09:13:49Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T16:55:36Z"
-      },
-      "message": "fix(deps): update dependency framer-motion to v10.17.9",
-      "tree": {
-        "sha": "0551d67f050863fa32f0fa40aceed75c447ffe38",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/0551d67f050863fa32f0fa40aceed75c447ffe38"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/bda0adbbbecbdf7cc1eb9b3044f5c5ab253c6f85/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "e370c9dcd6892017b3dc90fdab789268ef4ac40a",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e370c9dcd6892017b3dc90fdab789268ef4ac40a",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/e370c9dcd6892017b3dc90fdab789268ef4ac40a"
-      }
-    ]
-  },
-  {
-    "sha": "e370c9dcd6892017b3dc90fdab789268ef4ac40a",
-    "node_id": "C_kwDOJblaw9oAKGUzNzBjOWRjZDY4OTIwMTdiM2RjOTBmZGFiNzg5MjY4ZWY0YWM0MGE",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T01:04:18Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T09:11:58Z"
-      },
-      "message": "chore(deps): update dependency vite to v5.0.11",
-      "tree": {
-        "sha": "1beb5592d18322e80a22be10851c1b06517a3a6e",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/1beb5592d18322e80a22be10851c1b06517a3a6e"
-      },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/e370c9dcd6892017b3dc90fdab789268ef4ac40a",
-      "comment_count": 0,
-      "verification": {
-        "verified": false,
-        "reason": "unsigned",
-        "signature": null,
-        "payload": null
-      }
-    },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e370c9dcd6892017b3dc90fdab789268ef4ac40a",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/e370c9dcd6892017b3dc90fdab789268ef4ac40a",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/e370c9dcd6892017b3dc90fdab789268ef4ac40a/comments",
-    "author": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "committer": {
-      "login": "renovate[bot]",
-      "id": 29139614,
-      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
-      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/renovate%5Bbot%5D",
-      "html_url": "https://github.com/apps/renovate",
-      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
-      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
-      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
-      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
-      "type": "Bot",
-      "site_admin": false
-    },
-    "parents": [
-      {
-        "sha": "be5cf9720484616ca0bb73524ae60ac5b7a55fc9",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/be5cf9720484616ca0bb73524ae60ac5b7a55fc9",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/be5cf9720484616ca0bb73524ae60ac5b7a55fc9"
-      }
-    ]
-  },
-  {
-    "sha": "be5cf9720484616ca0bb73524ae60ac5b7a55fc9",
-    "node_id": "C_kwDOJblaw9oAKGJlNWNmOTcyMDQ4NDYxNmNhMGJiNzM1MjRhZTYwYWM1YjdhNTVmYzk",
-    "commit": {
-      "author": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-07T21:35:07Z"
-      },
-      "committer": {
-        "name": "renovate[bot]",
-        "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-08T01:02:39Z"
+        "date": "2024-02-04T19:41:54Z"
       },
       "message": "chore(deps): lock file maintenance",
       "tree": {
-        "sha": "1865ad1f1aa5257482a6addd5e9fd43168002142",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/1865ad1f1aa5257482a6addd5e9fd43168002142"
+        "sha": "70b7156a5f575ecd50d906512266afdd9fea75bf",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/70b7156a5f575ecd50d906512266afdd9fea75bf"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/be5cf9720484616ca0bb73524ae60ac5b7a55fc9",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1607,9 +1375,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/be5cf9720484616ca0bb73524ae60ac5b7a55fc9",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/be5cf9720484616ca0bb73524ae60ac5b7a55fc9",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/be5cf9720484616ca0bb73524ae60ac5b7a55fc9/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/c8e37ea35bbdd3e2dd80dd6778ff8ccba0fc041f/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1652,32 +1420,32 @@
     },
     "parents": [
       {
-        "sha": "0bd6ae73685d1df449bae4fbc3324ed701b0f2a0",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/0bd6ae73685d1df449bae4fbc3324ed701b0f2a0",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/0bd6ae73685d1df449bae4fbc3324ed701b0f2a0"
+        "sha": "f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8"
       }
     ]
   },
   {
-    "sha": "0bd6ae73685d1df449bae4fbc3324ed701b0f2a0",
-    "node_id": "C_kwDOJblaw9oAKDBiZDZhZTczNjg1ZDFkZjQ0OWJhZTRmYmMzMzI0ZWQ3MDFiMGYyYTA",
+    "sha": "f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8",
+    "node_id": "C_kwDOJblaw9oAKGYzYjE3MjZjYmE2ZjdhMDNhYzhiMTVmYTAzMzllZjZiNGY1NDdlYzg",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-07T20:30:03Z"
+        "date": "2024-02-03T19:41:30Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-07T21:33:17Z"
+        "date": "2024-02-03T21:56:57Z"
       },
-      "message": "chore(deps): update dependency wrangler to v3.22.3",
+      "message": "fix(deps): update dependency i18next to v23.8.2",
       "tree": {
-        "sha": "0137584431d0055414392ceae7e5d46a12ecfa16",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/0137584431d0055414392ceae7e5d46a12ecfa16"
+        "sha": "6077e77966e745389faaecdb7e93002eb80cee21",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/6077e77966e745389faaecdb7e93002eb80cee21"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/0bd6ae73685d1df449bae4fbc3324ed701b0f2a0",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1686,9 +1454,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/0bd6ae73685d1df449bae4fbc3324ed701b0f2a0",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/0bd6ae73685d1df449bae4fbc3324ed701b0f2a0",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/0bd6ae73685d1df449bae4fbc3324ed701b0f2a0/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/f3b1726cba6f7a03ac8b15fa0339ef6b4f547ec8/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1731,32 +1499,32 @@
     },
     "parents": [
       {
-        "sha": "54fd05c8853141c814c59fb3d9926ae57f799419",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/54fd05c8853141c814c59fb3d9926ae57f799419",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/54fd05c8853141c814c59fb3d9926ae57f799419"
+        "sha": "fb16cb375fc82b585293204ecf995258c91465a4",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/fb16cb375fc82b585293204ecf995258c91465a4",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/fb16cb375fc82b585293204ecf995258c91465a4"
       }
     ]
   },
   {
-    "sha": "54fd05c8853141c814c59fb3d9926ae57f799419",
-    "node_id": "C_kwDOJblaw9oAKDU0ZmQwNWM4ODUzMTQxYzgxNGM1OWZiM2Q5OTI2YWU1N2Y3OTk0MTk",
+    "sha": "fb16cb375fc82b585293204ecf995258c91465a4",
+    "node_id": "C_kwDOJblaw9oAKGZiMTZjYjM3NWZjODJiNTg1MjkzMjA0ZWNmOTk1MjU4YzkxNDY1YTQ",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-07T20:29:12Z"
+        "date": "2024-02-03T17:29:58Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-07T20:29:15Z"
+        "date": "2024-02-03T19:39:23Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.1.3",
+      "message": "chore(deps): update dependency wrangler to v3.26.0",
       "tree": {
-        "sha": "17922894dbbfe8d04c61791e86de6fe322d1c2f1",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/17922894dbbfe8d04c61791e86de6fe322d1c2f1"
+        "sha": "4d10f030ef457d29642ef26dacba17b6ca207bb9",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/4d10f030ef457d29642ef26dacba17b6ca207bb9"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/54fd05c8853141c814c59fb3d9926ae57f799419",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/fb16cb375fc82b585293204ecf995258c91465a4",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1765,9 +1533,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/54fd05c8853141c814c59fb3d9926ae57f799419",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/54fd05c8853141c814c59fb3d9926ae57f799419",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/54fd05c8853141c814c59fb3d9926ae57f799419/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/fb16cb375fc82b585293204ecf995258c91465a4",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/fb16cb375fc82b585293204ecf995258c91465a4",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/fb16cb375fc82b585293204ecf995258c91465a4/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1810,32 +1578,32 @@
     },
     "parents": [
       {
-        "sha": "d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3"
+        "sha": "7ba3c65e22cfff23614588e456c39e6d9b719ca9",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ba3c65e22cfff23614588e456c39e6d9b719ca9",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/7ba3c65e22cfff23614588e456c39e6d9b719ca9"
       }
     ]
   },
   {
-    "sha": "d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3",
-    "node_id": "C_kwDOJblaw9oAKGQ0ZWM1NTViMjNhMjViMTQ2OTBiY2ZhMmQzZGIwYzcyYjk2ZWM0ZTM",
+    "sha": "7ba3c65e22cfff23614588e456c39e6d9b719ca9",
+    "node_id": "C_kwDOJblaw9oAKDdiYTNjNjVlMjJjZmZmMjM2MTQ1ODhlNDU2YzM5ZTZkOWI3MTljYTk",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-06T04:45:47Z"
+        "date": "2024-02-02T17:19:15Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-07T12:43:42Z"
+        "date": "2024-02-03T17:28:50Z"
       },
-      "message": "fix(deps): update dependency i18next to v23.7.16",
+      "message": "chore(deps): update dependency @vitejs/plugin-react-swc to v3.6.0",
       "tree": {
-        "sha": "de4192abc08da00aee7e619c9c0205ed424536b9",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/de4192abc08da00aee7e619c9c0205ed424536b9"
+        "sha": "1cd8b4f3284379bdd02b2845074d2d0243b20712",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/1cd8b4f3284379bdd02b2845074d2d0243b20712"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/7ba3c65e22cfff23614588e456c39e6d9b719ca9",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1844,9 +1612,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/d4ec555b23a25b14690bcfa2d3db0c72b96ec4e3/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ba3c65e22cfff23614588e456c39e6d9b719ca9",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/7ba3c65e22cfff23614588e456c39e6d9b719ca9",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/7ba3c65e22cfff23614588e456c39e6d9b719ca9/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1889,32 +1657,32 @@
     },
     "parents": [
       {
-        "sha": "ad56ea338f46d3b23556baed1bc8b3021243ec71",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/ad56ea338f46d3b23556baed1bc8b3021243ec71",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/ad56ea338f46d3b23556baed1bc8b3021243ec71"
+        "sha": "2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0"
       }
     ]
   },
   {
-    "sha": "ad56ea338f46d3b23556baed1bc8b3021243ec71",
-    "node_id": "C_kwDOJblaw9oAKGFkNTZlYTMzOGY0NmQzYjIzNTU2YmFlZDFiYzhiMzAyMTI0M2VjNzE",
+    "sha": "2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0",
+    "node_id": "C_kwDOJblaw9oAKDIzNTFhMmRhOWUzZDRjNzJiNzk4NTc0ZWU0NWNjYjM1ZDBlMGUxZTA",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-06T04:44:43Z"
+        "date": "2024-02-02T12:06:11Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-06T04:44:47Z"
+        "date": "2024-02-02T17:18:23Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.1.2",
+      "message": "chore(deps): update yarn to v4.1.0",
       "tree": {
-        "sha": "f56094921e9214a2a9062ea0bbcb7e6c57a5bf2e",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/f56094921e9214a2a9062ea0bbcb7e6c57a5bf2e"
+        "sha": "7f24bac2f7b87c57a0e152c8e3f789016a4f9de0",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/7f24bac2f7b87c57a0e152c8e3f789016a4f9de0"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/ad56ea338f46d3b23556baed1bc8b3021243ec71",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -1923,9 +1691,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/ad56ea338f46d3b23556baed1bc8b3021243ec71",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/ad56ea338f46d3b23556baed1bc8b3021243ec71",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/ad56ea338f46d3b23556baed1bc8b3021243ec71/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/2351a2da9e3d4c72b798574ee45ccb35d0e0e1e0/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -1968,32 +1736,32 @@
     },
     "parents": [
       {
-        "sha": "d8e472942c61c1093674a1b0793e7b5f3e81a966",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/d8e472942c61c1093674a1b0793e7b5f3e81a966",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/d8e472942c61c1093674a1b0793e7b5f3e81a966"
+        "sha": "93855805f50816f8721fb01f2769085cf3b61ac6",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/93855805f50816f8721fb01f2769085cf3b61ac6",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/93855805f50816f8721fb01f2769085cf3b61ac6"
       }
     ]
   },
   {
-    "sha": "d8e472942c61c1093674a1b0793e7b5f3e81a966",
-    "node_id": "C_kwDOJblaw9oAKGQ4ZTQ3Mjk0MmM2MWMxMDkzNjc0YTFiMDc5M2U3YjVmM2U4MWE5NjY",
+    "sha": "93855805f50816f8721fb01f2769085cf3b61ac6",
+    "node_id": "C_kwDOJblaw9oAKDkzODU1ODA1ZjUwODE2Zjg3MjFmYjAxZjI3NjkwODVjZjNiNjFhYzY",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T07:43:44Z"
+        "date": "2024-01-31T21:43:45Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T07:43:47Z"
+        "date": "2024-02-02T12:04:46Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.1.1",
+      "message": "chore(deps): update dependency @cloudflare/workers-types to v4.20240129.0",
       "tree": {
-        "sha": "90f436607a14c6fcd977159f2e395e9a5c67d7ac",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/90f436607a14c6fcd977159f2e395e9a5c67d7ac"
+        "sha": "b5e739e2b338716419e1762475e0ea51ede05e99",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/b5e739e2b338716419e1762475e0ea51ede05e99"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/d8e472942c61c1093674a1b0793e7b5f3e81a966",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/93855805f50816f8721fb01f2769085cf3b61ac6",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -2002,9 +1770,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/d8e472942c61c1093674a1b0793e7b5f3e81a966",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/d8e472942c61c1093674a1b0793e7b5f3e81a966",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/d8e472942c61c1093674a1b0793e7b5f3e81a966/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/93855805f50816f8721fb01f2769085cf3b61ac6",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/93855805f50816f8721fb01f2769085cf3b61ac6",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/93855805f50816f8721fb01f2769085cf3b61ac6/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -2047,32 +1815,32 @@
     },
     "parents": [
       {
-        "sha": "a3cac211ca299c60c5f4b796889184d9763ed734",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/a3cac211ca299c60c5f4b796889184d9763ed734",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/a3cac211ca299c60c5f4b796889184d9763ed734"
+        "sha": "7d1c9c61be83896e7d5c8febc1324337fc22be27",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7d1c9c61be83896e7d5c8febc1324337fc22be27",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/7d1c9c61be83896e7d5c8febc1324337fc22be27"
       }
     ]
   },
   {
-    "sha": "a3cac211ca299c60c5f4b796889184d9763ed734",
-    "node_id": "C_kwDOJblaw9oAKGEzY2FjMjExY2EyOTljNjBjNWY0Yjc5Njg4OTE4NGQ5NzYzZWQ3MzQ",
+    "sha": "7d1c9c61be83896e7d5c8febc1324337fc22be27",
+    "node_id": "C_kwDOJblaw9oAKDdkMWM5YzYxYmU4Mzg5NmU3ZDVjOGZlYmMxMzI0MzM3ZmMyMmJlMjc",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T07:42:52Z"
+        "date": "2024-01-29T19:41:30Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T07:42:55Z"
+        "date": "2024-01-31T21:43:02Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.0.101",
+      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.3.10",
       "tree": {
-        "sha": "92e6c38e5d19e2f2ce2616fb1d0b469265cd6522",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/92e6c38e5d19e2f2ce2616fb1d0b469265cd6522"
+        "sha": "625c8d282a787e1e145181ff9400377a17dcf12b",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/625c8d282a787e1e145181ff9400377a17dcf12b"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/a3cac211ca299c60c5f4b796889184d9763ed734",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/7d1c9c61be83896e7d5c8febc1324337fc22be27",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -2081,9 +1849,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/a3cac211ca299c60c5f4b796889184d9763ed734",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/a3cac211ca299c60c5f4b796889184d9763ed734",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/a3cac211ca299c60c5f4b796889184d9763ed734/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/7d1c9c61be83896e7d5c8febc1324337fc22be27",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/7d1c9c61be83896e7d5c8febc1324337fc22be27",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/7d1c9c61be83896e7d5c8febc1324337fc22be27/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -2126,32 +1894,32 @@
     },
     "parents": [
       {
-        "sha": "ac6e61d27be7a7f8466ac013b1e1533a74e041ae",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/ac6e61d27be7a7f8466ac013b1e1533a74e041ae",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/ac6e61d27be7a7f8466ac013b1e1533a74e041ae"
+        "sha": "e5dcf4a686852bc6e80b70bee3a586e5d740250b",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e5dcf4a686852bc6e80b70bee3a586e5d740250b",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/e5dcf4a686852bc6e80b70bee3a586e5d740250b"
       }
     ]
   },
   {
-    "sha": "ac6e61d27be7a7f8466ac013b1e1533a74e041ae",
-    "node_id": "C_kwDOJblaw9oAKGFjNmU2MWQyN2JlN2E3Zjg0NjZhYzAxM2IxZTE1MzNhNzRlMDQxYWU",
+    "sha": "e5dcf4a686852bc6e80b70bee3a586e5d740250b",
+    "node_id": "C_kwDOJblaw9oAKGU1ZGNmNGE2ODY4NTJiYzZlODBiNzBiZWUzYTU4NmU1ZDc0MDI1MGI",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T04:53:30Z"
+        "date": "2024-01-29T15:09:46Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T04:53:34Z"
+        "date": "2024-01-29T19:40:14Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.0.100",
+      "message": "chore(deps): update dependency wrangler to v3.25.0",
       "tree": {
-        "sha": "3e082b79af3b98053cb90539f75dfd0f076d1691",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/3e082b79af3b98053cb90539f75dfd0f076d1691"
+        "sha": "c40916bb9c1051783a4a7cceb95f6166cbf2dffc",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/c40916bb9c1051783a4a7cceb95f6166cbf2dffc"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/ac6e61d27be7a7f8466ac013b1e1533a74e041ae",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/e5dcf4a686852bc6e80b70bee3a586e5d740250b",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -2160,9 +1928,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/ac6e61d27be7a7f8466ac013b1e1533a74e041ae",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/ac6e61d27be7a7f8466ac013b1e1533a74e041ae",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/ac6e61d27be7a7f8466ac013b1e1533a74e041ae/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/e5dcf4a686852bc6e80b70bee3a586e5d740250b",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/e5dcf4a686852bc6e80b70bee3a586e5d740250b",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/e5dcf4a686852bc6e80b70bee3a586e5d740250b/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -2205,32 +1973,32 @@
     },
     "parents": [
       {
-        "sha": "adef25540a9f38b3f348584d66a369db551e151f",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/adef25540a9f38b3f348584d66a369db551e151f",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/adef25540a9f38b3f348584d66a369db551e151f"
+        "sha": "6631f915592274a4f22078580f1acb727e454e76",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/6631f915592274a4f22078580f1acb727e454e76",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/6631f915592274a4f22078580f1acb727e454e76"
       }
     ]
   },
   {
-    "sha": "adef25540a9f38b3f348584d66a369db551e151f",
-    "node_id": "C_kwDOJblaw9oAKGFkZWYyNTU0MGE5ZjM4YjNmMzQ4NTg0ZDY2YTM2OWRiNTUxZTE1MWY",
+    "sha": "6631f915592274a4f22078580f1acb727e454e76",
+    "node_id": "C_kwDOJblaw9oAKDY2MzFmOTE1NTkyMjc0YTRmMjIwNzg1ODBmMWFjYjcyN2U0NTRlNzY",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-04T19:46:42Z"
+        "date": "2024-01-28T19:18:45Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-05T01:03:56Z"
+        "date": "2024-01-29T15:08:20Z"
       },
-      "message": "fix(deps): update dependency @tabler/icons-react to v2.45.0",
+      "message": "fix(deps): update dependency i18next to v23.7.20",
       "tree": {
-        "sha": "6bad1eedd99200bdbdb0925e02687ec020fb0971",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/6bad1eedd99200bdbdb0925e02687ec020fb0971"
+        "sha": "58810806a9fe4ea3f3154fbd36b31ac9f95609bd",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/58810806a9fe4ea3f3154fbd36b31ac9f95609bd"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/adef25540a9f38b3f348584d66a369db551e151f",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/6631f915592274a4f22078580f1acb727e454e76",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -2239,9 +2007,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/adef25540a9f38b3f348584d66a369db551e151f",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/adef25540a9f38b3f348584d66a369db551e151f",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/adef25540a9f38b3f348584d66a369db551e151f/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/6631f915592274a4f22078580f1acb727e454e76",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/6631f915592274a4f22078580f1acb727e454e76",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/6631f915592274a4f22078580f1acb727e454e76/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -2284,32 +2052,32 @@
     },
     "parents": [
       {
-        "sha": "223e4d9bca30be4f9450e0d3c4af69f146383c01",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/223e4d9bca30be4f9450e0d3c4af69f146383c01",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/223e4d9bca30be4f9450e0d3c4af69f146383c01"
+        "sha": "8be43682ae8f9488bbafe639679173d277a9bbfb",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/8be43682ae8f9488bbafe639679173d277a9bbfb",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/8be43682ae8f9488bbafe639679173d277a9bbfb"
       }
     ]
   },
   {
-    "sha": "223e4d9bca30be4f9450e0d3c4af69f146383c01",
-    "node_id": "C_kwDOJblaw9oAKDIyM2U0ZDliY2EzMGJlNGY5NDUwZTBkM2M0YWY2OWYxNDYzODNjMDE",
+    "sha": "8be43682ae8f9488bbafe639679173d277a9bbfb",
+    "node_id": "C_kwDOJblaw9oAKDhiZTQzNjgyYWU4Zjk0ODhiYmFmZTYzOTY3OTE3M2QyNzdhOWJiZmI",
     "commit": {
       "author": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-04T19:45:16Z"
+        "date": "2024-01-28T17:22:30Z"
       },
       "committer": {
         "name": "renovate[bot]",
         "email": "29139614+renovate[bot]@users.noreply.github.com",
-        "date": "2024-01-04T19:45:19Z"
+        "date": "2024-01-28T19:17:32Z"
       },
-      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.0.99",
+      "message": "chore(deps): lock file maintenance",
       "tree": {
-        "sha": "1b0d92646baa7f4bc6c6a3bc199fca01e7d94ea2",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/1b0d92646baa7f4bc6c6a3bc199fca01e7d94ea2"
+        "sha": "6678d5d5aa60afccfac55b3f0c0ce10b18596248",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/6678d5d5aa60afccfac55b3f0c0ce10b18596248"
       },
-      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/223e4d9bca30be4f9450e0d3c4af69f146383c01",
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/8be43682ae8f9488bbafe639679173d277a9bbfb",
       "comment_count": 0,
       "verification": {
         "verified": false,
@@ -2318,9 +2086,9 @@
         "payload": null
       }
     },
-    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/223e4d9bca30be4f9450e0d3c4af69f146383c01",
-    "html_url": "https://github.com/SlashNephy/Divination/commit/223e4d9bca30be4f9450e0d3c4af69f146383c01",
-    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/223e4d9bca30be4f9450e0d3c4af69f146383c01/comments",
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/8be43682ae8f9488bbafe639679173d277a9bbfb",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/8be43682ae8f9488bbafe639679173d277a9bbfb",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/8be43682ae8f9488bbafe639679173d277a9bbfb/comments",
     "author": {
       "login": "renovate[bot]",
       "id": 29139614,
@@ -2363,9 +2131,246 @@
     },
     "parents": [
       {
-        "sha": "5b66142bc7f1439bfbe7382c7f35702b0f1c8a7c",
-        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/5b66142bc7f1439bfbe7382c7f35702b0f1c8a7c",
-        "html_url": "https://github.com/SlashNephy/Divination/commit/5b66142bc7f1439bfbe7382c7f35702b0f1c8a7c"
+        "sha": "c7ad1d67bac08a11f29921204713da928e759b6a",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c7ad1d67bac08a11f29921204713da928e759b6a",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/c7ad1d67bac08a11f29921204713da928e759b6a"
+      }
+    ]
+  },
+  {
+    "sha": "c7ad1d67bac08a11f29921204713da928e759b6a",
+    "node_id": "C_kwDOJblaw9oAKGM3YWQxZDY3YmFjMDhhMTFmMjk5MjEyMDQ3MTNkYTkyOGU3NTliNmE",
+    "commit": {
+      "author": {
+        "name": "renovate[bot]",
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "date": "2024-01-24T04:22:12Z"
+      },
+      "committer": {
+        "name": "renovate[bot]",
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "date": "2024-01-25T01:12:50Z"
+      },
+      "message": "chore(deps): update dependency @slashnephy/eslint-config to v2.3.9",
+      "tree": {
+        "sha": "cdb91e79624e309d9d1cd1eb290adddac418e9ca",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/cdb91e79624e309d9d1cd1eb290adddac418e9ca"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/c7ad1d67bac08a11f29921204713da928e759b6a",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/c7ad1d67bac08a11f29921204713da928e759b6a",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/c7ad1d67bac08a11f29921204713da928e759b6a",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/c7ad1d67bac08a11f29921204713da928e759b6a/comments",
+    "author": {
+      "login": "renovate[bot]",
+      "id": 29139614,
+      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/renovate%5Bbot%5D",
+      "html_url": "https://github.com/apps/renovate",
+      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "renovate[bot]",
+      "id": 29139614,
+      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/renovate%5Bbot%5D",
+      "html_url": "https://github.com/apps/renovate",
+      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "9f86534f0d9f55fe3673d73caaed143ca84c930f",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/9f86534f0d9f55fe3673d73caaed143ca84c930f",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/9f86534f0d9f55fe3673d73caaed143ca84c930f"
+      }
+    ]
+  },
+  {
+    "sha": "9f86534f0d9f55fe3673d73caaed143ca84c930f",
+    "node_id": "C_kwDOJblaw9oAKDlmODY1MzRmMGQ5ZjU1ZmUzNjczZDczY2FhZWQxNDNjYTg0YzkzMGY",
+    "commit": {
+      "author": {
+        "name": "renovate[bot]",
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "date": "2024-01-22T03:45:52Z"
+      },
+      "committer": {
+        "name": "renovate[bot]",
+        "email": "29139614+renovate[bot]@users.noreply.github.com",
+        "date": "2024-01-24T04:21:29Z"
+      },
+      "message": "fix(deps): update dependency i18next to v23.7.18",
+      "tree": {
+        "sha": "ffe4f5c4dac89f2389724fada11d82d3bc826a1b",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/ffe4f5c4dac89f2389724fada11d82d3bc826a1b"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/9f86534f0d9f55fe3673d73caaed143ca84c930f",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/9f86534f0d9f55fe3673d73caaed143ca84c930f",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/9f86534f0d9f55fe3673d73caaed143ca84c930f",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/9f86534f0d9f55fe3673d73caaed143ca84c930f/comments",
+    "author": {
+      "login": "renovate[bot]",
+      "id": 29139614,
+      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/renovate%5Bbot%5D",
+      "html_url": "https://github.com/apps/renovate",
+      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "renovate[bot]",
+      "id": 29139614,
+      "node_id": "MDM6Qm90MjkxMzk2MTQ=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/2740?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/renovate%5Bbot%5D",
+      "html_url": "https://github.com/apps/renovate",
+      "followers_url": "https://api.github.com/users/renovate%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/renovate%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/renovate%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/renovate%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/renovate%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/renovate%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/renovate%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "24b503fa7957f367d1c16e35020483f8f5bcd2b6",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/24b503fa7957f367d1c16e35020483f8f5bcd2b6",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/24b503fa7957f367d1c16e35020483f8f5bcd2b6"
+      }
+    ]
+  },
+  {
+    "sha": "24b503fa7957f367d1c16e35020483f8f5bcd2b6",
+    "node_id": "C_kwDOJblaw9oAKDI0YjUwM2ZhNzk1N2YzNjdkMWMxNmUzNTAyMDQ4M2Y4ZjViY2QyYjY",
+    "commit": {
+      "author": {
+        "name": "StarryBlueSky-bot",
+        "email": "97773209+StarryBlueSky-bot@users.noreply.github.com",
+        "date": "2024-01-22T02:30:46Z"
+      },
+      "committer": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2024-01-22T02:30:46Z"
+      },
+      "message": "⚙️ Deploy FaloopIntegration \"0.1.0-beta.1871.2ac64c1.20240122\"",
+      "tree": {
+        "sha": "14638b2d278d1252cfbc8caa8f2cc51d3b2ba9a5",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/git/trees/14638b2d278d1252cfbc8caa8f2cc51d3b2ba9a5"
+      },
+      "url": "https://api.github.com/repos/SlashNephy/Divination/git/commits/24b503fa7957f367d1c16e35020483f8f5bcd2b6",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/SlashNephy/Divination/commits/24b503fa7957f367d1c16e35020483f8f5bcd2b6",
+    "html_url": "https://github.com/SlashNephy/Divination/commit/24b503fa7957f367d1c16e35020483f8f5bcd2b6",
+    "comments_url": "https://api.github.com/repos/SlashNephy/Divination/commits/24b503fa7957f367d1c16e35020483f8f5bcd2b6/comments",
+    "author": {
+      "login": "StarryBlueSky-bot",
+      "id": 97773209,
+      "node_id": "U_kgDOBdPmmQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97773209?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/StarryBlueSky-bot",
+      "html_url": "https://github.com/StarryBlueSky-bot",
+      "followers_url": "https://api.github.com/users/StarryBlueSky-bot/followers",
+      "following_url": "https://api.github.com/users/StarryBlueSky-bot/following{/other_user}",
+      "gists_url": "https://api.github.com/users/StarryBlueSky-bot/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/StarryBlueSky-bot/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/StarryBlueSky-bot/subscriptions",
+      "organizations_url": "https://api.github.com/users/StarryBlueSky-bot/orgs",
+      "repos_url": "https://api.github.com/users/StarryBlueSky-bot/repos",
+      "events_url": "https://api.github.com/users/StarryBlueSky-bot/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/StarryBlueSky-bot/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "2ac64c1515b0e58e81cd392878a4b41cff418199",
+        "url": "https://api.github.com/repos/SlashNephy/Divination/commits/2ac64c1515b0e58e81cd392878a4b41cff418199",
+        "html_url": "https://github.com/SlashNephy/Divination/commit/2ac64c1515b0e58e81cd392878a4b41cff418199"
       }
     ]
   }
