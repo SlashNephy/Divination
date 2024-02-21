@@ -13,7 +13,7 @@
     "@nextui-org/react": "1.0.0-beta.13",
     "@tabler/icons-react": "2.47.0",
     "framer-motion": "10.18.0",
-    "i18next": "23.8.3",
+    "i18next": "23.9.0",
     "i18next-browser-languagedetector": "7.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
