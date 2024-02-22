@@ -77,6 +77,7 @@ jobs:
 
       - name: Automerge
         if: steps.create-pull-request.outputs.pull-request-number
+        continue-on-error: true
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
