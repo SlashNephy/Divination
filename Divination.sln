@@ -1,40 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "packages\Common\Common.csproj", "{C00AD6CE-4F53-4415-B105-183A7CD79FA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C00AD6CE-4F53-4415-B105-183A7CD79FA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dalamud.JsonFormatter", "packages\Dalamud.JsonFormatter\Dalamud.JsonFormatter.csproj", "{FAA37EBE-8FEE-4FAF-9A05-F43CB33B7D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat", "AetheryteLinkInChat\AetheryteLinkInChat.csproj", "{F2292259-3916-48E6-A67E-1FB7893E1254}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{CA9673D4-31AB-452F-8FD4-D9B264FEDB39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat", "packages\Plugins\AetheryteLinkInChat\AetheryteLinkInChat.csproj", "{F2292259-3916-48E6-A67E-1FB7893E1254}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration", "DiscordIntegration\DiscordIntegration.csproj", "{EF081021-4C26-4B66-856B-D78ABB09CBE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "packages\Plugins\Calculator\Calculator.csproj", "{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration.IpcModel", "DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj", "{26CE97F7-964D-4097-9B7F-EE572959B12D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration", "packages\Plugins\DiscordIntegration\DiscordIntegration.csproj", "{EF081021-4C26-4B66-856B-D78ABB09CBE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaloopIntegration", "FaloopIntegration\FaloopIntegration.csproj", "{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration.IpcModel", "packages\Plugins\DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj", "{26CE97F7-964D-4097-9B7F-EE572959B12D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceIDViewer", "InstanceIDViewer\InstanceIDViewer.csproj", "{42E83F55-1774-4BBD-BED9-149252532234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaloopIntegration", "packages\Plugins\FaloopIntegration\FaloopIntegration.csproj", "{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerUtils", "PowerUtils\PowerUtils.csproj", "{0D9BF128-A386-46E9-A042-AB9AAFC39282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceIDViewer", "packages\Plugins\InstanceIDViewer\InstanceIDViewer.csproj", "{42E83F55-1774-4BBD-BED9-149252532234}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterIntegration", "TwitterIntegration\TwitterIntegration.csproj", "{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerUtils", "packages\Plugins\PowerUtils\PowerUtils.csproj", "{0D9BF128-A386-46E9-A042-AB9AAFC39282}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voiceroid2Talker", "Voiceroid2Talker\Voiceroid2Talker.csproj", "{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template", "packages\Plugins\Template\Template.csproj", "{85097F73-7ECB-430E-BEB7-3268B989EFBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "Debugger\Debugger.csproj", "{075C0D70-F7D1-4E3D-8E43-430C8C16F729}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterIntegration", "packages\Plugins\TwitterIntegration\TwitterIntegration.csproj", "{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voiceroid2Talker", "packages\Plugins\Voiceroid2Talker\Voiceroid2Talker.csproj", "{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "packages\Plugins\Debugger\Debugger.csproj", "{075C0D70-F7D1-4E3D-8E43-430C8C16F729}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfectComplex", "packages\Plugins\PerfectComplex\PerfectComplex.csproj", "{4A86A947-5DE9-444D-95F1-47A13861370F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Definitions", "Definitions", "{CF571B43-476D-42BC-9AE6-F6A6287BAFA7}"
-	ProjectSection(SolutionItems) = preProject
-		docs\definitions\DiscordIntegration.json = docs\definitions\DiscordIntegration.json
-		docs\definitions\PerfectComplex.json = docs\definitions\PerfectComplex.json
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfectComplex", "PerfectComplex\PerfectComplex.csproj", "{4A86A947-5DE9-444D-95F1-47A13861370F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,10 +58,6 @@ Global
 		{0D9BF128-A386-46E9-A042-AB9AAFC39282}.Debug|Any CPU.Build.0 = Debug|x64
 		{0D9BF128-A386-46E9-A042-AB9AAFC39282}.Release|Any CPU.ActiveCfg = Release|x64
 		{0D9BF128-A386-46E9-A042-AB9AAFC39282}.Release|Any CPU.Build.0 = Release|x64
-		{85097F73-7ECB-430E-BEB7-3268B989EFBE}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{85097F73-7ECB-430E-BEB7-3268B989EFBE}.Debug|Any CPU.Build.0 = Debug|x64
-		{85097F73-7ECB-430E-BEB7-3268B989EFBE}.Release|Any CPU.ActiveCfg = Release|x64
-		{85097F73-7ECB-430E-BEB7-3268B989EFBE}.Release|Any CPU.Build.0 = Release|x64
 		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Debug|Any CPU.Build.0 = Debug|x64
 		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Release|Any CPU.ActiveCfg = Release|x64
@@ -107,7 +91,6 @@ Global
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}
 		{42E83F55-1774-4BBD-BED9-149252532234} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}
 		{0D9BF128-A386-46E9-A042-AB9AAFC39282} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}
-		{85097F73-7ECB-430E-BEB7-3268B989EFBE} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}
 		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}
 		{075C0D70-F7D1-4E3D-8E43-430C8C16F729} = {CA9673D4-31AB-452F-8FD4-D9B264FEDB39}

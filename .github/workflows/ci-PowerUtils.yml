@@ -3,12 +3,12 @@ name: 'CI (PowerUtils)'
 on:
   push:
     paths:
-      - 'packages/Plugins/PowerUtils/**'
-      - 'packages/Common/**'
+      - 'PowerUtils/**'
+      - 'Common/**'
   pull_request:
     paths:
-      - 'packages/Plugins/PowerUtils/**'
-      - 'packages/Common/**'
+      - 'PowerUtils/**'
+      - 'Common/**'
     types:
       - opened
       - synchronize
@@ -22,7 +22,7 @@ jobs:
     uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@master
     with:
       plugin-name: 'PowerUtils'
-      working-directory: 'packages/Plugins/PowerUtils'
+      working-directory: 'PowerUtils'
     permissions:
       contents: read
       actions: write
@@ -37,9 +37,3 @@ jobs:
       DEPLOY_GITHUB_TOKEN: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
     permissions:
       actions: read
-
-  format:
-    if: github.event_name == 'push'
-    uses: SlashNephy/.github/.github/workflows/dotnet-format.yml@master
-    permissions:
-      contents: write

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <RootNamespace>Divination.TwitterIntegration</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Dalamud">
+            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGui.NET">
+            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <ProjectReference Include="..\Common\Common.csproj"/>
+
+        <PackageReference Include="CoreTweet" Version="2.0.0-beta.1"/>
+        <PackageReference Include="DalamudPackager" Version="2.1.12"/>
+    </ItemGroup>
+</Project>

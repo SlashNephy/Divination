@@ -3,10 +3,10 @@ name: Build (Common)
 on:
   push:
     paths:
-      - 'packages/Common/**'
+      - 'Common/**'
   pull_request:
     paths:
-      - 'packages/Common/**'
+      - 'Common/**'
     types:
       - opened
       - synchronize
@@ -39,7 +39,7 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release
-        working-directory: packages/Common
+        working-directory: Common
 
       - name: Publish
         if: github.event_name != 'pull_request'
@@ -49,12 +49,4 @@ jobs:
             --source https://api.nuget.org/v3/index.json `
             --api-key ${{ secrets.NUGET_API_KEY }} `
             --skip-duplicate
-        working-directory: packages/Common
-
-  format:
-    if: github.event_name == 'push'
-    uses: SlashNephy/.github/.github/workflows/dotnet-format.yml@master
-    permissions:
-      contents: write
-    with:
-      working-directory: packages/Common
+        working-directory: Common
