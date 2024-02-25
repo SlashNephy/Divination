@@ -47,7 +47,10 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     public string MainCommandPrefix => "/alic";
 
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 
     private void OnChatReceived(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
     {
@@ -112,7 +115,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             switch (path)
             {
                 // テレポ可能なエーテライト
-                case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
+                case AetheryteTeleportPath {Aetheryte.IsAetheryte: true} aetheryte:
                     var payloads = new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aetheryte),
@@ -128,7 +131,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                     message = message.Append(payloads);
                     break;
                 // 仮設エーテライト・都市内エーテライト
-                case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
+                case AetheryteTeleportPath {Aetheryte.IsAetheryte: false} aetheryte:
                     message = message.Append(new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aethernet),

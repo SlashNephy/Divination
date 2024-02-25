@@ -33,7 +33,7 @@ public class FaloopEmbedData
 
         foreach (var node in ExtractJsonNodes(script))
         {
-            if (node is JsonArray { Count: > 0 } array && array[0] is JsonObject obj)
+            if (node is JsonArray {Count: > 0} array && array[0] is JsonObject obj)
             {
                 List<string> keys = ["id", "key", "rank", "version", "zoneIds"];
                 if (keys.All(x => obj.ContainsKey(x)))
