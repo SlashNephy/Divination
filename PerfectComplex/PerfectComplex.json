@@ -1,19 +1,9 @@
 {
   "Author": "Asteria Nocturna",
   "Name": "Divination.PerfectComplex",
-  "Punchline": "",
-  "Description": "",
-  "Tags": ["[Tag]"],
-  "CategoryTags": ["ui", "utility"],
-  "IsHide": false,
-  "ApplicableVersion": "any",
-  "DalamudApiLevel": 9,
-  "LoadRequiredState": 2,
-  "LoadSync": false,
-  "LoadPriority": 0,
-  "CanUnloadAsync": false,
-  "ImageUrls": [],
-  "IconUrl": null,
-  "AcceptsFeedback": true,
-  "FeedbackMessage": null
+  "CategoryTags": [
+    "ui",
+    "utility"
+  ],
+  "DalamudApiLevel": 9
 }

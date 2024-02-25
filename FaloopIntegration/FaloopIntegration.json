@@ -3,16 +3,12 @@
   "Name": "Divination.FaloopIntegration",
   "Punchline": "Faloop notification in chat",
   "Description": "Provide simple integration with Faloop. Mob notification in chat.",
-  "Tags": ["mobhunt"],
-  "CategoryTags": ["social", "utility"],
-  "IsHide": false,
-  "ApplicableVersion": "any",
-  "LoadRequiredState": 2,
-  "LoadSync": false,
-  "LoadPriority": 0,
-  "CanUnloadAsync": false,
-  "ImageUrls": [],
-  "IconUrl": null,
-  "AcceptsFeedback": true,
-  "FeedbackMessage": null
+  "Tags": [
+    "mobhunt"
+  ],
+  "CategoryTags": [
+    "social",
+    "utility"
+  ],
+  "DalamudApiLevel": 9
 }

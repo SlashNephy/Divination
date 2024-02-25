@@ -3,17 +3,12 @@
   "Name": "Divination.Voiceroid2Talker",
   "Punchline": "Text-to-Speech for Voiceroid2",
   "Description": "Add /voiceroid2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
-  "Tags": ["Text-to-speech", "Voiceroid"],
-  "CategoryTags": ["utility"],
-  "IsHide": false,
-  "ApplicableVersion": "any",
-  "DalamudApiLevel": 9,
-  "LoadRequiredState": 2,
-  "LoadSync": false,
-  "LoadPriority": 0,
-  "CanUnloadAsync": false,
-  "ImageUrls": [],
-  "IconUrl": null,
-  "AcceptsFeedback": true,
-  "FeedbackMessage": null
+  "Tags": [
+    "Text-to-speech",
+    "Voiceroid"
+  ],
+  "CategoryTags": [
+    "utility"
+  ],
+  "DalamudApiLevel": 9
 }

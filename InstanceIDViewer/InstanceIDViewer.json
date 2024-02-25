@@ -3,17 +3,11 @@
   "Name": "Divination.InstanceIDViewer",
   "Punchline": "",
   "Description": "show instance id in chat when instance changed",
-  "Tags": ["Discord"],
-  "CategoryTags": ["social"],
-  "IsHide": false,
-  "ApplicableVersion": "any",
-  "DalamudApiLevel": 9,
-  "LoadRequiredState": 2,
-  "LoadSync": false,
-  "LoadPriority": 0,
-  "CanUnloadAsync": false,
-  "ImageUrls": [],
-  "IconUrl": null,
-  "AcceptsFeedback": true,
-  "FeedbackMessage": null
+  "Tags": [
+    "Discord"
+  ],
+  "CategoryTags": [
+    "social"
+  ],
+  "DalamudApiLevel": 9
 }
