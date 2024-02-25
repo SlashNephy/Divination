@@ -1,18 +1,12 @@
 {
   "Author": "Asteria Nocturna",
   "Name": "Divination.AetheryteLinkInChat",
-  "Punchline": "Quick teleport for Mob Hunting",
-  "Description": "Add a link to teleport to the nearest aetheryte into map link in chat.",
-  "Tags": ["teleporter"],
-  "CategoryTags": ["utility"],
-  "IsHide": false,
-  "ApplicableVersion": "any",
-  "LoadRequiredState": 0,
-  "LoadSync": false,
-  "LoadPriority": 0,
-  "CanUnloadAsync": false,
-  "ImageUrls": [],
-  "IconUrl": null,
-  "AcceptsFeedback": false,
-  "FeedbackMessage": null
+  "Punchline": "Quick teleport for mob hunts and treasure hunts!",
+  "Description": "Display a teleport link to the nearest aetherite for the map link from the in-game chat.",
+  "Tags": [
+    "teleporter"
+  ],
+  "CategoryTags": [
+    "utility"
+  ]
 }
