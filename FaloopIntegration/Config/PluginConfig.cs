@@ -26,7 +26,7 @@ public class PluginConfig : IPluginConfiguration
 
     public PerRankConfig Fate = new();
 
-    public List<SpawnHistory> SpawnHistories = new();
+    public List<SpawnHistory> SpawnHistories = [];
 
     public class PerRankConfig
     {

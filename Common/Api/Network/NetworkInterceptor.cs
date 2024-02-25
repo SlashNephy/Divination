@@ -11,7 +11,7 @@ namespace Dalamud.Divination.Common.Api.Network;
 
 public sealed class NetworkInterceptor : INetworkInterceptor
 {
-    private readonly List<INetworkHandler> handlers = new();
+    private readonly List<INetworkHandler> handlers = [];
     private readonly NetworkDataParser parser;
 
     public NetworkInterceptor(IGameNetwork gameNetwork, IChatClient chat)

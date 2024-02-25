@@ -65,13 +65,12 @@ internal partial class DefinitionManager<TContainer>
         {
             var defKeys = manager.EnumerateDefinitionsFields().Select(x => x.Name);
 
-            manager.chatClient.Print(new List<Payload>
-            {
+            manager.chatClient.Print([
                 new TextPayload($"定義名は {typeof(TContainer).FullName} で定義されているフィールド名です。大文字小文字を区別しません。\n"),
                 new TextPayload("定義値が空白の場合, null として設定します。\n"),
                 new TextPayload("利用可能な定義名の一覧:\n"),
                 new TextPayload(string.Join("\n", defKeys)),
-            });
+            ]);
         }
 
         [Command("def", "<key>", "<value>")]

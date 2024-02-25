@@ -239,7 +239,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
 
         var n = 41 / (map.SizeFactor / 100.0);
-        var loc = location.Location.Split(new[] { ',' }, 2)
+        var loc = location.Location.Split([','], 2)
             .Select(int.Parse)
             .Select(x => x / 2048.0 * n + 1)
             .Select(x => Math.Round(x, 1))

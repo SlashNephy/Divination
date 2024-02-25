@@ -35,12 +35,14 @@ public class FaloopEmbedData
         {
             if (node is JsonArray { Count: > 0 } array && array[0] is JsonObject obj)
             {
-                if (new[] { "id", "key", "rank", "version", "zoneIds" }.All(x => obj.ContainsKey(x)))
+                List<string> keys = ["id", "key", "rank", "version", "zoneIds"];
+                if (keys.All(x => obj.ContainsKey(x)))
                 {
                     Mobs = array.Deserialize<List<MobData>>(options)!;
                 }
 
-                if (new[] { "id", "zoneId", "type", "location" }.All(x => obj.ContainsKey(x)))
+                keys = ["id", "zoneId", "type", "location"];
+                if (keys.All(x => obj.ContainsKey(x)))
                 {
                     ZoneLocations = array.Deserialize<List<ZoneLocationData>>(options)!;
                 }

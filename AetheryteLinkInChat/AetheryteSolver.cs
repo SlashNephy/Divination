@@ -149,10 +149,10 @@ public class AetheryteSolver
         // エリア内のエーテライトを探す
         foreach (var (aetheryte, marker) in GetAetherytesInTerritoryType(territoryType))
         {
-            yield return new ITeleportPath[]
-            {
+            yield return
+            [
                 new AetheryteTeleportPath(aetheryte, marker, map),
-            };
+            ];
         }
 
         // エリア内のマップ境界を探す

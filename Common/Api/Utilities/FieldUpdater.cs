@@ -35,28 +35,26 @@ internal class FieldUpdater : IFieldUpdater
         var fieldInfo = fields.FirstOrDefault(x => x.Name.Equals(key, StringComparison.CurrentCultureIgnoreCase));
         if (fieldInfo == null)
         {
-            RespondError(new List<Payload>
-            {
+            RespondError([
                 new TextPayload("指定されたフィールド名 "),
                 EmphasisItalicPayload.ItalicsOn,
                 new TextPayload(key),
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(" は存在しません。"),
-            });
+            ]);
 
             return false;
         }
 
         if (fieldInfo.GetCustomAttribute<UpdateProhibitedAttribute>() != null)
         {
-            RespondError(new List<Payload>
-            {
+            RespondError([
                 new TextPayload("指定されたフィールド名 "),
                 EmphasisItalicPayload.ItalicsOn,
                 new TextPayload(key),
                 EmphasisItalicPayload.ItalicsOff,
                 new TextPayload(" の変更は許可されていません。"),
-            });
+            ]);
 
             return false;
         }
@@ -77,14 +75,13 @@ internal class FieldUpdater : IFieldUpdater
             case string:
                 return UpdateStringField(fieldInfo, value);
             default:
-                RespondError(new List<Payload>
-                {
+                RespondError([
                     new TextPayload("指定されたフィールド名 "),
                     EmphasisItalicPayload.ItalicsOn,
                     new TextPayload(key),
                     EmphasisItalicPayload.ItalicsOff,
                     new TextPayload(" の変更はサポートされていません。"),
-                });
+                ]);
 
                 return false;
         }
@@ -196,8 +193,7 @@ internal class FieldUpdater : IFieldUpdater
 
     private void PrintConfigValueSuccessLog(MemberInfo memberInfo, object? value)
     {
-        Respond(new List<Payload>
-        {
+        Respond([
             new TextPayload("フィールド "),
             EmphasisItalicPayload.ItalicsOn,
             new TextPayload(memberInfo.Name),
@@ -207,13 +203,12 @@ internal class FieldUpdater : IFieldUpdater
             new TextPayload($"{value ?? "null"}"),
             EmphasisItalicPayload.ItalicsOff,
             new TextPayload(" に変更しました。"),
-        });
+        ]);
     }
 
     private void PrintConfigValueTypeError(FieldInfo fieldInfo, object? value)
     {
-        RespondError(new List<Payload>
-        {
+        RespondError([
             new TextPayload("指定された値 "),
             EmphasisItalicPayload.ItalicsOn,
             new TextPayload($"{value ?? "null"}"),
@@ -227,6 +222,6 @@ internal class FieldUpdater : IFieldUpdater
             new TextPayload(fieldInfo.FieldType.Name),
             EmphasisItalicPayload.ItalicsOff,
             new TextPayload(") に変換できませんでした。"),
-        });
+        ]);
     }
 }

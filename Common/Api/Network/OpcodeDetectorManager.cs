@@ -14,7 +14,7 @@ public class OpcodeDetectorManager : INetworkHandler, IOpcodeDetectorManager
     private readonly IChatClient chat;
 
     private readonly List<(IOpcodeDetector detector, uint step, Dictionary<string, ushort> definitions, bool done)>
-        detectors = new();
+        detectors = [];
 
     private readonly object detectorsLock = new();
     private bool enabled;

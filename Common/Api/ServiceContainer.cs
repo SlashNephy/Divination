@@ -7,7 +7,7 @@ namespace Dalamud.Divination.Common.Api;
 
 internal static class ServiceContainer
 {
-    private static readonly List<(Type type, object? instance)> Services = new();
+    private static readonly List<(Type type, object? instance)> Services = [];
 
     public static T? Get<T>() where T : class
     {
