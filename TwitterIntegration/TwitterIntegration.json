@@ -1,19 +1,13 @@
 {
   "Author": "Asteria Nocturna",
-  "Name": "Divination.TwitterIntegration",
+  "Name": "Divination.TwitterIntegration [Discontinued]",
   "Punchline": "Tweet in FFXIV chat.",
   "Description": "Dalamud Plugin to add tweet function and Twitter timeline in FFXIV chat",
-  "Tags": ["Twitter"],
-  "CategoryTags": ["social"],
-  "IsHide": false,
-  "ApplicableVersion": "any",
-  "DalamudApiLevel": 9,
-  "LoadRequiredState": 0,
-  "LoadSync": false,
-  "LoadPriority": 0,
-  "CanUnloadAsync": false,
-  "ImageUrls": [],
-  "IconUrl": null,
-  "AcceptsFeedback": false,
-  "FeedbackMessage": null
+  "Tags": [
+    "Twitter"
+  ],
+  "CategoryTags": [
+    "social"
+  ],
+  "DalamudApiLevel": 9
 }
