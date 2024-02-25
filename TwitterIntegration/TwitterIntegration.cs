@@ -99,7 +99,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
                                 new UIForegroundPayload(57),
                                 new TextPayload("[Twitter]"),
                                 UIForegroundPayload.UIForegroundOff,
-                                new TextPayload($"<@{status.User.ScreenName}> {HttpUtility.HtmlDecode(status.Text)}"))
+                                new TextPayload($"<@{status.User.ScreenName}> {HttpUtility.HtmlDecode(status.Text)}")),
                         });
 
                         DalamudLog.Log.Verbose("Tweet = {Text} ({Id}) from {Name}", status.Text, status.Id, status.User.Name);

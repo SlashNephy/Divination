@@ -31,7 +31,7 @@ public sealed class DiscordApi : IDisposable
         rpcClient = new DiscordRpcClient(ClientId)
         {
             Logger = new DiscordRpcLogger(LogLevel.Info),
-            SkipIdenticalPresence = true
+            SkipIdenticalPresence = true,
         };
         rpcClient.OnPresenceUpdate += (_, args) =>
         {
@@ -86,13 +86,13 @@ public sealed class DiscordApi : IDisposable
                 {
                     {"emoji_id", emojiId},
                     {"emoji_name", emojiName},
-                    {"text", text}
+                    {"text", text},
                 }
-            }
+            },
         };
         var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
         {
-            Content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json")
+            Content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"),
         };
 
         request.Headers.Add("Accept", "*/*");

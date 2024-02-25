@@ -25,7 +25,7 @@ internal enum LoadingImage
     Raktika = 17,
     Tempest = 18,
     Crystarium = 19,
-    Eulmore = 20
+    Eulmore = 20,
 }
 
 internal static class LoadingImageEx

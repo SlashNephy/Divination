@@ -439,9 +439,9 @@ public class Formatter
                 SmallImageKey = instance.smallImageKey,
                 SmallImageText = DiscordIntegration.Instance.Config.ShowJobSmallImage ? instance.Format("small_image_text") : null,
                 LargeImageKey = instance.largeImageKey,
-                LargeImageText = DiscordIntegration.Instance.Config.ShowLoadingLargeImage ? instance.Format("large_image_text") : null
+                LargeImageText = DiscordIntegration.Instance.Config.ShowLoadingLargeImage ? instance.Format("large_image_text") : null,
             },
-            Timestamps = new Timestamps(_startTime)
+            Timestamps = new Timestamps(_startTime),
         };
     }
 

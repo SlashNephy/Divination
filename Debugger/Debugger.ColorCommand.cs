@@ -24,7 +24,7 @@ public partial class Debugger
                     new UIForegroundPayload((ushort) color.RowId),
                     new TextPayload($"{color.RowId:D3}"),
                     UIForegroundPayload.UIForegroundOff,
-                    new TextPayload(++i % 10 == 0 ? "\n" : " ")
+                    new TextPayload(++i % 10 == 0 ? "\n" : " "),
                 });
             }
 

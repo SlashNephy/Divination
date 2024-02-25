@@ -50,7 +50,7 @@ internal enum OnlineStatus : byte
     SimilarDuty = 42,
     InDuty = 43,
     TrialAdventurer = 44,
-    Online = 47
+    Online = 47,
 }
 
 internal static class OnlineStatusEx
