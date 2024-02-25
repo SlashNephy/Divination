@@ -37,7 +37,7 @@ public partial class Debugger
                 payloads.AddRange(new Payload[]
                 {
                     new TextPayload($"{i:D3}"),
-                    new TextPayload($"{(char) icon}"),
+                    new TextPayload($"{(char)icon}"),
                     new TextPayload((i + 1) % 5 == 0 ? "\n" : " "),
                 });
             }

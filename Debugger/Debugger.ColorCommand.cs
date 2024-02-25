@@ -21,7 +21,7 @@ public partial class Debugger
             {
                 payloads.AddRange(new Payload[]
                 {
-                    new UIForegroundPayload((ushort) color.RowId),
+                    new UIForegroundPayload((ushort)color.RowId),
                     new TextPayload($"{color.RowId:D3}"),
                     UIForegroundPayload.UIForegroundOff,
                     new TextPayload(++i % 10 == 0 ? "\n" : " "),
@@ -35,7 +35,7 @@ public partial class Debugger
             {
                 payloads.AddRange(new Payload[]
                 {
-                    new UIGlowPayload((ushort) color.RowId),
+                    new UIGlowPayload((ushort)color.RowId),
                     new TextPayload($"{color.RowId:D3}"),
                     UIGlowPayload.UIGlowOff,
                     new TextPayload(++i % 10 == 0 ? "\n" : " "),

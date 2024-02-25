@@ -32,7 +32,7 @@ public sealed class AetherytePayload : DalamudLinkPayload
         var bytes = new List<byte>
         {
             START_BYTE,
-            (byte) SeStringChunkType.Interactable,
+            (byte)SeStringChunkType.Interactable,
         };
         bytes.AddRange(MakeInteger((uint)data.Length + 1));
         bytes.Add(EmbeddedInfoTypeByte);
