@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using Dalamud.Divination.Common.Api.Dalamud;
-using Dalamud.Game.ClientState.Aetherytes;
 using Dalamud.Game.ClientState.Conditions;
-using Dalamud.Logging;
 using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;

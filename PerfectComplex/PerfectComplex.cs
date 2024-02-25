@@ -4,7 +4,6 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 
 namespace Divination.PerfectComplex;

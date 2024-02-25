@@ -6,7 +6,6 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
-using Dalamud.Logging;
 using DiscordRPC;
 using Divination.DiscordIntegration.Data;
 using Divination.DiscordIntegration.Ipc;

@@ -12,9 +12,7 @@ using Dalamud.Game.Command;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Dalamud.Logging;
 using Dalamud.Plugin;
-using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.Config;
 
 namespace Divination.AetheryteLinkInChat;

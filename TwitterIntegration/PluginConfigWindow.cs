@@ -4,7 +4,6 @@ using CoreTweet;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
-using Dalamud.Logging;
 using ImGuiNET;
 
 namespace Divination.TwitterIntegration;

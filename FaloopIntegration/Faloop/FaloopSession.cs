@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
-using Dalamud.Logging;
 
 namespace Divination.FaloopIntegration.Faloop;
 

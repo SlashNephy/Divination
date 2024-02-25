@@ -1,5 +1,4 @@
 ﻿using Dalamud.Divination.Common.Api.Dalamud;
-using Dalamud.Logging;
 using Dalamud.Plugin.Ipc;
 using Divination.DiscordIntegration.IpcModel;
 

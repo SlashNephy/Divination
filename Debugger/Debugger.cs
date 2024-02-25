@@ -5,7 +5,6 @@ using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 using Divination.Debugger.Window;
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
-using Dalamud.Logging;
 using Divination.FaloopIntegration.Faloop.Model;
 using SocketIOClient;
 using SocketIOClient.Transport;

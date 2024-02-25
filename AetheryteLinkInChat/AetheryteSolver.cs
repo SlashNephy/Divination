@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dalamud.Data;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Dalamud.Logging;
 using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.Config;
 using Lumina.Excel;

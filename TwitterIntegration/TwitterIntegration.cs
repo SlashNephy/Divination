@@ -12,7 +12,6 @@ using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 
 namespace Divination.TwitterIntegration;

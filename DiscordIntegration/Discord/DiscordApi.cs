@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
-using Dalamud.Logging;
 using DiscordRPC;
 using DiscordRPC.Helper;
 using Newtonsoft.Json;
