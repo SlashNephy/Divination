@@ -13,8 +13,7 @@ public class OpcodeDetectorManager : INetworkHandler, IOpcodeDetectorManager
 {
     private readonly IChatClient chat;
 
-    private readonly List<(IOpcodeDetector detector, uint step, Dictionary<string, ushort> definitions, bool done)>
-        detectors = [];
+    private readonly List<(IOpcodeDetector detector, uint step, Dictionary<string, ushort> definitions, bool done)> detectors = [];
 
     private readonly object detectorsLock = new();
     private bool enabled;
@@ -54,7 +53,7 @@ public class OpcodeDetectorManager : INetworkHandler, IOpcodeDetectorManager
 
                         var result = new Dictionary<string, string>
                         {
-                            {"Version", GameVersion.ReadCurrent().ToString()},
+                            {"Version", GameVersion.ReadCurrent()},
                             {"Patch", "???"},
                         };
 

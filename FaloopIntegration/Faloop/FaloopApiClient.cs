@@ -18,9 +18,11 @@ public class FaloopApiClient : IDisposable
             Method = HttpMethod.Post,
             RequestUri = new Uri("https://faloop.app/api/auth/user/refresh"),
             Content = new StringContent(JsonSerializer.Serialize(new
-            {
-                sessionId = null as string,
-            }), Encoding.UTF8, "application/json"),
+                {
+                    sessionId = null as string,
+                }),
+                Encoding.UTF8,
+                "application/json"),
             Headers =
             {
                 {"Origin", "https://faloop.app"},
@@ -34,10 +36,11 @@ public class FaloopApiClient : IDisposable
 
         using var response = await client.SendAsync(request);
         await using var stream = await response.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<UserRefreshResponse>(stream, new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        });
+        return await JsonSerializer.DeserializeAsync<UserRefreshResponse>(stream,
+            new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            });
     }
 
     public async Task<UserLoginResponse?> LoginAsync(string username, string password, string sessionId, string token)
@@ -47,12 +50,14 @@ public class FaloopApiClient : IDisposable
             Method = HttpMethod.Post,
             RequestUri = new Uri("https://faloop.app/api/auth/user/login"),
             Content = new StringContent(JsonSerializer.Serialize(new
-            {
-                username,
-                password,
-                rememberMe = false,
-                sessionId,
-            }), Encoding.UTF8, "application/json"),
+                {
+                    username,
+                    password,
+                    rememberMe = false,
+                    sessionId,
+                }),
+                Encoding.UTF8,
+                "application/json"),
             Headers =
             {
                 {"Authorization", token},
@@ -67,10 +72,11 @@ public class FaloopApiClient : IDisposable
 
         using var response = await client.SendAsync(request);
         await using var stream = await response.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<UserLoginResponse>(stream, new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        });
+        return await JsonSerializer.DeserializeAsync<UserLoginResponse>(stream,
+            new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            });
     }
 
     public async Task<string> DownloadText(Uri uri)

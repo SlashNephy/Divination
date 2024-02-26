@@ -14,8 +14,12 @@ public record DiscordWebhookMessage
     {
         public enum EmbedType
         {
-            Rich, Image, Video,
-            Gifv, Article, Link,
+            Rich,
+            Image,
+            Video,
+            Gifv,
+            Article,
+            Link,
         }
 
         public string? Title { get; init; }

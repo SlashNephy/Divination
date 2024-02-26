@@ -8,8 +8,7 @@ using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 
 namespace Dalamud.Divination.Common.Api.Definition;
 
-internal partial class DefinitionManager<TContainer> : IDefinitionManager<TContainer>, ICommandProvider
-    where TContainer : DefinitionContainer, new()
+internal partial class DefinitionManager<TContainer> : IDefinitionManager<TContainer>, ICommandProvider where TContainer : DefinitionContainer, new()
 {
     private readonly IChatClient chatClient;
     private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;

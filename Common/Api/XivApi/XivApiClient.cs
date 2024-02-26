@@ -31,10 +31,7 @@ public sealed class XivApiClient : IXivApiClient
         var result = await response.Content.ReadAsStringAsync();
         var data = JObject.Parse(result);
 
-        DalamudLog.Log.Verbose("{Code}: {Method} {Url}",
-            (int)response.StatusCode,
-            response.RequestMessage!.Method.Method,
-            url);
+        DalamudLog.Log.Verbose("{Code}: {Method} {Url}", (int)response.StatusCode, response.RequestMessage!.Method.Method, url);
 
         return new XivApiResponse(data);
     }
@@ -52,10 +49,7 @@ public sealed class XivApiClient : IXivApiClient
         dynamic json = JObject.Parse(result);
         var data = (JObject)((JArray)json.Results).First();
 
-        DalamudLog.Log.Verbose("{Code}: {Method} {Url}",
-            (int)response.StatusCode,
-            response.RequestMessage!.Method.Method,
-            url);
+        DalamudLog.Log.Verbose("{Code}: {Method} {Url}", (int)response.StatusCode, response.RequestMessage!.Method.Method, url);
         return new XivApiResponse(data);
     }
 

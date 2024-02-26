@@ -18,15 +18,11 @@ public class Calculator : DivinationPlugin<Calculator>, IDalamudPlugin, ICommand
     [CommandHelp("Compute <expression... > and display the result. Support basic four arithmetic operations.")]
     private void OnCalcCommand(CommandContext context)
     {
-        var result = new DataTable()
-            .Compute(context["text"], null)
-            .ToString() ?? string.Empty;
+        var result = new DataTable().Compute(context["text"], null).ToString() ?? string.Empty;
 
-        Divination.Chat.Print(new SeString(
-            new TextPayload($"{context["text"]} = "),
+        Divination.Chat.Print(new SeString(new TextPayload($"{context["text"]} = "),
             EmphasisItalicPayload.ItalicsOn,
             new TextPayload(result),
-            EmphasisItalicPayload.ItalicsOff)
-        );
+            EmphasisItalicPayload.ItalicsOff));
     }
 }

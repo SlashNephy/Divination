@@ -20,10 +20,11 @@ public static class MockData
         MobId = 4376,
         WorldId = 52,
         ZoneInstance = 0,
-        Data = JsonObject.Create(JsonSerializer.SerializeToElement(Spawn, new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        }))!,
+        Data = JsonObject.Create(JsonSerializer.SerializeToElement(Spawn,
+            new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            }))!,
     };
 
     private static readonly MobReportData.Death Death = new()
@@ -39,9 +40,10 @@ public static class MockData
         MobId = 4376,
         WorldId = 52,
         ZoneInstance = 0,
-        Data = JsonObject.Create(JsonSerializer.SerializeToElement(Death, new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        }))!,
+        Data = JsonObject.Create(JsonSerializer.SerializeToElement(Death,
+            new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            }))!,
     };
 }

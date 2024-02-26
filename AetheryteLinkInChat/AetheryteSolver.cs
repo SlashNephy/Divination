@@ -45,7 +45,7 @@ public class AetheryteSolver
                     DalamudLog.Log.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
 
                     DalamudLog.Log.Verbose("path = {S}", path);
-                    if (path is AetheryteTeleportPath { Aetheryte.AethernetGroup: > 0 })
+                    if (path is AetheryteTeleportPath {Aetheryte.AethernetGroup: > 0})
                     {
                         DalamudLog.Log.Verbose("skip distance calculation: this is aethernet: {S}", path);
                     }
@@ -73,8 +73,7 @@ public class AetheryteSolver
         return paths?.Reverse() ?? Array.Empty<ITeleportPath>();
     }
 
-    public void AppendGrandCompanyAetheryte(
-        List<ITeleportPath> paths,
+    public void AppendGrandCompanyAetheryte(List<ITeleportPath> paths,
         uint grandCompanyAetheryteId,
         SeString message,
         World? currentWorld,
@@ -108,7 +107,8 @@ public class AetheryteSolver
         }
 
         var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text)).ToLower();
-        var world = worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId).FirstOrDefault(x => text.Contains(x.Name.RawString.ToLower()));
+        var world = worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId)
+            .FirstOrDefault(x => text.Contains(x.Name.RawString.ToLower()));
         if (world == default)
         {
             DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: world == null");
@@ -127,6 +127,7 @@ public class AetheryteSolver
             DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: marker == null");
             return;
         }
+
         if (map == default)
         {
             DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: map == null");

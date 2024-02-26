@@ -36,10 +36,7 @@ internal static class Win32Api
     private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
     [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-    private static extern IntPtr FindWindowEx(IntPtr parentWnd,
-        IntPtr previousWnd,
-        string lpClassName,
-        string lpWindowText);
+    private static extern IntPtr FindWindowEx(IntPtr parentWnd, IntPtr previousWnd, string lpClassName, string lpWindowText);
 
     [DllImport("user32.dll")]
     public static extern int ToUnicode(uint virtualKeyCode,

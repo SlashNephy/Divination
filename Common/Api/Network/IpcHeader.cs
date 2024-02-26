@@ -24,7 +24,6 @@ public readonly struct IpcHeader
 
     public override string ToString()
     {
-        return
-            $"IpcHeader({nameof(Opcode)} = 0x{Opcode:X4}, {nameof(ServerId)} = {ServerId}, {nameof(TimeStamp)} = {TimeStamp})";
+        return $"IpcHeader({nameof(Opcode)} = 0x{Opcode:X4}, {nameof(ServerId)} = {ServerId}, {nameof(TimeStamp)} = {TimeStamp})";
     }
 }

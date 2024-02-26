@@ -200,8 +200,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return;
         }
 
-        if (skipOrphanReport &&
-            Config.SpawnHistories.RemoveAll(x => x.MobId == data.MobId && x.WorldId == data.WorldId) == 0)
+        if (skipOrphanReport && Config.SpawnHistories.RemoveAll(x => x.MobId == data.MobId && x.WorldId == data.WorldId) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
             return;
@@ -401,5 +400,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     public string MainCommandPrefix => "/faloop";
 
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 }

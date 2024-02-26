@@ -15,11 +15,7 @@ public sealed class DivinationCommand
     private static readonly Regex OptionalVarargRegex = new(@"^<(\w+)\.\.\.\?>$", RegexOptions.Compiled);
     internal readonly ICommandProvider Instance;
 
-    public DivinationCommand(MethodInfo method,
-        ICommandProvider instance,
-        CommandAttribute attribute,
-        string defaultPrefix,
-        string pluginName)
+    public DivinationCommand(MethodInfo method, ICommandProvider instance, CommandAttribute attribute, string defaultPrefix, string pluginName)
     {
         Attribute = attribute;
         Method = method;

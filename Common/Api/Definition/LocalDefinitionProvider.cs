@@ -6,8 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition;
 
-internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer>
-    where TContainer : DefinitionContainer, new()
+internal sealed class LocalDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
 {
     private readonly string fallbackUrl;
     private readonly FileSystemWatcher watcher;

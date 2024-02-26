@@ -29,6 +29,5 @@ public static class DivinationEnvironment
     /// <summary>
     ///     XIVLauncher のホームディレクトリへのパス。
     /// </summary>
-    public static string XivLauncherDirectory =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher");
+    public static string XivLauncherDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XIVLauncher");
 }

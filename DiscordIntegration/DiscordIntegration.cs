@@ -8,7 +8,11 @@ using Divination.DiscordIntegration.Ipc;
 
 namespace Divination.DiscordIntegration;
 
-public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, PluginConfig, PluginDefinition>, IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>, IDefinitionSupport
+public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, PluginConfig, PluginDefinition>,
+    IDalamudPlugin,
+    ICommandSupport,
+    IConfigWindowSupport<PluginConfig>,
+    IDefinitionSupport
 {
     private readonly DiscordApi discord = new();
     private readonly Timer timer = new(3000);
@@ -27,7 +31,10 @@ public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, P
     public string MainCommandPrefix => "/discord";
     public string DefinitionUrl => "https://github.com/horoscope-dev/Divination.Definitions/raw/master/dist/DiscordIntegration.json";
 
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 
     protected override void ReleaseManaged()
     {

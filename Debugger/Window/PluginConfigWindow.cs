@@ -159,8 +159,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             ImGuiEx.CheckboxConfig("起動時にウィンドウを開く", ref Config.OpenAtStart);
 
-            ImGuiEx.CheckboxConfig("冗長なチャットログを表示する", ref Config.EnableVerboseChatLog,
-                "SeString としてパースされた, 冗長なチャットメッセージの構造をログに表示します。");
+            ImGuiEx.CheckboxConfig("冗長なチャットログを表示する", ref Config.EnableVerboseChatLog, "SeString としてパースされた, 冗長なチャットメッセージの構造をログに表示します。");
 
             ImGui.EndTabItem();
         }

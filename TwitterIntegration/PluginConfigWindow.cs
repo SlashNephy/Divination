@@ -55,7 +55,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.Button("Authenticate"))
         {
-            if (string.IsNullOrEmpty(TwitterIntegration.Instance.Config.ConsumerKey) || string.IsNullOrEmpty(TwitterIntegration.Instance.Config.ConsumerSecret))
+            if (string.IsNullOrEmpty(TwitterIntegration.Instance.Config.ConsumerKey) ||
+                string.IsNullOrEmpty(TwitterIntegration.Instance.Config.ConsumerSecret))
             {
                 TwitterIntegration.Instance.Divination.Chat.PrintError("Consumer Key または Consumer Secret が設定されていません。");
                 return;
@@ -91,7 +92,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             return;
         }
 
-        if (ImGui.Begin("PinWindow", ref _isPinWindowDrawing, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration))
+        if (ImGui.Begin("PinWindow",
+            ref _isPinWindowDrawing,
+            ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoDecoration))
         {
             ImGui.Text("Enter PIN code:");
 
@@ -110,19 +113,20 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 return;
             }
 
-            TwitterIntegration.Twitter.Lists.OwnershipsAsync(count: 50).ContinueWith(completed =>
-            {
-                if (completed.IsCompleted)
+            TwitterIntegration.Twitter.Lists.OwnershipsAsync(count: 50)
+                .ContinueWith(completed =>
                 {
-                    TwitterIntegration.Instance.Divination.Chat.Print(
-                        $"使用可能なリスト一覧です。\n{string.Join("\n", completed.Result.Select(list => $"{list.Name} (ID: {list.Id})"))}");
-                }
-                else if (completed.Exception != null)
-                {
-                    TwitterIntegration.Instance.Divination.Chat.PrintError("リスト一覧の取得に失敗しました。");
-                    DalamudLog.Log.Error(completed.Exception, "Error occurred while OwnershipsAsync");
-                }
-            });
+                    if (completed.IsCompleted)
+                    {
+                        TwitterIntegration.Instance.Divination.Chat.Print(
+                            $"使用可能なリスト一覧です。\n{string.Join("\n", completed.Result.Select(list => $"{list.Name} (ID: {list.Id})"))}");
+                    }
+                    else if (completed.Exception != null)
+                    {
+                        TwitterIntegration.Instance.Divination.Chat.PrintError("リスト一覧の取得に失敗しました。");
+                        DalamudLog.Log.Error(completed.Exception, "Error occurred while OwnershipsAsync");
+                    }
+                });
         }
     }
 }

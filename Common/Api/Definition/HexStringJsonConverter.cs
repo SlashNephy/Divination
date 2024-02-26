@@ -11,10 +11,7 @@ public sealed class HexStringJsonConverter : JsonConverter
         return objectType == typeof(byte) || objectType == typeof(ushort) || objectType == typeof(int);
     }
 
-    public override object? ReadJson(JsonReader reader,
-        Type objectType,
-        object? existingValue,
-        JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         switch (reader.TokenType)
         {

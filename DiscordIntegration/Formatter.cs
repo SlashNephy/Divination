@@ -236,7 +236,9 @@ public class Formatter
 
     private void UpdateDuty()
     {
-        var condition = DiscordIntegration.Instance.Dalamud.DataManager.GetExcelSheet<ContentFinderCondition>()!.FirstOrDefault(x => x.TerritoryType.Row == territoryId);
+        var condition =
+            DiscordIntegration.Instance.Dalamud.DataManager.GetExcelSheet<ContentFinderCondition>()!.FirstOrDefault(x =>
+                x.TerritoryType.Row == territoryId);
         if (condition != null)
         {
             Duty = condition.Name;
@@ -305,9 +307,8 @@ public class Formatter
         }
 
         if (DiscordIntegration.Instance.Config.ShowOnlineStatusCustomStatusEmoji && (!DiscordIntegration.Instance.Config.ShowJobCustomStatusEmoji ||
-            inDuty &&
-            onlineStatus.ShouldOverrideJobEmojiOnInstance() ||
-            !inDuty && onlineStatus.ShouldOverrideJobEmojiOnField()))
+                                                                                     inDuty && onlineStatus.ShouldOverrideJobEmojiOnInstance() ||
+                                                                                     !inDuty && onlineStatus.ShouldOverrideJobEmojiOnField()))
         {
             var emoji = onlineStatus.GetEmoji();
             if (emoji != null)
@@ -348,7 +349,6 @@ public class Formatter
             {
                 return Render(ipcTemplate.Value);
             }
-
         }
 
         return Render(GetTemplate(templateKey));
@@ -397,18 +397,18 @@ public class Formatter
                 {
                     return DiscordIntegration.Instance.Config.DetailsInCombatFormat;
                 }
-                else if (inDuty)
+
+                if (inDuty)
                 {
                     return DiscordIntegration.Instance.Config.DetailsInDutyFormat;
                 }
-                else if (isOnline)
+
+                if (isOnline)
                 {
                     return DiscordIntegration.Instance.Config.DetailsInOnlineFormat;
                 }
-                else
-                {
-                    return DiscordIntegration.Instance.Config.DetailsFormat;
-                }
+
+                return DiscordIntegration.Instance.Config.DetailsFormat;
             case "state":
                 return DiscordIntegration.Instance.Config.StateFormat;
             case "small_image_text":

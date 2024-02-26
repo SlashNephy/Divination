@@ -23,12 +23,15 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     public override void Draw()
     {
-        if (ImGui.Begin(Localization.ConfigWindowTitle.Format(AetheryteLinkInChat.Instance.Name), ref IsOpen, ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
+        if (ImGui.Begin(Localization.ConfigWindowTitle.Format(AetheryteLinkInChat.Instance.Name),
+            ref IsOpen,
+            ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
         {
             ImGui.Checkbox(Localization.AllowTeleportQueueing.ToString(), ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
             {
-                ImGui.SliderInt(Localization.QueueTeleportDelay.ToString(), ref Config.QueuedTeleportDelay,
+                ImGui.SliderInt(Localization.QueueTeleportDelay.ToString(),
+                    ref Config.QueuedTeleportDelay,
                     MinQueuedTeleportDelay,
                     MaxQueuedTeleportDelay);
             }
@@ -47,8 +50,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Text(Localization.PreferredGrandCompanyAetheryteDescription.ToString());
             ImGui.Unindent();
 
-            ImGui.Checkbox(Localization.ConsiderTeleportsToOtherWorlds.ToString(),
-                ref Config.ConsiderTeleportsToOtherWorlds);
+            ImGui.Checkbox(Localization.ConsiderTeleportsToOtherWorlds.ToString(), ref Config.ConsiderTeleportsToOtherWorlds);
             ImGui.Indent();
             ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDescription.ToString());
             ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDisclaimer.ToString());

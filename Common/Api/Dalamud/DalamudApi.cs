@@ -19,12 +19,11 @@ internal sealed class DalamudApi : IDalamudApi
 
         if (!pluginInterface.Inject(this))
         {
-            throw new PlatformNotSupportedException(
-                "Failed to inject via IoC. Dalamud API might make breaking changes.");
+            throw new PlatformNotSupportedException("Failed to inject via IoC. Dalamud API might make breaking changes.");
         }
     }
 
-    public DalamudPluginInterface PluginInterface { get; private set; }
+    public DalamudPluginInterface PluginInterface { get; }
 
     #region IoC
 

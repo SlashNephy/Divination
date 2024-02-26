@@ -35,7 +35,6 @@ public class Teleporter
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;
-
     }
 
     public bool IsTeleportUnavailable => teleportUnavailableFlags.Any(x => condition[x]);

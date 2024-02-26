@@ -11,8 +11,7 @@ using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Config;
 
-internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfiguration>
-    where TConfiguration : class, IPluginConfiguration, new()
+internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfiguration> where TConfiguration : class, IPluginConfiguration, new()
 {
     private readonly IChatClient chatClient;
     private readonly IDivinationPluginApi<TConfiguration, DefinitionContainer> pluginApi;
@@ -56,13 +55,8 @@ internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfigura
     private static IEnumerable<FieldInfo> EnumerateConfigFields(bool includeUpdateIgnore = false)
     {
         var result = typeof(TConfiguration).GetFields()
-            .Where(x => x.FieldType == typeof(float) ||
-                        x.FieldType == typeof(bool) ||
-                        x.FieldType == typeof(int) ||
-                        x.FieldType == typeof(string));
+            .Where(x => x.FieldType == typeof(float) || x.FieldType == typeof(bool) || x.FieldType == typeof(int) || x.FieldType == typeof(string));
 
-        return !includeUpdateIgnore
-            ? result
-            : result.Where(x => x.GetCustomAttribute<UpdateProhibitedAttribute>() == null);
+        return !includeUpdateIgnore ? result : result.Where(x => x.GetCustomAttribute<UpdateProhibitedAttribute>() == null);
     }
 }

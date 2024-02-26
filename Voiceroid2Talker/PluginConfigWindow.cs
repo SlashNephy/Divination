@@ -11,7 +11,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.Begin($"{Voiceroid2Talker.Instance.Name} Config", ref IsOpen, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
         {
-            ImGuiEx.CheckboxConfig("FC チャットを読み上げる", ref Config.EnableTtsFcChatOnInactive,
+            ImGuiEx.CheckboxConfig("FC チャットを読み上げる",
+                ref Config.EnableTtsFcChatOnInactive,
                 "[FC] チャットを非アクティブ状態のときに読み上げます。",
                 "*** SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy) が必要です! ***");
 

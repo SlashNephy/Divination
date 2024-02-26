@@ -9,8 +9,8 @@ namespace Dalamud.Divination.Common.Api;
 /// <summary>
 ///     各 Divination プラグインが実装している各種 API のインターフェイスです。
 /// </summary>
-public interface IDivinationPluginApi<TConfiguration, out TDefinition> : IDisposable
-    where TConfiguration : class, IPluginConfiguration, new() where TDefinition : DefinitionContainer
+public interface IDivinationPluginApi<TConfiguration, out TDefinition> : IDisposable where TConfiguration : class, IPluginConfiguration, new()
+    where TDefinition : DefinitionContainer
 {
     /// <summary>
     ///     プラグインの名前を取得します。この名前は Dalamud に通知されます。

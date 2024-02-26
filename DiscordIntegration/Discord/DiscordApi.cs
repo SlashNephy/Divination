@@ -37,7 +37,10 @@ public sealed class DiscordApi : IDisposable
         {
             DalamudLog.Log.Verbose(
                 "RichPresence:\nDetails        = {Details}\nState          = {State}\nSmallImageText = {SmallImageText}\nLargeImageText = {LargeImageText}",
-                args.Presence.Details, args.Presence.State, args.Presence.Assets.SmallImageText, args.Presence.Assets.LargeImageText);
+                args.Presence.Details,
+                args.Presence.State,
+                args.Presence.Assets.SmallImageText,
+                args.Presence.Assets.LargeImageText);
         };
         rpcClient.OnConnectionFailed += (_, _) =>
         {

@@ -15,7 +15,11 @@ public sealed class AetherytePayload : DalamudLinkPayload
     private Aetheryte? Aetheryte => DataResolver.GetExcelSheet<Aetheryte>()?.GetRow(AetheryteId);
 
     public override PayloadType Type => PayloadType.Unknown;
-    public RawPayload ToRawPayload() => new RawPayload(this.EncodeImpl());
+
+    public RawPayload ToRawPayload()
+    {
+        return new RawPayload(EncodeImpl());
+    }
 
     public AetherytePayload(Aetheryte aetheryte)
     {

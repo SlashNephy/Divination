@@ -8,8 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition;
 
-public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TContainer>
-    where TContainer : DefinitionContainer, new()
+public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
 {
     protected readonly CancellationTokenSource Cancellable = new();
     private readonly object containerLock = new();
@@ -58,12 +57,11 @@ public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TCont
                 },
             });
 
-            if (localGameVersion.ToString() != container?.Version)
+            if (localGameVersion != container?.Version)
             {
-                DalamudLog.Log.Warning(
-                    "The game version \"{DefinitionGameVersion}\" is not supported yet. The local one is \"{LocalGameVersion}\".",
+                DalamudLog.Log.Warning("The game version \"{DefinitionGameVersion}\" is not supported yet. The local one is \"{LocalGameVersion}\".",
                     container?.Version ?? string.Empty,
-                    (object)localGameVersion);
+                    localGameVersion);
 
                 if (!AllowObsoleteDefinitions)
                 {
@@ -82,14 +80,14 @@ public abstract class DefinitionProvider<TContainer> : IDefinitionProvider<TCont
 
                     DalamudLog.Log.Info(
                         "The definition file for patch {GamePatch} \"{DefinitionFilename}\" was loaded. Local game version is \"{LocalGameVersion}\".",
-                        container?.Patch ?? string.Empty, Filename, (object)localGameVersion);
+                        container?.Patch ?? string.Empty,
+                        Filename,
+                        localGameVersion);
                 }
             }
         }
 
-        DalamudLog.Log.Verbose("{DefinitionFilename}\n{DefinitionJson}",
-            Filename,
-            JsonConvert.SerializeObject(json, Formatting.Indented));
+        DalamudLog.Log.Verbose("{DefinitionFilename}\n{DefinitionJson}", Filename, JsonConvert.SerializeObject(json, Formatting.Indented));
     }
 
     public virtual void Dispose()

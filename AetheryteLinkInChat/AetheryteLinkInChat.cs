@@ -39,10 +39,11 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
         Dalamud.Condition.ConditionChange += OnConditionChanged;
-        Dalamud.CommandManager.AddHandler(TeleportGcCommand, new CommandInfo(OnTeleportGcCommand)
-        {
-            HelpMessage = Localization.TeleportGcHelpMessage.ToString(),
-        });
+        Dalamud.CommandManager.AddHandler(TeleportGcCommand,
+            new CommandInfo(OnTeleportGcCommand)
+            {
+                HelpMessage = Localization.TeleportGcHelpMessage.ToString(),
+            });
     }
 
     public string MainCommandPrefix => "/alic";
@@ -102,8 +103,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         // ワールド間テレポの経路を追加する
         if (Config.ConsiderTeleportsToOtherWorlds)
         {
-            solver.AppendGrandCompanyAetheryte(
-                paths,
+            solver.AppendGrandCompanyAetheryte(paths,
                 (uint)Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
                 message,
                 Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,

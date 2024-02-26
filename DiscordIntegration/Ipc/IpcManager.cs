@@ -24,7 +24,8 @@ public static class IpcManager
 
     private static ICallGateSubscriber<UpdateVariablesPayload, object> CreateUpdateVariablesSubscriber()
     {
-        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateVariablesPayload, object>(DiscordIntegrationIpcs.UpdateVariables);
+        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateVariablesPayload, object>(DiscordIntegrationIpcs
+            .UpdateVariables);
     }
 
     private static void OnUpdateVariables(UpdateVariablesPayload payload)
@@ -37,7 +38,8 @@ public static class IpcManager
 
     private static ICallGateSubscriber<ClearVariablesPayload, object> CreateClearVariablesSubscriber()
     {
-        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearVariablesPayload, object>(DiscordIntegrationIpcs.ClearVariables);
+        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearVariablesPayload, object>(DiscordIntegrationIpcs
+            .ClearVariables);
     }
 
     private static void OnClearVariables(ClearVariablesPayload payload)
@@ -49,7 +51,8 @@ public static class IpcManager
 
     private static ICallGateSubscriber<UpdateTemplatesPayload, object> CreateUpdateTemplatesSubscriber()
     {
-        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateTemplatesPayload, object>(DiscordIntegrationIpcs.UpdateTemplates);
+        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<UpdateTemplatesPayload, object>(DiscordIntegrationIpcs
+            .UpdateTemplates);
     }
 
     private static void OnUpdateTemplates(UpdateTemplatesPayload payload)
@@ -62,7 +65,8 @@ public static class IpcManager
 
     private static ICallGateSubscriber<ClearTemplatesPayload, object> CreateClearTemplatesSubscriber()
     {
-        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearTemplatesPayload, object>(DiscordIntegrationIpcs.ClearTemplates);
+        return DiscordIntegration.Instance.Dalamud.PluginInterface.GetIpcSubscriber<ClearTemplatesPayload, object>(DiscordIntegrationIpcs
+            .ClearTemplates);
     }
 
     private static void OnClearTemplates(ClearTemplatesPayload payload)

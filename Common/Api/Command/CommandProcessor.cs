@@ -25,13 +25,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
     private readonly object commandsLock = new();
     private readonly string pluginName;
 
-
-
-    public CommandProcessor(string pluginName,
-        string? prefix,
-        IChatGui chatGui,
-        IChatClient chatClient,
-        ICommandManager commandManager)
+    public CommandProcessor(string pluginName, string? prefix, IChatGui chatGui, IChatClient chatClient, ICommandManager commandManager)
     {
         this.pluginName = pluginName;
         Prefix = prefix == null ? null : (prefix.StartsWith("/") ? prefix : $"/{prefix}").Trim();
@@ -42,24 +36,18 @@ internal sealed partial class CommandProcessor : ICommandProcessor
 
         chatGui.CheckMessageHandled += OnCheckMessageHandled;
 
-
-        var dalamudCommandManagerService = commandManager
-            .GetType()
-            .GetField("commandManagerService", BindingFlags.Instance | BindingFlags.NonPublic)!
-            .GetValue(commandManager)!;
+        var dalamudCommandManagerService =
+            commandManager.GetType().GetField("commandManagerService", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager)!;
 
         commandRegex =
-            dalamudCommandManagerService.GetType().GetField("currentLangCommandRegex", BindingFlags.Instance | BindingFlags.NonPublic)!
-                .GetValue(dalamudCommandManagerService) as Regex ??
-            throw new NotSupportedException();
+            dalamudCommandManagerService.GetType().GetField("currentLangCommandRegex", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(
+                dalamudCommandManagerService) as Regex ?? throw new NotSupportedException();
         commandRegexCn =
             dalamudCommandManagerService.GetType().GetField("commandRegexCn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(
-                dalamudCommandManagerService) as Regex ??
-            throw new NotSupportedException();
+                dalamudCommandManagerService) as Regex ?? throw new NotSupportedException();
 
         DalamudLog.Log.Debug(commandRegex.ToString());
     }
-
 
     public string? Prefix { get; }
 
@@ -96,7 +84,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
             var context = new CommandContext(command, match);
 
             command.Method.Invoke(command.Method.IsStatic ? null : command.Instance,
-                command.CanReceiveContext ? new object[] { context } : Array.Empty<object>());
+                command.CanReceiveContext ? new object[] {context} : Array.Empty<object>());
         }
         catch (Exception exception)
         {
@@ -125,8 +113,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
             return;
         }
 
-        const BindingFlags flags =
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
         // public/internal/protected/private/static メソッドを検索し 宣言順にソートする
         foreach (var method in instance.GetType().BaseType!.GetMethods(flags)
@@ -160,11 +147,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
         commands.Clear();
     }
 
-    private void OnCheckMessageHandled(XivChatType type,
-        uint senderId,
-        ref SeString sender,
-        ref SeString message,
-        ref bool isHandled)
+    private void OnCheckMessageHandled(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
     {
         if (type != XivChatType.ErrorMessage || senderId != 0)
         {
@@ -175,7 +158,11 @@ internal sealed partial class CommandProcessor : ICommandProcessor
         if (cmdMatch.Success)
         {
             var command = cmdMatch.Value;
-            if (ProcessCommand(command)) isHandled = true;
+            if (ProcessCommand(command))
+            {
+                isHandled = true;
+            }
+
             DalamudLog.Log.Debug($"Command: {command}");
         }
         else
@@ -184,7 +171,11 @@ internal sealed partial class CommandProcessor : ICommandProcessor
             if (cmdMatch.Success)
             {
                 var command = cmdMatch.Value;
-                if (ProcessCommand(command)) isHandled = true;
+                if (ProcessCommand(command))
+                {
+                    isHandled = true;
+                }
+
                 DalamudLog.Log.Debug($"Command: {command}");
             }
         }
@@ -193,10 +184,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
     private void RegisterCommand(DivinationCommand command)
     {
         commands.Add(command);
-        DalamudLog.Log.Information("コマンド: {Usage} が登録されました。Regex = {Regex}, Priority = {Priority}",
-            command.Usage,
-            command.Regex,
-            command.Priority);
+        DalamudLog.Log.Information("コマンド: {Usage} が登録されました。Regex = {Regex}, Priority = {Priority}", command.Usage, command.Regex, command.Priority);
 
         if (command.HideInStartUp)
         {

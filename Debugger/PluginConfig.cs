@@ -24,8 +24,7 @@ public class PluginConfig : IPluginConfiguration
     public int NetworkFilterOpcode;
     public bool NetworkLogMatchedPackets = true;
 
-    [JsonIgnore]
-    private readonly Array dataTypes = Enum.GetValues(typeof(DataType));
+    [JsonIgnore] private readonly Array dataTypes = Enum.GetValues(typeof(DataType));
 
     [JsonIgnore]
     public DataType PlayerDataType => (DataType)dataTypes.GetValue(PlayerDataTypeIndex)!;

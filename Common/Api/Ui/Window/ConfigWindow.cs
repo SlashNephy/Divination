@@ -8,8 +8,8 @@ using Dalamud.Plugin;
 
 namespace Dalamud.Divination.Common.Api.Ui.Window;
 
-public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConfiguration>, IDisposable,
-    ICommandProvider where TConfiguration : class, IPluginConfiguration, new()
+public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConfiguration>, IDisposable, ICommandProvider
+    where TConfiguration : class, IPluginConfiguration, new()
 {
     public TConfiguration Config => ConfigManager.Config;
     public DalamudPluginInterface Interface => ConfigManager.Interface;

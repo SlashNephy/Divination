@@ -40,7 +40,10 @@ public sealed class PerfectComplex : DivinationPlugin<PerfectComplex, PluginConf
 
     #region IConfigWindowSupport
 
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 
     #endregion
 

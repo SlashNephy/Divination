@@ -55,7 +55,8 @@ public static class Localization
 
     public static readonly LocalizedString ConsiderTeleportsToOtherWorldsDescription = new()
     {
-        En = "When enabled, the Grand Company Aetheryte will be prepended to the best path\nif a destination world is different from the player's current world.",
+        En =
+            "When enabled, the Grand Company Aetheryte will be prepended to the best path\nif a destination world is different from the player's current world.",
         Ja = "有効にすると、目的地のワールドがプレイヤーの現在のワールドと異なる場合に、\n三国エーテライトを最短経路の先頭に付加します。",
     };
 

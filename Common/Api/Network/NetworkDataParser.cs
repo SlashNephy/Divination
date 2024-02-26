@@ -24,11 +24,7 @@ internal sealed class NetworkDataParser : IDisposable
         gameNetwork.NetworkMessage -= OnNetworkMessage;
     }
 
-    private void OnNetworkMessage(IntPtr dataPtr,
-        ushort opcode,
-        uint sourceActorId,
-        uint targetActorId,
-        NetworkMessageDirection direction)
+    private void OnNetworkMessage(IntPtr dataPtr, ushort opcode, uint sourceActorId, uint targetActorId, NetworkMessageDirection direction)
     {
         if (OnNetworkContext == null)
         {

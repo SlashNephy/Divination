@@ -10,8 +10,7 @@ using Divination.Debugger.Window;
 
 namespace Divination.Debugger;
 
-public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>,
-    IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
+public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>, IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
 {
     private readonly NetworkListener listener = new();
 
@@ -54,5 +53,9 @@ public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>,
     }
 
     public string MainCommandPrefix => "/debug";
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 }

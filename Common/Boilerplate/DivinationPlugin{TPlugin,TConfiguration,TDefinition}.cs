@@ -17,8 +17,7 @@ namespace Dalamud.Divination.Common.Boilerplate;
 /// <typeparam name="TConfiguration">Dalamud.Configuration.IPluginConfiguration を実装したプラグイン設定クラス。</typeparam>
 /// <typeparam name="TDefinition">プラグインの外部定義クラス。</typeparam>
 [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-public abstract class
-    DivinationPlugin<TPlugin, TConfiguration, TDefinition> : IDivinationPluginApi<TConfiguration, TDefinition>
+public abstract class DivinationPlugin<TPlugin, TConfiguration, TDefinition> : IDivinationPluginApi<TConfiguration, TDefinition>
     where TPlugin : DivinationPlugin<TPlugin, TConfiguration, TDefinition>
     where TConfiguration : class, IPluginConfiguration, new()
     where TDefinition : DefinitionContainer, new()
@@ -33,10 +32,7 @@ public abstract class
         Dalamud = new DalamudApi(pluginInterface);
         Divination = new DivinationApi<TConfiguration, TDefinition>(Dalamud, Assembly, this);
 
-
-        DalamudLog.Log.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}",
-            Name,
-            Divination.Version.Plugin.InformationalVersion);
+        DalamudLog.Log.Information("プラグイン: {Name} の初期化に成功しました。バージョン = {Version}", Name, Divination.Version.Plugin.InformationalVersion);
     }
 
     /// <summary>

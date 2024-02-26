@@ -12,8 +12,7 @@ namespace Divination.FaloopIntegration.Faloop;
 // ReSharper disable once InconsistentNaming
 public class FaloopSocketIOClient : IDisposable
 {
-    private readonly SocketIO client = new(
-        "https://comms.faloop.app/mobStatus",
+    private readonly SocketIO client = new("https://comms.faloop.app/mobStatus",
         new SocketIOOptions
         {
             EIO = EngineIO.V4,

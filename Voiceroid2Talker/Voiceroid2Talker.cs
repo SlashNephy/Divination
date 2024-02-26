@@ -13,8 +13,7 @@ using Dalamud.Plugin;
 
 namespace Divination.Voiceroid2Talker;
 
-public class Voiceroid2Talker : DivinationPlugin<Voiceroid2Talker, PluginConfig>,
-    IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
+public class Voiceroid2Talker : DivinationPlugin<Voiceroid2Talker, PluginConfig>, IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
 {
     public Voiceroid2Talker(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -23,7 +22,11 @@ public class Voiceroid2Talker : DivinationPlugin<Voiceroid2Talker, PluginConfig>
     }
 
     public string MainCommandPrefix => "/v2t";
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 
     [Command("/voiceroid2", "<text...>")]
     [CommandHelp("与えられた <text...> を読み上げます。")]
@@ -54,18 +57,19 @@ public class Voiceroid2Talker : DivinationPlugin<Voiceroid2Talker, PluginConfig>
             return;
         }
 
-        var senderText = string.Join("", sender.Payloads.Select(x =>
-        {
-            switch (x)
+        var senderText = string.Join("",
+            sender.Payloads.Select(x =>
             {
-                case ITextProvider textProvider:
-                    return textProvider.Text;
-                case IconPayload:
-                    return " ";
-                default:
-                    return string.Empty;
-            }
-        }));
+                switch (x)
+                {
+                    case ITextProvider textProvider:
+                        return textProvider.Text;
+                    case IconPayload:
+                        return " ";
+                    default:
+                        return string.Empty;
+                }
+            }));
 
         Divination.Voiceroid2Proxy.TalkAsync($"{senderText}: {message.TextValue}");
     }

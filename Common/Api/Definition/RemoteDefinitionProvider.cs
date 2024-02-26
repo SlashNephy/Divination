@@ -7,8 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Dalamud.Divination.Common.Api.Definition;
 
-internal sealed class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer>
-    where TContainer : DefinitionContainer, new()
+internal sealed class RemoteDefinitionProvider<TContainer> : DefinitionProvider<TContainer> where TContainer : DefinitionContainer, new()
 {
     private readonly HttpClient client = new();
     private readonly Timer timer = new(60 * 60 * 1000);

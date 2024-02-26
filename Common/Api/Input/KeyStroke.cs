@@ -9,8 +9,7 @@ public static class KeyStroke
 {
     public static string ToReadableString(this byte[] keys)
     {
-        return string.Join(" + ", keys.Select(k => k.ToReadableString())) +
-               $" ({string.Join(", ", keys.Select(k => $"0x{k:X2}"))})";
+        return string.Join(" + ", keys.Select(k => k.ToReadableString())) + $" ({string.Join(", ", keys.Select(k => $"0x{k:X2}"))})";
     }
 
     public static string ToReadableString(this byte key)
@@ -58,10 +57,7 @@ public static class KeyStroke
     {
         try
         {
-            return value.Split(',')
-                .Select(k => k.Trim().Replace("0x", ""))
-                .Select(k => byte.Parse(k, NumberStyles.HexNumber))
-                .ToArray();
+            return value.Split(',').Select(k => k.Trim().Replace("0x", "")).Select(k => byte.Parse(k, NumberStyles.HexNumber)).ToArray();
         }
         catch
         {

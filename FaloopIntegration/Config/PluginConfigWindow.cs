@@ -66,6 +66,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 ImGui.Checkbox(Enum.GetName(patchVersion) + $"##{label}", ref value);
                 ImGui.SameLine();
             }
+
             ImGui.Unindent();
             ImGui.NewLine();
 

@@ -20,7 +20,10 @@ public class NetworkListener : INetworkHandler, IDisposable
         this.bar = bar;
     }
 
-    public bool CanHandleReceivedMessage(NetworkContext context) => true;
+    public bool CanHandleReceivedMessage(NetworkContext context)
+    {
+        return true;
+    }
 
     public void HandleReceivedMessage(NetworkContext context)
     {
@@ -33,9 +36,9 @@ public class NetworkListener : INetworkHandler, IDisposable
                 return;
             }
 
-            chat.Print(
-                $"Instance ID changed: {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}");
-            bar.Text = $"{SeIconChar.ArrowDown.ToIconString()} {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}";
+            chat.Print($"Instance ID changed: {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}");
+            bar.Text =
+                $"{SeIconChar.ArrowDown.ToIconString()} {lastServerId.ToString()} {SeIconChar.ArrowRight.ToIconString()} {serverId.ToString()}";
 
             lastServerId = serverId;
         }

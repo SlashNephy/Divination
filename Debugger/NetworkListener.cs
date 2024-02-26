@@ -8,13 +8,25 @@ public class NetworkListener : INetworkHandler, IDisposable
 {
     public static readonly BlockingCollection<NetworkContext> Contexts = new();
 
-    public bool CanHandleReceivedMessage(NetworkContext context) => Debugger.Instance.Config.NetworkEnableListener && Debugger.Instance.Config.NetworkListenDownload;
+    public bool CanHandleReceivedMessage(NetworkContext context)
+    {
+        return Debugger.Instance.Config.NetworkEnableListener && Debugger.Instance.Config.NetworkListenDownload;
+    }
 
-    public void HandleReceivedMessage(NetworkContext context) => Feed(context);
+    public void HandleReceivedMessage(NetworkContext context)
+    {
+        Feed(context);
+    }
 
-    public bool CanHandleSentMessage(NetworkContext context) => Debugger.Instance.Config.NetworkEnableListener && Debugger.Instance.Config.NetworkListenUpload;
+    public bool CanHandleSentMessage(NetworkContext context)
+    {
+        return Debugger.Instance.Config.NetworkEnableListener && Debugger.Instance.Config.NetworkListenUpload;
+    }
 
-    public void HandleSentMessage(NetworkContext context) => Feed(context);
+    public void HandleSentMessage(NetworkContext context)
+    {
+        Feed(context);
+    }
 
     private static void Feed(NetworkContext context)
     {

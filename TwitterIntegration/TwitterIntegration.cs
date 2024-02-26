@@ -17,7 +17,9 @@ using Dalamud.Plugin;
 namespace Divination.TwitterIntegration;
 
 public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginConfig>,
-    IDalamudPlugin, ICommandSupport, IConfigWindowSupport<PluginConfig>
+    IDalamudPlugin,
+    ICommandSupport,
+    IConfigWindowSupport<PluginConfig>
 {
     public TwitterIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -37,16 +39,13 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
 
     private static Tokens? CreateTokens()
     {
-        if (string.IsNullOrEmpty(Instance.Config.ConsumerKey)
-            || string.IsNullOrEmpty(Instance.Config.ConsumerSecret)
-            || string.IsNullOrEmpty(Instance.Config.AccessToken)
-            || string.IsNullOrEmpty(Instance.Config.AccessTokenSecret))
+        if (string.IsNullOrEmpty(Instance.Config.ConsumerKey) || string.IsNullOrEmpty(Instance.Config.ConsumerSecret) ||
+            string.IsNullOrEmpty(Instance.Config.AccessToken) || string.IsNullOrEmpty(Instance.Config.AccessTokenSecret))
         {
             return null;
         }
 
-        return Tokens.Create(
-            Instance.Config.ConsumerKey,
+        return Tokens.Create(Instance.Config.ConsumerKey,
             Instance.Config.ConsumerSecret,
             Instance.Config.AccessToken,
             Instance.Config.AccessTokenSecret);
@@ -54,7 +53,10 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
 
     public string MainCommandPrefix => "/twitter";
 
-    public ConfigWindow<PluginConfig> CreateConfigWindow() => new PluginConfigWindow();
+    public ConfigWindow<PluginConfig> CreateConfigWindow()
+    {
+        return new PluginConfigWindow();
+    }
 
     [Command("/tw", "<text...>")]
     [CommandHelp("与えられた <text...> をツイートします。")]
@@ -66,18 +68,19 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
             return;
         }
 
-        twitter.Statuses.UpdateAsync(context["text"]).ContinueWith(completed =>
-        {
-            if (completed.IsCompleted)
+        twitter.Statuses.UpdateAsync(context["text"])
+            .ContinueWith(completed =>
             {
-                Divination.Chat.Print($"「{context["text"]}」をツイートしました。");
-            }
-            else if (completed.Exception != null)
-            {
-                Divination.Chat.PrintError("ツイートに失敗しました。");
-                DalamudLog.Log.Error(completed.Exception, "Failed to tweet");
-            }
-        });
+                if (completed.IsCompleted)
+                {
+                    Divination.Chat.Print($"「{context["text"]}」をツイートしました。");
+                }
+                else if (completed.Exception != null)
+                {
+                    Divination.Chat.PrintError("ツイートに失敗しました。");
+                    DalamudLog.Log.Error(completed.Exception, "Failed to tweet");
+                }
+            });
     }
 
     private async void WatchTimeline()
@@ -95,8 +98,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
                         Dalamud.ChatGui.Print(new XivChatEntry
                         {
                             Type = XivChatType.Echo,
-                            Message = new SeString(
-                                new UIForegroundPayload(57),
+                            Message = new SeString(new UIForegroundPayload(57),
                                 new TextPayload("[Twitter]"),
                                 UIForegroundPayload.UIForegroundOff,
                                 new TextPayload($"<@{status.User.ScreenName}> {HttpUtility.HtmlDecode(status.Text)}")),

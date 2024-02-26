@@ -39,20 +39,27 @@ public class DataViewer
 
         ImGui.Columns(2);
 
-        ImGui.Text("Index"); ImGui.NextColumn();
-        ImGui.Text("Value"); ImGui.NextColumn();
+        ImGui.Text("Index");
+        ImGui.NextColumn();
+        ImGui.Text("Value");
+        ImGui.NextColumn();
         ImGui.Separator();
 
         foreach (var (index, value) in rows)
         {
-            ImGui.Text($"0x{index:X4}  ({index})"); ImGui.NextColumn();
-            ImGui.Text(value); ImGui.NextColumn();
+            ImGui.Text($"0x{index:X4}  ({index})");
+            ImGui.NextColumn();
+            ImGui.Text(value);
+            ImGui.NextColumn();
         }
 
         ImGui.Columns(1);
     }
 
-    public bool Any() => rows is { Count: > 0 };
+    public bool Any()
+    {
+        return rows is {Count: > 0};
+    }
 
     private List<DataRow>? PrepareData<T>(T[] source, int byteCount) where T : struct
     {

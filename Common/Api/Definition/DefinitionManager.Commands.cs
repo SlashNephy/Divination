@@ -23,8 +23,7 @@ internal partial class DefinitionManager<TContainer>
         [HiddenCommand(HideInHelp = false)]
         private void OnDefVersionCommand()
         {
-            manager.chatClient.Print(
-                $"定義ファイル: ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
+            manager.chatClient.Print($"定義ファイル: ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
         }
 
         [Command("def", "fetch")]
@@ -33,8 +32,7 @@ internal partial class DefinitionManager<TContainer>
         private void OnDefFetchCommand()
         {
             manager.Provider.Update(CancellationToken.None);
-            manager.chatClient.Print(
-                $"定義ファイルを再取得しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
+            manager.chatClient.Print($"定義ファイルを再取得しました。ゲームバージョン = {manager.Provider.Container.Version}, パッチ = {manager.Provider.Container.Patch}");
         }
 
         [Command("def", "show")]

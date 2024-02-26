@@ -19,7 +19,8 @@ using Dalamud.Divination.Common.Boilerplate.Features;
 namespace Dalamud.Divination.Common.Api;
 
 internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationApi<TConfiguration, TDefinition>
-    where TConfiguration : class, IPluginConfiguration, new() where TDefinition : DefinitionContainer, new()
+    where TConfiguration : class, IPluginConfiguration, new()
+    where TDefinition : DefinitionContainer, new()
 {
     public DivinationApi(IDalamudApi api, Assembly assembly, IDivinationPluginApi<TConfiguration, TDefinition> plugin)
     {
@@ -42,15 +43,13 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
     private Assembly Assembly { get; }
     private IDivinationPluginApi<TConfiguration, TDefinition> Plugin { get; }
 
-    public IChatClient Chat =>
-        ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui, Dalamud.ClientState));
+    public IChatClient Chat => ServiceContainer.GetOrPut(() => new ChatClient(Plugin.Name, Dalamud.ChatGui, Dalamud.ClientState));
 
     [SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
     public ICommandProcessor? Command => ServiceContainer.GetOrPutOptional(() =>
     {
         var processor = Plugin switch
         {
-
             ICommandSupport commandSupport => new CommandProcessor(Plugin.Name,
                 commandSupport.MainCommandPrefix,
                 Dalamud.ChatGui,
@@ -99,16 +98,13 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
         return null;
     });
 
-    public ITextureManager Texture => ServiceContainer.GetOrPut(() =>
-        new TextureManager(Dalamud.TextureProvider, Dalamud.PluginInterface.UiBuilder));
-    public IVersionManager Version => ServiceContainer.GetOrPut(() => new VersionManager(
-        new GitVersion(Assembly),
-        new GitVersion(Assembly.GetExecutingAssembly())));
+    public ITextureManager Texture => ServiceContainer.GetOrPut(() => new TextureManager(Dalamud.TextureProvider, Dalamud.PluginInterface.UiBuilder));
+    public IVersionManager Version =>
+        ServiceContainer.GetOrPut(() => new VersionManager(new GitVersion(Assembly), new GitVersion(Assembly.GetExecutingAssembly())));
     public IVoiceroid2ProxyClient Voiceroid2Proxy => ServiceContainer.GetOrPut(() => new Voiceroid2ProxyClient());
     public IXivApiClient XivApi => ServiceContainer.GetOrPut(() => new XivApiClient());
     public IKeyStrokeManager KeyStroke => ServiceContainer.GetOrPut(() => new KeyStrokeManager());
-    public INetworkInterceptor Network =>
-        ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork, Chat));
+    public INetworkInterceptor Network => ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork, Chat));
 
     #region IDisposable
 

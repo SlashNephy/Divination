@@ -30,9 +30,7 @@ public partial class Debugger
 
             payloads.Add(new TextPayload("\nSeIconChar:\n"));
 
-            foreach (var (i, icon) in Enum.GetValues(typeof(SeIconChar))
-                .Cast<SeIconChar>()
-                .Select((x, i) => (i, x)))
+            foreach (var (i, icon) in Enum.GetValues(typeof(SeIconChar)).Cast<SeIconChar>().Select((x, i) => (i, x)))
             {
                 payloads.AddRange(new Payload[]
                 {
