@@ -4,17 +4,20 @@ on:
   push:
     paths:
       - 'Calculator/**'
-      - 'Common/**'
+    branches:
+      - 'master'
+
   pull_request:
     paths:
       - 'Calculator/**'
-      - 'Common/**'
     types:
       - opened
       - synchronize
+
   release:
     types:
       - created
+
   workflow_dispatch:
 
 jobs:

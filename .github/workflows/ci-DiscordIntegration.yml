@@ -4,17 +4,20 @@ on:
   push:
     paths:
       - 'DiscordIntegration/**'
-      - 'Common/**'
+    branches:
+      - 'master'
+
   pull_request:
     paths:
       - 'DiscordIntegration/**'
-      - 'Common/**'
     types:
       - opened
       - synchronize
+
   release:
     types:
       - created
+
   workflow_dispatch:
 
 jobs:
