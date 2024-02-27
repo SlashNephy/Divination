@@ -1,8 +1,8 @@
 {
   "Author": "Asteria Nocturna",
   "Name": "Divination.FaloopIntegration",
-  "Punchline": "Faloop notification in chat",
-  "Description": "Provide simple integration with Faloop. Mob notification in chat.",
+  "Punchline": "Faloop Notification in Chat",
+  "Description": "Show Faloop mob spawn notifications in in-game chat. Type /faloop to configure the plugin.",
   "Tags": [
     "mobhunt"
   ],

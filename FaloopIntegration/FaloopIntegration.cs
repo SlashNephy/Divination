@@ -21,7 +21,6 @@ using SocketIOClient;
 
 namespace Divination.FaloopIntegration;
 
-// ReSharper disable once ClassNeverInstantiated.Global
 public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, PluginConfig>,
     IDalamudPlugin,
     ICommandSupport,
@@ -52,12 +51,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void OnConnected()
     {
-        Divination.Chat.Print("Faloop に接続しました！");
+        Divination.Chat.Print(Localization.Connected);
     }
 
     private void OnDisconnected(string cause)
     {
-        Divination.Chat.Print("Faloop から切断されました。");
+        Divination.Chat.Print(Localization.Disconnected);
         DalamudLog.Log.Warning("Disconnected = {Cause}", cause);
     }
 
@@ -180,7 +179,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.AddRange(new Payload[]
         {
             new IconPayload(BitmapFontIcon.CrossWorld),
-            new TextPayload($"{world.Name} が湧きました。({FormatTimeSpan(spawn.Timestamp)})"),
+            new TextPayload($"{world.Name} {Localization.HasSpawned.Format(FormatTimeSpan(spawn.Timestamp))}"),
         });
 
         Dalamud.ChatGui.Print(new XivChatEntry
@@ -214,7 +213,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 GetRankIcon(rank),
                 new TextPayload($" {mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
-                new TextPayload($"{world.Name} が討伐されました。({FormatTimeSpan(death.StartedAt)})"),
+                new TextPayload($"{world.Name} {Localization.WasKilled.Format(FormatTimeSpan(death.StartedAt))}"),
             }),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
@@ -278,6 +277,18 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 return new TextPayload(SeIconChar.Instance2.ToIconString());
             case 3:
                 return new TextPayload(SeIconChar.Instance3.ToIconString());
+            case 4:
+                return new TextPayload(SeIconChar.Instance4.ToIconString());
+            case 5:
+                return new TextPayload(SeIconChar.Instance5.ToIconString());
+            case 6:
+                return new TextPayload(SeIconChar.Instance6.ToIconString());
+            case 7:
+                return new TextPayload(SeIconChar.Instance7.ToIconString());
+            case 8:
+                return new TextPayload(SeIconChar.Instance8.ToIconString());
+            case 9:
+                return new TextPayload(SeIconChar.Instance9.ToIconString());
             default:
                 return default;
         }
@@ -289,23 +300,23 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var builder = new StringBuilder();
         if (span.Days > 0)
         {
-            builder.Append($"{span.Days}日前");
+            builder.Append(Localization.TimespanDaysAgo.Format(span.Days));
         }
         else if (span.Hours > 0)
         {
-            builder.Append($"{span.Hours}時間前");
+            builder.Append(Localization.TimespanHoursAgo.Format(span.Hours));
         }
         else if (span.Minutes > 0)
         {
-            builder.Append($"{span.Minutes}分前");
+            builder.Append(Localization.TimespanMinutesAgo.Format(span.Minutes));
         }
         else if (span.Seconds > 10)
         {
-            builder.Append($"{span.Seconds}秒前");
+            builder.Append(Localization.TimespanSecondsAgo.Format(span.Seconds));
         }
         else
         {
-            builder.Append("たった今");
+            builder.Append(Localization.TimespanJustNow);
         }
 
         return builder.ToString();
@@ -350,7 +361,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         if (string.IsNullOrWhiteSpace(Config.FaloopUsername) || string.IsNullOrWhiteSpace(Config.FaloopPassword))
         {
-            Divination.Chat.Print("Faloop のログイン情報が設定されていません。/faloop から設定できます。");
+            Divination.Chat.Print(Localization.AccountNotSet);
             return;
         }
 
