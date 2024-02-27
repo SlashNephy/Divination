@@ -1,4 +1,6 @@
 ﻿using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Game.Text.SeStringHandling;
+using Dalamud.Game.Text.SeStringHandling.Payloads;
 
 namespace Dalamud.Divination.Common.Api.Localize;
 
@@ -14,6 +16,16 @@ public sealed class LocalizedString
     public static implicit operator string(LocalizedString localizedString)
     {
         return localizedString.ToString();
+    }
+
+    public static implicit operator SeString(LocalizedString localizedString)
+    {
+        return localizedString.ToString();
+    }
+
+    public static implicit operator TextPayload(LocalizedString localizedString)
+    {
+        return new TextPayload(localizedString);
     }
 
     public override string ToString()
