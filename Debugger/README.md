@@ -1,3 +1,0 @@
-# Debugger
-
-🧐 Dalamud Plugin to inspect game...
