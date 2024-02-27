@@ -81,4 +81,5 @@ jobs:
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+          repository: ${{ inputs.plugin-repository }}
           pull-request-number: ${{  steps.create-pull-request.outputs.pull-request-number }}
