@@ -32,7 +32,7 @@ jobs:
       actions: write
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    if: github.event_name != 'pull_request'
     needs: build
     uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@master
     with:
