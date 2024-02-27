@@ -27,38 +27,35 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ref IsOpen,
             ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
         {
-            ImGui.Checkbox(Localization.AllowTeleportQueueing.ToString(), ref Config.AllowTeleportQueueing);
+            ImGui.Checkbox(Localization.AllowTeleportQueueing, ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
             {
-                ImGui.SliderInt(Localization.QueueTeleportDelay.ToString(),
-                    ref Config.QueuedTeleportDelay,
-                    MinQueuedTeleportDelay,
-                    MaxQueuedTeleportDelay);
+                ImGui.SliderInt(Localization.QueueTeleportDelay, ref Config.QueuedTeleportDelay, MinQueuedTeleportDelay, MaxQueuedTeleportDelay);
             }
 
             ImGui.Indent();
-            ImGui.Text(Localization.QueuedTeleportDescription.ToString());
+            ImGui.Text(Localization.QueuedTeleportDescription);
             ImGui.Unindent();
 
             ImGui.Spacing();
 
-            ImGui.Combo(Localization.PreferredGrandCompanyAetheryte.ToString(),
+            ImGui.Combo(Localization.PreferredGrandCompanyAetheryte,
                 ref Config.PreferredGrandCompanyAetheryte,
                 grandCompanyAetheryteNames,
                 grandCompanyAetheryteNames.Length);
             ImGui.Indent();
-            ImGui.Text(Localization.PreferredGrandCompanyAetheryteDescription.ToString());
+            ImGui.Text(Localization.PreferredGrandCompanyAetheryteDescription);
             ImGui.Unindent();
 
-            ImGui.Checkbox(Localization.ConsiderTeleportsToOtherWorlds.ToString(), ref Config.ConsiderTeleportsToOtherWorlds);
+            ImGui.Checkbox(Localization.ConsiderTeleportsToOtherWorlds, ref Config.ConsiderTeleportsToOtherWorlds);
             ImGui.Indent();
-            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDescription.ToString());
-            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDisclaimer.ToString());
+            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDescription);
+            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDisclaimer);
             ImGui.Unindent();
 
             ImGui.Separator();
 
-            if (ImGui.Button(Localization.SaveConfigButton.ToString()))
+            if (ImGui.Button(Localization.SaveConfigButton))
             {
                 IsOpen = false;
                 Interface.SavePluginConfig(Config);

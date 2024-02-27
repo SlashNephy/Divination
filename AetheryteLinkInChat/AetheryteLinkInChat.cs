@@ -42,7 +42,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         Dalamud.CommandManager.AddHandler(TeleportGcCommand,
             new CommandInfo(OnTeleportGcCommand)
             {
-                HelpMessage = Localization.TeleportGcHelpMessage.ToString(),
+                HelpMessage = Localization.TeleportGcHelpMessage,
             });
     }
 

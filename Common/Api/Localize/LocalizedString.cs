@@ -11,7 +11,7 @@ public sealed class LocalizedString
     public string? Ge { get; init; }
     public string? Fr { get; init; }
 
-    public static explicit operator string(LocalizedString localizedString)
+    public static implicit operator string(LocalizedString localizedString)
     {
         return localizedString.ToString();
     }

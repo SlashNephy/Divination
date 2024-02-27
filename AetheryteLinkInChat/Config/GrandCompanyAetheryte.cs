@@ -1,9 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Divination.AetheryteLinkInChat.Config;
 
-namespace Divination.AetheryteLinkInChat.Config;
-
-[SuppressMessage("ReSharper", "IdentifierTypo")]
-[SuppressMessage("ReSharper", "UnusedMember.Global")]
 public enum GrandCompanyAetheryte : uint
 {
     None,
