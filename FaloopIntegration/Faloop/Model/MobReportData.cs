@@ -10,7 +10,7 @@ public record MobReportData(
     [property: JsonPropertyName("data")] JsonObject Data,
     [property: JsonPropertyName("mobId")] uint MobId,
     [property: JsonPropertyName("worldId")] uint WorldId,
-    [property: JsonPropertyName("zoneInstance")] int? ZoneInstance)
+    [property: JsonPropertyName("zoneInstance")] int ZoneInstance)
 {
     public record Spawn(
         [property: JsonPropertyName("timestamp")] DateTime Timestamp,

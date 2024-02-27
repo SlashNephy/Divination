@@ -4,6 +4,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="System.Net.Http.Json" Version="8.0.0"/>
         <ProjectReference Include="..\Common\Common.csproj"/>
 
         <Reference Include="Dalamud">

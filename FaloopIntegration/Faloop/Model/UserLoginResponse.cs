@@ -1,3 +1,8 @@
-﻿namespace Divination.FaloopIntegration.Faloop.Model;
+﻿using System.Text.Json.Serialization;
 
-public record UserLoginResponse(bool Success, string SessionId, string Token);
+namespace Divination.FaloopIntegration.Faloop.Model;
+
+public record UserLoginResponse(
+    [property: JsonPropertyName("success")] bool Success,
+    [property: JsonPropertyName("sessionId")] string SessionId,
+    [property: JsonPropertyName("token")] string Token);

@@ -12,20 +12,17 @@ namespace Divination.FaloopIntegration.Faloop;
 // ReSharper disable once InconsistentNaming
 public class FaloopSocketIOClient : IDisposable
 {
-    private readonly SocketIO client = new("https://comms.faloop.app/mobStatus",
+    private readonly SocketIO client = new("https://faloop.app",
         new SocketIOOptions
         {
             EIO = EngineIO.V4,
             Transport = TransportProtocol.Polling,
+            Path = "/comms/socket.io",
             ExtraHeaders = new Dictionary<string, string>
             {
                 {
                     "Accept",
                     "*/*"
-                },
-                {
-                    "Accept-Language",
-                    "ja"
                 },
                 {
                     "Referer",
@@ -37,7 +34,7 @@ public class FaloopSocketIOClient : IDisposable
                 },
                 {
                     "User-Agent",
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
                 },
             },
         });
