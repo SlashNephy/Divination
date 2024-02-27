@@ -10,17 +10,10 @@ using Divination.FaloopIntegration.Faloop.Model.Embed;
 
 namespace Divination.FaloopIntegration.Faloop;
 
-public class FaloopEmbedData
+public class FaloopEmbedData(FaloopApiClient client)
 {
-    public List<ZoneLocationData> ZoneLocations { get; private set; } = new();
-    public List<MobData> Mobs { get; private set; } = new();
-
-    private readonly FaloopApiClient client;
-
-    public FaloopEmbedData(FaloopApiClient client)
-    {
-        this.client = client;
-    }
+    public List<ZoneLocationData> ZoneLocations { get; private set; } = [];
+    public List<MobData> Mobs { get; private set; } = [];
 
     public async Task Initialize()
     {

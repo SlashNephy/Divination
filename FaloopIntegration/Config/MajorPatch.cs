@@ -1,8 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Divination.FaloopIntegration.Config;
 
-namespace Divination.FaloopIntegration.Config;
-
-[SuppressMessage("ReSharper", "InconsistentNaming")]
 public enum MajorPatch
 {
     ARealmReborn = 2,

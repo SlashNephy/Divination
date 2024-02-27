@@ -3,63 +3,26 @@ using System.Collections.Generic;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
-#pragma warning disable CS8618
-
 namespace Divination.FaloopIntegration.Faloop.Model;
 
-public class MobReportData
+public record MobReportData(
+    [property: JsonPropertyName("action")] string Action,
+    [property: JsonPropertyName("data")] JsonObject Data,
+    [property: JsonPropertyName("mobId")] uint MobId,
+    [property: JsonPropertyName("worldId")] uint WorldId,
+    [property: JsonPropertyName("zoneInstance")] int? ZoneInstance)
 {
-    [JsonPropertyName("action")]
-    public string Action { get; set; }
+    public record Spawn(
+        [property: JsonPropertyName("timestamp")] DateTime Timestamp,
+        [property: JsonPropertyName("window")] int Window,
+        [property: JsonPropertyName("zoneId")] uint ZoneId,
+        [property: JsonPropertyName("zonePoiIds")] List<int> ZonePoiIds,
+        [property: JsonPropertyName("reporters")] List<Reporter>? Reporters);
 
-    [JsonPropertyName("data")]
-    public JsonObject Data { get; set; }
+    public record Reporter([property: JsonPropertyName("id")] int Id, [property: JsonPropertyName("name")] string Name);
 
-    [JsonPropertyName("mobId")]
-    public uint MobId { get; set; }
-
-    [JsonPropertyName("worldId")]
-    public uint WorldId { get; set; }
-
-    [JsonPropertyName("zoneInstance")]
-    public int? ZoneInstance { get; set; }
-
-    public class Spawn
-    {
-        [JsonPropertyName("timestamp")]
-        public DateTime Timestamp { get; set; }
-
-        [JsonPropertyName("window")]
-        public int Window { get; set; }
-
-        [JsonPropertyName("zoneId")]
-        public uint ZoneId { get; set; }
-
-        [JsonPropertyName("zonePoiIds")]
-        public List<int> ZonePoiIds { get; set; }
-
-        [JsonPropertyName("reporters")]
-        public List<Reporter>? Reporters { get; set; }
-
-        public class Reporter
-        {
-            [JsonPropertyName("id")]
-            public int Id { get; set; }
-
-            [JsonPropertyName("name")]
-            public string Name { get; set; }
-        }
-    }
-
-    public class Death
-    {
-        [JsonPropertyName("num")]
-        public int Num { get; set; }
-
-        [JsonPropertyName("prevStartedAt")]
-        public DateTime PrevStartedAt { get; set; }
-
-        [JsonPropertyName("startedAt")]
-        public DateTime StartedAt { get; set; }
-    }
+    public record Death(
+        [property: JsonPropertyName("num")] int Num,
+        [property: JsonPropertyName("prevStartedAt")] DateTime PrevStartedAt,
+        [property: JsonPropertyName("startedAt")] DateTime StartedAt);
 }
