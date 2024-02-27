@@ -1,6 +1,6 @@
 mode: ContinuousDeployment
-assembly-versioning-format: "{Major}.{Minor}.{Patch}.{PreReleaseNumber}"
-assembly-file-versioning-format: "{Major}.{Minor}.{Patch}.{PreReleaseNumber}"
+assembly-versioning-format: "{Major}.{Minor}.{Patch}.{WeightedPreReleaseNumber ?? 0}"
+assembly-file-versioning-format: "{Major}.{Minor}.{Patch}.{WeightedPreReleaseNumber ?? 0}"
 assembly-informational-format: "{Major}.{Minor}.{Patch}-{PreReleaseTag}.{ShortSha}.{CommitDate}"
 continuous-delivery-fallback-tag: beta
 commit-date-format: yyyyMMdd
