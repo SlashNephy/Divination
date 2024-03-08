@@ -24,6 +24,12 @@ public class Teleporter(ICondition condition, IAetheryteList aetheryteList)
         ConditionFlag.Occupied33,
         ConditionFlag.BoundByDuty,
         ConditionFlag.BoundByDuty56,
+        ConditionFlag.Fishing,
+        ConditionFlag.Gathering,
+        ConditionFlag.Gathering42,
+        ConditionFlag.Crafting,
+        ConditionFlag.Crafting40,
+        ConditionFlag.PreparingToCraft,
     ];
 
     private Aetheryte? queuedAetheryte;
