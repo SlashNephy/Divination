@@ -124,10 +124,15 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             if (context != null)
             {
                 var viewer = new DataViewer(Config.NetworkDataType, context.Data, Config.NetworkEnableValueFilter, Config.NetworkFilterValue);
-                if (viewer.Any())
+                if (viewer.Any() && lastNetworkContext != context)
                 {
                     lastNetworkContext = context;
                     lastNetworkViewer = viewer;
+
+                    if (Config.NetworkLogMatchedPackets)
+                    {
+                        DalamudLog.Log.Debug("{Context}", context);
+                    }
                 }
                 else
                 {
@@ -141,11 +146,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                     ImGui.Text($"Opcode = 0x{context.Opcode:X4}");
 
                     viewer.Draw();
-
-                    if (Config.NetworkLogMatchedPackets)
-                    {
-                        DalamudLog.Log.Debug("{Context}", context);
-                    }
                 }
             }
 
