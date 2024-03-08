@@ -7,10 +7,10 @@ using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat;
 
-public class Teleporter
+public class Teleporter(ICondition condition, IAetheryteList aetheryteList)
 {
     private readonly ConditionFlag[] teleportUnavailableFlags =
-    {
+    [
         ConditionFlag.InCombat,
         ConditionFlag.Casting,
         ConditionFlag.BetweenAreas,
@@ -24,18 +24,10 @@ public class Teleporter
         ConditionFlag.Occupied33,
         ConditionFlag.BoundByDuty,
         ConditionFlag.BoundByDuty56,
-    };
+    ];
 
     private Aetheryte? queuedAetheryte;
     private readonly object queuedAetheryteLock = new();
-    private readonly ICondition condition;
-    private readonly IAetheryteList aetheryteList;
-
-    public Teleporter(ICondition condition, IAetheryteList aetheryteList)
-    {
-        this.condition = condition;
-        this.aetheryteList = aetheryteList;
-    }
 
     public bool IsTeleportUnavailable => teleportUnavailableFlags.Any(x => condition[x]);
 

@@ -11,25 +11,19 @@ using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat;
 
-public class AetheryteSolver
+public class AetheryteSolver(IDataManager dataManager)
 {
     private const uint MaxCalculateDepth = 5;
     private const double BetweenAreaDistanceCost = 8.0;
 
-    private readonly ExcelSheet<Aetheryte> aetheryteSheet;
-    private readonly ExcelSheet<Map> mapSheet;
-    private readonly ExcelSheet<MapMarker> mapMarkerSheet;
-    private readonly ExcelSheet<World> worldSheet;
-    private readonly ExcelSheet<TerritoryType> territoryTypeSheet;
-
-    public AetheryteSolver(IDataManager dataManager)
-    {
-        aetheryteSheet = dataManager.GetExcelSheet<Aetheryte>() ?? throw new ApplicationException("aetheryteSheet == null");
-        mapSheet = dataManager.GetExcelSheet<Map>() ?? throw new ApplicationException("mapSheet == null");
-        mapMarkerSheet = dataManager.GetExcelSheet<MapMarker>() ?? throw new ApplicationException("mapMarkerSheet == null");
-        worldSheet = dataManager.GetExcelSheet<World>() ?? throw new ApplicationException("worldSheet == null");
-        territoryTypeSheet = dataManager.GetExcelSheet<TerritoryType>() ?? throw new ApplicationException("territoryTypeSheet == null");
-    }
+    private readonly ExcelSheet<Aetheryte> aetheryteSheet =
+        dataManager.GetExcelSheet<Aetheryte>() ?? throw new ApplicationException("aetheryteSheet == null");
+    private readonly ExcelSheet<Map> mapSheet = dataManager.GetExcelSheet<Map>() ?? throw new ApplicationException("mapSheet == null");
+    private readonly ExcelSheet<MapMarker> mapMarkerSheet =
+        dataManager.GetExcelSheet<MapMarker>() ?? throw new ApplicationException("mapMarkerSheet == null");
+    private readonly ExcelSheet<World> worldSheet = dataManager.GetExcelSheet<World>() ?? throw new ApplicationException("worldSheet == null");
+    private readonly ExcelSheet<TerritoryType> territoryTypeSheet =
+        dataManager.GetExcelSheet<TerritoryType>() ?? throw new ApplicationException("territoryTypeSheet == null");
 
     public IEnumerable<ITeleportPath> CalculateTeleportPathsForMapLink(MapLinkPayload payload)
     {
