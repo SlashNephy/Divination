@@ -179,7 +179,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.AddRange(new Payload[]
         {
             new IconPayload(BitmapFontIcon.CrossWorld),
-            new TextPayload($"{world.Name} {Localization.HasSpawned.Format(FormatTimeSpan(spawn.Timestamp))}"),
+            new TextPayload($"{world.Name} {Localization.HasSpawned} {FormatTimeSpan(spawn.Timestamp)}".TrimEnd()),
         });
 
         Dalamud.ChatGui.Print(new XivChatEntry
@@ -213,7 +213,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 GetRankIcon(rank),
                 new TextPayload($" {mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
-                new TextPayload($"{world.Name} {Localization.WasKilled.Format(FormatTimeSpan(death.StartedAt))}"),
+                new TextPayload($"{world.Name} {Localization.WasKilled} {FormatTimeSpan(death.StartedAt)}".TrimEnd()),
             }),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
@@ -297,7 +297,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private static string FormatTimeSpan(DateTime time)
     {
         var span = DateTime.UtcNow - time;
-        var builder = new StringBuilder();
+        var builder = new StringBuilder("(");
         if (span.Days > 0)
         {
             builder.Append(Localization.TimespanDaysAgo.Format(span.Days));
@@ -316,9 +316,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
         else
         {
-            builder.Append(Localization.TimespanJustNow);
+            return string.Empty;
         }
 
+        builder.Append(')');
         return builder.ToString();
     }
 

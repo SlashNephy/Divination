@@ -18,14 +18,14 @@ public static class Localization
 
     public static readonly LocalizedString HasSpawned = new()
     {
-        En = "has spawned! ({0})",
-        Ja = "が湧きました！({0})",
+        En = "has spawned!",
+        Ja = "が湧きました！",
     };
 
     public static readonly LocalizedString WasKilled = new()
     {
-        En = "was killed. ({0})",
-        Ja = "が討伐されました。({0})",
+        En = "was killed.",
+        Ja = "が討伐されました。",
     };
 
     public static readonly LocalizedString TimespanDaysAgo = new()
@@ -50,12 +50,6 @@ public static class Localization
     {
         En = "{0} seconds ago",
         Ja = "{0}秒前",
-    };
-
-    public static readonly LocalizedString TimespanJustNow = new()
-    {
-        En = "just now",
-        Ja = "たった今",
     };
 
     public static readonly LocalizedString ConfigWindowTitle = new()
