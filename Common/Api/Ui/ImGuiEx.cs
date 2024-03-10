@@ -17,9 +17,9 @@ public static class ImGuiEx
         ImGui.Unindent();
     }
 
-    public static void CheckboxConfig(string label, ref bool value, params string[] descriptions)
+    public static bool CheckboxConfig(string label, ref bool value, params string[] descriptions)
     {
-        ImGui.Checkbox(label, ref value);
+        var ret = ImGui.Checkbox(label, ref value);
         ImGui.Indent();
         foreach (var description in descriptions)
         {
@@ -27,6 +27,7 @@ public static class ImGuiEx
         }
 
         ImGui.Unindent();
+        return ret;
     }
 
     public static void HelpMarker(params string[] descriptions)
