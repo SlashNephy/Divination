@@ -113,6 +113,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.CollapsingHeader("Debug"))
         {
+            if (ImGuiEx.CheckboxConfig(Localization.EnableActiveMobUi, ref FaloopIntegration.Instance.Config.EnableActiveMobUi))
+            {
+                FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
+            }
+
             if (ImGui.Button("Emit mock payload"))
             {
                 FaloopIntegration.Instance.EmitMockData();

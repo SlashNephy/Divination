@@ -183,4 +183,16 @@ public static class Localization
         En = "If enabled, the plugin will ignore reports of mob kills for which it has not received a spawn notification.",
         Ja = "有効にすると、湧き通知を受け取っていないモブの討伐報告を無視します。",
     };
+
+    public static readonly LocalizedString ActiveMob = new()
+    {
+        En = "Active Mobs",
+        Ja = "現在のモブ",
+    };
+
+    public static readonly LocalizedString EnableActiveMobUi = new()
+    {
+        En = "Enable Active Mobs UI",
+        Ja = "「現在のモブ」パネルを表示",
+    };
 }

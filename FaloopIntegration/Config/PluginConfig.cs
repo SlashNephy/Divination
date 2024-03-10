@@ -27,6 +27,7 @@ public class PluginConfig : IPluginConfiguration
     public PerRankConfig Fate = new();
 
     public List<SpawnHistory> SpawnHistories = [];
+    public bool EnableActiveMobUi = false;
 
     public class PerRankConfig
     {

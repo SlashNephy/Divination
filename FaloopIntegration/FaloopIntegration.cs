@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
@@ -28,6 +26,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 {
     private readonly FaloopSocketIOClient socket = new();
     private readonly FaloopSession session = new();
+    public readonly ActiveMobUi Ui = new();
 
     public FaloopIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -44,6 +43,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.OnReconnectFailed += OnReconnectFailed;
         socket.OnPing += OnPing;
         socket.OnPong += OnPong;
+
+        Ui.IsDrawing = Config.EnableActiveMobUi;
+        Dalamud.PluginInterface.UiBuilder.Draw += Ui.Draw;
 
         Connect();
         CleanSpawnHistories();
@@ -138,39 +140,34 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         switch (data.Action)
         {
             case "spawn" when config.EnableSpawnReport:
-                OnSpawnMobReport(data, mob, world, config.Channel, mobData.Rank);
+                OnMobSpawn(new MobSpawnEvent(data, mob, world, mobData.Rank), config.Channel);
                 DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                 break;
             case "death" when config.EnableDeathReport:
-                OnDeathMobReport(data, mob, world, config.Channel, mobData.Rank, config.SkipOrphanReport);
+                OnMobDeath(new MobDeathEvent(data, mob, world, mobData.Rank), config.Channel, config.SkipOrphanReport);
                 DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
     }
 
-    private void OnSpawnMobReport(MobReportData data, BNpcName mob, World world, int channel, string rank)
+    private void OnMobSpawn(MobSpawnEvent ev, int channel)
     {
-        var spawn = data.Data.Deserialize<MobReportData.Spawn>();
-        if (spawn == default)
-        {
-            DalamudLog.Log.Debug("OnSpawnMobReport: spawn == null");
-            return;
-        }
+        Ui.OnMobSpawn(ev);
 
         Config.SpawnHistories.Add(new PluginConfig.SpawnHistory
         {
-            MobId = data.MobId,
-            WorldId = data.WorldId,
-            At = spawn.Timestamp,
+            MobId = ev.Data.MobId,
+            WorldId = ev.Data.WorldId,
+            At = ev.Spawn.Timestamp,
         });
 
         var payloads = new List<Payload>
         {
-            GetRankIcon(rank),
-            new TextPayload($" {mob.Singular.RawString} "),
+            Utils.GetRankIcon(ev.Rank),
+            new TextPayload($" {ev.Mob.Singular.RawString} "),
         };
 
-        var mapLink = CreateMapLink(spawn.ZoneId, spawn.ZonePoiIds.First(), data.ZoneInstance);
+        var mapLink = CreateMapLink(ev.Spawn.ZoneId, ev.Spawn.ZonePoiIds.First(), ev.Data.ZoneInstance);
         if (mapLink != default)
         {
             payloads.AddRange(mapLink.Payloads);
@@ -179,27 +176,22 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.AddRange(new Payload[]
         {
             new IconPayload(BitmapFontIcon.CrossWorld),
-            new TextPayload($"{world.Name} {Localization.HasSpawned} {FormatTimeSpan(spawn.Timestamp)}".TrimEnd()),
+            new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()),
         });
 
         Dalamud.ChatGui.Print(new XivChatEntry
         {
-            Name = spawn.Reporters?.FirstOrDefault()?.Name ?? "Faloop",
+            Name = ev.Spawn.Reporters?.FirstOrDefault()?.Name ?? "Faloop",
             Message = new SeString(payloads),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
     }
 
-    private void OnDeathMobReport(MobReportData data, BNpcName mob, World world, int channel, string rank, bool skipOrphanReport)
+    private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport)
     {
-        var death = data.Data.Deserialize<MobReportData.Death>();
-        if (death == default)
-        {
-            DalamudLog.Log.Debug("OnDeathMobReport: death == null");
-            return;
-        }
+        Ui.OnMobDeath(ev);
 
-        if (skipOrphanReport && Config.SpawnHistories.RemoveAll(x => x.MobId == data.MobId && x.WorldId == data.WorldId) == 0)
+        if (skipOrphanReport && Config.SpawnHistories.RemoveAll(x => x.MobId == ev.Data.MobId && x.WorldId == ev.Data.WorldId) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
             return;
@@ -210,10 +202,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             Name = "Faloop",
             Message = new SeString(new List<Payload>
             {
-                GetRankIcon(rank),
-                new TextPayload($" {mob.Singular.RawString}"),
+                Utils.GetRankIcon(ev.Rank),
+                new TextPayload($" {ev.Mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
-                new TextPayload($"{world.Name} {Localization.WasKilled} {FormatTimeSpan(death.StartedAt)}".TrimEnd()),
+                new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.Death.StartedAt)}".TrimEnd()),
             }),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
@@ -246,85 +238,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         var mapLink = SeString.CreateMapLink(zone.RowId, zone.Map.Row, loc[0], loc[1]);
 
-        var instanceIcon = GetInstanceIcon(instance);
+        var instanceIcon = Utils.GetInstanceIcon(instance);
         return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
-    }
-
-    private static TextPayload GetRankIcon(string rank)
-    {
-        switch (rank)
-        {
-            case "S":
-                return new TextPayload(SeIconChar.BoxedLetterS.ToIconString());
-            case "A":
-                return new TextPayload(SeIconChar.BoxedLetterA.ToIconString());
-            case "B":
-                return new TextPayload(SeIconChar.BoxedLetterB.ToIconString());
-            case "F":
-                return new TextPayload(SeIconChar.BoxedLetterF.ToIconString());
-            default:
-                throw new ArgumentException($"Unknown rank: {rank}");
-        }
-    }
-
-    private static TextPayload? GetInstanceIcon(int? instance)
-    {
-        switch (instance)
-        {
-            case 1:
-                return new TextPayload(SeIconChar.Instance1.ToIconString());
-            case 2:
-                return new TextPayload(SeIconChar.Instance2.ToIconString());
-            case 3:
-                return new TextPayload(SeIconChar.Instance3.ToIconString());
-            case 4:
-                return new TextPayload(SeIconChar.Instance4.ToIconString());
-            case 5:
-                return new TextPayload(SeIconChar.Instance5.ToIconString());
-            case 6:
-                return new TextPayload(SeIconChar.Instance6.ToIconString());
-            case 7:
-                return new TextPayload(SeIconChar.Instance7.ToIconString());
-            case 8:
-                return new TextPayload(SeIconChar.Instance8.ToIconString());
-            case 9:
-                return new TextPayload(SeIconChar.Instance9.ToIconString());
-            default:
-                return default;
-        }
-    }
-
-    private static string FormatTimeSpan(DateTime time)
-    {
-        var span = DateTime.UtcNow - time;
-
-        // round TimeSpan
-        span = TimeSpan.FromSeconds(Math.Round(span.TotalSeconds));
-
-        var builder = new StringBuilder("(");
-        if (span.Days > 0)
-        {
-            builder.Append(Localization.TimespanDaysAgo.Format(span.Days));
-        }
-        else if (span.Hours > 0)
-        {
-            builder.Append(Localization.TimespanHoursAgo.Format(span.Hours));
-        }
-        else if (span.Minutes > 0)
-        {
-            builder.Append(Localization.TimespanMinutesAgo.Format(span.Minutes));
-        }
-        else if (span.Seconds > 10)
-        {
-            builder.Append(Localization.TimespanSecondsAgo.Format(span.Seconds));
-        }
-        else
-        {
-            return string.Empty;
-        }
-
-        builder.Append(')');
-        return builder.ToString();
     }
 
     private static void OnAny(string name, SocketIOResponse response)
@@ -393,7 +308,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             try
             {
                 OnMobReport(MockData.SpawnMobReport);
-                await Task.Delay(3000);
+                await Task.Delay(300000);
                 OnMobReport(MockData.DeathMobReport);
             }
             catch (Exception exception)
@@ -412,6 +327,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
         socket.Dispose();
+        Dalamud.PluginInterface.UiBuilder.Draw -= Ui.Draw;
     }
 
     public string MainCommandPrefix => "/faloop";
