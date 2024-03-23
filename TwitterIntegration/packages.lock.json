@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net7.0-windows7.0": {
+    "net8.0-windows7.0": {
       "CoreTweet": {
         "type": "Direct",
         "requested": "[2.0.0-beta.1, )",
