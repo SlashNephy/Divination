@@ -29,7 +29,7 @@ public class FaloopSession : IDisposable
             return false;
         }
 
-        var login = await client.LoginAsync(username, password, initialSession.SessionId, initialSession.Token);
+        var login = await client.LoginAsync(username, password, initialSession.Data.SessionId, initialSession.Data.Token);
         if (login is not {Success: true})
         {
             DalamudLog.Log.Debug("LoginAsync: login is not success");
