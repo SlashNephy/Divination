@@ -47,7 +47,7 @@ public class FaloopSession : IDisposable
         }
 
         IsLoggedIn = true;
-        SessionId = login.SessionId;
+        SessionId = login.Data.SessionId;
         return true;
     }
 
