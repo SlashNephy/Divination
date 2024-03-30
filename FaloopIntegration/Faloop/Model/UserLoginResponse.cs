@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace FaloopApi.Faloop.Model;
+namespace Divination.FaloopIntegration.Faloop.Model;
 public record LoginData(string SessionId, string Token);
 public record UserLoginResponse(
     [property: JsonPropertyName("success")] bool Success,
