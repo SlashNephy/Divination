@@ -1,3 +1,4 @@
 ﻿namespace Divination.FaloopIntegration.Faloop.Model;
 
-public record UserRefreshResponse(bool Success, string SessionId, string Token);
+public record UserData(string SessionId, string Token);
+public record UserRefreshResponse(bool Success, UserData Data);
