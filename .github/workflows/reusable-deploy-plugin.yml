@@ -55,7 +55,9 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/commits
 
       - name: Prepare event.json
-        run: echo '${{ toJSON(github.event) }}' > plugins/testing/${{ inputs.plugin-name }}/event.json
+        run: echo "$EVENT_JSON" | jq -c > plugins/testing/${{ inputs.plugin-name }}/event.json
+        env:
+          EVENT_JSON: ${{ toJSON(github.event) }}
 
       - name: Copy Artifact (stable)
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
