@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.SubKinds;
@@ -270,7 +271,7 @@ public class Formatter
     private void UpdateOnlineStatus()
     {
         OnlineStatus onlineStatus;
-        var icon = player.GetIcon().GetValueOrDefault();
+        var icon = player.OnlineStatus.Id;
         if (Enum.IsDefined(typeof(OnlineStatus), icon))
         {
             onlineStatus = (OnlineStatus)icon;
@@ -299,7 +300,8 @@ public class Formatter
 
     private void UpdateTitle()
     {
-        var titleId = player.GetTitle().GetValueOrDefault();
+        var obj = Marshal.PtrToStructure<FFXIVClientStructs.FFXIV.Client.Game.Character.Character>(player.Address);
+        var titleId = obj.CharacterData.TitleID;
         if (titleId != default)
         {
             var titleSheet = DiscordIntegration.Instance.Dalamud.DataManager.GetExcelSheet<Title>()!.GetRow((uint)titleId);

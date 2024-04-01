@@ -22,8 +22,8 @@
             <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <Reference Include="Newtonsoft.Json">
-            <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
+        <Reference Include="FFXIVClientStructs">
+            <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
             <Private>false</Private>
         </Reference>
 

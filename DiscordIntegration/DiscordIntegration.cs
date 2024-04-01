@@ -3,16 +3,14 @@ using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Plugin;
-using Divination.DiscordIntegration.Discord;
 using Divination.DiscordIntegration.Ipc;
 
 namespace Divination.DiscordIntegration;
 
-public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, PluginConfig, PluginDefinition>,
+public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, PluginConfig>,
     IDalamudPlugin,
     ICommandSupport,
-    IConfigWindowSupport<PluginConfig>,
-    IDefinitionSupport
+    IConfigWindowSupport<PluginConfig>
 {
     private readonly Timer timer = new(3000);
 
@@ -28,7 +26,6 @@ public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, P
     }
 
     public string MainCommandPrefix => "/discord";
-    public string DefinitionUrl => "https://xiv.starry.blue/definitions/DiscordIntegration.json";
 
     public ConfigWindow<PluginConfig> CreateConfigWindow()
     {
