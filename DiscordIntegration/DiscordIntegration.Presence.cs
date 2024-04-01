@@ -1,5 +1,6 @@
 ﻿using System.Timers;
 using DiscordRPC;
+using Divination.DiscordIntegration.Discord;
 
 namespace Divination.DiscordIntegration;
 
@@ -20,7 +21,7 @@ public partial class DiscordIntegration
             },
         };
 
-        discord.UpdatePresence(defaultPresence);
+        DiscordRpc.UpdatePresence(defaultPresence);
     }
 
     private void OnElapsed(object? sender, ElapsedEventArgs args)
@@ -40,12 +41,12 @@ public partial class DiscordIntegration
         UpdatePresence();
     }
 
-    private void UpdatePresence()
+    private static void UpdatePresence()
     {
         var presence = Formatter.CreatePresence();
         if (presence != null)
         {
-            discord.UpdatePresence(presence);
+            DiscordRpc.UpdatePresence(presence);
         }
     }
 }

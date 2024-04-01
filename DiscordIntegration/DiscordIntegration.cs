@@ -14,7 +14,6 @@ public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, P
     IConfigWindowSupport<PluginConfig>,
     IDefinitionSupport
 {
-    private readonly DiscordApi discord = new();
     private readonly Timer timer = new(3000);
 
     public DiscordIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)

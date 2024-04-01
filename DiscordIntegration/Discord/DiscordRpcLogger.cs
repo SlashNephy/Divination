@@ -3,14 +3,9 @@ using DiscordRPC.Logging;
 
 namespace Divination.DiscordIntegration.Discord;
 
-public class DiscordRpcLogger : ILogger
+public class DiscordRpcLogger(LogLevel level) : ILogger
 {
-    public LogLevel Level { get; set; }
-
-    public DiscordRpcLogger(LogLevel level)
-    {
-        Level = level;
-    }
+    public LogLevel Level { get; set; } = level;
 
     public void Trace(string message, params object[] args)
     {
@@ -19,9 +14,7 @@ public class DiscordRpcLogger : ILogger
             return;
         }
 
-#pragma warning disable CA1416
         DalamudLog.Log.Verbose(message, args);
-#pragma warning restore CA1416
     }
 
     public void Info(string message, params object[] args)
@@ -31,9 +24,7 @@ public class DiscordRpcLogger : ILogger
             return;
         }
 
-#pragma warning disable CA1416
         DalamudLog.Log.Information(message, args);
-#pragma warning restore CA1416
     }
 
     public void Warning(string message, params object[] args)
@@ -43,9 +34,7 @@ public class DiscordRpcLogger : ILogger
             return;
         }
 
-#pragma warning disable CA1416
         DalamudLog.Log.Warning(message, args);
-#pragma warning restore CA1416
     }
 
     public void Error(string message, params object[] args)
@@ -55,8 +44,6 @@ public class DiscordRpcLogger : ILogger
             return;
         }
 
-#pragma warning disable CA1416
         DalamudLog.Log.Error(message, args);
-#pragma warning restore CA1416
     }
 }
