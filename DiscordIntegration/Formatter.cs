@@ -10,7 +10,6 @@ using DiscordRPC;
 using Divination.DiscordIntegration.Data;
 using Divination.DiscordIntegration.Ipc;
 using Lumina.Excel.GeneratedSheets;
-using ClassJob = Divination.DiscordIntegration.Data.ClassJob;
 using OnlineStatus = Divination.DiscordIntegration.Data.OnlineStatus;
 
 namespace Divination.DiscordIntegration;
@@ -163,10 +162,9 @@ public class Formatter
 
     private void UpdateJob()
     {
-        var classJob = Enum.IsDefined(typeof(ClassJob), player.ClassJob.Id) ? (ClassJob)player.ClassJob.Id : ClassJob.Unknown;
         if (DiscordIntegration.Instance.Config.ShowJobSmallImage)
         {
-            smallImageKey = classJob.GetImageKey();
+            smallImageKey = ImageKeys.GetClassJobKey(player.ClassJob.GameData);
         }
     }
 
@@ -181,8 +179,7 @@ public class Formatter
 
         if (DiscordIntegration.Instance.Config.ShowLoadingLargeImage)
         {
-            var loadingImage = (LoadingImage)(territoryType?.LoadingImage ?? 0);
-            largeImageKey = loadingImage.GetImageKey();
+            largeImageKey = ImageKeys.GetLoadingImageKey(territoryType);
         }
     }
 
