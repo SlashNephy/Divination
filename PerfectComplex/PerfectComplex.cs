@@ -49,7 +49,7 @@ public sealed class PerfectComplex : DivinationPlugin<PerfectComplex, PluginConf
 
     #region IDefinitionSupport
 
-    public string DefinitionUrl => "https://github.com/horoscope-dev/Divination.Definitions/raw/master/dist/PerfectComplex.json";
+    public string DefinitionUrl => "https://xiv.starry.blue/definitions/PerfectComplex.json";
 
     #endregion
 }

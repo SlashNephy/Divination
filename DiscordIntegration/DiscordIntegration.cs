@@ -29,7 +29,7 @@ public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, P
     }
 
     public string MainCommandPrefix => "/discord";
-    public string DefinitionUrl => "https://github.com/horoscope-dev/Divination.Definitions/raw/master/dist/DiscordIntegration.json";
+    public string DefinitionUrl => "https://xiv.starry.blue/definitions/DiscordIntegration.json";
 
     public ConfigWindow<PluginConfig> CreateConfigWindow()
     {
