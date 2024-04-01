@@ -8,7 +8,6 @@ using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 using DiscordRPC;
-using Divination.DiscordIntegration.Data;
 using Divination.DiscordIntegration.Ipc;
 using Lumina.Excel.GeneratedSheets;
 using OnlineStatus = Divination.DiscordIntegration.Data.OnlineStatus;
@@ -119,8 +118,8 @@ public class Formatter
     private bool inCombat;
     private bool inDuty;
     private bool isOnline;
-    private string? smallImageKey;
-    private string? largeImageKey;
+    public string? SmallImageKey;
+    public string? LargeImageKey;
 
     private static DateTime _startTime = DateTime.UtcNow;
     private static uint? _previousTerritoryId;
@@ -165,7 +164,7 @@ public class Formatter
     {
         if (DiscordIntegration.Instance.Config.ShowJobSmallImage)
         {
-            smallImageKey = ImageKeys.GetClassJobKey(player.ClassJob.GameData);
+            SmallImageKey = ImageKeys.GetClassJobKey(player.ClassJob.GameData);
         }
     }
 
@@ -180,7 +179,7 @@ public class Formatter
 
         if (DiscordIntegration.Instance.Config.ShowLoadingLargeImage)
         {
-            largeImageKey = ImageKeys.GetLoadingImageKey(territoryType);
+            LargeImageKey = ImageKeys.GetLoadingImageKey(territoryType);
         }
     }
 
@@ -234,7 +233,7 @@ public class Formatter
         {
             Duty = condition.Name;
 
-            Status = OnlineStatus.InDuty.GetLocalizedName();
+            Status = "コンテンツ中";
             inDuty = true;
         }
     }
@@ -270,28 +269,20 @@ public class Formatter
 
     private void UpdateOnlineStatus()
     {
-        OnlineStatus onlineStatus;
-        var icon = player.OnlineStatus.Id;
-        if (Enum.IsDefined(typeof(OnlineStatus), icon))
-        {
-            onlineStatus = (OnlineStatus)icon;
-        }
-        else
-        {
-            onlineStatus = OnlineStatus.Online;
-
-            if (icon != 0)
-            {
-                DalamudLog.Log.Warning("不明な Icon を検出しました。 Icon = {Icon}", icon);
-            }
-        }
-
-        if (onlineStatus == OnlineStatus.Online)
+        if (player.OnlineStatus.Id == (uint)OnlineStatus.Online)
         {
             isOnline = true;
         }
 
-        Status = onlineStatus.GetLocalizedName();
+        if (player.OnlineStatus.Id == default)
+        {
+            Status = "オンライン";
+        }
+        else
+        {
+            Status = player.OnlineStatus.GameData?.Name.RawString ?? "オンライン";
+        }
+
         if (inCombat)
         {
             Status = "戦闘中";
@@ -415,9 +406,9 @@ public class Formatter
             State = instance.Format("state"),
             Assets = new Assets
             {
-                SmallImageKey = instance.smallImageKey,
+                SmallImageKey = instance.SmallImageKey,
                 SmallImageText = DiscordIntegration.Instance.Config.ShowJobSmallImage ? instance.Format("small_image_text") : null,
-                LargeImageKey = instance.largeImageKey,
+                LargeImageKey = instance.LargeImageKey,
                 LargeImageText = DiscordIntegration.Instance.Config.ShowLoadingLargeImage ? instance.Format("large_image_text") : null,
             },
             Timestamps = new Timestamps(_startTime),

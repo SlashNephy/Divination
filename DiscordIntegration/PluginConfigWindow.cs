@@ -372,11 +372,23 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Text(instance?.Render(instance.GetTemplate("state")) ?? string.Empty);
             ImGui.NextColumn();
 
+            ImGui.Text("Small Image Key");
+            ImGui.NextColumn();
+            ImGui.NextColumn();
+            ImGui.Text(instance?.SmallImageKey ?? string.Empty);
+            ImGui.NextColumn();
+
             ImGui.Text("Small Image Text");
             ImGui.NextColumn();
             ImGui.Text(instance?.GetTemplate("small_image_text") ?? string.Empty);
             ImGui.NextColumn();
             ImGui.Text(instance?.Render(instance.GetTemplate("small_image_text")) ?? string.Empty);
+            ImGui.NextColumn();
+
+            ImGui.Text("Large Image Key");
+            ImGui.NextColumn();
+            ImGui.NextColumn();
+            ImGui.Text(instance?.LargeImageKey ?? string.Empty);
             ImGui.NextColumn();
 
             ImGui.Text("Large Image Text");
