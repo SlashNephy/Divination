@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Timers;
+﻿using System.Timers;
 using DiscordRPC;
 
 namespace Divination.DiscordIntegration;
@@ -39,7 +38,6 @@ public partial class DiscordIntegration
         Formatter.Reset();
 
         UpdatePresence();
-        UpdateCustomStatus();
     }
 
     private void UpdatePresence()
@@ -48,22 +46,6 @@ public partial class DiscordIntegration
         if (presence != null)
         {
             discord.UpdatePresence(presence);
-        }
-    }
-
-    private void UpdateCustomStatus()
-    {
-        if (Config.ShowCustomStatus)
-        {
-            var status = Formatter.CreateCustomStatus();
-            if (status != null)
-            {
-                Task.Run(async () =>
-                {
-                    var (a, b, c) = status.Value;
-                    await discord.UpdateCustomStatus(a, b, c);
-                });
-            }
         }
     }
 }

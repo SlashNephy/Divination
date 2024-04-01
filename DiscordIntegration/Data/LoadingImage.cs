@@ -1,9 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Divination.DiscordIntegration.Data;
 
-namespace Divination.DiscordIntegration.Data;
-
-[SuppressMessage("ReSharper", "IdentifierTypo")]
-[SuppressMessage("ReSharper", "UnusedMember.Global")]
 internal enum LoadingImage
 {
     Eorzea = 1,

@@ -2,10 +2,9 @@
 
 namespace Divination.DiscordIntegration.Data;
 
-[SuppressMessage("ReSharper", "UnusedMember.Global")]
 internal enum OnlineStatus : byte
 {
-    [SuppressMessage("ReSharper", "InconsistentNaming")] GameQA = 1,
+    GameQA = 1,
     GameMaster = 2,
     GameMaster2 = 3,
     EventParticipant = 4,

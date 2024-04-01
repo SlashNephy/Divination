@@ -121,8 +121,6 @@ public class Formatter
     private bool isOnline;
     private string? smallImageKey;
     private string? largeImageKey;
-    private string? customStatusEmojiId;
-    private string? customStatusEmojiName;
 
     private static DateTime _startTime = DateTime.UtcNow;
     private static uint? _previousTerritoryId;
@@ -169,11 +167,6 @@ public class Formatter
         if (DiscordIntegration.Instance.Config.ShowJobSmallImage)
         {
             smallImageKey = classJob.GetImageKey();
-        }
-
-        if (DiscordIntegration.Instance.Config.ShowJobCustomStatusEmoji)
-        {
-            (customStatusEmojiId, customStatusEmojiName) = classJob.GetEmoji();
         }
     }
 
@@ -305,17 +298,6 @@ public class Formatter
         {
             Status = "戦闘中";
         }
-
-        if (DiscordIntegration.Instance.Config.ShowOnlineStatusCustomStatusEmoji && (!DiscordIntegration.Instance.Config.ShowJobCustomStatusEmoji ||
-                                                                                     inDuty && onlineStatus.ShouldOverrideJobEmojiOnInstance() ||
-                                                                                     !inDuty && onlineStatus.ShouldOverrideJobEmojiOnField()))
-        {
-            var emoji = onlineStatus.GetEmoji();
-            if (emoji != null)
-            {
-                (customStatusEmojiId, customStatusEmojiName) = emoji.Value;
-            }
-        }
     }
 
     private void UpdateTitle()
@@ -415,8 +397,6 @@ public class Formatter
                 return DiscordIntegration.Instance.Config.SmallImageTextFormat;
             case "large_image_text":
                 return DiscordIntegration.Instance.Config.LargeImageTextFormat;
-            case "custom_status":
-                return inDuty ? DiscordIntegration.Instance.Config.CustomStatusInDutyFormat : DiscordIntegration.Instance.Config.CustomStatusFormat;
             default:
                 throw new ArgumentException($"{nameof(templateKey)} = {templateKey} は無効です。");
         }
@@ -443,19 +423,6 @@ public class Formatter
             },
             Timestamps = new Timestamps(_startTime),
         };
-    }
-
-    public static (string?, string?, string)? CreateCustomStatus()
-    {
-        var instance = Instance;
-        if (instance == null)
-        {
-            return null;
-        }
-
-        var text = instance.Format("custom_status");
-
-        return (instance.customStatusEmojiId, instance.customStatusEmojiName, text);
     }
 
     #endregion

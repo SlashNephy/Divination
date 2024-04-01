@@ -15,7 +15,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             if (ImGui.BeginTabBar($"#{DiscordIntegration.Instance.Name}-tabs"))
             {
                 CreateRichPresenceConfigTab();
-                CreateCustomStatusConfigTab();
                 CreateVariablesConfigTab();
 
                 ImGui.EndTabBar();
@@ -99,58 +98,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 ref Config.ResetTimerOnAreaChange,
                 "エリアチェンジ時に経過時間のタイマーをリセットします。",
                 "ただし, コンテンツ中はコンテンツ退出までタイマーはリセットされません。");
-
-            ImGui.EndTabItem();
-        }
-    }
-
-    private void CreateCustomStatusConfigTab()
-    {
-        if (ImGui.BeginTabItem("Custom Status"))
-        {
-            ImGuiEx.CheckboxConfig("Custom Status (カスタムステータス) を有効にする",
-                ref Config.ShowCustomStatus,
-                "Discord に表示される Custom Status (メンバーリストの絵文字とテキスト) をカスタマイズできます。");
-
-            ImGuiEx.TextConfig("Authorization ヘッダの値",
-                ref Config.AuthorizationToken,
-                128,
-                "Custom Status を表示させるためには, Discord の Authorization ヘッダの値が必要です。",
-                "Discord の開発者ツールで「ネットワーク」タブを開き, API リクエストのヘッダの値を参照してください。");
-
-            ImGui.Separator();
-
-            if (ImGui.CollapsingHeader("絵文字"))
-            {
-                ImGui.Text("絵文字を設定できます。絵文字を使用するには, Horoscope Discord に参加している必要があります。");
-
-                ImGui.Separator();
-
-                ImGuiEx.CheckboxConfig("ジョブアイコンを設定する", ref Config.ShowJobCustomStatusEmoji, "ジョブアイコンを絵文字として表示します。");
-                ImGuiEx.CheckboxConfig("オンラインステータスアイコンを設定する", ref Config.ShowOnlineStatusCustomStatusEmoji, "オンラインステータスを絵文字として表示します。");
-            }
-
-            ImGui.Separator();
-
-            if (ImGui.CollapsingHeader("テキスト"))
-            {
-                ImGuiEx.TextConfig("通常時", ref Config.CustomStatusFormat, 128, "通常時のテンプレートを設定します。");
-
-                ImGuiEx.TextConfig("コンテンツ中", ref Config.CustomStatusInDutyFormat, 128, "コンテンツ中のテンプレートを設定します。");
-            }
-
-            ImGui.Separator();
-
-            if (ImGui.CollapsingHeader("デフォルト値"))
-            {
-                ImGui.Text("プラグインの終了時に以下のデフォルト値を設定できます。");
-
-                ImGui.Separator();
-
-                ImGuiEx.TextConfig("絵文字 ID", ref Config.CustomStatusDefaultEmojiId, 32, "絵文字 ID のデフォルト値を設定します。");
-                ImGuiEx.TextConfig("絵文字名", ref Config.CustomStatusDefaultEmojiName, 32, "絵文字名 のデフォルト値を設定します。");
-                ImGuiEx.TextConfig("テキスト", ref Config.CustomStatusDefaultText, 32, "テキストのデフォルト値を設定します。");
-            }
 
             ImGui.EndTabItem();
         }

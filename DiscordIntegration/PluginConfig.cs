@@ -16,15 +16,5 @@ public class PluginConfig : IPluginConfiguration
     public bool ResetTimerOnAreaChange = true;
     public bool RequireTargetingOnCombat = true;
 
-    public bool ShowCustomStatus = false;
-    public string AuthorizationToken = string.Empty;
-    public bool ShowJobCustomStatusEmoji = true;
-    public bool ShowOnlineStatusCustomStatusEmoji = true;
-    public string CustomStatusFormat = string.Empty;
-    public string CustomStatusInDutyFormat = string.Empty;
-    public string CustomStatusDefaultEmojiId = string.Empty;
-    public string CustomStatusDefaultEmojiName = string.Empty;
-    public string CustomStatusDefaultText = string.Empty;
-
     public int Version { get; set; } = 0;
 }

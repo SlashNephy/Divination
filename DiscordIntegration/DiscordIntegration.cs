@@ -41,6 +41,5 @@ public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, P
         Dalamud.PluginInterface.SavePluginConfig(Config);
         IpcManager.Unregister();
         timer.Dispose();
-        discord.Dispose();
     }
 }
