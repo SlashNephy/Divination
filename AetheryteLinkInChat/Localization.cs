@@ -44,7 +44,7 @@ public static class Localization
     {
         En =
             "It can queue a teleportation when it is not possible to execute a teleportation, e.g. you are in combat.\nAfter teleporting becomes possible, the teleportation is executed after the delay set here.\nThis is necessary to prove that you are not cheating!",
-        Ja = "戦闘中などでテレポが実行できないときはテレポをキューします。\nテレポが可能になったあと、ここで設定された遅延を挟んでからテレポを実行します。これはあなたが不正行為を行っていないと証明するために必要です！",
+        Ja = "戦闘中などでテレポが実行できないときはテレポをキューします。\nテレポが可能になったあと、ここで設定された遅延を挟んでからテレポを実行します。\nこれはあなたが不正行為を行っていないと証明するために必要です！",
     };
 
     public static readonly LocalizedString ConsiderTeleportsToOtherWorlds = new()
