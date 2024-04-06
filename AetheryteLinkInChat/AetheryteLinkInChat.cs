@@ -17,7 +17,6 @@ using Divination.AetheryteLinkInChat.Config;
 
 namespace Divination.AetheryteLinkInChat;
 
-[SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
 public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginConfig>,
     IDalamudPlugin,
     ICommandSupport,
@@ -35,10 +34,9 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         linkPayload = pluginInterface.AddChatLinkHandler(LinkCommandId, HandleLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
-        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList);
+        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat);
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
-        Dalamud.Condition.ConditionChange += OnConditionChanged;
         Dalamud.CommandManager.AddHandler(TeleportGcCommand,
             new CommandInfo(OnTeleportGcCommand)
             {
@@ -63,24 +61,6 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         {
             DalamudLog.Log.Error(exception, nameof(OnChatReceived));
         }
-    }
-
-    private void OnConditionChanged(ConditionFlag flag, bool value)
-    {
-        if (!Config.AllowTeleportQueueing || teleporter.IsTeleportUnavailable)
-        {
-            return;
-        }
-
-        Task.Delay(Config.QueuedTeleportDelay)
-            .ContinueWith(_ =>
-            {
-                var aetheryte = teleporter.TeleportToQueuedAetheryte();
-                if (aetheryte != default)
-                {
-                    Divination.Chat.Print(Localization.QueuedTeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
-                }
-            });
     }
 
     private void AppendNearestAetheryteLink(ref SeString message)
@@ -115,7 +95,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             switch (path)
             {
                 // テレポ可能なエーテライト
-                case AetheryteTeleportPath {Aetheryte.IsAetheryte: true} aetheryte:
+                case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
                     var payloads = new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aetheryte),
@@ -131,7 +111,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                     message = message.Append(payloads);
                     break;
                 // 仮設エーテライト・都市内エーテライト
-                case AetheryteTeleportPath {Aetheryte.IsAetheryte: false} aetheryte:
+                case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
                     message = message.Append(new List<Payload>
                     {
                         new IconPayload(BitmapFontIcon.Aethernet),
@@ -188,15 +168,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             return;
         }
 
-        if (teleporter.IsTeleportUnavailable)
-        {
-            teleporter.QueueTeleport(aetheryte);
-            Divination.Chat.Print(Localization.QueueTeleportMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
-        }
-        else if (teleporter.TeleportToAetheryte(aetheryte))
-        {
-            Divination.Chat.Print(Localization.TeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
-        }
+        teleporter.TeleportToAetheryte(aetheryte);
     }
 
     private void OnTeleportGcCommand(string command, string arguments)
@@ -213,10 +185,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             return;
         }
 
-        if (teleporter.TeleportToAetheryte(aetheryte))
-        {
-            Divination.Chat.Print(Localization.TeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
-        }
+        teleporter.TeleportToAetheryte(aetheryte);
     }
 
     protected override void ReleaseManaged()
@@ -224,7 +193,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         Dalamud.PluginInterface.SavePluginConfig(Config);
         Dalamud.PluginInterface.RemoveChatLinkHandler();
         Dalamud.ChatGui.ChatMessage -= OnChatReceived;
-        Dalamud.Condition.ConditionChange -= OnConditionChanged;
         Dalamud.CommandManager.RemoveHandler(TeleportGcCommand);
+        teleporter.Dispose();
     }
 }

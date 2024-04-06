@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Plugin.Services;
@@ -7,7 +10,7 @@ using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.AetheryteLinkInChat;
 
-public class Teleporter(ICondition condition, IAetheryteList aetheryteList)
+public sealed class Teleporter : IDisposable
 {
     private readonly ConditionFlag[] teleportUnavailableFlags =
     [
@@ -32,61 +35,108 @@ public class Teleporter(ICondition condition, IAetheryteList aetheryteList)
         ConditionFlag.PreparingToCraft,
     ];
 
-    private Aetheryte? queuedAetheryte;
-    private readonly object queuedAetheryteLock = new();
+    private readonly ICondition condition;
+    private readonly IAetheryteList aetheryteList;
+    private readonly IChatClient chatClient;
+    private volatile Aetheryte? queuedAetheryte;
+
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient)
+    {
+        this.condition = condition;
+        this.aetheryteList = aetheryteList;
+        this.chatClient = chatClient;
+
+        condition.ConditionChange += OnConditionChanged;
+    }
 
     public bool IsTeleportUnavailable => teleportUnavailableFlags.Any(x => condition[x]);
 
     public unsafe bool TeleportToAetheryte(Aetheryte aetheryte)
     {
-        queuedAetheryte = default;
-
-        var teleport = Telepo.Instance();
-        if (teleport == default)
+        if (IsTeleportUnavailable)
         {
-            DalamudLog.Log.Debug("TeleportToAetheryte: teleport == null");
+            if (QueueTeleport(aetheryte))
+            {
+                chatClient.Print(Localization.QueueTeleportMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+                return true;
+            }
+
             return false;
         }
 
-        if (!CheckAetheryte(aetheryte.RowId))
+        queuedAetheryte = default;
+        if (ExecuteTeleport(aetheryte))
         {
-            DalamudLog.Log.Error("TeleportToAetheryte: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
+            chatClient.Print(Localization.TeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool QueueTeleport(Aetheryte aetheryte)
+    {
+        if (!AetheryteLinkInChat.Instance.Config.AllowTeleportQueueing)
+        {
+            return false;
+        }
+
+        queuedAetheryte = aetheryte;
+        return true;
+    }
+
+    private unsafe bool ExecuteTeleport(Aetheryte aetheryte)
+    {
+        var teleport = Telepo.Instance();
+        if (teleport == default)
+        {
+            DalamudLog.Log.Debug("ExecuteTeleport: teleport == null");
+            return false;
+        }
+
+        if (!aetheryteList.Any(x => x.AetheryteId == aetheryte.RowId))
+        {
+            DalamudLog.Log.Error("ExecuteTeleport: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
             return false;
         }
 
         if (!teleport->Teleport(aetheryte.RowId, 0))
         {
-            DalamudLog.Log.Error("TeleportToAetheryte: could not teleport to {Id}", aetheryte.RowId);
+            DalamudLog.Log.Error("ExecuteTeleport: could not teleport to {Id}", aetheryte.RowId);
             return false;
         }
 
         return true;
     }
 
-    public Aetheryte? TeleportToQueuedAetheryte()
+    private void TeleportToQueuedAetheryte()
     {
-        lock (queuedAetheryteLock)
+
+        var aetheryte = queuedAetheryte;
+        queuedAetheryte = default;
+        if (aetheryte != default && ExecuteTeleport(aetheryte))
         {
-            var aetheryte = queuedAetheryte;
-            if (aetheryte != default && TeleportToAetheryte(aetheryte))
+            chatClient.Print(Localization.QueuedTeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+            return;
+        }
+    }
+
+    private void OnConditionChanged(ConditionFlag flag, bool value)
+    {
+        if (!AetheryteLinkInChat.Instance.Config.AllowTeleportQueueing || IsTeleportUnavailable)
+        {
+            return;
+        }
+
+        Task.Delay(AetheryteLinkInChat.Instance.Config.QueuedTeleportDelay)
+            .ContinueWith(_ =>
             {
-                return aetheryte;
-            }
-
-            return default;
-        }
+                TeleportToQueuedAetheryte();
+            });
     }
 
-    public void QueueTeleport(Aetheryte aetheryte)
+    public void Dispose()
     {
-        lock (queuedAetheryteLock)
-        {
-            queuedAetheryte = aetheryte;
-        }
-    }
-
-    private bool CheckAetheryte(uint id)
-    {
-        return aetheryteList.Any(x => x.AetheryteId == id);
+        condition.ConditionChange -= OnConditionChanged;
     }
 }
