@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dalamud.Divination.Common.Api.Dalamud;
+﻿using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
@@ -14,8 +10,13 @@ using Dalamud.Plugin;
 using Divination.FaloopIntegration.Config;
 using Divination.FaloopIntegration.Faloop;
 using Divination.FaloopIntegration.Faloop.Model;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;
 using SocketIOClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Divination.FaloopIntegration;
 
@@ -148,7 +149,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
     }
 
-    private void OnMobSpawn(MobSpawnEvent ev, int channel)
+    private unsafe void OnMobSpawn(MobSpawnEvent ev, int channel)
     {
         Ui.OnMobSpawn(ev);
 
@@ -181,14 +182,11 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         payloads.Add(new IconPayload(BitmapFontIcon.CrossWorld));
 
-        if (Config.EnableSimpleReports)
-        {
-            payloads.Add(new TextPayload($"{ev.World.Name}".TrimEnd()));
-        }
-        else
-        {
-            payloads.Add(new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()));
-        }
+        payloads.Add(Dalamud.PluginInterface.AddChatLinkHandler((uint)ev.Spawn.Timestamp.ToFileTimeUtc(), (_, _) => { Telepo.Instance()->Teleport(Utils.GetStartTownAetheryte(), 0); }));
+        payloads.Add(new TextPayload($"{ev.World.Name}".TrimEnd()));
+        payloads.Add(RawPayload.LinkTerminator);
+        if (!Config.EnableSimpleReports)
+            payloads.Add(new TextPayload($" {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()));
 
         Dalamud.ChatGui.Print(new XivChatEntry
         {

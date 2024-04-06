@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <RootNamespace>Divination.FaloopIntegration</RootNamespace>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -9,6 +10,11 @@
 
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <Reference Include="FFXIVClientStructs">
+            <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="ImGui.NET">

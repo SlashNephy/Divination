@@ -1,7 +1,10 @@
-﻿using System;
-using System.Text;
-using Dalamud.Game.Text;
+﻿using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
+using Lumina.Excel.GeneratedSheets;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace Divination.FaloopIntegration;
 
@@ -72,5 +75,11 @@ public static class Utils
 
         builder.Append(')');
         return builder.ToString();
+    }
+
+    public static unsafe uint GetStartTownAetheryte()
+    {
+        var starttown = FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<Town>()?.GetRow(UIState.Instance()->PlayerState.StartTown)?.Name.RawString ?? "null";
+        return FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>()?.FirstOrDefault(a => a.PlaceName.Value!.Name.RawString.Contains(starttown))?.RowId ?? 0;
     }
 }
