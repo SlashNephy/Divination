@@ -14,15 +14,13 @@ public record MobReportData(
 {
     public record Spawn(
         [property: JsonPropertyName("timestamp")] DateTime Timestamp,
-        [property: JsonPropertyName("window")] int Window,
         [property: JsonPropertyName("zoneId")] uint ZoneId,
         [property: JsonPropertyName("zonePoiIds")] List<int> ZonePoiIds,
         [property: JsonPropertyName("reporters")] List<Reporter>? Reporters);
 
-    public record Reporter([property: JsonPropertyName("id")] int Id, [property: JsonPropertyName("name")] string Name);
+    public record Reporter([property: JsonPropertyName("name")] string Name);
 
     public record Death(
         [property: JsonPropertyName("num")] int Num,
-        [property: JsonPropertyName("prevStartedAt")] DateTime PrevStartedAt,
         [property: JsonPropertyName("startedAt")] DateTime StartedAt);
 }
