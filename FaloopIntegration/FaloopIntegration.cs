@@ -165,10 +165,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.Add(Utils.GetRankIcon(ev.Rank));
         payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
 
-        var mapLink = CreateMapLink(ev.Spawn.ZoneId, ev.Spawn.ZonePoiIds.First(), ev.Data.ZoneInstance);
-        if (mapLink != default)
+        // append MapLink only if pop location is known
+        if (ev.Spawn.ZonePoiIds.Count > 0)
         {
-            payloads.AddRange(mapLink.Payloads);
+            var mapLink = CreateMapLink(ev.Spawn.ZoneId, ev.Spawn.ZonePoiIds.First(), ev.Data.ZoneInstance);
+            if (mapLink != default)
+            {
+                payloads.AddRange(mapLink.Payloads);
+            }
         }
 
         payloads.Add(new IconPayload(BitmapFontIcon.CrossWorld));
