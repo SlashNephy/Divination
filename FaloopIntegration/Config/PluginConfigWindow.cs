@@ -43,9 +43,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     private void DrawPerRankConfigs()
     {
-        if (ImGui.CollapsingHeader(Localization.PerRank))
+        if (ImGui.CollapsingHeader(Localization.NotificationPreferences))
         {
             ImGui.Indent();
+
+            ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
 
             DrawPerRankConfig(Localization.RankS, ref Config.RankS);
             DrawPerRankConfig(Localization.RankFate, ref Config.Fate);
@@ -115,8 +117,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             {
                 FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
             }
-
-            ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
 
             if (ImGui.Button("Emit mock payload"))
             {

@@ -88,10 +88,10 @@ public static class Localization
         Ja = "Faloop アカウントが設定されていません。/faloop コマンドを実行して、Faloop アカウントでログインしてください。",
     };
 
-    public static readonly LocalizedString PerRank = new()
+    public static readonly LocalizedString NotificationPreferences = new()
     {
-        En = "Per Rank Preferences",
-        Ja = "モブの階級ごとの設定",
+        En = "Notification Preferences",
+        Ja = "通知設定",
     };
 
     public static readonly LocalizedString RankS = new()
@@ -187,6 +187,6 @@ public static class Localization
     public static readonly LocalizedString EnableSimpleReports = new()
     {
         En = "Enable simplified, condensed reports in chat",
-        Ja = "",
+        Ja = "簡素な通知メッセージを使用する",
     };
 }
