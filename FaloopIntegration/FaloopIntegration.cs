@@ -156,8 +156,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         {
             MobId = ev.Data.MobId,
             WorldId = ev.Data.WorldId,
+            ZoneInstance = ev.Data.ZoneInstance,
             At = ev.Spawn.Timestamp,
         });
+        Dalamud.PluginInterface.SavePluginConfig(Config);
 
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
@@ -200,11 +202,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobDeath(ev);
 
-        if (skipOrphanReport && Config.SpawnHistories.RemoveAll(x => x.MobId == ev.Data.MobId && x.WorldId == ev.Data.WorldId) == 0)
+        if (skipOrphanReport && Config.SpawnHistories.RemoveAll(x => x.MobId == ev.Data.MobId && x.WorldId == ev.Data.WorldId && x.ZoneInstance == ev.Data.ZoneInstance) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
             return;
         }
+        Dalamud.PluginInterface.SavePluginConfig(Config);
 
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
@@ -346,6 +349,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private void CleanSpawnHistories()
     {
         Config.SpawnHistories.RemoveAll(x => DateTime.UtcNow - x.At > TimeSpan.FromHours(1));
+        Dalamud.PluginInterface.SavePluginConfig(Config);
     }
 
     protected override void ReleaseManaged()

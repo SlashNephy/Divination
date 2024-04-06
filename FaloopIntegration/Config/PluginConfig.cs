@@ -48,6 +48,7 @@ public class PluginConfig : IPluginConfiguration
     {
         public uint MobId;
         public uint WorldId;
+        public int ZoneInstance;
         public DateTime At;
     }
 }
