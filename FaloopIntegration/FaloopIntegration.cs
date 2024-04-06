@@ -161,7 +161,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
+        {
             payloads.Add(new TextPayload($"{SeIconChar.BoxedPlus.ToIconString()}"));
+        }
         payloads.Add(Utils.GetRankIcon(ev.Rank));
         payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
 
@@ -178,9 +180,13 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.Add(new IconPayload(BitmapFontIcon.CrossWorld));
 
         if (Config.EnableSimpleReports)
+        {
             payloads.Add(new TextPayload($"{ev.World.Name}".TrimEnd()));
+        }
         else
+        {
             payloads.Add(new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()));
+        }
 
         Dalamud.ChatGui.Print(new XivChatEntry
         {
