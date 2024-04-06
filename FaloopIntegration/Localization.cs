@@ -100,18 +100,6 @@ public static class Localization
         Ja = "Sモブ",
     };
 
-    public static readonly LocalizedString RankA = new()
-    {
-        En = "Rank A",
-        Ja = "Aモブ",
-    };
-
-    public static readonly LocalizedString RankB = new()
-    {
-        En = "Rank B",
-        Ja = "Bモブ",
-    };
-
     public static readonly LocalizedString RankFate = new()
     {
         En = "Special Fate",

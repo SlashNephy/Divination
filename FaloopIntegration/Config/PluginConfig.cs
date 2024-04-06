@@ -20,10 +20,6 @@ public class PluginConfig : IPluginConfiguration
         EnableDeathReport = true,
     };
 
-    public PerRankConfig RankA = new();
-
-    public PerRankConfig RankB = new();
-
     public PerRankConfig Fate = new();
 
     public List<SpawnHistory> SpawnHistories = [];

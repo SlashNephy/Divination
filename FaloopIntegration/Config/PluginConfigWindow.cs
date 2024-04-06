@@ -48,8 +48,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Indent();
 
             DrawPerRankConfig(Localization.RankS, ref Config.RankS);
-            DrawPerRankConfig(Localization.RankA, ref Config.RankA);
-            DrawPerRankConfig(Localization.RankB, ref Config.RankB);
             DrawPerRankConfig(Localization.RankFate, ref Config.Fate);
 
             ImGui.Unindent();

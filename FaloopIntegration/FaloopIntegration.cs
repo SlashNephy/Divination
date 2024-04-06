@@ -102,8 +102,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var config = mobData.Rank switch
         {
             "S" => Config.RankS,
-            "A" => Config.RankA,
-            "B" => Config.RankB,
             "F" => Config.Fate,
             _ => default,
         };
