@@ -203,23 +203,23 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
         {
-            payloads.AddRange(new Payload[]
-            {
+            payloads.AddRange(
+            [
                 new TextPayload($"{SeIconChar.Cross.ToIconString()}"),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name}".TrimEnd()),
-            });
+            ]);
         }
         else
         {
-            payloads.AddRange(new Payload[]
-            {
+            payloads.AddRange(
+            [
                 Utils.GetRankIcon(ev.Rank),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.Death.StartedAt)}".TrimEnd()),
-            });
+            ]);
         }
 
         Dalamud.ChatGui.Print(new XivChatEntry
