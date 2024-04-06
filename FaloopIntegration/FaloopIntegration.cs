@@ -161,11 +161,11 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             At = ev.Spawn.Timestamp,
         });
 
-        var payloads = new List<Payload>
-        {
-            Utils.GetRankIcon(ev.Rank),
-            new TextPayload($" {ev.Mob.Singular.RawString} "),
-        };
+        var payloads = new List<Payload>();
+        if (Config.EnableSimpleReports)
+            payloads.Add(new TextPayload($"{SeIconChar.BoxedPlus.ToIconString()}"));
+        payloads.Add(Utils.GetRankIcon(ev.Rank));
+        payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
 
         var mapLink = CreateMapLink(ev.Spawn.ZoneId, ev.Spawn.ZonePoiIds.First(), ev.Data.ZoneInstance);
         if (mapLink != default)
@@ -173,11 +173,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             payloads.AddRange(mapLink.Payloads);
         }
 
-        payloads.AddRange(new Payload[]
-        {
-            new IconPayload(BitmapFontIcon.CrossWorld),
-            new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()),
-        });
+        payloads.Add(new IconPayload(BitmapFontIcon.CrossWorld));
+
+        if (Config.EnableSimpleReports)
+            payloads.Add(new TextPayload($"{ev.World.Name}".TrimEnd()));
+        else
+            payloads.Add(new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()));
 
         Dalamud.ChatGui.Print(new XivChatEntry
         {
@@ -197,16 +198,32 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return;
         }
 
-        Dalamud.ChatGui.Print(new XivChatEntry
+        var payloads = new List<Payload>();
+        if (Config.EnableSimpleReports)
         {
-            Name = "Faloop",
-            Message = new SeString(new List<Payload>
+            payloads.AddRange(new Payload[]
+            {
+                new TextPayload($"{SeIconChar.Cross.ToIconString()}"),
+                new TextPayload($" {ev.Mob.Singular.RawString}"),
+                new IconPayload(BitmapFontIcon.CrossWorld),
+                new TextPayload($"{ev.World.Name}".TrimEnd()),
+            });
+        }
+        else
+        {
+            payloads.AddRange(new Payload[]
             {
                 Utils.GetRankIcon(ev.Rank),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.Death.StartedAt)}".TrimEnd()),
-            }),
+            });
+        }
+
+        Dalamud.ChatGui.Print(new XivChatEntry
+        {
+            Name = "Faloop",
+            Message = new SeString(payloads),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
     }

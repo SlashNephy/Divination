@@ -28,6 +28,7 @@ public class PluginConfig : IPluginConfiguration
 
     public List<SpawnHistory> SpawnHistories = [];
     public bool EnableActiveMobUi = false;
+    public bool EnableSimpleReports = false;
 
     public class PerRankConfig
     {

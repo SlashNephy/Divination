@@ -195,4 +195,10 @@ public static class Localization
         En = "Enable Active Mobs UI",
         Ja = "「現在のモブ」パネルを表示",
     };
+
+    public static readonly LocalizedString EnableSimpleReports = new()
+    {
+        En = "Enable simplified, condensed reports in chat",
+        Ja = "",
+    };
 }
