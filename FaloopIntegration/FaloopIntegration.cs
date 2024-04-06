@@ -196,7 +196,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         });
     }
 
-    private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport)
+    private unsafe void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport)
     {
         Ui.OnMobDeath(ev);
 
@@ -207,27 +207,21 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
         Dalamud.PluginInterface.SavePluginConfig(Config);
 
-        var payloads = new List<Payload>();
+        var payloads = new List<Payload>()
+        {
+            Utils.GetRankIcon(ev.Rank),
+            new TextPayload($" {ev.Mob.Singular.RawString}"),
+            new IconPayload(BitmapFontIcon.CrossWorld),
+        };
+
         if (Config.EnableSimpleReports)
-        {
-            payloads.AddRange(
-            [
-                new TextPayload($"{SeIconChar.Cross.ToIconString()}"),
-                new TextPayload($" {ev.Mob.Singular.RawString}"),
-                new IconPayload(BitmapFontIcon.CrossWorld),
-                new TextPayload($"{ev.World.Name}".TrimEnd()),
-            ]);
-        }
-        else
-        {
-            payloads.AddRange(
-            [
-                Utils.GetRankIcon(ev.Rank),
-                new TextPayload($" {ev.Mob.Singular.RawString}"),
-                new IconPayload(BitmapFontIcon.CrossWorld),
-                new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.Death.StartedAt)}".TrimEnd()),
-            ]);
-        }
+            payloads.Insert(0, new TextPayload($"{SeIconChar.Cross.ToIconString()}"));
+
+        payloads.Add(Dalamud.PluginInterface.AddChatLinkHandler((uint)ev.Death.StartedAt.ToFileTimeUtc(), (_, _) => { Telepo.Instance()->Teleport(Utils.GetStartTownAetheryte(), 0); }));
+        payloads.Add(new TextPayload($"{ev.World.Name}".TrimEnd()));
+        payloads.Add(RawPayload.LinkTerminator);
+        if (!Config.EnableSimpleReports)
+            payloads.Add(new TextPayload($" {Localization.WasKilled} {Utils.FormatTimeSpan(ev.Death.StartedAt)}".TrimEnd()));
 
         Dalamud.ChatGui.Print(new XivChatEntry
         {
