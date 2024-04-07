@@ -23,6 +23,10 @@
             <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <PackageReference Include="AngleSharp" Version="1.1.2"/>
         <PackageReference Include="SocketIOClient" Version="3.0.8"/>
         <PackageReference Include="DalamudPackager" Version="2.1.12">

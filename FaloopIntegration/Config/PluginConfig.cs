@@ -22,7 +22,7 @@ public class PluginConfig : IPluginConfiguration
 
     public PerRankConfig Fate = new();
 
-    public List<SpawnHistory> SpawnHistories = [];
+    public List<MobSpawnEvent> SpawnStates = [];
     public bool EnableActiveMobUi = false;
     public bool EnableSimpleReports = false;
 
@@ -42,13 +42,5 @@ public class PluginConfig : IPluginConfiguration
         public bool EnableDeathReport;
         public bool DisableInDuty;
         public bool SkipOrphanReport;
-    }
-
-    public class SpawnHistory
-    {
-        public uint MobId;
-        public uint WorldId;
-        public int ZoneInstance;
-        public DateTime At;
     }
 }

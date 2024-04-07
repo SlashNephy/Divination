@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -20,7 +21,37 @@ public record MobReportData(
 
     public record Reporter([property: JsonPropertyName("name")] string Name);
 
-    public record Death(
-        [property: JsonPropertyName("num")] int Num,
-        [property: JsonPropertyName("startedAt")] DateTime StartedAt);
+    public record SpawnLocation(
+        [property: JsonPropertyName("zoneId")] uint ZoneId,
+        [property: JsonPropertyName("zonePoiId")] int ZonePoiId);
+
+    public record SpawnRelease(
+        [property: JsonConverter(typeof(UnixEpochMillisecondsTimeJsonConverter))]
+        [property: JsonPropertyName("timestamp")] DateTime Timestamp);
+
+    public record Death([property: JsonPropertyName("startedAt")] DateTime StartedAt);
+
+    public string Id => $"{WorldId}_{MobId}_{ZoneInstance}";
+}
+
+public static class MobReportActions
+{
+    public const string Spawn = "spawn";
+    public const string SpawnLocation = "spawn_location";
+    public const string SpawnRelease = "spawn_release";
+    public const string Death = "death";
+}
+
+public class UnixEpochMillisecondsTimeJsonConverter : JsonConverter<DateTime>
+{
+    public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        return DateTime.UnixEpoch.AddMilliseconds(reader.GetInt64());
+    }
+
+    public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+    {
+        var epoch = value - DateTime.UnixEpoch;
+        writer.WriteNumberValue((long)epoch.TotalMilliseconds);
+    }
 }
