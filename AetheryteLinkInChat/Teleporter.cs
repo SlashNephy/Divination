@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Conditions;
+using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.Solver;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
@@ -43,15 +44,17 @@ public sealed class Teleporter : IDisposable
     private readonly IChatClient chatClient;
     private readonly ICommandManager commandManager;
     private readonly IClientState clientState;
+    private readonly DalamudPluginInterface pluginInterface;
     private volatile Aetheryte? queuedAetheryte;
 
-    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState)
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, DalamudPluginInterface pluginInterface)
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;
         this.chatClient = chatClient;
         this.commandManager = commandManager;
         this.clientState = clientState;
+        this.pluginInterface = pluginInterface;
 
         condition.ConditionChange += OnConditionChanged;
     }
@@ -217,6 +220,11 @@ public sealed class Teleporter : IDisposable
     private bool TeleportToWorld(World world)
     {
         return commandManager.ProcessCommand($"/li {world.Name.RawString}");
+    }
+
+    public bool IsLifestreamAvailable()
+    {
+        return pluginInterface.InstalledPlugins.Any(x => x.InternalName == "Lifestream" && x.IsLoaded);
     }
 
     public void Dispose()

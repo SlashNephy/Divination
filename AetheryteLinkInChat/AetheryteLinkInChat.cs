@@ -39,7 +39,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         aetheryteLinkPayload = pluginInterface.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);
         lifestreamLinkPayload = pluginInterface.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
-        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState);
+        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface);
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
         Dalamud.CommandManager.AddHandler(TeleportGcCommand,
@@ -154,7 +154,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             }
         }
 
-        if (Config.EnableLifestreamIntegration)
+        if (Config.EnableLifestreamIntegration && teleporter.IsLifestreamAvailable())
         {
             var world = solver.DetectWorld(message, Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData);
 
@@ -188,6 +188,12 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private void HandleLifestreamLink(uint _, SeString link)
     {
+        if (!teleporter.IsLifestreamAvailable())
+        {
+            Divination.Chat.PrintError(Localization.LifestreamUnavailable);
+            return;
+        }
+
         var payload = link.Payloads.OfType<RawPayload>().Select(LifestreamPayload.Parse).FirstOrDefault(x => x != default);
         if (payload == default)
         {

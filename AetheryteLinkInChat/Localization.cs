@@ -101,4 +101,10 @@ public static class Localization
         En = "If enabled, teleporting to destinations will be automated, including world traveling and aethernet transfers.\nLifestream plugin required!",
         Ja = "有効にすると、ワールド間テレポや都市内エーテライトの移動を含め、目的地へのテレポが自動化されます。\nこの機能を使用するには、Lifestream プラグインが必要です！",
     };
+
+    public static readonly LocalizedString LifestreamUnavailable = new()
+    {
+        En = "Lifestream plugin is not available. Please install it.",
+        Ja = "Lifestream がインストールされていません。",
+    };
 }
