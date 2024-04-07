@@ -100,9 +100,7 @@ public class AetheryteSolver(IDataManager dataManager)
             }
         }
 
-        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text)).ToLower();
-        var world = worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId)
-            .FirstOrDefault(x => text.Contains(x.Name.RawString.ToLower()));
+        var world = DetectWorld(message, currentWorld);
         if (world == default)
         {
             DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: world == null");
@@ -129,6 +127,14 @@ public class AetheryteSolver(IDataManager dataManager)
         }
 
         paths.Insert(0, new WorldTeleportPath(aetheryte, world, marker, map));
+    }
+
+    public World? DetectWorld(SeString message, World? currentWorld)
+    {
+        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
+        return worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId)
+            .FirstOrDefault(x => text.Contains(x.Name.RawString, StringComparison.OrdinalIgnoreCase))
+            ?? currentWorld;
     }
 
     private IEnumerable<ITeleportPath[]> CalculateTeleportPaths(TerritoryType territoryType, Map map, uint depth = 0)
