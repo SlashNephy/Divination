@@ -53,6 +53,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDisclaimer);
             ImGui.Unindent();
 
+            ImGui.Checkbox(Localization.EnableLifestreamIntegration, ref Config.EnableLifestreamIntegration);
+            ImGui.Indent();
+            ImGui.Text(Localization.EnableLifestreamIntegrationDescription);
+            ImGui.Unindent();
+
             ImGui.Separator();
 
             if (ImGui.Button(Localization.SaveConfigButton))

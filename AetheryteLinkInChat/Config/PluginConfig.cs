@@ -10,4 +10,5 @@ public class PluginConfig : IPluginConfiguration
     public int QueuedTeleportDelay = 3000;
     public int PreferredGrandCompanyAetheryte;
     public bool ConsiderTeleportsToOtherWorlds;
+    public bool EnableLifestreamIntegration;
 }
