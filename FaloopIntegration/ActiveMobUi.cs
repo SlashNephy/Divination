@@ -27,7 +27,7 @@ public class ActiveMobUi : IWindow
 
         if (ImGui.Begin(Localization.ActiveMob))
         {
-            foreach (var mob in mobs.OrderBy(x => x.Value.Spawn.Timestamp))
+            foreach (var mob in mobs.OrderBy(x => x.Value.SpawnedAt))
             {
                 DrawMob(mob.Value);
             }
@@ -38,20 +38,18 @@ public class ActiveMobUi : IWindow
 
     private static void DrawMob(MobSpawnEvent ev)
     {
-        var span = DateTime.UtcNow - ev.Spawn.Timestamp;
+        var span = DateTime.Now - ev.SpawnedAt;
         ImGui.Text(
             $"{Utils.GetRankIconChar(ev.Rank).ToIconString()} {ev.Mob.Singular.RawString}{SeIconChar.CrossWorld.ToIconString()}{ev.World.Name.RawString} {span:mm\\:ss}");
     }
 
     public void OnMobSpawn(MobSpawnEvent ev)
     {
-        var id = $"{ev.Data.WorldId}_{ev.Data.MobId}_{ev.Data.ZoneInstance}";
-        mobs[id] = ev;
+        mobs[ev.Id] = ev;
     }
 
     public void OnMobDeath(MobDeathEvent ev)
     {
-        var id = $"{ev.Data.WorldId}_{ev.Data.MobId}_{ev.Data.ZoneInstance}";
-        mobs.TryRemove(id, out _);
+        mobs.TryRemove(ev.Id, out _);
     }
 }

@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
@@ -69,33 +70,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void OnMobReport(MobReportData data)
     {
-        var mob = Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(data.MobId);
-        if (mob == default)
-        {
-            DalamudLog.Log.Debug("OnMobReport: mob == null");
-            return;
-        }
-
         var mobData = session.EmbedData.Mobs.FirstOrDefault(x => x.Id == data.MobId);
         if (mobData == default)
         {
             DalamudLog.Log.Debug("OnMobReport: mobData == null");
-            return;
-        }
-
-        var world = Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(data.WorldId);
-        var dataCenter = world?.DataCenter?.Value;
-        if (world == default || dataCenter == default)
-        {
-            DalamudLog.Log.Debug("OnMobReport: world == null || dataCenter == null");
-            return;
-        }
-
-        var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
-        var currentDataCenter = currentWorld?.DataCenter?.Value;
-        if (currentWorld == default || currentDataCenter == default)
-        {
-            DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
             return;
         }
 
@@ -111,16 +89,78 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return;
         }
 
-        if (!config.MajorPatches.TryGetValue(mobData.Version, out var value) || !value)
+        if (!CheckSpawnNotificationCondition(config, data.WorldId, mobData.Version))
+        {
+            return;
+        }
+
+        switch (data.Action)
+        {
+            case MobReportActions.Spawn when config.EnableSpawnReport:
+                {
+                    var spawn = JsonSerializer.Deserialize<MobReportData.Spawn>(data.Data) ?? throw new InvalidOperationException("invalid spawn data");
+                    var ev = new MobSpawnEvent(data.MobId, data.WorldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiIds?.FirstOrDefault(), mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name);
+                    OnMobSpawn(ev, config.Channel);
+                    DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
+                    break;
+                }
+            case MobReportActions.SpawnLocation when config.EnableSpawnReport:
+                {
+                    var spawn = JsonSerializer.Deserialize<MobReportData.SpawnLocation>(data.Data) ?? throw new InvalidOperationException("invalid spawn location data");
+                    var previous = Config.SpawnStates.FirstOrDefault(x => x.Id == data.Id);
+                    var ev = new MobSpawnEvent(data.MobId, data.WorldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiId, mobData.Rank, previous?.SpawnedAt ?? DateTime.Now, previous?.Reporter);
+                    OnMobSpawn(ev, config.Channel);
+                    break;
+                }
+            case MobReportActions.SpawnRelease when config.EnableSpawnReport:
+                {
+                    var spawn = JsonSerializer.Deserialize<MobReportData.SpawnRelease>(data.Data) ?? throw new InvalidOperationException("invalid spawn release data");
+                    var previous = Config.SpawnStates.FirstOrDefault(x => x.Id == data.Id);
+                    if (previous == default)
+                    {
+                        DalamudLog.Log.Debug("OnMobReport: previous == null");
+                        break;
+                    }
+                    var ev = new MobSpawnEvent(data.MobId, data.WorldId, previous.TerritoryTypeId, data.ZoneInstance, previous.ZoneLocationId, mobData.Rank, spawn.Timestamp, previous.Reporter);
+                    OnMobSpawn(ev, config.Channel);
+                    break;
+                }
+            case MobReportActions.Death when config.EnableDeathReport:
+                var death = JsonSerializer.Deserialize<MobReportData.Death>(data.Data) ?? throw new InvalidOperationException("invalid death data");
+                OnMobDeath(new MobDeathEvent(data.MobId, data.WorldId, data.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
+                DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
+                break;
+        }
+    }
+
+    private bool CheckSpawnNotificationCondition(PluginConfig.PerRankConfig config, uint worldId, MajorPatch version)
+    {
+        var world = Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(worldId);
+        var dataCenter = world?.DataCenter?.Value;
+        if (world == default || dataCenter == default)
+        {
+            DalamudLog.Log.Debug("OnMobReport: world == null || dataCenter == null");
+            return false;
+        }
+
+        var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
+        var currentDataCenter = currentWorld?.DataCenter?.Value;
+        if (currentWorld == default || currentDataCenter == default)
+        {
+            DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
+            return false;
+        }
+
+        if (!config.MajorPatches.TryGetValue(version, out var value) || !value)
         {
             DalamudLog.Log.Debug("OnMobReport: MajorPatches");
-            return;
+            return false;
         }
 
         if (config.DisableInDuty && Dalamud.Condition[ConditionFlag.BoundByDuty])
         {
             DalamudLog.Log.Debug("OnMobReport: in duty");
-            return;
+            return false;
         }
 
         switch ((Jurisdiction)config.Jurisdiction)
@@ -129,22 +169,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
             case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
             case Jurisdiction.World when world.RowId == currentWorld.RowId:
-                break;
+                return true;
             default:
                 DalamudLog.Log.Verbose("OnMobReport: unmatched");
-                return;
-        }
-
-        switch (data.Action)
-        {
-            case "spawn" when config.EnableSpawnReport:
-                OnMobSpawn(new MobSpawnEvent(data, mob, world, mobData.Rank), config.Channel);
-                DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
-                break;
-            case "death" when config.EnableDeathReport:
-                OnMobDeath(new MobDeathEvent(data, mob, world, mobData.Rank), config.Channel, config.SkipOrphanReport);
-                DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
-                break;
+                return false;
         }
     }
 
@@ -152,13 +180,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobSpawn(ev);
 
-        Config.SpawnHistories.Add(new PluginConfig.SpawnHistory
-        {
-            MobId = ev.Data.MobId,
-            WorldId = ev.Data.WorldId,
-            ZoneInstance = ev.Data.ZoneInstance,
-            At = ev.Spawn.Timestamp,
-        });
+        Config.SpawnStates.Add(ev);
         Dalamud.PluginInterface.SavePluginConfig(Config);
 
         var payloads = new List<Payload>();
@@ -170,9 +192,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
 
         // append MapLink only if pop location is known
-        if (ev.Spawn.ZonePoiIds?.Count > 0)
+        if (ev.ZoneLocationId.HasValue)
         {
-            var mapLink = CreateMapLink(ev.Spawn.ZoneId, ev.Spawn.ZonePoiIds.First(), ev.Data.ZoneInstance);
+            var mapLink = CreateMapLink(ev.TerritoryTypeId, ev.ZoneLocationId.Value, ev.ZoneInstance);
             if (mapLink != default)
             {
                 payloads.AddRange(mapLink.Payloads);
@@ -187,12 +209,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
         else
         {
-            payloads.Add(new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.Spawn.Timestamp)}".TrimEnd()));
+            payloads.Add(new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.SpawnedAt)}".TrimEnd()));
         }
 
         Dalamud.ChatGui.Print(new XivChatEntry
         {
-            Name = ev.Spawn.Reporters?.FirstOrDefault()?.Name ?? "Faloop",
+            Name = ev.Reporter ?? "Faloop",
             Message = new SeString(payloads),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
@@ -202,7 +224,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobDeath(ev);
 
-        if (skipOrphanReport && Config.SpawnHistories.RemoveAll(x => x.MobId == ev.Data.MobId && x.WorldId == ev.Data.WorldId && x.ZoneInstance == ev.Data.ZoneInstance) == 0)
+        if (skipOrphanReport && Config.SpawnStates.RemoveAll(x => x.Id == ev.Id) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
             return;
@@ -227,7 +249,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 Utils.GetRankIcon(ev.Rank),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
                 new IconPayload(BitmapFontIcon.CrossWorld),
-                new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.Death.StartedAt)}".TrimEnd()),
+                new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.KilledAt)}".TrimEnd()),
             ]);
         }
 
@@ -348,7 +370,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void CleanSpawnHistories()
     {
-        Config.SpawnHistories.RemoveAll(x => DateTime.UtcNow - x.At > TimeSpan.FromHours(1));
+        Config.SpawnStates.RemoveAll(x => DateTime.Now - x.SpawnedAt > TimeSpan.FromHours(1));
         Dalamud.PluginInterface.SavePluginConfig(Config);
     }
 

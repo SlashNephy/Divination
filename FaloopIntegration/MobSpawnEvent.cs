@@ -1,11 +1,26 @@
 ﻿using System;
-using System.Text.Json;
-using Divination.FaloopIntegration.Faloop.Model;
 using Lumina.Excel.GeneratedSheets;
+using Newtonsoft.Json;
 
 namespace Divination.FaloopIntegration;
 
-public record MobSpawnEvent(MobReportData Data, BNpcName Mob, World World, string Rank)
+public record MobSpawnEvent(
+    uint MobId,
+    uint WorldId,
+    uint TerritoryTypeId,
+    int ZoneInstance,
+    int? ZoneLocationId,
+    string Rank,
+    DateTime SpawnedAt,
+    string? Reporter)
 {
-    public readonly MobReportData.Spawn Spawn = Data.Data.Deserialize<MobReportData.Spawn>() ?? throw new InvalidOperationException("Spawn is null");
+    [JsonIgnore]
+    public BNpcName Mob => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(MobId) ?? throw new InvalidOperationException("invalid mob ID");
+    [JsonIgnore]
+    public World World => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(WorldId) ?? throw new InvalidOperationException("invalid world ID");
+    [JsonIgnore]
+    public TerritoryType TerritoryType => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<TerritoryType>()?.GetRow(TerritoryTypeId) ?? throw new InvalidOperationException("invalid territory type ID");
+
+    [JsonIgnore]
+    public string Id => $"{MobId}_{WorldId}_{ZoneInstance}";
 }

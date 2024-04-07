@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Text.Json;
-using Divination.FaloopIntegration.Faloop.Model;
 using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.FaloopIntegration;
 
-public record MobDeathEvent(MobReportData Data, BNpcName Mob, World World, string Rank)
+public record MobDeathEvent(uint MobId, uint WorldId, int ZoneInstance, string Rank, DateTime KilledAt)
 {
-    public readonly MobReportData.Death Death = Data.Data.Deserialize<MobReportData.Death>() ?? throw new InvalidOperationException("Death is null");
+    public BNpcName Mob => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(MobId) ?? throw new InvalidOperationException("invalid mob ID");
+    public World World => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(WorldId) ?? throw new InvalidOperationException("invalid world ID");
+
+    public string Id => $"{MobId}_{WorldId}_{ZoneInstance}";
 }
