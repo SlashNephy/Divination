@@ -155,7 +155,7 @@ public class FaloopSocketIOClient : IDisposable
         for (var index = 0; index < response.Count; index++)
         {
             var payload = response.GetValue(index).Deserialize<FaloopEventPayload>();
-            if (payload is not {Type: "mob", SubType: "report"})
+            if (payload is not { Type: FaloopEventTypes.MobType, SubType: FaloopEventTypes.ReportSubType })
             {
                 continue;
             }
