@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -170,7 +170,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
 
         // append MapLink only if pop location is known
-        if (ev.Spawn.ZonePoiIds.Count > 0)
+        if (ev.Spawn.ZonePoiIds?.Count > 0)
         {
             var mapLink = CreateMapLink(ev.Spawn.ZoneId, ev.Spawn.ZonePoiIds.First(), ev.Data.ZoneInstance);
             if (mapLink != default)

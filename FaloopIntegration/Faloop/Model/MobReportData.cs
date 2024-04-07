@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -15,7 +15,7 @@ public record MobReportData(
     public record Spawn(
         [property: JsonPropertyName("timestamp")] DateTime Timestamp,
         [property: JsonPropertyName("zoneId")] uint ZoneId,
-        [property: JsonPropertyName("zonePoiIds")] List<int> ZonePoiIds,
+        [property: JsonPropertyName("zonePoiIds")] List<int>? ZonePoiIds,
         [property: JsonPropertyName("reporters")] List<Reporter>? Reporters);
 
     public record Reporter([property: JsonPropertyName("name")] string Name);
