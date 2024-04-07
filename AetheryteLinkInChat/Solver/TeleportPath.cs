@@ -1,6 +1,6 @@
 ﻿using Lumina.Excel.GeneratedSheets;
 
-namespace Divination.AetheryteLinkInChat;
+namespace Divination.AetheryteLinkInChat.Solver;
 
 public interface ITeleportPath
 {
