@@ -89,4 +89,22 @@ public static class Localization
         En = "Teleports you to Grand Company Aetheryte. Useful for teleporting to other worlds. The aetheryte can be changed from plugin config.",
         Ja = "三国のエーテライトにテレポします。ワールド間テレポに便利です。優先する三国エーテライトは設定から変更できます。",
     };
+
+    public static readonly LocalizedString EnableLifestreamIntegration = new()
+    {
+        En = "Enable Lifestream Integration",
+        Ja = "Lifestream との連携機能を有効にする",
+    };
+
+    public static readonly LocalizedString EnableLifestreamIntegrationDescription = new()
+    {
+        En = "If enabled, teleporting to destinations will be automated, including world traveling and aethernet transfers.\nLifestream plugin required!",
+        Ja = "有効にすると、ワールド間テレポや都市内エーテライトの移動を含め、目的地へのテレポが自動化されます。\nこの機能を使用するには、Lifestream プラグインが必要です！",
+    };
+
+    public static readonly LocalizedString LifestreamUnavailable = new()
+    {
+        En = "Lifestream plugin is not available. Please install it.",
+        Ja = "Lifestream がインストールされていません。",
+    };
 }

@@ -9,7 +9,7 @@ using Divination.AetheryteLinkInChat.Config;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
 
-namespace Divination.AetheryteLinkInChat;
+namespace Divination.AetheryteLinkInChat.Solver;
 
 public class AetheryteSolver(IDataManager dataManager)
 {
@@ -39,7 +39,7 @@ public class AetheryteSolver(IDataManager dataManager)
                     DalamudLog.Log.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
 
                     DalamudLog.Log.Verbose("path = {S}", path);
-                    if (path is AetheryteTeleportPath {Aetheryte.AethernetGroup: > 0})
+                    if (path is AetheryteTeleportPath { Aetheryte.AethernetGroup: > 0 })
                     {
                         DalamudLog.Log.Verbose("skip distance calculation: this is aethernet: {S}", path);
                     }
@@ -100,9 +100,7 @@ public class AetheryteSolver(IDataManager dataManager)
             }
         }
 
-        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text)).ToLower();
-        var world = worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId)
-            .FirstOrDefault(x => text.Contains(x.Name.RawString.ToLower()));
+        var world = DetectWorld(message, currentWorld);
         if (world == default)
         {
             DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: world == null");
@@ -129,6 +127,14 @@ public class AetheryteSolver(IDataManager dataManager)
         }
 
         paths.Insert(0, new WorldTeleportPath(aetheryte, world, marker, map));
+    }
+
+    public World? DetectWorld(SeString message, World? currentWorld)
+    {
+        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
+        return worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId)
+            .FirstOrDefault(x => text.Contains(x.Name.RawString, StringComparison.OrdinalIgnoreCase))
+            ?? currentWorld;
     }
 
     private IEnumerable<ITeleportPath[]> CalculateTeleportPaths(TerritoryType territoryType, Map map, uint depth = 0)

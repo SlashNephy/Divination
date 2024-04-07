@@ -1,25 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Lumina.Excel.GeneratedSheets;
 
-namespace Divination.AetheryteLinkInChat;
+namespace Divination.AetheryteLinkInChat.Payloads;
 
 public sealed class AetherytePayload : DalamudLinkPayload
 {
     // 未使用だと思われる
-    private const byte EmbeddedInfoTypeByte = (byte)(EmbeddedInfoType.DalamudLink + 1);
+    internal const byte EmbeddedInfoTypeByte = (byte)(EmbeddedInfoType.DalamudLink + 1);
 
-    private uint AetheryteId { get; set; }
-    private Aetheryte? Aetheryte => DataResolver.GetExcelSheet<Aetheryte>()?.GetRow(AetheryteId);
+    public uint AetheryteId { get; set; }
+    public Aetheryte Aetheryte => DataResolver.GetExcelSheet<Aetheryte>()?.GetRow(AetheryteId) ?? throw new InvalidOperationException("invalid aetheryte ID");
 
     public override PayloadType Type => PayloadType.Unknown;
-
-    public RawPayload ToRawPayload()
-    {
-        return new RawPayload(EncodeImpl());
-    }
 
     public AetherytePayload(Aetheryte aetheryte)
     {
@@ -33,25 +28,33 @@ public sealed class AetherytePayload : DalamudLinkPayload
     protected override byte[] EncodeImpl()
     {
         var data = MakeInteger(AetheryteId);
-        var bytes = new List<byte>
-        {
+        var length = 2 + (byte)data.Length;
+
+        return [
             START_BYTE,
             (byte)SeStringChunkType.Interactable,
-        };
-        bytes.AddRange(MakeInteger((uint)data.Length + 1));
-        bytes.Add(EmbeddedInfoTypeByte);
-        bytes.AddRange(data);
-        bytes.Add(END_BYTE);
-
-        return bytes.ToArray();
+            (byte)length,
+            EmbeddedInfoTypeByte,
+            .. data,
+            END_BYTE];
     }
 
-    protected override void DecodeImpl(BinaryReader reader, long endOfStream)
+    protected override void DecodeImpl(BinaryReader reader, long _)
     {
         AetheryteId = GetInteger(reader);
     }
 
-    public static Aetheryte? Parse(RawPayload payload)
+    public override string ToString()
+    {
+        return $"{nameof(AetherytePayload)}[{AetheryteId}]";
+    }
+
+    public RawPayload ToRawPayload()
+    {
+        return new RawPayload(EncodeImpl());
+    }
+
+    public static AetherytePayload? Parse(RawPayload payload)
     {
         using var stream = new MemoryStream(payload.Data);
         using var reader = new BinaryReader(stream);
@@ -66,14 +69,14 @@ public sealed class AetherytePayload : DalamudLinkPayload
             return default;
         }
 
-        var length = GetInteger(reader);
+        var length = reader.ReadByte();
         if (reader.ReadByte() != EmbeddedInfoTypeByte)
         {
             return default;
         }
 
         var aetheryte = new AetherytePayload();
-        aetheryte.DecodeImpl(reader, reader.BaseStream.Position + length - 1L);
-        return aetheryte.Aetheryte;
+        aetheryte.DecodeImpl(reader, /* unused */ default);
+        return aetheryte;
     }
 }
