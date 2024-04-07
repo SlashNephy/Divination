@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
@@ -29,6 +30,8 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
     private readonly DalamudLinkPayload lifestreamLinkPayload;
     private readonly AetheryteSolver solver;
     private readonly Teleporter teleporter;
+
+    private CancellationTokenSource? lifestreamCancellation;
 
     public AetheryteLinkInChat(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -201,15 +204,28 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             return;
         }
 
-        teleporter.TeleportToPaths(paths, payload.World).ContinueWith((result) =>
+        // cancel previous teleportation
+        if (lifestreamCancellation != default)
         {
-            if (result.Exception != default)
+            lifestreamCancellation.Cancel();
+            lifestreamCancellation.Dispose();
+        }
+
+        lifestreamCancellation = new CancellationTokenSource();
+        teleporter.TeleportToPaths(paths, payload.World, lifestreamCancellation.Token).ContinueWith((task) =>
+        {
+            if (task.IsCanceled)
             {
-                DalamudLog.Log.Error(result.Exception, "HandleLifestreamLink: TeleportToPaths failed");
+                return;
+            }
+
+            if (task.Exception != default)
+            {
+                DalamudLog.Log.Error(task.Exception, "HandleLifestreamLink: TeleportToPaths failed");
             }
             else
             {
-                DalamudLog.Log.Debug("HandleLifestreamLink: TeleportToPaths: {Result}", result.Result);
+                DalamudLog.Log.Debug("HandleLifestreamLink: TeleportToPaths: {Result}", task.Result);
             }
         });
     }
@@ -238,5 +254,6 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         Dalamud.ChatGui.ChatMessage -= OnChatReceived;
         Dalamud.CommandManager.RemoveHandler(TeleportGcCommand);
         teleporter.Dispose();
+        lifestreamCancellation?.Dispose();
     }
 }

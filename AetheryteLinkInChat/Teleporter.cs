@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Dalamud;
@@ -141,7 +142,7 @@ public sealed class Teleporter : IDisposable
             });
     }
 
-    public async Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world)
+    public async Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
     {
         if (world != default)
         {
@@ -165,7 +166,7 @@ public sealed class Teleporter : IDisposable
                 // wait until world changed
                 while (world.RowId != clientState.LocalPlayer?.CurrentWorld.Id)
                 {
-                    await Task.Delay(100);
+                    await Task.Delay(100, cancellationToken);
                 }
 
                 DalamudLog.Log.Debug("TeleportToPaths: world changed: {World}", world.Name.RawString);
@@ -176,7 +177,7 @@ public sealed class Teleporter : IDisposable
         {
             while (IsTeleportUnavailable)
             {
-                await Task.Delay(100);
+                await Task.Delay(100, cancellationToken);
             }
 
             switch (path)
