@@ -183,6 +183,8 @@ public sealed class Teleporter : IDisposable
                 await Task.Delay(100, cancellationToken);
             }
 
+            await Task.Delay(AetheryteLinkInChat.Instance.Config.QueuedTeleportDelay, cancellationToken);
+
             switch (path)
             {
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
