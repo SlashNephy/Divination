@@ -167,9 +167,9 @@ public sealed class Teleporter : IDisposable
                 DalamudLog.Log.Debug("TeleportToPaths: waiting for {World}", world.Name.RawString);
 
                 // wait until world changed
-                while (world.RowId != clientState.LocalPlayer?.CurrentWorld.Id)
+                while (world.RowId != clientState.LocalPlayer?.CurrentWorld.Id || IsTeleportUnavailable)
                 {
-                    await Task.Delay(100, cancellationToken);
+                    await Task.Delay(500, cancellationToken);
                 }
 
                 DalamudLog.Log.Debug("TeleportToPaths: world changed: {World}", world.Name.RawString);
@@ -180,7 +180,7 @@ public sealed class Teleporter : IDisposable
         {
             while (IsTeleportUnavailable)
             {
-                await Task.Delay(100, cancellationToken);
+                await Task.Delay(500, cancellationToken);
             }
 
             await Task.Delay(AetheryteLinkInChat.Instance.Config.QueuedTeleportDelay, cancellationToken);
