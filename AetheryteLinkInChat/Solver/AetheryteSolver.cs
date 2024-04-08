@@ -132,7 +132,7 @@ public class AetheryteSolver(IDataManager dataManager)
     public World? DetectWorld(SeString message, World? currentWorld)
     {
         var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
-        return worldSheet.Where(x => x.IsPublic && x.DataCenter.Row == currentWorld?.DataCenter.Value?.RowId)
+        return worldSheet.Where(x => x.IsPublic)
             .FirstOrDefault(x => text.Contains(x.Name.RawString, StringComparison.OrdinalIgnoreCase))
             ?? currentWorld;
     }
