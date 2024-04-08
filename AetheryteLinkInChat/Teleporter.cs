@@ -147,6 +147,11 @@ public sealed class Teleporter : IDisposable
 
     public async Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
     {
+        while (IsTeleportUnavailable)
+        {
+            await Task.Delay(500, cancellationToken);
+        }
+
         if (world != default)
         {
             if (world.RowId == clientState.LocalPlayer?.CurrentWorld?.Id)
