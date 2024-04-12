@@ -166,7 +166,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         switch ((Jurisdiction)config.Jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
+            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region || (config.IncludeOceaniaDataCenter && dataCenter.Region == 4):
             case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
             case Jurisdiction.World when world.RowId == currentWorld.RowId:
                 return true;

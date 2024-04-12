@@ -75,6 +75,10 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 ImGui.Combo($"{Localization.ReportJurisdiction}##{label}", ref config.Jurisdiction, jurisdictions, jurisdictions.Length);
                 ImGui.SameLine();
                 ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
+                if (config.Jurisdiction >= (int)Jurisdiction.Region)
+                {
+                    ImGui.Checkbox($"{Localization.IncludeOceaniaDataCenter}##{label}", ref config.IncludeOceaniaDataCenter);
+                }
 
                 ImGui.Text(Localization.ReportExpansions);
                 ImGui.Indent();

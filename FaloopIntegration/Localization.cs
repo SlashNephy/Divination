@@ -142,6 +142,12 @@ public static class Localization
         Ja = "例えば「World」を指定すると、ホームワールドに関する通知のみを受け取ります。",
     };
 
+    public static readonly LocalizedString IncludeOceaniaDataCenter = new()
+    {
+        En = "Include Oceania Data Center",
+        Ja = "オセアニアDCを含める",
+    };
+
     public static readonly LocalizedString ReportExpansions = new()
     {
         En = "Expansions",

@@ -30,6 +30,7 @@ public class PluginConfig : IPluginConfiguration
     {
         public int Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo);
         public int Jurisdiction;
+        public bool IncludeOceaniaDataCenter;
         public Dictionary<MajorPatch, bool> MajorPatches = new()
         {
             {MajorPatch.ARealmReborn, true},
