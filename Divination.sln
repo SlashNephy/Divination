@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C00AD6CE-4F53-4415-B105-183A7CD79FA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration", "DiscordIntegration\DiscordIntegration.csproj", "{EF081021-4C26-4B66-856B-D78ABB09CBE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration.IpcModel", "DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj", "{26CE97F7-964D-4097-9B7F-EE572959B12D}"
@@ -25,6 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "Debugger\Debugg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat", "AetheryteLinkInChat\AetheryteLinkInChat.csproj", "{D765974E-0713-4527-8CAF-5B6BF3ECDA92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horoscope", "Horoscope\Horoscope.csproj", "{A099E0CA-0C4E-402A-B334-E243D4286872}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickLib", "lib\ClickLib\ClickLib\ClickLib.csproj", "{E2240D94-4538-48F8-9B6F-223A33049951}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommons", "lib\ECommons\ECommons\ECommons.csproj", "{BE5DF02A-7682-469B-BA0B-F1092A4F1579}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat.IpcModel", "AetheryteLinkInChat.IpcModel\AetheryteLinkInChat.IpcModel.csproj", "{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +43,6 @@ Global
 		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Debug|Any CPU.Build.0 = Debug|x64
 		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Release|Any CPU.ActiveCfg = Release|x64
 		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Release|Any CPU.Build.0 = Release|x64
-		{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}.Debug|Any CPU.Build.0 = Debug|x64
-		{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}.Release|Any CPU.ActiveCfg = Release|x64
-		{2CACF6DA-C279-4A07-AB7C-9AAC923FAADB}.Release|Any CPU.Build.0 = Release|x64
 		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Debug|Any CPU.Build.0 = Debug|x64
 		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Release|Any CPU.ActiveCfg = Release|x64
@@ -75,8 +79,28 @@ Global
 		{D765974E-0713-4527-8CAF-5B6BF3ECDA92}.Debug|Any CPU.Build.0 = Debug|x64
 		{D765974E-0713-4527-8CAF-5B6BF3ECDA92}.Release|Any CPU.ActiveCfg = Release|x64
 		{D765974E-0713-4527-8CAF-5B6BF3ECDA92}.Release|Any CPU.Build.0 = Release|x64
+		{A099E0CA-0C4E-402A-B334-E243D4286872}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A099E0CA-0C4E-402A-B334-E243D4286872}.Debug|Any CPU.Build.0 = Debug|x64
+		{A099E0CA-0C4E-402A-B334-E243D4286872}.Release|Any CPU.ActiveCfg = Release|x64
+		{A099E0CA-0C4E-402A-B334-E243D4286872}.Release|Any CPU.Build.0 = Release|x64
+		{E2240D94-4538-48F8-9B6F-223A33049951}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E2240D94-4538-48F8-9B6F-223A33049951}.Debug|Any CPU.Build.0 = Debug|x64
+		{E2240D94-4538-48F8-9B6F-223A33049951}.Release|Any CPU.ActiveCfg = Release|x64
+		{E2240D94-4538-48F8-9B6F-223A33049951}.Release|Any CPU.Build.0 = Release|x64
+		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Debug|Any CPU.Build.0 = Debug|x64
+		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Release|Any CPU.ActiveCfg = Release|x64
+		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Release|Any CPU.Build.0 = Release|x64
+		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Debug|Any CPU.Build.0 = Debug|x64
+		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Release|Any CPU.ActiveCfg = Release|x64
+		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Release|Any CPU.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E2240D94-4538-48F8-9B6F-223A33049951} = {7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}
+		{BE5DF02A-7682-469B-BA0B-F1092A4F1579} = {7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}
 	EndGlobalSection
 EndGlobal
