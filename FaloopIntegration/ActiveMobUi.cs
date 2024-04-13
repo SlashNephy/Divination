@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
 using ImGuiNET;
@@ -14,7 +13,7 @@ public class ActiveMobUi : IWindow, IDisposable
 {
     private readonly ConcurrentDictionary<string, MobSpawnEvent> mobs = new();
     private readonly Task cleanupTask;
-    private readonly CancellationTokenSource cancellation;
+    private readonly CancellationTokenSource cancellation = new();
 
     public ActiveMobUi()
     {
