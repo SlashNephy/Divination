@@ -113,7 +113,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.SpawnLocation>(data.Data) ?? throw new InvalidOperationException("invalid spawn location data");
                     var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiId, mobData.Rank, previous?.SpawnedAt ?? DateTime.Now, previous?.Reporter);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiId, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
@@ -374,7 +374,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void CleanSpawnHistories()
     {
-        Config.SpawnStates.RemoveAll(x => DateTime.Now - x.SpawnedAt > TimeSpan.FromHours(1));
+        Config.SpawnStates.RemoveAll(x => DateTime.UtcNow - x.SpawnedAt > TimeSpan.FromHours(1));
         Dalamud.PluginInterface.SavePluginConfig(Config);
     }
 
@@ -382,6 +382,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
         socket.Dispose();
+        Ui.Dispose();
         Dalamud.PluginInterface.UiBuilder.Draw -= Ui.Draw;
     }
 

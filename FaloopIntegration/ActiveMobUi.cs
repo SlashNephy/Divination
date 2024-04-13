@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
 using ImGuiNET;
 
 namespace Divination.FaloopIntegration;
 
-public class ActiveMobUi : IWindow
+public class ActiveMobUi : IWindow, IDisposable
 {
     private readonly ConcurrentDictionary<string, MobSpawnEvent> mobs = new();
+    private readonly Task cleanupTask;
+    private readonly CancellationTokenSource cancellation;
+
+    public ActiveMobUi()
+    {
+        cleanupTask = new Task(CleanUp);
+        cleanupTask.Start();
+    }
 
     private bool isDrawing = true;
     public bool IsDrawing
@@ -25,11 +36,11 @@ public class ActiveMobUi : IWindow
             return;
         }
 
-        if (ImGui.Begin(Localization.ActiveMob))
+        if (ImGui.Begin(Localization.ActiveMob, ImGuiWindowFlags.AlwaysAutoResize))
         {
-            foreach (var mob in mobs.OrderBy(x => x.Value.SpawnedAt))
+            foreach (var mob in mobs.Values.OrderBy(x => x.SpawnedAt))
             {
-                DrawMob(mob.Value);
+                DrawMob(mob);
             }
 
             ImGui.End();
@@ -38,7 +49,7 @@ public class ActiveMobUi : IWindow
 
     private static void DrawMob(MobSpawnEvent ev)
     {
-        var span = DateTime.Now - ev.SpawnedAt;
+        var span = DateTime.UtcNow - ev.SpawnedAt;
         ImGui.Text(
             $"{Utils.GetRankIconChar(ev.Rank).ToIconString()} {ev.Mob.Singular.RawString}{SeIconChar.CrossWorld.ToIconString()}{ev.World.Name.RawString} {span:mm\\:ss}");
     }
@@ -51,5 +62,34 @@ public class ActiveMobUi : IWindow
     public void OnMobDeath(MobDeathEvent ev)
     {
         mobs.TryRemove(ev.Id, out _);
+    }
+
+    private async void CleanUp()
+    {
+        while (!cancellation.IsCancellationRequested)
+        {
+            foreach (var mob in mobs.Values.Where(x => DateTime.UtcNow - x.SpawnedAt > GetMaxAge(x)))
+            {
+                mobs.TryRemove(mob.Id, out _);
+            }
+
+            await Task.Delay(10 * 1000);
+        }
+    }
+
+    private static TimeSpan GetMaxAge(MobSpawnEvent ev)
+    {
+        return ev.Rank switch
+        {
+            MobRank.S => TimeSpan.FromMinutes(10),
+            MobRank.SS => TimeSpan.FromMinutes(10),
+            MobRank.FATE => TimeSpan.FromMinutes(30),
+            _ => throw new ArgumentOutOfRangeException(nameof(ev.Rank), ev.Rank, null),
+        };
+    }
+
+    public void Dispose()
+    {
+        cancellation.Cancel();
     }
 }
