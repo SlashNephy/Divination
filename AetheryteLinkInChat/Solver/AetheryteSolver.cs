@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -131,7 +132,10 @@ public class AetheryteSolver(IDataManager dataManager)
 
     public World? DetectWorld(SeString message, World? currentWorld)
     {
+        const string linkPattern = ".*?\\)";
+        var rgx = new Regex(linkPattern);
         var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
+        text = rgx.Replace(text, "");
         return worldSheet.Where(x => x.IsPublic)
             .FirstOrDefault(x => text.Contains(x.Name.RawString, StringComparison.OrdinalIgnoreCase))
             ?? currentWorld;
