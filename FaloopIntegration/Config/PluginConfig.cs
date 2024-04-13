@@ -31,13 +31,14 @@ public class PluginConfig : IPluginConfiguration
         public int Channel = Enum.GetValues<XivChatType>().ToList().IndexOf(XivChatType.Echo);
         public int Jurisdiction;
         public bool IncludeOceaniaDataCenter;
-        public Dictionary<MajorPatch, bool> MajorPatches = new()
+        public Dictionary<GameExpansion, bool> Expansions = new()
         {
-            {MajorPatch.ARealmReborn, true},
-            {MajorPatch.Heavensward, true},
-            {MajorPatch.Stormblood, true},
-            {MajorPatch.Shadowbringer, true},
-            {MajorPatch.Endwalker, true},
+            {GameExpansion.ARelmReborn, true},
+            {GameExpansion.Heavensward, true},
+            {GameExpansion.Stormblood, true},
+            {GameExpansion.Shadowbringers, true},
+            {GameExpansion.Endwalker, true},
+            {GameExpansion.Dawntrail, true},
         };
         public bool EnableSpawnReport;
         public bool EnableDeathReport;

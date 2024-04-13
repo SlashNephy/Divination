@@ -4,8 +4,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.Net.Http.Json" Version="8.0.0"/>
-        <ProjectReference Include="..\Common\Common.csproj"/>
+        <ProjectReference Include="..\Common\Common.csproj" />
 
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
@@ -27,8 +26,8 @@
             <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <PackageReference Include="AngleSharp" Version="1.1.2"/>
-        <PackageReference Include="SocketIOClient" Version="3.0.8"/>
+        <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+        <PackageReference Include="SocketIOClient" Version="3.0.8" />
         <PackageReference Include="DalamudPackager" Version="2.1.12">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>

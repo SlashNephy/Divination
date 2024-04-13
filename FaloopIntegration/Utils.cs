@@ -7,19 +7,20 @@ namespace Divination.FaloopIntegration;
 
 public static class Utils
 {
-    public static SeIconChar GetRankIconChar(string rank)
+    public static SeIconChar GetRankIconChar(MobRank rank)
     {
         return rank switch
         {
-            "S" => SeIconChar.BoxedLetterS,
-            "A" => SeIconChar.BoxedLetterA,
-            "B" => SeIconChar.BoxedLetterB,
-            "F" => SeIconChar.BoxedLetterF,
+            MobRank.B => SeIconChar.BoxedLetterB,
+            MobRank.A => SeIconChar.BoxedLetterA,
+            MobRank.S => SeIconChar.BoxedLetterS,
+            MobRank.SS => SeIconChar.BoxedStar,
+            MobRank.FATE => SeIconChar.BoxedLetterF,
             _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, default),
         };
     }
 
-    public static TextPayload GetRankIcon(string rank)
+    public static TextPayload GetRankIcon(MobRank rank)
     {
         return new TextPayload(GetRankIconChar(rank).ToIconString());
     }

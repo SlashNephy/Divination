@@ -83,10 +83,10 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                 ImGui.Text(Localization.ReportExpansions);
                 ImGui.Indent();
 
-                foreach (var patchVersion in majorPatches)
+                foreach (var expansion in gameExpansions)
                 {
-                    ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.MajorPatches, patchVersion, out _);
-                    ImGui.Checkbox($"{Enum.GetName(patchVersion)}##{label}", ref value);
+                    ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.Expansions, expansion, out _);
+                    ImGui.Checkbox($"{Enum.GetName(expansion)}##{label}", ref value);
                     ImGui.SameLine();
                 }
 
@@ -131,5 +131,5 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     private readonly string[] jurisdictions = Enum.GetNames<Jurisdiction>();
     private readonly string[] channels = Enum.GetNames<XivChatType>();
-    private readonly MajorPatch[] majorPatches = Enum.GetValues<MajorPatch>();
+    private readonly GameExpansion[] gameExpansions = Enum.GetValues<GameExpansion>();
 }

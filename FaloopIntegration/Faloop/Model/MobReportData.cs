@@ -9,8 +9,7 @@ namespace Divination.FaloopIntegration.Faloop.Model;
 public record MobReportData(
     [property: JsonPropertyName("action")] string Action,
     [property: JsonPropertyName("data")] JsonObject Data,
-    [property: JsonPropertyName("mobId")] uint MobId,
-    [property: JsonPropertyName("worldId")] uint WorldId,
+    [property: JsonPropertyName("id")] MobReportIds Ids,
     [property: JsonPropertyName("zoneInstance")] int ZoneInstance)
 {
     public record Spawn(
@@ -30,9 +29,12 @@ public record MobReportData(
         [property: JsonPropertyName("timestamp")] DateTime Timestamp);
 
     public record Death([property: JsonPropertyName("startedAt")] DateTime StartedAt);
-
-    public string Id => $"{WorldId}_{MobId}_{ZoneInstance}";
 }
+
+public record MobReportIds(
+    [property: JsonPropertyName("mobId")] string MobId,
+    [property: JsonPropertyName("worldId")] string WorldId
+);
 
 public static class MobReportActions
 {

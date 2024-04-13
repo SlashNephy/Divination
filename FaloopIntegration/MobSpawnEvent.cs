@@ -10,7 +10,7 @@ public record MobSpawnEvent(
     uint TerritoryTypeId,
     int ZoneInstance,
     int? ZoneLocationId,
-    string Rank,
+    MobRank Rank,
     DateTime SpawnedAt,
     string? Reporter)
 {

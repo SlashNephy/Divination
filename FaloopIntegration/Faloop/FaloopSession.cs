@@ -7,12 +7,6 @@ namespace Divination.FaloopIntegration.Faloop;
 public class FaloopSession : IDisposable
 {
     private readonly FaloopApiClient client = new();
-    public readonly FaloopEmbedData EmbedData;
-
-    public FaloopSession()
-    {
-        EmbedData = new FaloopEmbedData(client);
-    }
 
     public bool IsLoggedIn { get; private set; }
 
@@ -23,26 +17,16 @@ public class FaloopSession : IDisposable
         Logout();
 
         var initialSession = await client.RefreshAsync();
-        if (initialSession is not {Success: true})
+        if (initialSession is not { Success: true })
         {
             DalamudLog.Log.Debug("LoginAsync: initialSession is not success");
             return false;
         }
 
         var login = await client.LoginAsync(username, password, initialSession.Data.SessionId, initialSession.Data.Token);
-        if (login is not {Success: true})
+        if (login is not { Success: true })
         {
             DalamudLog.Log.Debug("LoginAsync: login is not success");
-            return false;
-        }
-
-        try
-        {
-            await EmbedData.Initialize();
-        }
-        catch (Exception exception)
-        {
-            DalamudLog.Log.Error(exception, "LoginAsync: EmbedData.Initialize failed");
             return false;
         }
 

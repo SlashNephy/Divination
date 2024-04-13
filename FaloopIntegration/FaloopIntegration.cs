@@ -70,17 +70,22 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void OnMobReport(MobReportData data)
     {
-        var mobData = session.EmbedData.Mobs.FirstOrDefault(x => x.Id == data.MobId);
-        if (mobData == default)
+        if (!FaloopEmbedData.Mobs.TryGetValue(data.Ids.MobId, out var mobData))
         {
-            DalamudLog.Log.Debug("OnMobReport: mobData == null");
+            DalamudLog.Log.Warning("OnMobReport: mobData == null");
+            return;
+        }
+
+        if (!FaloopEmbedData.Worlds.TryGetValue(data.Ids.WorldId, out var worldId))
+        {
+            DalamudLog.Log.Warning("OnMobReport: worldId == null");
             return;
         }
 
         var config = mobData.Rank switch
         {
-            "S" => Config.RankS,
-            "F" => Config.Fate,
+            MobRank.S => Config.RankS,
+            MobRank.FATE => Config.Fate,
             _ => default,
         };
         if (config == default)
@@ -89,7 +94,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return;
         }
 
-        if (!CheckSpawnNotificationCondition(config, data.WorldId, mobData.Version))
+        if (!CheckSpawnNotificationCondition(config, worldId, mobData.Expansion))
         {
             return;
         }
@@ -99,7 +104,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case MobReportActions.Spawn when config.EnableSpawnReport:
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.Spawn>(data.Data) ?? throw new InvalidOperationException("invalid spawn data");
-                    var ev = new MobSpawnEvent(data.MobId, data.WorldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiIds?.FirstOrDefault(), mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiIds?.FirstOrDefault(), mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name);
                     OnMobSpawn(ev, config.Channel);
                     DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                     break;
@@ -107,33 +112,33 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case MobReportActions.SpawnLocation when config.EnableSpawnReport:
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.SpawnLocation>(data.Data) ?? throw new InvalidOperationException("invalid spawn location data");
-                    var previous = Config.SpawnStates.FirstOrDefault(x => x.Id == data.Id);
-                    var ev = new MobSpawnEvent(data.MobId, data.WorldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiId, mobData.Rank, previous?.SpawnedAt ?? DateTime.Now, previous?.Reporter);
+                    var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, spawn.ZoneId, data.ZoneInstance, spawn.ZonePoiId, mobData.Rank, previous?.SpawnedAt ?? DateTime.Now, previous?.Reporter);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
             case MobReportActions.SpawnRelease when config.EnableSpawnReport:
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.SpawnRelease>(data.Data) ?? throw new InvalidOperationException("invalid spawn release data");
-                    var previous = Config.SpawnStates.FirstOrDefault(x => x.Id == data.Id);
+                    var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);
                     if (previous == default)
                     {
                         DalamudLog.Log.Debug("OnMobReport: previous == null");
                         break;
                     }
-                    var ev = new MobSpawnEvent(data.MobId, data.WorldId, previous.TerritoryTypeId, data.ZoneInstance, previous.ZoneLocationId, mobData.Rank, spawn.Timestamp, previous.Reporter);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.ZoneInstance, previous.ZoneLocationId, mobData.Rank, spawn.Timestamp, previous.Reporter);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
             case MobReportActions.Death when config.EnableDeathReport:
                 var death = JsonSerializer.Deserialize<MobReportData.Death>(data.Data) ?? throw new InvalidOperationException("invalid death data");
-                OnMobDeath(new MobDeathEvent(data.MobId, data.WorldId, data.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
+                OnMobDeath(new MobDeathEvent(mobData.BNpcId, worldId, data.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
                 DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
     }
 
-    private bool CheckSpawnNotificationCondition(PluginConfig.PerRankConfig config, uint worldId, MajorPatch version)
+    private bool CheckSpawnNotificationCondition(PluginConfig.PerRankConfig config, uint worldId, GameExpansion expansion)
     {
         var world = Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(worldId);
         var dataCenter = world?.DataCenter?.Value;
@@ -151,7 +156,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return false;
         }
 
-        if (!config.MajorPatches.TryGetValue(version, out var value) || !value)
+        if (!config.Expansions.TryGetValue(expansion, out var value) || !value)
         {
             DalamudLog.Log.Debug("OnMobReport: MajorPatches");
             return false;
@@ -271,15 +276,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return default;
         }
 
-        var location = session.EmbedData.ZoneLocations.FirstOrDefault(x => x.Id == zonePoiId);
-        if (location == default)
+        if (!FaloopEmbedData.Locations.TryGetValue(zonePoiId, out var location))
         {
             DalamudLog.Log.Debug("CreateMapLink: location == null");
             return default;
         }
 
         var n = 41 / (map.SizeFactor / 100.0);
-        var loc = location.Location.Split([','], 2)
+        var loc = location.Split([','], 2)
             .Select(int.Parse)
             .Select(x => x / 2048.0 * n + 1)
             .Select(x => Math.Round(x, 1))
