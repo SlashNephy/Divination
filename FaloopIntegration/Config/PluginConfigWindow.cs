@@ -47,6 +47,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             ImGui.Indent();
 
+            if (ImGuiEx.CheckboxConfig(Localization.EnableActiveMobUi, ref FaloopIntegration.Instance.Config.EnableActiveMobUi))
+            {
+                FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
+            }
+
             ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
 
             DrawPerRankConfig(Localization.RankS, ref Config.RankS);
@@ -117,11 +122,6 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.CollapsingHeader("Debug"))
         {
-            if (ImGuiEx.CheckboxConfig(Localization.EnableActiveMobUi, ref FaloopIntegration.Instance.Config.EnableActiveMobUi))
-            {
-                FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
-            }
-
             if (ImGui.Button("Emit mock payload"))
             {
                 FaloopIntegration.Instance.EmitMockData();

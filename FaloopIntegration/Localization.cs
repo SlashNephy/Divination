@@ -180,19 +180,49 @@ public static class Localization
 
     public static readonly LocalizedString ActiveMob = new()
     {
-        En = "Active Mobs",
-        Ja = "現在のモブ",
+        En = "Faloop: Active Mobs",
+        Ja = "Faloop: 現在のモブ情報",
     };
 
     public static readonly LocalizedString EnableActiveMobUi = new()
     {
         En = "Enable Active Mobs UI",
-        Ja = "「現在のモブ」パネルを表示",
+        Ja = "「現在のモブ情報」パネルを表示",
     };
 
     public static readonly LocalizedString EnableSimpleReports = new()
     {
         En = "Enable simplified, condensed reports in chat",
         Ja = "簡素な通知メッセージを使用する",
+    };
+
+    public static readonly LocalizedString TableHeaderMob = new()
+    {
+        En = "Mob",
+        Ja = "モブ",
+    };
+
+    public static readonly LocalizedString TableHeaderTime = new()
+    {
+        En = "Time",
+        Ja = "経過時間",
+    };
+
+    public static readonly LocalizedString TableButtonTeleport = new()
+    {
+        En = "Teleport",
+        Ja = "テレポ",
+    };
+
+    public static readonly LocalizedString TeleportingMessage = new()
+    {
+        En = "Teleporting to \"{0}\"...",
+        Ja = "「{0}」にテレポしています...",
+    };
+
+    public static readonly LocalizedString AetheryteLinkInChatPluginNotInstalled = new()
+    {
+        En = "Divination.AetheryteLinkInChat plugin is not installed.",
+        Ja = "Divination.AetheryteLinkInChat プラグインがインストールされていません。",
     };
 }

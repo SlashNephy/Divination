@@ -75,6 +75,9 @@
           "System.Text.Encodings.Web": "8.0.0"
         }
       },
+      "aetherytelinkinchat.ipcmodel": {
+        "type": "Project"
+      },
       "Dalamud.Divination.Common": {
         "type": "Project"
       }

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Numerics;
 using System.Text;
 using Dalamud.Game.Text;
+using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.FaloopIntegration;
 
@@ -73,5 +76,13 @@ public static class Utils
 
         builder.Append(')');
         return builder.ToString();
+    }
+
+    public static SeString CreateMapLink(TerritoryType territoryType, Map map, Vector2 coordinates, int? instance)
+    {
+        var mapLink = SeString.CreateMapLink(territoryType.RowId, map.RowId, coordinates.X, coordinates.Y);
+
+        var instanceIcon = GetInstanceIcon(instance);
+        return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
     }
 }

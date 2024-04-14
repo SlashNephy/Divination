@@ -32,4 +32,9 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference
+            Include="..\AetheryteLinkInChat.IpcModel\AetheryteLinkInChat.IpcModel.csproj" />
+    </ItemGroup>
 </Project>
