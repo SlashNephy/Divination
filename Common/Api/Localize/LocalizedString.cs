@@ -6,8 +6,6 @@ namespace Dalamud.Divination.Common.Api.Localize;
 
 public sealed class LocalizedString
 {
-    private string? cached;
-
     public string En { get; init; } = string.Empty;
     public string? Ja { get; init; }
     public string? Ge { get; init; }
@@ -30,25 +28,16 @@ public sealed class LocalizedString
 
     public override string ToString()
     {
-        if (cached != default)
-        {
-            return cached;
-        }
-
         var api = ServiceContainer.Get<IDalamudApi>();
         switch (api?.ClientState.ClientLanguage)
         {
             case ClientLanguage.Japanese when !string.IsNullOrWhiteSpace(Ja):
-                cached = Ja;
                 return Ja;
             case ClientLanguage.German when !string.IsNullOrWhiteSpace(Ge):
-                cached = Ge;
                 return Ge;
             case ClientLanguage.French when !string.IsNullOrWhiteSpace(Fr):
-                cached = Fr;
                 return Fr;
             default:
-                cached = En;
                 return En;
         }
     }
