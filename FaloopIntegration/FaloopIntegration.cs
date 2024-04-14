@@ -167,12 +167,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
         var currentDataCenter = currentWorld?.DataCenter?.Value;
-        if (currentWorld == default || currentDataCenter == default)
-        {
-            // TODO
-            DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
-            return false;
-        }
 
         if (!config.Expansions.TryGetValue(expansion, out var value) || !value)
         {
@@ -189,9 +183,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         switch ((Jurisdiction)config.Jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region || (config.IncludeOceaniaDataCenter && dataCenter.Region == 4):
-            case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
-            case Jurisdiction.World when world.RowId == currentWorld.RowId:
+            case Jurisdiction.Region when currentDataCenter == default || dataCenter.Region == currentDataCenter?.Region || (config.IncludeOceaniaDataCenter && dataCenter.Region == 4):
+            case Jurisdiction.DataCenter when currentDataCenter == default || dataCenter.RowId == currentDataCenter.RowId:
+            case Jurisdiction.World when currentWorld == default || world.RowId == currentWorld.RowId:
                 return true;
             default:
                 DalamudLog.Log.Verbose("OnMobReport: unmatched");
