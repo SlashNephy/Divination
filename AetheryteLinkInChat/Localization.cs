@@ -10,6 +10,12 @@ public static class Localization
         Ja = "「{0}」にテレポしています...",
     };
 
+    public static readonly LocalizedString TeleportingQuestMessage = new()
+    {
+        En = "Teleport to \"{0}\"",
+        Ja = "「{0}」にテレポ",
+    };
+
     public static readonly LocalizedString QueueTeleportMessage = new()
     {
         En = "Currently unable to execute teleport. Teleport to \"{0}\" has been added to the queue.",
@@ -22,6 +28,12 @@ public static class Localization
         Ja = "キューに追加された「{0}」にテレポしています...",
     };
 
+    public static readonly LocalizedString QueuedTeleportingQuestMessage = new()
+    {
+        En = "Teleport to \"{0}\" (queued)",
+        Ja = "キューに追加された「{0}」にテレポ",
+    };
+
     public static readonly LocalizedString ConfigWindowTitle = new()
     {
         En = "{0} Config",
@@ -31,20 +43,20 @@ public static class Localization
     public static readonly LocalizedString AllowTeleportQueueing = new()
     {
         En = "Allow Teleport Queueing",
-        Ja = "テレポートをキュー可能にする",
+        Ja = "テレポを予約可能にする",
     };
 
     public static readonly LocalizedString QueueTeleportDelay = new()
     {
         En = "Queued Teleport Delay (ms)",
-        Ja = "キューしたテレポートを実行するまでの遅延 (ms)",
+        Ja = "予約したテレポを実行するまでの遅延 (ms)",
     };
 
     public static readonly LocalizedString QueuedTeleportDescription = new()
     {
         En =
             "It can queue a teleportation when it is not possible to execute a teleportation, e.g. you are in combat.\nAfter teleporting becomes possible, the teleportation is executed after the delay set here.\nThis is necessary to prove that you are not cheating!",
-        Ja = "戦闘中などでテレポが実行できないときはテレポをキューします。\nテレポが可能になったあと、ここで設定された遅延を挟んでからテレポを実行します。\nこれはあなたが不正行為を行っていないと証明するために必要です！",
+        Ja = "戦闘中などでテレポが実行できないときはテレポをキューに追加します。\nテレポが可能になったあと、ここで設定された遅延を挟んでからテレポを実行します。\nこれはあなたが不正行為を行っていないと証明するために必要です！",
     };
 
     public static readonly LocalizedString ConsiderTeleportsToOtherWorlds = new()
@@ -106,5 +118,17 @@ public static class Localization
     {
         En = "Lifestream plugin is not available. Please install it.",
         Ja = "Lifestream がインストールされていません。",
+    };
+
+    public static readonly LocalizedString EnableChatNotificationOnTeleport = new()
+    {
+        En = "Enable Chat Notification on Teleport",
+        Ja = "テレポ実行時にチャット通知を有効にする",
+    };
+
+    public static readonly LocalizedString EnableQuestNotificationOnTeleport = new()
+    {
+        En = "Enable Toast Notification on Teleport",
+        Ja = "テレポ実行時にトースト通知を有効にする",
     };
 }

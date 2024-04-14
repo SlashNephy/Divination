@@ -41,7 +41,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         aetheryteLinkPayload = pluginInterface.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);
         lifestreamLinkPayload = pluginInterface.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
-        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface);
+        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface, Dalamud.ToastGui, Config);
         ipcProvider = new IpcProvider(pluginInterface, Dalamud.ClientState, teleporter, solver, Dalamud.DataManager);
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;

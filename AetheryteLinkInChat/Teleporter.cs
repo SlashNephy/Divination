@@ -8,6 +8,7 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
+using Divination.AetheryteLinkInChat.Config;
 using Divination.AetheryteLinkInChat.Solver;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;
@@ -45,9 +46,11 @@ public sealed class Teleporter : IDisposable
     private readonly ICommandManager commandManager;
     private readonly IClientState clientState;
     private readonly DalamudPluginInterface pluginInterface;
+    private readonly IToastGui toastGui;
+    private readonly PluginConfig config;
     private volatile Aetheryte? queuedAetheryte;
 
-    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, DalamudPluginInterface pluginInterface)
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, DalamudPluginInterface pluginInterface, IToastGui toastGui, PluginConfig config)
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;
@@ -55,6 +58,8 @@ public sealed class Teleporter : IDisposable
         this.commandManager = commandManager;
         this.clientState = clientState;
         this.pluginInterface = pluginInterface;
+        this.toastGui = toastGui;
+        this.config = config;
 
         condition.ConditionChange += OnConditionChanged;
     }
@@ -67,7 +72,7 @@ public sealed class Teleporter : IDisposable
         {
             if (QueueTeleport(aetheryte))
             {
-                chatClient.Print(Localization.QueueTeleportMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+                DisplayQueueTeleportingNotification(aetheryte.PlaceName.Value?.Name.RawString);
                 return true;
             }
 
@@ -77,7 +82,7 @@ public sealed class Teleporter : IDisposable
         queuedAetheryte = default;
         if (ExecuteTeleport(aetheryte))
         {
-            chatClient.Print(Localization.TeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+            DisplayTeleportingNotification(aetheryte.PlaceName.Value?.Name.RawString, false);
             return true;
         }
 
@@ -86,7 +91,7 @@ public sealed class Teleporter : IDisposable
 
     private bool QueueTeleport(Aetheryte aetheryte)
     {
-        if (!AetheryteLinkInChat.Instance.Config.AllowTeleportQueueing)
+        if (!config.AllowTeleportQueueing)
         {
             return false;
         }
@@ -126,19 +131,19 @@ public sealed class Teleporter : IDisposable
         queuedAetheryte = default;
         if (aetheryte != default && ExecuteTeleport(aetheryte))
         {
-            chatClient.Print(Localization.QueuedTeleportingMessage.Format(aetheryte.PlaceName.Value?.Name.RawString));
+            DisplayTeleportingNotification(aetheryte.PlaceName.Value?.Name.RawString, true);
             return;
         }
     }
 
     private void OnConditionChanged(ConditionFlag flag, bool value)
     {
-        if (!AetheryteLinkInChat.Instance.Config.AllowTeleportQueueing || IsTeleportUnavailable)
+        if (!config.AllowTeleportQueueing || IsTeleportUnavailable)
         {
             return;
         }
 
-        Task.Delay(AetheryteLinkInChat.Instance.Config.QueuedTeleportDelay)
+        Task.Delay(config.QueuedTeleportDelay)
             .ContinueWith(_ =>
             {
                 TeleportToQueuedAetheryte();
@@ -168,7 +173,7 @@ public sealed class Teleporter : IDisposable
                     return false;
                 }
 
-                chatClient.Print(Localization.TeleportingMessage.Format(world.Name.RawString));
+                DisplayTeleportingNotification(world.Name.RawString, false);
                 DalamudLog.Log.Debug("TeleportToPaths: waiting for {World}", world.Name.RawString);
 
                 // wait until world changed
@@ -188,7 +193,7 @@ public sealed class Teleporter : IDisposable
                 await Task.Delay(500, cancellationToken);
             }
 
-            await Task.Delay(AetheryteLinkInChat.Instance.Config.QueuedTeleportDelay, cancellationToken);
+            await Task.Delay(config.QueuedTeleportDelay, cancellationToken);
 
             switch (path)
             {
@@ -198,7 +203,7 @@ public sealed class Teleporter : IDisposable
                         return false;
                     }
 
-                    chatClient.Print(Localization.TeleportingMessage.Format(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString));
+                    DisplayTeleportingNotification(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString, false);
                     break;
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
                     if (!TeleportToAethernet(aetheryte.Aetheryte))
@@ -207,7 +212,7 @@ public sealed class Teleporter : IDisposable
                         return false;
                     }
 
-                    chatClient.Print(Localization.TeleportingMessage.Format(aetheryte.Aetheryte.AethernetName.Value?.Name.RawString));
+                    DisplayTeleportingNotification(aetheryte.Aetheryte.AethernetName.Value?.Name.RawString, false);
                     break;
                 case BoundaryTeleportPath boundary:
                     throw new NotImplementedException("boundary teleport is not implemented.");
@@ -232,6 +237,42 @@ public sealed class Teleporter : IDisposable
     public bool IsLifestreamAvailable()
     {
         return pluginInterface.InstalledPlugins.Any(x => x.InternalName == "Lifestream" && x.IsLoaded);
+    }
+
+    private void DisplayTeleportingNotification(string? destination, bool isQueued)
+    {
+        if (string.IsNullOrEmpty(destination))
+        {
+            return;
+        }
+
+        if (config.EnableChatNotificationOnTeleport)
+        {
+            var message = (isQueued ? Localization.QueuedTeleportingMessage : Localization.TeleportingMessage).Format(destination);
+            chatClient.Print(message);
+        }
+        if (config.EnableQuestNotificationOnTeleport)
+        {
+            var message = (isQueued ? Localization.QueuedTeleportingQuestMessage : Localization.TeleportingQuestMessage).Format(destination);
+            toastGui.ShowQuest(message, new Dalamud.Game.Gui.Toast.QuestToastOptions()
+            {
+                // Teleport action icon
+                IconId = 111,
+            });
+        }
+    }
+
+    private void DisplayQueueTeleportingNotification(string? destination)
+    {
+        if (string.IsNullOrEmpty(destination))
+        {
+            return;
+        }
+
+        if (config.EnableChatNotificationOnTeleport)
+        {
+            chatClient.Print(Localization.QueueTeleportMessage.Format(destination));
+        }
     }
 
     public void Dispose()

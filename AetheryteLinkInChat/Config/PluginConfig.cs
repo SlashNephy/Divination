@@ -11,4 +11,7 @@ public class PluginConfig : IPluginConfiguration
     public int PreferredGrandCompanyAetheryte;
     public bool ConsiderTeleportsToOtherWorlds;
     public bool EnableLifestreamIntegration;
+
+    public bool EnableChatNotificationOnTeleport = true;
+    public bool EnableQuestNotificationOnTeleport = true;
 }

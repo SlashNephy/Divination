@@ -58,6 +58,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Text(Localization.EnableLifestreamIntegrationDescription);
             ImGui.Unindent();
 
+            ImGui.Checkbox(Localization.EnableChatNotificationOnTeleport, ref Config.EnableChatNotificationOnTeleport);
+            ImGui.Checkbox(Localization.EnableQuestNotificationOnTeleport, ref Config.EnableQuestNotificationOnTeleport);
+
             ImGui.Separator();
 
             if (ImGui.Button(Localization.SaveConfigButton))
