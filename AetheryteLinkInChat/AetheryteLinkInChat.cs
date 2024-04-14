@@ -12,6 +12,7 @@ using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Plugin;
 using Divination.AetheryteLinkInChat.Config;
+using Divination.AetheryteLinkInChat.Ipc;
 using Divination.AetheryteLinkInChat.Payloads;
 using Divination.AetheryteLinkInChat.Solver;
 
@@ -30,6 +31,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
     private readonly DalamudLinkPayload lifestreamLinkPayload;
     private readonly AetheryteSolver solver;
     private readonly Teleporter teleporter;
+    private readonly IpcProvider ipcProvider;
 
     private CancellationTokenSource? lifestreamCancellation;
 
@@ -40,6 +42,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         lifestreamLinkPayload = pluginInterface.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
         teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface);
+        ipcProvider = new IpcProvider(pluginInterface, Dalamud.ClientState, teleporter, solver, Dalamud.DataManager);
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
         Dalamud.CommandManager.AddHandler(TeleportGcCommand,
@@ -261,5 +264,6 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         Dalamud.CommandManager.RemoveHandler(TeleportGcCommand);
         teleporter.Dispose();
         lifestreamCancellation?.Dispose();
+        ipcProvider.Dispose();
     }
 }

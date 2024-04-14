@@ -30,7 +30,8 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 
-        <ProjectReference Include="..\Common\Common.csproj"/>
+        <ProjectReference Include="..\Common\Common.csproj" />
+        <ProjectReference Include="..\AetheryteLinkInChat.IpcModel\AetheryteLinkInChat.IpcModel.csproj" />
     </ItemGroup>
 
     <ItemGroup>

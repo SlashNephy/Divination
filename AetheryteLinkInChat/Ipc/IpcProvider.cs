@@ -1,0 +1,74 @@
+﻿using System;
+using System.Linq;
+using System.Threading;
+using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Plugin;
+using Dalamud.Plugin.Ipc;
+using Dalamud.Plugin.Services;
+using Divination.AetheryteLinkInChat.IpcModel;
+using Divination.AetheryteLinkInChat.Solver;
+using Lumina.Excel.GeneratedSheets;
+
+namespace Divination.AetheryteLinkInChat.Ipc;
+
+public class IpcProvider : IDisposable
+{
+    private readonly Teleporter teleporter;
+    private readonly IClientState clientState;
+    private readonly AetheryteSolver solver;
+    private readonly IDataManager dataManager;
+    private readonly ICallGateProvider<TeleportPayload, bool> teleport;
+    private readonly CancellationTokenSource cancellation = new();
+
+    public IpcProvider(DalamudPluginInterface pluginInterface, IClientState clientState, Teleporter teleporter, AetheryteSolver solver, IDataManager dataManager)
+    {
+        this.teleporter = teleporter;
+        this.clientState = clientState;
+        this.solver = solver;
+        this.dataManager = dataManager;
+
+        teleport = pluginInterface.GetIpcProvider<TeleportPayload, bool>(TeleportPayload.Name);
+        teleport.RegisterFunc(OnTeleport);
+    }
+
+    private bool OnTeleport(TeleportPayload payload)
+    {
+        DalamudLog.Log.Debug("OnTeleport: {Payload}", payload);
+
+        var world = clientState.LocalPlayer?.CurrentWorld?.GameData;
+        if (payload.WorldId.HasValue)
+        {
+            world = dataManager.GetExcelSheet<World>()?.GetRow(payload.WorldId.Value);
+        }
+
+        var mapLink = new MapLinkPayload(payload.TerritoryTypeId, payload.MapId, payload.Coordinates.X, payload.Coordinates.Y);
+        var paths = solver.CalculateTeleportPathsForMapLink(mapLink).ToList();
+        if (paths.Count == 0)
+        {
+            DalamudLog.Log.Debug("OnTeleport: paths.Count == 0");
+            return false;
+        }
+
+        // TODO: handling cancellation
+
+        teleporter.TeleportToPaths(paths, world, cancellation.Token).ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                DalamudLog.Log.Debug("OnTeleport: task.IsCompleted");
+            }
+            else
+            {
+                DalamudLog.Log.Warning(task.Exception, "OnTeleport: task.IsFaulted");
+            }
+        });
+        return true;
+    }
+
+    public void Dispose()
+    {
+        teleport.UnregisterFunc();
+        cancellation.Cancel();
+    }
+}
