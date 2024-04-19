@@ -111,12 +111,17 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case MobReportActions.Spawn when config.EnableSpawnReport:
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.Spawn>(data.Data) ?? throw new InvalidOperationException("invalid spawn data");
+                    if (!FaloopEmbedData.TerritoryTypes.TryGetValue(spawn.ZoneId, out var territoryTypeId))
+                    {
+                        DalamudLog.Log.Warning("OnMobReport: unknown zone id found: {ZoneId}", spawn.ZoneId);
+                        return;
+                    }
                     if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiIds?.FirstOrDefault() ?? default, out var location))
                     {
-                        DalamudLog.Log.Debug("OnMobReport: location == null");
+                        DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiIds?.FirstOrDefault() ?? default);
                     }
 
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, spawn.ZoneId, data.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
                     OnMobSpawn(ev, config.Channel);
                     DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                     break;
@@ -124,13 +129,18 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case MobReportActions.SpawnLocation when config.EnableSpawnReport:
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.SpawnLocation>(data.Data) ?? throw new InvalidOperationException("invalid spawn location data");
+                    if (!FaloopEmbedData.TerritoryTypes.TryGetValue(spawn.ZoneId, out var territoryTypeId))
+                    {
+                        DalamudLog.Log.Warning("OnMobReport: unknown zone id found: {ZoneId}", spawn.ZoneId);
+                        return;
+                    }
                     if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiId, out var location))
                     {
-                        DalamudLog.Log.Debug("OnMobReport: location == null");
+                        DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiId);
                     }
 
                     var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, spawn.ZoneId, data.ZoneInstance, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter, location);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.ZoneInstance, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter, location);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
