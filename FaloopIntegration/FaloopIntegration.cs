@@ -179,7 +179,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
         var currentDataCenter = currentWorld?.DataCenter?.Value;
-        if (currentWorld == default || currentDataCenter == default)
+        var homeDataCenter = Dalamud.ClientState.LocalPlayer?.HomeWorld?.GameData?.DataCenter.Value;
+        if (currentWorld == default || currentDataCenter == default || homeDataCenter == default)
         {
             // return true if LocalPlayer cannot be obtained
             DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
@@ -189,7 +190,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         switch ((Jurisdiction)config.Jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region || (config.IncludeOceaniaDataCenter && dataCenter.Region == 4):
+            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region || (config.IncludeOceaniaDataCenter && (dataCenter.Region == 4 || dataCenter.Region == homeDataCenter.Region)):
             case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
             case Jurisdiction.World when world.RowId == currentWorld.RowId:
                 return true;
