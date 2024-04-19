@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Dalamud.Divination.Common.Api.Dalamud;
+using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Plugin.Services;
@@ -132,13 +133,52 @@ public class AetheryteSolver(IDataManager dataManager)
 
     public World? DetectWorld(SeString message, World? currentWorld)
     {
+        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
+
+        // trim texts within MapLinkPayload
         const string linkPattern = ".*?\\)";
         var rgx = new Regex(linkPattern);
-        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
         text = rgx.Replace(text, "");
+        // replace Boxed letters with alphabets
+        text = text.Select(x => ReplaceSeIconChar(x)).ToString()!;
+
         return worldSheet.Where(x => x.IsPublic)
             .FirstOrDefault(x => text.Contains(x.Name.RawString, StringComparison.OrdinalIgnoreCase))
             ?? currentWorld;
+    }
+
+    private char ReplaceSeIconChar(char c)
+    {
+        return c switch
+        {
+            (char)SeIconChar.BoxedLetterA => 'A',
+            (char)SeIconChar.BoxedLetterB => 'B',
+            (char)SeIconChar.BoxedLetterC => 'C',
+            (char)SeIconChar.BoxedLetterD => 'D',
+            (char)SeIconChar.BoxedLetterE => 'E',
+            (char)SeIconChar.BoxedLetterF => 'F',
+            (char)SeIconChar.BoxedLetterG => 'G',
+            (char)SeIconChar.BoxedLetterH => 'H',
+            (char)SeIconChar.BoxedLetterI => 'I',
+            (char)SeIconChar.BoxedLetterJ => 'J',
+            (char)SeIconChar.BoxedLetterK => 'K',
+            (char)SeIconChar.BoxedLetterL => 'L',
+            (char)SeIconChar.BoxedLetterM => 'M',
+            (char)SeIconChar.BoxedLetterN => 'N',
+            (char)SeIconChar.BoxedLetterO => 'O',
+            (char)SeIconChar.BoxedLetterP => 'P',
+            (char)SeIconChar.BoxedLetterQ => 'Q',
+            (char)SeIconChar.BoxedLetterR => 'R',
+            (char)SeIconChar.BoxedLetterS => 'S',
+            (char)SeIconChar.BoxedLetterT => 'T',
+            (char)SeIconChar.BoxedLetterU => 'U',
+            (char)SeIconChar.BoxedLetterV => 'V',
+            (char)SeIconChar.BoxedLetterW => 'W',
+            (char)SeIconChar.BoxedLetterX => 'X',
+            (char)SeIconChar.BoxedLetterY => 'Y',
+            (char)SeIconChar.BoxedLetterZ => 'Z',
+            _ => c,
+        };
     }
 
     private IEnumerable<ITeleportPath[]> CalculateTeleportPaths(TerritoryType territoryType, Map map, uint depth = 0)
