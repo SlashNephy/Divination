@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -119,6 +119,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiIds?.FirstOrDefault() ?? default, out var location))
                     {
                         DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiIds?.FirstOrDefault() ?? default);
+                        if (Config.IgnorePendingReports)
+                        {
+                            return;
+                        }
                     }
 
                     var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
@@ -137,6 +141,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiId, out var location))
                     {
                         DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiId);
+                        if (Config.IgnorePendingReports)
+                        {
+                            return;
+                        }
                     }
 
                     var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);

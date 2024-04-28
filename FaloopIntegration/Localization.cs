@@ -225,4 +225,10 @@ public static class Localization
         En = "Divination.AetheryteLinkInChat plugin is not installed.",
         Ja = "Divination.AetheryteLinkInChat プラグインがインストールされていません。",
     };
+
+    public static readonly LocalizedString IgnorePendingReports = new()
+    {
+        En = "Ignore Pending Reports",
+        Ja = "座標が未確定のスポーン通知を非表示にする",
+    };
 }
