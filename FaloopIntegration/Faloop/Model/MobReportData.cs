@@ -20,9 +20,7 @@ public record MobReportData(
 
     public record Reporter([property: JsonPropertyName("name")] string Name);
 
-    public record SpawnLocation(
-        [property: JsonPropertyName("zoneId2")] string ZoneId,
-        [property: JsonPropertyName("zonePoiId")] int ZonePoiId);
+    public record SpawnLocation([property: JsonPropertyName("zonePoiId")] int ZonePoiId);
 
     public record SpawnRelease(
         [property: JsonConverter(typeof(UnixEpochMillisecondsTimeJsonConverter))]
