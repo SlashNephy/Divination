@@ -140,7 +140,7 @@ public class AetheryteSolver(IDataManager dataManager)
         var rgx = new Regex(linkPattern);
         text = rgx.Replace(text, "");
         // replace Boxed letters with alphabets
-        text = text.Select(x => ReplaceSeIconChar(x)).ToString()!;
+        text = string.Join(string.Empty, text.Select(ReplaceSeIconChar));
 
         return worldSheet.Where(x => x.IsPublic)
             .FirstOrDefault(x => text.Contains(x.Name.RawString, StringComparison.OrdinalIgnoreCase))
