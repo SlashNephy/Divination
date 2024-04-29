@@ -120,6 +120,12 @@ public static class Localization
         Ja = "Lifestream がインストールされていません。",
     };
 
+    public static readonly LocalizedString DisplayLineBreak = new()
+    {
+        En = "Line break before teleport links",
+        Ja = "テレポリンクの前に改行を入れる",
+    };
+
     public static readonly LocalizedString EnableChatNotificationOnTeleport = new()
     {
         En = "Enable Chat Notification on Teleport",

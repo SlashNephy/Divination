@@ -97,46 +97,41 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 Dalamud.ClientState.TerritoryType);
         }
 
+        var payloads = new List<Payload>();
         foreach (var (index, path) in paths.Select((x, i) => (i, x)))
         {
             switch (path)
             {
                 // テレポ可能なエーテライト
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
-                    var payloads = new List<Payload>
-                    {
+                    payloads.AddRange([
                         new IconPayload(BitmapFontIcon.Aetheryte),
                         new UIForegroundPayload(069),
+                        ..SeString.TextArrowPayloads,
                         aetheryteLinkPayload,
                         new TextPayload(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString),
                         new AetherytePayload(aetheryte.Aetheryte).ToRawPayload(),
                         RawPayload.LinkTerminator,
                         UIForegroundPayload.UIForegroundOff,
-                    };
-                    payloads.InsertRange(2, SeString.TextArrowPayloads);
-
-                    message = message.Append(payloads);
+                    ]);
                     break;
                 // 仮設エーテライト・都市内エーテライト
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
-                    message = message.Append(
-                    [
+                    payloads.AddRange([
                         new IconPayload(BitmapFontIcon.Aethernet),
                         new TextPayload(aetheryte.Aetheryte.AethernetName.Value?.Name.RawString),
                     ]);
                     break;
                 // マップ境界
                 case BoundaryTeleportPath boundary:
-                    message = message.Append(
-                    [
+                    payloads.AddRange([
                         new IconPayload(BitmapFontIcon.FlyZone),
                         new TextPayload(boundary.ConnectedMarker.PlaceNameSubtext.Value?.Name.RawString),
                     ]);
                     break;
                 // ワールド間テレポ
                 case WorldTeleportPath world:
-                    message = message.Append(
-                    [
+                    payloads.AddRange([
                         new IconPayload(BitmapFontIcon.Aetheryte),
                         new UIForegroundPayload(069),
                         aetheryteLinkPayload,
@@ -153,7 +148,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
             if (index != paths.Count - 1)
             {
-                message = message.Append(new TextPayload($" {SeIconChar.ArrowRight.ToIconString()} "));
+                payloads.Add(new TextPayload($" {SeIconChar.ArrowRight.ToIconString()} "));
             }
         }
 
@@ -161,7 +156,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         {
             var world = solver.DetectWorld(message, Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData);
 
-            message = message.Append([
+            payloads.AddRange([
                 new TextPayload(" ["),
                 new IconPayload(BitmapFontIcon.Aetheryte),
                 new UIForegroundPayload(069),
@@ -173,6 +168,16 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 UIForegroundPayload.UIForegroundOff,
                 new TextPayload("]"),
             ]);
+        }
+
+        if (payloads.Count > 0)
+        {
+            if (Config.DisplayLineBreak)
+            {
+                payloads.Insert(0, new TextPayload("\n"));
+            }
+
+            message.Payloads.AddRange(payloads);
         }
     }
 
