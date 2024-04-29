@@ -66,7 +66,7 @@ public class AetheryteSolver(IDataManager dataManager)
                 return distance;
             });
 
-        return paths?.Reverse() ?? Array.Empty<ITeleportPath>();
+        return paths?.Reverse() ?? [];
     }
 
     public void AppendGrandCompanyAetheryte(List<ITeleportPath> paths,
@@ -147,7 +147,7 @@ public class AetheryteSolver(IDataManager dataManager)
             ?? currentWorld;
     }
 
-    private char ReplaceSeIconChar(char c)
+    private static char ReplaceSeIconChar(char c)
     {
         return c switch
         {
@@ -230,6 +230,18 @@ public class AetheryteSolver(IDataManager dataManager)
         {
             // 対象のエリア内に限定
             if (aetheryte.Territory.Row != territoryType.RowId)
+            {
+                continue;
+            }
+
+            // skip invisible aetherytes
+            if (aetheryte.Invisible)
+            {
+                continue;
+            }
+
+            // skip ignored aetherytes
+            if (AetheryteLinkInChat.Instance.Config.IgnoredAetheryteIds.Contains(aetheryte.RowId))
             {
                 continue;
             }

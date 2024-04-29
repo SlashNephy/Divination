@@ -131,4 +131,10 @@ public static class Localization
         En = "Enable Toast Notification on Teleport",
         Ja = "テレポ実行時にトースト通知を有効にする",
     };
+
+    public static readonly LocalizedString IgnoredAetherytes = new()
+    {
+        En = "You can set a specific aetherite not to be used in route calculations.",
+        Ja = "特定のエーテライトを経路計算で使用しないように設定できます。",
+    };
 }

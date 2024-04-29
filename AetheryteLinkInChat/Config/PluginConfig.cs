@@ -1,4 +1,5 @@
-﻿using Dalamud.Configuration;
+﻿using System.Collections.Generic;
+using Dalamud.Configuration;
 
 namespace Divination.AetheryteLinkInChat.Config;
 
@@ -14,4 +15,6 @@ public class PluginConfig : IPluginConfiguration
 
     public bool EnableChatNotificationOnTeleport = true;
     public bool EnableQuestNotificationOnTeleport = true;
+
+    public HashSet<uint> IgnoredAetheryteIds = [];
 }

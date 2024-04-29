@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
@@ -12,13 +14,20 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     private const int MaxQueuedTeleportDelay = 5000;
 
     private readonly string[] grandCompanyAetheryteNames;
+    private readonly ImmutableList<Aetheryte> aetherytes;
 
     public PluginConfigWindow()
     {
         var sheet = AetheryteLinkInChat.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>();
+        if (sheet == default)
+        {
+            throw new InvalidOperationException("aetheryte sheet is null");
+        }
+
         grandCompanyAetheryteNames = Enum.GetValues<GrandCompanyAetheryte>()
             .Select(x => sheet?.GetRow((uint)x)?.PlaceName.Value?.Name.RawString ?? Enum.GetName(x) ?? string.Empty)
             .ToArray();
+        aetherytes = sheet.Where(x => x.IsAetheryte && !x.Invisible && x.RowId != 1).ToImmutableList();
     }
 
     public override void Draw()
@@ -26,6 +35,29 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         if (ImGui.Begin(Localization.ConfigWindowTitle.Format(AetheryteLinkInChat.Instance.Name),
             ref IsOpen,
             ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoResize))
+        {
+            if (ImGui.BeginTabBar("tabs"))
+            {
+                DrawGeneralTab();
+                DrawAetheryteListTab();
+                ImGui.EndTabBar();
+            }
+
+            ImGui.Separator();
+
+            if (ImGui.Button(Localization.SaveConfigButton))
+            {
+                IsOpen = false;
+                Interface.SavePluginConfig(Config);
+            }
+
+            ImGui.End();
+        }
+    }
+
+    private void DrawGeneralTab()
+    {
+        if (ImGui.BeginTabItem("General"))
         {
             ImGui.Checkbox(Localization.AllowTeleportQueueing, ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
@@ -61,15 +93,60 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox(Localization.EnableChatNotificationOnTeleport, ref Config.EnableChatNotificationOnTeleport);
             ImGui.Checkbox(Localization.EnableQuestNotificationOnTeleport, ref Config.EnableQuestNotificationOnTeleport);
 
-            ImGui.Separator();
+            ImGui.EndTabItem();
+        }
+    }
 
-            if (ImGui.Button(Localization.SaveConfigButton))
+    private void DrawAetheryteListTab()
+    {
+        if (ImGui.BeginTabItem("Aetheryte List"))
+        {
+            ImGui.Text(Localization.IgnoredAetherytes);
+
+            if (ImGui.BeginTable("aethetytes", 3, ImGuiTableFlags.RowBg | ImGuiTableFlags.Borders | ImGuiTableFlags.ScrollY, new Vector2(500f, 600f)))
             {
-                IsOpen = false;
-                Interface.SavePluginConfig(Config);
+                ImGui.TableSetupColumn("ID");
+                ImGui.TableSetupColumn("Name");
+                ImGui.TableSetupColumn(string.Empty);
+                ImGui.TableHeadersRow();
+
+                foreach (var aetheryte in aetherytes)
+                {
+                    ImGui.TableNextRow();
+
+                    ImGui.TableNextColumn();
+                    ImGui.Text(aetheryte.RowId.ToString());
+
+                    ImGui.TableNextColumn();
+                    var aetheryteName = aetheryte.PlaceName.Value?.Name.RawString ?? "???";
+                    var zoneName = aetheryte.Map.Value?.PlaceName.Value?.Name.RawString ?? "???";
+
+                    if (Config.IgnoredAetheryteIds.Contains(aetheryte.RowId))
+                    {
+                        ImGui.TextDisabled($"{aetheryteName} ({zoneName})");
+
+                        ImGui.TableNextColumn();
+                        if (ImGui.Button($"Unignore##{aetheryte.RowId}"))
+                        {
+                            Config.IgnoredAetheryteIds.Remove(aetheryte.RowId);
+                        }
+                    }
+                    else
+                    {
+                        ImGui.Text($"{aetheryteName} ({zoneName})");
+
+                        ImGui.TableNextColumn();
+                        if (ImGui.Button($"Ignore##{aetheryte.RowId}"))
+                        {
+                            Config.IgnoredAetheryteIds.Add(aetheryte.RowId);
+                        }
+                    }
+                }
+
+                ImGui.EndTable();
             }
 
-            ImGui.End();
+            ImGui.EndTabItem();
         }
     }
 }
