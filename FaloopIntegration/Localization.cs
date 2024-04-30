@@ -172,6 +172,12 @@ public static class Localization
         Ja = "孤立した討伐報告",
     };
 
+    public static readonly LocalizedString ReportIgnorePendingReport = new()
+    {
+        En = "Pending Report (e.g. coordinates not yet confirmed)",
+        Ja = "座標が未確定の報告",
+    };
+
     public static readonly LocalizedString ReportIgnoreOrphanDeathReportDescription = new()
     {
         En = "If enabled, the plugin will ignore reports of mob kills for which it has not received a spawn notification.",
@@ -224,11 +230,5 @@ public static class Localization
     {
         En = "Divination.AetheryteLinkInChat plugin is not installed.",
         Ja = "Divination.AetheryteLinkInChat プラグインがインストールされていません。",
-    };
-
-    public static readonly LocalizedString IgnorePendingReports = new()
-    {
-        En = "Ignore Pending Reports",
-        Ja = "座標が未確定のスポーン通知を非表示にする",
     };
 }

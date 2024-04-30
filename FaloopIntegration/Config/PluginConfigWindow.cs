@@ -108,6 +108,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                     ImGui.SameLine();
                     ImGuiEx.HelpMarker(Localization.ReportIgnoreOrphanDeathReportDescription);
 
+                    ImGui.Checkbox($"{Localization.ReportIgnorePendingReport}##{label}", ref config.SkipPendingReport);
+
                     ImGui.Unindent();
                 }
 

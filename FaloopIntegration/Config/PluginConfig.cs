@@ -25,7 +25,6 @@ public class PluginConfig : IPluginConfiguration
     public List<MobSpawnEvent> SpawnStates = [];
     public bool EnableActiveMobUi;
     public bool EnableSimpleReports;
-    public bool IgnorePendingReports;
 
     public class PerRankConfig
     {
@@ -45,5 +44,6 @@ public class PluginConfig : IPluginConfiguration
         public bool EnableDeathReport;
         public bool DisableInDuty;
         public bool SkipOrphanReport;
+        public bool SkipPendingReport;
     }
 }
