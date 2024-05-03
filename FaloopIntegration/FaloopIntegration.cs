@@ -49,7 +49,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.OnPong += OnPong;
 
         var ipc = new AetheryteLinkInChatIpc(pluginInterface, Divination.Chat);
-        Ui = new ActiveMobUi(ipc, Divination.Chat)
+        Ui = new ActiveMobUi(ipc, Divination.Chat, Dalamud.GameGui)
         {
             IsDrawing = Config.EnableActiveMobUi
         };

@@ -8,6 +8,7 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Plugin.Services;
 using Divination.FaloopIntegration.Ipc;
 using ImGuiNET;
 
@@ -20,11 +21,13 @@ public class ActiveMobUi : IWindow, IDisposable
     private readonly CancellationTokenSource cancellation = new();
     private readonly AetheryteLinkInChatIpc ipc;
     private readonly IChatClient chatClient;
+    private readonly IGameGui gameGui;
 
-    public ActiveMobUi(AetheryteLinkInChatIpc ipc, IChatClient chatClient)
+    public ActiveMobUi(AetheryteLinkInChatIpc ipc, IChatClient chatClient, IGameGui gameGui)
     {
         this.ipc = ipc;
         this.chatClient = chatClient;
+        this.gameGui = gameGui;
         cleanupTask = new Task(CleanUp);
         cleanupTask.Start();
     }
@@ -85,6 +88,15 @@ public class ActiveMobUi : IWindow, IDisposable
             else
             {
                 DalamudLog.Log.Warning("Failed to teleport: {Event}", mob);
+            }
+        }
+        if (mob.Coordinates.HasValue)
+        {
+            ImGui.SameLine();
+            if (ImGui.Button($"{Localization.TableButtonOpenMap}##{mob.Id}"))
+            {
+                var mapLink = new MapLinkPayload(mob.TerritoryTypeId, mob.Map.RowId, mob.Coordinates.Value.X, mob.Coordinates.Value.Y);
+                gameGui.OpenMapWithMapLink(mapLink);
             }
         }
     }

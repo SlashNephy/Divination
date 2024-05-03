@@ -220,6 +220,12 @@ public static class Localization
         Ja = "テレポ",
     };
 
+    public static readonly LocalizedString TableButtonOpenMap = new()
+    {
+        En = "Open map",
+        Ja = "マップを開く",
+    };
+
     public static readonly LocalizedString TeleportingMessage = new()
     {
         En = "Teleporting to \"{0}\"...",
