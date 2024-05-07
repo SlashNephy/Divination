@@ -31,6 +31,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private readonly FaloopSocketIOClient socket = new();
     private readonly FaloopSession session = new();
     public readonly ActiveMobUi Ui;
+    private World? currentWorld;
+    private World? homeWorld;
 
     public FaloopIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -48,6 +50,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.OnPing += OnPing;
         socket.OnPong += OnPong;
 
+        OnLogin();
+        Dalamud.ClientState.Login += OnLogin;
+
         var ipc = new AetheryteLinkInChatIpc(pluginInterface, Divination.Chat);
         Ui = new ActiveMobUi(ipc, Divination.Chat, Dalamud.GameGui, Config, Dalamud.Condition)
         {
@@ -57,6 +62,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         Connect();
         CleanSpawnHistories();
+    }
+
+    private void OnLogin()
+    {
+        currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld?.GameData;
+        homeWorld = Dalamud.ClientState.LocalPlayer?.HomeWorld?.GameData;
     }
 
     private void OnConnected()
@@ -195,14 +206,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return false;
         }
 
-        var currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData;
         var currentDataCenter = currentWorld?.DataCenter?.Value;
-        var homeDataCenter = Dalamud.ClientState.LocalPlayer?.HomeWorld?.GameData?.DataCenter.Value;
+        var homeDataCenter = homeWorld?.DataCenter.Value;
         if (currentWorld == default || currentDataCenter == default || homeDataCenter == default)
         {
-            // return true if LocalPlayer cannot be obtained
-            DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null");
-            return true;
+            DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null || homeDataCenter == null");
+            return false;
         }
 
         switch ((Jurisdiction)config.Jurisdiction)
@@ -388,6 +397,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.Dispose();
         Ui.Dispose();
         Dalamud.PluginInterface.UiBuilder.Draw -= Ui.Draw;
+        Dalamud.ClientState.Login -= OnLogin;
     }
 
     public string MainCommandPrefix => "/faloop";
