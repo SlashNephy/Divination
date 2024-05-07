@@ -15,7 +15,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             DrawAccountConfig();
             DrawPerRankConfigs();
+#if DEBUG
             DrawDebugConfig();
+#endif
 
             if (ImGui.Button(Localization.SaveConfigButton))
             {
@@ -51,6 +53,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             {
                 FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
             }
+            ImGuiEx.CheckboxConfig(Localization.HideActiveMobUiInDuty, ref FaloopIntegration.Instance.Config.HideActiveMobUiInDuty);
 
             ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
 

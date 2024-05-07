@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Numerics;
 using System.Text;
+using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Plugin.Services;
 using Lumina.Excel.GeneratedSheets;
 
 namespace Divination.FaloopIntegration;
@@ -84,5 +86,10 @@ public static class Utils
 
         var instanceIcon = GetInstanceIcon(instance);
         return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
+    }
+
+    public static bool IsInDuty(ICondition condition)
+    {
+        return condition[ConditionFlag.BoundByDuty] || condition[ConditionFlag.BoundByDuty56] || condition[ConditionFlag.BoundByDuty95];
     }
 }

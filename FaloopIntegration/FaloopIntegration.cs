@@ -49,7 +49,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.OnPong += OnPong;
 
         var ipc = new AetheryteLinkInChatIpc(pluginInterface, Divination.Chat);
-        Ui = new ActiveMobUi(ipc, Divination.Chat, Dalamud.GameGui)
+        Ui = new ActiveMobUi(ipc, Divination.Chat, Dalamud.GameGui, Config, Dalamud.Condition)
         {
             IsDrawing = Config.EnableActiveMobUi
         };
@@ -189,7 +189,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return false;
         }
 
-        if (config.DisableInDuty && Dalamud.Condition[ConditionFlag.BoundByDuty])
+        if (config.DisableInDuty && Utils.IsInDuty(Dalamud.Condition))
         {
             DalamudLog.Log.Debug("OnMobReport: in duty");
             return false;

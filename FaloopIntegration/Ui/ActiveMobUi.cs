@@ -9,6 +9,7 @@ using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Plugin.Services;
+using Divination.FaloopIntegration.Config;
 using Divination.FaloopIntegration.Ipc;
 using ImGuiNET;
 
@@ -22,12 +23,16 @@ public class ActiveMobUi : IWindow, IDisposable
     private readonly AetheryteLinkInChatIpc ipc;
     private readonly IChatClient chatClient;
     private readonly IGameGui gameGui;
+    private readonly PluginConfig config;
+    private readonly ICondition condition;
 
-    public ActiveMobUi(AetheryteLinkInChatIpc ipc, IChatClient chatClient, IGameGui gameGui)
+    public ActiveMobUi(AetheryteLinkInChatIpc ipc, IChatClient chatClient, IGameGui gameGui, PluginConfig config, ICondition condition)
     {
         this.ipc = ipc;
         this.chatClient = chatClient;
         this.gameGui = gameGui;
+        this.config = config;
+        this.condition = condition;
         cleanupTask = new Task(CleanUp);
         cleanupTask.Start();
     }
@@ -35,7 +40,7 @@ public class ActiveMobUi : IWindow, IDisposable
     private bool isDrawing = true;
     public bool IsDrawing
     {
-        get => isDrawing && !mobs.IsEmpty;
+        get => isDrawing && !mobs.IsEmpty && (!config.HideActiveMobUiInDuty || !Utils.IsInDuty(condition));
         set => isDrawing = value;
     }
 

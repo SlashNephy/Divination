@@ -196,6 +196,12 @@ public static class Localization
         Ja = "「現在のモブ情報」パネルを表示",
     };
 
+    public static readonly LocalizedString HideActiveMobUiInDuty = new()
+    {
+        En = "Hide Active Mobs UI in Duty",
+        Ja = "コンテンツ中は「現在のモブ情報」パネルを隠す",
+    };
+
     public static readonly LocalizedString EnableSimpleReports = new()
     {
         En = "Enable simplified, condensed reports in chat",
