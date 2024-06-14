@@ -278,6 +278,18 @@ public static class FaloopEmbedData
         {"seraph",405},
         {"halicarnassus",406},
         {"maduin",407},
+        {"cuchulainn", 408},
+        {"kraken", 409},
+        {"rafflesia", 410},
+        {"golem", 411},
+        {"titania", 412},
+        {"innocence", 413},
+        {"pixie", 414},
+        {"tycoon", 415},
+        {"wyvern", 416},
+        {"lakshmi", 417},
+        {"eden", 418},
+        {"syldra", 419},
     });
 
     // Faloop Zone ID (string) => Game TerritoryType ID (uint)
