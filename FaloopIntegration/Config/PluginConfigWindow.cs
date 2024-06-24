@@ -13,11 +13,36 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.Begin(Localization.ConfigWindowTitle.Format(FaloopIntegration.Instance.Name), ref IsOpen))
         {
-            DrawAccountConfig();
-            DrawPerRankConfigs();
+            if (ImGui.BeginTabBar("configuration"))
+            {
+                if (ImGui.BeginTabItem("General"))
+                {
+                    DrawGeneralTab();
+                    ImGui.EndTabItem();
+                }
+
+                if (ImGui.BeginTabItem(Localization.RankS))
+                {
+                    DrawPerRankTab("rank_s", ref Config.RankS);
+                    ImGui.EndTabItem();
+                }
+
+                if (ImGui.BeginTabItem(Localization.RankFate))
+                {
+                    DrawPerRankTab("fate", ref Config.Fate);
+                    ImGui.EndTabItem();
+                }
+
 #if DEBUG
-            DrawDebugConfig();
+                if (ImGui.BeginTabItem("Debug"))
+                {
+                    DrawDebugTab();
+                    ImGui.EndTabItem();
+                }
 #endif
+
+                ImGui.EndTabBar();
+            }
 
             if (ImGui.Button(Localization.SaveConfigButton))
             {
@@ -30,107 +55,82 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         }
     }
 
-    private void DrawAccountConfig()
+    private void DrawGeneralTab()
     {
+        ImGui.Text("Status: connected");
+
         if (ImGui.CollapsingHeader(Localization.Account))
         {
             ImGui.Indent();
 
             ImGui.InputText(Localization.AccountUsername, ref Config.FaloopUsername, 32);
-            ImGui.InputText(Localization.AccountPassword, ref Config.FaloopPassword, 128);
+            ImGui.InputText(Localization.AccountPassword, ref Config.FaloopPassword, 128, ImGuiInputTextFlags.Password);
 
             ImGui.Unindent();
         }
-    }
 
-    private void DrawPerRankConfigs()
-    {
-        if (ImGui.CollapsingHeader(Localization.NotificationPreferences))
+        if (ImGuiEx.CheckboxConfig(Localization.EnableActiveMobUi, ref FaloopIntegration.Instance.Config.EnableActiveMobUi))
         {
-            ImGui.Indent();
-
-            if (ImGuiEx.CheckboxConfig(Localization.EnableActiveMobUi, ref FaloopIntegration.Instance.Config.EnableActiveMobUi))
-            {
-                FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
-            }
+            FaloopIntegration.Instance.Ui.IsDrawing = FaloopIntegration.Instance.Config.EnableActiveMobUi;
+        }
+        if (FaloopIntegration.Instance.Config.EnableActiveMobUi)
+        {
             ImGuiEx.CheckboxConfig(Localization.HideActiveMobUiInDuty, ref FaloopIntegration.Instance.Config.HideActiveMobUiInDuty);
-
-            ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
-
-            DrawPerRankConfig(Localization.RankS, ref Config.RankS);
-            DrawPerRankConfig(Localization.RankFate, ref Config.Fate);
-
-            ImGui.Unindent();
         }
+
+        ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
     }
 
-    private void DrawPerRankConfig(string label, ref PluginConfig.PerRankConfig config)
+    private void DrawPerRankTab(string id, ref PluginConfig.PerRankConfig config)
     {
-        if (ImGui.CollapsingHeader(label))
+        ImGui.Combo($"{Localization.ReportChannel}##{id}", ref config.Channel, channels, channels.Length);
+
+        ImGui.Checkbox($"{Localization.EnableSpawnReport}##{id}", ref config.EnableSpawnReport);
+        ImGui.SameLine();
+        ImGui.Checkbox($"{Localization.EnableDeathReport}##{id}", ref config.EnableDeathReport);
+
+        ImGui.Combo($"{Localization.ReportJurisdiction}##{id}", ref config.Jurisdiction, jurisdictions, jurisdictions.Length);
+        ImGui.SameLine();
+        ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
+        if (config.Jurisdiction >= (int)Jurisdiction.Region)
+        {
+            ImGui.Checkbox($"{Localization.IncludeOceaniaDataCenter}##{id}", ref config.IncludeOceaniaDataCenter);
+        }
+
+        ImGui.Text(Localization.ReportExpansions);
+        ImGui.Indent();
+
+        foreach (var expansion in gameExpansions)
+        {
+            ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.Expansions, expansion, out _);
+            ImGui.Checkbox($"{Enum.GetName(expansion)}##{id}", ref value);
+            ImGui.SameLine();
+        }
+
+        ImGui.NewLine();
+        ImGui.Unindent();
+
+        if (ImGui.CollapsingHeader($"{Localization.IgnoreReports}##{id}"))
         {
             ImGui.Indent();
 
-            ImGui.Combo($"{Localization.ReportChannel}##{label}", ref config.Channel, channels, channels.Length);
+            ImGui.Checkbox($"{Localization.ReportIgnoreInDuty}##{id}", ref config.DisableInDuty);
 
-            if (ImGui.CollapsingHeader($"{Localization.ReportConditions}##{label}"))
-            {
-                ImGui.Indent();
+            ImGui.Checkbox($"{Localization.ReportIgnoreOrphanDeathReport}##{id}", ref config.SkipOrphanReport);
+            ImGui.SameLine();
+            ImGuiEx.HelpMarker(Localization.ReportIgnoreOrphanDeathReportDescription);
 
-                ImGui.Checkbox($"{Localization.EnableSpawnReport}##{label}", ref config.EnableSpawnReport);
-                ImGui.SameLine();
-                ImGui.Checkbox($"{Localization.EnableDeathReport}##{label}", ref config.EnableDeathReport);
-
-                ImGui.Combo($"{Localization.ReportJurisdiction}##{label}", ref config.Jurisdiction, jurisdictions, jurisdictions.Length);
-                ImGui.SameLine();
-                ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
-                if (config.Jurisdiction >= (int)Jurisdiction.Region)
-                {
-                    ImGui.Checkbox($"{Localization.IncludeOceaniaDataCenter}##{label}", ref config.IncludeOceaniaDataCenter);
-                }
-
-                ImGui.Text(Localization.ReportExpansions);
-                ImGui.Indent();
-
-                foreach (var expansion in gameExpansions)
-                {
-                    ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.Expansions, expansion, out _);
-                    ImGui.Checkbox($"{Enum.GetName(expansion)}##{label}", ref value);
-                    ImGui.SameLine();
-                }
-
-                ImGui.NewLine();
-                ImGui.Unindent();
-
-                if (ImGui.CollapsingHeader($"{Localization.IgnoreReports}##{label}"))
-                {
-                    ImGui.Indent();
-
-                    ImGui.Checkbox($"{Localization.ReportIgnoreInDuty}##{label}", ref config.DisableInDuty);
-
-                    ImGui.Checkbox($"{Localization.ReportIgnoreOrphanDeathReport}##{label}", ref config.SkipOrphanReport);
-                    ImGui.SameLine();
-                    ImGuiEx.HelpMarker(Localization.ReportIgnoreOrphanDeathReportDescription);
-
-                    ImGui.Checkbox($"{Localization.ReportIgnorePendingReport}##{label}", ref config.SkipPendingReport);
-
-                    ImGui.Unindent();
-                }
-
-                ImGui.Unindent();
-            }
+            ImGui.Checkbox($"{Localization.ReportIgnorePendingReport}##{id}", ref config.SkipPendingReport);
 
             ImGui.Unindent();
         }
     }
 
-    private static void DrawDebugConfig()
+    private static void DrawDebugTab()
     {
-        if (ImGui.CollapsingHeader("Debug"))
+        if (ImGui.Button("Emit mock payload"))
         {
-            if (ImGui.Button("Emit mock payload"))
-            {
-                FaloopIntegration.Instance.EmitMockData();
-            }
+            FaloopIntegration.Instance.EmitMockData();
         }
     }
 

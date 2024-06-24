@@ -54,7 +54,7 @@ public static class Localization
 
     public static readonly LocalizedString ConfigWindowTitle = new()
     {
-        En = "{0} Config",
+        En = "{0} Configuration",
         Ja = "{0} 設定",
     };
 
@@ -110,12 +110,6 @@ public static class Localization
     {
         En = "Channel",
         Ja = "通知先",
-    };
-
-    public static readonly LocalizedString ReportConditions = new()
-    {
-        En = "Report Conditions",
-        Ja = "通知条件",
     };
 
     public static readonly LocalizedString EnableSpawnReport = new()
