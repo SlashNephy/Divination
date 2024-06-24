@@ -10,6 +10,45 @@ namespace Divination.FaloopIntegration.Config;
 
 public class PluginConfigWindow : ConfigWindow<PluginConfig>
 {
+    private readonly Jurisdiction[] jurisdictions = Enum.GetValues<Jurisdiction>();
+    private readonly string[] jurisdictionLabels;
+    private readonly string[] channelLabels = Enum.GetNames<XivChatType>();
+    private readonly GameExpansion[] gameExpansions = Enum.GetValues<GameExpansion>().Reverse().ToArray();
+    private readonly string[] gameExpansionLabels;
+
+    public PluginConfigWindow() : base()
+    {
+        jurisdictionLabels = jurisdictions.Select(jurisdiction =>
+        {
+            string label = jurisdiction switch
+            {
+                Jurisdiction.None => Localization.JurisdictionNone,
+                Jurisdiction.World => Localization.JurisdictionWorld,
+                Jurisdiction.DataCenter => Localization.JurisdictionDataCenter,
+                Jurisdiction.Region => Localization.JurisdictionRegion,
+                Jurisdiction.Travelable => Localization.JurisdictionTravelable,
+                Jurisdiction.All => Localization.JurisdictionAll,
+                _ => throw new ArgumentOutOfRangeException(nameof(jurisdiction), jurisdiction, "unknown Jurisdiction")
+            };
+            return label;
+        }).ToArray();
+
+        gameExpansionLabels = gameExpansions.Select(expansion =>
+        {
+            string label = expansion switch
+            {
+                GameExpansion.ARelmReborn => Localization.GameExpansionARelmReborn,
+                GameExpansion.Heavensward => Localization.GameExpansionHeavensward,
+                GameExpansion.Stormblood => Localization.GameExpansionStormblood,
+                GameExpansion.Shadowbringers => Localization.GameExpansionShadowbringers,
+                GameExpansion.Endwalker => Localization.GameExpansionEndwalker,
+                GameExpansion.Dawntrail => Localization.GameExpansionDawntrail,
+                _ => throw new ArgumentOutOfRangeException(nameof(expansion), expansion, "unknown GameExpansion")
+            };
+            return label;
+        }).ToArray();
+    }
+
     public override void Draw()
     {
         if (ImGui.Begin(Localization.ConfigWindowTitle.Format(FaloopIntegration.Instance.Name), ref IsOpen))
@@ -97,11 +136,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
         ImGui.Indent();
 
-        foreach (var expansion in gameExpansions)
+        foreach (var (i, expansion) in gameExpansions.Select((x, i) => (i, x)))
         {
             ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.Jurisdictions, expansion, out _);
             var index = Array.IndexOf(jurisdictions, value);
-            if (ImGui.Combo($"{Enum.GetName(expansion)}##{id}", ref index, jurisdictionLabels, jurisdictionLabels.Length))
+            if (ImGui.Combo($"{gameExpansionLabels[i]}##{id}", ref index, jurisdictionLabels, jurisdictionLabels.Length))
             {
                 value = jurisdictions[index];
             }
@@ -132,9 +171,4 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             FaloopIntegration.Instance.EmitMockData();
         }
     }
-
-    private readonly Jurisdiction[] jurisdictions = Enum.GetValues<Jurisdiction>();
-    private readonly string[] jurisdictionLabels = Enum.GetNames<Jurisdiction>();
-    private readonly string[] channelLabels = Enum.GetNames<XivChatType>();
-    private readonly GameExpansion[] gameExpansions = Enum.GetValues<GameExpansion>().Reverse().ToArray();
 }

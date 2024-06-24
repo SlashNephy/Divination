@@ -132,20 +132,8 @@ public static class Localization
 
     public static readonly LocalizedString ReportJurisdictionDescription = new()
     {
-        En = "For example, if you specify \"World,\" you will receive only notifications about your home world.",
-        Ja = "例えば「World」を指定すると、ホームワールドに関する通知のみを受け取ります。",
-    };
-
-    public static readonly LocalizedString IncludeOceaniaDataCenter = new()
-    {
-        En = "Include Oceania Data Center",
-        Ja = "オセアニアDCを含める",
-    };
-
-    public static readonly LocalizedString ReportExpansions = new()
-    {
-        En = "Expansions",
-        Ja = "拡張パッチ",
+        En = "For example, if you specify \"World,\" you will receive only notifications about your current world.",
+        Ja = "例えば「World」を指定すると、現在地のワールドに関する通知のみを受け取ります。",
     };
 
     public static readonly LocalizedString IgnoreReports = new()
@@ -236,5 +224,77 @@ public static class Localization
     {
         En = "Divination.AetheryteLinkInChat plugin is not installed.",
         Ja = "Divination.AetheryteLinkInChat プラグインがインストールされていません。",
+    };
+
+    public static readonly LocalizedString GameExpansionARelmReborn = new()
+    {
+        En = "[2.x] A Relm Reborn",
+        Ja = "[2.x] 新生エオルゼア",
+    };
+
+    public static readonly LocalizedString GameExpansionHeavensward = new()
+    {
+        En = "[3.x] Heavensward",
+        Ja = "[3.x] 蒼天のイシュガルド",
+    };
+
+    public static readonly LocalizedString GameExpansionStormblood = new()
+    {
+        En = "[4.x] Stormblood",
+        Ja = "[4.x] 紅蓮のリベレーター",
+    };
+
+    public static readonly LocalizedString GameExpansionShadowbringers = new()
+    {
+        En = "[5.x] Shadowbringers",
+        Ja = "[5.x] 漆黒のヴィランズ",
+    };
+
+    public static readonly LocalizedString GameExpansionEndwalker = new()
+    {
+        En = "[6.x] Endwalker",
+        Ja = "[6.x] 暁月のフィナーレ",
+    };
+
+    public static readonly LocalizedString GameExpansionDawntrail = new()
+    {
+        En = "[7.x] Dawntrail",
+        Ja = "[7.x] 黄金のレガシー",
+    };
+
+    public static readonly LocalizedString JurisdictionNone = new()
+    {
+        En = "None",
+        Ja = "なし",
+    };
+
+    public static readonly LocalizedString JurisdictionWorld = new()
+    {
+        En = "World",
+        Ja = "ワールド",
+    };
+
+    public static readonly LocalizedString JurisdictionDataCenter = new()
+    {
+        En = "Data Center (logical DC)",
+        Ja = "データセンター (論理DC)",
+    };
+
+    public static readonly LocalizedString JurisdictionRegion = new()
+    {
+        En = "Region (physical DC)",
+        Ja = "リージョン (物理DC)",
+    };
+
+    public static readonly LocalizedString JurisdictionTravelable = new()
+    {
+        En = "Region + Travelable DC",
+        Ja = "リージョン + データセンタートラベル可能なDC",
+    };
+
+    public static readonly LocalizedString JurisdictionAll = new()
+    {
+        En = "All",
+        Ja = "すべて",
     };
 }
