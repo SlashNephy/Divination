@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
@@ -135,5 +136,5 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     private readonly Jurisdiction[] jurisdictions = Enum.GetValues<Jurisdiction>();
     private readonly string[] jurisdictionLabels = Enum.GetNames<Jurisdiction>();
     private readonly string[] channelLabels = Enum.GetNames<XivChatType>();
-    private readonly GameExpansion[] gameExpansions = Enum.GetValues<GameExpansion>();
+    private readonly GameExpansion[] gameExpansions = Enum.GetValues<GameExpansion>().Reverse().ToArray();
 }
