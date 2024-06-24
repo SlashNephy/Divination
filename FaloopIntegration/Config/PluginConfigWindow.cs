@@ -15,19 +15,19 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             if (ImGui.BeginTabBar("configuration"))
             {
-                if (ImGui.BeginTabItem("General"))
+                if (ImGui.BeginTabItem(Localization.GeneralTab))
                 {
                     DrawGeneralTab();
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem(Localization.RankS))
+                if (ImGui.BeginTabItem(Localization.RankSTab))
                 {
                     DrawPerRankTab("rank_s", ref Config.RankS);
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem(Localization.RankFate))
+                if (ImGui.BeginTabItem(Localization.FateTab))
                 {
                     DrawPerRankTab("fate", ref Config.Fate);
                     ImGui.EndTabItem();
@@ -43,6 +43,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
                 ImGui.EndTabBar();
             }
+
+            ImGui.NewLine();
 
             if (ImGui.Button(Localization.SaveConfigButton))
             {
@@ -83,31 +85,27 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     private void DrawPerRankTab(string id, ref PluginConfig.PerRankConfig config)
     {
-        ImGui.Combo($"{Localization.ReportChannel}##{id}", ref config.Channel, channels, channels.Length);
+        ImGui.Combo($"{Localization.ReportChannel}##{id}", ref config.Channel, channelLabels, channelLabels.Length);
 
         ImGui.Checkbox($"{Localization.EnableSpawnReport}##{id}", ref config.EnableSpawnReport);
         ImGui.SameLine();
         ImGui.Checkbox($"{Localization.EnableDeathReport}##{id}", ref config.EnableDeathReport);
 
-        ImGui.Combo($"{Localization.ReportJurisdiction}##{id}", ref config.Jurisdiction, jurisdictions, jurisdictions.Length);
+        ImGui.Text(Localization.ReportJurisdiction);
         ImGui.SameLine();
         ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
-        if (config.Jurisdiction >= (int)Jurisdiction.Region)
-        {
-            ImGui.Checkbox($"{Localization.IncludeOceaniaDataCenter}##{id}", ref config.IncludeOceaniaDataCenter);
-        }
-
-        ImGui.Text(Localization.ReportExpansions);
         ImGui.Indent();
 
         foreach (var expansion in gameExpansions)
         {
-            ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.Expansions, expansion, out _);
-            ImGui.Checkbox($"{Enum.GetName(expansion)}##{id}", ref value);
-            ImGui.SameLine();
+            ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(config.Jurisdictions, expansion, out _);
+            var index = Array.IndexOf(jurisdictions, value);
+            if (ImGui.Combo($"{Enum.GetName(expansion)}##{id}", ref index, jurisdictionLabels, jurisdictionLabels.Length))
+            {
+                value = jurisdictions[index];
+            }
         }
 
-        ImGui.NewLine();
         ImGui.Unindent();
 
         if (ImGui.CollapsingHeader($"{Localization.IgnoreReports}##{id}"))
@@ -134,7 +132,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         }
     }
 
-    private readonly string[] jurisdictions = Enum.GetNames<Jurisdiction>();
-    private readonly string[] channels = Enum.GetNames<XivChatType>();
+    private readonly Jurisdiction[] jurisdictions = Enum.GetValues<Jurisdiction>();
+    private readonly string[] jurisdictionLabels = Enum.GetNames<Jurisdiction>();
+    private readonly string[] channelLabels = Enum.GetNames<XivChatType>();
     private readonly GameExpansion[] gameExpansions = Enum.GetValues<GameExpansion>();
 }

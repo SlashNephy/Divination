@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
-using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -37,6 +35,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     public FaloopIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
+        Config.Migrate();
 
         socket.OnConnected += OnConnected;
         socket.OnDisconnected += OnDisconnected;
@@ -194,7 +193,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return false;
         }
 
-        if (!config.Expansions.TryGetValue(expansion, out var value) || !value)
+        if (!config.Jurisdictions.TryGetValue(expansion, out var jurisdiction))
         {
             DalamudLog.Log.Debug("OnMobReport: MajorPatches");
             return false;
@@ -214,10 +213,11 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return false;
         }
 
-        switch ((Jurisdiction)config.Jurisdiction)
+        switch (jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region || (config.IncludeOceaniaDataCenter && (dataCenter.Region == 4 || dataCenter.Region == homeDataCenter.Region)):
+            case Jurisdiction.Travelable when dataCenter.Region == 4 || dataCenter.Region == homeDataCenter.Region:
+            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
             case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
             case Jurisdiction.World when world.RowId == currentWorld.RowId:
                 return true;

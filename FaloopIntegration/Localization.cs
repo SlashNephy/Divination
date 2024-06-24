@@ -88,19 +88,19 @@ public static class Localization
         Ja = "Faloop アカウントが設定されていません。/faloop コマンドを実行して、Faloop アカウントでログインしてください。",
     };
 
-    public static readonly LocalizedString NotificationPreferences = new()
+    public static readonly LocalizedString GeneralTab = new()
     {
-        En = "Notification Preferences",
-        Ja = "通知設定",
+        En = "General",
+        Ja = "一般",
     };
 
-    public static readonly LocalizedString RankS = new()
+    public static readonly LocalizedString RankSTab = new()
     {
         En = "Rank S",
         Ja = "Sモブ",
     };
 
-    public static readonly LocalizedString RankFate = new()
+    public static readonly LocalizedString FateTab = new()
     {
         En = "Special Fate",
         Ja = "特殊 F.A.T.E.",
