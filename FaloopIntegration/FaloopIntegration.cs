@@ -31,6 +31,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     public readonly ActiveMobUi Ui;
     private World? currentWorld;
     private World? homeWorld;
+    public PluginStatus Status;
 
     public FaloopIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -71,11 +72,13 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void OnConnected()
     {
+        Status = PluginStatus.Connected;
         Divination.Chat.Print(Localization.Connected);
     }
 
     private void OnDisconnected(string cause)
     {
+        Status = PluginStatus.Disconnected;
         Divination.Chat.Print(Localization.Disconnected);
         DalamudLog.Log.Warning("Disconnected = {Cause}", cause);
     }
@@ -314,8 +317,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         DalamudLog.Log.Debug("Event {Name} = {Message}", name, response);
     }
 
-    private static void OnReconnected(int count)
+    private void OnReconnected(int count)
     {
+        Status = PluginStatus.Connected;
         DalamudLog.Log.Debug("Reconnected {N}", count);
     }
 

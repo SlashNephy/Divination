@@ -99,7 +99,13 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
     private void DrawGeneralTab()
     {
-        ImGui.Text("Status: connected");
+        ImGui.Text(Localization.PluginStatus.Format(FaloopIntegration.Instance.Status switch
+        {
+            PluginStatus.NotReady => Localization.PluginStatusNotReady,
+            PluginStatus.Connected => Localization.PluginStatusConnected,
+            PluginStatus.Disconnected => Localization.PluginStatusDisconnected,
+            _ => throw new ArgumentOutOfRangeException()
+        }));
 
         if (ImGui.CollapsingHeader(Localization.Account))
         {

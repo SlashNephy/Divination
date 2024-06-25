@@ -297,4 +297,28 @@ public static class Localization
         En = "All",
         Ja = "すべて",
     };
+
+    public static readonly LocalizedString PluginStatus = new()
+    {
+        En = "Status: {0}",
+        Ja = "プラグインの状態: {0}",
+    };
+
+    public static readonly LocalizedString PluginStatusNotReady = new()
+    {
+        En = "Faloop account not set",
+        Ja = "Faloop アカウントが設定されていません",
+    };
+
+    public static readonly LocalizedString PluginStatusDisconnected = new()
+    {
+        En = "disconnected from Faloop",
+        Ja = "Faloop から切断されました",
+    };
+
+    public static readonly LocalizedString PluginStatusConnected = new()
+    {
+        En = "connected to Faloop",
+        Ja = "Faloop に接続しました",
+    };
 }
