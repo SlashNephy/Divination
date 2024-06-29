@@ -5,15 +5,11 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C00AD6CE-4F53-4415-B105-183A7CD79FA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration", "DiscordIntegration\DiscordIntegration.csproj", "{EF081021-4C26-4B66-856B-D78ABB09CBE4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordIntegration.IpcModel", "DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj", "{26CE97F7-964D-4097-9B7F-EE572959B12D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaloopIntegration", "FaloopIntegration\FaloopIntegration.csproj", "{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceIDViewer", "InstanceIDViewer\InstanceIDViewer.csproj", "{42E83F55-1774-4BBD-BED9-149252532234}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterIntegration", "TwitterIntegration\TwitterIntegration.csproj", "{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voiceroid2Talker", "Voiceroid2Talker\Voiceroid2Talker.csproj", "{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}"
 EndProject
@@ -41,10 +37,6 @@ Global
 		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Debug|Any CPU.Build.0 = Debug|x64
 		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Release|Any CPU.ActiveCfg = Release|x64
 		{C00AD6CE-4F53-4415-B105-183A7CD79FA7}.Release|Any CPU.Build.0 = Release|x64
-		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Debug|Any CPU.Build.0 = Debug|x64
-		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Release|Any CPU.ActiveCfg = Release|x64
-		{EF081021-4C26-4B66-856B-D78ABB09CBE4}.Release|Any CPU.Build.0 = Release|x64
 		{26CE97F7-964D-4097-9B7F-EE572959B12D}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{26CE97F7-964D-4097-9B7F-EE572959B12D}.Debug|Any CPU.Build.0 = Debug|x64
 		{26CE97F7-964D-4097-9B7F-EE572959B12D}.Release|Any CPU.ActiveCfg = Release|x64
@@ -57,10 +49,6 @@ Global
 		{42E83F55-1774-4BBD-BED9-149252532234}.Debug|Any CPU.Build.0 = Debug|x64
 		{42E83F55-1774-4BBD-BED9-149252532234}.Release|Any CPU.ActiveCfg = Release|x64
 		{42E83F55-1774-4BBD-BED9-149252532234}.Release|Any CPU.Build.0 = Release|x64
-		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Debug|Any CPU.Build.0 = Debug|x64
-		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Release|Any CPU.ActiveCfg = Release|x64
-		{928BCFCF-38FF-442D-B8F8-0C4308EB6A36}.Release|Any CPU.Build.0 = Release|x64
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Debug|Any CPU.Build.0 = Debug|x64
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Release|Any CPU.ActiveCfg = Release|x64

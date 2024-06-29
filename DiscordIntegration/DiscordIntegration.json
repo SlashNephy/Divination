@@ -1,13 +1,9 @@
 {
   "Author": "Asteria Nocturna",
-  "Name": "Divination.DiscordIntegration",
+  "Name": "Divination.DiscordIntegration [Discontinued]",
   "Punchline": "Fully-customizable Discord Rich Presence",
   "Description": "support Discord Rich Presence",
-  "Tags": [
-    "Discord"
-  ],
-  "CategoryTags": [
-    "social"
-  ],
+  "Tags": ["Discord"],
+  "CategoryTags": ["social"],
   "DalamudApiLevel": 9
 }
