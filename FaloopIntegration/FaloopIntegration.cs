@@ -257,6 +257,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             var mapLink = Utils.CreateMapLink(ev.TerritoryType, ev.Map, ev.Coordinates.Value, ev.ZoneInstance);
             payloads.AddRange(mapLink.Payloads);
         }
+        else
+        {
+            var instanceIcon = Utils.GetInstanceIconPayload(ev.ZoneInstance);
+            if (instanceIcon != default)
+            {
+                payloads.Add(instanceIcon);
+            }
+        }
 
         payloads.Add(new IconPayload(BitmapFontIcon.CrossWorld));
 
