@@ -30,19 +30,30 @@ public static class Utils
         return new TextPayload(GetRankIconChar(rank).ToIconString());
     }
 
-    public static TextPayload? GetInstanceIcon(int? instance)
+    public static TextPayload? GetInstanceIconPayload(int? instance)
+    {
+        var c = GetInstanceIcon(instance);
+        if (!c.HasValue)
+        {
+            return null;
+        }
+
+        return new TextPayload(c.Value.ToIconString());
+    }
+
+    public static SeIconChar? GetInstanceIcon(int? instance)
     {
         return instance switch
         {
-            1 => new TextPayload(SeIconChar.Instance1.ToIconString()),
-            2 => new TextPayload(SeIconChar.Instance2.ToIconString()),
-            3 => new TextPayload(SeIconChar.Instance3.ToIconString()),
-            4 => new TextPayload(SeIconChar.Instance4.ToIconString()),
-            5 => new TextPayload(SeIconChar.Instance5.ToIconString()),
-            6 => new TextPayload(SeIconChar.Instance6.ToIconString()),
-            7 => new TextPayload(SeIconChar.Instance7.ToIconString()),
-            8 => new TextPayload(SeIconChar.Instance8.ToIconString()),
-            9 => new TextPayload(SeIconChar.Instance9.ToIconString()),
+            1 => SeIconChar.Instance1,
+            2 => SeIconChar.Instance2,
+            3 => SeIconChar.Instance3,
+            4 => SeIconChar.Instance4,
+            5 => SeIconChar.Instance5,
+            6 => SeIconChar.Instance6,
+            7 => SeIconChar.Instance7,
+            8 => SeIconChar.Instance8,
+            9 => SeIconChar.Instance9,
             _ => default,
         };
     }
@@ -84,7 +95,7 @@ public static class Utils
     {
         var mapLink = SeString.CreateMapLink(territoryType.RowId, map.RowId, coordinates.X, coordinates.Y);
 
-        var instanceIcon = GetInstanceIcon(instance);
+        var instanceIcon = GetInstanceIconPayload(instance);
         return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
     }
 
