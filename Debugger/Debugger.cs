@@ -23,12 +23,12 @@ public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>, IDalam
         Divination.Network.AddHandler(listener);
     }
 
-    private void OnChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+    private void OnChatMessage(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
     {
         if (Config.EnableVerboseChatLog)
         {
             var text = new StringBuilder();
-            text.AppendLine($"[{type}, {isHandled}] {sender.TextValue} ({senderId}): {message.TextValue}");
+            text.AppendLine($"[{type}, {isHandled}] {sender.TextValue} ({timestamp}): {message.TextValue}");
 
             foreach (var payload in sender.Payloads)
             {

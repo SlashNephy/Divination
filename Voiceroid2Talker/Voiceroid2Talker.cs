@@ -35,7 +35,7 @@ public class Voiceroid2Talker : DivinationPlugin<Voiceroid2Talker, PluginConfig>
         Divination.Voiceroid2Proxy.TalkAsync(context["text"]!);
     }
 
-    private void OnChatReceived(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+    private void OnChatReceived(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
     {
         try
         {

@@ -6,15 +6,15 @@ using Dalamud.Game.Text;
 
 namespace Divination.InstanceIDViewer;
 
-public class NetworkListener : INetworkHandler, IDisposable
+public class NetworkListener : INetworkHandler
 {
     private readonly IChatClient chat;
-    private readonly DtrBarEntry bar;
+    private readonly IDtrBarEntry bar;
 
     private readonly object lastServerIdLock = new();
     private ushort lastServerId;
 
-    public NetworkListener(IChatClient chat, DtrBarEntry bar)
+    public NetworkListener(IChatClient chat, IDtrBarEntry bar)
     {
         this.chat = chat;
         this.bar = bar;
@@ -42,10 +42,5 @@ public class NetworkListener : INetworkHandler, IDisposable
 
             lastServerId = serverId;
         }
-    }
-
-    public void Dispose()
-    {
-        bar.Dispose();
     }
 }

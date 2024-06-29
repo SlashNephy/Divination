@@ -3,12 +3,7 @@
   "Name": "Divination.Debugger",
   "Punchline": "You don't need this unless you are developer.",
   "Description": "Tiny tool to inspect game...",
-  "Tags": [
-    "Development",
-    "Debug"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
-  "DalamudApiLevel": 9
+  "Tags": ["Development", "Debug"],
+  "CategoryTags": ["utility"],
+  "DalamudApiLevel": 10
 }

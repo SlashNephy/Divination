@@ -1,10 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Dalamud.Divination.Common.Boilerplate;
+﻿using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Plugin;
 
 namespace Divination.InstanceIDViewer;
 
-[SuppressMessage("ReSharper", "InconsistentNaming")]
 public class InstanceIDViewer : DivinationPlugin<InstanceIDViewer>, IDalamudPlugin
 {
     private readonly NetworkListener listener;
@@ -19,6 +17,5 @@ public class InstanceIDViewer : DivinationPlugin<InstanceIDViewer>, IDalamudPlug
     protected override void ReleaseManaged()
     {
         Divination.Network.RemoveHandler(listener);
-        listener.Dispose();
     }
 }

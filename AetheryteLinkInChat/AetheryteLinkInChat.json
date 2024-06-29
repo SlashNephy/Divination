@@ -3,11 +3,7 @@
   "Name": "Divination.AetheryteLinkInChat",
   "Punchline": "Quick teleport for mob hunts and treasure hunts!",
   "Description": "Display a teleport link to the nearest aetherite for the map link from the in-game chat. Type /alic to configure the plugin.",
-  "Tags": [
-    "teleporter"
-  ],
-  "CategoryTags": [
-    "utility"
-  ],
-  "DalamudApiLevel": 9
+  "Tags": ["teleporter"],
+  "CategoryTags": ["utility"],
+  "DalamudApiLevel": 10
 }
