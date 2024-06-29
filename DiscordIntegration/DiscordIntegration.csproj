@@ -28,6 +28,6 @@
         </Reference>
 
         <PackageReference Include="DiscordRichPresence" Version="1.2.1.24"/>
-        <PackageReference Include="DalamudPackager" Version="2.1.12"/>
+        <PackageReference Include="DalamudPackager" Version="2.1.13"/>
     </ItemGroup>
 </Project>
