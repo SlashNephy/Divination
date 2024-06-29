@@ -152,7 +152,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             case MobReportActions.SpawnLocation when config.EnableSpawnReport:
                 {
                     var spawn = JsonSerializer.Deserialize<MobReportData.SpawnLocation>(data.Data) ?? throw new InvalidOperationException("invalid spawn location data");
-                    if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiId, out var location))
+                    string? location;
+                    if (!string.IsNullOrEmpty(spawn.Location))
+                    {
+                        location = spawn.Location;
+                    }
+                    else if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiId, out location))
                     {
                         DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiId);
                         if (config.SkipPendingReport)
