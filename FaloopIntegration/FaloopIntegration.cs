@@ -288,7 +288,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
         Dalamud.PluginInterface.SavePluginConfig(Config);
 
-        var instanceIcon = Utils.GetInstanceIconPayload(ev.ZoneInstance) ?? new TextPayload(string.Empty);
+        var instanceIcon = Utils.GetInstanceIconPayload(ev.ZoneInstance);
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
         {
@@ -296,7 +296,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             [
                 new TextPayload($"{SeIconChar.Cross.ToIconString()}"),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
-                instanceIcon,
+            ]);
+            if (instanceIcon != default)
+            {
+                payloads.Add(instanceIcon);
+            }
+            payloads.AddRange([
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name}".TrimEnd()),
             ]);
@@ -307,7 +312,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             [
                 Utils.GetRankIcon(ev.Rank),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
-                instanceIcon,
+            ]);
+            if (instanceIcon != default)
+            {
+                payloads.Add(instanceIcon);
+            }
+            payloads.AddRange([
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.KilledAt)}".TrimEnd()),
             ]);
