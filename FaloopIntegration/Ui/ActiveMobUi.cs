@@ -133,8 +133,8 @@ public class ActiveMobUi : IWindow, IDisposable
     {
         return ev.Rank switch
         {
-            MobRank.S => TimeSpan.FromMinutes(10),
-            MobRank.SS => TimeSpan.FromMinutes(10),
+            MobRank.S => TimeSpan.FromMinutes(30),
+            MobRank.SS => TimeSpan.FromMinutes(30),
             MobRank.FATE => TimeSpan.FromMinutes(30),
             _ => throw new ArgumentOutOfRangeException(nameof(ev.Rank), ev.Rank, null),
         };
