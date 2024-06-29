@@ -144,7 +144,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         }
                     }
 
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.Ids.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
                     OnMobSpawn(ev, config.Channel);
                     DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                     break;
@@ -167,7 +167,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         DalamudLog.Log.Debug("OnMobReport: previous == null");
                         break;
                     }
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.ZoneInstance, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter, location);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.Ids.ZoneInstance, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter, location);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
@@ -180,13 +180,13 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         DalamudLog.Log.Debug("OnMobReport: previous == null");
                         break;
                     }
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.ZoneInstance, mobData.Rank, spawn.Timestamp, previous.Reporter, previous.Location);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.Ids.ZoneInstance, mobData.Rank, spawn.Timestamp, previous.Reporter, previous.Location);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
             case MobReportActions.Death when config.EnableDeathReport:
                 var death = JsonSerializer.Deserialize<MobReportData.Death>(data.Data) ?? throw new InvalidOperationException("invalid death data");
-                OnMobDeath(new MobDeathEvent(mobData.BNpcId, worldId, data.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
+                OnMobDeath(new MobDeathEvent(mobData.BNpcId, worldId, data.Ids.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
                 DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }

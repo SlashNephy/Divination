@@ -11,9 +11,9 @@ public static class MockData
     public static readonly MobReportData SpawnMobReport = new(MobReportActions.Spawn,
         Ids: new(
             MobId: "the_pale_rider",
-            WorldId: "valefor"
+            WorldId: "valefor",
+            ZoneInstance: 0
         ),
-        ZoneInstance: 0,
         Data: JsonObject.Create(JsonSerializer.SerializeToElement(Spawn))!);
 
     private static readonly MobReportData.Death Death = new(Spawn.Timestamp.AddMinutes(3));
@@ -21,8 +21,8 @@ public static class MockData
     public static readonly MobReportData DeathMobReport = new(MobReportActions.Death,
         Ids: new(
             MobId: "the_pale_rider",
-            WorldId: "valefor"
+            WorldId: "valefor",
+            ZoneInstance: 0
         ),
-        ZoneInstance: 0,
         Data: JsonObject.Create(JsonSerializer.SerializeToElement(Death))!);
 }
