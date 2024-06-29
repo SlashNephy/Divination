@@ -6,7 +6,7 @@ namespace Divination.FaloopIntegration.Faloop.Model;
 
 public static class MockData
 {
-    private static readonly MobReportData.Spawn Spawn = new(DateTime.UtcNow, "the_dravanian_hinterlands", [643], null);
+    private static readonly MobReportData.Spawn Spawn = new(DateTime.UtcNow, "the_dravanian_hinterlands", [643], null, null);
 
     public static readonly MobReportData SpawnMobReport = new(MobReportActions.Spawn,
         Ids: new(

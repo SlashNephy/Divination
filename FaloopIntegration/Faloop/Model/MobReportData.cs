@@ -16,6 +16,7 @@ public record MobReportData(
         [property: JsonPropertyName("timestamp")] DateTime Timestamp,
         [property: JsonPropertyName("zoneId2")] string ZoneId,
         [property: JsonPropertyName("zonePoiIds")] List<int>? ZonePoiIds,
+        [property: JsonPropertyName(name: "location")] string? Location,
         [property: JsonPropertyName("reporters")] List<Reporter>? Reporters);
 
     public record Reporter([property: JsonPropertyName("name")] string Name);

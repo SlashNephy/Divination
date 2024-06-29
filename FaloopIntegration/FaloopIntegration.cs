@@ -129,9 +129,15 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         DalamudLog.Log.Warning("OnMobReport: unknown zone id found: {ZoneId}", spawn.ZoneId);
                         return;
                     }
-                    if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiIds?.FirstOrDefault() ?? default, out var location))
+
+                    string? location;
+                    if (!string.IsNullOrEmpty(spawn.Location))
                     {
-                        DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiIds?.FirstOrDefault() ?? default);
+                        location = spawn.Location;
+                    }
+                    else if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiIds?.FirstOrDefault() ?? default, out location))
+                    {
+                        DalamudLog.Log.Debug("OnMobReport: unknown location found: {Spawn}", spawn);
                         if (config.SkipPendingReport)
                         {
                             return;
