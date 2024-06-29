@@ -10,11 +10,10 @@ on:
         required: false
         type: string
         default: '.'
-      dalamud-zip-url:
+      dalamud-branch:
         required: false
         type: string
-        # https://github.com/goatcorp/dalamud-distrib
-        default: 'https://goatcorp.github.io/dalamud-distrib/stg/latest.zip'
+        default: 'apiX'
 
 permissions:
   contents: read
@@ -33,8 +32,10 @@ jobs:
 
       - name: Download Dalamud
         run: |
-          Invoke-WebRequest -Uri ${{ inputs.dalamud-zip-url }} -OutFile latest.zip
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/${env:DALAMUD_BRANCH}/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
+        env:
+          DALAMUD_BRANCH: ${{ inputs.dalamud-branch }}
 
       - name: Prepare Plugin Meta
         run: |
