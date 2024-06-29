@@ -1,4 +1,5 @@
-﻿using Dalamud.Interface.Internal;
+﻿
+using Dalamud.Interface.Textures.TextureWraps;
 
 namespace Dalamud.Divination.Common.Api.Ui;
 

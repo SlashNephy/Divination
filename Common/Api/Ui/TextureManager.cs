@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.XivApi;
 using Dalamud.Interface;
-using Dalamud.Interface.Internal;
+using Dalamud.Interface.Textures.TextureWraps;
 using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Ui;
@@ -18,9 +18,9 @@ internal sealed class TextureManager : ITextureManager
 
     private readonly HttpClient client = new();
     private readonly ITextureProvider textureProvider;
-    private readonly UiBuilder uiBuilder;
+    private readonly IUiBuilder uiBuilder;
 
-    public TextureManager(ITextureProvider textureProvider, UiBuilder uiBuilder)
+    public TextureManager(ITextureProvider textureProvider, IUiBuilder uiBuilder)
     {
         this.textureProvider = textureProvider;
         this.uiBuilder = uiBuilder;
@@ -74,15 +74,13 @@ internal sealed class TextureManager : ITextureManager
     {
         try
         {
-            var iconTex = textureProvider.GetIcon(iconId);
+            var iconTex = textureProvider.GetFromGameIcon(iconId);
             if (iconTex != null)
             {
-                if (iconTex.ImGuiHandle != IntPtr.Zero)
+                if (iconTex.TryGetWrap(out var iconTexWrap, out _))
                 {
-                    return iconTex;
+                    return iconTexWrap;
                 }
-
-                iconTex.Dispose();
             }
         }
         catch (NotImplementedException)
@@ -107,13 +105,11 @@ internal sealed class TextureManager : ITextureManager
             await stream.CopyToAsync(fileStream);
         }
 
-        var tex = await uiBuilder.LoadImageAsync(path);
-        if (tex.ImGuiHandle != IntPtr.Zero)
+        var tex = textureProvider.GetFromFile(path);
+        if (tex.TryGetWrap(out var texWrap, out _))
         {
-            return tex;
+            return texWrap;
         }
-
-        tex.Dispose();
 
         return null;
     }

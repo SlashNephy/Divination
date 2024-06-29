@@ -46,6 +46,6 @@ public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConf
 
 #pragma warning disable 8618
     internal IConfigManager<TConfiguration> ConfigManager { get; set; }
-    internal UiBuilder UiBuilder { get; set; }
+    internal IUiBuilder UiBuilder { get; set; }
 #pragma warning restore 8618
 }

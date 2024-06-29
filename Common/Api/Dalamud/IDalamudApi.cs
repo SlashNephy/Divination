@@ -6,7 +6,6 @@ using Dalamud.Plugin.Services;
 
 namespace Dalamud.Divination.Common.Api.Dalamud;
 
-[SuppressMessage("ReSharper", "UnusedMember.Global")]
 public interface IDalamudApi
 {
     public DalamudPluginInterface PluginInterface { get; }
@@ -23,6 +22,10 @@ public interface IDalamudApi
     public IClientState ClientState { get; }
     public ICommandManager CommandManager { get; }
     public ICondition Condition { get; }
+#pragma warning disable Dalamud001
+    public IConsole Console { get; }
+#pragma warning restore Dalamud001
+    public IContextMenu ContextMenu { get; }
     public IDataManager DataManager { get; }
     public IDtrBar DtrBar { get; }
     public IDutyState DutyState { get; }
@@ -38,7 +41,7 @@ public interface IDalamudApi
     public IGamepadState GamepadState { get; }
     public IJobGauges JobGauges { get; }
     public IKeyState KeyState { get; }
-    public ILibcFunction LibcFunction { get; }
+    public INotificationManager NotificationManager { get; }
     public IObjectTable ObjectTable { get; }
     public IPartyFinderGui PartyFinderGui { get; }
     public IPartyList PartyList { get; }

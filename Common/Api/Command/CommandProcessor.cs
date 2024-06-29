@@ -84,7 +84,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
             var context = new CommandContext(command, match);
 
             command.Method.Invoke(command.Method.IsStatic ? null : command.Instance,
-                command.CanReceiveContext ? new object[] {context} : Array.Empty<object>());
+                command.CanReceiveContext ? new object[] { context } : Array.Empty<object>());
         }
         catch (Exception exception)
         {
@@ -147,9 +147,9 @@ internal sealed partial class CommandProcessor : ICommandProcessor
         commands.Clear();
     }
 
-    private void OnCheckMessageHandled(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
+    private void OnCheckMessageHandled(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
     {
-        if (type != XivChatType.ErrorMessage || senderId != 0)
+        if (type != XivChatType.ErrorMessage)
         {
             return;
         }
