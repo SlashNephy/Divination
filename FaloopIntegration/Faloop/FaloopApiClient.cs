@@ -17,7 +17,7 @@ public class FaloopApiClient : IDisposable
         var request = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
-            RequestUri = new Uri("https://faloop.app/api-v2/auth/user/refresh"),
+            RequestUri = new Uri("https://faloop.app/api/auth/user/refresh"),
             Content = JsonContent.Create(new Dictionary<string, string?>
                 {
                     {"sessionId", null},
@@ -25,10 +25,11 @@ public class FaloopApiClient : IDisposable
                 MediaTypeHeaderValue.Parse("application/json")),
             Headers =
             {
-                {"Accept", "application/json"},
+                {"Accept", "application/json, text/plain, */*"},
+                {"Accept-Language", "ja"},
                 {"Origin", "https://faloop.app"},
                 {"Referer", "https://faloop.app/"},
-                {"Sec-Ch-Ua", "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Microsoft Edge\";v=\"122\""},
+                {"Sec-Ch-Ua", "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Microsoft Edge\";v=\"126\""},
                 {"Sec-Ch-Ua-Mobile", "?0"},
                 {"Sec-Ch-Ua-Platform", "\"Windows\""},
                 {"Sec-Fetch-Dest", "empty"},
@@ -36,7 +37,7 @@ public class FaloopApiClient : IDisposable
                 {"Sec-Fetch-Site", "same-origin"},
                 {
                     "User-Agent",
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"
                 },
             },
         };
@@ -52,22 +53,23 @@ public class FaloopApiClient : IDisposable
         var request = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
-            RequestUri = new Uri("https://faloop.app/api-v2/auth/user/login"),
+            RequestUri = new Uri("https://faloop.app/api/auth/user/login"),
             Content = JsonContent.Create(new Dictionary<string, object>
                 {
                     {"username", username},
                     {"password", password},
-                    {"rememberMe", true},
+                    {"rememberMe", false},
                     {"sessionId", sessionId},
                 },
                 MediaTypeHeaderValue.Parse("application/json")),
             Headers =
             {
-                {"Accept", "application/json"},
+                {"Accept", "application/json, text/plain, */*"},
+                {"Accept-Language", "ja"},
                 {"Authorization", token}, // JWT eyJ...
                 {"Origin", "https://faloop.app"},
                 {"Referer", "https://faloop.app/login"},
-                {"Sec-Ch-Ua", "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Microsoft Edge\";v=\"122\""},
+                {"Sec-Ch-Ua", "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Microsoft Edge\";v=\"126\""},
                 {"Sec-Ch-Ua-Mobile", "?0"},
                 {"Sec-Ch-Ua-Platform", "\"Windows\""},
                 {"Sec-Fetch-Dest", "empty"},
@@ -75,7 +77,7 @@ public class FaloopApiClient : IDisposable
                 {"Sec-Fetch-Site", "same-origin"},
                 {
                     "User-Agent",
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"
                 },
             },
         };
