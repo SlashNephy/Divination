@@ -12,7 +12,7 @@ public class Horoscope : DivinationPlugin<Horoscope>, IDalamudPlugin
 {
     private readonly IModule[] modules;
 
-    public Horoscope(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public Horoscope(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         ECommonsMain.Init(pluginInterface, this);
 

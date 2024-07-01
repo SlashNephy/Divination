@@ -33,7 +33,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private World? homeWorld;
     public PluginStatus Status;
 
-    public FaloopIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public FaloopIntegration(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         Config.Migrate();

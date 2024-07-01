@@ -8,7 +8,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud;
 
 public interface IDalamudApi
 {
-    public DalamudPluginInterface PluginInterface { get; }
+    public IDalamudPluginInterface PluginInterface { get; }
 
     #region IoC
 

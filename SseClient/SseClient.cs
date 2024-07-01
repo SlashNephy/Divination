@@ -13,7 +13,7 @@ public sealed class SseClient : DivinationPlugin<SseClient, PluginConfig>,
 {
     public readonly SseConnectionManager Connection = new();
 
-    public SseClient(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public SseClient(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Connection.Connect();
     }

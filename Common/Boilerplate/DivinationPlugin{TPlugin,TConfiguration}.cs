@@ -7,7 +7,7 @@ public abstract class DivinationPlugin<TPlugin, TConfiguration> : DivinationPlug
     where TPlugin : DivinationPlugin<TPlugin, TConfiguration, EmptyDefinitionContainer>
     where TConfiguration : class, IPluginConfiguration, new()
 {
-    protected DivinationPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    protected DivinationPlugin(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
     }
 }

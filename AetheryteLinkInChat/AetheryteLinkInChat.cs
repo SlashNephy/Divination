@@ -35,7 +35,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private CancellationTokenSource? lifestreamCancellation;
 
-    public AetheryteLinkInChat(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public AetheryteLinkInChat(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         aetheryteLinkPayload = pluginInterface.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);

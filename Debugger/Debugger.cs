@@ -14,7 +14,7 @@ public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>, IDalam
 {
     private readonly NetworkListener listener = new();
 
-    public Debugger(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public Debugger(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         Divination.ConfigWindow!.IsDrawing = Config.OpenAtStart;

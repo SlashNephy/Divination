@@ -21,7 +21,7 @@ public class IpcProvider : IDisposable
     private readonly ICallGateProvider<TeleportPayload, bool> teleport;
     private readonly CancellationTokenSource cancellation = new();
 
-    public IpcProvider(DalamudPluginInterface pluginInterface, IClientState clientState, Teleporter teleporter, AetheryteSolver solver, IDataManager dataManager)
+    public IpcProvider(IDalamudPluginInterface pluginInterface, IClientState clientState, Teleporter teleporter, AetheryteSolver solver, IDataManager dataManager)
     {
         this.teleporter = teleporter;
         this.clientState = clientState;

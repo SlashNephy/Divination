@@ -15,7 +15,7 @@ public sealed class PerfectComplex : DivinationPlugin<PerfectComplex, PluginConf
     IConfigWindowSupport<PluginConfig>,
     IDefinitionSupport
 {
-    public PerfectComplex(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public PerfectComplex(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
     }

@@ -14,7 +14,7 @@ public partial class DiscordIntegration : DivinationPlugin<DiscordIntegration, P
 {
     private readonly Timer timer = new(3000);
 
-    public DiscordIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public DiscordIntegration(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         SetDefaultPresence();

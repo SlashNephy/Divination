@@ -23,7 +23,7 @@ public abstract class DivinationPlugin<TPlugin, TConfiguration, TDefinition> : I
     where TDefinition : DefinitionContainer, new()
 {
 #pragma warning disable CS8618
-    protected DivinationPlugin(DalamudPluginInterface pluginInterface)
+    protected DivinationPlugin(IDalamudPluginInterface pluginInterface)
 #pragma warning restore CS8618
     {
         pluginInterface.Create<DalamudLog>();

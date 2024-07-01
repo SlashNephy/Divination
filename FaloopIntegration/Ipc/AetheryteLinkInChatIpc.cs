@@ -9,7 +9,7 @@ using Divination.AetheryteLinkInChat.IpcModel;
 
 namespace Divination.FaloopIntegration.Ipc;
 
-public class AetheryteLinkInChatIpc(DalamudPluginInterface pluginInterface, IChatClient chatClient)
+public class AetheryteLinkInChatIpc(IDalamudPluginInterface pluginInterface, IChatClient chatClient)
 {
     private readonly ICallGateSubscriber<TeleportPayload, bool> subscriber = pluginInterface.GetIpcSubscriber<TeleportPayload, bool>(TeleportPayload.Name);
 

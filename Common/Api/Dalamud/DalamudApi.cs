@@ -12,7 +12,7 @@ namespace Dalamud.Divination.Common.Api.Dalamud;
 internal sealed class DalamudApi : IDalamudApi
 {
     // ReSharper disable once NotNullMemberIsNotInitialized
-    public DalamudApi(DalamudPluginInterface pluginInterface)
+    public DalamudApi(IDalamudPluginInterface pluginInterface)
     {
         PluginInterface = pluginInterface;
 
@@ -22,7 +22,7 @@ internal sealed class DalamudApi : IDalamudApi
         }
     }
 
-    public DalamudPluginInterface PluginInterface { get; }
+    public IDalamudPluginInterface PluginInterface { get; }
 
     #region IoC
 

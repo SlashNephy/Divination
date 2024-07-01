@@ -12,7 +12,7 @@ public abstract class ConfigWindow<TConfiguration> : Window, IConfigWindow<TConf
     where TConfiguration : class, IPluginConfiguration, new()
 {
     public TConfiguration Config => ConfigManager.Config;
-    public DalamudPluginInterface Interface => ConfigManager.Interface;
+    public IDalamudPluginInterface Interface => ConfigManager.Interface;
 
     public void Dispose()
     {

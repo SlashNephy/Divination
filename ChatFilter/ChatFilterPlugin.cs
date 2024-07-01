@@ -13,7 +13,7 @@ public sealed class ChatFilterPlugin : DivinationPlugin<ChatFilterPlugin, Plugin
 {
     private readonly ChatFilterManager manager = new();
 
-    public ChatFilterPlugin(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public ChatFilterPlugin(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         PluginLog.Information("Plugin loaded!");
     }

@@ -45,12 +45,12 @@ public sealed class Teleporter : IDisposable
     private readonly IChatClient chatClient;
     private readonly ICommandManager commandManager;
     private readonly IClientState clientState;
-    private readonly DalamudPluginInterface pluginInterface;
+    private readonly IDalamudPluginInterface pluginInterface;
     private readonly IToastGui toastGui;
     private readonly PluginConfig config;
     private volatile Aetheryte? queuedAetheryte;
 
-    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, DalamudPluginInterface pluginInterface, IToastGui toastGui, PluginConfig config)
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, IDalamudPluginInterface pluginInterface, IToastGui toastGui, PluginConfig config)
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;

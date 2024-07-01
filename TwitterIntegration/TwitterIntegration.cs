@@ -21,7 +21,7 @@ public class TwitterIntegration : DivinationPlugin<TwitterIntegration, PluginCon
     ICommandSupport,
     IConfigWindowSupport<PluginConfig>
 {
-    public TwitterIntegration(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public TwitterIntegration(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
         Task.Run(WatchTimeline);

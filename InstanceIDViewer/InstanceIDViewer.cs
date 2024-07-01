@@ -7,7 +7,7 @@ public class InstanceIDViewer : DivinationPlugin<InstanceIDViewer>, IDalamudPlug
 {
     private readonly NetworkListener listener;
 
-    public InstanceIDViewer(DalamudPluginInterface pluginInterface) : base(pluginInterface)
+    public InstanceIDViewer(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         var bar = Dalamud.DtrBar.Get("InstanceIDViewer");
         listener = new NetworkListener(Divination.Chat, bar);

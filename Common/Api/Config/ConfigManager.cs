@@ -18,7 +18,7 @@ internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfigura
     private readonly Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient;
 
     public ConfigManager(IDivinationPluginApi<TConfiguration, DefinitionContainer> pluginApi,
-        DalamudPluginInterface pluginInterface,
+        IDalamudPluginInterface pluginInterface,
         IChatClient chatClient,
         Func<IVoiceroid2ProxyClient> voiceroid2ProxyClient)
     {
@@ -42,7 +42,7 @@ internal partial class ConfigManager<TConfiguration> : IConfigManager<TConfigura
         }
     }
 
-    public DalamudPluginInterface Interface { get; }
+    public IDalamudPluginInterface Interface { get; }
 
     public bool TryUpdate(string key, string? value, bool useTts)
     {
