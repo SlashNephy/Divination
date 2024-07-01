@@ -253,7 +253,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         {
             payloads.Add(new TextPayload($"{SeIconChar.BoxedPlus.ToIconString()}"));
         }
-        payloads.Add(Utils.GetRankIcon(ev.Rank));
+        payloads.Add(new TextPayload(Utils.GetRankIcon(ev.Rank)));
         payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
 
         // append MapLink only if pop location is known
@@ -264,11 +264,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
         else
         {
-            var instanceIcon = Utils.GetInstanceIconPayload(ev.ZoneInstance);
-            if (instanceIcon != default)
-            {
-                payloads.Add(instanceIcon);
-            }
+            payloads.Add(new TextPayload(Utils.GetInstanceIcon(ev.ZoneInstance)));
         }
 
         payloads.Add(new IconPayload(BitmapFontIcon.CrossWorld));
@@ -301,7 +297,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
         Dalamud.PluginInterface.SavePluginConfig(Config);
 
-        var instanceIcon = Utils.GetInstanceIconPayload(ev.ZoneInstance);
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
         {
@@ -309,12 +304,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             [
                 new TextPayload($"{SeIconChar.Cross.ToIconString()}"),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
-            ]);
-            if (instanceIcon != default)
-            {
-                payloads.Add(instanceIcon);
-            }
-            payloads.AddRange([
+                new TextPayload(Utils.GetInstanceIcon(ev.ZoneInstance)),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name}".TrimEnd()),
             ]);
@@ -323,14 +313,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         {
             payloads.AddRange(
             [
-                Utils.GetRankIcon(ev.Rank),
+                new TextPayload(Utils.GetRankIcon(ev.Rank)),
                 new TextPayload($" {ev.Mob.Singular.RawString}"),
-            ]);
-            if (instanceIcon != default)
-            {
-                payloads.Add(instanceIcon);
-            }
-            payloads.AddRange([
+                new TextPayload(Utils.GetInstanceIcon(ev.ZoneInstance)),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.KilledAt)}".TrimEnd()),
             ]);

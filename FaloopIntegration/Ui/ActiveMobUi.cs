@@ -76,7 +76,7 @@ public class ActiveMobUi : IWindow, IDisposable
     private void DrawRow(MobSpawnEvent mob)
     {
         ImGui.TableNextColumn();
-        var mobText = $"{Utils.GetRankIconChar(mob.Rank).ToIconChar()} {mob.Mob.Singular.RawString} {Utils.GetInstanceIcon(mob.ZoneInstance)?.ToIconString()} {SeIconChar.CrossWorld.ToIconString()} {mob.World.Name.RawString}";
+        var mobText = $"{Utils.GetRankIcon(mob.Rank)} {mob.Mob.Singular.RawString} {Utils.GetInstanceIcon(mob.ZoneInstance)} {SeIconChar.CrossWorld.ToIconString()} {mob.World.Name.RawString}";
         ImGui.Text(mobText);
 
         ImGui.TableNextColumn();

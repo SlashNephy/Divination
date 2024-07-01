@@ -12,49 +12,34 @@ namespace Divination.FaloopIntegration;
 
 public static class Utils
 {
-    public static SeIconChar GetRankIconChar(MobRank rank)
+    public static string GetRankIcon(MobRank rank)
     {
         return rank switch
         {
-            MobRank.B => SeIconChar.BoxedLetterB,
-            MobRank.A => SeIconChar.BoxedLetterA,
-            MobRank.S => SeIconChar.BoxedLetterS,
-            MobRank.SS => SeIconChar.BoxedStar,
-            MobRank.FATE => SeIconChar.BoxedLetterF,
-            _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, default),
+            MobRank.B => SeIconChar.BoxedLetterB.ToIconString(),
+            MobRank.A => SeIconChar.BoxedLetterA.ToIconString(),
+            MobRank.S => SeIconChar.BoxedLetterS.ToIconString(),
+            MobRank.SS => SeIconChar.BoxedStar.ToIconString(),
+            MobRank.FATE => SeIconChar.BoxedLetterF.ToIconString(),
+            _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, "invalid rank"),
         };
     }
 
-    public static TextPayload GetRankIcon(MobRank rank)
-    {
-        return new TextPayload(GetRankIconChar(rank).ToIconString());
-    }
-
-    public static TextPayload? GetInstanceIconPayload(int? instance)
-    {
-        var c = GetInstanceIcon(instance);
-        if (!c.HasValue)
-        {
-            return null;
-        }
-
-        return new TextPayload(c.Value.ToIconString());
-    }
-
-    public static SeIconChar? GetInstanceIcon(int? instance)
+    public static string GetInstanceIcon(int instance)
     {
         return instance switch
         {
-            1 => SeIconChar.Instance1,
-            2 => SeIconChar.Instance2,
-            3 => SeIconChar.Instance3,
-            4 => SeIconChar.Instance4,
-            5 => SeIconChar.Instance5,
-            6 => SeIconChar.Instance6,
-            7 => SeIconChar.Instance7,
-            8 => SeIconChar.Instance8,
-            9 => SeIconChar.Instance9,
-            _ => default,
+            0 => string.Empty,
+            1 => SeIconChar.Instance1.ToIconString(),
+            2 => SeIconChar.Instance2.ToIconString(),
+            3 => SeIconChar.Instance3.ToIconString(),
+            4 => SeIconChar.Instance4.ToIconString(),
+            5 => SeIconChar.Instance5.ToIconString(),
+            6 => SeIconChar.Instance6.ToIconString(),
+            7 => SeIconChar.Instance7.ToIconString(),
+            8 => SeIconChar.Instance8.ToIconString(),
+            9 => SeIconChar.Instance9.ToIconString(),
+            _ => throw new ArgumentOutOfRangeException(nameof(instance), instance, "invalid instance number"),
         };
     }
 
@@ -91,12 +76,13 @@ public static class Utils
         return builder.ToString();
     }
 
-    public static SeString CreateMapLink(TerritoryType territoryType, Map map, Vector2 coordinates, int? instance)
+    public static SeString CreateMapLink(TerritoryType territoryType, Map map, Vector2 coordinates, int instance)
     {
         var mapLink = SeString.CreateMapLink(territoryType.RowId, map.RowId, coordinates.X, coordinates.Y);
 
-        var instanceIcon = GetInstanceIconPayload(instance);
-        return instanceIcon != default ? mapLink.Append(instanceIcon) : mapLink;
+        // append instance if instance available
+        var instanceIcon = new TextPayload(GetInstanceIcon(instance));
+        return mapLink.Append(instanceIcon);
     }
 
     public static bool IsInDuty(ICondition condition)
