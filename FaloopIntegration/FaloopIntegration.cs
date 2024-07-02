@@ -189,6 +189,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
+            case MobReportActions.SpawnFalse when config.EnableSpawnReport:
+                {
+                    var ev = new MobDeathEvent(mobData.BNpcId, worldId, data.Ids.ZoneInstance, mobData.Rank, DateTime.Now);
+                    OnMobFalseSpawn(ev);
+                    break;
+                }
             case MobReportActions.Death when config.EnableDeathReport:
                 var death = JsonSerializer.Deserialize<MobReportData.Death>(data.Data) ?? throw new InvalidOperationException("invalid death data");
                 OnMobDeath(new MobDeathEvent(mobData.BNpcId, worldId, data.Ids.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
@@ -284,6 +290,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             Message = new SeString(payloads),
             Type = Enum.GetValues<XivChatType>()[channel],
         });
+    }
+
+    private void OnMobFalseSpawn(MobDeathEvent ev)
+    {
+        Ui.OnMobDeath(ev);
+
+        Config.SpawnStates.RemoveAll(x => x.Id == ev.Id);
+        Dalamud.PluginInterface.SavePluginConfig(Config);
     }
 
     private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport)
