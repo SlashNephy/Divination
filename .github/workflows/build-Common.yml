@@ -42,7 +42,7 @@ jobs:
           Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/${env:DALAMUD_BRANCH}/latest.zip -OutFile latest.zip
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev\"
         env:
-          DALAMUD_BRANCH: apiX
+          DALAMUD_BRANCH: stg
 
       - name: Build
         run: dotnet build --configuration Release
