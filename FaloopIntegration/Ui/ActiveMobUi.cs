@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
@@ -100,10 +101,38 @@ public class ActiveMobUi : IWindow, IDisposable
             ImGui.SameLine();
             if (ImGui.Button($"{Localization.TableButtonOpenMap}##{mob.Id}"))
             {
-                var mapLink = new MapLinkPayload(mob.TerritoryTypeId, mob.Map.RowId, mob.Coordinates.Value.X, mob.Coordinates.Value.Y);
-                gameGui.OpenMapWithMapLink(mapLink);
+                OnClickOpenMap(mob);
+            }
+
+            ImGui.SameLine();
+            if (ImGui.Button($"{Localization.TableButtonCopyText}##{mob.Id}"))
+            {
+                OnClickCopyText(mob, mobText);
             }
         }
+    }
+
+    private void OnClickOpenMap(MobSpawnEvent mob)
+    {
+        if (!mob.Coordinates.HasValue)
+        {
+            return;
+        }
+
+        var mapLink = new MapLinkPayload(mob.TerritoryTypeId, mob.Map.RowId, mob.Coordinates.Value.X, mob.Coordinates.Value.Y);
+        gameGui.OpenMapWithMapLink(mapLink);
+    }
+
+    private void OnClickCopyText(MobSpawnEvent mob, string text)
+    {
+        if (!mob.Coordinates.HasValue)
+        {
+            return;
+        }
+
+        // TODO: can we set <flag> without calling OpenMapWithMapLink?
+        OnClickOpenMap(mob);
+        Clipboard.SetText($"{text} <flag>");
     }
 
     public void OnMobSpawn(MobSpawnEvent ev)

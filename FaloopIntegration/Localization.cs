@@ -214,6 +214,12 @@ public static class Localization
         Ja = "マップを開く",
     };
 
+    public static readonly LocalizedString TableButtonCopyText = new()
+    {
+        En = "Copy text",
+        Ja = "コピー",
+    };
+
     public static readonly LocalizedString TeleportingMessage = new()
     {
         En = "Teleporting to \"{0}\"...",
