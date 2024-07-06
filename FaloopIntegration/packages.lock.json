@@ -33,6 +33,11 @@
           "System.Text.Json": "8.0.0"
         }
       },
+      "JetBrains.Annotations": {
+        "type": "Transitive",
+        "resolved": "2021.2.0",
+        "contentHash": "kKSyoVfndMriKHLfYGmr0uzQuI4jcc3TKGyww7buJFCYeHb/X0kodYBPL7n9454q7v6ASiRmDgpPGaDGerg/Hg=="
+      },
       "Microsoft.NETCore.Platforms": {
         "type": "Transitive",
         "resolved": "1.1.0",
@@ -79,6 +84,16 @@
         "type": "Project"
       },
       "Dalamud.Divination.Common": {
+        "type": "Project"
+      },
+      "ffxivclientstructs": {
+        "type": "Project",
+        "dependencies": {
+          "InteropGenerator.Runtime": "[1.0.0, )",
+          "JetBrains.Annotations": "[2021.2.0, )"
+        }
+      },
+      "interopgenerator.runtime": {
         "type": "Project"
       }
     }

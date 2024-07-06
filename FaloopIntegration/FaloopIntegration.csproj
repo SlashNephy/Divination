@@ -2,11 +2,10 @@
     <PropertyGroup>
         <RootNamespace>Divination.FaloopIntegration</RootNamespace>
         <UseWindowsForms>true</UseWindowsForms>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Common\Common.csproj" />
-
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
             <Private>False</Private>
@@ -27,14 +26,16 @@
             <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
         <PackageReference Include="SocketIOClient" Version="3.0.8" />
         <PackageReference Include="DalamudPackager" Version="2.1.13">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
+        <ProjectReference Include="..\Common\Common.csproj" />
         <ProjectReference
             Include="..\AetheryteLinkInChat.IpcModel\AetheryteLinkInChat.IpcModel.csproj" />
     </ItemGroup>
