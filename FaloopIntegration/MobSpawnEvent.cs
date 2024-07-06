@@ -42,7 +42,6 @@ public record MobSpawnEvent(
             var loc = Location.Split([','], 2)
                 .Select(int.Parse)
                 .Select(x => x / 2048.0 * n + 1)
-                .Select(x => Math.Round(x, 1))
                 .Select(x => (float)x)
                 .ToList();
             return new Vector2(loc[0], loc[1]);
