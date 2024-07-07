@@ -127,7 +127,7 @@ public class ActiveMobUi : IWindow, IDisposable
 
     unsafe private void OnClickCopyText(MobSpawnEvent mob, string text)
     {
-        if (!mob.Coordinates.HasValue)
+        if (!mob.WorldPosition.HasValue)
         {
             return;
         }
@@ -139,7 +139,7 @@ public class ActiveMobUi : IWindow, IDisposable
         }
 
         agent->IsFlagMarkerSet = 0;
-        agent->SetFlagMapMarker(mob.TerritoryTypeId, mob.Map.RowId, new Vector3(mob.Coordinates.Value.X, 0, mob.Coordinates.Value.Y));
+        agent->SetFlagMapMarker(mob.TerritoryTypeId, mob.Map.RowId, mob.WorldPosition.Value);
         Clipboard.SetText($"{text} <flag>");
     }
 

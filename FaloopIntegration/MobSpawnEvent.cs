@@ -48,4 +48,21 @@ public record MobSpawnEvent(
             return new Vector2(loc[0], loc[1]);
         }
     }
+
+    [JsonIgnore]
+    public Vector3? WorldPosition
+    {
+        get
+        {
+            if (Location == default)
+            {
+                return default;
+            }
+
+            var loc = Location.Split([','], 2).Select(int.Parse).ToArray();
+            var x = ((loc[0] - 1024f) * 100f / Map.SizeFactor) - Map.OffsetX;
+            var y = ((loc[1] - 1024f) * 100f / Map.SizeFactor) - Map.OffsetY;
+            return new Vector3(x, 0, y);
+        }
+    }
 }
