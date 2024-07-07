@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Plugin.Services;
 using Divination.FaloopIntegration.Config;
 using Divination.FaloopIntegration.Ipc;
+using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 using ImGuiNET;
 
 namespace Divination.FaloopIntegration.Ui;
@@ -123,15 +125,21 @@ public class ActiveMobUi : IWindow, IDisposable
         gameGui.OpenMapWithMapLink(mapLink);
     }
 
-    private void OnClickCopyText(MobSpawnEvent mob, string text)
+    unsafe private void OnClickCopyText(MobSpawnEvent mob, string text)
     {
-        if (!mob.Coordinates.HasValue)
+        if (!mob.WorldPosition.HasValue)
         {
             return;
         }
 
-        // TODO: can we set <flag> without calling OpenMapWithMapLink?
-        OnClickOpenMap(mob);
+        var agent = AgentMap.Instance();
+        if (agent == null)
+        {
+            return;
+        }
+
+        agent->IsFlagMarkerSet = 0;
+        agent->SetFlagMapMarker(mob.TerritoryTypeId, mob.Map.RowId, mob.WorldPosition.Value);
         Clipboard.SetText($"{text} <flag>");
     }
 
