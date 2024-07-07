@@ -166,26 +166,16 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         }
                     }
 
-                    var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);
+                    var previous = Config.SpawnStates.FirstOrDefault(x =>
+                        x.MobId == mobData.BNpcId &&
+                        x.WorldId == worldId &&
+                        x.ZoneInstance == data.Ids.ZoneInstance);
                     if (previous == default)
                     {
                         DalamudLog.Log.Debug("OnMobReport: previous == null");
                         break;
                     }
                     var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.Ids.ZoneInstance, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter, location);
-                    OnMobSpawn(ev, config.Channel);
-                    break;
-                }
-            case MobReportActions.SpawnRelease when config.EnableSpawnReport:
-                {
-                    var spawn = JsonSerializer.Deserialize<MobReportData.SpawnRelease>(data.Data) ?? throw new InvalidOperationException("invalid spawn release data");
-                    var previous = Config.SpawnStates.FirstOrDefault(x => x.MobId == mobData.BNpcId && x.WorldId == worldId);
-                    if (previous == default)
-                    {
-                        DalamudLog.Log.Debug("OnMobReport: previous == null");
-                        break;
-                    }
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.Ids.ZoneInstance, mobData.Rank, spawn.Timestamp, previous.Reporter, previous.Location);
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }

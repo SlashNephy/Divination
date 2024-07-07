@@ -41,7 +41,6 @@ public static class MobReportActions
 {
     public const string Spawn = "spawn";
     public const string SpawnLocation = "spawn_location";
-    public const string SpawnRelease = "spawn_release";
     public const string SpawnFalse = "spawn_false";
     public const string Death = "death";
 }
