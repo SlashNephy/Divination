@@ -23,7 +23,6 @@ public class PluginConfig : IPluginConfiguration
 
     public PerRankConfig Fate = new();
 
-    public List<MobSpawnEvent> SpawnStates = [];
     public bool EnableActiveMobUi;
     public bool HideActiveMobUiInDuty;
     public bool EnableSimpleReports;

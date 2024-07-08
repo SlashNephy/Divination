@@ -32,6 +32,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private World? currentWorld;
     private World? homeWorld;
     public PluginStatus Status;
+    private List<MobSpawnEvent> spawnEvents = [];
 
     public FaloopIntegration(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -61,7 +62,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         Dalamud.PluginInterface.UiBuilder.Draw += Ui.Draw;
 
         Connect();
-        CleanSpawnHistories();
     }
 
     private void OnLogin()
@@ -166,7 +166,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         }
                     }
 
-                    var previous = Config.SpawnStates.FirstOrDefault(x =>
+                    var previous = spawnEvents.FirstOrDefault(x =>
                         x.MobId == mobData.BNpcId &&
                         x.WorldId == worldId &&
                         x.ZoneInstance == data.Ids.ZoneInstance);
@@ -241,8 +241,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobSpawn(ev);
 
-        Config.SpawnStates.Add(ev);
-        Dalamud.PluginInterface.SavePluginConfig(Config);
+        spawnEvents.Add(ev);
 
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
@@ -286,20 +285,18 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobDeath(ev);
 
-        Config.SpawnStates.RemoveAll(x => x.Id == ev.Id);
-        Dalamud.PluginInterface.SavePluginConfig(Config);
+        spawnEvents.RemoveAll(x => x.Id == ev.Id);
     }
 
     private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport)
     {
         Ui.OnMobDeath(ev);
 
-        if (skipOrphanReport && Config.SpawnStates.RemoveAll(x => x.Id == ev.Id) == 0)
+        if (skipOrphanReport && spawnEvents.RemoveAll(x => x.Id == ev.Id) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
             return;
         }
-        Dalamud.PluginInterface.SavePluginConfig(Config);
 
         var payloads = new List<Payload>();
         if (Config.EnableSimpleReports)
@@ -408,12 +405,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 DalamudLog.Log.Error(exception, nameof(EmitMockData));
             }
         });
-    }
-
-    private void CleanSpawnHistories()
-    {
-        Config.SpawnStates.RemoveAll(x => DateTime.UtcNow - x.SpawnedAt > TimeSpan.FromHours(1));
-        Dalamud.PluginInterface.SavePluginConfig(Config);
     }
 
     protected override void ReleaseManaged()
