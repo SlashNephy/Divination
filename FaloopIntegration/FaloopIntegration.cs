@@ -293,14 +293,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobDeath(ev);
 
-        if (!enableDeathReport)
-        {
-            return;
-        }
-
         if (skipOrphanReport && spawnEvents.RemoveAll(x => x.Id == ev.Id) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
+            return;
+        }
+
+        if (!enableDeathReport)
+        {
             return;
         }
 
