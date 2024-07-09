@@ -185,9 +185,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     OnMobFalseSpawn(ev);
                     break;
                 }
-            case MobReportActions.Death when config.EnableDeathReport:
+            case MobReportActions.Death:
                 var death = JsonSerializer.Deserialize<MobReportData.Death>(data.Data) ?? throw new InvalidOperationException("invalid death data");
-                OnMobDeath(new MobDeathEvent(mobData.BNpcId, worldId, data.Ids.ZoneInstance, mobData.Rank, death.StartedAt), config.Channel, config.SkipOrphanReport);
+                OnMobDeath(new MobDeathEvent(mobData.BNpcId, worldId, data.Ids.ZoneInstance, mobData.Rank, death.StartedAt),
+                    config.Channel, config.SkipOrphanReport, config.EnableDeathReport);
                 DalamudLog.Log.Verbose("OnMobReport: OnDeathMobReport");
                 break;
         }
@@ -288,13 +289,18 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         spawnEvents.RemoveAll(x => x.Id == ev.Id);
     }
 
-    private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport)
+    private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport, bool enableDeathReport)
     {
         Ui.OnMobDeath(ev);
 
         if (skipOrphanReport && spawnEvents.RemoveAll(x => x.Id == ev.Id) == 0)
         {
             DalamudLog.Log.Debug("OnDeathMobReport: skipOrphanReport");
+            return;
+        }
+
+        if (!enableDeathReport)
+        {
             return;
         }
 
