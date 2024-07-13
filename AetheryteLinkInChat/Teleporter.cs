@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,6 +10,7 @@ using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.Config;
 using Divination.AetheryteLinkInChat.Solver;
+using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;
 
@@ -102,6 +103,26 @@ public sealed class Teleporter : IDisposable
 
     private unsafe bool ExecuteTeleport(Aetheryte aetheryte)
     {
+        // https://github.com/NightmareXIV/Lifestream/blob/7ad417ac028ae2e2a42e61d1883fdeb9895bc128/Lifestream/Services/TeleportService.cs#L13
+        var actionManager = ActionManager.Instance();
+        if (actionManager == default)
+        {
+            DalamudLog.Log.Warning("ActionManager is null");
+            return false;
+        }
+
+        if (actionManager->GetActionStatus(ActionType.Action, 5) != 0)
+        {
+            DalamudLog.Log.Warning("Can't execute teleport action");
+            return false;
+        }
+
+        if (actionManager->AnimationLock > 0)
+        {
+            DalamudLog.Log.Warning("Can't teleport - animation locked");
+            return false;
+        }
+
         var teleport = Telepo.Instance();
         if (teleport == default)
         {
@@ -109,20 +130,17 @@ public sealed class Teleporter : IDisposable
             return false;
         }
 
-        if (!aetheryteList.Any(x => x.AetheryteId == aetheryte.RowId))
+        foreach (var entry in aetheryteList)
         {
-            DalamudLog.Log.Error("ExecuteTeleport: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
-            return false;
+            if (entry.AetheryteId == aetheryte.RowId)
+            {
+                return teleport->Teleport(aetheryte.RowId, 0);
+            }
         }
 
-        if (!teleport->Teleport(aetheryte.RowId, 0))
-        {
-            DalamudLog.Log.Error("ExecuteTeleport: could not teleport to {Id}", aetheryte.RowId);
+        DalamudLog.Log.Error("ExecuteTeleport: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
             return false;
         }
-
-        return true;
-    }
 
     private void TeleportToQueuedAetheryte()
     {
