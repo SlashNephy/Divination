@@ -14,7 +14,22 @@
         "resolved": "5.12.0",
         "contentHash": "dJuigXycpJNOiLT9or7mkHSkGFHgGW3/p6cNNYEKZBa7Hhp1FdX/cvqYWWYhRLpfoZOedeA7aRbYiOB3vW/dvA=="
       },
+      "Reloaded.Memory": {
+        "type": "Transitive",
+        "resolved": "7.1.0",
+        "contentHash": "4Y5tCsRWdW/shj9W7RqJq37LStuW1VVtjxsBp4LKZilPcjudeQg9k+u+6fnDgacCEJiG3S2EtcaiNtVMTdaSnQ=="
+      },
+      "clicklib": {
+        "type": "Project",
+        "dependencies": {
+          "ECommons": "[2.2.0.2, )",
+          "Reloaded.Memory": "[7.1.0, )"
+        }
+      },
       "Dalamud.Divination.Common": {
+        "type": "Project"
+      },
+      "ecommons": {
         "type": "Project"
       }
     }

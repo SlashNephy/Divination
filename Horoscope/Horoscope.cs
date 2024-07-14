@@ -1,55 +1,34 @@
-﻿using System;
-using System.Linq;
-using Dalamud.Divination.Common.Api.Dalamud;
+﻿using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
+using Dalamud.Divination.Common.Boilerplate.Features;
 using Dalamud.Plugin;
-using Divination.Horoscope.Modules;
+using Divination.Horoscope.Ui;
 using ECommons;
 
 namespace Divination.Horoscope;
 
-public class Horoscope : DivinationPlugin<Horoscope>, IDalamudPlugin
+public class Horoscope : DivinationPlugin<Horoscope, HoroscopeConfig>, IDalamudPlugin, ICommandSupport, IConfigWindowSupport<HoroscopeConfig>
 {
-    private readonly IModule[] modules;
+    private readonly ModuleManager manager = new();
 
     public Horoscope(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
+        Config = pluginInterface.GetPluginConfig() as HoroscopeConfig ?? new HoroscopeConfig();
         ECommonsMain.Init(pluginInterface, this);
 
-        modules = typeof(IModule).Assembly.GetExportedTypes()
-            .Where(type => type.IsAssignableTo(typeof(IModule)) && !type.IsInterface)
-            .Select(type => (IModule)Activator.CreateInstance(type)!)
-            .ToArray();
+        manager.EnableAll();
+    }
 
-        foreach (var module in modules)
-        {
-            try
-            {
-                module.Enable();
-                DalamudLog.Log.Info("{Module} enabled", module.Name);
-            }
-            catch (Exception e)
-            {
-                DalamudLog.Log.Error("{Module} failed to enable: {Error}", module.Name, e);
-            }
-        }
+    public string MainCommandPrefix => "/horoscope";
+
+    public ConfigWindow<HoroscopeConfig> CreateConfigWindow()
+    {
+        return new HoroscopeConfigWindow(manager);
     }
 
     protected override void ReleaseManaged()
     {
-        foreach (var module in modules)
-        {
-            try
-            {
-                module.Disable();
-                DalamudLog.Log.Info("{Module} disabled", module.Name);
-            }
-            catch (Exception e)
-            {
-                DalamudLog.Log.Error("{Module} failed to disable: {Error}", module.Name, e);
-            }
-        }
-
+        manager.DisableAll();
         ECommonsMain.Dispose();
     }
 }

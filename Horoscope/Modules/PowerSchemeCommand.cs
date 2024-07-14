@@ -7,6 +7,7 @@ namespace Divination.Horoscope;
 
 public class PowerSchemeCommand : IModule
 {
+    public string Id => "power_scheme_command";
     public string Name => "/power Command";
     public string Description => "Set active Windows power scheme.";
 

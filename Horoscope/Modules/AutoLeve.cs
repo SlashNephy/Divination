@@ -7,8 +7,8 @@ namespace Divination.Horoscope.Modules;
 
 public class AutoLeve : IModule
 {
+    public string Id => "auto_leve";
     public string Name => "Auto Leve";
-
     public string Description => "Automate your leve works.";
 
     public void Enable()

@@ -7,6 +7,7 @@ namespace Divination.Horoscope;
 
 public partial class TurnOffScreenCommand : IModule
 {
+    public string Id => "turn_off_screen_command";
     public string Name => "/turnoff Command";
     public string Description => "Turn off screen.";
 

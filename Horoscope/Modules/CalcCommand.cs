@@ -7,6 +7,7 @@ namespace Divination.Horoscope.Modules;
 
 public class CalcCommand : IModule
 {
+    public string Id => "calc_command";
     public string Name => "/calc Command";
     public string Description => "Compute expression and display the result. Support basic four arithmetic operations.";
 
