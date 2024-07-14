@@ -15,7 +15,7 @@ internal sealed class Voiceroid2ProxyClient : IVoiceroid2ProxyClient
 
     public Voiceroid2ProxyClient(string host = "localhost", int port = 4532)
     {
-        url = $"http://{host}:{port.ToString()}/talk";
+        url = $"http://{host}:{port}/talk";
     }
 
     public async Task TalkAsync(string text)
