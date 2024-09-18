@@ -179,12 +179,12 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             }
             else if (Config.DisplayLinkAtEnd)
             {
-                var mapIndex = message.Payloads.FindIndex(p => p.GetType() == typeof(MapLinkPayload)) + 8;
-                message.Payloads.InsertRange(mapIndex, payloads);
+                message.Payloads.AddRange(payloads);
             }
             else
             {
-                message.Payloads.AddRange(payloads);
+                var mapIndex = message.Payloads.FindIndex(p => p.GetType() == typeof(MapLinkPayload)) + 8;
+                message.Payloads.InsertRange(mapIndex, payloads);
             }
         }
     }

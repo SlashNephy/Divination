@@ -94,7 +94,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             // Maybe not the best location for this...
             if (Config.DisplayLineBreak)
-                Config.DisplayLinkAtEnd = false;
+                Config.DisplayLinkAtEnd = true;
 
             ImGui.BeginDisabled(Config.DisplayLineBreak);
             ImGui.Checkbox(Localization.DisplayLinkAtEnd, ref Config.DisplayLinkAtEnd);
