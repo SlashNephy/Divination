@@ -7,6 +7,7 @@ using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Dalamud.Payload;
+using Dalamud.Game;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -19,8 +20,13 @@ internal sealed partial class CommandProcessor : ICommandProcessor
     private readonly IChatClient chatClient;
     private readonly IChatGui chatGui;
 
-    private readonly Regex commandRegexCn;
-    private readonly Regex commandRegex;
+    private readonly Regex commandRegexEn = new(@"^The command (?<command>.+) does not exist\.$", RegexOptions.Compiled);
+    private readonly Regex commandRegexJp = new(@"^そのコマンドはありません。： (?<command>.+)$", RegexOptions.Compiled);
+    private readonly Regex commandRegexDe = new(@"^„(?<command>.+)“ existiert nicht als Textkommando\.$", RegexOptions.Compiled);
+    private readonly Regex commandRegexFr = new(@"^La commande texte “(?<command>.+)” n'existe pas\.$", RegexOptions.Compiled);
+    private readonly Regex commandRegexCn = new(@"^^(“|「)(?<command>.+)(”|」)(出现问题：该命令不存在|出現問題：該命令不存在)。$", RegexOptions.Compiled);
+    private readonly Regex currentLangCommandRegex;
+
     private readonly List<DivinationCommand> commands = new();
     private readonly object commandsLock = new();
     private readonly string pluginName;
@@ -36,17 +42,17 @@ internal sealed partial class CommandProcessor : ICommandProcessor
 
         chatGui.CheckMessageHandled += OnCheckMessageHandled;
 
-        var dalamudCommandManagerService =
-            commandManager.GetType().GetField("commandManagerService", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(commandManager)!;
+        var api = ServiceContainer.Get<IDalamudApi>();
+        currentLangCommandRegex = (ClientLanguage)api?.ClientState.ClientLanguage! switch
+        {
+            ClientLanguage.Japanese => commandRegexJp,
+            ClientLanguage.English => commandRegexEn,
+            ClientLanguage.German => commandRegexDe,
+            ClientLanguage.French => commandRegexFr,
+            _ => commandRegexEn,
+        };
 
-        commandRegex =
-            dalamudCommandManagerService.GetType().GetField("currentLangCommandRegex", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(
-                dalamudCommandManagerService) as Regex ?? throw new NotSupportedException();
-        commandRegexCn =
-            dalamudCommandManagerService.GetType().GetField("commandRegexCn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(
-                dalamudCommandManagerService) as Regex ?? throw new NotSupportedException();
-
-        DalamudLog.Log.Debug(commandRegex.ToString());
+        DalamudLog.Log.Debug(currentLangCommandRegex.ToString());
     }
 
     public string? Prefix { get; }
@@ -154,7 +160,7 @@ internal sealed partial class CommandProcessor : ICommandProcessor
             return;
         }
 
-        var cmdMatch = commandRegex.Match(message.TextValue).Groups["command"];
+        var cmdMatch = currentLangCommandRegex.Match(message.TextValue).Groups["command"];
         if (cmdMatch.Success)
         {
             var command = cmdMatch.Value;
