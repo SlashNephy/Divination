@@ -13,6 +13,7 @@ public class PluginConfig : IPluginConfiguration
     public bool ConsiderTeleportsToOtherWorlds;
     public bool EnableLifestreamIntegration;
     public bool DisplayLineBreak;
+    public bool DisplayLinkAtEnd;
 
     public bool EnableChatNotificationOnTeleport = true;
     public bool EnableQuestNotificationOnTeleport = true;
