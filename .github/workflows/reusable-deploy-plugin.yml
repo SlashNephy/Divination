@@ -67,7 +67,7 @@ jobs:
 
       - name: Create Pull Request
         id: create-pull-request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
           commit-message: '⚙️ Deploy ${{ inputs.plugin-name }} ${{ steps.version.outputs.value }}'
