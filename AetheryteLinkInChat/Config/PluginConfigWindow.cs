@@ -92,6 +92,14 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             ImGui.Checkbox(Localization.DisplayLineBreak, ref Config.DisplayLineBreak);
 
+            // Maybe not the best location for this...
+            if (Config.DisplayLineBreak)
+                Config.DisplayLinkAtEnd = true;
+
+            ImGui.BeginDisabled(Config.DisplayLineBreak);
+            ImGui.Checkbox(Localization.DisplayLinkAtEnd, ref Config.DisplayLinkAtEnd);
+            ImGui.EndDisabled();
+
             ImGui.Checkbox(Localization.EnableChatNotificationOnTeleport, ref Config.EnableChatNotificationOnTeleport);
             ImGui.Checkbox(Localization.EnableQuestNotificationOnTeleport, ref Config.EnableQuestNotificationOnTeleport);
 

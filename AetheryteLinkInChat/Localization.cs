@@ -126,6 +126,12 @@ public static class Localization
         Ja = "テレポリンクの前に改行を入れる",
     };
 
+    public static readonly LocalizedString DisplayLinkAtEnd = new()
+    {
+        En = "Display teleport link at the end of the message",
+        Ja = "メッセージの最後にテレポート リンクを表示する",
+    };
+
     public static readonly LocalizedString EnableChatNotificationOnTeleport = new()
     {
         En = "Enable Chat Notification on Teleport",

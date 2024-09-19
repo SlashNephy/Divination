@@ -177,6 +177,10 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 payloads.Insert(0, new TextPayload("\n"));
                 message.Payloads.AddRange(payloads);
             }
+            else if (Config.DisplayLinkAtEnd)
+            {
+                message.Payloads.AddRange(payloads);
+            }
             else
             {
                 var mapIndex = message.Payloads.FindIndex(p => p.GetType() == typeof(MapLinkPayload)) + 8;
