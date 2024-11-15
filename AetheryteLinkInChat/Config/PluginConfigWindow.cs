@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using ImGuiNET;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace Divination.AetheryteLinkInChat.Config;
 
@@ -25,9 +25,11 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         }
 
         grandCompanyAetheryteNames = Enum.GetValues<GrandCompanyAetheryte>()
-            .Select(x => sheet?.GetRow((uint)x)?.PlaceName.Value?.Name.RawString ?? Enum.GetName(x) ?? string.Empty)
+            .Select(x => sheet.HasRow((uint)x) ?
+                sheet.GetRow((uint)x).PlaceName.Value.Name.ExtractText() :
+                Enum.GetName(x) ?? string.Empty)
             .ToArray();
-        aetherytes = sheet.Where(x => x.IsAetheryte && !x.Invisible && x.RowId != 1).ToImmutableList();
+        aetherytes = sheet.Where(x => x is { IsAetheryte: true, Invisible: false } && x.RowId != 1).ToImmutableList();
     }
 
     public override void Draw()
@@ -128,8 +130,18 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
                     ImGui.Text(aetheryte.RowId.ToString());
 
                     ImGui.TableNextColumn();
-                    var aetheryteName = aetheryte.PlaceName.Value?.Name.RawString ?? "???";
-                    var zoneName = aetheryte.Map.Value?.PlaceName.Value?.Name.RawString ?? "???";
+                    var aetheryteName = "???";
+                    var zoneName = "???";
+
+                    if (aetheryte.PlaceName.IsValid)
+                    {
+                        aetheryteName = aetheryte.PlaceName.Value.Name.ExtractText();
+                    }
+
+                    if (aetheryte.Map is { IsValid: true, Value.PlaceName.IsValid: true })
+                    {
+                        zoneName = aetheryte.Map.Value.PlaceName.Value.Name.ExtractText();
+                    }
 
                     if (Config.IgnoredAetheryteIds.Contains(aetheryte.RowId))
                     {

@@ -2,7 +2,7 @@
 using System.IO;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace Divination.AetheryteLinkInChat.Payloads;
 
@@ -12,7 +12,9 @@ public sealed class AetherytePayload : DalamudLinkPayload
     internal const byte EmbeddedInfoTypeByte = (byte)(EmbeddedInfoType.DalamudLink + 1);
 
     public uint AetheryteId { get; set; }
-    public Aetheryte Aetheryte => DataResolver.GetExcelSheet<Aetheryte>()?.GetRow(AetheryteId) ?? throw new InvalidOperationException("invalid aetheryte ID");
+    public Aetheryte Aetheryte => AetheryteLinkInChat.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>().HasRow(AetheryteId)
+        ? AetheryteLinkInChat.Instance.Dalamud.DataManager.GetExcelSheet<Aetheryte>().GetRow(AetheryteId)
+        : throw new InvalidOperationException("invalid aetheryte ID");
 
     public override PayloadType Type => PayloadType.Unknown;
 
@@ -30,13 +32,15 @@ public sealed class AetherytePayload : DalamudLinkPayload
         var data = MakeInteger(AetheryteId);
         var length = 2 + (byte)data.Length;
 
-        return [
+        return
+        [
             START_BYTE,
             (byte)SeStringChunkType.Interactable,
             (byte)length,
             EmbeddedInfoTypeByte,
             .. data,
-            END_BYTE];
+            END_BYTE
+        ];
     }
 
     protected override void DecodeImpl(BinaryReader reader, long _)

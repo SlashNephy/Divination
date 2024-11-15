@@ -1,5 +1,5 @@
 ﻿using System;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace Divination.FaloopIntegration;
 

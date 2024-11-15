@@ -1,4 +1,4 @@
-﻿using Lumina.Excel.GeneratedSheets;
+﻿using Lumina.Excel.Sheets;
 
 namespace Divination.AetheryteLinkInChat.Solver;
 
@@ -10,17 +10,17 @@ public interface ITeleportPath
 
 public record AetheryteTeleportPath(Aetheryte Aetheryte, MapMarker Marker, Map Map) : ITeleportPath
 {
-    public override string? ToString()
+    public override string ToString()
     {
-        return Aetheryte.PlaceName.Value?.Name.RawString ?? Marker.PlaceNameSubtext.Value?.Name.RawString;
+        return Aetheryte.PlaceName.IsValid ? Aetheryte.PlaceName.Value.Name.ExtractText() : Marker.PlaceNameSubtext.Value.Name.ExtractText();
     }
 }
 
 public record BoundaryTeleportPath(MapMarker ConnectedMarker, Map ConnectedMap, MapMarker Marker, Map Map) : ITeleportPath
 {
-    public override string? ToString()
+    public override string ToString()
     {
-        return ConnectedMarker.PlaceNameSubtext.Value?.Name.RawString;
+        return ConnectedMarker.PlaceNameSubtext.Value.Name.ExtractText();
     }
 }
 
@@ -28,6 +28,6 @@ public record WorldTeleportPath(Aetheryte Aetheryte, World World, MapMarker Mark
 {
     public override string ToString()
     {
-        return World.Name.RawString;
+        return World.Name.ExtractText();
     }
 }

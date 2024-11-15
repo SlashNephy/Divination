@@ -12,7 +12,7 @@ using Divination.AetheryteLinkInChat.Config;
 using Divination.AetheryteLinkInChat.Solver;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace Divination.AetheryteLinkInChat;
 
@@ -49,7 +49,8 @@ public sealed class Teleporter : IDisposable
     private readonly IDalamudPluginInterface pluginInterface;
     private readonly IToastGui toastGui;
     private readonly PluginConfig config;
-    private volatile Aetheryte? queuedAetheryte;
+    // Huh, cant use volatile here anymore... well hope nothing explodes :)
+    private Aetheryte? queuedAetheryte;
 
     public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, IDalamudPluginInterface pluginInterface, IToastGui toastGui, PluginConfig config)
     {
@@ -73,7 +74,7 @@ public sealed class Teleporter : IDisposable
         {
             if (QueueTeleport(aetheryte))
             {
-                DisplayQueueTeleportingNotification(aetheryte.PlaceName.Value?.Name.RawString);
+                DisplayQueueTeleportingNotification(aetheryte.PlaceName.Value.Name.ExtractText());
                 return true;
             }
 
@@ -83,7 +84,7 @@ public sealed class Teleporter : IDisposable
         queuedAetheryte = default;
         if (ExecuteTeleport(aetheryte))
         {
-            DisplayTeleportingNotification(aetheryte.PlaceName.Value?.Name.RawString, false);
+            DisplayTeleportingNotification(aetheryte.PlaceName.Value.Name.ExtractText(), false);
             return true;
         }
 
@@ -147,9 +148,9 @@ public sealed class Teleporter : IDisposable
 
         var aetheryte = queuedAetheryte;
         queuedAetheryte = default;
-        if (aetheryte != default && ExecuteTeleport(aetheryte))
+        if (aetheryte.HasValue && ExecuteTeleport(aetheryte.Value))
         {
-            DisplayTeleportingNotification(aetheryte.PlaceName.Value?.Name.RawString, true);
+            DisplayTeleportingNotification(aetheryte.Value.PlaceName.Value.Name.ExtractText(), true);
             return;
         }
     }
@@ -175,32 +176,32 @@ public sealed class Teleporter : IDisposable
             await Task.Delay(500, cancellationToken);
         }
 
-        if (world != default)
+        if (world.HasValue)
         {
-            if (world.RowId == clientState.LocalPlayer?.CurrentWorld?.Id)
+            if (world.Value.RowId == clientState.LocalPlayer?.CurrentWorld.RowId)
             {
                 DalamudLog.Log.Debug("TeleportToPaths: world == currentWorld");
             }
             else
             {
-                DalamudLog.Log.Debug("TeleportToPaths: teleporting to {World}", world.Name.RawString);
+                DalamudLog.Log.Debug("TeleportToPaths: teleporting to {World}", world.Value.Name.ExtractText());
 
-                if (!TeleportToWorld(world))
+                if (!TeleportToWorld(world.Value))
                 {
-                    DalamudLog.Log.Warning("TeleportToPaths: teleport to {World} failed", world.Name.RawString);
+                    DalamudLog.Log.Warning("TeleportToPaths: teleport to {World} failed", world.Value.Name.ExtractText());
                     return false;
                 }
 
-                DisplayTeleportingNotification(world.Name.RawString, false);
-                DalamudLog.Log.Debug("TeleportToPaths: waiting for {World}", world.Name.RawString);
+                DisplayTeleportingNotification(world.Value.Name.ExtractText(), false);
+                DalamudLog.Log.Debug("TeleportToPaths: waiting for {World}", world.Value.Name.ExtractText());
 
                 // wait until world changed
-                while (world.RowId != clientState.LocalPlayer?.CurrentWorld.Id || IsTeleportUnavailable)
+                while (world.Value.RowId != clientState.LocalPlayer?.CurrentWorld.RowId || IsTeleportUnavailable)
                 {
                     await Task.Delay(500, cancellationToken);
                 }
 
-                DalamudLog.Log.Debug("TeleportToPaths: world changed: {World}", world.Name.RawString);
+                DalamudLog.Log.Debug("TeleportToPaths: world changed: {World}", world.Value.Name.ExtractText());
             }
         }
 
@@ -221,7 +222,7 @@ public sealed class Teleporter : IDisposable
                         return false;
                     }
 
-                    DisplayTeleportingNotification(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString, false);
+                    DisplayTeleportingNotification(aetheryte.Aetheryte.PlaceName.Value.Name.ExtractText(), false);
                     break;
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
                     if (!TeleportToAethernet(aetheryte.Aetheryte))
@@ -230,7 +231,7 @@ public sealed class Teleporter : IDisposable
                         return false;
                     }
 
-                    DisplayTeleportingNotification(aetheryte.Aetheryte.AethernetName.Value?.Name.RawString, false);
+                    DisplayTeleportingNotification(aetheryte.Aetheryte.AethernetName.Value.Name.ExtractText(), false);
                     break;
                 case BoundaryTeleportPath boundary:
                     throw new NotImplementedException("boundary teleport is not implemented.");
@@ -244,12 +245,12 @@ public sealed class Teleporter : IDisposable
 
     private bool TeleportToAethernet(Aetheryte aetheryte)
     {
-        return commandManager.ProcessCommand($"/li {aetheryte.AethernetName.Value?.Name.RawString}");
+        return commandManager.ProcessCommand($"/li {aetheryte.AethernetName.Value.Name.ExtractText()}");
     }
 
     private bool TeleportToWorld(World world)
     {
-        return commandManager.ProcessCommand($"/li {world.Name.RawString}");
+        return commandManager.ProcessCommand($"/li {world.Name.ExtractText()}");
     }
 
     public bool IsLifestreamAvailable()

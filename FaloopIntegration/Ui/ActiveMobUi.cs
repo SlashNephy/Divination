@@ -79,7 +79,7 @@ public class ActiveMobUi : IWindow, IDisposable
     private void DrawRow(MobSpawnEvent mob)
     {
         ImGui.TableNextColumn();
-        var mobText = $"{Utils.GetRankIcon(mob.Rank)} {mob.Mob.Singular.RawString} {Utils.GetInstanceIcon(mob.ZoneInstance)} {SeIconChar.CrossWorld.ToIconString()} {mob.World.Name.RawString}";
+        var mobText = $"{Utils.GetRankIcon(mob.Rank)} {mob.Mob.Singular.ExtractText()} {Utils.GetInstanceIcon(mob.ZoneInstance)} {SeIconChar.CrossWorld.ToIconString()} {mob.World.Name.ExtractText()}";
         ImGui.Text(mobText);
 
         ImGui.TableNextColumn();
@@ -89,7 +89,7 @@ public class ActiveMobUi : IWindow, IDisposable
         ImGui.TableNextColumn();
         if (ImGui.Button($"{Localization.TableButtonTeleport}##{mob.Id}"))
         {
-            if (ipc.Teleport(mob.TerritoryTypeId, mob.TerritoryType.Map.Row, mob.Coordinates ?? default, mob.WorldId))
+            if (ipc.Teleport(mob.TerritoryTypeId, mob.TerritoryType.Map.RowId, mob.Coordinates ?? default, mob.WorldId))
             {
                 chatClient.Print(Localization.TeleportingMessage.Format(mobText));
             }
