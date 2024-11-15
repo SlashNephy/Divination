@@ -84,7 +84,7 @@ public class AetheryteSolver(IDataManager dataManager)
         }
 
         var grandCompanyAetheryteIds = Enum.GetValues<GrandCompanyAetheryte>().Select(x => (uint)x).ToList();
-        Aetheryte? aetheryte = GetAetherytesInTerritoryType(territory)
+        var aetheryte = GetAetherytesInTerritoryType(territory)
             .Select(x => x.aetheryte)
             .FirstOrNull(x => grandCompanyAetheryteIds.Contains(x.RowId));
         if (!aetheryte.HasValue)
@@ -287,16 +287,13 @@ public class AetheryteSolver(IDataManager dataManager)
 
     private (MapMarker? marker, Map? map) GetMarkerFromAetheryte(Aetheryte aetheryte)
     {
-        var marker = mapMarkerSheet
-            .SelectMany(x => x)
-            .Where(x => x.DataType == 3)
-            .FirstOrNull(x => x.DataKey.RowId == aetheryte.RowId);
-        var map = mapSheet.FirstOrDefault(x => x.MapMarkerRange == marker?.RowId);
+        var marker = mapMarkerSheet.SelectMany(x => x).Where(x => x.DataType == 3).FirstOrNull(x => x.DataKey.RowId == aetheryte.RowId);
+        var map = mapSheet.FirstOrNull(x => x.MapMarkerRange == marker?.RowId);
         return (marker, map);
     }
 
     public Aetheryte? GetAetheryteById(uint id)
     {
-        return aetheryteSheet.GetRow(id);
+        return aetheryteSheet.GetRowOrDefault(id);
     }
 }
