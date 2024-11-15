@@ -196,7 +196,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private bool CheckSpawnNotificationCondition(PluginConfig.PerRankConfig config, uint worldId, GameExpansion expansion)
     {
-        if (Dalamud.DataManager.GetExcelSheet<World>().TryGetRow(worldId, out var world))
+        if (!Dalamud.DataManager.GetExcelSheet<World>().TryGetRow(worldId, out var world))
         {
             DalamudLog.Log.Debug("OnMobReport: world == null");
             return false;
