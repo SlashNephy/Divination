@@ -4,6 +4,5 @@
   "Punchline": "Faloop Notification in Chat",
   "Description": "Show Faloop mob spawn notifications in in-game chat. Type /faloop to configure the plugin.",
   "Tags": ["mobhunt"],
-  "CategoryTags": ["social", "utility"],
-  "DalamudApiLevel": 10
+  "CategoryTags": ["social", "utility"]
 }
