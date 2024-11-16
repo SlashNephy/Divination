@@ -84,10 +84,12 @@ public class AetheryteSolver(IDataManager dataManager)
         }
 
         var grandCompanyAetheryteIds = Enum.GetValues<GrandCompanyAetheryte>().Select(x => (uint)x).ToList();
-        var aetheryte = GetAetherytesInTerritoryType(territory)
+        Aetheryte aetheryte;
+        var isAetheryteFound = GetAetherytesInTerritoryType(territory)
             .Select(x => x.aetheryte)
-            .FirstOrNull(x => grandCompanyAetheryteIds.Contains(x.RowId));
-        if (!aetheryte.HasValue)
+            .TryGetFirst(x => grandCompanyAetheryteIds.Contains(x.RowId), out aetheryte);
+
+        if (!isAetheryteFound)
         {
             if (grandCompanyAetheryteId == default)
             {
@@ -95,13 +97,11 @@ public class AetheryteSolver(IDataManager dataManager)
                 return;
             }
 
-            if (!aetheryteSheet.TryGetRow(grandCompanyAetheryteId, out var aetheryteValue))
+            if (!aetheryteSheet.TryGetRow(grandCompanyAetheryteId, out aetheryte))
             {
                 DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: aetheryte == null");
                 return;
             }
-
-            aetheryte = aetheryteValue;
         }
 
         World? world = DetectWorld(message, currentWorld);
@@ -117,20 +117,13 @@ public class AetheryteSolver(IDataManager dataManager)
             return;
         }
 
-        var (marker, map) = GetMarkerFromAetheryte(aetheryte.Value);
-        if (!marker.HasValue)
+        if (!TryGetMarkerFromAetheryte(aetheryte, out var marker, out var map))
         {
-            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: marker == null");
+            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: marker == null | map == null");
             return;
         }
 
-        if (!map.HasValue)
-        {
-            DalamudLog.Log.Debug("AppendGrandCompanyAetheryte: map == null");
-            return;
-        }
-
-        paths.Insert(0, new WorldTeleportPath(aetheryte.Value, world.Value, marker.Value, map.Value));
+        paths.Insert(0, new WorldTeleportPath(aetheryte, world.Value, marker, map));
     }
 
     public World? DetectWorld(SeString message, World? currentWorld)
@@ -144,8 +137,10 @@ public class AetheryteSolver(IDataManager dataManager)
         // replace Boxed letters with alphabets
         text = string.Join(string.Empty, text.Select(ReplaceSeIconChar));
 
-        return worldSheet.Where(x => x.IsPublic).FirstOrNull(x => text.Contains(x.Name.ExtractText(), StringComparison.OrdinalIgnoreCase)) ??
-               currentWorld;
+        return worldSheet.Where(x => x.IsPublic)
+            .TryGetFirst(x => text.Contains(x.Name.ExtractText(), StringComparison.OrdinalIgnoreCase), out var world)
+            ? world
+            : currentWorld;
     }
 
     private static char ReplaceSeIconChar(char c)
@@ -204,24 +199,24 @@ public class AetheryteSolver(IDataManager dataManager)
         {
             var connectedMap = mapSheet.GetRow(marker.DataKey.RowId);
             var connectedTerritoryType = connectedMap.TerritoryType.Value;
-            var connectedMarker = mapMarkerSheet
+            var isMapMarkerFound = mapMarkerSheet
                 // エリア境界のマーカー
                 .SelectMany(x => x)
                 .Where(x => x.DataType == 1)
                 // 近接エリアに移動した先のマーカーを探す
-                .FirstOrNull(x => x.RowId == connectedMap.MapMarkerRange && x.DataKey.RowId == map.RowId);
+                .TryGetFirst(x => x.RowId == connectedMap.MapMarkerRange && x.DataKey.RowId == map.RowId, out var connectedMarker);
 
             DalamudLog.Log.Verbose("marker = {S} ({N})", marker.PlaceNameSubtext.Value.Name.ExtractText(), marker.DataKey);
             DalamudLog.Log.Verbose("connectedTerritoryType = {S}", connectedTerritoryType.PlaceName.Value.Name.ExtractText());
             DalamudLog.Log.Verbose("connectedMap = {S}", connectedMap.PlaceName.Value.Name.ExtractText());
-            DalamudLog.Log.Verbose("connectedMarker = {S}", connectedMarker?.PlaceNameSubtext.Value.Name.ExtractText() ?? "");
+            DalamudLog.Log.Verbose("connectedMarker = {S}", isMapMarkerFound ? connectedMarker.PlaceNameSubtext.Value.Name.ExtractText() : "");
 
-            if (!connectedMarker.HasValue)
+            if (!isMapMarkerFound)
                 continue;
 
             foreach (var paths in CalculateTeleportPaths(connectedTerritoryType, connectedMap, ++depth))
             {
-                yield return paths.Prepend(new BoundaryTeleportPath(connectedMarker.Value, connectedMap, marker, map)).ToArray();
+                yield return paths.Prepend(new BoundaryTeleportPath(connectedMarker, connectedMap, marker, map)).ToArray();
             }
         }
     }
@@ -249,17 +244,17 @@ public class AetheryteSolver(IDataManager dataManager)
             }
 
             // エーテライトのマップマーカーを探す
-            var marker = mapMarkerSheet
+            var isMapMarkerFound = mapMarkerSheet
                 // エーテライトのマーカーに限定
                 .SelectMany(x => x)
                 .Where(x => x.DataType is 3 or 4)
-                .FirstOrNull(x => x.DataKey.RowId == aetheryte.RowId);
-            if (!marker.HasValue)
+                .TryGetFirst(x => x.DataKey.RowId == aetheryte.RowId, out var marker);
+            if (!isMapMarkerFound)
             {
                 continue;
             }
 
-            yield return (aetheryte, marker.Value);
+            yield return (aetheryte, marker);
         }
     }
 
@@ -285,11 +280,24 @@ public class AetheryteSolver(IDataManager dataManager)
         return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
     }
 
-    private (MapMarker? marker, Map? map) GetMarkerFromAetheryte(Aetheryte aetheryte)
+    private bool TryGetMarkerFromAetheryte(Aetheryte aetheryte, out MapMarker resultMarker, out Map resultMap)
     {
-        var marker = mapMarkerSheet.SelectMany(x => x).Where(x => x.DataType == 3).FirstOrNull(x => x.DataKey.RowId == aetheryte.RowId);
-        var map = mapSheet.FirstOrNull(x => x.MapMarkerRange == marker?.RowId);
-        return (marker, map);
+        resultMarker = default;
+        resultMap = default;
+
+        var isMapMarkerFound = mapMarkerSheet
+            .SelectMany(x => x)
+            .Where(x => x.DataType == 3)
+            .TryGetFirst(x => x.DataKey.RowId == aetheryte.RowId, out var marker);
+
+        if (!isMapMarkerFound)
+            return false;
+
+        var isMapFound = mapSheet.TryGetFirst(x => x.MapMarkerRange == marker.RowId, out var map);
+
+        resultMarker = marker;
+        resultMap = map;
+        return isMapFound;
     }
 
     public Aetheryte? GetAetheryteById(uint id)
