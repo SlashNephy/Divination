@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Numerics;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 using Newtonsoft.Json;
 
 namespace Divination.FaloopIntegration;
@@ -23,7 +23,7 @@ public record MobSpawnEvent(
     [JsonIgnore]
     public TerritoryType TerritoryType => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<TerritoryType>()?.GetRow(TerritoryTypeId) ?? throw new InvalidOperationException("invalid territory type ID");
     [JsonIgnore]
-    public Map Map => TerritoryType.Map.Value ?? throw new InvalidOperationException("invalid map ID");
+    public Map Map => TerritoryType.Map.ValueNullable ?? throw new InvalidOperationException("invalid map ID");
 
     [JsonIgnore]
     public string Id => $"{MobId}_{WorldId}_{ZoneInstance}";

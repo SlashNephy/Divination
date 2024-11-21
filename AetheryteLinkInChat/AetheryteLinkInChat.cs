@@ -93,7 +93,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             solver.AppendGrandCompanyAetheryte(paths,
                 (uint)Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
                 message,
-                Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData,
+                Dalamud.ClientState.LocalPlayer?.CurrentWorld.Value,
                 Dalamud.ClientState.TerritoryType);
         }
 
@@ -109,7 +109,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                         new UIForegroundPayload(069),
                         ..SeString.TextArrowPayloads,
                         aetheryteLinkPayload,
-                        new TextPayload(aetheryte.Aetheryte.PlaceName.Value?.Name.RawString),
+                        new TextPayload(aetheryte.Aetheryte.PlaceName.Value.Name.ExtractText()),
                         new AetherytePayload(aetheryte.Aetheryte).ToRawPayload(),
                         RawPayload.LinkTerminator,
                         UIForegroundPayload.UIForegroundOff,
@@ -119,14 +119,14 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: false } aetheryte:
                     payloads.AddRange([
                         new IconPayload(BitmapFontIcon.Aethernet),
-                        new TextPayload(aetheryte.Aetheryte.AethernetName.Value?.Name.RawString),
+                        new TextPayload(aetheryte.Aetheryte.AethernetName.Value.Name.ExtractText()),
                     ]);
                     break;
                 // マップ境界
                 case BoundaryTeleportPath boundary:
                     payloads.AddRange([
                         new IconPayload(BitmapFontIcon.FlyZone),
-                        new TextPayload(boundary.ConnectedMarker.PlaceNameSubtext.Value?.Name.RawString),
+                        new TextPayload(boundary.ConnectedMarker.PlaceNameSubtext.Value.Name.ExtractText()),
                     ]);
                     break;
                 // ワールド間テレポ
@@ -135,13 +135,13 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                         new IconPayload(BitmapFontIcon.Aetheryte),
                         new UIForegroundPayload(069),
                         aetheryteLinkPayload,
-                        new TextPayload(world.Aetheryte.PlaceName.Value?.Name.RawString),
+                        new TextPayload(world.Aetheryte.PlaceName.Value.Name.ExtractText()),
                         new AetherytePayload(world.Aetheryte).ToRawPayload(),
                         RawPayload.LinkTerminator,
                         UIForegroundPayload.UIForegroundOff,
                         new TextPayload($" {SeIconChar.ArrowRight.ToIconString()} "),
                         new IconPayload(BitmapFontIcon.CrossWorld),
-                        new TextPayload(world.World.Name.RawString),
+                        new TextPayload(world.World.Name.ExtractText()),
                     ]);
                     break;
             }
@@ -154,7 +154,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
         if (Config.EnableLifestreamIntegration && teleporter.IsLifestreamAvailable())
         {
-            var world = solver.DetectWorld(message, Dalamud.ClientState.LocalPlayer?.CurrentWorld.GameData);
+            var world = solver.DetectWorld(message, Dalamud.ClientState.LocalPlayer?.CurrentWorld.Value);
 
             payloads.AddRange([
                 new TextPayload(" ["),
@@ -261,12 +261,12 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         }
 
         var aetheryte = solver.GetAetheryteById(aetheryteId);
-        if (aetheryte == default)
+        if (!aetheryte.HasValue)
         {
             return;
         }
 
-        teleporter.TeleportToAetheryte(aetheryte);
+        teleporter.TeleportToAetheryte(aetheryte.Value);
     }
 
     protected override void ReleaseManaged()

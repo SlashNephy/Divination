@@ -8,7 +8,7 @@ using Dalamud.Plugin.Ipc;
 using Dalamud.Plugin.Services;
 using Divination.AetheryteLinkInChat.IpcModel;
 using Divination.AetheryteLinkInChat.Solver;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace Divination.AetheryteLinkInChat.Ipc;
 
@@ -36,10 +36,10 @@ public class IpcProvider : IDisposable
     {
         DalamudLog.Log.Debug("OnTeleport: {Payload}", payload);
 
-        var world = clientState.LocalPlayer?.CurrentWorld?.GameData;
+        var world = clientState.LocalPlayer?.CurrentWorld.Value;
         if (payload.WorldId.HasValue)
         {
-            world = dataManager.GetExcelSheet<World>()?.GetRow(payload.WorldId.Value);
+            world = dataManager.GetExcelSheet<World>().GetRow(payload.WorldId.Value);
         }
 
         var mapLink = new MapLinkPayload(payload.TerritoryTypeId, payload.MapId, payload.Coordinates.X, payload.Coordinates.Y);

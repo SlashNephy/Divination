@@ -2,7 +2,7 @@
 using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace Divination.Debugger;
 

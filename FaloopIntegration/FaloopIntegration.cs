@@ -16,7 +16,7 @@ using Divination.FaloopIntegration.Faloop;
 using Divination.FaloopIntegration.Faloop.Model;
 using Divination.FaloopIntegration.Ipc;
 using Divination.FaloopIntegration.Ui;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 using SocketIOClient;
 
 namespace Divination.FaloopIntegration;
@@ -66,8 +66,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void OnLogin()
     {
-        currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld?.GameData;
-        homeWorld = Dalamud.ClientState.LocalPlayer?.HomeWorld?.GameData;
+        currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.Value;
+        homeWorld = Dalamud.ClientState.LocalPlayer?.HomeWorld.Value;
     }
 
     private void OnConnected()
@@ -196,11 +196,15 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private bool CheckSpawnNotificationCondition(PluginConfig.PerRankConfig config, uint worldId, GameExpansion expansion)
     {
-        var world = Dalamud.DataManager.GetExcelSheet<World>()?.GetRow(worldId);
-        var dataCenter = world?.DataCenter?.Value;
-        if (world == default || dataCenter == default)
+        if (!Dalamud.DataManager.GetExcelSheet<World>().TryGetRow(worldId, out var world))
         {
-            DalamudLog.Log.Debug("OnMobReport: world == null || dataCenter == null");
+            DalamudLog.Log.Debug("OnMobReport: world == null");
+            return false;
+        }
+        var dataCenter = world.DataCenter.ValueNullable;
+        if (!dataCenter.HasValue)
+        {
+            DalamudLog.Log.Debug("dataCenter == null");
             return false;
         }
 
@@ -216,9 +220,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return false;
         }
 
-        var currentDataCenter = currentWorld?.DataCenter?.Value;
-        var homeDataCenter = homeWorld?.DataCenter.Value;
-        if (currentWorld == default || currentDataCenter == default || homeDataCenter == default)
+        var currentDataCenter = currentWorld?.DataCenter.ValueNullable;
+        var homeDataCenter = homeWorld?.DataCenter.ValueNullable;
+        if (!currentWorld.HasValue || !currentDataCenter.HasValue|| !homeDataCenter.HasValue)
         {
             DalamudLog.Log.Debug("OnMobReport: currentWorld == null || currentDataCenter == null || homeDataCenter == null");
             return false;
@@ -227,10 +231,10 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         switch (jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Travelable when dataCenter.Region == 4 || dataCenter.Region == homeDataCenter.Region:
-            case Jurisdiction.Region when dataCenter.Region == currentDataCenter.Region:
-            case Jurisdiction.DataCenter when dataCenter.RowId == currentDataCenter.RowId:
-            case Jurisdiction.World when world.RowId == currentWorld.RowId:
+            case Jurisdiction.Travelable when dataCenter.Value.Region == 4 || dataCenter.Value.Region == homeDataCenter.Value.Region:
+            case Jurisdiction.Region when dataCenter.Value.Region == currentDataCenter.Value.Region:
+            case Jurisdiction.DataCenter when dataCenter.Value.RowId == currentDataCenter.Value.RowId:
+            case Jurisdiction.World when world.RowId == currentWorld.Value.RowId:
                 return true;
             default:
                 DalamudLog.Log.Verbose("OnMobReport: unmatched");
@@ -250,7 +254,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             payloads.Add(new TextPayload($"{SeIconChar.BoxedPlus.ToIconString()}"));
         }
         payloads.Add(new TextPayload(Utils.GetRankIcon(ev.Rank)));
-        payloads.Add(new TextPayload($" {ev.Mob.Singular.RawString} "));
+        payloads.Add(new TextPayload($" {ev.Mob.Singular.ExtractText()} "));
 
         // append MapLink only if pop location is known
         if (ev.Coordinates.HasValue)
@@ -310,7 +314,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             payloads.AddRange(
             [
                 new TextPayload($"{SeIconChar.Cross.ToIconString()}"),
-                new TextPayload($" {ev.Mob.Singular.RawString}"),
+                new TextPayload($" {ev.Mob.Singular.ExtractText()}"),
                 new TextPayload(Utils.GetInstanceIcon(ev.ZoneInstance)),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name}".TrimEnd()),
@@ -321,7 +325,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             payloads.AddRange(
             [
                 new TextPayload(Utils.GetRankIcon(ev.Rank)),
-                new TextPayload($" {ev.Mob.Singular.RawString}"),
+                new TextPayload($" {ev.Mob.Singular.ExtractText()}"),
                 new TextPayload(Utils.GetInstanceIcon(ev.ZoneInstance)),
                 new IconPayload(BitmapFontIcon.CrossWorld),
                 new TextPayload($"{ev.World.Name} {Localization.WasKilled} {Utils.FormatTimeSpan(ev.KilledAt)}".TrimEnd()),
