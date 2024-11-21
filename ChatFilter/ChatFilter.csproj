@@ -11,7 +11,7 @@
             <Private>False</Private>
         </Reference>
 
-        <PackageReference Include="DalamudPackager" Version="2.1.13">
+        <PackageReference Include="DalamudPackager" Version="11.0.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
