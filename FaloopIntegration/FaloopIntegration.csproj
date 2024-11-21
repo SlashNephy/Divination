@@ -30,7 +30,7 @@
             <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
         <PackageReference Include="SocketIOClient" Version="3.0.8" />
         <PackageReference Include="DalamudPackager" Version="11.0.0">
             <PrivateAssets>all</PrivateAssets>
