@@ -153,28 +153,25 @@ public class FaloopSocketIOClient : IDisposable
 
     private void HandleOnMessage(SocketIOResponse response)
     {
-        for (var index = 0; index < response.PacketId; index++)
+        var payload = response.GetValue<FaloopEventPayload>();
+        if (payload is not { Type: FaloopEventTypes.MobType, SubType: FaloopEventTypes.ReportSubType })
         {
-            var payload = response.GetValue<FaloopEventPayload>(index);
-            if (payload is not { Type: FaloopEventTypes.MobType, SubType: FaloopEventTypes.ReportSubType })
-            {
-                continue;
-            }
+            return;
+        }
 
-            var data = payload.Data.Deserialize<MobReportData>();
-            if (data == default)
-            {
-                continue;
-            }
+        var data = payload.Data.Deserialize<MobReportData>();
+        if (data == default)
+        {
+            return;
+        }
 
-            try
-            {
-                OnMobReport?.Invoke(data);
-            }
-            catch (Exception exception)
-            {
-                DalamudLog.Log.Error(exception, nameof(HandleOnMessage));
-            }
+        try
+        {
+            OnMobReport?.Invoke(data);
+        }
+        catch (Exception exception)
+        {
+            DalamudLog.Log.Error(exception, nameof(HandleOnMessage));
         }
 
         try
