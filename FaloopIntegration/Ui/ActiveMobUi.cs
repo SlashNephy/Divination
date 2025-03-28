@@ -138,7 +138,7 @@ public class ActiveMobUi : IWindow, IDisposable
             return;
         }
 
-        agent->IsFlagMarkerSet = 0;
+        agent->IsFlagMarkerSet = false;
         agent->SetFlagMapMarker(mob.TerritoryTypeId, mob.Map.RowId, mob.WorldPosition.Value);
         Clipboard.SetText($"{text} <flag>");
     }
