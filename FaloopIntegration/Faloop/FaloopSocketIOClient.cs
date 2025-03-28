@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Divination.FaloopIntegration.Faloop.Model;
+using SocketIO.Core;
 using SocketIOClient;
 using SocketIOClient.Transport;
 
@@ -12,7 +13,7 @@ namespace Divination.FaloopIntegration.Faloop;
 // ReSharper disable once InconsistentNaming
 public class FaloopSocketIOClient : IDisposable
 {
-    private readonly SocketIO client = new("https://faloop.app",
+    private readonly SocketIOClient.SocketIO client = new("https://faloop.app",
         new SocketIOOptions
         {
             EIO = EngineIO.V4,
@@ -152,9 +153,9 @@ public class FaloopSocketIOClient : IDisposable
 
     private void HandleOnMessage(SocketIOResponse response)
     {
-        for (var index = 0; index < response.Count; index++)
+        for (var index = 0; index < response.PacketId; index++)
         {
-            var payload = response.GetValue(index).Deserialize<FaloopEventPayload>();
+            var payload = response.GetValue<FaloopEventPayload>(index);
             if (payload is not { Type: FaloopEventTypes.MobType, SubType: FaloopEventTypes.ReportSubType })
             {
                 continue;
