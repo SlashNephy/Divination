@@ -10,6 +10,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RootNamespace>Dalamud.Divination.Common</RootNamespace>
         <AssemblyName>Dalamud.Divination.Common</AssemblyName>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

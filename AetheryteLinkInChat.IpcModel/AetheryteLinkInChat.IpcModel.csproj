@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <RootNamespace>Divination.AetheryteLinkInChat.IpcModel</RootNamespace>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 </Project>
