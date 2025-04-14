@@ -51,7 +51,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.OnPing += OnPing;
         socket.OnPong += OnPong;
 
-        OnLogin();
+        Dalamud.Framework.RunOnFrameworkThread(OnLogin);
         Dalamud.ClientState.Login += OnLogin;
 
         var ipc = new AetheryteLinkInChatIpc(pluginInterface, Divination.Chat);

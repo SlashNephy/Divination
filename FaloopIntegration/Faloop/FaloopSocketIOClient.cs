@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Divination.FaloopIntegration.Faloop.Model;
+using SocketIO.Core;
 using SocketIOClient;
 using SocketIOClient.Transport;
 
@@ -12,7 +13,7 @@ namespace Divination.FaloopIntegration.Faloop;
 // ReSharper disable once InconsistentNaming
 public class FaloopSocketIOClient : IDisposable
 {
-    private readonly SocketIO client = new("https://faloop.app",
+    private readonly SocketIOClient.SocketIO client = new("https://faloop.app",
         new SocketIOOptions
         {
             EIO = EngineIO.V4,
@@ -152,28 +153,25 @@ public class FaloopSocketIOClient : IDisposable
 
     private void HandleOnMessage(SocketIOResponse response)
     {
-        for (var index = 0; index < response.Count; index++)
+        var payload = response.GetValue<FaloopEventPayload>();
+        if (payload is not { Type: FaloopEventTypes.MobType, SubType: FaloopEventTypes.ReportSubType })
         {
-            var payload = response.GetValue(index).Deserialize<FaloopEventPayload>();
-            if (payload is not { Type: FaloopEventTypes.MobType, SubType: FaloopEventTypes.ReportSubType })
-            {
-                continue;
-            }
+            return;
+        }
 
-            var data = payload.Data.Deserialize<MobReportData>();
-            if (data == default)
-            {
-                continue;
-            }
+        var data = payload.Data.Deserialize<MobReportData>();
+        if (data == default)
+        {
+            return;
+        }
 
-            try
-            {
-                OnMobReport?.Invoke(data);
-            }
-            catch (Exception exception)
-            {
-                DalamudLog.Log.Error(exception, nameof(HandleOnMessage));
-            }
+        try
+        {
+            OnMobReport?.Invoke(data);
+        }
+        catch (Exception exception)
+        {
+            DalamudLog.Log.Error(exception, nameof(HandleOnMessage));
         }
 
         try
