@@ -41,7 +41,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         aetheryteLinkPayload = pluginInterface.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);
         lifestreamLinkPayload = pluginInterface.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
-        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface, Dalamud.ToastGui, Config);
+        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface, Dalamud.ToastGui, Dalamud.Framework, Config);
         ipcProvider = new IpcProvider(pluginInterface, Dalamud.ClientState, teleporter, solver, Dalamud.DataManager);
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
@@ -199,7 +199,17 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         }
 
         DalamudLog.Log.Debug("HandleAetheryteLink: parsed payload = {Payload}", payload);
-        teleporter.TeleportToAetheryte(payload.Aetheryte);
+        teleporter.TeleportToAetheryte(payload.Aetheryte).ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                DalamudLog.Log.Debug("HandleAetheryteLink: TeleportToAetheryte executed: {Result}", task.Result);
+            }
+            else
+            {
+                DalamudLog.Log.Warning(task.Exception, "HandleAetheryteLink: TeleportToAetheryte failed");
+            }
+        });
     }
 
     private void HandleLifestreamLink(uint _, SeString link)
@@ -266,7 +276,17 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             return;
         }
 
-        teleporter.TeleportToAetheryte(aetheryte.Value);
+        teleporter.TeleportToAetheryte(aetheryte.Value).ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                DalamudLog.Log.Debug("OnTeleportGcCommand: TeleportToAetheryte executed: {Result}", task.Result);
+            }
+            else
+            {
+                DalamudLog.Log.Warning(task.Exception, "OnTeleportGcCommand: TeleportToAetheryte failed");
+            }
+        });
     }
 
     protected override void ReleaseManaged()

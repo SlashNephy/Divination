@@ -48,11 +48,12 @@ public sealed class Teleporter : IDisposable
     private readonly IClientState clientState;
     private readonly IDalamudPluginInterface pluginInterface;
     private readonly IToastGui toastGui;
+    private readonly IFramework framework;
     private readonly PluginConfig config;
     // Huh, cant use volatile here anymore... well hope nothing explodes :)
     private Aetheryte? queuedAetheryte;
 
-    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, IDalamudPluginInterface pluginInterface, IToastGui toastGui, PluginConfig config)
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, IDalamudPluginInterface pluginInterface, IToastGui toastGui, IFramework framework, PluginConfig config)
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;
@@ -61,6 +62,7 @@ public sealed class Teleporter : IDisposable
         this.clientState = clientState;
         this.pluginInterface = pluginInterface;
         this.toastGui = toastGui;
+        this.framework = framework;
         this.config = config;
 
         condition.ConditionChange += OnConditionChanged;
@@ -68,7 +70,7 @@ public sealed class Teleporter : IDisposable
 
     public bool IsTeleportUnavailable => teleportUnavailableFlags.Any(x => condition[x]);
 
-    public unsafe bool TeleportToAetheryte(Aetheryte aetheryte)
+    public async Task<bool> TeleportToAetheryte(Aetheryte aetheryte)
     {
         if (IsTeleportUnavailable)
         {
@@ -82,7 +84,7 @@ public sealed class Teleporter : IDisposable
         }
 
         queuedAetheryte = default;
-        if (ExecuteTeleport(aetheryte))
+        if (await ExecuteTeleport(aetheryte))
         {
             DisplayTeleportingNotification(aetheryte.PlaceName.Value.Name.ExtractText(), false);
             return true;
@@ -102,7 +104,12 @@ public sealed class Teleporter : IDisposable
         return true;
     }
 
-    private unsafe bool ExecuteTeleport(Aetheryte aetheryte)
+    private unsafe Task<bool> ExecuteTeleport(Aetheryte aetheryte)
+    {
+        return framework.RunOnFrameworkThread(() => _ExecuteTeleport(aetheryte));
+    }
+
+    private unsafe bool _ExecuteTeleport(Aetheryte aetheryte)
     {
         // https://github.com/NightmareXIV/Lifestream/blob/7ad417ac028ae2e2a42e61d1883fdeb9895bc128/Lifestream/Services/TeleportService.cs#L13
         var actionManager = ActionManager.Instance();
@@ -140,18 +147,19 @@ public sealed class Teleporter : IDisposable
         }
 
         DalamudLog.Log.Error("ExecuteTeleport: aetheryte with ID {Id} is invalid.", aetheryte.RowId);
-            return false;
-        }
+        return false;
+    }
 
     private void TeleportToQueuedAetheryte()
     {
-
         var aetheryte = queuedAetheryte;
         queuedAetheryte = default;
-        if (aetheryte.HasValue && ExecuteTeleport(aetheryte.Value))
+        if (aetheryte.HasValue)
         {
-            DisplayTeleportingNotification(aetheryte.Value.PlaceName.Value.Name.ExtractText(), true);
-            return;
+            ExecuteTeleport(aetheryte.Value).ContinueWith(_ =>
+            {
+                DisplayTeleportingNotification(aetheryte.Value.PlaceName.Value.Name.ExtractText(), true);
+            });
         }
     }
 
@@ -217,7 +225,7 @@ public sealed class Teleporter : IDisposable
             switch (path)
             {
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
-                    if (!ExecuteTeleport(aetheryte.Aetheryte))
+                    if (!await ExecuteTeleport(aetheryte.Aetheryte))
                     {
                         return false;
                     }
