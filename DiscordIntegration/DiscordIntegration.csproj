@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Dalamud.NET.Sdk/12.0.2">
     <PropertyGroup>
         <RootNamespace>Divination.DiscordIntegration</RootNamespace>
     </PropertyGroup>
@@ -6,28 +6,6 @@
         <ProjectReference Include="..\Common\Common.csproj"/>
         <ProjectReference Include="..\DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj"/>
 
-        <Reference Include="Dalamud">
-            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="ImGui.NET">
-            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Lumina">
-            <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="Lumina.Excel">
-            <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="FFXIVClientStructs">
-            <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-
         <PackageReference Include="DiscordRichPresence" Version="1.2.1.24"/>
-        <PackageReference Include="DalamudPackager" Version="2.1.13"/>
     </ItemGroup>
 </Project>

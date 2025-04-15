@@ -1,11 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Dalamud.NET.Sdk/12.0.2">
     <PropertyGroup>
         <RootNamespace>Divination.DiscordIntegration.IpcModel</RootNamespace>
     </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="Dalamud">
-            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-    </ItemGroup>
 </Project>

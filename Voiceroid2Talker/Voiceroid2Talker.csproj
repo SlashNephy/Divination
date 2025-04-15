@@ -1,19 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Dalamud.NET.Sdk/12.0.2">
     <PropertyGroup>
         <RootNamespace>Divination.Voiceroid2Talker</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="Dalamud">
-            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="ImGui.NET">
-            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-
         <ProjectReference Include="..\Common\Common.csproj"/>
-
-        <PackageReference Include="DalamudPackager" Version="11.0.0" />
     </ItemGroup>
 </Project>
