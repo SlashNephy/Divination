@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C00AD6CE-4F53-4415-B105-183A7CD79FA7}"
 EndProject
@@ -18,8 +17,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horoscope", "Horoscope\Horoscope.csproj", "{A099E0CA-0C4E-402A-B334-E243D4286872}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickLib", "lib\ClickLib\ClickLib\ClickLib.csproj", "{E2240D94-4538-48F8-9B6F-223A33049951}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommons", "lib\ECommons\ECommons\ECommons.csproj", "{BE5DF02A-7682-469B-BA0B-F1092A4F1579}"
 EndProject
@@ -59,10 +56,6 @@ Global
 		{A099E0CA-0C4E-402A-B334-E243D4286872}.Debug|Any CPU.Build.0 = Debug|x64
 		{A099E0CA-0C4E-402A-B334-E243D4286872}.Release|Any CPU.ActiveCfg = Release|x64
 		{A099E0CA-0C4E-402A-B334-E243D4286872}.Release|Any CPU.Build.0 = Release|x64
-		{E2240D94-4538-48F8-9B6F-223A33049951}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{E2240D94-4538-48F8-9B6F-223A33049951}.Debug|Any CPU.Build.0 = Debug|x64
-		{E2240D94-4538-48F8-9B6F-223A33049951}.Release|Any CPU.ActiveCfg = Release|x64
-		{E2240D94-4538-48F8-9B6F-223A33049951}.Release|Any CPU.Build.0 = Release|x64
 		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Debug|Any CPU.Build.0 = Debug|x64
 		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Release|Any CPU.ActiveCfg = Release|x64
@@ -76,7 +69,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E2240D94-4538-48F8-9B6F-223A33049951} = {7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}
 		{BE5DF02A-7682-469B-BA0B-F1092A4F1579} = {7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}
 	EndGlobalSection
 EndGlobal

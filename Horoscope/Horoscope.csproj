@@ -6,7 +6,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Common\Common.csproj" />
-        <ProjectReference Include="..\lib\ClickLib\ClickLib\ClickLib.csproj" />
 
         <Reference Include="Dalamud">
             <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
