@@ -2,8 +2,6 @@
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <RootNamespace>Divination.AetheryteLinkInChat</RootNamespace>
-        <TargetFramework>net9.0-windows</TargetFramework>
-        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
