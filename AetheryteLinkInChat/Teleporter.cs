@@ -177,7 +177,12 @@ public sealed class Teleporter : IDisposable
             });
     }
 
-    public async Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
+    public Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
+    {
+        return framework.RunOnTick(() => _TeleportToPaths(paths, world, cancellationToken), cancellationToken: cancellationToken);
+    }
+
+    private async Task<bool> _TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
     {
         while (IsTeleportUnavailable)
         {
@@ -225,7 +230,7 @@ public sealed class Teleporter : IDisposable
             switch (path)
             {
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
-                    if (!await ExecuteTeleport(aetheryte.Aetheryte))
+                    if (!_ExecuteTeleport(aetheryte.Aetheryte))
                     {
                         return false;
                     }
