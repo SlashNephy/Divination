@@ -16,9 +16,12 @@
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[5.12.0, )",
-        "resolved": "5.12.0",
-        "contentHash": "dJuigXycpJNOiLT9or7mkHSkGFHgGW3/p6cNNYEKZBa7Hhp1FdX/cvqYWWYhRLpfoZOedeA7aRbYiOB3vW/dvA=="
+        "requested": "[6.2.0, )",
+        "resolved": "6.2.0",
+        "contentHash": "EZoFyY1fgHkYtCz0nizYAXsfNG0OSllMuRQl4fFosDNKz6y/f2nctSCjwhTMh5GSkzRZEnyd+YA540VD7SAm+A==",
+        "dependencies": {
+          "System.Collections.Immutable": "9.0.2"
+        }
       },
       "SocketIOClient": {
         "type": "Direct",
@@ -58,6 +61,11 @@
           "SocketIO.Serializer.Core": "3.1.2",
           "System.Text.Json": "8.0.4"
         }
+      },
+      "System.Collections.Immutable": {
+        "type": "Transitive",
+        "resolved": "9.0.2",
+        "contentHash": "QKh9+kczG7TQbQZ6tF2S6bK9B8ewHXEkYmMP2iqefzwJEfEkiflheAX6VEaPLJ6Tq9RoKuQ5R3qPYla6wJ6Opg=="
       },
       "System.Text.Encodings.Web": {
         "type": "Transitive",
