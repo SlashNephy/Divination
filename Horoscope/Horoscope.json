@@ -3,7 +3,11 @@
   "Name": "Divination.Horoscope",
   "Punchline": "",
   "Description": "",
-  "Tags": ["utility"],
-  "CategoryTags": ["utility"],
-  "DalamudApiLevel": 10
+  "Tags": [
+    "utility"
+  ],
+  "CategoryTags": [
+    "utility"
+  ],
+  "DalamudApiLevel": 12
 }
