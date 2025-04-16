@@ -179,7 +179,7 @@ public sealed class Teleporter : IDisposable
 
     public Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
     {
-        return framework.RunOnTick(() => _TeleportToPaths(paths, world, cancellationToken), cancellationToken: cancellationToken);
+        return framework.RunOnTick(async () => await _TeleportToPaths(paths, world, cancellationToken), cancellationToken: cancellationToken);
     }
 
     private async Task<bool> _TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
