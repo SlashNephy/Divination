@@ -35,9 +35,9 @@
       },
       "System.Net.Http.Json": {
         "type": "Direct",
-        "requested": "[9.0.3, )",
-        "resolved": "9.0.3",
-        "contentHash": "1PLQgaGNBaU6OYwXCcsvOncpayCaYy7gp2BsXrXHxQToKdTnLHHf5/MXyMf0nD6SfY9MMb/TC8HWR2weaNQctA=="
+        "requested": "[9.0.4, )",
+        "resolved": "9.0.4",
+        "contentHash": "t34SoSx8l/O5kv7IwYXENjQOTpVKFkH3ydZejcZCsNsymthJrdCguvHFcbP3ayeBOXdm4Bq8bhmVGCgr0RXIQg=="
       },
       "SocketIO.Core": {
         "type": "Transitive",
