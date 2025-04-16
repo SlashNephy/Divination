@@ -3,20 +3,14 @@ name: Build (Common)
 on:
   push:
     paths:
-      - 'Common/**'
-    branches:
-      - 'master'
+      - "Common/**"
 
   pull_request:
     paths:
-      - 'Common/**'
+      - "Common/**"
     types:
       - opened
       - synchronize
-
-  release:
-    types:
-      - created
 
   workflow_dispatch:
 
@@ -32,11 +26,6 @@ jobs:
           # GitVersion
           fetch-depth: 0
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
       - name: Download Dalamud
         run: |
           Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/${env:DALAMUD_BRANCH}/latest.zip -OutFile latest.zip
@@ -46,14 +35,4 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release
-        working-directory: Common
-
-      - name: Publish
-        if: github.event_name != 'pull_request'
-        run: |
-          dotnet pack --configuration Release --include-source
-          dotnet nuget push bin\Release\*.symbols.nupkg `
-            --source https://api.nuget.org/v3/index.json `
-            --api-key ${{ secrets.NUGET_API_KEY }} `
-            --skip-duplicate
         working-directory: Common
