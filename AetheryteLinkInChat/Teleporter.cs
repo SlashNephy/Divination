@@ -106,10 +106,10 @@ public sealed class Teleporter : IDisposable
 
     private unsafe Task<bool> ExecuteTeleport(Aetheryte aetheryte)
     {
-        return framework.RunOnFrameworkThread(() => _ExecuteTeleport(aetheryte));
+        return framework.RunOnFrameworkThread(() => ExecuteTeleportInternal(aetheryte));
     }
 
-    private unsafe bool _ExecuteTeleport(Aetheryte aetheryte)
+    private unsafe bool ExecuteTeleportInternal(Aetheryte aetheryte)
     {
         // https://github.com/NightmareXIV/Lifestream/blob/7ad417ac028ae2e2a42e61d1883fdeb9895bc128/Lifestream/Services/TeleportService.cs#L13
         var actionManager = ActionManager.Instance();
@@ -177,12 +177,12 @@ public sealed class Teleporter : IDisposable
             });
     }
 
-    public Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
+    public async Task<bool> TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
     {
-        return framework.RunOnTick(async () => await _TeleportToPaths(paths, world, cancellationToken), cancellationToken: cancellationToken);
+        return await framework.Run(async () => await TeleportToPathsInternal(paths, world, cancellationToken), cancellationToken: cancellationToken);
     }
 
-    private async Task<bool> _TeleportToPaths(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
+    private async Task<bool> TeleportToPathsInternal(IEnumerable<ITeleportPath> paths, World? world, CancellationToken cancellationToken)
     {
         while (IsTeleportUnavailable)
         {
@@ -230,7 +230,7 @@ public sealed class Teleporter : IDisposable
             switch (path)
             {
                 case AetheryteTeleportPath { Aetheryte.IsAetheryte: true } aetheryte:
-                    if (!_ExecuteTeleport(aetheryte.Aetheryte))
+                    if (!ExecuteTeleportInternal(aetheryte.Aetheryte))
                     {
                         return false;
                     }
