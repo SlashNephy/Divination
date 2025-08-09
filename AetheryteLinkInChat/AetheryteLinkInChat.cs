@@ -38,8 +38,8 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
     public AetheryteLinkInChat(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
         Config = pluginInterface.GetPluginConfig() as PluginConfig ?? new PluginConfig();
-        aetheryteLinkPayload = pluginInterface.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);
-        lifestreamLinkPayload = pluginInterface.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
+        aetheryteLinkPayload = Dalamud.ChatGui.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);
+        lifestreamLinkPayload = Dalamud.ChatGui.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
         teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface, Dalamud.ToastGui, Dalamud.Framework, Config);
         ipcProvider = new IpcProvider(pluginInterface, Dalamud.ClientState, teleporter, solver, Dalamud.DataManager);
@@ -292,7 +292,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
     protected override void ReleaseManaged()
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
-        Dalamud.PluginInterface.RemoveChatLinkHandler();
+        Dalamud.ChatGui.RemoveChatLinkHandler();
         Dalamud.ChatGui.ChatMessage -= OnChatReceived;
         Dalamud.CommandManager.RemoveHandler(TeleportGcCommand);
         teleporter.Dispose();
