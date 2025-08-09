@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using Dalamud.Divination.Common.Api.Ui.Window;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 using Lumina.Excel.Sheets;
 
 namespace Divination.AetheryteLinkInChat.Config;
@@ -47,7 +47,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             ImGui.Separator();
 
-            if (ImGui.Button(Localization.SaveConfigButton))
+            if (ImGui.Button(new(Localization.SaveConfigButton)))
             {
                 IsOpen = false;
                 Interface.SavePluginConfig(Config);
@@ -61,49 +61,49 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.BeginTabItem("General"))
         {
-            ImGui.Checkbox(Localization.AllowTeleportQueueing, ref Config.AllowTeleportQueueing);
+            ImGui.Checkbox(new(Localization.AllowTeleportQueueing), ref Config.AllowTeleportQueueing);
             if (Config.AllowTeleportQueueing)
             {
-                ImGui.SliderInt(Localization.QueueTeleportDelay, ref Config.QueuedTeleportDelay, MinQueuedTeleportDelay, MaxQueuedTeleportDelay);
+                ImGui.SliderInt(new(Localization.QueueTeleportDelay), ref Config.QueuedTeleportDelay, MinQueuedTeleportDelay, MaxQueuedTeleportDelay);
             }
 
             ImGui.Indent();
-            ImGui.Text(Localization.QueuedTeleportDescription);
+            ImGui.Text(new(Localization.QueuedTeleportDescription));
             ImGui.Unindent();
 
             ImGui.Spacing();
 
-            ImGui.Combo(Localization.PreferredGrandCompanyAetheryte,
+            ImGui.Combo(new(Localization.PreferredGrandCompanyAetheryte),
                 ref Config.PreferredGrandCompanyAetheryte,
                 grandCompanyAetheryteNames,
                 grandCompanyAetheryteNames.Length);
             ImGui.Indent();
-            ImGui.Text(Localization.PreferredGrandCompanyAetheryteDescription);
+            ImGui.Text(new(Localization.PreferredGrandCompanyAetheryteDescription));
             ImGui.Unindent();
 
-            ImGui.Checkbox(Localization.ConsiderTeleportsToOtherWorlds, ref Config.ConsiderTeleportsToOtherWorlds);
+            ImGui.Checkbox(new(Localization.ConsiderTeleportsToOtherWorlds), ref Config.ConsiderTeleportsToOtherWorlds);
             ImGui.Indent();
-            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDescription);
-            ImGui.Text(Localization.ConsiderTeleportsToOtherWorldsDisclaimer);
+            ImGui.Text(new(Localization.ConsiderTeleportsToOtherWorldsDescription));
+            ImGui.Text(new(Localization.ConsiderTeleportsToOtherWorldsDisclaimer));
             ImGui.Unindent();
 
-            ImGui.Checkbox(Localization.EnableLifestreamIntegration, ref Config.EnableLifestreamIntegration);
+            ImGui.Checkbox(new(Localization.EnableLifestreamIntegration), ref Config.EnableLifestreamIntegration);
             ImGui.Indent();
-            ImGui.Text(Localization.EnableLifestreamIntegrationDescription);
+            ImGui.Text(new(Localization.EnableLifestreamIntegrationDescription));
             ImGui.Unindent();
 
-            ImGui.Checkbox(Localization.DisplayLineBreak, ref Config.DisplayLineBreak);
+            ImGui.Checkbox(new(Localization.DisplayLineBreak), ref Config.DisplayLineBreak);
 
             // Maybe not the best location for this...
             if (Config.DisplayLineBreak)
                 Config.DisplayLinkAtEnd = true;
 
             ImGui.BeginDisabled(Config.DisplayLineBreak);
-            ImGui.Checkbox(Localization.DisplayLinkAtEnd, ref Config.DisplayLinkAtEnd);
+            ImGui.Checkbox(new(Localization.DisplayLinkAtEnd), ref Config.DisplayLinkAtEnd);
             ImGui.EndDisabled();
 
-            ImGui.Checkbox(Localization.EnableChatNotificationOnTeleport, ref Config.EnableChatNotificationOnTeleport);
-            ImGui.Checkbox(Localization.EnableQuestNotificationOnTeleport, ref Config.EnableQuestNotificationOnTeleport);
+            ImGui.Checkbox(new(Localization.EnableChatNotificationOnTeleport), ref Config.EnableChatNotificationOnTeleport);
+            ImGui.Checkbox(new(Localization.EnableQuestNotificationOnTeleport), ref Config.EnableQuestNotificationOnTeleport);
 
             ImGui.EndTabItem();
         }
@@ -113,7 +113,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
     {
         if (ImGui.BeginTabItem("Aetheryte List"))
         {
-            ImGui.Text(Localization.IgnoredAetherytes);
+            ImGui.Text(new(Localization.IgnoredAetherytes));
 
             if (ImGui.BeginTable("aethetytes", 3, ImGuiTableFlags.RowBg | ImGuiTableFlags.Borders | ImGuiTableFlags.ScrollY, new Vector2(500f, 600f)))
             {

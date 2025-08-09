@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui.Window;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace Divination.Horoscope.Ui;
 

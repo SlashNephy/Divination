@@ -7,7 +7,7 @@ using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.Network;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace Divination.Debugger.Window;
 

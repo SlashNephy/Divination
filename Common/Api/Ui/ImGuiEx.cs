@@ -1,10 +1,10 @@
-﻿using ImGuiNET;
+﻿using Dalamud.Bindings.ImGui;
 
 namespace Dalamud.Divination.Common.Api.Ui;
 
 public static class ImGuiEx
 {
-    public static void TextConfig(string label, ref string input, uint maxLength, params string[] descriptions)
+    public static void TextConfig(string label, ref string input, int maxLength, params string[] descriptions)
     {
         ImGui.Text(label);
         ImGui.Indent();
