@@ -1,7 +1,7 @@
 ﻿using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace Divination.Voiceroid2Talker;
 

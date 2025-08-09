@@ -14,7 +14,7 @@ using Dalamud.Plugin.Services;
 using Divination.FaloopIntegration.Config;
 using Divination.FaloopIntegration.Ipc;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace Divination.FaloopIntegration.Ui;
 
@@ -54,12 +54,12 @@ public class ActiveMobUi : IWindow, IDisposable
             return;
         }
 
-        if (ImGui.Begin(Localization.ActiveMob, ImGuiWindowFlags.AlwaysAutoResize))
+        if (ImGui.Begin(new(Localization.ActiveMob), ImGuiWindowFlags.AlwaysAutoResize))
         {
             if (ImGui.BeginTable("active_mobs", 3, ImGuiTableFlags.RowBg | ImGuiTableFlags.Borders | ImGuiTableFlags.ScrollY | ImGuiTableFlags.SizingFixedFit))
             {
-                ImGui.TableSetupColumn(Localization.TableHeaderMob);
-                ImGui.TableSetupColumn(Localization.TableHeaderTime);
+                ImGui.TableSetupColumn(new(Localization.TableHeaderMob));
+                ImGui.TableSetupColumn(new(Localization.TableHeaderTime));
                 ImGui.TableSetupColumn(string.Empty);
                 ImGui.TableHeadersRow();
 

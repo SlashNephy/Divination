@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.Text;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace Divination.FaloopIntegration.Config;
 
@@ -55,19 +55,19 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         {
             if (ImGui.BeginTabBar("configuration"))
             {
-                if (ImGui.BeginTabItem(Localization.GeneralTab))
+                if (ImGui.BeginTabItem(new(Localization.GeneralTab)))
                 {
                     DrawGeneralTab();
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem(Localization.RankSTab))
+                if (ImGui.BeginTabItem(new(Localization.RankSTab)))
                 {
                     DrawPerRankTab("rank_s", ref Config.RankS);
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem(Localization.FateTab))
+                if (ImGui.BeginTabItem(new(Localization.FateTab)))
                 {
                     DrawPerRankTab("fate", ref Config.Fate);
                     ImGui.EndTabItem();
@@ -86,7 +86,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
 
             ImGui.NewLine();
 
-            if (ImGui.Button(Localization.SaveConfigButton))
+            if (ImGui.Button(new(Localization.SaveConfigButton)))
             {
                 IsOpen = false;
                 Interface.SavePluginConfig(Config);
@@ -107,12 +107,12 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             _ => throw new ArgumentOutOfRangeException()
         }));
 
-        if (ImGui.CollapsingHeader(Localization.Account))
+        if (ImGui.CollapsingHeader(new(Localization.Account)))
         {
             ImGui.Indent();
 
-            ImGui.InputText(Localization.AccountUsername, ref Config.FaloopUsername, 32);
-            ImGui.InputText(Localization.AccountPassword, ref Config.FaloopPassword, 128, ImGuiInputTextFlags.Password);
+            ImGui.InputText(new(Localization.AccountUsername), ref Config.FaloopUsername, 32);
+            ImGui.InputText(new(Localization.AccountPassword), ref Config.FaloopPassword, 128, ImGuiInputTextFlags.Password);
 
             ImGui.Unindent();
         }
@@ -126,7 +126,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGuiEx.CheckboxConfig(Localization.HideActiveMobUiInDuty, ref FaloopIntegration.Instance.Config.HideActiveMobUiInDuty);
         }
 
-        ImGui.Checkbox(Localization.EnableSimpleReports, ref FaloopIntegration.Instance.Config.EnableSimpleReports);
+        ImGui.Checkbox(new(Localization.EnableSimpleReports), ref FaloopIntegration.Instance.Config.EnableSimpleReports);
     }
 
     private void DrawPerRankTab(string id, ref PluginConfig.PerRankConfig config)
@@ -137,7 +137,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         ImGui.SameLine();
         ImGui.Checkbox($"{Localization.EnableDeathReport}##{id}", ref config.EnableDeathReport);
 
-        ImGui.Text(Localization.ReportJurisdiction);
+        ImGui.Text(new(Localization.ReportJurisdiction));
         ImGui.SameLine();
         ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
         ImGui.Indent();
