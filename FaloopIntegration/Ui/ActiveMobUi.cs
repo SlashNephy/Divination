@@ -138,7 +138,8 @@ public class ActiveMobUi : IWindow, IDisposable
             return;
         }
 
-        agent->IsFlagMarkerSet = false;
+        // MEMO: deleted?
+        // agent->IsFlagMarkerSet = false;
         agent->SetFlagMapMarker(mob.TerritoryTypeId, mob.Map.RowId, mob.WorldPosition.Value);
         Clipboard.SetText($"{text} <flag>");
     }
