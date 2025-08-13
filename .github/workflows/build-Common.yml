@@ -25,6 +25,7 @@ jobs:
         with:
           # GitVersion
           fetch-depth: 0
+          submodules: true
 
       - name: Download Dalamud
         run: |
