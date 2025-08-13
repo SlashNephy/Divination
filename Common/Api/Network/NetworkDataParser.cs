@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Dalamud.Game.Network;
-using Dalamud.Plugin.Services;
+using ECommons.DalamudServices.Legacy;
 
 namespace Dalamud.Divination.Common.Api.Network;
 

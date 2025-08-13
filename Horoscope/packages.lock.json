@@ -29,7 +29,10 @@
         "contentHash": "QKh9+kczG7TQbQZ6tF2S6bK9B8ewHXEkYmMP2iqefzwJEfEkiflheAX6VEaPLJ6Tq9RoKuQ5R3qPYla6wJ6Opg=="
       },
       "Dalamud.Divination.Common": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "ECommons": "[3.0.1.5-stg, )"
+        }
       },
       "ecommons": {
         "type": "Project"

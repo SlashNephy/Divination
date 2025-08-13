@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Chat;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Game.Network;
-using Dalamud.Plugin.Services;
+using ECommons.DalamudServices.Legacy;
 
 namespace Dalamud.Divination.Common.Api.Network;
 

@@ -3,6 +3,7 @@ using Dalamud.Game;
 using Dalamud.Game.ClientState.Objects;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
+using IGameNetwork = ECommons.DalamudServices.Legacy.IGameNetwork;
 
 namespace Dalamud.Divination.Common.Api.Dalamud;
 

@@ -32,6 +32,12 @@
         "type": "Project"
       },
       "Dalamud.Divination.Common": {
+        "type": "Project",
+        "dependencies": {
+          "ECommons": "[3.0.1.5-stg, )"
+        }
+      },
+      "ecommons": {
         "type": "Project"
       }
     }

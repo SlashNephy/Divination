@@ -4,6 +4,7 @@ using Dalamud.Game.ClientState.Objects;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
+using IGameNetwork = ECommons.DalamudServices.Legacy.IGameNetwork;
 
 #pragma warning disable 8618
 
