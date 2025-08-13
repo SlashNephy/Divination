@@ -15,6 +15,7 @@ using Dalamud.Divination.Common.Api.Version;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Divination.Common.Api.XivApi;
 using Dalamud.Divination.Common.Boilerplate.Features;
+using ECommons.DalamudServices;
 
 namespace Dalamud.Divination.Common.Api;
 
@@ -24,6 +25,7 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
 {
     public DivinationApi(IDalamudApi api, Assembly assembly, IDivinationPluginApi<TConfiguration, TDefinition> plugin)
     {
+        Svc.Init(api.PluginInterface);
         Dalamud = api;
         ServiceContainer.Put(Dalamud);
         Assembly = assembly;
@@ -104,7 +106,7 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
     public IVoiceroid2ProxyClient Voiceroid2Proxy => ServiceContainer.GetOrPut(() => new Voiceroid2ProxyClient());
     public IXivApiClient XivApi => ServiceContainer.GetOrPut(() => new XivApiClient());
     public IKeyStrokeManager KeyStroke => ServiceContainer.GetOrPut(() => new KeyStrokeManager());
-    public INetworkInterceptor Network => ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork, Chat));
+    public INetworkInterceptor Network => ServiceContainer.GetOrPut(() => new NetworkInterceptor(Svc.GameNetwork, Chat));
 
     #region IDisposable
 
