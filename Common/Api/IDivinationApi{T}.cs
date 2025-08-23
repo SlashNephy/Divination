@@ -31,8 +31,6 @@ public interface IDivinationApi<TConfiguration, out TDefinition> : IDisposable w
 
     public IKeyStrokeManager KeyStroke { get; }
 
-    public INetworkInterceptor Network { get; }
-
     public IConfigManager<TConfiguration> Config { get; }
 
     public ConfigWindow<TConfiguration>? ConfigWindow { get; }
