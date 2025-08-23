@@ -15,7 +15,6 @@ using Dalamud.Divination.Common.Api.Version;
 using Dalamud.Divination.Common.Api.Voiceroid2Proxy;
 using Dalamud.Divination.Common.Api.XivApi;
 using Dalamud.Divination.Common.Boilerplate.Features;
-using ECommons.DalamudServices;
 
 namespace Dalamud.Divination.Common.Api;
 
