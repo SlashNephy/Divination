@@ -25,7 +25,6 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
 {
     public DivinationApi(IDalamudApi api, Assembly assembly, IDivinationPluginApi<TConfiguration, TDefinition> plugin)
     {
-        Svc.Init(api.PluginInterface);
         Dalamud = api;
         ServiceContainer.Put(Dalamud);
         Assembly = assembly;
