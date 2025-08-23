@@ -7,7 +7,7 @@ using Dalamud.Divination.Common.Api.Ui;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.Network;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace Divination.Debugger.Window;
 
@@ -66,7 +66,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             {
                 fixed (long* ptr = &Config.PlayerFilterValue)
                 {
-                    ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
+                    // ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
                 }
             }
 
@@ -111,7 +111,7 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             {
                 fixed (long* ptr = &Config.NetworkFilterValue)
                 {
-                    ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
+                    // ImGui.InputScalar("Value", ImGuiDataType.S64, new IntPtr(ptr));
                 }
             }
 

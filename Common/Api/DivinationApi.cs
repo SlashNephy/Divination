@@ -104,7 +104,6 @@ internal sealed class DivinationApi<TConfiguration, TDefinition> : IDivinationAp
     public IVoiceroid2ProxyClient Voiceroid2Proxy => ServiceContainer.GetOrPut(() => new Voiceroid2ProxyClient());
     public IXivApiClient XivApi => ServiceContainer.GetOrPut(() => new XivApiClient());
     public IKeyStrokeManager KeyStroke => ServiceContainer.GetOrPut(() => new KeyStrokeManager());
-    public INetworkInterceptor Network => ServiceContainer.GetOrPut(() => new NetworkInterceptor(Dalamud.GameNetwork, Chat));
 
     #region IDisposable
 

@@ -20,7 +20,6 @@ public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>, IDalam
         Divination.ConfigWindow!.IsDrawing = Config.OpenAtStart;
 
         Dalamud.ChatGui.ChatMessage += OnChatMessage;
-        Divination.Network.AddHandler(listener);
     }
 
     private void OnChatMessage(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
@@ -48,7 +47,6 @@ public partial class Debugger : DivinationPlugin<Debugger, PluginConfig>, IDalam
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
         Dalamud.ChatGui.ChatMessage -= OnChatMessage;
-        Divination.Network.RemoveHandler(listener);
         listener.Dispose();
     }
 

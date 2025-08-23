@@ -92,9 +92,6 @@ internal sealed class DalamudApi : IDalamudApi
     public IGameLifecycle GameLifecycle { get; private set; }
 
     [PluginService]
-    public IGameNetwork GameNetwork { get; private set; }
-
-    [PluginService]
     public IGamepadState GamepadState { get; private set; }
 
     [PluginService]

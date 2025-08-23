@@ -35,9 +35,9 @@ public sealed class Teleporter : IDisposable
         ConditionFlag.BoundByDuty56,
         ConditionFlag.Fishing,
         ConditionFlag.Gathering,
-        ConditionFlag.Gathering42,
+        ConditionFlag.ExecutingGatheringAction,
         ConditionFlag.Crafting,
-        ConditionFlag.Crafting40,
+        ConditionFlag.ExecutingCraftingAction,
         ConditionFlag.PreparingToCraft,
     ];
 
