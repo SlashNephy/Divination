@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaloopIntegration", "FaloopIntegration\FaloopIntegration.csproj", "{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceIDViewer", "InstanceIDViewer\InstanceIDViewer.csproj", "{42E83F55-1774-4BBD-BED9-149252532234}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voiceroid2Talker", "Voiceroid2Talker\Voiceroid2Talker.csproj", "{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "Debugger\Debugger.csproj", "{075C0D70-F7D1-4E3D-8E43-430C8C16F729}"
