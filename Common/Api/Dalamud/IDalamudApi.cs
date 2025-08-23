@@ -3,7 +3,6 @@ using Dalamud.Game;
 using Dalamud.Game.ClientState.Objects;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
-using IGameNetwork = ECommons.DalamudServices.Legacy.IGameNetwork;
 
 namespace Dalamud.Divination.Common.Api.Dalamud;
 
@@ -38,7 +37,6 @@ public interface IDalamudApi
     public IGameInteropProvider GameInteropProvider { get; }
     public IGameInventory GameInventory { get; }
     public IGameLifecycle GameLifecycle { get; }
-    public IGameNetwork GameNetwork { get; }
     public IGamepadState GamepadState { get; }
     public IJobGauges JobGauges { get; }
     public IKeyState KeyState { get; }

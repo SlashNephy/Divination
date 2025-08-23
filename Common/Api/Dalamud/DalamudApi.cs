@@ -4,7 +4,6 @@ using Dalamud.Game.ClientState.Objects;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
-using IGameNetwork = ECommons.DalamudServices.Legacy.IGameNetwork;
 
 #pragma warning disable 8618
 
@@ -91,9 +90,6 @@ internal sealed class DalamudApi : IDalamudApi
 
     [PluginService]
     public IGameLifecycle GameLifecycle { get; private set; }
-
-    [PluginService]
-    public IGameNetwork GameNetwork { get; private set; }
 
     [PluginService]
     public IGamepadState GamepadState { get; private set; }
