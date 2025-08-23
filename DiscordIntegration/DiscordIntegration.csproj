@@ -6,6 +6,6 @@
         <ProjectReference Include="..\Common\Common.csproj"/>
         <ProjectReference Include="..\DiscordIntegration.IpcModel\DiscordIntegration.IpcModel.csproj"/>
 
-        <PackageReference Include="DiscordRichPresence" Version="1.2.1.24"/>
+        <PackageReference Include="DiscordRichPresence" Version="1.6.1.70"/>
     </ItemGroup>
 </Project>
