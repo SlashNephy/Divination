@@ -28,13 +28,13 @@ jobs:
           token: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
 
       - name: Download Artifact (release)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: '${{ inputs.plugin-name }}'
           path: 'plugins/testing/${{ inputs.plugin-name }}'
 
       - name: Download Artifact (gitversion.json)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: '${{ inputs.plugin-name }}-GitVersion'
           path: 'gitversion'
