@@ -16,12 +16,9 @@
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[6.2.0, )",
-        "resolved": "6.2.0",
-        "contentHash": "EZoFyY1fgHkYtCz0nizYAXsfNG0OSllMuRQl4fFosDNKz6y/f2nctSCjwhTMh5GSkzRZEnyd+YA540VD7SAm+A==",
-        "dependencies": {
-          "System.Collections.Immutable": "9.0.2"
-        }
+        "requested": "[6.4.0, )",
+        "resolved": "6.4.0",
+        "contentHash": "U3GowPObvH43MBoB+N9HmaP7R9DGOrrGwbuTZIfia6RSFi/7bApoT7RQFMA9QWpZ9pJF6TKysCaxcv7Qwzucqw=="
       },
       "SocketIOClient": {
         "type": "Direct",
@@ -38,6 +35,11 @@
         "requested": "[9.0.4, )",
         "resolved": "9.0.4",
         "contentHash": "t34SoSx8l/O5kv7IwYXENjQOTpVKFkH3ydZejcZCsNsymthJrdCguvHFcbP3ayeBOXdm4Bq8bhmVGCgr0RXIQg=="
+      },
+      "ECommons": {
+        "type": "Transitive",
+        "resolved": "3.0.1.15",
+        "contentHash": "y/I5tpUQQHuaEtDfF470tTlVnHt7gT2KaXX4Zh75bR19/n5kOagNs2e9yYv4dsp538eJLcDzRm0+Z7WY9iW0cA=="
       },
       "SocketIO.Core": {
         "type": "Transitive",
@@ -62,11 +64,6 @@
           "System.Text.Json": "8.0.4"
         }
       },
-      "System.Collections.Immutable": {
-        "type": "Transitive",
-        "resolved": "9.0.2",
-        "contentHash": "QKh9+kczG7TQbQZ6tF2S6bK9B8ewHXEkYmMP2iqefzwJEfEkiflheAX6VEaPLJ6Tq9RoKuQ5R3qPYla6wJ6Opg=="
-      },
       "System.Text.Encodings.Web": {
         "type": "Transitive",
         "resolved": "8.0.0",
@@ -86,11 +83,8 @@
       "Dalamud.Divination.Common": {
         "type": "Project",
         "dependencies": {
-          "ECommons": "[3.0.1.5-stg, )"
+          "ECommons": "[3.0.1.15, )"
         }
-      },
-      "ecommons": {
-        "type": "Project"
       }
     }
   }

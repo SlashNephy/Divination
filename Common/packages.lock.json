@@ -8,25 +8,17 @@
         "resolved": "1.2.25",
         "contentHash": "xCXiw7BCxHJ8pF6wPepRUddlh2dlQlbr81gXA72hdk4FLHkKXas7EH/n+fk5UCA/YfMqG1Z6XaPiUjDbUNBUzg=="
       },
+      "ECommons": {
+        "type": "Direct",
+        "requested": "[3.0.1.15, )",
+        "resolved": "3.0.1.15",
+        "contentHash": "y/I5tpUQQHuaEtDfF470tTlVnHt7gT2KaXX4Zh75bR19/n5kOagNs2e9yYv4dsp538eJLcDzRm0+Z7WY9iW0cA=="
+      },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[6.2.0, )",
-        "resolved": "6.2.0",
-        "contentHash": "EZoFyY1fgHkYtCz0nizYAXsfNG0OSllMuRQl4fFosDNKz6y/f2nctSCjwhTMh5GSkzRZEnyd+YA540VD7SAm+A==",
-        "dependencies": {
-          "System.Collections.Immutable": "9.0.2"
-        }
-      },
-      "System.Collections.Immutable": {
-        "type": "Transitive",
-        "resolved": "9.0.2",
-        "contentHash": "QKh9+kczG7TQbQZ6tF2S6bK9B8ewHXEkYmMP2iqefzwJEfEkiflheAX6VEaPLJ6Tq9RoKuQ5R3qPYla6wJ6Opg=="
-      },
-      "aetherytelinkinchat.ipcmodel": {
-        "type": "Project"
-      },
-      "ecommons": {
-        "type": "Project"
+        "requested": "[6.4.0, )",
+        "resolved": "6.4.0",
+        "contentHash": "U3GowPObvH43MBoB+N9HmaP7R9DGOrrGwbuTZIfia6RSFi/7bApoT7RQFMA9QWpZ9pJF6TKysCaxcv7Qwzucqw=="
       }
     }
   }

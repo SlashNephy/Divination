@@ -6,6 +6,5 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Common\Common.csproj" />
-        <ProjectReference Include="..\lib\ECommons\ECommons\ECommons.csproj" />
     </ItemGroup>
 </Project>
