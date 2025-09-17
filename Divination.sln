@@ -14,10 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat", "Aeth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horoscope", "Horoscope\Horoscope.csproj", "{A099E0CA-0C4E-402A-B334-E243D4286872}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommons", "lib\ECommons\ECommons\ECommons.csproj", "{BE5DF02A-7682-469B-BA0B-F1092A4F1579}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat.IpcModel", "AetheryteLinkInChat.IpcModel\AetheryteLinkInChat.IpcModel.csproj", "{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}"
 EndProject
 Global
@@ -34,10 +30,6 @@ Global
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}.Debug|Any CPU.Build.0 = Debug|x64
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}.Release|Any CPU.ActiveCfg = Release|x64
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}.Release|Any CPU.Build.0 = Release|x64
-		{42E83F55-1774-4BBD-BED9-149252532234}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{42E83F55-1774-4BBD-BED9-149252532234}.Debug|Any CPU.Build.0 = Debug|x64
-		{42E83F55-1774-4BBD-BED9-149252532234}.Release|Any CPU.ActiveCfg = Release|x64
-		{42E83F55-1774-4BBD-BED9-149252532234}.Release|Any CPU.Build.0 = Release|x64
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Debug|Any CPU.Build.0 = Debug|x64
 		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Release|Any CPU.ActiveCfg = Release|x64
@@ -54,10 +46,6 @@ Global
 		{A099E0CA-0C4E-402A-B334-E243D4286872}.Debug|Any CPU.Build.0 = Debug|x64
 		{A099E0CA-0C4E-402A-B334-E243D4286872}.Release|Any CPU.ActiveCfg = Release|x64
 		{A099E0CA-0C4E-402A-B334-E243D4286872}.Release|Any CPU.Build.0 = Release|x64
-		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Debug|Any CPU.Build.0 = Debug|x64
-		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Release|Any CPU.ActiveCfg = Release|x64
-		{BE5DF02A-7682-469B-BA0B-F1092A4F1579}.Release|Any CPU.Build.0 = Release|x64
 		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Debug|Any CPU.Build.0 = Debug|x64
 		{A87243BD-80F0-4CDE-A1B3-C6A4B5BA6A39}.Release|Any CPU.ActiveCfg = Release|x64
@@ -65,8 +53,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{BE5DF02A-7682-469B-BA0B-F1092A4F1579} = {7D0FE0C5-774F-410E-A185-92C3F8CD0BD0}
 	EndGlobalSection
 EndGlobal
