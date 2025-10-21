@@ -24,7 +24,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           submodules: 'recursive'
           # GitVersion
@@ -57,14 +57,14 @@ jobs:
         working-directory: '${{ inputs.working-directory }}'
 
       - name: Upload Artifact (release)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: '${{ inputs.plugin-name }}'
           path: '${{ inputs.working-directory }}/bin/CIRelease/${{ inputs.plugin-name }}'
           if-no-files-found: error
 
       - name: Upload Artifact (gitversion.json)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: '${{ inputs.plugin-name }}-GitVersion'
           path: '${{ inputs.working-directory }}/obj/gitversion.json'
