@@ -41,8 +41,8 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         aetheryteLinkPayload = Dalamud.ChatGui.AddChatLinkHandler(AetheryteLinkCommandId, HandleAetheryteLink);
         lifestreamLinkPayload = Dalamud.ChatGui.AddChatLinkHandler(LifestreamLinkCommandId, HandleLifestreamLink);
         solver = new AetheryteSolver(Dalamud.DataManager);
-        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ClientState, Dalamud.PluginInterface, Dalamud.ToastGui, Dalamud.Framework, Config);
-        ipcProvider = new IpcProvider(pluginInterface, Dalamud.ClientState, teleporter, solver, Dalamud.DataManager);
+        teleporter = new Teleporter(Dalamud.Condition, Dalamud.AetheryteList, Divination.Chat, Dalamud.CommandManager, Dalamud.ObjectTable, Dalamud.PluginInterface, Dalamud.ToastGui, Dalamud.Framework, Config);
+        ipcProvider = new IpcProvider(pluginInterface, Dalamud.ObjectTable, teleporter, solver, Dalamud.DataManager);
 
         Dalamud.ChatGui.ChatMessage += OnChatReceived;
         Dalamud.CommandManager.AddHandler(TeleportGcCommand,
@@ -93,7 +93,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             solver.AppendGrandCompanyAetheryte(paths,
                 (uint)Enum.GetValues<GrandCompanyAetheryte>()[Config.PreferredGrandCompanyAetheryte],
                 message,
-                Dalamud.ClientState.LocalPlayer?.CurrentWorld.Value,
+                Dalamud.ObjectTable.LocalPlayer?.CurrentWorld.Value,
                 Dalamud.ClientState.TerritoryType);
         }
 
@@ -154,7 +154,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
         if (Config.EnableLifestreamIntegration && teleporter.IsLifestreamAvailable())
         {
-            var world = solver.DetectWorld(message, Dalamud.ClientState.LocalPlayer?.CurrentWorld.Value);
+            var world = solver.DetectWorld(message, Dalamud.ObjectTable.LocalPlayer?.CurrentWorld.Value);
 
             payloads.AddRange([
                 new TextPayload(" ["),

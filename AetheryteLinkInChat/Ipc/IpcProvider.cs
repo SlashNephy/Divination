@@ -15,16 +15,16 @@ namespace Divination.AetheryteLinkInChat.Ipc;
 public class IpcProvider : IDisposable
 {
     private readonly Teleporter teleporter;
-    private readonly IClientState clientState;
+    private readonly IObjectTable objectTable;
     private readonly AetheryteSolver solver;
     private readonly IDataManager dataManager;
     private readonly ICallGateProvider<TeleportPayload, bool> teleport;
     private readonly CancellationTokenSource cancellation = new();
 
-    public IpcProvider(IDalamudPluginInterface pluginInterface, IClientState clientState, Teleporter teleporter, AetheryteSolver solver, IDataManager dataManager)
+    public IpcProvider(IDalamudPluginInterface pluginInterface, IObjectTable objectTable, Teleporter teleporter, AetheryteSolver solver, IDataManager dataManager)
     {
         this.teleporter = teleporter;
-        this.clientState = clientState;
+        this.objectTable = objectTable;
         this.solver = solver;
         this.dataManager = dataManager;
 
@@ -36,7 +36,7 @@ public class IpcProvider : IDisposable
     {
         DalamudLog.Log.Debug("OnTeleport: {Payload}", payload);
 
-        var world = clientState.LocalPlayer?.CurrentWorld.Value;
+        var world = objectTable.LocalPlayer?.CurrentWorld.Value;
         if (payload.WorldId.HasValue)
         {
             world = dataManager.GetExcelSheet<World>().GetRow(payload.WorldId.Value);

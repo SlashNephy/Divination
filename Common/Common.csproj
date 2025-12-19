@@ -1,4 +1,4 @@
-﻿<Project Sdk="Dalamud.NET.Sdk/13.1.0">
+﻿<Project Sdk="Dalamud.NET.Sdk/14.0.1">
     <PropertyGroup>
         <AssemblyTitle>Shared library for Divination projects</AssemblyTitle>
         <Company>Horoscope.dev</Company>
@@ -12,9 +12,10 @@
         <RootNamespace>Dalamud.Divination.Common</RootNamespace>
         <AssemblyName>Dalamud.Divination.Common</AssemblyName>
         <Use_DalamudPackager>false</Use_DalamudPackager>
+        <TargetFramework>net10.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ECommons" Version="3.0.1.26" />
+        <PackageReference Include="ECommons" Version="3.1.0.5" />
     </ItemGroup>
 </Project>

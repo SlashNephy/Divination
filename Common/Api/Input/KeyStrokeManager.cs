@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Dalamud.Divination.Common.Api.Dalamud;
@@ -35,7 +36,7 @@ public sealed class KeyStrokeManager : IKeyStrokeManager
 
             Thread.Sleep(random.Next(100, 400));
 
-            foreach (var key in keys.Reverse())
+            foreach (var key in ((IEnumerable<byte>)keys).Reverse())
             {
                 Win32Api.SendMessage(handle, Win32Api.WmKeyup, key, 0);
             }

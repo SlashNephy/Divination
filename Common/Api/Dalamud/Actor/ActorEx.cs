@@ -8,13 +8,13 @@ namespace Dalamud.Divination.Common.Api.Dalamud.Actor;
 
 public static class ActorEx
 {
-    public static async Task<IPlayerCharacter> GetLocalPlayerAsync(this IClientState state, TimeSpan? delay = null, CancellationToken token = default)
+    public static async Task<IPlayerCharacter> GetLocalPlayerAsync(this IObjectTable objectTable, TimeSpan? delay = null, CancellationToken token = default)
     {
         delay ??= TimeSpan.FromMilliseconds(200);
 
         while (!token.IsCancellationRequested)
         {
-            var player = state.LocalPlayer;
+            var player = objectTable.LocalPlayer;
             if (player != null)
             {
                 return player;

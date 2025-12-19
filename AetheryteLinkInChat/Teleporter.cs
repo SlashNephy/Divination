@@ -45,7 +45,7 @@ public sealed class Teleporter : IDisposable
     private readonly IAetheryteList aetheryteList;
     private readonly IChatClient chatClient;
     private readonly ICommandManager commandManager;
-    private readonly IClientState clientState;
+    private readonly IObjectTable objectTable;
     private readonly IDalamudPluginInterface pluginInterface;
     private readonly IToastGui toastGui;
     private readonly IFramework framework;
@@ -53,13 +53,13 @@ public sealed class Teleporter : IDisposable
     // Huh, cant use volatile here anymore... well hope nothing explodes :)
     private Aetheryte? queuedAetheryte;
 
-    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IClientState clientState, IDalamudPluginInterface pluginInterface, IToastGui toastGui, IFramework framework, PluginConfig config)
+    public Teleporter(ICondition condition, IAetheryteList aetheryteList, IChatClient chatClient, ICommandManager commandManager, IObjectTable objectTable, IDalamudPluginInterface pluginInterface, IToastGui toastGui, IFramework framework, PluginConfig config)
     {
         this.condition = condition;
         this.aetheryteList = aetheryteList;
         this.chatClient = chatClient;
         this.commandManager = commandManager;
-        this.clientState = clientState;
+        this.objectTable = objectTable;
         this.pluginInterface = pluginInterface;
         this.toastGui = toastGui;
         this.framework = framework;
@@ -191,7 +191,7 @@ public sealed class Teleporter : IDisposable
 
         if (world.HasValue)
         {
-            if (world.Value.RowId == clientState.LocalPlayer?.CurrentWorld.RowId)
+            if (world.Value.RowId == objectTable.LocalPlayer?.CurrentWorld.RowId)
             {
                 DalamudLog.Log.Debug("TeleportToPaths: world == currentWorld");
             }
@@ -209,7 +209,7 @@ public sealed class Teleporter : IDisposable
                 DalamudLog.Log.Debug("TeleportToPaths: waiting for {World}", world.Value.Name.ExtractText());
 
                 // wait until world changed
-                while (world.Value.RowId != clientState.LocalPlayer?.CurrentWorld.RowId || IsTeleportUnavailable)
+                while (world.Value.RowId != objectTable.LocalPlayer?.CurrentWorld.RowId || IsTeleportUnavailable)
                 {
                     await Task.Delay(500, cancellationToken);
                 }

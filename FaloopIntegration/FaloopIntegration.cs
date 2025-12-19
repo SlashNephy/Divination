@@ -66,8 +66,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
     private void OnLogin()
     {
-        currentWorld = Dalamud.ClientState.LocalPlayer?.CurrentWorld.Value;
-        homeWorld = Dalamud.ClientState.LocalPlayer?.HomeWorld.Value;
+        currentWorld = Dalamud.ObjectTable.LocalPlayer?.CurrentWorld.Value;
+        homeWorld = Dalamud.ObjectTable.LocalPlayer?.HomeWorld.Value;
     }
 
     private void OnConnected()
