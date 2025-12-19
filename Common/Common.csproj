@@ -15,6 +15,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ECommons" Version="3.0.1.26" />
+        <PackageReference Include="ECommons" Version="3.0.1.32" />
     </ItemGroup>
 </Project>
