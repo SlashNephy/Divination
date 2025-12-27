@@ -22,8 +22,8 @@
       },
       "ECommons": {
         "type": "Transitive",
-        "resolved": "3.1.0.5",
-        "contentHash": "oEpz7wIB4GPEWcYsNKqf3Sny+K4agdFlSo8YKEu6QdEFuPEH6kzwL7UKCKxj327lailQ927fIPPxCFHSAOXIMA=="
+        "resolved": "3.1.0.10",
+        "contentHash": "afgAdXz9ykESACvgssr9PXsPb8i7ZwSyqw58IGzgURUxkH8Hm1qIxwzybLDE5Eo8BXr4nESGqcRqEpbviH4/3g=="
       },
       "aetherytelinkinchat.ipcmodel": {
         "type": "Project"
@@ -31,7 +31,7 @@
       "Dalamud.Divination.Common": {
         "type": "Project",
         "dependencies": {
-          "ECommons": "[3.1.0.5, )"
+          "ECommons": "[3.1.0.10, )"
         }
       }
     }
