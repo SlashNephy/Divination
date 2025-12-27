@@ -56,6 +56,26 @@ jobs:
             '/p:AssemblyTitle="${{ env.PLUGIN_DESCRIPTION }}"'
         working-directory: '${{ inputs.working-directory }}'
 
+      - name: Patch TestingDalamudApiLevel
+        run: |
+            $manifestPath = ".\${{ inputs.plugin-name }}.json"
+            $outputManifestPath = ".\bin\CIRelease\${{ inputs.plugin-name }}\${{ inputs.plugin-name }}.json"
+  
+            if (Test-Path $manifestPath) {
+              $sourceManifest = Get-Content $manifestPath -Raw | ConvertFrom-Json
+  
+              if ($null -ne $sourceManifest.TestingDalamudApiLevel) {
+                if (Test-Path $outputManifestPath) {
+                  $outputManifest = Get-Content $outputManifestPath -Raw | ConvertFrom-Json
+                  $outputManifest | Add-Member -NotePropertyName "TestingDalamudApiLevel" -NotePropertyValue $sourceManifest.TestingDalamudApiLevel -Force
+                  $outputManifest | ConvertTo-Json -Depth 10 | Set-Content $outputManifestPath -Encoding UTF8
+  
+                  Write-Host "Added TestingDalamudApiLevel: $($sourceManifest.TestingDalamudApiLevel)"
+                }
+              }
+            }
+        working-directory: '${{ inputs.working-directory }}'
+
       - name: Upload Artifact (release)
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
