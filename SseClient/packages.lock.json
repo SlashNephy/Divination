@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     "net10.0-windows7.0": {
+      "3v.EvtSource": {
+        "type": "Direct",
+        "requested": "[2.0.0, )",
+        "resolved": "2.0.0",
+        "contentHash": "+5mAL4BrKXC0bQd8SAv3WACGPEmHEwzDQliT+ao//BowPmX+W+zHMGVj+O3xM+tjkNPpwKY89dSQfbf7wpO4DQ=="
+      },
       "DalamudPackager": {
         "type": "Direct",
         "requested": "[14.0.1, )",
@@ -19,17 +25,6 @@
         "requested": "[6.5.1, )",
         "resolved": "6.5.1",
         "contentHash": "92zAmfGWVtjHM8eR7O+1WWxqP+gulXvVqu3Sb1+KzuImdmxBt/bln/dMRvsIyV69KEiSrtbUoet4HBjG+bOLyw=="
-      },
-      "ECommons": {
-        "type": "Transitive",
-        "resolved": "3.1.0.10",
-        "contentHash": "afgAdXz9ykESACvgssr9PXsPb8i7ZwSyqw58IGzgURUxkH8Hm1qIxwzybLDE5Eo8BXr4nESGqcRqEpbviH4/3g=="
-      },
-      "Dalamud.Divination.Common": {
-        "type": "Project",
-        "dependencies": {
-          "ECommons": "[3.1.0.10, )"
-        }
       }
     }
   }

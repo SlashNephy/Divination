@@ -2,10 +2,9 @@
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <RootNamespace>Divination.Debugger</RootNamespace>
-        <TargetFramework>net10.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Common\Common.csproj"/>
+        <ProjectReference Include="..\Common\Common.csproj" />
     </ItemGroup>
 </Project>
