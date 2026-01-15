@@ -15,6 +15,18 @@
       "depNameTemplate": "dotnet/core",
       "datasourceTemplate": "github-tags",
       "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+)"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.json$/"
+      ],
+      "matchStrings": [
+        "\"(?:Testing)?DalamudApiLevel\"\\s*:\\s*(?<currentValue>\\d+)"
+      ],
+      "depNameTemplate": "goatcorp/Dalamud",
+      "datasourceTemplate": "github-tags",
+      "extractVersionTemplate": "^(?<version>\\d+)"
     }
   ]
 }
