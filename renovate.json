@@ -1,12 +1,20 @@
 {
-  "$schema":"https://docs.renovatebot.com/renovate-schema.json",
-  "extends":["github>SlashNephy/renovate-config"],
-  "ignorePaths": [
-    "packages/ACT/**",
-    "packages/DiscordBot/**",
-    "packages/DownloadCounter/**",
-    "packages/Server.Companion/**",
-    "packages/SseServer.Faloop/**",
-    "packages/SseServer/**"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>SlashNephy/renovate-config"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^Directory\\.Build\\.props$/"
+      ],
+      "matchStrings": [
+        "<TargetFramework>net(?<currentValue>\\d+\\.\\d+)-windows</TargetFramework>"
+      ],
+      "depNameTemplate": "dotnet/core",
+      "datasourceTemplate": "github-tags",
+      "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+)"
+    }
   ]
 }
