@@ -12,7 +12,6 @@
         <RootNamespace>Dalamud.Divination.Common</RootNamespace>
         <AssemblyName>Dalamud.Divination.Common</AssemblyName>
         <Use_DalamudPackager>false</Use_DalamudPackager>
-        <TargetFramework>net10.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>

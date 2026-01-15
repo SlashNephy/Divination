@@ -2,7 +2,6 @@
     <PropertyGroup>
         <RootNamespace>Divination.Horoscope</RootNamespace>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <TargetFramework>net10.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
