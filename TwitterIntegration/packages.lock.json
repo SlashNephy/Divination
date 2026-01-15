@@ -2,6 +2,15 @@
   "version": 1,
   "dependencies": {
     "net10.0-windows7.0": {
+      "CoreTweet": {
+        "type": "Direct",
+        "requested": "[2.0.0-beta.1, )",
+        "resolved": "2.0.0-beta.1",
+        "contentHash": "ETzhl6wcfKBQNzUxcaNnS08Hg6vP/kb2H1NVc206vEn8PxXCoRI5EbVWq1ukgM8j0Pz2b6QuF3QWo1Zyji9LQg==",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        }
+      },
       "DalamudPackager": {
         "type": "Direct",
         "requested": "[14.0.1, )",
@@ -24,6 +33,11 @@
         "type": "Transitive",
         "resolved": "3.1.0.10",
         "contentHash": "afgAdXz9ykESACvgssr9PXsPb8i7ZwSyqw58IGzgURUxkH8Hm1qIxwzybLDE5Eo8BXr4nESGqcRqEpbviH4/3g=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "12.0.3",
+        "contentHash": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg=="
       },
       "Dalamud.Divination.Common": {
         "type": "Project",

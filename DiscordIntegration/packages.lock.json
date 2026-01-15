@@ -8,6 +8,15 @@
         "resolved": "14.0.1",
         "contentHash": "y0WWyUE6dhpGdolK3iKgwys05/nZaVf4ZPtIjpLhJBZvHxkkiE23zYRo7K7uqAgoK/QvK5cqF6l3VG5AbgC6KA=="
       },
+      "DiscordRichPresence": {
+        "type": "Direct",
+        "requested": "[1.6.1.70, )",
+        "resolved": "1.6.1.70",
+        "contentHash": "yho1fdhbsedICHdfHe/Tu3IX6a5oj4fiPFL0keZStlsh7T/FrdjcwZZ7C1uC2HUvcXbFh+VEJvcbo1W66QtkUg==",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        }
+      },
       "DotNet.ReproducibleBuilds": {
         "type": "Direct",
         "requested": "[1.2.39, )",
@@ -25,10 +34,21 @@
         "resolved": "3.1.0.10",
         "contentHash": "afgAdXz9ykESACvgssr9PXsPb8i7ZwSyqw58IGzgURUxkH8Hm1qIxwzybLDE5Eo8BXr4nESGqcRqEpbviH4/3g=="
       },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
       "Dalamud.Divination.Common": {
         "type": "Project",
         "dependencies": {
           "ECommons": "[3.1.0.10, )"
+        }
+      },
+      "discordintegration.ipcmodel": {
+        "type": "Project",
+        "dependencies": {
+          "DalamudPackager": "[14.0.1, )"
         }
       }
     }
