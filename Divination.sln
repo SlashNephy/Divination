@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaloopIntegration", "FaloopIntegration\FaloopIntegration.csproj", "{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voiceroid2Talker", "Voiceroid2Talker\Voiceroid2Talker.csproj", "{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "Debugger\Debugger.csproj", "{075C0D70-F7D1-4E3D-8E43-430C8C16F729}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetheryteLinkInChat", "AetheryteLinkInChat\AetheryteLinkInChat.csproj", "{D765974E-0713-4527-8CAF-5B6BF3ECDA92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horoscope", "Horoscope\Horoscope.csproj", "{A099E0CA-0C4E-402A-B334-E243D4286872}"
@@ -31,14 +27,6 @@ Global
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}.Debug|Any CPU.Build.0 = Debug|x64
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}.Release|Any CPU.ActiveCfg = Release|x64
 		{6A48EBAF-6787-44A9-93A8-F5F1C87FAF92}.Release|Any CPU.Build.0 = Release|x64
-		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Debug|Any CPU.Build.0 = Debug|x64
-		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Release|Any CPU.ActiveCfg = Release|x64
-		{377EF695-D2F0-4A14-BD67-6B0CBAD78FCD}.Release|Any CPU.Build.0 = Release|x64
-		{075C0D70-F7D1-4E3D-8E43-430C8C16F729}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{075C0D70-F7D1-4E3D-8E43-430C8C16F729}.Debug|Any CPU.Build.0 = Debug|x64
-		{075C0D70-F7D1-4E3D-8E43-430C8C16F729}.Release|Any CPU.ActiveCfg = Release|x64
-		{075C0D70-F7D1-4E3D-8E43-430C8C16F729}.Release|Any CPU.Build.0 = Release|x64
 		{D765974E-0713-4527-8CAF-5B6BF3ECDA92}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{D765974E-0713-4527-8CAF-5B6BF3ECDA92}.Debug|Any CPU.Build.0 = Debug|x64
 		{D765974E-0713-4527-8CAF-5B6BF3ECDA92}.Release|Any CPU.ActiveCfg = Release|x64
