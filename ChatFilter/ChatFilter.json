@@ -7,7 +7,7 @@
   "CategoryTags": ["ui", "social"],
   "IsHide": false,
   "ApplicableVersion": "any",
-  "DalamudApiLevel": 9,
+  "DalamudApiLevel": 14,
   "LoadPriority": 0,
   "ImageUrls": [],
   "IconUrl": null

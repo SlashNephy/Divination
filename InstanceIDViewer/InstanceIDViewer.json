@@ -5,5 +5,5 @@
   "Description": "show instance id in chat when instance changed",
   "Tags": ["Discord"],
   "CategoryTags": ["social"],
-  "DalamudApiLevel": 10
+  "DalamudApiLevel": 14
 }

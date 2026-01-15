@@ -5,5 +5,5 @@
   "Description": "support Discord Rich Presence",
   "Tags": ["Discord"],
   "CategoryTags": ["social"],
-  "DalamudApiLevel": 9
+  "DalamudApiLevel": 14
 }

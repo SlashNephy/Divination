@@ -5,5 +5,5 @@
   "Description": "Add /voiceroid2 command into FFXIV. Require SimpleVoiceroid2Proxy (https://github.com/SlashNephy/SimpleVoiceroid2Proxy).",
   "Tags": ["Text-to-speech", "Voiceroid"],
   "CategoryTags": ["utility"],
-  "DalamudApiLevel": 10
+  "DalamudApiLevel": 14
 }
