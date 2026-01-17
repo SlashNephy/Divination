@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 
 namespace Divination.Horoscope.Modules;
@@ -11,65 +13,80 @@ public class OverrideActTextToSpeech : IModule
     public string Name => "Override IINACT TextToSpeech method";
     public string Description => "Override IINACT TextToSpeech method";
 
-    private object formActMain => AppDomain.CurrentDomain.GetAssemblies()
+    private static object FormActMain => AppDomain.CurrentDomain.GetAssemblies()
         .FirstOrDefault(x => x.GetName().Name == "Advanced Combat Tracker")
         ?.GetType("Advanced_Combat_Tracker.ActGlobals")
         ?.GetField("oFormActMain", BindingFlags.Public | BindingFlags.Static)
         ?.GetValue(null)
-        ?? throw new Exception("oFormActMain field not found");
+        ?? throw new ReflectionException("oFormActMain field not found");
 
-    private EventInfo textToSpeechEventInfo => formActMain.GetType()
+    private static EventInfo TextToSpeechEventInfo => FormActMain.GetType()
         .GetEvent("TextToSpeech")
-        ?? throw new Exception("TextToSpeech event not found");
+        ?? throw new ReflectionException("TextToSpeech event not found");
+
+    private CancellationTokenSource? cancellation;
 
     public void Enable()
     {
-        if (!Horoscope.Instance.Dalamud.PluginInterface.InstalledPlugins.Any(x => x.Name == "IINACT"))
+        cancellation = new CancellationTokenSource();
+        Task.Run(async () =>
         {
-            throw new Exception("IINACT plugin not insalled");
-        }
-
-        // first remove existing IINACT handler
-        UnregisterEventHandlers();
-        RegisterEventHandler();
+            while (!cancellation.IsCancellationRequested)
+            {
+                try
+                {
+                    // first remove existing IINACT handler
+                    UnregisterEventHandlers();
+                    RegisterEventHandler();
+                    break;
+                }
+                catch (ReflectionException e)
+                {
+                    DalamudLog.Log.Warning(e, "Failed to register TextToSpeech handler. Retrying in 3s...");
+                    await Task.WhenAny(Task.Delay(3000, cancellation.Token));
+                }
+            }
+        }, cancellation.Token);
     }
 
     public void Disable()
     {
+        cancellation?.Cancel();
+        cancellation?.Dispose();
         UnregisterEventHandlers();
     }
 
     private void RegisterEventHandler()
     {
-        var methodInfo = GetType().GetMethod("OnTextToSpeech", BindingFlags.NonPublic | BindingFlags.Instance)!;
-        if (methodInfo == default)
+        if (Horoscope.Instance.Dalamud.PluginInterface.InstalledPlugins.All(x => x.Name != "IINACT"))
         {
-            throw new Exception("OnTextToSpeech method not found");
+            throw new Exception("IINACT plugin not insalled");
         }
 
-        var handler = Delegate.CreateDelegate(textToSpeechEventInfo.EventHandlerType!, this, methodInfo);
-        textToSpeechEventInfo.AddEventHandler(formActMain, handler);
+        var methodInfo = GetType().GetMethod("OnTextToSpeech", BindingFlags.NonPublic | BindingFlags.Instance) ?? throw new ReflectionException("OnTextToSpeech method not found");
+        var handler = Delegate.CreateDelegate(TextToSpeechEventInfo.EventHandlerType!, this, methodInfo);
+        TextToSpeechEventInfo.AddEventHandler(FormActMain, handler);
         DalamudLog.Log.Debug("Registered TextToSpeech handler");
     }
 
-    private void UnregisterEventHandlers()
+    private static void UnregisterEventHandlers()
     {
-        var eventField = formActMain.GetType()
+        var eventField = FormActMain.GetType()
             .GetField("TextToSpeech", BindingFlags.NonPublic | BindingFlags.Instance);
         if (eventField == default)
         {
-            throw new Exception("TextToSpeech field not found");
+            throw new ReflectionException("TextToSpeech field not found");
         }
 
-        var eventDelegate = eventField.GetValue(formActMain);
-        if (eventDelegate == default)
+        var eventDelegate = eventField.GetValue(FormActMain);
+        if (eventDelegate == null)
         {
             return;
         }
 
         foreach (var item in ((Delegate)eventDelegate).GetInvocationList())
         {
-            textToSpeechEventInfo.RemoveEventHandler(formActMain, item);
+            TextToSpeechEventInfo.RemoveEventHandler(FormActMain, item);
         }
     }
 
@@ -79,4 +96,6 @@ public class OverrideActTextToSpeech : IModule
 
         Horoscope.Instance.Divination.Voiceroid2Proxy.TalkAsync(text);
     }
+
+    private class ReflectionException(string message) : Exception(message);
 }
