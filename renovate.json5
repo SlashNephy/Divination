@@ -1,7 +1,7 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    'github>SlashNephy/renovate-config'
+    'github>SlashNephy/renovate-config',
   ],
   ignorePaths: [
     // abandoned projects
@@ -21,10 +21,11 @@
     {
       customType: 'regex',
       managerFilePatterns: [
-        '/^Directory\\.Build\\.props$/'
+        '/^Directory\\.Build\\.props$/',
+        '/\\.csproj$/',
       ],
       matchStrings: [
-        '<TargetFramework>net(?<currentValue>\\d+\\.\\d+)-windows</TargetFramework>'
+        '<TargetFramework>net(?<currentValue>\\d+\\.\\d+)-windows</TargetFramework>',
       ],
       depNameTemplate: 'dotnet/core',
       datasourceTemplate: 'github-tags',
@@ -34,10 +35,10 @@
     {
       customType: 'regex',
       managerFilePatterns: [
-        '/\\.json$/'
+        '/\\.json$/',
       ],
       matchStrings: [
-        '"(?:Testing)?DalamudApiLevel"\\s*:\\s*(?<currentValue>\\d+)'
+        '"(?:Testing)?DalamudApiLevel"\\s*:\\s*(?<currentValue>\\d+)',
       ],
       depNameTemplate: 'goatcorp/Dalamud',
       datasourceTemplate: 'github-tags',
