@@ -60,7 +60,7 @@ public class OverrideActTextToSpeech : IModule
     {
         if (Horoscope.Instance.Dalamud.PluginInterface.InstalledPlugins.All(x => x.Name != "IINACT"))
         {
-            throw new Exception("IINACT plugin not insalled");
+            throw new Exception("IINACT plugin not installed");
         }
 
         var methodInfo = GetType().GetMethod("OnTextToSpeech", BindingFlags.NonPublic | BindingFlags.Instance) ?? throw new ReflectionException("OnTextToSpeech method not found");
