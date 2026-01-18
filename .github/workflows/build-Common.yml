@@ -3,15 +3,17 @@ name: Build (Common)
 on:
   push:
     paths:
-      - "Common/**"
-
+      - Common/**
+      - Directory.Build.props
+    branches:
+      - master
   pull_request:
     paths:
-      - "Common/**"
+      - Common/**
+      - Directory.Build.props
     types:
       - opened
       - synchronize
-
   workflow_dispatch:
 
 jobs:
