@@ -22,13 +22,13 @@
       },
       "ECommons": {
         "type": "Transitive",
-        "resolved": "3.1.0.10",
-        "contentHash": "afgAdXz9ykESACvgssr9PXsPb8i7ZwSyqw58IGzgURUxkH8Hm1qIxwzybLDE5Eo8BXr4nESGqcRqEpbviH4/3g=="
+        "resolved": "3.2.0.18",
+        "contentHash": "esPIjfuveuw05c4PI7gqpRcifaUaUZ9sf7JnN90CBM1Ah2emxTBrKQl6A+ghHobwQOOe+yflN03TJnv32NEkVw=="
       },
       "Dalamud.Divination.Common": {
         "type": "Project",
         "dependencies": {
-          "ECommons": "[3.1.0.10, )"
+          "ECommons": "[3.2.0.18, )"
         }
       }
     }
