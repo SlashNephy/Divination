@@ -13,9 +13,9 @@
       },
       "DalamudPackager": {
         "type": "Direct",
-        "requested": "[14.0.1, )",
-        "resolved": "14.0.1",
-        "contentHash": "y0WWyUE6dhpGdolK3iKgwys05/nZaVf4ZPtIjpLhJBZvHxkkiE23zYRo7K7uqAgoK/QvK5cqF6l3VG5AbgC6KA=="
+        "requested": "[14.0.2, )",
+        "resolved": "14.0.2",
+        "contentHash": "dQJeq+8eyHzra4Cg5eZ/3LAeS3/UpvvLriYJGSncMK9LqJ7Q4B6jwcOsxo3PfxVd15xj+IzVFxkPqIBmPQu8/w=="
       },
       "DotNet.ReproducibleBuilds": {
         "type": "Direct",
@@ -31,8 +31,8 @@
       },
       "ECommons": {
         "type": "Transitive",
-        "resolved": "3.1.0.10",
-        "contentHash": "afgAdXz9ykESACvgssr9PXsPb8i7ZwSyqw58IGzgURUxkH8Hm1qIxwzybLDE5Eo8BXr4nESGqcRqEpbviH4/3g=="
+        "resolved": "3.2.0.18",
+        "contentHash": "esPIjfuveuw05c4PI7gqpRcifaUaUZ9sf7JnN90CBM1Ah2emxTBrKQl6A+ghHobwQOOe+yflN03TJnv32NEkVw=="
       },
       "Newtonsoft.Json": {
         "type": "Transitive",
@@ -42,7 +42,7 @@
       "Dalamud.Divination.Common": {
         "type": "Project",
         "dependencies": {
-          "ECommons": "[3.1.0.10, )"
+          "ECommons": "[3.2.0.18, )"
         }
       }
     }
