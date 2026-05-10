@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using Dalamud.Game.Chat;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -80,9 +81,9 @@ internal sealed class ChatClient : IChatClient
         queue.Dispose();
     }
 
-    private void OnChatMessage(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
+    private void OnChatMessage(IHandleableChatMessage message)
     {
-        if (type == XivChatType.Notice)
+        if (message.LogKind == XivChatType.Notice)
         {
             CompleteChatQueue();
         }

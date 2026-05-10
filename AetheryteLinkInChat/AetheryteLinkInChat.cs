@@ -6,6 +6,7 @@ using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
 using Dalamud.Divination.Common.Boilerplate;
 using Dalamud.Divination.Common.Boilerplate.Features;
+using Dalamud.Game.Chat;
 using Dalamud.Game.Command;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
@@ -59,11 +60,11 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         return new PluginConfigWindow();
     }
 
-    private void OnChatReceived(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
+    private void OnChatReceived(IHandleableChatMessage chat)
     {
         try
         {
-            AppendNearestAetheryteLink(ref message);
+            AppendNearestAetheryteLink(chat);
         }
         catch (Exception exception)
         {
@@ -71,8 +72,9 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
         }
     }
 
-    private void AppendNearestAetheryteLink(ref SeString message)
+    private void AppendNearestAetheryteLink(IHandleableChatMessage chat)
     {
+        var message = chat.Message;
         var mapLink = message.Payloads.OfType<MapLinkPayload>().FirstOrDefault();
         if (mapLink == default)
         {

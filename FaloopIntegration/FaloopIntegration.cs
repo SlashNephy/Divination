@@ -231,8 +231,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         switch (jurisdiction)
         {
             case Jurisdiction.All:
-            case Jurisdiction.Travelable when dataCenter.Value.Region == 4 || dataCenter.Value.Region == homeDataCenter.Value.Region:
-            case Jurisdiction.Region when dataCenter.Value.Region == currentDataCenter.Value.Region:
+            case Jurisdiction.Travelable when dataCenter.Value.Region.RowId == 4 || dataCenter.Value.Region.RowId == homeDataCenter.Value.Region.RowId:
+            case Jurisdiction.Region when dataCenter.Value.Region.RowId == currentDataCenter.Value.Region.RowId:
             case Jurisdiction.DataCenter when dataCenter.Value.RowId == currentDataCenter.Value.RowId:
             case Jurisdiction.World when world.RowId == currentWorld.Value.RowId:
                 return true;

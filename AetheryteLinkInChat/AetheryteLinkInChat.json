@@ -5,5 +5,5 @@
   "Description": "Display a teleport link to the nearest aetherite for the map link from the in-game chat. Type /alic to configure the plugin.",
   "Tags": ["teleporter"],
   "CategoryTags": ["utility"],
-  "TestingDalamudApiLevel": 14
+  "TestingDalamudApiLevel": 15
 }

@@ -8,6 +8,7 @@ using Dalamud.Divination.Common.Api.Command.Attributes;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Dalamud.Payload;
 using Dalamud.Game;
+using Dalamud.Game.Chat;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -153,33 +154,34 @@ internal sealed partial class CommandProcessor : ICommandProcessor
         commands.Clear();
     }
 
-    private void OnCheckMessageHandled(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool isHandled)
+    private void OnCheckMessageHandled(IHandleableChatMessage message)
     {
-        if (type != XivChatType.ErrorMessage)
+        if (message.LogKind != XivChatType.ErrorMessage)
         {
             return;
         }
 
-        var cmdMatch = currentLangCommandRegex.Match(message.TextValue).Groups["command"];
+        var text = message.Message.TextValue;
+        var cmdMatch = currentLangCommandRegex.Match(text).Groups["command"];
         if (cmdMatch.Success)
         {
             var command = cmdMatch.Value;
             if (ProcessCommand(command))
             {
-                isHandled = true;
+                message.PreventOriginal();
             }
 
             DalamudLog.Log.Debug($"Command: {command}");
         }
         else
         {
-            cmdMatch = commandRegexCn.Match(message.TextValue).Groups["command"];
+            cmdMatch = commandRegexCn.Match(text).Groups["command"];
             if (cmdMatch.Success)
             {
                 var command = cmdMatch.Value;
                 if (ProcessCommand(command))
                 {
-                    isHandled = true;
+                    message.PreventOriginal();
                 }
 
                 DalamudLog.Log.Debug($"Command: {command}");

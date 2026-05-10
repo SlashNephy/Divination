@@ -74,7 +74,7 @@ public class AetheryteSolver(IDataManager dataManager)
         uint grandCompanyAetheryteId,
         SeString message,
         World? currentWorld,
-        ushort currentTerritoryTypeId)
+        uint currentTerritoryTypeId)
     {
         var isTerritoryTypeFound = territoryTypeSheet.TryGetRow(currentTerritoryTypeId, out var territory);
         if (!isTerritoryTypeFound)
