@@ -79,9 +79,8 @@ jobs:
 
       - name: Automerge
         if: steps.create-pull-request.outputs.pull-request-number
-        continue-on-error: true
-        uses: peter-evans/enable-pull-request-automerge@a660677d5469627102a1c1e11409dd063606628d # v3
-        with:
-          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
-          repository: ${{ inputs.plugin-repository }}
-          pull-request-number: ${{  steps.create-pull-request.outputs.pull-request-number }}
+        run: gh pr merge --repo ${PLUGIN_REPOSITORY} --squash ${PR_NUMBER}
+        env:
+          GH_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+          PLUGIN_REPOSITORY: ${{ inputs.plugin-repository }}
+          PR_NUMBER: ${{ steps.create-pull-request.outputs.pull-request-number }}
