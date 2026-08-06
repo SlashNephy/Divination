@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@897f832f81928135331a29185f1adac5ae821791 # master
+    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@43e0cc838b0c98fc94987e50c0fa406729fc986e # master
     with:
       plugin-name: FaloopIntegration
       working-directory: FaloopIntegration
@@ -32,7 +32,7 @@ jobs:
   deploy:
     if: github.event_name != 'pull_request'
     needs: build
-    uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@897f832f81928135331a29185f1adac5ae821791 # master
+    uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@43e0cc838b0c98fc94987e50c0fa406729fc986e # master
     with:
       plugin-name: FaloopIntegration
     secrets:
