@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@20d6fa39d5b276d090654678c55a6410741091da # master
+    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@9eb49e841c6e614164af35fcfb58dd8bf2327fd7 # master
     with:
       plugin-name: AetheryteLinkInChat
       working-directory: AetheryteLinkInChat
@@ -32,7 +32,7 @@ jobs:
   deploy:
     if: github.event_name != 'pull_request'
     needs: build
-    uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@20d6fa39d5b276d090654678c55a6410741091da # master
+    uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@9eb49e841c6e614164af35fcfb58dd8bf2327fd7 # master
     with:
       plugin-name: AetheryteLinkInChat
     secrets:
