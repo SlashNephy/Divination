@@ -16,19 +16,19 @@
       },
       "GitVersion.MsBuild": {
         "type": "Direct",
-        "requested": "[6.5.1, )",
-        "resolved": "6.5.1",
-        "contentHash": "92zAmfGWVtjHM8eR7O+1WWxqP+gulXvVqu3Sb1+KzuImdmxBt/bln/dMRvsIyV69KEiSrtbUoet4HBjG+bOLyw=="
+        "requested": "[6.8.2, )",
+        "resolved": "6.8.2",
+        "contentHash": "eTd8jUiogUXpVssFyDWWdMrPr5Cdc57tWaQ3Cv/eMIhnumOHZhDkc/wcy8hYU8aH7NS4VT2w/pHjVITDSTXMGw=="
       },
       "ECommons": {
         "type": "Transitive",
-        "resolved": "3.2.0.18",
-        "contentHash": "esPIjfuveuw05c4PI7gqpRcifaUaUZ9sf7JnN90CBM1Ah2emxTBrKQl6A+ghHobwQOOe+yflN03TJnv32NEkVw=="
+        "resolved": "3.2.1.17",
+        "contentHash": "gIjvCFzqJApeyncqDegjvs2QFAVoXuwkrfFimhXWhu6x8zAloh8Wyu1Qu8BSym79HuTu4v5/U/HhNqkFy6uwoA=="
       },
       "Dalamud.Divination.Common": {
         "type": "Project",
         "dependencies": {
-          "ECommons": "[3.2.0.18, )"
+          "ECommons": "[3.2.1.17, )"
         }
       }
     }
