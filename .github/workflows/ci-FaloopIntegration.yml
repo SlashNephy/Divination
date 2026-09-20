@@ -32,10 +32,10 @@ jobs:
   deploy:
     if: github.event_name != 'pull_request'
     needs: build
-    uses: SlashNephy/Divination/.github/workflows/reusable-deploy-plugin.yml@bd631ea01a4d256ae8dcdb524c22ab405c4d76dd # master
+    uses: './.github/workflows/reusable-deploy-plugin.yml'
     with:
       plugin-name: FaloopIntegration
     secrets:
-      DEPLOY_GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+      DEPLOY_APP_PRIVATE_KEY: ${{ secrets.DEPLOY_APP_PRIVATE_KEY }}
     permissions:
       actions: read
