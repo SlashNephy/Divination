@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@bd631ea01a4d256ae8dcdb524c22ab405c4d76dd # master
+    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@d2ea413964099079fd795d4cf31d5ccc263d3b41 # master
     with:
       plugin-name: AetheryteLinkInChat
       working-directory: AetheryteLinkInChat
