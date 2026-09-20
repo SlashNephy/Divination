@@ -11,7 +11,7 @@ on:
         type: string
         default: 'SlashNephy/divination-distrib'
     secrets:
-      DEPLOY_GITHUB_TOKEN:
+      DEPLOY_APP_PRIVATE_KEY:
         required: true
 
 permissions:
@@ -21,11 +21,32 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # create-github-app-token takes bare repository names, so strip the owner
+      # from the owner/repo input.
+      - name: Resolve Plugin Repository Name
+        id: plugin-repository
+        env:
+          PLUGIN_REPOSITORY: '${{ inputs.plugin-repository }}'
+        run: echo "name=${PLUGIN_REPOSITORY##*/}" >> "$GITHUB_OUTPUT"
+
+      # Mint a 1-hour token scoped to the deployment target repository.
+      # The post step revokes it when the job ends.
+      - name: Create GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: 'Iv23liyjT3RUuzI5oVIL' # divination-deploy
+          private-key: '${{ secrets.DEPLOY_APP_PRIVATE_KEY }}'
+          owner: '${{ github.repository_owner }}'
+          repositories: '${{ steps.plugin-repository.outputs.name }}'
+          permission-contents: 'write'
+          permission-pull-requests: 'write'
+
       - name: Checkout Plugin Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: '${{ inputs.plugin-repository }}'
-          token: '${{ secrets.DEPLOY_GITHUB_TOKEN }}'
+          token: '${{ steps.app-token.outputs.token }}'
 
       - name: Download Artifact (release)
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
@@ -46,13 +67,14 @@ jobs:
           rm -rf gitversion
           echo "value=$value" >> $GITHUB_OUTPUT
 
+      # This repository is public, so no authentication is needed. Expanding a
+      # token on the command line would also expose it through the process list.
       - name: Prepare commits.json
         run: |
           curl \
-            -o plugins/testing/${{ inputs.plugin-name }}/commits.json \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.DEPLOY_GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/commits
+            -o 'plugins/testing/${{ inputs.plugin-name }}/commits.json' \
+            -H 'Accept: application/vnd.github.v3+json' \
+            'https://api.github.com/repos/${{ github.repository }}/commits'
 
       - name: Prepare event.json
         run: echo "$EVENT_JSON" | jq -c > plugins/testing/${{ inputs.plugin-name }}/event.json
@@ -69,9 +91,8 @@ jobs:
         id: create-pull-request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+          token: '${{ steps.app-token.outputs.token }}'
           commit-message: '⚙️ Deploy ${{ inputs.plugin-name }} ${{ steps.version.outputs.value }}'
-          author: StarryBlueSky-bot <97773209+StarryBlueSky-bot@users.noreply.github.com>
           branch: ci/update-plugin-master
           branch-suffix: random
           delete-branch: true
@@ -81,6 +102,6 @@ jobs:
         if: steps.create-pull-request.outputs.pull-request-number
         run: gh pr merge --repo ${PLUGIN_REPOSITORY} --squash ${PR_NUMBER}
         env:
-          GH_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+          GH_TOKEN: '${{ steps.app-token.outputs.token }}'
           PLUGIN_REPOSITORY: ${{ inputs.plugin-repository }}
           PR_NUMBER: ${{ steps.create-pull-request.outputs.pull-request-number }}
