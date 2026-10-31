@@ -13,12 +13,14 @@ namespace Divination.FaloopIntegration.Faloop;
 // ReSharper disable once InconsistentNaming
 public class FaloopSocketIOClient : IDisposable
 {
-    private readonly SocketIOClient.SocketIO client = new("https://faloop.app",
+    // The URI path is used as the Socket.IO namespace.
+    private readonly SocketIOClient.SocketIO client = new("https://faloop.app/legacy",
         new SocketIOOptions
         {
             EIO = EngineIO.V4,
             Transport = TransportProtocol.Polling,
-            Path = "/comms/socket.io",
+            // SocketIOClient appends a trailing "/" to the path.
+            Path = "/messaging/socket.io",
             ExtraHeaders = new Dictionary<string, string>
             {
                 {
