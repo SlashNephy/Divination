@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@bd631ea01a4d256ae8dcdb524c22ab405c4d76dd # master
+    uses: SlashNephy/Divination/.github/workflows/reusable-build-plugin.yml@8b422a6ae920642b13740cb103a5254cb04eec93 # master
     with:
       plugin-name: FaloopIntegration
       working-directory: FaloopIntegration
