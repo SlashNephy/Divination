@@ -22,6 +22,30 @@ public static class Localization
         Ja = "が湧きました！",
     };
 
+    public static readonly LocalizedString HasSpawnedScheduled = new()
+    {
+        En = "has spawned! (scheduled)",
+        Ja = "が湧きました！ (予約)",
+    };
+
+    public static readonly LocalizedString HasBeenReleased = new()
+    {
+        En = "has been released!",
+        Ja = "が公開されました！",
+    };
+
+    public static readonly LocalizedString SimpleScheduled = new()
+    {
+        En = "(scheduled)",
+        Ja = "(予約)",
+    };
+
+    public static readonly LocalizedString SimpleReleased = new()
+    {
+        En = "(released)",
+        Ja = "(公開)",
+    };
+
     public static readonly LocalizedString WasKilled = new()
     {
         En = "was killed.",
@@ -146,6 +170,18 @@ public static class Localization
     {
         En = "Preview",
         Ja = "試聴",
+    };
+
+    public static readonly LocalizedString EnableReleaseReport = new()
+    {
+        En = "Enable Mob Release Report",
+        Ja = "予約湧きが公開されたときに通知",
+    };
+
+    public static readonly LocalizedString EnableReleaseReportDescription = new()
+    {
+        En = "Scheduled spawns are visible only to early access reporters at first, and released to everyone later. If enabled, the plugin notifies you again when a scheduled spawn is released.",
+        Ja = "予約湧きは、はじめは早期アクセスの報告者にだけ公開され、あとで全員に公開されます。有効にすると、予約湧きが全員に公開されたときにもう一度通知します。",
     };
 
     public static readonly LocalizedString EnableDeathReport = new()

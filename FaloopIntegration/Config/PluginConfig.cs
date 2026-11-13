@@ -40,6 +40,7 @@ public class PluginConfig : IPluginConfiguration
         };
         public bool EnableSpawnReport;
         public bool EnableDeathReport;
+        public bool EnableReleaseReport;
         public bool DisableInDuty;
         public bool SkipOrphanReport;
         public bool SkipPendingReport;

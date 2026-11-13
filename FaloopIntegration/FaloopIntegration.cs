@@ -148,7 +148,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         DalamudLog.Log.Debug("OnMobReport: unknown location found: {Spawn}", spawn);
                     }
 
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.Ids.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
+                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.Ids.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location, spawn.IsScheduled == true);
                     if (location == default && config.SkipPendingReport)
                     {
                         // keep it instead of dropping, so that a later spawn_location can announce it
@@ -196,6 +196,40 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     }
                     var ev = previous with { Location = location };
                     OnMobSpawn(ev, config);
+                    break;
+                }
+            case MobReportActions.SpawnRelease when config.EnableSpawnReport:
+                {
+                    var release = JsonSerializer.Deserialize<MobReportData.SpawnRelease>(data.Data);
+                    var releasedAt = release?.Timestamp is { } timestamp && timestamp != default ? timestamp : DateTime.UtcNow;
+
+                    var id = $"{mobData.BNpcId}_{worldId}_{data.Ids.ZoneInstance}";
+                    if (pendingSpawnEvents.TryGetValue(id, out var pending))
+                    {
+                        // still waiting for its location; it is announced as a spawn once the location arrives
+                        pendingSpawnEvents[id] = pending with { IsScheduled = false, ReleasedAt = releasedAt };
+                        break;
+                    }
+
+                    var previous = spawnEvents.LastOrDefault(x => x.Id == id);
+                    if (previous == default)
+                    {
+                        DalamudLog.Log.Debug("OnMobReport: previous == null");
+                        break;
+                    }
+
+                    var ev = previous with { IsScheduled = false, ReleasedAt = releasedAt };
+                    if (config.EnableReleaseReport)
+                    {
+                        OnMobSpawn(ev, config, isRelease: true);
+                    }
+                    else
+                    {
+                        // keep the state up to date so that later location updates are not marked as scheduled
+                        spawnEvents.RemoveAll(x => x.Id == id);
+                        spawnEvents.Add(ev);
+                        Ui.OnMobSpawn(ev);
+                    }
                     break;
                 }
             case MobReportActions.SpawnFalse when config.EnableSpawnReport:
@@ -261,7 +295,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
     }
 
-    private void OnMobSpawn(MobSpawnEvent ev, PluginConfig.PerRankConfig config)
+    private void OnMobSpawn(MobSpawnEvent ev, PluginConfig.PerRankConfig config, bool isRelease = false)
     {
         Ui.OnMobSpawn(ev);
 
@@ -292,11 +326,14 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
 
         if (Config.EnableSimpleReports)
         {
-            payloads.Add(new TextPayload($"{ev.World.Name}".TrimEnd()));
+            var label = isRelease ? Localization.SimpleReleased : ev.IsScheduled ? Localization.SimpleScheduled : default;
+            payloads.Add(new TextPayload($"{ev.World.Name} {label}".TrimEnd()));
         }
         else
         {
-            payloads.Add(new TextPayload($"{ev.World.Name} {Localization.HasSpawned} {Utils.FormatTimeSpan(ev.SpawnedAt)}".TrimEnd()));
+            var text = isRelease ? Localization.HasBeenReleased : ev.IsScheduled ? Localization.HasSpawnedScheduled : Localization.HasSpawned;
+            var time = isRelease ? ev.ReleasedAt ?? DateTime.UtcNow : ev.SpawnedAt;
+            payloads.Add(new TextPayload($"{ev.World.Name} {text} {Utils.FormatTimeSpan(time)}".TrimEnd()));
         }
 
         Dalamud.ChatGui.Print(new XivChatEntry

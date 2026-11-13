@@ -17,7 +17,8 @@ public record MobReportData(
         [property: JsonPropertyName("zonePoiIds")] List<int>? ZonePoiIds,
         [property: JsonPropertyName(name: "location")] string? Location,
         [property: JsonPropertyName("reporters")] List<Reporter>? Reporters,
-        [property: JsonPropertyName("zonePoiId")] int? ZonePoiId = null);
+        [property: JsonPropertyName("zonePoiId")] int? ZonePoiId = null,
+        [property: JsonPropertyName("isScheduled")] bool? IsScheduled = null);
 
     public record Reporter([property: JsonPropertyName("name")] string Name);
 
@@ -42,6 +43,7 @@ public static class MobReportActions
 {
     public const string Spawn = "spawn";
     public const string SpawnLocation = "spawn_location";
+    public const string SpawnRelease = "spawn_release";
     public const string SpawnFalse = "spawn_false";
     public const string Death = "death";
 }
@@ -50,7 +52,10 @@ public class UnixEpochMillisecondsTimeJsonConverter : JsonConverter<DateTime>
 {
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        return DateTime.UnixEpoch.AddMilliseconds(reader.GetInt64());
+        // Faloop's web client accepts both epoch milliseconds and ISO 8601 strings here
+        return reader.TokenType == JsonTokenType.String
+            ? reader.GetDateTime().ToUniversalTime()
+            : DateTime.UnixEpoch.AddMilliseconds(reader.GetInt64());
     }
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
