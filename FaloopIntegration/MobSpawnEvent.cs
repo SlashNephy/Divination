@@ -14,7 +14,9 @@ public record MobSpawnEvent(
     MobRank Rank,
     DateTime SpawnedAt,
     string? Reporter,
-    string? Location)
+    string? Location,
+    bool IsScheduled = false,
+    DateTime? ReleasedAt = null)
 {
     [JsonIgnore]
     public BNpcName Mob => FaloopIntegration.Instance.Dalamud.DataManager.GetExcelSheet<BNpcName>()?.GetRow(MobId) ?? throw new InvalidOperationException("invalid mob ID");

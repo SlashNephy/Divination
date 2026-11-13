@@ -137,6 +137,12 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         ImGui.SameLine();
         ImGui.Checkbox($"{Localization.EnableDeathReport}##{id}", ref config.EnableDeathReport);
 
+        ImGui.BeginDisabled(!config.EnableSpawnReport);
+        ImGui.Checkbox($"{Localization.EnableReleaseReport}##{id}", ref config.EnableReleaseReport);
+        ImGui.EndDisabled();
+        ImGui.SameLine();
+        ImGuiEx.HelpMarker(Localization.EnableReleaseReportDescription);
+
         DrawSpawnSoundEffect(id, config);
 
         ImGui.Text(new(Localization.ReportJurisdiction));
