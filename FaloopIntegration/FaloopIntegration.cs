@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Dalamud.Divination.Common.Api.Ui.Window;
@@ -33,6 +34,12 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private World? homeWorld;
     public PluginStatus Status;
     private List<MobSpawnEvent> spawnEvents = [];
+    private CancellationTokenSource? connectionCancellation;
+    private TaskCompletionSource disconnected = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+    private static readonly TimeSpan ConnectTimeout = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan MinReconnectDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan MaxReconnectDelay = TimeSpan.FromMinutes(5);
     // spawn reports held back because their location is not yet known; announced once spawn_location arrives
     private readonly Dictionary<string, MobSpawnEvent> pendingSpawnEvents = [];
 
@@ -46,10 +53,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         socket.OnError += OnError;
         socket.OnMobReport += OnMobReport;
         socket.OnAny += OnAny;
-        socket.OnReconnected += OnReconnected;
-        socket.OnReconnectError += OnReconnectError;
-        socket.OnReconnectAttempt += OnReconnectAttempt;
-        socket.OnReconnectFailed += OnReconnectFailed;
         socket.OnPing += OnPing;
         socket.OnPong += OnPong;
 
@@ -83,6 +86,9 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         Status = PluginStatus.Disconnected;
         Divination.Chat.Print(Localization.Disconnected);
         DalamudLog.Log.Warning("Disconnected = {Cause}", cause);
+
+        // this runs inside the Socket.IO client, so only signal the connection loop here
+        disconnected.TrySetResult();
     }
 
     private static void OnError(string error)
@@ -362,27 +368,6 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         DalamudLog.Log.Debug("Event {Name} = {Message}", name, response);
     }
 
-    private void OnReconnected(int count)
-    {
-        Status = PluginStatus.Connected;
-        DalamudLog.Log.Debug("Reconnected {N}", count);
-    }
-
-    private static void OnReconnectError(Exception exception)
-    {
-        DalamudLog.Log.Error(exception, "Reconnect error");
-    }
-
-    private static void OnReconnectAttempt(int count)
-    {
-        DalamudLog.Log.Debug("Reconnect attempt {N}", count);
-    }
-
-    private static void OnReconnectFailed()
-    {
-        DalamudLog.Log.Debug("Reconnect failed");
-    }
-
     private static void OnPing()
     {
         DalamudLog.Log.Debug("Ping");
@@ -401,20 +386,61 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
             return;
         }
 
-        Task.Run(async () =>
+        // restart the connection loop, e.g. when the account is changed
+        connectionCancellation?.Cancel();
+        connectionCancellation?.Dispose();
+        connectionCancellation = new CancellationTokenSource();
+        var cancellationToken = connectionCancellation.Token;
+        Task.Run(() => RunConnectionLoop(Config.FaloopUsername, Config.FaloopPassword, cancellationToken), cancellationToken);
+    }
+
+    /// <summary>
+    /// Keeps the connection to Faloop. On every disconnection, logs in again and connects with a new Socket.IO client,
+    /// because the client's own reconnection may never get the namespace connection accepted again.
+    /// </summary>
+    private async Task RunConnectionLoop(string username, string password, CancellationToken cancellationToken)
+    {
+        var delay = MinReconnectDelay;
+        while (!cancellationToken.IsCancellationRequested)
         {
             try
             {
-                if (await session.LoginAsync(Config.FaloopUsername, Config.FaloopPassword))
+                DalamudLog.Log.Debug("Connecting to Faloop");
+                if (!await session.LoginAsync(username, password))
                 {
-                    await socket.Connect(session);
+                    // do not retry with credentials that are rejected
+                    DalamudLog.Log.Warning("Failed to log in to Faloop");
+                    return;
                 }
+
+                disconnected = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+                await socket.Connect(session, ConnectTimeout, cancellationToken);
+                DalamudLog.Log.Debug("Connected to Faloop");
+                delay = MinReconnectDelay;
+
+                await disconnected.Task.WaitAsync(cancellationToken);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                return;
             }
             catch (Exception exception)
             {
                 DalamudLog.Log.Error(exception, "connect failed");
             }
-        });
+
+            DalamudLog.Log.Information("Reconnecting to Faloop in {Delay}", delay);
+            try
+            {
+                await Task.Delay(delay, cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+
+            delay = TimeSpan.FromTicks(Math.Min(delay.Ticks * 2, MaxReconnectDelay.Ticks));
+        }
     }
 
     public void EmitMockData()
@@ -437,6 +463,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     protected override void ReleaseManaged()
     {
         Dalamud.PluginInterface.SavePluginConfig(Config);
+        connectionCancellation?.Cancel();
+        connectionCancellation?.Dispose();
         socket.Dispose();
         Ui.Dispose();
         Dalamud.PluginInterface.UiBuilder.Draw -= Ui.Draw;

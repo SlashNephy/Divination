@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Dalamud.Divination.Common.Api.Dalamud;
 using Divination.FaloopIntegration.Faloop.Model;
@@ -13,34 +14,8 @@ namespace Divination.FaloopIntegration.Faloop;
 // ReSharper disable once InconsistentNaming
 public class FaloopSocketIOClient : IDisposable
 {
-    // The URI path is used as the Socket.IO namespace.
-    private readonly SocketIOClient.SocketIO client = new("https://faloop.app/legacy",
-        new SocketIOOptions
-        {
-            EIO = EngineIO.V4,
-            Transport = TransportProtocol.Polling,
-            // SocketIOClient appends a trailing "/" to the path.
-            Path = "/messaging/socket.io",
-            ExtraHeaders = new Dictionary<string, string>
-            {
-                {
-                    "Accept",
-                    "*/*"
-                },
-                {
-                    "Referer",
-                    "https://faloop.app/"
-                },
-                {
-                    "Origin",
-                    "https://faloop.app"
-                },
-                {
-                    "User-Agent",
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
-                },
-            },
-        });
+    private readonly SemaphoreSlim clientLock = new(1, 1);
+    private SocketIOClient.SocketIO? client;
 
     public delegate void ConnectedHandler();
     public event ConnectedHandler? OnConnected;
@@ -60,60 +35,121 @@ public class FaloopSocketIOClient : IDisposable
     public delegate void AnyHandler(string name, SocketIOResponse response);
     public event AnyHandler? OnAny;
 
-    public delegate void ReconnectedHandler(int count);
-    public event ReconnectedHandler? OnReconnected;
-
-    public delegate void ReconnectErrorHandler(Exception exception);
-    public event ReconnectErrorHandler? OnReconnectError;
-
-    public delegate void ReconnectAttemptHandler(int count);
-    public event ReconnectAttemptHandler? OnReconnectAttempt;
-
-    public delegate void ReconnectFailedHandler();
-    public event ReconnectFailedHandler? OnReconnectFailed;
-
     public delegate void PingHandler();
     public event PingHandler? OnPing;
 
     public delegate void PongHandler(TimeSpan span);
     public event PongHandler? OnPong;
 
-    public FaloopSocketIOClient()
+    private SocketIOClient.SocketIO CreateClient()
     {
-        client.OnConnected += HandleOnConnected;
-        client.OnDisconnected += HandleOnDisconnected;
-        client.OnError += HandleOnError;
-        client.On("message", HandleOnMessage);
-        client.OnAny(HandleOnAny);
-        client.OnReconnected += HandleReconnected;
-        client.OnReconnectError += HandleOnReconnectError;
-        client.OnReconnectAttempt += HandleOnReconnectAttempt;
-        client.OnReconnectFailed += HandleOnReconnectFailed;
-        client.OnPing += HandleOnPing;
-        client.OnPong += HandleOnPong;
+        // The URI path is used as the Socket.IO namespace.
+        var newClient = new SocketIOClient.SocketIO("https://faloop.app/legacy",
+            new SocketIOOptions
+            {
+                EIO = EngineIO.V4,
+                // reconnection is handled by FaloopIntegration, which logs in again and creates a new client
+                Reconnection = false,
+                Transport = TransportProtocol.Polling,
+                // SocketIOClient appends a trailing "/" to the path.
+                Path = "/messaging/socket.io",
+                ExtraHeaders = new Dictionary<string, string>
+                {
+                    {
+                        "Accept",
+                        "*/*"
+                    },
+                    {
+                        "Referer",
+                        "https://faloop.app/"
+                    },
+                    {
+                        "Origin",
+                        "https://faloop.app"
+                    },
+                    {
+                        "User-Agent",
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0"
+                    },
+                },
+        });
+
+        // ignore events from clients that have already been replaced
+        newClient.OnConnected += (sender, args) => { if (ReferenceEquals(sender, client)) HandleOnConnected(sender, args); };
+        newClient.OnDisconnected += (sender, cause) => { if (ReferenceEquals(sender, client)) HandleOnDisconnected(sender, cause); };
+        newClient.OnError += (sender, error) => { if (ReferenceEquals(sender, client)) HandleOnError(sender, error); };
+        newClient.On("message", response => { if (ReferenceEquals(newClient, client)) HandleOnMessage(response); });
+        newClient.OnAny((name, response) => { if (ReferenceEquals(newClient, client)) HandleOnAny(name, response); });
+        newClient.OnPing += (sender, args) => { if (ReferenceEquals(sender, client)) HandleOnPing(sender, args); };
+        newClient.OnPong += (sender, span) => { if (ReferenceEquals(sender, client)) HandleOnPong(sender, span); };
+        return newClient;
     }
 
-    public async Task Connect(FaloopSession session)
+    /// <summary>
+    /// Connects to Faloop with a new Socket.IO client, replacing the current one.
+    /// </summary>
+    /// <exception cref="TimeoutException">The server did not accept the connection within <paramref name="timeout"/>.</exception>
+    public async Task Connect(FaloopSession session, TimeSpan timeout, CancellationToken cancellationToken)
     {
         if (!session.IsLoggedIn)
         {
             throw new ApplicationException("session is not authenticated.");
         }
 
-        if (client.Connected)
+        await clientLock.WaitAsync(cancellationToken);
+        try
         {
-            await client.DisconnectAsync();
+            await CloseClientAsync();
+
+            var newClient = CreateClient();
+            newClient.Options.Auth = new Dictionary<string, string?>
+            {
+                {"sessionid", session.SessionId},
+            };
+            client = newClient;
+
+            // ConnectAsync only times out at the transport level, and keeps waiting if the server never accepts the namespace connection
+            var connectTask = newClient.ConnectAsync();
+            var completed = await Task.WhenAny(connectTask, Task.Delay(timeout, cancellationToken));
+            if (completed != connectTask)
+            {
+                // observe the exception thrown once the abandoned client is disposed
+                _ = connectTask.ContinueWith(t => _ = t.Exception, TaskContinuationOptions.OnlyOnFaulted);
+                await CloseClientAsync();
+                cancellationToken.ThrowIfCancellationRequested();
+                throw new TimeoutException($"Faloop did not accept the connection within {timeout}.");
+            }
+
+            await connectTask;
         }
-
-        client.Options.Auth = new Dictionary<string, string?>
+        finally
         {
-            {"sessionid", session.SessionId},
-        };
-
-        await client.ConnectAsync();
+            clientLock.Release();
+        }
     }
 
-    private void HandleOnConnected(object? _, EventArgs __)
+    private async Task CloseClientAsync()
+    {
+        var oldClient = client;
+        client = null;
+        if (oldClient == null)
+        {
+            return;
+        }
+
+        try
+        {
+            await oldClient.DisconnectAsync();
+        }
+        catch (Exception exception)
+        {
+            DalamudLog.Log.Debug(exception, nameof(CloseClientAsync));
+        }
+
+        oldClient.Dispose();
+    }
+
+    private void HandleOnConnected(object? sender, EventArgs __)
     {
         try
         {
@@ -125,7 +161,7 @@ public class FaloopSocketIOClient : IDisposable
         }
         finally
         {
-            client.EmitAsync("ack");
+            (sender as SocketIOClient.SocketIO)?.EmitAsync("ack");
         }
     }
 
@@ -198,54 +234,6 @@ public class FaloopSocketIOClient : IDisposable
         }
     }
 
-    private void HandleReconnected(object? _, int count)
-    {
-        try
-        {
-            OnReconnected?.Invoke(count);
-        }
-        catch (Exception exception)
-        {
-            DalamudLog.Log.Error(exception, nameof(HandleReconnected));
-        }
-    }
-
-    private void HandleOnReconnectError(object? _, Exception exception)
-    {
-        try
-        {
-            OnReconnectError?.Invoke(exception);
-        }
-        catch (Exception e)
-        {
-            DalamudLog.Log.Error(e, nameof(HandleOnReconnectError));
-        }
-    }
-
-    private void HandleOnReconnectAttempt(object? _, int count)
-    {
-        try
-        {
-            OnReconnectAttempt?.Invoke(count);
-        }
-        catch (Exception exception)
-        {
-            DalamudLog.Log.Error(exception, nameof(HandleOnReconnectAttempt));
-        }
-    }
-
-    private void HandleOnReconnectFailed(object? _, EventArgs __)
-    {
-        try
-        {
-            OnReconnectFailed?.Invoke();
-        }
-        catch (Exception exception)
-        {
-            DalamudLog.Log.Error(exception, nameof(HandleOnReconnectFailed));
-        }
-    }
-
     private void HandleOnPing(object? _, EventArgs __)
     {
         try
@@ -272,7 +260,10 @@ public class FaloopSocketIOClient : IDisposable
 
     public void Dispose()
     {
-        client.DisconnectAsync();
-        client.Dispose();
+        var oldClient = client;
+        client = null;
+        oldClient?.DisconnectAsync();
+        oldClient?.Dispose();
+        clientLock.Dispose();
     }
 }
