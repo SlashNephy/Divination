@@ -18,6 +18,9 @@ public class AetheryteSolver(IDataManager dataManager)
 {
     private const uint MaxCalculateDepth = 5;
     private const double BetweenAreaDistanceCost = 8.0;
+    // tolerances in map coordinates for matching a map link to a known hunt spawn point, and a path to its starting point
+    private const double HuntSpawnPointTolerance = 1.0;
+    private const double HuntJourneyPointTolerance = 1.5;
 
     private readonly ExcelSheet<Aetheryte> aetheryteSheet =
         dataManager.GetExcelSheet<Aetheryte>() ?? throw new ApplicationException("aetheryteSheet == null");
@@ -30,7 +33,16 @@ public class AetheryteSolver(IDataManager dataManager)
 
     public IEnumerable<ITeleportPath> CalculateTeleportPathsForMapLink(MapLinkPayload payload)
     {
-        var paths = CalculateTeleportPaths(payload.TerritoryType.Value, payload.Map.Value)
+        var candidates = CalculateTeleportPaths(payload.TerritoryType.Value, payload.Map.Value).ToList();
+
+        // Straight-line distance ignores terrain and height, so prefer the starting point that Faloop gives for a known hunt spawn point
+        var huntJourneyCandidates = FilterByHuntJourney(payload, candidates);
+        if (huntJourneyCandidates.Count > 0)
+        {
+            candidates = huntJourneyCandidates;
+        }
+
+        var paths = candidates
             .MinBy(paths =>
             {
                 var distance = 0.0;
@@ -68,6 +80,40 @@ public class AetheryteSolver(IDataManager dataManager)
             });
 
         return paths?.Reverse() ?? [];
+    }
+
+    /// <summary>
+    /// Returns the candidates that enter the map at the starting point of the hunt spawn point at the map link, if any.
+    /// </summary>
+    private static List<ITeleportPath[]> FilterByHuntJourney(MapLinkPayload payload, List<ITeleportPath[]> candidates)
+    {
+        if (!HuntJourneys.Journeys.TryGetValue(payload.TerritoryType.RowId, out var journeys) || !payload.Map.IsValid)
+        {
+            return [];
+        }
+
+        var map = payload.Map.Value;
+        var (x, y) = ((double)payload.XCoord, (double)payload.YCoord);
+        var nearest = journeys
+            .Select(journey => (journey, distance: CalculateEuclideanDistance(x, y, ConvertRawToCoordinate(journey.X, map), ConvertRawToCoordinate(journey.Y, map))))
+            .MinBy(t => t.distance);
+        if (nearest.journey == default || nearest.distance > HuntSpawnPointTolerance)
+        {
+            return [];
+        }
+
+        var filtered = candidates
+            .Where(paths => paths.Length > 0)
+            .Where(paths =>
+            {
+                // the first path is the entry point on the map of the map link; compare in raw coordinates (0-2048), which both use
+                var marker = paths[0].Marker;
+                var rawDistance = CalculateEuclideanDistance(nearest.journey.JourneyX, nearest.journey.JourneyY, marker.X, marker.Y);
+                return ConvertRawDistanceToCoordinate(rawDistance, map) <= HuntJourneyPointTolerance;
+            })
+            .ToList();
+        DalamudLog.Log.Verbose("FilterByHuntJourney: spawn point = {S}, candidates = {N}", nearest.journey, filtered.Count);
+        return filtered;
     }
 
     public void AppendGrandCompanyAetheryte(List<ITeleportPath> paths,
@@ -336,6 +382,17 @@ public class AetheryteSolver(IDataManager dataManager)
             .Where(x => x.DataType == 1)
             // 現在のマップのマーカー
             .Where(x => x.RowId == map.MapMarkerRange);
+    }
+
+    // the same conversion as Faloop and FaloopIntegration, which matches the coordinates of their map links
+    private static double ConvertRawToCoordinate(int raw, Map map)
+    {
+        return raw / 2048.0 * 41 / (map.SizeFactor / 100.0) + 1;
+    }
+
+    private static double ConvertRawDistanceToCoordinate(double rawDistance, Map map)
+    {
+        return rawDistance / 2048.0 * 41 / (map.SizeFactor / 100.0);
     }
 
     private static (double, double) ConvertMarkerToCoordinate(MapMarker marker, Map map)
