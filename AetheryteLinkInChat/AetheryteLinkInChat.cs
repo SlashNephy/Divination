@@ -74,6 +74,11 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private void AppendNearestAetheryteLink(IHandleableChatMessage chat)
     {
+        if (Config.IgnoreOwnMessages && chat.SourceKind == XivChatRelationKind.LocalPlayer)
+        {
+            return;
+        }
+
         var message = chat.Message;
         var mapLink = message.Payloads.OfType<MapLinkPayload>().FirstOrDefault();
         if (mapLink == default)
@@ -156,20 +161,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
         if (Config.EnableLifestreamIntegration && teleporter.IsLifestreamAvailable())
         {
-            var world = solver.DetectWorld(message, Dalamud.ObjectTable.LocalPlayer?.CurrentWorld.Value);
-
-            payloads.AddRange([
-                new TextPayload(" ["),
-                new IconPayload(BitmapFontIcon.Aetheryte),
-                new UIForegroundPayload(069),
-                ..SeString.TextArrowPayloads,
-                lifestreamLinkPayload,
-                new TextPayload("Lifestream"),
-                new LifestreamPayload(mapLink, world?.RowId).ToRawPayload(),
-                RawPayload.LinkTerminator,
-                UIForegroundPayload.UIForegroundOff,
-                new TextPayload("]"),
-            ]);
+            AppendLifestreamLink(payloads, message, mapLink);
         }
 
         if (payloads.Count > 0)
@@ -189,6 +181,29 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 message.Payloads.InsertRange(mapIndex, payloads);
             }
         }
+    }
+
+    private void AppendLifestreamLink(List<Payload> payloads, SeString message, MapLinkPayload mapLink)
+    {
+        var currentWorld = Dalamud.ObjectTable.LocalPlayer?.CurrentWorld.Value;
+        var world = solver.DetectWorld(message, currentWorld);
+        if (Config.HideLifestreamLinkForCurrentWorld && currentWorld.HasValue && world?.RowId == currentWorld.Value.RowId)
+        {
+            return;
+        }
+
+        payloads.AddRange([
+            new TextPayload(" ["),
+            new IconPayload(BitmapFontIcon.Aetheryte),
+            new UIForegroundPayload(069),
+            ..SeString.TextArrowPayloads,
+            lifestreamLinkPayload,
+            new TextPayload("Lifestream"),
+            new LifestreamPayload(mapLink, world?.RowId).ToRawPayload(),
+            RawPayload.LinkTerminator,
+            UIForegroundPayload.UIForegroundOff,
+            new TextPayload("]"),
+        ]);
     }
 
     private void HandleAetheryteLink(uint _, SeString link)
