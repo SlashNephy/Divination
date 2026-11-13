@@ -254,8 +254,11 @@ public sealed class Teleporter : IDisposable
 
                     DisplayTeleportingNotification(aetheryte.Aetheryte.AethernetName.Value.Name.ExtractText(), false);
                     break;
-                case BoundaryTeleportPath boundary:
+                case BoundaryTeleportPath:
                     throw new NotImplementedException("boundary teleport is not implemented.");
+                // the rest of the way is walking out of the exit
+                case ConnectionTeleportPath:
+                    return true;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(path), path, "unknown path type.");
             }
