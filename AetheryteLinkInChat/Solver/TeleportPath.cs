@@ -24,6 +24,17 @@ public record BoundaryTeleportPath(MapMarker ConnectedMarker, Map ConnectedMap, 
     }
 }
 
+/// <summary>
+/// A path that leaves the map through an exit described by <see cref="MapConnections"/>.
+/// </summary>
+public record ConnectionTeleportPath(Map ConnectedMap, MapMarker Marker, Map Map) : ITeleportPath
+{
+    public override string ToString()
+    {
+        return ConnectedMap.PlaceName.Value.Name.ExtractText();
+    }
+}
+
 public record WorldTeleportPath(Aetheryte Aetheryte, World World, MapMarker Marker, Map Map) : ITeleportPath
 {
     public override string ToString()

@@ -47,9 +47,22 @@ public class AetheryteSolver(IDataManager dataManager)
             {
                 var distance = 0.0;
                 var (x, y) = ((double)payload.XCoord, (double)payload.YCoord);
+                var isPositionUnknown = false;
 
                 foreach (var path in paths)
                 {
+                    // the position where the previous connection leads to is not known, so do not count the distance in this map
+                    if (isPositionUnknown)
+                    {
+                        isPositionUnknown = false;
+                        if (path is AetheryteTeleportPath unknownStart)
+                        {
+                            (x, y) = ConvertMarkerToCoordinate(unknownStart.Marker, unknownStart.Map);
+                        }
+
+                        continue;
+                    }
+
                     var (markerX, markerY) = ConvertMarkerToCoordinate(path.Marker, path.Map);
                     DalamudLog.Log.Verbose("P1 = ({X1}, {Y1}), P2 = ({X2}, {Y2})", x, y, markerX, markerY);
 
@@ -71,6 +84,10 @@ public class AetheryteSolver(IDataManager dataManager)
                         case BoundaryTeleportPath boundary:
                             (x, y) = ConvertMarkerToCoordinate(boundary.ConnectedMarker, boundary.ConnectedMap);
                             distance += BetweenAreaDistanceCost;
+                            continue;
+                        case ConnectionTeleportPath:
+                            distance += BetweenAreaDistanceCost;
+                            isPositionUnknown = true;
                             continue;
                     }
                 }
@@ -333,6 +350,25 @@ public class AetheryteSolver(IDataManager dataManager)
             foreach (var paths in CalculateTeleportPaths(connectedTerritoryType, connectedMap, ++depth))
             {
                 yield return paths.Prepend(new BoundaryTeleportPath(connectedMarker, connectedMap, marker, map)).ToArray();
+            }
+        }
+
+        // 手書きの接続を探す
+        foreach (var connection in MapConnections.Connections.Where(x => x.MapId == map.RowId))
+        {
+            var isMarkerFound = mapMarkerSheet
+                .SelectMany(x => x)
+                .Where(x => x.RowId == map.MapMarkerRange)
+                .TryGetFirst(x => x.X == connection.X && x.Y == connection.Y, out var marker);
+            if (!isMarkerFound || !mapSheet.TryGetRow(connection.ConnectedMapId, out var connectedMap))
+            {
+                DalamudLog.Log.Warning("invalid map connection: {Connection}", connection);
+                continue;
+            }
+
+            foreach (var paths in CalculateTeleportPaths(connectedMap.TerritoryType.Value, connectedMap, depth + 1))
+            {
+                yield return paths.Prepend(new ConnectionTeleportPath(connectedMap, marker, map)).ToArray();
             }
         }
     }

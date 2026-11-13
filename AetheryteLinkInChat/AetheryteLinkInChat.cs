@@ -136,6 +136,13 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                         new TextPayload(boundary.ConnectedMarker.PlaceNameSubtext.Value.Name.ExtractText()),
                     ]);
                     break;
+                // 手書きの接続
+                case ConnectionTeleportPath connection:
+                    payloads.AddRange([
+                        new IconPayload(BitmapFontIcon.FlyZone),
+                        new TextPayload(connection.ConnectedMap.PlaceName.Value.Name.ExtractText()),
+                    ]);
+                    break;
                 // ワールド間テレポ
                 case WorldTeleportPath world:
                     payloads.AddRange([
