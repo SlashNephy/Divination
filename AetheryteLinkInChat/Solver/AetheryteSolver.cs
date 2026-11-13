@@ -126,21 +126,91 @@ public class AetheryteSolver(IDataManager dataManager)
         paths.Insert(0, new WorldTeleportPath(aetheryte, world.Value, marker, map));
     }
 
+    /// <summary>
+    /// Detects the world that the message refers to.
+    /// </summary>
+    /// <remarks>
+    /// Mob names can be the same as world names (e.g. Odin, Behemoth), so a world name right after the cross world icon is
+    /// preferred, and otherwise the world name that appears last in the message is used.
+    /// </remarks>
     public World? DetectWorld(SeString message, World? currentWorld)
     {
-        var text = string.Join(" ", message.Payloads.OfType<TextPayload>().Select(x => x.Text));
+        var worlds = worldSheet.Where(x => x.IsPublic).ToList();
 
-        // trim texts within MapLinkPayload
-        const string linkPattern = ".*?\\)";
+        // the world name right after the cross world icon, e.g. "<CrossWorld>Cerberus"
+        var payloads = message.Payloads;
+        for (var i = 0; i < payloads.Count; i++)
+        {
+            if (payloads[i] is not IconPayload { Icon: BitmapFontIcon.CrossWorld })
+            {
+                continue;
+            }
+
+            var following = payloads.Skip(i + 1).OfType<TextPayload>().FirstOrDefault()?.Text;
+            if (following != default && FindWorldAtStart(worlds, following) is { } world)
+            {
+                return world;
+            }
+        }
+
+        var text = string.Join(" ", payloads.OfType<TextPayload>().Select(x => x.Text));
+
+        // trim texts within MapLinkPayload, from the link marker to the closing parenthesis of the coordinates
+        const string linkPattern = "\uE0BB.*?\\)";
         var rgx = new Regex(linkPattern);
         text = rgx.Replace(text, "");
         // replace Boxed letters with alphabets
         text = string.Join(string.Empty, text.Select(ReplaceSeIconChar));
 
-        return worldSheet.Where(x => x.IsPublic)
-            .TryGetFirst(x => text.Contains(x.Name.ExtractText(), StringComparison.OrdinalIgnoreCase), out var world)
-            ? world
-            : currentWorld;
+        // the same for the cross world character typed as text
+        var crossWorldIndex = text.LastIndexOf((char)SeIconChar.CrossWorld);
+        if (crossWorldIndex >= 0 && FindWorldAtStart(worlds, text[(crossWorldIndex + 1)..]) is { } typedWorld)
+        {
+            return typedWorld;
+        }
+
+        // the world name that appears last
+        World? lastWorld = default;
+        var lastIndex = -1;
+        var lastLength = 0;
+        foreach (var world in worlds)
+        {
+            var name = world.Name.ExtractText();
+            if (string.IsNullOrEmpty(name))
+            {
+                continue;
+            }
+
+            var index = text.LastIndexOf(name, StringComparison.OrdinalIgnoreCase);
+            if (index > lastIndex || (index >= 0 && index == lastIndex && name.Length > lastLength))
+            {
+                lastWorld = world;
+                lastIndex = index;
+                lastLength = name.Length;
+            }
+        }
+
+        return lastWorld ?? currentWorld;
+    }
+
+    private static World? FindWorldAtStart(IEnumerable<World> worlds, string text)
+    {
+        text = string.Join(string.Empty, text.TrimStart().Select(ReplaceSeIconChar));
+
+        // prefer the longest name in case one world name is a prefix of another
+        World? found = default;
+        var foundLength = 0;
+        foreach (var world in worlds)
+        {
+            var name = world.Name.ExtractText();
+            if (!string.IsNullOrEmpty(name) && name.Length > foundLength && text.StartsWith(name, StringComparison.OrdinalIgnoreCase))
+            {
+                found = world;
+                foundLength = name.Length;
+            }
+        }
+
+        return found;
     }
 
     private static char ReplaceSeIconChar(char c)
