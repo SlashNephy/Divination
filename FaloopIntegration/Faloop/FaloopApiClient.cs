@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -83,7 +84,11 @@ public class FaloopApiClient : IDisposable
         };
 
         using var response = await client.SendAsync(request);
-        response.EnsureSuccessStatusCode();
+        // Faloop responds with 400 and {"success":false,"msg":"..."} when the credentials are rejected
+        if (response.StatusCode != HttpStatusCode.BadRequest)
+        {
+            response.EnsureSuccessStatusCode();
+        }
 
         return await response.Content.ReadFromJsonAsync<UserLoginResponse>();
     }

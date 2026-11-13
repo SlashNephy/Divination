@@ -12,6 +12,11 @@ public class FaloopSession : IDisposable
 
     public string? SessionId { get; private set; }
 
+    /// <summary>
+    /// The reason given by Faloop when the last login was rejected.
+    /// </summary>
+    public string? LoginErrorMessage { get; private set; }
+
     public async Task<bool> LoginAsync(string username, string password)
     {
         Logout();
@@ -24,9 +29,10 @@ public class FaloopSession : IDisposable
         }
 
         var login = await client.LoginAsync(username, password, initialSession.Data.SessionId, initialSession.Data.Token);
-        if (login is not { Success: true })
+        if (login is not { Success: true, Data: not null })
         {
-            DalamudLog.Log.Debug("LoginAsync: login is not success");
+            DalamudLog.Log.Debug("LoginAsync: login is not success: {Message}", login?.Message ?? "(none)");
+            LoginErrorMessage = login?.Message;
             return false;
         }
 
@@ -39,6 +45,7 @@ public class FaloopSession : IDisposable
     {
         IsLoggedIn = false;
         SessionId = default;
+        LoginErrorMessage = default;
     }
 
     public void Dispose()
