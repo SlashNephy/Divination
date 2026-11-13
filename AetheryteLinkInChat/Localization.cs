@@ -114,6 +114,18 @@ public static class Localization
         Ja = "有効にすると、ワールド間テレポや都市内エーテライトの移動を含め、目的地へのテレポが自動化されます。\nこの機能を使用するには、Lifestream プラグインが必要です！",
     };
 
+    public static readonly LocalizedString HideLifestreamLinkForCurrentWorld = new()
+    {
+        En = "Hide the Lifestream link for messages about the current world",
+        Ja = "現在のワールドに関するメッセージでは Lifestream のリンクを表示しない",
+    };
+
+    public static readonly LocalizedString IgnoreOwnMessages = new()
+    {
+        En = "Do not add teleport links to your own messages",
+        Ja = "自分の発言にはテレポリンクを追加しない",
+    };
+
     public static readonly LocalizedString LifestreamUnavailable = new()
     {
         En = "Lifestream plugin is not available. Please install it.",

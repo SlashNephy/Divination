@@ -90,6 +90,9 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox(new(Localization.EnableLifestreamIntegration), ref Config.EnableLifestreamIntegration);
             ImGui.Indent();
             ImGui.Text(new(Localization.EnableLifestreamIntegrationDescription));
+            ImGui.BeginDisabled(!Config.EnableLifestreamIntegration);
+            ImGui.Checkbox(new(Localization.HideLifestreamLinkForCurrentWorld), ref Config.HideLifestreamLinkForCurrentWorld);
+            ImGui.EndDisabled();
             ImGui.Unindent();
 
             ImGui.Checkbox(new(Localization.DisplayLineBreak), ref Config.DisplayLineBreak);
@@ -101,6 +104,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.BeginDisabled(Config.DisplayLineBreak);
             ImGui.Checkbox(new(Localization.DisplayLinkAtEnd), ref Config.DisplayLinkAtEnd);
             ImGui.EndDisabled();
+
+            ImGui.Checkbox(new(Localization.IgnoreOwnMessages), ref Config.IgnoreOwnMessages);
 
             ImGui.Checkbox(new(Localization.EnableChatNotificationOnTeleport), ref Config.EnableChatNotificationOnTeleport);
             ImGui.Checkbox(new(Localization.EnableQuestNotificationOnTeleport), ref Config.EnableQuestNotificationOnTeleport);

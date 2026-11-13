@@ -12,6 +12,8 @@ public class PluginConfig : IPluginConfiguration
     public int PreferredGrandCompanyAetheryte;
     public bool ConsiderTeleportsToOtherWorlds;
     public bool EnableLifestreamIntegration;
+    public bool HideLifestreamLinkForCurrentWorld;
+    public bool IgnoreOwnMessages;
     public bool DisplayLineBreak;
     public bool DisplayLinkAtEnd;
 
