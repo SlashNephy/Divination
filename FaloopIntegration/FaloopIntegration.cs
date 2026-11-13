@@ -157,7 +157,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         return;
                     }
 
-                    OnMobSpawn(ev, config.Channel);
+                    OnMobSpawn(ev, config);
                     DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                     break;
                 }
@@ -195,7 +195,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         break;
                     }
                     var ev = previous with { Location = location };
-                    OnMobSpawn(ev, config.Channel);
+                    OnMobSpawn(ev, config);
                     break;
                 }
             case MobReportActions.SpawnFalse when config.EnableSpawnReport:
@@ -261,7 +261,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         }
     }
 
-    private void OnMobSpawn(MobSpawnEvent ev, int channel)
+    private void OnMobSpawn(MobSpawnEvent ev, PluginConfig.PerRankConfig config)
     {
         Ui.OnMobSpawn(ev);
 
@@ -303,8 +303,13 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         {
             Name = ev.Reporter ?? "Faloop",
             Message = new SeString(payloads),
-            Type = Enum.GetValues<XivChatType>()[channel],
+            Type = Enum.GetValues<XivChatType>()[config.Channel],
         });
+
+        if (SoundEffect.GetSpawnSoundEffectId(config) is { } soundEffectId)
+        {
+            Dalamud.Framework.RunOnFrameworkThread(() => SoundEffect.Play(soundEffectId));
+        }
     }
 
     private void OnMobFalseSpawn(MobDeathEvent ev)

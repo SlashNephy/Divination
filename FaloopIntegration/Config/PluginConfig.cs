@@ -43,6 +43,9 @@ public class PluginConfig : IPluginConfiguration
         public bool DisableInDuty;
         public bool SkipOrphanReport;
         public bool SkipPendingReport;
+        public SpawnSoundEffect SpawnSoundEffect;
+        public int SpawnChatSoundEffect = 1;
+        public int SpawnCustomSoundEffectId;
 
         [Obsolete]
         [JsonProperty("Jurisdiction")]

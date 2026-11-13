@@ -137,6 +137,8 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
         ImGui.SameLine();
         ImGui.Checkbox($"{Localization.EnableDeathReport}##{id}", ref config.EnableDeathReport);
 
+        DrawSpawnSoundEffect(id, config);
+
         ImGui.Text(new(Localization.ReportJurisdiction));
         ImGui.SameLine();
         ImGuiEx.HelpMarker(Localization.ReportJurisdictionDescription);
@@ -167,6 +169,56 @@ public class PluginConfigWindow : ConfigWindow<PluginConfig>
             ImGui.Checkbox($"{Localization.ReportIgnorePendingReport}##{id}", ref config.SkipPendingReport);
 
             ImGui.Unindent();
+        }
+    }
+
+    private static void DrawSpawnSoundEffect(string id, PluginConfig.PerRankConfig config)
+    {
+        // None, <se.1> to <se.16>, Custom
+        var labels = new[] { Localization.SpawnSoundEffectNone.ToString() }
+            .Concat(Enumerable.Range(1, 16).Select(x => $"<se.{x}>"))
+            .Append(Localization.SpawnSoundEffectCustom.ToString())
+            .ToArray();
+        var index = config.SpawnSoundEffect switch
+        {
+            SpawnSoundEffect.Chat => Math.Clamp(config.SpawnChatSoundEffect, 1, 16),
+            SpawnSoundEffect.Custom => labels.Length - 1,
+            _ => 0,
+        };
+        if (ImGui.Combo($"{Localization.SpawnSoundEffect}##{id}", ref index, labels, labels.Length))
+        {
+            if (index == 0)
+            {
+                config.SpawnSoundEffect = SpawnSoundEffect.None;
+            }
+            else if (index == labels.Length - 1)
+            {
+                config.SpawnSoundEffect = SpawnSoundEffect.Custom;
+            }
+            else
+            {
+                config.SpawnSoundEffect = SpawnSoundEffect.Chat;
+                config.SpawnChatSoundEffect = index;
+            }
+        }
+
+        if (config.SpawnSoundEffect == SpawnSoundEffect.Custom)
+        {
+            ImGui.Indent();
+            ImGui.InputInt($"ID##SpawnCustomSoundEffectId{id}", ref config.SpawnCustomSoundEffectId);
+            config.SpawnCustomSoundEffectId = Math.Max(config.SpawnCustomSoundEffectId, 0);
+            ImGui.SameLine();
+            ImGuiEx.HelpMarker(Localization.SpawnSoundEffectCustomDescription);
+            ImGui.Unindent();
+        }
+
+        if (SoundEffect.GetSpawnSoundEffectId(config) is { } soundEffectId)
+        {
+            ImGui.SameLine();
+            if (ImGui.Button($"{Localization.SpawnSoundEffectPreview}##{id}"))
+            {
+                SoundEffect.Play(soundEffectId);
+            }
         }
     }
 
