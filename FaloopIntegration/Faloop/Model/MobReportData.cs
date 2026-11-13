@@ -16,12 +16,13 @@ public record MobReportData(
         [property: JsonPropertyName("zoneId2")] string ZoneId,
         [property: JsonPropertyName("zonePoiIds")] List<int>? ZonePoiIds,
         [property: JsonPropertyName(name: "location")] string? Location,
-        [property: JsonPropertyName("reporters")] List<Reporter>? Reporters);
+        [property: JsonPropertyName("reporters")] List<Reporter>? Reporters,
+        [property: JsonPropertyName("zonePoiId")] int? ZonePoiId = null);
 
     public record Reporter([property: JsonPropertyName("name")] string Name);
 
     public record SpawnLocation(
-        [property: JsonPropertyName("zonePoiId")] int ZonePoiId,
+        [property: JsonPropertyName("zonePoiId")] int? ZonePoiId,
         [property: JsonPropertyName(name: "location")] string? Location);
 
     public record SpawnRelease(

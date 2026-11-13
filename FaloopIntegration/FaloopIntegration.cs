@@ -33,6 +33,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     private World? homeWorld;
     public PluginStatus Status;
     private List<MobSpawnEvent> spawnEvents = [];
+    // spawn reports held back because their location is not yet known; announced once spawn_location arrives
+    private readonly Dictionary<string, MobSpawnEvent> pendingSpawnEvents = [];
 
     public FaloopIntegration(IDalamudPluginInterface pluginInterface) : base(pluginInterface)
     {
@@ -135,16 +137,20 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     {
                         location = spawn.Location;
                     }
-                    else if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiIds?.FirstOrDefault() ?? default, out location))
+                    else if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiIds?.FirstOrDefault() ?? spawn.ZonePoiId ?? default, out location))
                     {
                         DalamudLog.Log.Debug("OnMobReport: unknown location found: {Spawn}", spawn);
-                        if (config.SkipPendingReport)
-                        {
-                            return;
-                        }
                     }
 
                     var ev = new MobSpawnEvent(mobData.BNpcId, worldId, territoryTypeId, data.Ids.ZoneInstance, mobData.Rank, spawn.Timestamp, spawn.Reporters?.FirstOrDefault()?.Name, location);
+                    if (location == default && config.SkipPendingReport)
+                    {
+                        // keep it instead of dropping, so that a later spawn_location can announce it
+                        pendingSpawnEvents[ev.Id] = ev;
+                        DalamudLog.Log.Debug("OnMobReport: pending spawn report");
+                        return;
+                    }
+
                     OnMobSpawn(ev, config.Channel);
                     DalamudLog.Log.Verbose("OnMobReport: OnSpawnMobReport");
                     break;
@@ -157,7 +163,7 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                     {
                         location = spawn.Location;
                     }
-                    else if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiId, out location))
+                    else if (!FaloopEmbedData.Locations.TryGetValue(spawn.ZonePoiId ?? default, out location))
                     {
                         DalamudLog.Log.Debug("OnMobReport: unknown zone poi id found: {ZonePoiId}", spawn.ZonePoiId);
                         if (config.SkipPendingReport)
@@ -166,16 +172,23 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                         }
                     }
 
-                    var previous = spawnEvents.FirstOrDefault(x =>
-                        x.MobId == mobData.BNpcId &&
-                        x.WorldId == worldId &&
-                        x.ZoneInstance == data.Ids.ZoneInstance);
+                    var id = $"{mobData.BNpcId}_{worldId}_{data.Ids.ZoneInstance}";
+                    var previous = spawnEvents.LastOrDefault(x => x.Id == id);
+                    if (pendingSpawnEvents.Remove(id, out var pending))
+                    {
+                        previous ??= pending;
+                    }
                     if (previous == default)
                     {
                         DalamudLog.Log.Debug("OnMobReport: previous == null");
                         break;
                     }
-                    var ev = new MobSpawnEvent(mobData.BNpcId, worldId, previous.TerritoryTypeId, data.Ids.ZoneInstance, mobData.Rank, previous?.SpawnedAt ?? DateTime.UtcNow, previous?.Reporter, location);
+                    if (pending == default && previous.Location == location)
+                    {
+                        DalamudLog.Log.Debug("OnMobReport: location unchanged");
+                        break;
+                    }
+                    var ev = previous with { Location = location };
                     OnMobSpawn(ev, config.Channel);
                     break;
                 }
@@ -246,6 +259,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
     {
         Ui.OnMobSpawn(ev);
 
+        // replace the previous report of the same mob so that location updates do not pile up
+        spawnEvents.RemoveAll(x => x.Id == ev.Id);
         spawnEvents.Add(ev);
 
         var payloads = new List<Payload>();
@@ -291,11 +306,13 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
         Ui.OnMobDeath(ev);
 
         spawnEvents.RemoveAll(x => x.Id == ev.Id);
+        pendingSpawnEvents.Remove(ev.Id);
     }
 
     private void OnMobDeath(MobDeathEvent ev, int channel, bool skipOrphanReport, bool enableDeathReport)
     {
         Ui.OnMobDeath(ev);
+        pendingSpawnEvents.Remove(ev.Id);
 
         if (skipOrphanReport && spawnEvents.RemoveAll(x => x.Id == ev.Id) == 0)
         {
