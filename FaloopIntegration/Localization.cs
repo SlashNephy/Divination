@@ -118,6 +118,36 @@ public static class Localization
         Ja = "モブが湧いたときに通知",
     };
 
+    public static readonly LocalizedString SpawnSoundEffect = new()
+    {
+        En = "Sound on Spawn Report",
+        Ja = "湧き通知の効果音",
+    };
+
+    public static readonly LocalizedString SpawnSoundEffectNone = new()
+    {
+        En = "None",
+        Ja = "なし",
+    };
+
+    public static readonly LocalizedString SpawnSoundEffectCustom = new()
+    {
+        En = "Custom sound effect ID",
+        Ja = "効果音 ID を指定",
+    };
+
+    public static readonly LocalizedString SpawnSoundEffectCustomDescription = new()
+    {
+        En = "ID of an in-game UI sound effect. <se.1> to <se.16> correspond to 37 to 52.",
+        Ja = "ゲーム内の UI 効果音の ID です。<se.1> から <se.16> は 37 から 52 に対応します。",
+    };
+
+    public static readonly LocalizedString SpawnSoundEffectPreview = new()
+    {
+        En = "Preview",
+        Ja = "試聴",
+    };
+
     public static readonly LocalizedString EnableDeathReport = new()
     {
         En = "Enable Mob Death Report",
