@@ -106,6 +106,12 @@ public static class Localization
         Ja = "パスワード",
     };
 
+    public static readonly LocalizedString LoginFailed = new()
+    {
+        En = "Failed to log in to Faloop: {0} Please check your Faloop account in /faloop.",
+        Ja = "Faloop へのログインに失敗しました: {0} /faloop から Faloop アカウントを確認してください。",
+    };
+
     public static readonly LocalizedString AccountNotSet = new()
     {
         En = "Faloop account not set up. Type /faloop to log in with your Faloop account.",

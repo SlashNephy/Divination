@@ -451,7 +451,8 @@ public sealed class FaloopIntegration : DivinationPlugin<FaloopIntegration, Plug
                 if (!await session.LoginAsync(username, password))
                 {
                     // do not retry with credentials that are rejected
-                    DalamudLog.Log.Warning("Failed to log in to Faloop");
+                    DalamudLog.Log.Warning("Failed to log in to Faloop: {Message}", session.LoginErrorMessage ?? "(none)");
+                    Divination.Chat.PrintError(Localization.LoginFailed.Format(session.LoginErrorMessage ?? "-"));
                     return;
                 }
 
