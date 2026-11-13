@@ -156,9 +156,17 @@ public sealed class Teleporter : IDisposable
         queuedAetheryte = default;
         if (aetheryte.HasValue)
         {
-            ExecuteTeleport(aetheryte.Value).ContinueWith(_ =>
+            ExecuteTeleport(aetheryte.Value).ContinueWith(task =>
             {
-                DisplayTeleportingNotification(aetheryte.Value.PlaceName.Value.Name.ExtractText(), true);
+                // notify only when the teleport has actually started
+                if (task is { IsCompletedSuccessfully: true, Result: true })
+                {
+                    DisplayTeleportingNotification(aetheryte.Value.PlaceName.Value.Name.ExtractText(), true);
+                }
+                else
+                {
+                    DalamudLog.Log.Debug("TeleportToQueuedAetheryte: failed to teleport to {Id}", aetheryte.Value.RowId);
+                }
             });
         }
     }
