@@ -74,7 +74,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private void AppendNearestAetheryteLink(IHandleableChatMessage chat)
     {
-        if (Config.IgnoreOwnMessages && chat.SourceKind == XivChatRelationKind.LocalPlayer)
+        if (Config.IgnoreOwnMessages && IsOwnMessage(chat))
         {
             return;
         }
@@ -188,6 +188,37 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 message.Payloads.InsertRange(mapIndex, payloads);
             }
         }
+    }
+
+    private bool IsOwnMessage(IHandleableChatMessage chat)
+    {
+        // SourceKind is only set for battle logs and system messages, not for player chat such as Say or Shout
+        if (chat.SourceKind == XivChatRelationKind.LocalPlayer)
+        {
+            return true;
+        }
+
+        var localPlayer = Dalamud.ObjectTable.LocalPlayer;
+        if (localPlayer == null)
+        {
+            return false;
+        }
+
+        var localName = localPlayer.Name.TextValue;
+        if (string.IsNullOrEmpty(localName))
+        {
+            return false;
+        }
+
+        // the sender of a message from another player contains a PlayerPayload
+        var player = chat.Sender.Payloads.OfType<PlayerPayload>().FirstOrDefault();
+        if (player != null)
+        {
+            return player.PlayerName == localName && player.World.RowId == localPlayer.HomeWorld.RowId;
+        }
+
+        // the sender of your own message is only the name text, sometimes with a party number before it
+        return chat.Sender.TextValue.Contains(localName, StringComparison.Ordinal);
     }
 
     private void AppendLifestreamLink(List<Payload> payloads, SeString message, MapLinkPayload mapLink)
