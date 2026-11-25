@@ -74,7 +74,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private void AppendNearestAetheryteLink(IHandleableChatMessage chat)
     {
-        if (Config.IgnoreOwnMessages && chat.SourceKind == XivChatRelationKind.LocalPlayer)
+        if (Config.IgnoreOwnMessages && IsOwnMessage(chat))
         {
             return;
         }
@@ -188,6 +188,37 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
                 message.Payloads.InsertRange(mapIndex, payloads);
             }
         }
+    }
+
+    private bool IsOwnMessage(IHandleableChatMessage chat)
+    {
+        // SourceKind は戦闘ログやシステムメッセージでしか設定されず、Say や Shout などのプレイヤーの発言では使えない
+        if (chat.SourceKind == XivChatRelationKind.LocalPlayer)
+        {
+            return true;
+        }
+
+        var localPlayer = Dalamud.ObjectTable.LocalPlayer;
+        if (localPlayer == null)
+        {
+            return false;
+        }
+
+        var localName = localPlayer.Name.TextValue;
+        if (string.IsNullOrEmpty(localName))
+        {
+            return false;
+        }
+
+        // 他のプレイヤーの発言では、送信者に PlayerPayload が含まれる
+        var player = chat.Sender.Payloads.OfType<PlayerPayload>().FirstOrDefault();
+        if (player != null)
+        {
+            return player.PlayerName == localName && player.World.RowId == localPlayer.HomeWorld.RowId;
+        }
+
+        // 自分の発言では、送信者は名前のテキストだけになる (パーティの番号などが前に付く場合がある)
+        return chat.Sender.TextValue.Contains(localName, StringComparison.Ordinal);
     }
 
     private void AppendLifestreamLink(List<Payload> payloads, SeString message, MapLinkPayload mapLink)
