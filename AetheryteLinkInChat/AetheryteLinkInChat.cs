@@ -192,7 +192,7 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
 
     private bool IsOwnMessage(IHandleableChatMessage chat)
     {
-        // SourceKind は戦闘ログやシステムメッセージでしか設定されず、Say や Shout などのプレイヤーの発言では使えない
+        // SourceKind is only set for battle logs and system messages, not for player chat such as Say or Shout
         if (chat.SourceKind == XivChatRelationKind.LocalPlayer)
         {
             return true;
@@ -210,14 +210,14 @@ public class AetheryteLinkInChat : DivinationPlugin<AetheryteLinkInChat, PluginC
             return false;
         }
 
-        // 他のプレイヤーの発言では、送信者に PlayerPayload が含まれる
+        // the sender of a message from another player contains a PlayerPayload
         var player = chat.Sender.Payloads.OfType<PlayerPayload>().FirstOrDefault();
         if (player != null)
         {
             return player.PlayerName == localName && player.World.RowId == localPlayer.HomeWorld.RowId;
         }
 
-        // 自分の発言では、送信者は名前のテキストだけになる (パーティの番号などが前に付く場合がある)
+        // the sender of your own message is only the name text, sometimes with a party number before it
         return chat.Sender.TextValue.Contains(localName, StringComparison.Ordinal);
     }
 
